@@ -155,7 +155,8 @@ const CARD_DISPLAY_LABELS: Record<
     translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.8d62c68b35', 'Notes'),
   automation: () =>
     translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.automation', 'Automation'),
-  cli: () => translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.cli', 'Orca CLI'),
+  cli: () =>
+    translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.cli', 'BrzA Studio CLI'),
   ports: () => translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.2d74665a56', 'Ports'),
   'inline-agents': () =>
     translate('auto.components.sidebar.SidebarWorkspaceOptionsMenu.65a9820bd1', 'Agent statuses'),

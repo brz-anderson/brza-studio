@@ -30,7 +30,7 @@ function getRealHomeHookStateDir(userDataPath: string): string {
 
 export class HooksJsonChangedError extends Error {
   constructor() {
-    super('Codex hooks.json changed since Orca read it')
+    super('Codex hooks.json changed since BrzA Studio read it')
     this.name = 'HooksJsonChangedError'
   }
 }
@@ -43,7 +43,7 @@ export function readRealHomeHooksFileProblem(): string | null {
   }
   return isAddableHooksFile(config)
     ? null
-    : `Orca cannot add its hook to ${hooksJsonPath}, so Orca shows no status for ~/.codex`
+    : `BrzA Studio cannot add its hook to ${hooksJsonPath}, so BrzA Studio shows no status for ~/.codex`
 }
 
 // Reject shapes Codex skips so adding Orca hooks cannot clobber unsupported user data.

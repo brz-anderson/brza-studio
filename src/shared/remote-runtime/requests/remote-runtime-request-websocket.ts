@@ -62,7 +62,7 @@ export function openRemoteRuntimeWebSocket(
       callbacks.onError(
         ws,
         invalidRemoteRuntimeResponseError(
-          'Remote Orca runtime returned an unexpected binary frame.'
+          'Remote BrzA Studio runtime returned an unexpected binary frame.'
         )
       )
       return

@@ -34,7 +34,9 @@ export function requireManagedOrcadInfrastructure() {
   const targetStore = requireManagedOrcadTargetStore()
   const connectionManager = getSshConnectionManager()
   if (!connectionManager) {
-    throw new Error('SSH is unavailable on this client; this host’s Orca server is unverifiable.')
+    throw new Error(
+      'SSH is unavailable on this client; this host’s BrzA Studio server is unverifiable.'
+    )
   }
   return { connectionManager, targetStore, claims: targetStore.getOrcadRuntimeClaims() }
 }
@@ -42,7 +44,9 @@ export function requireManagedOrcadInfrastructure() {
 export function requireManagedOrcadTargetStore() {
   const targetStore = getSshTargetRegistryStore()
   if (!targetStore) {
-    throw new Error('SSH target state is unavailable; this host’s Orca server is unverifiable.')
+    throw new Error(
+      'SSH target state is unavailable; this host’s BrzA Studio server is unverifiable.'
+    )
   }
   return targetStore
 }
@@ -71,7 +75,7 @@ export async function resolveLinkedOrcadContext(
     target.generation !== deployment.sshTargetGeneration ||
     getManagedOrcadFenceEnvironmentId(target) !== environment.id
   ) {
-    throw new Error('The SSH registration for this host’s Orca server is no longer valid.')
+    throw new Error('The SSH registration for this host’s BrzA Studio server is no longer valid.')
   }
   const connection = await connectionManager.connect(target)
   return resolveOrcadRemoteContext(target, sshOrcadHostTransport(connection), signal)

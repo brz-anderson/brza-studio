@@ -5,22 +5,22 @@ import { wslDistroHolderKey } from './wsl-distro-holder-record'
 
 export const WSL_HOSTS_DISABLED_MESSAGE = 'WSL hosts are turned off in Settings → Experimental.'
 export const WSL_HOST_SERVER_FILES_MISSING_MESSAGE =
-  'This build of Orca can’t run WSL hosts (server files missing).'
+  'This build of BrzA Studio can’t run WSL hosts (server files missing).'
 
 type WslHostAddRefusal = Extract<WslHostAddResult, { ok: false }>
 
 export const WSL_HOST_REMOVING_MESSAGE = 'This WSL host is being removed.'
 
 export function wslHostNotConnectedMessage(distro: string): string {
-  return `The WSL host ${distro} isn’t connected. Open one of its projects or connect it in Settings → Remote Orca Servers.`
+  return `The WSL host ${distro} isn’t connected. Open one of its projects or connect it in Settings → Remote BrzA Studio Servers.`
 }
 
 export function wslHostStoppedMessage(distro: string): string {
-  return `${distro} was stopped. Switch to one of its projects, or reconnect it in Settings → Remote Orca Servers, to start it again.`
+  return `${distro} was stopped. Switch to one of its projects, or reconnect it in Settings → Remote BrzA Studio Servers, to start it again.`
 }
 
 export function wslHostRemovalPendingMessage(distro: string): string {
-  return `Orca didn’t finish removing the WSL host ${distro}. Remove it again in Settings → Remote Orca Servers, or connect it to keep it.`
+  return `BrzA Studio didn’t finish removing the WSL host ${distro}. Remove it again in Settings → Remote BrzA Studio Servers, or connect it to keep it.`
 }
 
 /** Why no WSL host may run at all right now; null when they may. */

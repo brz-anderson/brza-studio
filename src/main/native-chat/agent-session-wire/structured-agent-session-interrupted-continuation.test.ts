@@ -36,7 +36,7 @@ function sentTexts(dispatch: Restarted['dispatch']): string[] {
   )
 }
 
-it('continues with no restart offer, as Orca itself, and the chat says so', async () => {
+it('continues with no restart offer, as BrzA Studio itself, and the chat says so', async () => {
   const { host, dispatch } = await interruptedRestart()
   await host.restartResume.dismiss()
   expect(await host.restartResume.list()).toEqual([])
@@ -155,7 +155,7 @@ it('continues when the restart offer cannot be read', async () => {
   await vi.waitFor(() => expect(dispatch).toHaveBeenCalledOnce())
 })
 
-it('answers once Orca accepted it, while the agent is still starting', async () => {
+it('answers once BrzA Studio accepted it, while the agent is still starting', async () => {
   const { host, acquire, dispatch } = await interruptedRestart()
   const turnItemId = await cutTurn(host)
   const start = acquire.getMockImplementation()
@@ -196,7 +196,7 @@ it('says in the chat when the agent cannot start after the click was answered', 
   )
 })
 
-it('continues a reply the user had steered before Orca stopped', async () => {
+it('continues a reply the user had steered before BrzA Studio stopped', async () => {
   const { host, dispatch, store, marker } = await interruptedRestart()
   const turnItemId = await cutTurn(host)
   const fence = store.getRecord(SESSION)?.lease.runtimeFence

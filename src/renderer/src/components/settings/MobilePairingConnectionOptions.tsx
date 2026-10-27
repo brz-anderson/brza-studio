@@ -152,13 +152,13 @@ export function MobilePairingConnectionOptions({
           onSelect={() => onChange('automatic')}
           title={translate(
             'auto.components.settings.MobilePairingConnectionOptions.anywhereTitle',
-            'Orca Relay'
+            'BrzA Studio Relay'
           )}
           description={
             relayUnavailable
               ? translate(
                   'auto.components.settings.MobilePairingConnectionOptions.relayUnavailable',
-                  'Orca Relay isn’t available in this build. Use LAN.'
+                  'BrzA Studio Relay isn’t available in this build. Use LAN.'
                 )
               : translate(
                   'auto.components.settings.MobilePairingConnectionOptions.anywhereDescription',

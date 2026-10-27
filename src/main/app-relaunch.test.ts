@@ -66,7 +66,7 @@ describe('relaunchApp', () => {
     expect(appRelaunchMock).toHaveBeenLastCalledWith(custom)
   })
 
-  it('does not carry Orca PATH seeds into the replacement process', () => {
+  it('does not carry BrzA Studio PATH seeds into the replacement process', () => {
     process.env.PATH = '/seeded/newest-nvm/bin:/usr/bin'
     _setLaunchPathForTests('/usr/bin')
     let inheritedPath: string | undefined

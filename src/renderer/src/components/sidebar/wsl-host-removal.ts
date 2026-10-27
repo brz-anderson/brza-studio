@@ -35,7 +35,7 @@ export function warnWslHostServerStop(serverStop: WslHostServerStop | undefined)
     toast.warning(
       translate(
         'auto.components.sidebar.wslHostRemoval.pending',
-        'Orca didn’t remove the host yet: {{value0}} Remove it again to retry, or connect it to keep it.',
+        'BrzA Studio didn’t remove the host yet: {{value0}} Remove it again to retry, or connect it to keep it.',
         { value0: serverStop.reason }
       ),
       { duration: Infinity }

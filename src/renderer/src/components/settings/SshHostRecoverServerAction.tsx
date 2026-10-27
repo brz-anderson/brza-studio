@@ -141,12 +141,15 @@ function OpenRecoverServerDialog({
       <DialogContent surface="security" showCloseButton={!busy}>
         <DialogHeader>
           <DialogTitle>
-            {translate('auto.components.settings.recoverServer.title', 'Recover Orca’s server')}
+            {translate(
+              'auto.components.settings.recoverServer.title',
+              'Recover BrzA Studio’s server'
+            )}
           </DialogTitle>
           <DialogDescription>
             {translate(
               'auto.components.settings.recoverServer.description',
-              'Orca’s server on this host won’t start because a lock from an earlier run is still in place.'
+              'BrzA Studio’s server on this host won’t start because a lock from an earlier run is still in place.'
             )}
           </DialogDescription>
         </DialogHeader>
@@ -168,7 +171,7 @@ function OpenRecoverServerDialog({
             <Label htmlFor="ssh-host-recover-server-confirm">
               {translate(
                 'auto.components.settings.recoverServer.confirmCheck',
-                'No other machine sharing this home is running Orca'
+                'No other machine sharing this home is running BrzA Studio'
               )}
             </Label>
           </div>
@@ -213,7 +216,7 @@ function EligibleLock({
       <p>
         {translate(
           'auto.components.settings.recoverServer.eligible',
-          'Nothing answers on this machine at its old address, but Orca can’t rule out another machine with the same name that shares this home folder.'
+          'Nothing answers on this machine at its old address, but BrzA Studio can’t rule out another machine with the same name that shares this home folder.'
         )}
       </p>
       {evidence ? (
@@ -239,7 +242,7 @@ function EligibleLock({
       <p className="font-medium text-status-warning">
         {translate(
           'auto.components.settings.recoverServer.warning',
-          'Only continue if no other machine sharing this home runs Orca for this profile.'
+          'Only continue if no other machine sharing this home runs BrzA Studio for this profile.'
         )}
       </p>
     </div>
@@ -259,7 +262,7 @@ function CheckOutcome({
         <p>
           {translate(
             'auto.components.settings.recoverServer.reclaimedNotStarted',
-            'The lock was cleared, but Orca’s server did not start.'
+            'The lock was cleared, but BrzA Studio’s server did not start.'
           )}
         </p>
         {check.notRestarted ? <p className="text-destructive">{check.notRestarted}</p> : null}
@@ -271,7 +274,7 @@ function CheckOutcome({
       <p className="text-sm text-muted-foreground">
         {translate(
           'auto.components.settings.recoverServer.none',
-          'There is no lock to clear any more. Reconnect to start this host’s Orca server.'
+          'There is no lock to clear any more. Reconnect to start this host’s BrzA Studio server.'
         )}
       </p>
     )
@@ -335,7 +338,7 @@ function ManualLockDelete({ lockPath }: { lockPath: string | undefined }): React
       <p className="font-medium text-status-warning">
         {translate(
           'auto.components.settings.recoverServer.manualDeleteWarning',
-          'Only do this if no other machine sharing this home runs Orca for this profile.'
+          'Only do this if no other machine sharing this home runs BrzA Studio for this profile.'
         )}
       </p>
     </div>

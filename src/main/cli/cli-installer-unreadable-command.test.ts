@@ -48,7 +48,9 @@ describe.skipIf(process.platform === 'win32' || process.getuid?.() === 0)(
         currentTarget: null,
         pathConfigured: true
       })
-      await expect(installer.install()).rejects.toThrow('Refusing to replace non-Orca command')
+      await expect(installer.install()).rejects.toThrow(
+        'Refusing to replace non-BrzA Studio command'
+      )
       await chmod(fixture.foreignPath, 0o600)
       expect(await readFile(fixture.foreignPath, 'utf8')).toBe(unreadableContents)
     })

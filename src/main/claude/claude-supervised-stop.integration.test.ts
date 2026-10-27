@@ -195,7 +195,7 @@ describe.runIf(process.platform !== 'win32')('Claude under the POSIX provider su
     expect(alive(pids.claude)).toBe(false)
   })
 
-  it("stops Claude and its tool when Orca's main dies, and leaves a daemon that left its tree alone", async () => {
+  it("stops Claude and its tool when BrzA Studio's main dies, and leaves a daemon that left its tree alone", async () => {
     const specs: ProcessSpec[] = []
     createClaudeCodeProcessSpawn((spec) => {
       specs.push(spec)

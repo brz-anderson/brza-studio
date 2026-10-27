@@ -222,7 +222,7 @@ function DraftNotSavedIcon({ shown }: { shown: boolean }): React.JSX.Element | n
   }
   const explanation = translate(
     'components.native-chat.composer.draftNotSaved',
-    "This draft couldn't be saved yet. Orca keeps trying."
+    "This draft couldn't be saved yet. BrzA Studio keeps trying."
   )
   return (
     <Tooltip>

@@ -89,7 +89,10 @@ export function WorktreeCardReviewActions({
             }}
           >
             <MonitorUp className="size-3.5" />
-            {translate('auto.components.sidebar.WorktreeCardMeta.2c67730e07', 'Open in Orca')}
+            {translate(
+              'auto.components.sidebar.WorktreeCardMeta.2c67730e07',
+              'Open in BrzA Studio'
+            )}
           </DropdownMenuItem>
         ) : null}
         {onUnlink ? (

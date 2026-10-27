@@ -222,11 +222,11 @@ describe('notification workspace labels', () => {
       // The laptop row is unqualified, which is how a local worktree listing publishes it.
       local: {
         row: { displayName: 'Laptop feature' },
-        repo: { displayName: 'Orca on laptop', connectionId: null }
+        repo: { displayName: 'BrzA Studio on laptop', connectionId: null }
       },
       'ssh:build-box': {
         row: { hostId: 'ssh:build-box' as const, displayName: 'Build box feature' },
-        repo: { displayName: 'Orca on build box', connectionId: 'build-box' }
+        repo: { displayName: 'BrzA Studio on build box', connectionId: 'build-box' }
       }
     } as const
     type CollidingHostId = keyof typeof HOSTS

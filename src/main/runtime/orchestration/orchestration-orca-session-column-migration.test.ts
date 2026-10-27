@@ -200,7 +200,7 @@ function coordinatorAddresses(db: Database.Database, runIds: string[]): string[]
     .sort()
 }
 
-describe('orchestration Orca session id column migration', () => {
+describe('orchestration BrzA Studio session id column migration', () => {
   const tempRoots: string[] = []
 
   afterEach(() => {
@@ -215,7 +215,7 @@ describe('orchestration Orca session id column migration', () => {
     return join(root, 'orchestration.db')
   }
 
-  it('starts a v41 database at v41 and gives exactly its structured-worker rows an Orca session id', () => {
+  it('starts a v41 database at v41 and gives exactly its structured-worker rows a BrzA Studio session id', () => {
     const path = tempDbPath()
     const seed = new OrchestrationDb(path)
     const rows = seedStructuredAndPtyRows(seed)
@@ -337,7 +337,7 @@ describe('orchestration Orca session id column migration', () => {
     }
   })
 
-  it('lets a v41 binary read and write a v42 database with Orca session ids in it', () => {
+  it('lets a v41 binary read and write a v42 database with BrzA Studio session ids in it', () => {
     const path = tempDbPath()
     const seed = new OrchestrationDb(path)
     const rows = seedStructuredAndPtyRows(seed)
@@ -461,7 +461,7 @@ describe('orchestration Orca session id column migration', () => {
     }
   })
 
-  it('drives a dev database stamped v42 with prototype principal columns to add the Orca session ids', () => {
+  it('drives a dev database stamped v42 with prototype principal columns to add the BrzA Studio session ids', () => {
     const path = tempDbPath()
     const seed = new OrchestrationDb(path)
     const rows = seedStructuredAndPtyRows(seed)
@@ -518,7 +518,7 @@ describe('orchestration Orca session id column migration', () => {
     }
   })
 
-  it("stops counting a chat coordinator's Orca session id once a v41 binary rebinds and then unbinds the Run", () => {
+  it("stops counting a chat coordinator's BrzA Studio session id once a v41 binary rebinds and then unbinds the Run", () => {
     const path = tempDbPath()
     const seeded = new OrchestrationDb(path)
     seeded.db
@@ -579,7 +579,7 @@ describe('orchestration Orca session id column migration', () => {
     }
   })
 
-  it('finds Runs by coordinator Orca session id through an index on fresh and upgraded databases', () => {
+  it('finds Runs by coordinator BrzA Studio session id through an index on fresh and upgraded databases', () => {
     const expectIndexedLookup = (path: string): void => {
       const db = new OrchestrationDb(path)
       try {
@@ -600,7 +600,7 @@ describe('orchestration Orca session id column migration', () => {
     expectIndexedLookup(upgradedPath)
   })
 
-  it('replays a dev database stamped v42 with the earlier *_actor columns to add the Orca session ids', () => {
+  it('replays a dev database stamped v42 with the earlier *_actor columns to add the BrzA Studio session ids', () => {
     const path = tempDbPath()
     const seed = new OrchestrationDb(path)
     const rows = seedStructuredAndPtyRows(seed)

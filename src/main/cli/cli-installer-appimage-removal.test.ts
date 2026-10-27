@@ -29,7 +29,7 @@ describe.skipIf(process.platform === 'win32')('AppImage CLI removal', () => {
     async (removeCommandFirst) => {
       const root = await mkdtemp(join(tmpdir(), 'orca-appimage-cli-remove-'))
       created.push(root)
-      const appImagePath = join(root, 'Orca.AppImage')
+      const appImagePath = join(root, 'BrzA Studio.AppImage')
       const cacheRootPath = join(root, 'cache')
       const commandPath = join(root, 'home', '.local', 'bin', 'orca-ide')
       const resourcesPath = join(root, 'mount', 'resources')

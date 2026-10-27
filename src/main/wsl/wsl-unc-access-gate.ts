@@ -29,7 +29,7 @@ export class WslDistroUnverifiableError extends Error {
 
   constructor(readonly distro: string) {
     super(
-      `WSL didn't answer whether '${distro}' is running, so Orca left it alone. Retry in a moment.`
+      `WSL didn't answer whether '${distro}' is running, so BrzA Studio left it alone. Retry in a moment.`
     )
     this.name = 'WslDistroUnverifiableError'
   }

@@ -135,7 +135,7 @@ describe('Claude managed hook events by resolved version', () => {
   )
 
   it.each([undefined, 'unknown'])(
-    'leaves Orca entries a version-aware install wrote untouched when the version is %s',
+    'leaves BrzA Studio entries a version-aware install wrote untouched when the version is %s',
     (version) => {
       const current = install(userOwnedSettings(), '2.1.261')
       expect(JSON.stringify(install(current, version))).toBe(JSON.stringify(current))
@@ -173,7 +173,7 @@ describe('Claude managed hook events by resolved version', () => {
     expect(upgraded.hooks?.StopFailure).toEqual([{ hooks: [managedHook] }])
   })
 
-  it('removes only Orca entries for events a downgraded Claude does not know', () => {
+  it('removes only BrzA Studio entries for events a downgraded Claude does not know', () => {
     const current = install({ hooks: {} }, '2.1.261')
     expect(managedEvents(current)).toContain('SessionEnd')
 

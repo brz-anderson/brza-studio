@@ -251,7 +251,7 @@ describe('orca cli worktree awareness', () => {
 
     expect(callMock).not.toHaveBeenCalledWith('projectHostSetup.list')
     const printed = [...logSpy.mock.calls, ...errSpy.mock.calls].flat().join('\n')
-    expect(printed).toContain('no paired Orca server is named or has id not-a-real-env')
+    expect(printed).toContain('no paired BrzA Studio server is named or has id not-a-real-env')
     expect(JSON.parse(printed)).toMatchObject({ ok: false, error: { code: 'invalid_argument' } })
     expect(JSON.parse(printed).error.data.knownEnvironments).toEqual([])
     expect(process.exitCode).toBe(1)

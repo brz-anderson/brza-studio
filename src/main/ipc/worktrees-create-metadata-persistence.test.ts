@@ -202,7 +202,7 @@ describe('registerWorktreeHandlers', () => {
     expect(store.setWorktreeMeta).not.toHaveBeenCalled()
   })
 
-  it('strips Orca provenance fields from renderer metadata updates', () => {
+  it('strips BrzA Studio provenance fields from renderer metadata updates', () => {
     store.setWorktreeMeta.mockImplementation((_target: HostWorktreeTarget, meta) => meta)
 
     const result = handlers['worktrees:updateMeta'](null, {
@@ -617,7 +617,7 @@ describe('registerWorktreeHandlers', () => {
     )
   })
 
-  it('does not claim the Orca-created marker at create when a sibling worktree minted the fork remote', async () => {
+  it('does not claim the BrzA Studio-created marker at create when a sibling worktree minted the fork remote', async () => {
     listWorktreesMock.mockResolvedValue([
       {
         path: '/workspace/improve-dashboard',

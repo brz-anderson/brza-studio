@@ -141,7 +141,7 @@ describe('parseAgentStatusPayload', () => {
   })
 
   // Why: dispatch preambles bury the task body after multi-KB CLI text; naive head-truncation would keep only boilerplate.
-  it('compacts Orca dispatch preambles so the task body survives 200-char truncation', () => {
+  it('compacts BrzA Studio dispatch preambles so the task body survives 200-char truncation', () => {
     const longCliNoise = Array.from(
       { length: 50 },
       (_, i) => `orca orchestration send --to term_parent --type heartbeat --phase step-${i}`

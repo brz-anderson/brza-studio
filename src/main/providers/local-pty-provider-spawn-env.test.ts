@@ -217,7 +217,7 @@ describe('LocalPtyProvider', () => {
 
     it.each([
       // Exported fish_history can leak the launching workspace session even when isolation is off (STA-4682).
-      ['an inherited Orca session', 'orca_abc123', undefined],
+      ['an inherited BrzA Studio session', 'orca_abc123', undefined],
       ['a user value', 'mine', 'mine']
     ])('history isolation off: %s', async (_kind, inherited, expected) => {
       const previous = process.env.fish_history
@@ -239,7 +239,7 @@ describe('LocalPtyProvider', () => {
     it.each([
       // Exported HISTFILE can leak the launching workspace history even with isolation off.
       [
-        'an inherited Orca path',
+        'an inherited BrzA Studio path',
         '/fake/userData/terminal-history/aabbccddeeff0011/zsh_history',
         undefined
       ],
@@ -261,7 +261,7 @@ describe('LocalPtyProvider', () => {
       expect(spawnMock.mock.calls.at(-1)![2].env.HISTFILE).toBe(expected)
     })
 
-    it('does not inherit NODE_ENV from the Orca process env', async () => {
+    it('does not inherit NODE_ENV from the BrzA Studio process env', async () => {
       // Ambient NODE_ENV belongs to the Orca build and can break terminal next build/Vitest.
       const previous = process.env.NODE_ENV
       process.env.NODE_ENV = 'development'
@@ -561,7 +561,7 @@ describe('LocalPtyProvider', () => {
       expect(spawnEnv.Path.split(':')[0]).toBe('/tmp/orca-agent-teams-bin')
     })
 
-    it('does not inherit parent Orca pane identity when caller omits pane env', async () => {
+    it('does not inherit parent BrzA Studio pane identity when caller omits pane env', async () => {
       const saved = {
         ORCA_PANE_KEY: process.env.ORCA_PANE_KEY,
         ORCA_TAB_ID: process.env.ORCA_TAB_ID,
@@ -592,7 +592,7 @@ describe('LocalPtyProvider', () => {
       expect(spawnCall[2].env.ORCA_ORCAD_MANAGED_ACTIVATION_ROOT).toBeUndefined()
     })
 
-    it('preserves explicit child Orca pane identity over parent env', async () => {
+    it('preserves explicit child BrzA Studio pane identity over parent env', async () => {
       const saved = {
         ORCA_PANE_KEY: process.env.ORCA_PANE_KEY,
         ORCA_TAB_ID: process.env.ORCA_TAB_ID,

@@ -57,7 +57,7 @@ export function FeatureWallTourSurface({
   doneLabel = 'Done',
   footerText = translate(
     'auto.components.feature.wall.FeatureWallTourSurface.reopenHint',
-    'Reopen any time from Help > Explore Orca.'
+    'Reopen any time from Help > Explore BrzA Studio.'
   ),
   enableKeyboardShortcut = true,
   compactRail = false,

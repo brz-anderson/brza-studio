@@ -26,7 +26,7 @@ function row(pid: number, ppid: number, command: string, creationTimeMs?: number
 }
 
 describe('findOrphanedOrcaSshForward', () => {
-  it('finds a reparented Orca forward for this exact forward (macOS/Linux init)', () => {
+  it('finds a reparented BrzA Studio forward for this exact forward (macOS/Linux init)', () => {
     expect(findOrphanedOrcaSshForward([row(900, 1, ORCA_FORWARD)], EXPECTED, 'darwin')?.pid).toBe(
       900
     )
@@ -61,7 +61,7 @@ describe('findOrphanedOrcaSshForward', () => {
     ).toBeNull()
   })
 
-  it("never picks a forward whose Orca is still running (another instance's tunnel)", () => {
+  it("never picks a forward whose BrzA Studio is still running (another instance's tunnel)", () => {
     const rows = [
       row(400, 1, '/Applications/Orca.app/Contents/MacOS/Orca'),
       row(900, 400, ORCA_FORWARD)
@@ -69,7 +69,7 @@ describe('findOrphanedOrcaSshForward', () => {
     expect(findOrphanedOrcaSshForward(rows, EXPECTED, 'darwin')).toBeNull()
   })
 
-  it("never picks the user's own ssh on the port, even an orphaned daemon in Orca's flag order", () => {
+  it("never picks the user's own ssh on the port, even an orphaned daemon in BrzA Studio's flag order", () => {
     const rows = [
       row(900, 1, 'ssh -N -L 127.0.0.1:47123:127.0.0.1:6768 devbox'),
       row(

@@ -7,7 +7,7 @@ const fileViolation = (sddl: string) => findSecureDaclViolation(daclFromSddl(sdd
 const directoryViolation = (sddl: string) => findSecureDaclViolation(daclFromSddl(sddl), USER, true)
 
 describe('findSecureDaclViolation', () => {
-  it('accepts what Orca writes, for files and directories', () => {
+  it('accepts what BrzA Studio writes, for files and directories', () => {
     expect(fileViolation(hardenedDaclSddl(USER, false))).toBeNull()
     expect(directoryViolation(hardenedDaclSddl(USER, true))).toBeNull()
   })

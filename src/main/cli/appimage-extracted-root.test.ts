@@ -32,7 +32,7 @@ async function makeFixture(): Promise<{
 }> {
   const root = await mkdtemp(join(tmpdir(), 'orca-appimage-extract-'))
   created.push(root)
-  const appImagePath = join(root, 'Orca.AppImage')
+  const appImagePath = join(root, 'BrzA Studio.AppImage')
   await writeFile(appImagePath, '#!/usr/bin/env bash\n', { encoding: 'utf8', mode: 0o755 })
   return { root, appImagePath, cacheRootPath: join(root, 'cache') }
 }

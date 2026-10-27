@@ -172,7 +172,7 @@ describe('ExternalChromiumBrowserProcess', () => {
 describe('cross-platform browser provider paths', () => {
   it('resolves installed Electron launchers on macOS, Linux, and Windows', () => {
     expect(installedElectronCandidates('darwin', '/Users/test', {})).toContain(
-      '/Users/test/Applications/Orca.app/Contents/MacOS/Orca'
+      '/Users/test/Applications/BrzA Studio.app/Contents/MacOS/Orca'
     )
     expect(installedElectronCandidates('linux', '/home/test', {})).toContain(
       '/home/test/.local/bin/orca-ide'
@@ -181,7 +181,7 @@ describe('cross-platform browser provider paths', () => {
       installedElectronCandidates('win32', 'C:\\Users\\test', {
         LOCALAPPDATA: 'C:\\Users\\test\\AppData\\Local'
       })
-    ).toContain('C:\\Users\\test\\AppData\\Local\\Programs\\Orca\\Orca.exe')
+    ).toContain('C:\\Users\\test\\AppData\\Local\\Programs\\BrzA Studio\\Orca.exe')
   })
 
   it('uses platform-specific bundled agent-browser names', () => {
@@ -212,7 +212,7 @@ describe.skipIf(process.platform === 'win32')('resolveInstalledElectronExecutabl
   })
 
   it('still accepts an AppImage-style binary', async () => {
-    const appImage = join(root, 'Orca.AppImage')
+    const appImage = join(root, 'BrzA Studio.AppImage')
     await writeExecutable(appImage, Buffer.from([0x7f, 0x45, 0x4c, 0x46, 2, 1, 1, 0]))
 
     await expect(resolveInstalledElectronExecutable([appImage])).resolves.toBe(appImage)

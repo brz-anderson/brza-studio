@@ -32,6 +32,7 @@ export const CJK_LATIN_SPACED_TERMS = [
   'Kimi',
   'OpenCode',
   'Orca',
+  'BrzA Studio',
   'Cursor',
   'Bitbucket',
   'Tailscale',

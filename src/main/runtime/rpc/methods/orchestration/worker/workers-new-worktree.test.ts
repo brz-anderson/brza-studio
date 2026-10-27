@@ -323,7 +323,9 @@ describe('orchestration new-worktree workers', () => {
 
         await expect(startWorker({ worktree, ...extra })).rejects.toMatchObject({
           code: 'invalid_argument',
-          message: expect.stringContaining('could not be resolved to a git worktree Orca manages')
+          message: expect.stringContaining(
+            'could not be resolved to a git worktree BrzA Studio manages'
+          )
         })
         expect(createWorktree).not.toHaveBeenCalled()
         expect(db.getDispatchContext(db.listTasks()[0]!.id)).toBeUndefined()

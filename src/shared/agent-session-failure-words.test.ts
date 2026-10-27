@@ -197,7 +197,7 @@ describe('the words written beside a failure fact', () => {
     ).toBe('Codex 0.135.0 is too old for chats. Update to 0.136.0 or newer.')
   })
 
-  it('says a start refused beside a process Orca could not stop in its own words', () => {
+  it('says a start refused beside a process BrzA Studio could not stop in its own words', () => {
     const refused = (context: { command?: 'compact'; retryControl?: boolean } = {}) =>
       agentSessionFailureSentence(
         {

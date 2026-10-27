@@ -296,7 +296,7 @@ export function AntigravityAccountsSection({
                   <p className="text-xs text-muted-foreground">
                     {translate(
                       'settings.chat.providers.antigravityDescription',
-                      'Antigravity chats run a server Orca downloads to this host, separate from the agy CLI.'
+                      'Antigravity chats run a server BrzA Studio downloads to this host, separate from the agy CLI.'
                     )}
                   </p>
                   {line}

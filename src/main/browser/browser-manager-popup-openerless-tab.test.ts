@@ -245,7 +245,7 @@ describe('target=_blank links to local files', () => {
     rendererSendMock.mockReset()
   })
 
-  it('opens them in an Orca tab from a local page', () => {
+  it('opens them in a BrzA Studio tab from a local page', () => {
     const handler = attachClickedGuest('file:///tmp/site/index.html')
 
     expect(handler({ url: 'file:///tmp/site/detail.html#pain', ...link })).toEqual({

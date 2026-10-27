@@ -97,7 +97,7 @@ it('ends a running turn signed out when the connection closes for sign-in', asyn
   expect(rejected && 'reason' in rejected ? rejected.reason : '').not.toContain(internal)
 })
 
-it('starts signed out without Orca words when the connection closes for sign-in', async () => {
+it('starts signed out without BrzA Studio words when the connection closes for sign-in', async () => {
   const rig = await openAcpAdapterRig({ script: (agent) => agent.on('session/new', () => {}) })
   const starting = rig.acquire()
   await rig.frame('session/new')

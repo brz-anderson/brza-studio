@@ -211,7 +211,7 @@ describe('orchestration gate commands carry caller identity', () => {
       .mockRejectedValueOnce(
         new RuntimeClientError(
           'runtime_unavailable',
-          'The Orca runtime closed the connection before responding. Restart Orca and try again. Orchestration mutation request ID: mutation_1.',
+          'The BrzA Studio runtime closed the connection before responding. Restart BrzA Studio and try again. Orchestration mutation request ID: mutation_1.',
           {
             orchestrationRequestId: 'mutation_1',
             originalCommand: [

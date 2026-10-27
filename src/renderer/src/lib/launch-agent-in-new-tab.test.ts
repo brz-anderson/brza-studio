@@ -577,7 +577,7 @@ describe('launchAgentInNewTab', () => {
     mockIsWebRuntimeSessionActive.mockReturnValue(true)
     mockCreateWebRuntimeSessionTerminal.mockResolvedValue({
       status: 'failed',
-      message: 'Upgrade the remote Orca host before starting or resuming agent sessions.'
+      message: 'Upgrade the remote BrzA Studio host before starting or resuming agent sessions.'
     })
     store.settings = {
       agentCmdOverrides: {},
@@ -590,7 +590,7 @@ describe('launchAgentInNewTab', () => {
     await launchAgentInNewTab({ requestId: 'request-14', agent: 'claude', worktreeId: 'wt-1' })
       ?.terminalCompletion
     expect(mockToastError).toHaveBeenCalledWith(
-      'Upgrade the remote Orca host before starting or resuming agent sessions.'
+      'Upgrade the remote BrzA Studio host before starting or resuming agent sessions.'
     )
     expect(mockSetActiveTabType).not.toHaveBeenCalled()
   })

@@ -115,20 +115,23 @@ function clickLink({
 }
 
 describe('rich Markdown alternate browser click', () => {
-  it.each([true, false])('opens Orca when the system browser is primary (Mac: %s)', (isMac) => {
-    expect(clickLink({ isMac })).toBe(true)
-    expect(openOwnedBrowser).toHaveBeenCalledWith({
-      workspaceId: 'wt-1',
-      url: 'https://example.com/docs',
-      intent: { kind: 'url' },
-      linkContext: { linkIntent: null, canReveal: expect.any(Function) }
-    })
-    expect(openUrl).not.toHaveBeenCalled()
-    expect(activateMarkdownLink).not.toHaveBeenCalled()
-  })
+  it.each([true, false])(
+    'opens BrzA Studio when the system browser is primary (Mac: %s)',
+    (isMac) => {
+      expect(clickLink({ isMac })).toBe(true)
+      expect(openOwnedBrowser).toHaveBeenCalledWith({
+        workspaceId: 'wt-1',
+        url: 'https://example.com/docs',
+        intent: { kind: 'url' },
+        linkContext: { linkIntent: null, canReveal: expect.any(Function) }
+      })
+      expect(openUrl).not.toHaveBeenCalled()
+      expect(activateMarkdownLink).not.toHaveBeenCalled()
+    }
+  )
 
   it.each([true, false])(
-    'opens the system browser when Orca is primary (invert: %s)',
+    'opens the system browser when BrzA Studio is primary (invert: %s)',
     (inverts) => {
       routing.settings = {
         openLinksInApp: true,
@@ -143,7 +146,7 @@ describe('rich Markdown alternate browser click', () => {
   it.each<HttpLinkSourceOwner>([
     { kind: 'ssh', connectionId: 'conn-1' },
     { kind: 'runtime', runtimeEnvironmentId: 'env-1' }
-  ])('opens the alternate Orca browser on the source owner: %j', (sourceOwner) => {
+  ])('opens the alternate BrzA Studio browser on the source owner: %j', (sourceOwner) => {
     expect(clickLink({ sourceOwner })).toBe(true)
     expect(openOwnedBrowser).toHaveBeenCalledWith({
       workspaceId: 'wt-1',

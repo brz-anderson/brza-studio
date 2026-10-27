@@ -70,8 +70,8 @@ export class RuntimeEnvironmentSidecarInvalidError extends Error {
   constructor(path: string, environmentId?: string) {
     super(
       environmentId === undefined
-        ? `Could not read Orca environment links at ${path}; the file is invalid.`
-        : `Could not read the Orca environment link for ${environmentId} at ${path}; it may need a newer version of Orca.`
+        ? `Could not read BrzA Studio environment links at ${path}; the file is invalid.`
+        : `Could not read the BrzA Studio environment link for ${environmentId} at ${path}; it may need a newer version of BrzA Studio.`
     )
     this.name = 'RuntimeEnvironmentSidecarInvalidError'
   }

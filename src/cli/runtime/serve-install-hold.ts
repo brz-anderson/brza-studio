@@ -13,11 +13,11 @@ export const SERVE_INSTALL_HOLD_REASON_TEXT: Record<
   Extract<ServeInstallEvidence, { kind: 'hold' }>['reason'],
   string
 > = {
-  'bundle-missing': 'the Orca executable is missing, likely mid-install',
-  'installer-running': "macOS's updater (ShipIt) is replacing this Orca app",
+  'bundle-missing': 'the BrzA Studio executable is missing, likely mid-install',
+  'installer-running': "macOS's updater (ShipIt) is replacing this BrzA Studio app",
   'installer-unknown':
-    "could not check whether macOS's updater (ShipIt) is replacing this Orca app",
-  'install-park': 'the Orca desktop app paused this server to install an update'
+    "could not check whether macOS's updater (ShipIt) is replacing this BrzA Studio app",
+  'install-park': 'the BrzA Studio desktop app paused this server to install an update'
 }
 
 type ListProcesses = () => Promise<string | null>

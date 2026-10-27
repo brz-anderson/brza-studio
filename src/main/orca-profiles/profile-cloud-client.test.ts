@@ -42,7 +42,7 @@ function mockFetchJson(value: unknown): void {
   })
 }
 
-describe('Orca cloud client', () => {
+describe('BrzA Studio cloud client', () => {
   beforeEach(() => {
     fetchMock.mockReset()
     vi.stubGlobal('fetch', fetchMock)

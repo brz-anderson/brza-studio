@@ -19,7 +19,7 @@ let cacheRootPath = ''
 
 beforeEach(() => {
   root = mkdtempSync(join(tmpdir(), 'orca-generation-launch-'))
-  appImagePath = join(root, 'Orca.AppImage')
+  appImagePath = join(root, 'BrzA Studio.AppImage')
   cacheRootPath = join(root, 'cache')
   writeFileSync(appImagePath, 'appimage')
   resolveIdentity.mockReturnValue({ appImagePath })

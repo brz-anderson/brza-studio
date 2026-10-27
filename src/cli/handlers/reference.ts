@@ -36,7 +36,7 @@ async function callReference<TResult>(
     if (error instanceof RuntimeClientError && error.code === 'method_not_found') {
       throw new RuntimeClientError(
         'incompatible_runtime',
-        'This Orca host does not support reference commands yet. Update Orca on the execution host.'
+        'This BrzA Studio host does not support reference commands yet. Update BrzA Studio on the execution host.'
       )
     }
     throw error

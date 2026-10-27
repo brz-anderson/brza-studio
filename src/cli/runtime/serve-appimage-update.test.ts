@@ -30,7 +30,7 @@ async function backdate(path: string): Promise<void> {
 async function makeRunningGeneration() {
   const root = await mkdtemp(join(tmpdir(), 'orca-serve-appimage-update-'))
   created.push(root)
-  const appImagePath = join(root, 'Orca.AppImage')
+  const appImagePath = join(root, 'BrzA Studio.AppImage')
   await writeFile(appImagePath, 'build B', { mode: 0o755 })
   await backdate(appImagePath)
   const namespacePath = join(root, 'cache', appImageNamespaceKey(appImagePath))

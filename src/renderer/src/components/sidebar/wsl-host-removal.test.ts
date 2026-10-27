@@ -73,10 +73,13 @@ describe('removeWslHost', () => {
   })
 
   it('says what is still running in the distro, and keeps saying it until dismissed', async () => {
-    stubApi({ stopped: false, reason: '1 terminal kept running, so Orca left the server running.' })
+    stubApi({
+      stopped: false,
+      reason: '1 terminal kept running, so BrzA Studio left the server running.'
+    })
     await removeWslHost('wsl:ubuntu')
     expect(mocks.warning).toHaveBeenCalledWith(
-      'The host was removed, but something in the distro is still running: 1 terminal kept running, so Orca left the server running.',
+      'The host was removed, but something in the distro is still running: 1 terminal kept running, so BrzA Studio left the server running.',
       { duration: Infinity }
     )
   })
@@ -90,7 +93,7 @@ describe('removeWslHost', () => {
     })
     await removeWslHost('wsl:ubuntu')
     expect(mocks.warning).toHaveBeenCalledExactlyOnceWith(
-      'Orca didn’t remove the host yet: Start Ubuntu to finish removing it. Remove it again to retry, or connect it to keep it.',
+      'BrzA Studio didn’t remove the host yet: Start Ubuntu to finish removing it. Remove it again to retry, or connect it to keep it.',
       { duration: Infinity }
     )
   })

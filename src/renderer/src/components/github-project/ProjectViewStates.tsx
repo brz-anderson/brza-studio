@@ -9,7 +9,7 @@ import { isRenderableProjectViewLayout } from '../../../../shared/github/project
 import type { GitHubProjectViewSummary } from '../../../../shared/github/project-types'
 import type { GitHubProjectViewError } from '../../../../shared/github/project-result-types'
 
-const ORCA_FEATURE_REQUEST_URL = 'https://github.com/stablyai/orca/issues/new'
+const ORCA_FEATURE_REQUEST_URL = 'https://github.com/brz-anderson/brza-studio/issues/new'
 
 export function ProjectViewTabStrip({
   views,
@@ -68,7 +68,7 @@ function ProjectViewTab({
           ? view.name
           : translate(
               'auto.components.github.project.ProjectViewWrapper.2edf5e7e77',
-              "{{value0}} — Orca doesn't support {{value1}} project views yet. File a feature request at {{value2}}.",
+              "{{value0}} — BrzA Studio doesn't support {{value1}} project views yet. File a feature request at {{value2}}.",
               { value0: view.name, value1: layoutLabel, value2: ORCA_FEATURE_REQUEST_URL }
             )
       }
@@ -88,7 +88,7 @@ function ProjectViewTab({
   if (supported) {
     return tab
   }
-  const message = `Orca doesn't support ${layoutLabel} project views yet.`
+  const message = `BrzA Studio doesn't support ${layoutLabel} project views yet.`
   return (
     <HoverCard openDelay={200} closeDelay={100}>
       <HoverCardTrigger asChild>
@@ -110,7 +110,7 @@ function ProjectViewTab({
             {message}{' '}
             {translate(
               'projectViews.unsupported.switchLayout',
-              'Switch to a Table, Board, or Roadmap view to work with this project in Orca.'
+              'Switch to a Table, Board, or Roadmap view to work with this project in BrzA Studio.'
             )}
           </p>
           <Button
@@ -155,12 +155,12 @@ export function ProjectViewErrorState({
   }
   const copy =
     error.type === 'too_large'
-      ? `This view has ${totalCount ?? 'many'} items — too large to render in Orca. Narrow the view's filter on GitHub.`
+      ? `This view has ${totalCount ?? 'many'} items — too large to render in BrzA Studio. Narrow the view's filter on GitHub.`
       : error.type === 'unsupported_layout'
         ? // Older hosts may still reject roadmaps; keep the explanation independent of the requested layout.
           translate(
             'projectViews.unsupported.description',
-            'Orca renders table, board, and roadmap project views. This view uses a layout it cannot render yet.'
+            'BrzA Studio renders table, board, and roadmap project views. This view uses a layout it cannot render yet.'
           )
         : error.type === 'not_found'
           ? 'Could not find this project or view.'

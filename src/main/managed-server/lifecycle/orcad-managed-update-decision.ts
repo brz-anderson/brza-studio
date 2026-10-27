@@ -91,8 +91,8 @@ export function orcadUpdateSkipRefusal(
   return plan.reason === 'rolled-back'
     ? `This host's server rolled back from ${candidateVersion}, so a connect does not activate ` +
         'it again; choose Update or Force to retry it.'
-    : `Orca ${record.activeAppVersion} last ran this host's server, newer than this ` +
-        `Orca (${appVersion}). Update Orca to start it.`
+    : `BrzA Studio ${record.activeAppVersion} last ran this host's server, newer than this ` +
+        `BrzA Studio (${appVersion}). Update BrzA Studio to start it.`
 }
 
 /** Content hashes cannot order updates: compare Orca versions, or for legacy hosts offer only this desktop's previously deferred build. */

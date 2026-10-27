@@ -183,7 +183,7 @@ describe('orca serve service', () => {
     ).resolves.toMatchObject({ dryRun: true })
   })
 
-  it('refuses a --command tied to one Orca version', async () => {
+  it('refuses a --command tied to one BrzA Studio version', async () => {
     const scoped = join(home, 'profile', 'cli', 'bin')
     await mkdir(scoped, { recursive: true })
     await writeFile(join(scoped, 'orca'), '#!/bin/sh\n')

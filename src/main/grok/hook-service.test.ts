@@ -497,7 +497,7 @@ describe('GrokHookService', () => {
     expect(service.getStatus().managedHooksPresent).toBe(true)
   })
 
-  it('preserves user-authored hook entries in the Orca Grok config file', () => {
+  it('preserves user-authored hook entries in the BrzA Studio Grok config file', () => {
     const configPath = join(homeDir, '.grok', 'hooks', 'orca-status.json')
     mkdirSync(dirname(configPath), { recursive: true })
     writeFileSync(

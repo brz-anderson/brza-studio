@@ -3,7 +3,7 @@ import { classifyRuntimeEnvironmentHost } from '../../../shared/runtime-environm
 import type { KnownRuntimeEnvironment } from '../../../shared/runtime-environments'
 
 const UNREACHABLE_RE =
-  /could not connect to the remote orca runtime|remote orca runtime closed the connection|timed out (?:waiting for|while connecting to) the remote orca runtime/i
+  /could not connect to the remote (?:orca|brza studio) runtime|remote (?:orca|brza studio) runtime closed the connection|timed out (?:waiting for|while connecting to) the remote (?:orca|brza studio) runtime/i
 
 export function withRuntimeUnreachableHint(
   environment: Pick<KnownRuntimeEnvironment, 'orcadDeployment'>,
@@ -17,7 +17,7 @@ export function withRuntimeUnreachableHint(
     case 'wsl':
       // WSL is reached locally through wsl.exe; a Tailscale hint cannot help.
       return UNREACHABLE_RE.test(message)
-        ? `${message} The Orca server in the WSL distro ${host.deployment.distro} isn’t answering; connect it again in Settings → Remote Orca Servers → WSL hosts.`
+        ? `${message} The BrzA Studio server in the WSL distro ${host.deployment.distro} isn’t answering; connect it again in Settings → Remote BrzA Studio Servers → WSL hosts.`
         : message
   }
 }

@@ -217,7 +217,7 @@ it('launches the copied helper on plain Node and leaves no inherited credentials
   expect(job).toMatchObject({
     Label: macDaemonJobLabel(state.root),
     KeepAlive: false,
-    AssociatedBundleIdentifiers: ['com.stablyai.orca'],
+    AssociatedBundleIdentifiers: ['com.brzanderson.brzastudio'],
     MaterializeDatalessFiles: true,
     EnvironmentVariables: { ORCA_TEST_SECRET: 'test-value' }
   })
@@ -255,7 +255,7 @@ it('uses one launchd label per profile and protocol', () => {
     macDaemonJobLabel('/Users/a/Library/Application Support/orca-dev')
   )
   expect(macDaemonJobLabel('/p')).toMatch(
-    new RegExp(`^com\\.stablyai\\.orca\\.terminal\\.[0-9a-f]{16}\\.v${PROTOCOL_VERSION}$`)
+    new RegExp(`^com\\.brzanderson\\.brzastudio\\.terminal\\.[0-9a-f]{16}\\.v${PROTOCOL_VERSION}$`)
   )
 })
 

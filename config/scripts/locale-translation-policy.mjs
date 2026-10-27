@@ -31,6 +31,7 @@ export const NEVER_TRANSLATE_VALUES = new Set([
   'Antigravity',
   'Auggie',
   'Autohand Code',
+  'BrzA Studio',
   'Charm',
   'Claude',
   'Claude Agent Teams',

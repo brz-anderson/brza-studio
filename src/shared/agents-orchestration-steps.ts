@@ -22,7 +22,8 @@ export const AGENTS_STEPS: readonly AgentsStep[] = [
     id: 'orchestration',
     name: 'Orchestration',
     subtitle: 'Orchestration',
-    description: 'Enable agents to manage and coordinate Orca workspaces to execute larger tasks.'
+    description:
+      'Enable agents to manage and coordinate BrzA Studio workspaces to execute larger tasks.'
   },
   {
     id: 'usage',

@@ -168,7 +168,7 @@ export function createStructuredChatNamingHandler(deps: StructuredChatNamingDeps
         failure = 'error' in result ? result : { error: 'The chat-name agent returned no name.' }
       } catch (error) {
         warn(record.sessionId, error)
-        failure = { error: 'Orca could not run the chat-name agent.' }
+        failure = { error: 'BrzA Studio could not run the chat-name agent.' }
       }
       if (!stillCurrent()) {
         return null

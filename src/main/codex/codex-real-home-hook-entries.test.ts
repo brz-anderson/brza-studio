@@ -231,7 +231,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(existsSync(configPath())).toBe(false)
   })
 
-  it("leaves an older build's event alone on a launch, and adds Orca's entry to the rest", async () => {
+  it("leaves an older build's event alone on a launch, and adds BrzA Studio's entry to the rest", async () => {
     writeHooks({ hooks: { Stop: [USER_A, orcaGroup(olderBuildCommand())] } })
 
     expect(await reconcile({ convertOlderForms: false })).toBe('written')
@@ -252,7 +252,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(readHooks().hooks.Stop).toEqual([orcaGroup(newer)])
   })
 
-  it('keeps Orca entries in events this build does not subscribe to', async () => {
+  it('keeps BrzA Studio entries in events this build does not subscribe to', async () => {
     const otherEvent = [orcaGroup()]
     writeHooks({ hooks: { PreCompact: otherEvent } })
 
@@ -261,7 +261,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(readHooks().hooks.PreCompact).toEqual(otherEvent)
   })
 
-  it("keeps the approval of Orca's entry in an event this Codex does not list", async () => {
+  it("keeps the approval of BrzA Studio's entry in an event this Codex does not list", async () => {
     const interrupt: HookDefinition = { hooks: [buildCodexManagedHook(frozen(), 'Interrupt')] }
     writeHooks({ hooks: { Interrupt: [interrupt] } })
     // Simulate approval by a newer Codex sharing the same home.
@@ -326,7 +326,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expectOrcaApprovedAt(1)
   })
 
-  it("drops a hook that runs Orca's script through its args, as the opt-out does", async () => {
+  it("drops a hook that runs BrzA Studio's script through its args, as the opt-out does", async () => {
     const viaArgs: HookDefinition = {
       hooks: [
         {
@@ -343,7 +343,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(readHooks().hooks.Stop).toEqual([USER_A, orcaGroup()])
   })
 
-  it("moves Orca's handler out of a user's matcher group, with the shifted user approvals", async () => {
+  it("moves BrzA Studio's handler out of a user's matcher group, with the shifted user approvals", async () => {
     const userGroup: HookDefinition = {
       matcher: 'Bash',
       hooks: [
@@ -379,7 +379,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(trustAt(orca)).toEqual({ trustedHash: CODEX_HASHES.pre_tool_use, enabled: true })
   })
 
-  it("drops Orca's approval at the slot its copy left in a user's matcher group", async () => {
+  it("drops BrzA Studio's approval at the slot its copy left in a user's matcher group", async () => {
     const lint = { type: 'command' as const, command: 'lint.sh' }
     const userGroup: HookDefinition = {
       matcher: 'Bash',
@@ -492,7 +492,7 @@ describe('reconcileRealHomeCodexHookEntries', () => {
     expect(await reconcile()).toBe('unchanged')
   })
 
-  it("keeps user hooks' positions and approvals while appending Orca's entry", async () => {
+  it("keeps user hooks' positions and approvals while appending BrzA Studio's entry", async () => {
     writeHooks({ hooks: { Stop: [USER_A, USER_B] } })
     upsertHookTrustEntries(configPath(), [
       { ...stopEntryAt(1, USER_B), trustedHash: 'sha256:user' }
@@ -591,7 +591,7 @@ describe('until Codex answers', () => {
     expect({ hooks: identity(hooksPath()), toml: identity(configPath()) }).toEqual(before)
   })
 
-  it("approves a new entry with Orca's own hash, which Codex's answer then replaces", async () => {
+  it("approves a new entry with BrzA Studio's own hash, which Codex's answer then replaces", async () => {
     writeHooks({ hooks: { Stop: [USER_A] } })
 
     expect(await reconcile({ hashes: null })).toBe('written')
@@ -601,7 +601,7 @@ describe('until Codex answers', () => {
     expectOrcaApprovedAt(1)
   })
 
-  it("approves an entry it rewrites in place with Orca's own hash, not the edited copy's", async () => {
+  it("approves an entry it rewrites in place with BrzA Studio's own hash, not the edited copy's", async () => {
     const edited: HookDefinition = {
       hooks: [{ ...buildCodexManagedHook(frozen(), 'Stop'), timeout: 99 }]
     }
@@ -622,7 +622,7 @@ describe('until Codex answers', () => {
     expect(readHookTrustEntries(configPath()).size).toBe(0)
   })
 
-  it("keeps an approval at Orca's entry for a Codex that lists it without a hash", async () => {
+  it("keeps an approval at BrzA Studio's entry for a Codex that lists it without a hash", async () => {
     writeHooks({ hooks: { Stop: [USER_A, orcaGroup()] } })
     upsertHookTrustEntries(configPath(), [
       { ...stopEntryAt(1, orcaGroup()), trustedHash: CODEX_HASHES.stop, enabled: true }

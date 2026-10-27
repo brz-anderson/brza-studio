@@ -137,7 +137,7 @@ describe('usage-limit auto-resume across a restart', () => {
     await rm(directory, { recursive: true, force: true })
   })
 
-  it('keeps the schedule on disk for the next Orca', async () => {
+  it('keeps the schedule on disk for the next BrzA Studio', async () => {
     vi.useFakeTimers({ now: T0, toFake: ['Date'] })
     const cut = { turnItemId: 'turn-1', resetsAt: RESETS_AT }
     const before = chat(new AgentSessionUsageLimitAutoResumeFile(directory), cut)
@@ -153,7 +153,7 @@ describe('usage-limit auto-resume across a restart', () => {
     after.autoResume.stop()
   })
 
-  it('sends a Continue that came due while Orca was closed once it opens', async () => {
+  it('sends a Continue that came due while BrzA Studio was closed once it opens', async () => {
     vi.useFakeTimers({ now: RESUME_AT + 5 * 60_000, toFake: ['Date'] })
     const file = new AgentSessionUsageLimitAutoResumeFile(directory)
     await file.update(() => ({
@@ -172,7 +172,7 @@ describe('usage-limit auto-resume across a restart', () => {
     expect(reopened.state.sent).toEqual([])
   })
 
-  it('drops a due Continue on open when the chat moved on while Orca was closed', async () => {
+  it('drops a due Continue on open when the chat moved on while BrzA Studio was closed', async () => {
     vi.useFakeTimers({ now: RESUME_AT + 5 * 60_000, toFake: ['Date'] })
     const file = new AgentSessionUsageLimitAutoResumeFile(directory)
     await file.update(() => ({

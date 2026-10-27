@@ -187,7 +187,7 @@ describe('resolveAgentBackgroundLaunchHost', () => {
     expect(host).toMatchObject({ connectionId: 'nested', isRemote: true, platform: 'linux' })
   })
 
-  it('quotes for the Orca server that owns a repo, not the client (#22204)', () => {
+  it('quotes for the BrzA Studio server that owns a repo, not the client (#22204)', () => {
     const host = resolveAgentBackgroundLaunchHost({
       ...asLaunchInputs(makeFolderHostState({ connectionId: null, folderPath: '/project' }), {
         id: 'repo-1',

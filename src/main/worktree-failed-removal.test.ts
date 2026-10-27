@@ -300,7 +300,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     expect(retryFailedWorktreeRemoval(worktreeId, 'ssh:box', vi.fn())).toBeUndefined()
   })
 
-  it('ends at the next listing once the checkout is deleted outside Orca', async () => {
+  it('ends at the next listing once the checkout is deleted outside BrzA Studio', async () => {
     await failRemoval()
     await rm(checkout, { recursive: true })
 
@@ -310,7 +310,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     )
   })
 
-  it('ends at startup once the checkout is deleted outside Orca', async () => {
+  it('ends at startup once the checkout is deleted outside BrzA Studio', async () => {
     await failRemoval()
     _resetPendingWorktreeRemovalsForTests()
     await rm(checkout, { recursive: true })
@@ -320,7 +320,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     expect(await readWorktreeRemovalRecords(join(directory, 'profile'))).toEqual([])
   })
 
-  it('ends at startup once its repo is removed from Orca, leaving the files', async () => {
+  it('ends at startup once its repo is removed from BrzA Studio, leaving the files', async () => {
     await failRemoval()
     _resetPendingWorktreeRemovalsForTests()
 
@@ -335,7 +335,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     expect(await readdir(checkout)).toEqual(['node_modules'])
   })
 
-  it('is kept at startup while the repo’s local copy is still in Orca', async () => {
+  it('is kept at startup while the repo’s local copy is still in BrzA Studio', async () => {
     await failRemoval()
     _resetPendingWorktreeRemovalsForTests()
 

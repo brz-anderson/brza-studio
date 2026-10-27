@@ -24,7 +24,7 @@ describe('classifyDaemonSpawnerPath', () => {
     ).toBe('applications')
     expect(
       classifyDaemonSpawnerPath(
-        '/Users/a/Library/Caches/com.stablyai.orca.ShipIt/update.abc/Orca.app/Contents/MacOS/Orca',
+        '/Users/a/Library/Caches/com.brzanderson.brzastudio.ShipIt/update.abc/Orca.app/Contents/MacOS/Orca',
         alwaysExists,
         null
       )
@@ -48,7 +48,7 @@ describe('classifyDaemonSpawnerPath', () => {
     expect(classifyDaemonSpawnerPath(null, alwaysExists, null)).toBe('unknown')
   })
 
-  it("classifies Orca's private stable copy from the recorded spawner path", () => {
+  it("classifies BrzA Studio's private stable copy from the recorded spawner path", () => {
     const prefix = '/Users/alice/Library/Application Support/Orca/daemon-host/macos/terminal-host-'
     const copy = `${prefix}0f3c/app.noindex/Orca Terminal Host.app/Contents/MacOS/orca-terminal-host`
     expect(classifyDaemonSpawnerPath(copy, alwaysExists, prefix)).toBe('stable-copy')

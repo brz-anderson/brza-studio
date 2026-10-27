@@ -41,6 +41,9 @@ export async function createProfileStateStoreForStartup(
     onFailure:
       options.onPersistenceFailure ??
       ((error) =>
-        console.error('[persistence] Saving has stopped. Restart Orca before continuing.', error))
+        console.error(
+          '[persistence] Saving has stopped. Restart BrzA Studio before continuing.',
+          error
+        ))
   })
 }

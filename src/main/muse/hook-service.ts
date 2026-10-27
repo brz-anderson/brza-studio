@@ -99,7 +99,7 @@ function buildStatus(
       ...base,
       state: 'error',
       managedHooksPresent: false,
-      detail: 'Could not read Orca managed hooks file'
+      detail: 'Could not read BrzA Studio managed hooks file'
     }
   }
   if (pointer !== managedHooksPath) {
@@ -110,7 +110,7 @@ function buildStatus(
       detail:
         pointer === undefined
           ? null
-          : `managed_hooks_path points at ${pointer}, not the Orca managed hooks file`
+          : `managed_hooks_path points at ${pointer}, not the BrzA Studio managed hooks file`
     }
   }
   const parsed = parseMuseSettingsText(managedText, 'Orca managed Muse hooks')

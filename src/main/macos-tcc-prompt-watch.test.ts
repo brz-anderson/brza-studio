@@ -14,7 +14,7 @@ const REAL_PROMPT_LINE =
 
 // Derived fixture: an agent accesses files while Orca is held responsible (#9756).
 const ORCA_APPDATA_LINE =
-  '2026-07-27 15:40:02.001 Df tccd[79149:c81551c] [com.apple.TCC:access] AUTHREQ_PROMPTING: msgID=80871.99, service=kTCCServiceSystemPolicyAppData, subject=Sub:{node-5555494487fbc7467d473fd8b0a397018cbf954b}Resp:{TCCDProcess: identifier=com.stablyai.orca, pid=47548, auid=501, euid=501, binary_path=/opt/homebrew/Cellar/node/26.5.0/bin/node},'
+  '2026-07-27 15:40:02.001 Df tccd[79149:c81551c] [com.apple.TCC:access] AUTHREQ_PROMPTING: msgID=80871.99, service=kTCCServiceSystemPolicyAppData, subject=Sub:{node-5555494487fbc7467d473fd8b0a397018cbf954b}Resp:{TCCDProcess: identifier=com.brzanderson.brzastudio, pid=47548, auid=501, euid=501, binary_path=/opt/homebrew/Cellar/node/26.5.0/bin/node},'
 
 // Preflight checks dominate the TCC subsystem and must never count as a dialog.
 const PREFLIGHT_LINE =
@@ -32,7 +32,7 @@ describe('parseTccPromptEvent', () => {
 
   it('separates the accessing binary from the responsible app', () => {
     const event = parseTccPromptEvent(ORCA_APPDATA_LINE)
-    expect(event?.responsibleIdentifier).toBe('com.stablyai.orca')
+    expect(event?.responsibleIdentifier).toBe('com.brzanderson.brzastudio')
     expect(event?.accessingIdentifier).toBe('node-5555494487fbc7467d473fd8b0a397018cbf954b')
     expect(event?.binaryPath).toBe('/opt/homebrew/Cellar/node/26.5.0/bin/node')
   })
@@ -46,14 +46,14 @@ describe('parseTccPromptEvent', () => {
 })
 
 describe('isOrcaAttributedPrompt', () => {
-  it('accepts the app and detached terminal helper across Orca build identities', () => {
+  it('accepts the app and detached terminal helper across BrzA Studio build identities', () => {
     for (const id of [
-      'com.stablyai.orca',
-      'com.stablyai.orca.helper',
-      'com.stablyai.orca.dev',
-      'com.stablyai.orca.dev.helper',
-      'com.stablyai.orca.local',
-      'com.stablyai.orca.local.helper'
+      'com.brzanderson.brzastudio',
+      'com.brzanderson.brzastudio.helper',
+      'com.brzanderson.brzastudio.dev',
+      'com.brzanderson.brzastudio.dev.helper',
+      'com.brzanderson.brzastudio.local',
+      'com.brzanderson.brzastudio.local.helper'
     ]) {
       expect(
         isOrcaAttributedPrompt({
@@ -75,12 +75,12 @@ describe('isOrcaAttributedPrompt', () => {
     ).toBe(false)
   })
 
-  it('rejects unrelated services even when Orca is responsible', () => {
+  it('rejects unrelated services even when BrzA Studio is responsible', () => {
     expect(
       isOrcaAttributedPrompt({
         service: 'kTCCServiceMicrophone',
         accessingIdentifier: 'orca',
-        responsibleIdentifier: 'com.stablyai.orca'
+        responsibleIdentifier: 'com.brzanderson.brzastudio'
       })
     ).toBe(false)
   })
@@ -134,7 +134,7 @@ describe('MacosTccPromptWatch', () => {
     expect(spawnLogStream).not.toHaveBeenCalled()
   })
 
-  it('reports only Orca-attributed dialogs from a live stream', async () => {
+  it('reports only BrzA Studio-attributed dialogs from a live stream', async () => {
     const { child, stdout } = createFakeLogStream()
     const onPrompt = vi.fn()
     const watch = new MacosTccPromptWatch({ onPrompt, spawnLogStream: () => child })
@@ -151,7 +151,7 @@ describe('MacosTccPromptWatch', () => {
     expect(onPrompt).toHaveBeenCalledTimes(1)
     expect(onPrompt.mock.calls[0][0]).toMatchObject({
       service: 'kTCCServiceSystemPolicyAppData',
-      responsibleIdentifier: 'com.stablyai.orca'
+      responsibleIdentifier: 'com.brzanderson.brzastudio'
     })
     watch.stop()
   })

@@ -29,7 +29,7 @@ describe('assignee identity writers', () => {
     return started.dispatch.id
   }
 
-  it('clears the Orca session id when worker authority names the assignee', () => {
+  it('clears the BrzA Studio session id when worker authority names the assignee', () => {
     db = new OrchestrationDb(':memory:')
     const dispatchId = startingDispatchWithOrcaSessionId(db)
 
@@ -49,7 +49,7 @@ describe('assignee identity writers', () => {
     })
   })
 
-  it('clears the Orca session id when a failed start records the terminal it owned', () => {
+  it('clears the BrzA Studio session id when a failed start records the terminal it owned', () => {
     db = new OrchestrationDb(':memory:')
     const dispatchId = startingDispatchWithOrcaSessionId(db)
     db.recordCreatedWorkerTerminalCustody({
@@ -69,7 +69,7 @@ describe('assignee identity writers', () => {
     })
   })
 
-  it('refuses a minted structured-worker handle as an Orca session id', () => {
+  it('refuses a minted structured-worker handle as a BrzA Studio session id', () => {
     expect(isOrcaSessionId(mintStructuredWorkerHandle())).toBe(false)
   })
 })

@@ -9,7 +9,7 @@ const { resolveIdentity } = vi.hoisted(() => ({ resolveIdentity: vi.fn() }))
 vi.mock('../appimage-runtime-identity', () => ({ resolveAppImageRuntimeIdentity: resolveIdentity }))
 
 const APPDIR = '/tmp/.mount_orcaAbC'
-const FUSE_MOUNTINFO = `953 65 0:108 / ${APPDIR} ro,nosuid,nodev,relatime shared:1 - fuse.Orca.AppImage Orca.AppImage ro,user_id=1000`
+const FUSE_MOUNTINFO = `953 65 0:108 / ${APPDIR} ro,nosuid,nodev,relatime shared:1 - fuse.Orca.AppImage BrzA Studio.AppImage ro,user_id=1000`
 const INPUT = {
   entryPath: `${APPDIR}/resources/app.asar.unpacked/out/main/daemon-entry.js`,
   appPath: `${APPDIR}/resources/app.asar`,

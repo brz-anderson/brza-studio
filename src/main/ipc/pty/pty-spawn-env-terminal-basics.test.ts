@@ -197,7 +197,7 @@ describe('registerPtyHandlers', () => {
       expect(env.ORCA_OMP_STATUS_EXTENSION).toBeUndefined()
     })
 
-    it('routes headless browser launches through the owning Orca workspace', () => {
+    it('routes headless browser launches through the owning BrzA Studio workspace', () => {
       const inheritedBrowser = process.env.BROWSER
       delete process.env.BROWSER
       try {
@@ -570,7 +570,7 @@ describe('registerPtyHandlers', () => {
       const env = await spawnAndGetEnv(undefined, { ORCA_APP_VERSION: undefined })
       expect(env.TERM_PROGRAM_VERSION).toBe('0.0.0-dev')
     })
-    it('injects the selected Codex home into Orca terminal PTYs', async () => {
+    it('injects the selected Codex home into BrzA Studio terminal PTYs', async () => {
       const env = await withBundledCli(() =>
         spawnAndGetEnv(undefined, undefined, () => TEST_CODEX_HOME)
       )

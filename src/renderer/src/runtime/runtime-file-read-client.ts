@@ -34,7 +34,7 @@ import {
 
 const REMOTE_DOWNLOAD_CHUNK_BYTES = 384 * 1024
 const REMOTE_DOWNLOAD_UPDATE_REQUIRED_MESSAGE =
-  'Remote file download requires a newer Orca server. Update the headless server and try again.'
+  'Remote file download requires a newer BrzA Studio server. Update the headless server and try again.'
 
 type RemoteFileDownloadArgs = NonNullable<ReturnType<typeof getRemoteFileArgs>>
 
@@ -120,7 +120,7 @@ export async function readRuntimeFileContent({
     }
     throw new Error(
       paged.kind === 'unsupported'
-        ? 'Remote file is larger than the 512 KB this Orca server can send. Update the server to open it.'
+        ? 'Remote file is larger than the 512 KB this BrzA Studio server can send. Update the server to open it.'
         : `Remote file is too large to open in the editor (${paged.size} bytes)`
     )
   }

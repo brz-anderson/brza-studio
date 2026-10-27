@@ -40,7 +40,7 @@ export function usageCredentialAccessNotice(
   if (access === 'outdated') {
     return translate(
       'auto.components.settings.usageCredentialHost.outdated',
-      'Update Orca on {{host}} to save this key there.',
+      'Update BrzA Studio on {{host}} to save this key there.',
       { host: host.label }
     )
   }
@@ -65,12 +65,12 @@ export function usageCredentialUnreadableNotice(
   return unreadable === 'sealed-elsewhere'
     ? translate(
         'auto.components.settings.usageCredentialHost.sealedElsewhereForgettable',
-        'Saved by another Orca app on {{host}}, which this one cannot read. Change it in that app, or forget it here.',
+        'Saved by another BrzA Studio app on {{host}}, which this one cannot read. Change it in that app, or forget it here.',
         { host: host.label }
       )
     : translate(
         'auto.components.settings.usageCredentialHost.unreadableKey',
-        'Orca on {{host}} cannot read the saved key. Replace it or forget it.',
+        'BrzA Studio on {{host}} cannot read the saved key. Replace it or forget it.',
         { host: host.label }
       )
 }

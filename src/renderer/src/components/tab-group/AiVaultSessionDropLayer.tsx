@@ -225,7 +225,7 @@ export default function AiVaultSessionDropLayer({
         toast.error(
           translate(
             'auto.components.tab.group.AiVaultSessionDropLayer.oldPayload',
-            'This session was dragged from an older Orca window. Resume it from Session History instead.'
+            'This session was dragged from an older BrzA Studio window. Resume it from Session History instead.'
           )
         )
         return true
@@ -253,8 +253,8 @@ export default function AiVaultSessionDropLayer({
             // Refuse old payloads that cannot repin the startup command; silently using another account’s home is unsafe.
             throw new Error(
               result.substituteCodexHome
-                ? 'This session was dragged from an older Orca window, so Orca cannot retarget it to the selected Codex account. Resume it from the Session History panel instead.'
-                : 'Orca could not prepare this legacy Codex session. Retry resume.'
+                ? 'This session was dragged from an older BrzA Studio window, so BrzA Studio cannot retarget it to the selected Codex account. Resume it from the Session History panel instead.'
+                : 'BrzA Studio could not prepare this legacy Codex session. Retry resume.'
             )
           }
           const providerSession = getAiVaultAgentProviderSession({

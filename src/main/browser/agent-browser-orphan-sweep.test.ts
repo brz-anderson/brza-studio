@@ -41,7 +41,7 @@ describe('agent-browser orphan sweep', () => {
     runProcessMock.mockReset()
   })
 
-  it('never closes a daemon outside Orca tab naming', async () => {
+  it('never closes a daemon outside BrzA Studio tab naming', async () => {
     respond(['default', 'agent1', 'orca-orcad-deadbeef', 'orca-tab-aaa'])
 
     await sweepOrphanedAgentBrowserSessions({ binaryPath: BIN, ...SCOPED })
@@ -63,7 +63,7 @@ describe('agent-browser orphan sweep', () => {
 
   it.each([
     ['no socket directory at all', { PATH: 'C:\\Windows' }],
-    ['a socket directory Orca inherited', { AGENT_BROWSER_SOCKET_DIR: '/tmp/shared-ab' }]
+    ['a socket directory BrzA Studio inherited', { AGENT_BROWSER_SOCKET_DIR: '/tmp/shared-ab' }]
   ])('does not enumerate with %s', async (_label, env) => {
     respond(['orca-tab-aaa'])
 
@@ -126,7 +126,7 @@ describe('sweep kill switch', () => {
     }
   })
 
-  it('enumerates nothing when disabled, even when Orca owns the socket directory', async () => {
+  it('enumerates nothing when disabled, even when BrzA Studio owns the socket directory', async () => {
     process.env.ORCA_DISABLE_AGENT_BROWSER_SWEEP = '1'
     runProcessMock.mockClear()
 

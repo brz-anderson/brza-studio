@@ -534,7 +534,7 @@ describe('Linear workspace file cross-process visibility', () => {
     writeMultiWorkspaceFiles([], '')
     expect(linear.getStatus()).toMatchObject({ connected: false, workspaces: [] })
   })
-  it('picks up a workspace connected by another Orca process', async () => {
+  it('picks up a workspace connected by another BrzA Studio process', async () => {
     // Shared ~/.orca metadata must refresh without restarting other Orca processes.
     const linear = await loadClientModule()
     expect(linear.getStatus()).toMatchObject({ connected: false })

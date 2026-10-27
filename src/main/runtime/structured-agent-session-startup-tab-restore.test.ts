@@ -236,10 +236,10 @@ async function tabIndexOnDisk(): Promise<string[] | undefined> {
 
 describe('restoring the chat tabs open at quit', () => {
   it.each([
-    { store: 'records a newer Orca wrote', newer: true, writesFail: false },
+    { store: 'records a newer BrzA Studio wrote', newer: true, writesFail: false },
     { store: 'a store whose writes keep failing', newer: false, writesFail: true }
   ])(
-    'lists every chat from $store and writes nothing; it reads them unless a newer Orca saved them',
+    'lists every chat from $store and writes nothing; it reads them unless a newer BrzA Studio saved them',
     async ({ newer, writesFail }) => {
       const records = [
         chatRecord(CHAT_A),

@@ -204,9 +204,9 @@ describe('Pi-compatible title detection', () => {
     ['\u280b π - tmp', 'omp', '\u280b OMP - tmp'],
     ['\u280b OMP', 'pi', '\u280b Pi'],
     [
-      'lucky-echidna | \u283c π - Diagnose Orca terminal title flicker - test',
+      'lucky-echidna | \u283c π - Diagnose BrzA Studio terminal title flicker - test',
       'omp',
-      'lucky-echidna | \u283c OMP - Diagnose Orca terminal title flicker - test'
+      'lucky-echidna | \u283c OMP - Diagnose BrzA Studio terminal title flicker - test'
     ],
     ['lucky-echidna | Pi ready', 'omp', 'OMP ready'],
     ['Codex | Pi ready', 'omp', 'OMP ready'],
@@ -270,7 +270,7 @@ describe('Pi-compatible title detection', () => {
 
 describe('Cursor agent title identity', () => {
   // Pin every synthesized Cursor label so renaming cannot lose recipients or auto-Enter suppression.
-  it('accepts every label Orca synthesizes for Cursor', () => {
+  it('accepts every label BrzA Studio synthesizes for Cursor', () => {
     const profile = SYNTHETIC_AGENT_TITLE_PROFILES.cursor
 
     for (const label of [
@@ -290,7 +290,7 @@ describe('Cursor agent title identity', () => {
     '⣿ Cursor Agent',
     'Cursor ready',
     'Cursor - action required'
-  ])('accepts the native or Orca-synthesized Cursor title %j', (title) => {
+  ])('accepts the native or BrzA Studio-synthesized Cursor title %j', (title) => {
     expect(isCursorAgentTitle(title)).toBe(true)
   })
 
@@ -300,7 +300,7 @@ describe('Cursor agent title identity', () => {
     '✳ Fix the text cursor blink',
     '. fix cursor position',
     '* cursor rendering done',
-    'Terminal Cursor and Orca slows down',
+    'Terminal Cursor and BrzA Studio slows down',
     'cursor-agent',
     'cursor.exe',
     '~/cursor-rules',

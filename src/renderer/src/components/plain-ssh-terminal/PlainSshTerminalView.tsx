@@ -39,17 +39,17 @@ export function plainSshOpenFailureText(
     case 'unknown-target':
       return translate(
         'auto.components.plainSshTerminal.unknownTarget',
-        'This SSH host is no longer saved in Orca.'
+        'This SSH host is no longer saved in BrzA Studio.'
       )
     case 'not-blocked':
       return translate(
         'auto.components.plainSshTerminal.notBlocked',
-        'Orca can reach this host again, so use its terminals instead. Plain SSH is only for while Orca can’t set up on the host.'
+        'BrzA Studio can reach this host again, so use its terminals instead. Plain SSH is only for while BrzA Studio can’t set up on the host.'
       )
     case 'already-open':
       return translate(
         'auto.components.plainSshTerminal.alreadyOpen',
-        'Another Orca window already has a plain SSH terminal open to this host.'
+        'Another BrzA Studio window already has a plain SSH terminal open to this host.'
       )
     case 'cancelled':
       return translate(
@@ -149,7 +149,7 @@ export function PlainSshTerminalView({
         kind: 'failed',
         message: translate(
           'auto.components.plainSshTerminal.terminalUnavailable',
-          'Orca couldn’t open a terminal here.'
+          'BrzA Studio couldn’t open a terminal here.'
         )
       })
       return

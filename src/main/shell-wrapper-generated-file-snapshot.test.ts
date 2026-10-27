@@ -131,14 +131,17 @@ describePosix('generated shell wrapper files', () => {
       },
       (): string => getDaemonShellReadyWrapperRoot()
     ]
-  ])('%s wrappers write no shell global outside Orca’s namespace', (_transport, generate, dir) => {
-    generate()
+  ])(
+    '%s wrappers write no shell global outside BrzA Studio’s namespace',
+    (_transport, generate, dir) => {
+      generate()
 
-    for (const [, relativePath] of WRAPPER_FILES) {
-      const content = readFileSync(join(dir(), relativePath), 'utf8')
-      expect({ [relativePath]: foreignGlobalsWritten(content) }).toEqual({ [relativePath]: [] })
+      for (const [, relativePath] of WRAPPER_FILES) {
+        const content = readFileSync(join(dir(), relativePath), 'utf8')
+        expect({ [relativePath]: foreignGlobalsWritten(content) }).toEqual({ [relativePath]: [] })
+      }
     }
-  })
+  )
 
   it('fish shell-ready init commands', async () => {
     process.env.ORCA_USER_DATA_PATH = root

@@ -55,7 +55,7 @@ describe('AddRepoHostSelector', () => {
     expect(html).toContain('Add SSH host')
     expect(html).toContain('Use an existing machine over SSH.')
     expect(html).toContain('Add remote server')
-    expect(html).toContain('Pair with Orca running on another computer.')
+    expect(html).toContain('Pair with BrzA Studio running on another computer.')
   })
 
   it('shows disconnected SSH hosts with a connect action in Add Project', () => {
@@ -133,7 +133,7 @@ describe('AddRepoHostSelector', () => {
           {
             id: 'runtime:old-server',
             label: 'Old server',
-            detail: 'Orca server',
+            detail: 'BrzA Studio server',
             kind: 'runtime',
             health: 'blocked',
             presence: 'active',
@@ -154,8 +154,8 @@ describe('AddRepoHostSelector', () => {
     )
 
     expect(html).toContain('Update needed')
-    expect(html).toContain('The selected Orca server is too old for this client.')
-    expect(html).toContain('Update Orca on the server.')
+    expect(html).toContain('The selected BrzA Studio server is too old for this client.')
+    expect(html).toContain('Update BrzA Studio on the server.')
     expect(html).toContain('aria-disabled="true"')
   })
 

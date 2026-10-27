@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { getAppEnvironment } from '../../../shared/app-environment'
 import { readFetchResponseTextWithinLimit } from '../../../shared/fetch-response-body'
 import type { GlobalSettings } from '../../../shared/global-settings-types'
-import { getVersionChannel, MAIN_RELEASE_REPO } from '../../../shared/release-channel'
+import { getVersionChannel } from '../../../shared/release-channel'
 import { getMainHttpClient } from '../../network/http-client'
 import { writePluginFileAtomically } from '../../plugins/plugin-atomic-file-write'
 import {
@@ -37,10 +37,13 @@ export function agentStateRulesChannelForAppVersion(
   return channel === 'stable' ? 'stable' : 'next'
 }
 
+// Only upstream publishes the rules-engine release tags; this fork's releases carry none.
+const AGENT_STATE_RULES_REPO = 'stablyai/orca'
+
 // Fixed download URLs avoid API rate limits and latest-release redirects.
 export function agentStateRulesDownloadUrl(channel: AgentStateRulesChannel): string {
   const tag = `agent-state-rules-engine-${AGENT_STATE_RULES_ENGINE_VERSION}-${channel}`
-  return `https://github.com/${MAIN_RELEASE_REPO}/releases/download/${tag}/agent-state-rules.json`
+  return `https://github.com/${AGENT_STATE_RULES_REPO}/releases/download/${tag}/agent-state-rules.json`
 }
 
 // Shared userData must not expose next-only rules to stable builds.

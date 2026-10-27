@@ -78,7 +78,7 @@ async function proveIdlePromptCycle(
   }
 }
 
-describeOnWindows("Git Bash launcher shell proof with Orca's real launch", () => {
+describeOnWindows("Git Bash launcher shell proof with BrzA Studio's real launch", () => {
   let userData: string
   const previousUserData = process.env.ORCA_USER_DATA_PATH
 

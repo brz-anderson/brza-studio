@@ -146,7 +146,9 @@ describe('plain SSH terminal', () => {
     await user.click(screen.getByRole('button', { name: 'Open plain SSH terminal' }))
 
     expect(screen.getByText('Plain SSH · lambda')).toBeInTheDocument()
-    expect(screen.getByText(/Plain SSH — unmanaged\. Not an Orca workspace/)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Plain SSH — unmanaged\. Not a BrzA Studio workspace/)
+    ).toBeInTheDocument()
     expect(open).toHaveBeenCalledWith({ targetId: 'lambda', cols: 80, rows: 24 })
 
     // ssh can print before the open reply arrives.
@@ -233,7 +235,7 @@ describe('plain SSH terminal', () => {
     open.mockResolvedValue({
       ok: false,
       reason: 'ssh-missing',
-      message: 'Orca couldn’t find OpenSSH (ssh.exe) on this computer.'
+      message: 'BrzA Studio couldn’t find OpenSSH (ssh.exe) on this computer.'
     })
     const user = userEvent.setup()
     render(<Harness status={blocked} />)

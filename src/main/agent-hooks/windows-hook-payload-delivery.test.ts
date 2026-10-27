@@ -520,8 +520,8 @@ describe.skipIf(process.platform !== 'win32')('Windows managed hook payload deli
         expect(result.stdout.trim(), `${runner.name} stdout`).toBe(provider.stdout)
 
         const outsideOrca = await run(runner, hookEnvironment({ USERPROFILE: home, HOME: home }))
-        expect(outsideOrca.timedOut, `${runner.name} outside Orca timed out`).toBe(false)
-        expect(outsideOrca.code, `${runner.name} outside Orca exit code`).toBe(0)
+        expect(outsideOrca.timedOut, `${runner.name} outside BrzA Studio timed out`).toBe(false)
+        expect(outsideOrca.code, `${runner.name} outside BrzA Studio exit code`).toBe(0)
         expect(listener.posts).toHaveLength(before + 1)
       }
       // Allow several shell launches, installation, and a cold executable build.

@@ -130,7 +130,7 @@ export function scanChromiumCookieRows(
     return {
       ok: false,
       reason:
-        'This Orca client cannot report cookies skipped for an unreadable site partition. Update Orca on this device and try again.'
+        'This BrzA Studio client cannot report cookies skipped for an unreadable site partition. Update BrzA Studio on this device and try again.'
     }
   }
   return null

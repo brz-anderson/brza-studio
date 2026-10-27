@@ -95,7 +95,7 @@ describe('CliSection project runtime defaults', () => {
       state: 'installed',
       currentTarget: 'C:\\Program Files\\Orca\\resources\\bin\\orca.exe',
       unsupportedReason: null,
-      detail: 'Orca could not read the Windows user PATH registry value.'
+      detail: 'BrzA Studio could not read the Windows user PATH registry value.'
     })
     Object.assign(window, {
       api: {

@@ -364,7 +364,7 @@ describe('registerPtyHandlers', () => {
           }
         }
       )
-      it('strips the daemon-inherited Orca-owned CODEX_HOME for real-home routing', async () => {
+      it('strips the daemon-inherited BrzA Studio-owned CODEX_HOME for real-home routing', async () => {
         const spawnOptions = await daemonSpawnAndGetOptions(
           {},
           () => null,

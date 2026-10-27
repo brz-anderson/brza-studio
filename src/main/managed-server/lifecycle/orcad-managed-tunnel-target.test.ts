@@ -43,7 +43,7 @@ function setup(verdicts: OrcadTunnelIdentity[], rereadPort: number) {
     // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: a test double for the two members forwarding calls.
     forwards: { addForward, removeForwardAndWait } as unknown as SshPortForwardManager,
     localPort: 46_768,
-    label: 'Managed Orca server',
+    label: 'Managed BrzA Studio server',
     remotePort: 6_768,
     rereadRemotePort,
     verify,
@@ -90,9 +90,9 @@ describe('forwardToVerifiedOrcad', () => {
     expect(state.removeForwardAndWait).toHaveBeenCalledWith('forward-1')
   })
 
-  it('says the host dropped this pairing, not that another Orca holds the port', async () => {
+  it('says the host dropped this pairing, not that another BrzA Studio holds the port', async () => {
     const state = setup(
-      [{ verdict: 'unpaired', detail: 'Remote Orca runtime rejected the pairing token.' }],
+      [{ verdict: 'unpaired', detail: 'Remote BrzA Studio runtime rejected the pairing token.' }],
       58_520
     )
     const result = forwardToVerifiedOrcad(state.args)

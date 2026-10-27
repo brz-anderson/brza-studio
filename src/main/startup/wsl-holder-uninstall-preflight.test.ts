@@ -103,7 +103,7 @@ describe('WSL holder release on uninstall', () => {
     vi.useFakeTimers()
     electron.exit.mockClear()
     appData.ensure.mockImplementationOnce(() => {
-      throw new Error('Orca could not find the Windows roaming AppData folder')
+      throw new Error('BrzA Studio could not find the Windows roaming AppData folder')
     })
     try {
       vi.spyOn(console, 'warn').mockImplementation(() => {})

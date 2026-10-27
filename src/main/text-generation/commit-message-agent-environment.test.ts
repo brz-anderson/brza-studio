@@ -143,7 +143,7 @@ describe('prepareLocalCommitMessageAgentEnv', () => {
     expect(result).not.toHaveProperty('env')
   })
 
-  it('strips a nested-Orca CODEX_HOME override when the launch resolves to the real home', async () => {
+  it('strips a nested-BrzA Studio CODEX_HOME override when the launch resolves to the real home', async () => {
     process.env.CODEX_HOME = '/managed/runtime/home'
     process.env.ORCA_CODEX_HOME = '/managed/runtime/home'
 
@@ -223,7 +223,7 @@ describe('prepareLocalCommitMessageAgentEnv', () => {
       ANTHROPIC_AUTH_TOKEN: 'shell-token'
     }
 
-    it('gives Claude the shell-exported variables Orca was launched without', async () => {
+    it('gives Claude the shell-exported variables BrzA Studio was launched without', async () => {
       delete process.env.ANTHROPIC_BASE_URL
       delete process.env.ANTHROPIC_AUTH_TOKEN
 
@@ -283,7 +283,7 @@ describe('prepareLocalCommitMessageAgentEnv', () => {
       ).resolves.toEqual({ ok: true, env: shellBase })
     })
 
-    it("prefers the login shell's config dir over Orca's inherited one", async () => {
+    it("prefers the login shell's config dir over BrzA Studio's inherited one", async () => {
       makeHome()
       process.env.OPENCODE_CONFIG_DIR = '/old/opencode'
       delete process.env.ORCA_OPENCODE_SOURCE_CONFIG_DIR
@@ -295,7 +295,7 @@ describe('prepareLocalCommitMessageAgentEnv', () => {
       expect(envOf(result)?.OPENCODE_CONFIG_DIR).toBe('/new/opencode')
     })
 
-    it('keeps Orca env for WSL-local generation instead of the host shell', async () => {
+    it('keeps BrzA Studio env for WSL-local generation instead of the host shell', async () => {
       delete process.env.ANTHROPIC_BASE_URL
       const resolveBaseEnvironment = vi.fn(async () => shellBase)
 
@@ -315,7 +315,7 @@ describe('prepareLocalCommitMessageAgentEnv', () => {
       expect(cursor).toEqual({ ok: true })
     })
 
-    it('falls back to Orca env when the shell environment cannot be read', async () => {
+    it('falls back to BrzA Studio env when the shell environment cannot be read', async () => {
       process.env.ORCA_COMMIT_ENV_MARKER = 'process'
 
       const result = await prepareLocalCommitMessageAgentEnv('codex', {

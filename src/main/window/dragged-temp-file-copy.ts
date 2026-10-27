@@ -228,7 +228,7 @@ export async function materializeDragTempPath(
       }
       // Abort before publishing the path so abandoned copies can be removed.
       signal?.throwIfAborted()
-      console.debug('[drop] copied a drag-temp file into Orca storage', { bytes: size })
+      console.debug('[drop] copied a drag-temp file into BrzA Studio storage', { bytes: size })
       return {
         result: { sourcePath, status: 'imported', destPath, byteLength: size, directory: copyDir },
         copiedBytes: size

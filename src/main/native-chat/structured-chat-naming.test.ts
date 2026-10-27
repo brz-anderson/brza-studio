@@ -476,7 +476,7 @@ describe.each(['claude', 'codex'] as const)('structured %s chat naming', (provid
     }
   )
 
-  it("takes a window's pre-upgrade tab name only over a name Orca chose", async () => {
+  it("takes a window's pre-upgrade tab name only over a name BrzA Studio chose", async () => {
     const state = rig(provider)
     const id = state.summary.sessionId
     await state.handle(state.summary, { replay: false })

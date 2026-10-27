@@ -147,7 +147,7 @@ function renderSystemdUnit(argv: string[], env: Record<string, string>): string 
     .join('\n')
   // Kill only the supervisor: it stops its server while the terminal daemon survives.
   return `[Unit]
-Description=Orca server (orca serve --supervise)
+Description=BrzA Studio server (orca serve --supervise)
 StartLimitIntervalSec=900
 StartLimitBurst=5
 

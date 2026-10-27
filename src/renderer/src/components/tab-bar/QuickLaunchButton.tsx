@@ -215,7 +215,7 @@ export function ProjectedAgentMenuItems({
           {needsServerUpdate
             ? translate(
                 'auto.components.tab.bar.QuickLaunchButton.terminalListNeedsServerUpdate',
-                'Update Orca on this server to list terminal agents'
+                'Update BrzA Studio on this server to list terminal agents'
               )
             : detectionFailed
               ? translate(

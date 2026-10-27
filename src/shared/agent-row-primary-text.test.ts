@@ -105,7 +105,7 @@ ${taskBody}`
 
     const preview = getAgentRowPrimaryText({ prompt: normalized!.prompt })
     expect(preview).toContain('orchestration fallback task preview')
-    expect(preview).not.toContain('You are working inside Orca')
+    expect(preview).not.toContain('You are working inside BrzA Studio')
     expect(preview).not.toContain('CLI COMMANDS')
   })
 

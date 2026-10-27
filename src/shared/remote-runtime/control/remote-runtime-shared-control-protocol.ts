@@ -25,16 +25,16 @@ export function parseSharedControlFrame(
   if (!handshake) {
     return {
       type: 'error',
-      error: invalidRemoteRuntimeResponseError('Remote Orca runtime returned a frame before E2EE.')
+      error: invalidRemoteRuntimeResponseError(
+        'Remote BrzA Studio runtime returned a frame before E2EE.'
+      )
     }
   }
   const plaintext = handshake.channel.openText(frame)
   if (plaintext === null) {
     return {
       type: 'error',
-      error: invalidRemoteRuntimeResponseError(
-        'Remote Orca runtime returned an undecryptable frame.'
-      )
+      error: invalidRemoteRuntimeResponseError('Remote runtime returned an undecryptable frame.')
     }
   }
   if (state === 'awaiting_authenticated') {
@@ -101,12 +101,12 @@ export function getCleanupRequest(
 export function formatSharedControlCloseMessage(code: number, reason: Buffer): string {
   const reasonText = reason.toString().trim()
   if (code !== 1005 && code !== 1006 && reasonText) {
-    return `Remote Orca runtime closed the connection (${code}: ${reasonText}).`
+    return `Remote BrzA Studio runtime closed the connection (${code}: ${reasonText}).`
   }
   if (code !== 1005 && code !== 1006) {
-    return `Remote Orca runtime closed the connection (${code}).`
+    return `Remote BrzA Studio runtime closed the connection (${code}).`
   }
-  return 'Remote Orca runtime closed the connection.'
+  return 'Remote BrzA Studio runtime closed the connection.'
 }
 
 export function sendSharedControlEncrypted(args: {

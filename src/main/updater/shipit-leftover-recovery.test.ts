@@ -19,7 +19,7 @@ describe('prepareShipItStaging', () => {
 
   beforeEach(async () => {
     root = await mkdtemp(join(tmpdir(), 'orca-shipit-recovery-'))
-    cacheDir = join(root, 'Caches', 'com.stablyai.orca.ShipIt')
+    cacheDir = join(root, 'Caches', 'com.brzanderson.brzastudio.ShipIt')
     coordinationDir = join(root, 'coordination')
     await mkdir(join(cacheDir, 'update.6rnCgPu', 'Orca.app'), { recursive: true })
     await writeFile(join(cacheDir, 'ShipItState.plist'), '<plist/>')
@@ -31,7 +31,7 @@ describe('prepareShipItStaging', () => {
   })
 
   const deps = (overrides: Partial<ShipItStagingDeps> = {}): ShipItStagingDeps => ({
-    bundleId: 'com.stablyai.orca',
+    bundleId: 'com.brzanderson.brzastudio',
     cacheDir,
     coordinationDir,
     pid: 500,
@@ -54,7 +54,7 @@ describe('prepareShipItStaging', () => {
     expect(await readdir(shipItStagingOwnersDir(coordinationDir))).toEqual(['500'])
   })
 
-  it('leaves the cache alone while another live Orca owns staged state', async () => {
+  it('leaves the cache alone while another live BrzA Studio owns staged state', async () => {
     await mkdir(shipItStagingOwnersDir(coordinationDir), { recursive: true })
     await writeFile(join(shipItStagingOwnersDir(coordinationDir), '600'), '')
     const live = deps({ isProcessAlive: (pid) => pid === 500 || pid === 600 })
@@ -84,7 +84,9 @@ describe('prepareShipItStaging', () => {
   })
 
   it('never clears while ShipIt runs, or when that cannot be checked', async () => {
-    const running = deps({ listProcesses: async () => `${SHIPIT} com.stablyai.orca.ShipIt\n` })
+    const running = deps({
+      listProcesses: async () => `${SHIPIT} com.brzanderson.brzastudio.ShipIt\n`
+    })
     await expect(prepareShipItStaging(running)).resolves.toEqual({
       kind: 'skipped',
       reason: 'installer-running'

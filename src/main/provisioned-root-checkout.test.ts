@@ -33,7 +33,7 @@ describe('verifyProvisionedRootCheckout', () => {
     expect(verify(gitWorktree(projectRoot)).path).toBe(projectRoot)
   })
 
-  it('rejects a checkout on a branch Orca did not request', () => {
+  it('rejects a checkout on a branch BrzA Studio did not request', () => {
     expect(() => verify(gitWorktree(projectRoot, { branch: 'refs/heads/wrong' }))).toThrow(
       'requested branch'
     )

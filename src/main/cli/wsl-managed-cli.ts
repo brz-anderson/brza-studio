@@ -30,7 +30,9 @@ export function getManagedWslCliDir(opts: {
   if (!launcherPath || !existsSync(cliEntryPath ?? launcherPath)) {
     if (!warnedMissingRuntime) {
       warnedMissingRuntime = true
-      console.warn('[WSL CLI] Orca CLI runtime is missing; WSL terminals will not provide it.')
+      console.warn(
+        '[WSL CLI] BrzA Studio CLI runtime is missing; WSL terminals will not provide it.'
+      )
     }
     return null
   }
@@ -44,6 +46,10 @@ export function getManagedWslCliDir(opts: {
   ] as const
   const ready =
     files.every(([path]) => existsSync(path)) ||
-    writeShellWrapperFiles(files, '[WSL CLI]', 'WSL terminals will start without the Orca CLI')
+    writeShellWrapperFiles(
+      files,
+      '[WSL CLI]',
+      'WSL terminals will start without the BrzA Studio CLI'
+    )
   return ready ? directory : null
 }

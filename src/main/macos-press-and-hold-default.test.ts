@@ -14,7 +14,7 @@ import {
   type PressAndHoldRecord
 } from './macos-press-and-hold-default'
 
-const ORCA_DOMAIN = 'com.stablyai.orca'
+const ORCA_DOMAIN = 'com.brzanderson.brzastudio'
 
 type HostOverrides = Partial<PressAndHoldHost> & { record?: PressAndHoldRecord | null }
 
@@ -135,11 +135,11 @@ describe('ensureMacPressAndHoldDefault', () => {
       expect(writes).toEqual([])
     })
 
-    it('accepts Orca and its channel-scoped bundles, and nothing else', () => {
-      expect(isOrcaPreferencesDomain('com.stablyai.orca')).toBe(true)
-      expect(isOrcaPreferencesDomain('com.stablyai.orca.dev')).toBe(true)
+    it('accepts BrzA Studio and its channel-scoped bundles, and nothing else', () => {
+      expect(isOrcaPreferencesDomain('com.brzanderson.brzastudio')).toBe(true)
+      expect(isOrcaPreferencesDomain('com.brzanderson.brzastudio.dev')).toBe(true)
       expect(isOrcaPreferencesDomain('com.github.Electron')).toBe(false)
-      expect(isOrcaPreferencesDomain('com.stablyai.orcafake')).toBe(false)
+      expect(isOrcaPreferencesDomain('com.brzanderson.brzastudiofake')).toBe(false)
     })
   })
 
@@ -232,11 +232,11 @@ describe('readBundleIdentifierFromExecutablePath', () => {
 
   it('reads CFBundleIdentifier from the plist beside the executable', () => {
     const exe = bundleWithPlist(
-      '<plist><dict>\n<key>CFBundleName</key>\n<string>Orca</string>\n' +
-        '<key>CFBundleIdentifier</key>\n\t<string>com.stablyai.orca</string>\n</dict></plist>'
+      '<plist><dict>\n<key>CFBundleName</key>\n<string>BrzA Studio</string>\n' +
+        '<key>CFBundleIdentifier</key>\n\t<string>com.brzanderson.brzastudio</string>\n</dict></plist>'
     )
 
-    expect(readBundleIdentifierFromExecutablePath(exe)).toBe('com.stablyai.orca')
+    expect(readBundleIdentifierFromExecutablePath(exe)).toBe('com.brzanderson.brzastudio')
   })
 
   it('returns null when the plist is missing or carries no identifier', () => {

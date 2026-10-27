@@ -58,7 +58,7 @@ afterEach(() => {
   rmSync(root, { recursive: true, force: true })
 })
 
-describe("a pane spawn rechecks Orca's entry in ~/.codex", () => {
+describe("a pane spawn rechecks BrzA Studio's entry in ~/.codex", () => {
   it('on a native spawn', () => {
     buildPtyHostEnv('native-pane', {}, options)
 

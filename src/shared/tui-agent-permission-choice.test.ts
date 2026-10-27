@@ -132,7 +132,7 @@ describe('terminal launch composes the stored choice', () => {
     agentDefaultArgs: { claude: '--model opus', codex: '--search', grok: '--permission-mode plan' }
   } as const
 
-  it('adds Orca’s flag ahead of the user’s text, nothing for own or text that sets permissions', () => {
+  it('adds BrzA Studio’s flag ahead of the user’s text, nothing for own or text that sets permissions', () => {
     expect(resolveTuiAgentLaunchArgs('claude', typed)).toBe(
       '--permission-mode default --model opus'
     )

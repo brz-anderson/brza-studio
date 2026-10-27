@@ -851,7 +851,7 @@ describe('claim keys and unreadable rows', () => {
     )
   })
 
-  it('refuses to write a store a newer Orca wrote, with the refusal clients print as "update"', async () => {
+  it('refuses to write a store a newer BrzA Studio wrote, with the refusal clients print as "update"', async () => {
     await seedTestAgentSessionStoreFromNewerBuild(directory)
     const store = await open()
     expect(store.readOnly).toBe(true)

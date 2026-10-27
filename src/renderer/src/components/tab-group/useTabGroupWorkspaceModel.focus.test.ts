@@ -186,7 +186,7 @@ describe('useTabGroupWorkspaceModel terminal activation focus', () => {
     vi.clearAllMocks()
     mocks.createWebRuntimeSessionTerminal.mockResolvedValue({
       status: 'failed',
-      message: 'The workspace is not connected to a remote Orca host.'
+      message: 'The workspace is not connected to a remote BrzA Studio host.'
     })
     mocks.callRuntimeRpc.mockResolvedValue({ ok: true })
     mocks.runtimeEnvironmentSupportsCapability.mockResolvedValue(true)

@@ -351,7 +351,7 @@ describe('ClientHostedBrowserPagePane chrome parity', () => {
     expect(screen.queryByRole('button', { name: 'Copy Address' })).toBeNull()
   })
 
-  it('says so when the page asks for a permission Orca denied', () => {
+  it('says so when the page asks for a permission BrzA Studio denied', () => {
     renderPane()
 
     act(() =>
@@ -363,7 +363,7 @@ describe('ClientHostedBrowserPagePane chrome parity', () => {
     )
 
     expect(toastMocks.message).toHaveBeenCalledWith(
-      'https://example.internal asked for camera or microphone access, and Orca denied it.',
+      'https://example.internal asked for camera or microphone access, and BrzA Studio denied it.',
       { id: 'browser-permission-denied:page-a:media' }
     )
   })

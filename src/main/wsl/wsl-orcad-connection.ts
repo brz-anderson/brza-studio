@@ -264,7 +264,7 @@ export class WslOrcadConnectionManager {
         environmentId,
         remotePort: launch.port,
         localPort: preferredLocalPort,
-        label: `Orca server in WSL: ${label}`
+        label: `BrzA Studio server in WSL: ${label}`
       },
       this.dependencies.listen
     )

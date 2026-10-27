@@ -54,7 +54,7 @@ afterEach(() => {
     })
   )
 
-  it("hands the card a newer Orca's subject in a writable chat, and its cancel goes to the host with the card", () => {
+  it("hands the card a newer BrzA Studio's subject in a writable chat, and its cancel goes to the host with the card", () => {
     mocks.turnId = 'turn-1'
     mocks.promptItems = [NEWER_APPROVAL]
     render(

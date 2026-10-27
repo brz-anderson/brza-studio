@@ -102,7 +102,7 @@ function getComputerSidecar(): ComputerSidecarProcess {
 }
 
 export function computerSidecarMissingMessage(entryPath: string): string {
-  return `Computer use isn't available on this host: its Orca install has no computer-use sidecar (${entryPath}). On an Orca server installed before computer use shipped with it, update or reprovision the server.`
+  return `Computer use isn't available on this host: its BrzA Studio install has no computer-use sidecar (${entryPath}). On a BrzA Studio server installed before computer use shipped with it, update or reprovision the server.`
 }
 
 class ComputerSidecarProcess {

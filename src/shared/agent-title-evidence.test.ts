@@ -211,7 +211,7 @@ describe('collectAgentTitleEvidence', () => {
     ['Devin - action required', 'devin'],
     ['Pi ready', 'pi'],
     ['OMP - action required', 'omp']
-  ] as const)('recognizes Orca-controlled synthetic title %s', (title, agent) => {
+  ] as const)('recognizes BrzA Studio-controlled synthetic title %s', (title, agent) => {
     expect(agentFor(title)).toBe(agent)
     expect(reasonFor(title)).toBe('anchored')
   })

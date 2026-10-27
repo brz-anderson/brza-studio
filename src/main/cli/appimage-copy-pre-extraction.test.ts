@@ -25,7 +25,7 @@ afterEach(async () => {
 async function makeFixture() {
   const root = await mkdtemp(join(tmpdir(), 'orca-appimage-pre-extract-'))
   created.push(root)
-  const appImagePath = join(root, 'apps', 'Orca.AppImage')
+  const appImagePath = join(root, 'apps', 'BrzA Studio.AppImage')
   await mkdir(join(root, 'apps'), { recursive: true })
   await writeFile(appImagePath, 'release 1.0.0', { mode: 0o755 })
   return { root, appImagePath, cacheRootPath: join(root, 'cache') }
@@ -172,7 +172,7 @@ describe('startAppImageCopyPreExtraction', () => {
 describe('preExtractDownloadedAppImageUpdate', () => {
   it('unpacks the download into the copy its install will run from', async () => {
     const { root, appImagePath, cacheRootPath } = await makeFixture()
-    const downloadedFile = join(root, 'apps', '.pending-Orca.AppImage')
+    const downloadedFile = join(root, 'apps', '.pending-BrzA Studio.AppImage')
     await writeFile(downloadedFile, 'release 2.0.0', { mode: 0o755 })
 
     const staged = await preExtraction.preExtractDownloadedAppImageUpdate(

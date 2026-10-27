@@ -13,7 +13,10 @@ describe('whenCodexTerminalAppears', () => {
   })
 
   it.each([
-    ['an Orca-launched Codex tab', { tabsByWorktree: { 'wt-1': [{ launchAgent: 'codex' }] } }],
+    [
+      'a BrzA Studio-launched Codex tab',
+      { tabsByWorktree: { 'wt-1': [{ launchAgent: 'codex' }] } }
+    ],
     ['a hook-reported Codex', { agentStatusByPaneKey: { 'tab-1:leaf': { agentType: 'codex' } } }],
     [
       'a typed codex in the foreground',

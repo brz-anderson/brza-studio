@@ -64,7 +64,7 @@ describe('SSH identity file reads', () => {
     )
     expect(error).toHaveProperty(
       'message',
-      `All configured authentication methods failed. Orca skipped identity file "${keyPath}" (${reason}).`
+      `All configured authentication methods failed. BrzA Studio skipped identity file "${keyPath}" (${reason}).`
     )
   })
 

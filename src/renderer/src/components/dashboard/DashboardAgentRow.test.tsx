@@ -143,7 +143,7 @@ describe('DashboardAgentRow', () => {
     )
 
     expect(markup).toContain('Fix checkout race')
-    expect(markup).not.toContain('You are working inside Orca')
+    expect(markup).not.toContain('You are working inside BrzA Studio')
   })
 
   it('shows the active model beside the agent label', () => {

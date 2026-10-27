@@ -214,7 +214,7 @@ describe.skipIf(process.platform !== 'darwin' || process.getuid?.() === 0)(
       await expect(readlink(fixture.commandPath)).resolves.toBe(launcherPath)
     })
 
-    it('repairs an unreadable link to an older Orca launcher through the transaction', async () => {
+    it('repairs an unreadable link to an older BrzA Studio launcher through the transaction', async () => {
       const fixture = await createPrivilegedFixture()
       await symlink('/Applications/Old Orca.app/Contents/Resources/bin/orca', fixture.commandPath)
       await lchmod(fixture.commandPath, 0o300)
@@ -237,7 +237,7 @@ describe.skipIf(process.platform !== 'darwin' || process.getuid?.() === 0)(
       expect((await lstat(fixture.commandPath)).mode & 0o777).toBe(0o755)
     })
 
-    it('refuses an unreadable symlink that is not an Orca launcher once root makes it readable', async () => {
+    it('refuses an unreadable symlink that is not a BrzA Studio launcher once root makes it readable', async () => {
       const fixture = await createPrivilegedFixture()
       const foreignTarget = '/opt/other/bin/orca'
       await symlink(foreignTarget, fixture.commandPath)

@@ -106,7 +106,7 @@ describe('sealStructuredSessionChild identity', () => {
     }
   )
 
-  it('replaces an id inherited from an Orca launched inside another session', () => {
+  it('replaces an id inherited from a BrzA Studio launched inside another session', () => {
     installFakeAppEnvironment({ isPackaged: () => false, getPath: () => USER_DATA })
     const env = sealedChildEnv(SESSION_ID, {
       ORCA_AGENT_SESSION_ID: 'a0b1c2d3-0000-4000-8000-00000000abcd',

@@ -314,7 +314,7 @@ describe('terminal-history', () => {
       expect(envA.fish_history).not.toBe(envB.fish_history)
     })
 
-    it('drops an ORCA_HISTFILE inherited from a parent Orca PTY', () => {
+    it('drops an ORCA_HISTFILE inherited from a parent BrzA Studio PTY', () => {
       const env: Record<string, string> = {
         ORCA_HISTFILE: ['', 'other', 'wt', 'zsh_history'].join(sep)
       }
@@ -353,7 +353,7 @@ describe('terminal-history', () => {
           `${OTHER_WORKTREE_HASH}-zsh_history`
         ].join(sep)
       ]
-    ])('drops a %s HISTFILE inherited from a parent Orca pane', (_kind, inherited) => {
+    ])('drops a %s HISTFILE inherited from a parent BrzA Studio pane', (_kind, inherited) => {
       const env: Record<string, string> = { HISTFILE: inherited }
 
       const result = injectHistoryEnv(env, 'repo-1::/path/wt', '/bin/zsh', '/path/wt')
@@ -367,7 +367,7 @@ describe('terminal-history', () => {
       ['an ordinary path', ['', 'home', 'me', '.zsh_history'].join(sep)],
       // Orca mints absolute paths; a matching relative path belongs to the user.
       [
-        'a relative path of Orca’s shape',
+        'a relative path of BrzA Studio’s shape',
         ['terminal-history', OTHER_WORKTREE_HASH, 'zsh_history'].join(sep)
       ]
     ])('preserves %s the user set as HISTFILE', (_kind, histFile) => {
@@ -390,7 +390,7 @@ describe('terminal-history', () => {
     it.each([
       ['desktop', fishHistorySessionName(hashWorktreeId('repo-1::/path/other-wt'))],
       ['relay', relayFishHistorySessionName(hashWorktreeId('repo-1::/path/other-wt'))]
-    ])('replaces a %s fish_history inherited from a parent Orca', (_kind, inherited) => {
+    ])('replaces a %s fish_history inherited from a parent BrzA Studio', (_kind, inherited) => {
       const env: Record<string, string> = { fish_history: inherited }
 
       const result = injectHistoryEnv(env, 'repo-1::/path/wt', '/usr/bin/fish', '/path/wt')
@@ -423,7 +423,7 @@ describe('terminal-history', () => {
   })
 
   describe('injectWslFishHistoryEnv', () => {
-    it('replaces an inherited Orca fish_history with this worktree session', () => {
+    it('replaces an inherited BrzA Studio fish_history with this worktree session', () => {
       const env: Record<string, string> = {
         fish_history: fishHistorySessionName(hashWorktreeId('repo-1::/path/other-wt'))
       }

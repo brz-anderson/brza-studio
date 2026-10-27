@@ -127,13 +127,13 @@ describe('serveOrcaApp', () => {
     )
   })
 
-  it('names what to run when this orca is not an Orca app (an SSH host server CLI)', () => {
+  it('names what to run when this orca is not a BrzA Studio app (an SSH host server CLI)', () => {
     delete process.env.ORCA_APP_EXECUTABLE
     const previous = process.env.ELECTRON_RUN_AS_NODE
     delete process.env.ELECTRON_RUN_AS_NODE
     try {
       expect(() => serveOrcaApp({ supervise: true })).toThrow(
-        /Install the Orca app on this machine/
+        /Install the BrzA Studio app on this machine/
       )
       expect(spawnMock).not.toHaveBeenCalled()
     } finally {
@@ -691,7 +691,7 @@ describe('serveOrcaApp', () => {
 
     await expect(result).rejects.toMatchObject({
       code: 'runtime_serve_failed',
-      message: 'Orca serve exited before printing valid recipe JSON with code 0.'
+      message: 'BrzA Studio serve exited before printing valid recipe JSON with code 0.'
     })
     expect(stdoutSpy).not.toHaveBeenCalled()
     expect(stderrSpy).toHaveBeenCalledTimes(5)

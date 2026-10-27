@@ -78,7 +78,7 @@ export function beginOrcaCloudPkceFlow(
 
     function writeInvalidCallback(response: ServerResponse): void {
       response.writeHead(400)
-      response.end('Invalid Orca sign-in response.')
+      response.end('Invalid BrzA Studio sign-in response.')
     }
 
     const server = createServer((request, response) => {
@@ -101,8 +101,8 @@ export function beginOrcaCloudPkceFlow(
           response.writeHead(400)
           response.end(
             cancelled
-              ? 'Orca sign-in was cancelled.'
-              : 'Orca sign-in failed. Return to Orca and try again.'
+              ? 'BrzA Studio sign-in was cancelled.'
+              : 'BrzA Studio sign-in failed. Return to BrzA Studio and try again.'
           )
           rejectFlow(
             new Error(cancelled ? 'orca_cloud_auth_denied' : 'orca_cloud_auth_callback_failed')

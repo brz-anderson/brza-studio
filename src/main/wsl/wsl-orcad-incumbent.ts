@@ -70,7 +70,7 @@ const DEFAULT_DEPENDENCIES: WslOrcadIncumbentDependencies = {
       environmentId: target.id,
       remotePort,
       localPort: 0,
-      label: `Orca server in WSL: ${target.label} (update check)`
+      label: `BrzA Studio server in WSL: ${target.label} (update check)`
     }),
   census: requestOrcadTerminalCensus
 }

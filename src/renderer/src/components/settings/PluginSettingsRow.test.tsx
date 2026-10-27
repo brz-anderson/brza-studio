@@ -22,7 +22,7 @@ vi.mock('../ui/dropdown-menu', () => ({
 const plugin: PluginHostListEntry = {
   pluginKey: 'stablyai.orca-skills',
   consentFingerprint: 'sha256-consent',
-  name: 'Orca Skills',
+  name: 'BrzA Studio Skills',
   version: '1.0.0',
   publisher: 'stablyai',
   status: 'disabled',
@@ -78,7 +78,8 @@ describe('PluginSettingsRow', () => {
     expect(container.textContent).toContain('View advisory')
     expect(container.textContent).not.toContain('Remove')
     expect(
-      container.querySelector<HTMLButtonElement>('[aria-label="Enable Orca Skills"]')?.disabled
+      container.querySelector<HTMLButtonElement>('[aria-label="Enable BrzA Studio Skills"]')
+        ?.disabled
     ).toBe(true)
     act(() => root.unmount())
   })

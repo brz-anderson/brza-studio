@@ -217,13 +217,13 @@ describe('materializeRelocatedDaemonHost', () => {
   })
 
   it('tracks a differently-named app exe rather than pinning an image name of its own', () => {
-    renameSync(join(installDir, 'Orca.exe'), join(installDir, 'Orca Nightly.exe'))
-    setProcessProp('execPath', join(installDir, 'Orca Nightly.exe'))
+    renameSync(join(installDir, 'Orca.exe'), join(installDir, 'BrzA Studio Nightly.exe'))
+    setProcessProp('execPath', join(installDir, 'BrzA Studio Nightly.exe'))
     const result = materializeRelocatedDaemonHost()
     const dest = relocatedHostRoot()
-    expect(result?.execPath).toBe(join(dest, 'Orca Nightly.exe'))
+    expect(result?.execPath).toBe(join(dest, 'BrzA Studio Nightly.exe'))
     expect(existsSync(join(dest, 'orca-terminal-daemon.exe'))).toBe(false)
-    expect(getRelocatedDaemonHost()?.execPath).toBe(join(dest, 'Orca Nightly.exe'))
+    expect(getRelocatedDaemonHost()?.execPath).toBe(join(dest, 'BrzA Studio Nightly.exe'))
   })
 
   it.each([

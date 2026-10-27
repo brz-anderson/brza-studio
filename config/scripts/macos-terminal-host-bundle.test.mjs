@@ -33,8 +33,11 @@ const { macCommandPrefixForArch } = require('./verify-packaged-daemon-entry.cjs'
 const electronBuilderConfig = require('../electron-builder.config.cjs')
 
 const usageDescriptions = electronBuilderConfig.mac.extendInfo
-const appInfo = { CFBundleIdentifier: 'com.stablyai.orca', CFBundleShortVersionString: '1.4.300' }
-const expectations = { appId: 'com.stablyai.orca', usageDescriptions, minimumOs: '13.5' }
+const appInfo = {
+  CFBundleIdentifier: 'com.brzanderson.brzastudio',
+  CFBundleShortVersionString: '1.4.300'
+}
+const expectations = { appId: 'com.brzanderson.brzastudio', usageDescriptions, minimumOs: '13.5' }
 
 describe('terminal host Info.plist', () => {
   const info = buildMacTerminalHostInfo({ appInfo, usageDescriptions, minimumOs: '13.5' })
@@ -42,7 +45,7 @@ describe('terminal host Info.plist', () => {
   it("carries the app's identifier, every purpose string and the Node floor", () => {
     expect(info).toMatchObject({
       ...usageDescriptions,
-      CFBundleIdentifier: 'com.stablyai.orca',
+      CFBundleIdentifier: 'com.brzanderson.brzastudio',
       CFBundleName: 'Orca',
       CFBundleDisplayName: 'Orca',
       CFBundleExecutable: 'orca-terminal-host',
@@ -59,7 +62,7 @@ describe('terminal host Info.plist', () => {
       findMacTerminalHostInfoProblems(
         {
           ...info,
-          CFBundleIdentifier: 'com.stablyai.orca.helper',
+          CFBundleIdentifier: 'com.brzanderson.brzastudio.helper',
           CFBundleURLTypes: [],
           CFBundleDocumentTypes: [],
           UTExportedTypeDeclarations: [],
@@ -69,7 +72,7 @@ describe('terminal host Info.plist', () => {
         expectations
       )
     ).toEqual([
-      'CFBundleIdentifier is com.stablyai.orca.helper, expected com.stablyai.orca',
+      'CFBundleIdentifier is com.brzanderson.brzastudio.helper, expected com.brzanderson.brzastudio',
       'declares CFBundleURLTypes',
       'declares CFBundleDocumentTypes',
       'declares UTExportedTypeDeclarations',

@@ -151,7 +151,7 @@ describe('handleOsc52ClipboardRequest', () => {
     ])
   })
 
-  it('does not surface blocked queries because Orca must not answer them', () => {
+  it('does not surface blocked queries because BrzA Studio must not answer them', () => {
     const onBlockedWrite = vi.fn()
 
     handleOsc52ClipboardRequest('c;?', {

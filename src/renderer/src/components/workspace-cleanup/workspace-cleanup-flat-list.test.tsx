@@ -144,7 +144,9 @@ describe('workspace cleanup flat list', () => {
     renderRows([disconnected], onForgetLocally)
 
     expect(container?.querySelector('[aria-label^="Select disconnected"]')).toBeNull()
-    const forgetButton = container?.querySelector<HTMLElement>('[aria-label="Remove from Orca"]')
+    const forgetButton = container?.querySelector<HTMLElement>(
+      '[aria-label="Remove from BrzA Studio"]'
+    )
     expect(forgetButton).not.toBeNull()
     act(() => forgetButton?.click())
     expect(onForgetLocally).toHaveBeenCalledWith(disconnected.candidate)

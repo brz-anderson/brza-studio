@@ -32,7 +32,7 @@ function installManagedScript(): { scriptPath: string; cleanup: () => void } {
 }
 
 describe.runIf(process.platform !== 'win32')('jcode managed hook as jcode runs it', () => {
-  it('drains the gate stdin before exiting on a missing Orca environment', () => {
+  it('drains the gate stdin before exiting on a missing BrzA Studio environment', () => {
     const { scriptPath, cleanup } = installManagedScript()
     try {
       // Returning proves the gate drained input larger than the pipe buffer before exiting.
@@ -79,7 +79,7 @@ describe('the Windows managed hook', () => {
     }
   }
 
-  it('drains the gate stdin, but only after the Orca environment check', () => {
+  it('drains the gate stdin, but only after the BrzA Studio environment check', () => {
     const script = windowsScript()
     const guardIndex = script.indexOf('if "%ORCA_PANE_KEY%"==""')
     const drainIndex = script.indexOf('if "%JCODE_HOOK_EVENT%"=="pre_tool"')

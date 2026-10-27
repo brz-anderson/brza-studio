@@ -44,7 +44,7 @@ export function readPersistedEnvironmentStore(
   const { environments, unreadable } = readEnvironmentStoreRecords(userDataPath, options)
   if (unreadable.length > 0) {
     warnUnreadableEnvironmentState(
-      `Skipping ${unreadable.length} unreadable server record(s) in ${getEnvironmentStorePath(userDataPath)} (ids: ${unreadable.map((record) => record.id ?? '<none>').join(', ')}); they may need a newer version of Orca and are kept on disk.`
+      `Skipping ${unreadable.length} unreadable server record(s) in ${getEnvironmentStorePath(userDataPath)} (ids: ${unreadable.map((record) => record.id ?? '<none>').join(', ')}); they may need a newer version of BrzA Studio and are kept on disk.`
     )
   }
   return {
@@ -98,7 +98,7 @@ export function readEnvironmentStore(
   const hidden = store.environments.filter((environment) => isHidden(environment.id))
   if (hidden.length > 0) {
     warnUnreadableEnvironmentState(
-      `Hiding ${hidden.length} server(s) whose links cannot be read (ids: ${hidden.map((environment) => environment.id).join(', ')}); they may need a newer version of Orca.`
+      `Hiding ${hidden.length} server(s) whose links cannot be read (ids: ${hidden.map((environment) => environment.id).join(', ')}); they may need a newer version of BrzA Studio.`
     )
   }
   return {
@@ -126,7 +126,7 @@ export function writeEnvironmentStore(userDataPath: string, store: RuntimeEnviro
   if (environments.some(({ id }) => unreadableIds.has(id) && !readableIds.has(id))) {
     throw new RuntimeEnvironmentStoreError(
       'invalid_argument',
-      'A server with this id already exists in a format that needs a newer version of Orca.'
+      'A server with this id already exists in a format that needs a newer version of BrzA Studio.'
     )
   }
   let serialized: string
@@ -142,7 +142,7 @@ export function writeEnvironmentStore(userDataPath: string, store: RuntimeEnviro
     if (error instanceof JsonStringifyByteLimitError) {
       throw new RuntimeEnvironmentStoreError(
         'runtime_error',
-        `Could not write Orca environments at ${path}; the store exceeds its durable capacity.`
+        `Could not write BrzA Studio environments at ${path}; the store exceeds its durable capacity.`
       )
     }
     throw error

@@ -47,7 +47,7 @@ const SidebarFeedbackDialog = lazyWithRetry(
 
 const DOCS_URL = 'https://www.onorca.dev/docs'
 const CHANGELOG_URL = 'https://onorca.dev/changelog'
-const GITHUB_URL = 'https://github.com/stablyai/orca'
+const GITHUB_URL = 'https://github.com/brz-anderson/brza-studio'
 const DISCORD_URL = 'https://discord.gg/fzjDKHxv8Q'
 const X_URL = 'https://x.com/orca_build'
 const NO_UPDATE_CHECK_MODIFIERS = {
@@ -145,7 +145,10 @@ export function SidebarSettingsHelpMenu(): React.JSX.Element {
     }
     setIsRestartingOrca(true)
     toast.info(
-      translate('auto.components.sidebar.SidebarSettingsHelpMenu.5161eef55d', 'Restarting Orca…')
+      translate(
+        'auto.components.sidebar.SidebarSettingsHelpMenu.5161eef55d',
+        'Restarting BrzA Studio…'
+      )
     )
     void window.api.app.restart().catch((error) => {
       if (mountedRef.current) {
@@ -153,7 +156,7 @@ export function SidebarSettingsHelpMenu(): React.JSX.Element {
         toast.error(
           translate(
             'auto.components.sidebar.SidebarSettingsHelpMenu.4e8f5710d3',
-            "Couldn't restart Orca."
+            "Couldn't restart BrzA Studio."
           ),
           {
             description: error instanceof Error ? error.message : undefined
@@ -345,7 +348,7 @@ export function SidebarSettingsHelpMenu(): React.JSX.Element {
               <RotateCw className="size-3.5" />
               {translate(
                 'auto.components.sidebar.SidebarSettingsHelpMenu.ad3d3ed7f1',
-                'Restart Orca'
+                'Restart BrzA Studio'
               )}
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -324,7 +324,7 @@ describe('a structured chat coordinates through the same verbs as a terminal', (
     expect(h.db.getDeliveryRaw(ack)?.status).toBe('acknowledged')
   })
 
-  it('stops counting a coordinator Orca session id once an older binary rebinds the Run to a terminal', async () => {
+  it('stops counting a coordinator BrzA Studio session id once an older binary rebinds the Run to a terminal', async () => {
     const runId = await runCreate(SESSION_X)
     // An older binary's bindRun rewrites handle and pane and bumps the generation, never the Orca session id.
     h.db.db
@@ -570,7 +570,7 @@ describe('a structured worker that names itself by session id', () => {
     })
   })
 
-  it('coordinates with its handle, pane and Orca session id, one mailbox at both spellings', async () => {
+  it('coordinates with its handle, pane and BrzA Studio session id, one mailbox at both spellings', async () => {
     const { run } = resultOf(
       await h.dispatch(
         orchestrationRequest(

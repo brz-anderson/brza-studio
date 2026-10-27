@@ -70,12 +70,12 @@ describe('preflightElectronServe', () => {
     ).toBeNull()
   })
 
-  it('refuses with exit 3 when a live Orca answers for the profile', async () => {
+  it('refuses with exit 3 when a live BrzA Studio answers for the profile', async () => {
     await expect(
       preflightElectronServe({}, userData, { platform: 'linux', deps: deps({ reachable: true }) })
     ).resolves.toBe(3)
     expect(String(stderr.mock.calls[0]?.[0])).toContain(
-      'Orca is already running for this userData profile as pid 4242; not starting a second process.'
+      'BrzA Studio is already running for this userData profile as pid 4242; not starting a second process.'
     )
   })
 
@@ -128,10 +128,14 @@ describe('preflightElectronServe', () => {
     const fingerprint = () => 'Background|ssh=1|sandbox=0'
 
     it('refuses a later run from the same environment with exit 78 before anything else', () => {
-      recordElectronServeStartupAbort(userData, 'Orca serve aborted with SIGABRT on macOS.', {
-        now: 1_000,
-        fingerprint
-      })
+      recordElectronServeStartupAbort(
+        userData,
+        'BrzA Studio serve aborted with SIGABRT on macOS.',
+        {
+          now: 1_000,
+          fingerprint
+        }
+      )
       const result = preflightElectronServe({}, userData, {
         platform: 'darwin',
         now: 1_000 + 5 * 60_000,

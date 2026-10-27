@@ -93,10 +93,10 @@ const sections: SettingsNavSection[] = [
     icon: Settings,
     searchEntries: [
       {
-        title: 'Orca CLI',
+        title: 'BrzA Studio CLI',
         description: 'Register or remove the orca shell command.',
         keywords: ['cli', 'path', 'terminal', 'command', 'shell command'],
-        cmdJKeywords: ['cli', 'path', 'command', 'shell command'],
+        cmdJKeywords: ['orca', 'cli', 'path', 'command', 'shell command'],
         targetSectionId: 'cli'
       }
     ],
@@ -120,10 +120,10 @@ const sections: SettingsNavSection[] = [
   },
   {
     id: 'servers',
-    title: 'Remote Orca Servers',
-    description: 'Pair remote Orca runtimes.',
+    title: 'Remote BrzA Studio Servers',
+    description: 'Pair remote BrzA Studio runtimes.',
     icon: Settings,
-    searchEntries: [{ title: 'Remote Orca Servers' }],
+    searchEntries: [{ title: 'Remote BrzA Studio Servers' }],
     group: 'remote'
   },
   {
@@ -261,7 +261,7 @@ describe('Cmd+J palette middle-band ranking', () => {
     )
 
     expect(cliResult).toMatchObject({
-      title: 'Orca CLI',
+      title: 'BrzA Studio CLI',
       description: 'Register or remove the orca shell command.',
       sectionId: 'general',
       targetSectionId: 'cli'
@@ -274,7 +274,7 @@ describe('Cmd+J palette middle-band ranking', () => {
       {
         id: 'linear',
         title: 'Linear',
-        description: 'How Linear works in Orca.',
+        description: 'How Linear works in BrzA Studio.',
         icon: Settings,
         searchEntries: [],
         group: 'capabilities'

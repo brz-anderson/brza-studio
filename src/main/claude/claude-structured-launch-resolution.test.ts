@@ -187,7 +187,7 @@ describe('claude structured launch resolution', () => {
     expect(launch.options.sessionId).toBeUndefined()
   })
 
-  it('names the child by the Orca session id, over any id the configured overlay carries', async () => {
+  it('names the child by the BrzA Studio session id, over any id the configured overlay carries', async () => {
     const launch = await resolverFor(record(), () => ({
       ORCA_AGENT_SESSION_ID: 'a0b1c2d3-0000-4000-8000-00000000abcd'
     }))({ identity: IDENTITY })
@@ -421,7 +421,7 @@ describe('claude structured launch resolution', () => {
     ])
   })
 
-  it('builds on the supplied inherited env instead of Orca process env', async () => {
+  it('builds on the supplied inherited env instead of BrzA Studio process env', async () => {
     const launch = await createClaudeStructuredLaunchResolver({
       resolveLaunchArgs: () => [],
       store: { getRecord: () => record(), pinLaunchDirectory: vi.fn() },
@@ -618,7 +618,7 @@ describe('readable Claude thinking', () => {
     expect((await launchWith()).options.extraArgs).toEqual({ 'replay-user-messages': null })
   })
 
-  it('keeps saved Arguments beside readable thinking, with the display left to Orca', async () => {
+  it('keeps saved Arguments beside readable thinking, with the display left to BrzA Studio', async () => {
     const launch = await launchWith(
       { supports: async (flag) => flag === CLAUDE_THINKING_DISPLAY_FLAG },
       undefined,

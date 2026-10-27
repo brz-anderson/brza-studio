@@ -25,24 +25,24 @@ describe('getTerminalUrlOpenHint', () => {
   })
 
   // When links already open in Orca, inversion must advertise the system browser.
-  it('keeps the system-browser wording when inverting but links open in Orca', () => {
+  it('keeps the system-browser wording when inverting but links open in BrzA Studio', () => {
     stubPlatform(true)
     expect(getTerminalUrlOpenHint({ openLinksInApp: true, modifierInverts: true })).toContain(
       'for system browser'
     )
   })
 
-  it('names Orca when inverting and links open externally', () => {
+  it('names BrzA Studio when inverting and links open externally', () => {
     stubPlatform(true)
     expect(getTerminalUrlOpenHint({ openLinksInApp: false, modifierInverts: true })).toBe(
-      'Click for actions, ⌘+click to open, or ⇧⌘+click to open in Orca'
+      'Click for actions, ⌘+click to open, or ⇧⌘+click to open in BrzA Studio'
     )
   })
 
   it('uses the Ctrl chord off macOS', () => {
     stubPlatform(false)
     expect(getTerminalUrlOpenHint({ openLinksInApp: false, modifierInverts: true })).toBe(
-      'Click for actions, Ctrl+click to open, or Shift+Ctrl+click to open in Orca'
+      'Click for actions, Ctrl+click to open, or Shift+Ctrl+click to open in BrzA Studio'
     )
   })
 
@@ -54,7 +54,7 @@ describe('getTerminalUrlOpenHint', () => {
         modifierInverts: true,
         showActions: false
       })
-    ).toBe('Ctrl+click to open, or Shift+Ctrl+click to open in Orca')
+    ).toBe('Ctrl+click to open, or Shift+Ctrl+click to open in BrzA Studio')
   })
 })
 
@@ -131,10 +131,10 @@ describe('terminalUrlOpenHintOptionsFor', () => {
     )
 
     expect(options.modifierInverts).toBe(true)
-    expect(getTerminalUrlOpenHint(options)).toContain('to open in Orca')
+    expect(getTerminalUrlOpenHint(options)).toContain('to open in BrzA Studio')
   })
 
-  it('keeps inversion for a runtime pane when its host can open an Orca browser', () => {
+  it('keeps inversion for a runtime pane when its host can open a BrzA Studio browser', () => {
     const options = terminalUrlOpenHintOptionsFor(
       {
         openLinksInApp: false,

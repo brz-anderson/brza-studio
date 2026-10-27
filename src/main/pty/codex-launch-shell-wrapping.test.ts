@@ -32,51 +32,54 @@ function wrapperText(config: { args: string[] | null; env: Record<string, string
     : (config.args ?? []).join('\n')
 }
 
-describe.skipIf(process.platform === 'win32')('Orca Codex launch shells carry the wrapper', () => {
-  let userData: string
-  const original = process.env.ORCA_USER_DATA_PATH
+describe.skipIf(process.platform === 'win32')(
+  'BrzA Studio Codex launch shells carry the wrapper',
+  () => {
+    let userData: string
+    const original = process.env.ORCA_USER_DATA_PATH
 
-  beforeEach(() => {
-    userData = mkdtempSync(join(tmpdir(), 'orca-codex-launch-wrap-'))
-    process.env.ORCA_USER_DATA_PATH = userData
-    vi.resetModules()
-  })
+    beforeEach(() => {
+      userData = mkdtempSync(join(tmpdir(), 'orca-codex-launch-wrap-'))
+      process.env.ORCA_USER_DATA_PATH = userData
+      vi.resetModules()
+    })
 
-  afterEach(() => {
-    if (original === undefined) {
-      delete process.env.ORCA_USER_DATA_PATH
-    } else {
-      process.env.ORCA_USER_DATA_PATH = original
-    }
-    rmSync(userData, { recursive: true, force: true })
-  })
+    afterEach(() => {
+      if (original === undefined) {
+        delete process.env.ORCA_USER_DATA_PATH
+      } else {
+        process.env.ORCA_USER_DATA_PATH = original
+      }
+      rmSync(userData, { recursive: true, force: true })
+    })
 
-  it.each([
-    ['/bin/bash', NO_DAEMON],
-    ['/bin/zsh', NO_DAEMON],
-    ['/usr/bin/fish', FISH_NO_DAEMON]
-  ])('daemon transport wraps %s', async (shell, marker) => {
-    const { getShellLaunchConfig } = await import('../daemon/shell-ready')
+    it.each([
+      ['/bin/bash', NO_DAEMON],
+      ['/bin/zsh', NO_DAEMON],
+      ['/usr/bin/fish', FISH_NO_DAEMON]
+    ])('daemon transport wraps %s', async (shell, marker) => {
+      const { getShellLaunchConfig } = await import('../daemon/shell-ready')
 
-    expect(
-      wrapperText(
-        getShellLaunchConfig(shell, codexLaunchFeatures(shell), {
-          hasStartupCommand: true,
-          inheritedXdgDataDirs: undefined
-        })
-      )
-    ).toContain(marker)
-  })
+      expect(
+        wrapperText(
+          getShellLaunchConfig(shell, codexLaunchFeatures(shell), {
+            hasStartupCommand: true,
+            inheritedXdgDataDirs: undefined
+          })
+        )
+      ).toContain(marker)
+    })
 
-  it.each([
-    ['/bin/bash', NO_DAEMON],
-    ['/bin/zsh', NO_DAEMON],
-    ['/usr/bin/fish', FISH_NO_DAEMON]
-  ])('local transport wraps %s', async (shell, marker) => {
-    const { getShellLaunchConfig } = await import('../providers/local-pty-shell-ready')
+    it.each([
+      ['/bin/bash', NO_DAEMON],
+      ['/bin/zsh', NO_DAEMON],
+      ['/usr/bin/fish', FISH_NO_DAEMON]
+    ])('local transport wraps %s', async (shell, marker) => {
+      const { getShellLaunchConfig } = await import('../providers/local-pty-shell-ready')
 
-    expect(wrapperText(getShellLaunchConfig(shell, codexLaunchFeatures(shell), COMMAND))).toContain(
-      marker
-    )
-  })
-})
+      expect(
+        wrapperText(getShellLaunchConfig(shell, codexLaunchFeatures(shell), COMMAND))
+      ).toContain(marker)
+    })
+  }
+)

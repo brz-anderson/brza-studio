@@ -391,7 +391,7 @@ describe('orca cli browser identity', () => {
     await main(['browser', 'identity', 'get'], '/tmp/not-an-orca-worktree')
 
     expect(callMock).toHaveBeenCalledTimes(1)
-    expect(error).toHaveBeenCalledWith(expect.stringContaining('Update or restart Orca'))
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('Update or restart BrzA Studio'))
   })
 })
 
@@ -730,18 +730,20 @@ describe('orca cli browser waits and viewport flags', () => {
     )
   })
 
-  it('does not tell users Orca is down for a generic runtime timeout', async () => {
+  it('does not tell users BrzA Studio is down for a generic runtime timeout', async () => {
     callMock.mockRejectedValueOnce(
       new RuntimeClientError(
         'runtime_timeout',
-        'Timed out waiting for the Orca runtime to respond.'
+        'Timed out waiting for the BrzA Studio runtime to respond.'
       )
     )
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
     await main(['wait', '--selector', '#ready', '--worktree', 'all'], '/tmp/not-an-orca-worktree')
 
-    expect(errorSpy).toHaveBeenCalledWith('Timed out waiting for the Orca runtime to respond.')
+    expect(errorSpy).toHaveBeenCalledWith(
+      'Timed out waiting for the BrzA Studio runtime to respond.'
+    )
   })
 
   it('passes the mobile viewport flag through to browser.viewport', async () => {

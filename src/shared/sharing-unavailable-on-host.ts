@@ -2,10 +2,10 @@
 export const SHARING_UNAVAILABLE_ON_HOST_CODE = 'sharing_unavailable_on_host' as const
 
 export const SHARING_UNAVAILABLE_ON_HOST_MESSAGE =
-  "Orca cloud features like sharing aren't available on headless Orca servers yet. Use the Orca desktop app for this."
+  "BrzA Studio cloud features like sharing aren't available on headless BrzA Studio servers yet. Use the BrzA Studio desktop app for this."
 
 export const SHARING_UNAVAILABLE_ON_HOST_NEXT_STEPS: readonly string[] = [
-  'Open the Orca desktop app, sign in, and run the command from an Orca terminal there.'
+  'Open the BrzA Studio desktop app, sign in, and run the command from a BrzA Studio terminal there.'
 ]
 
 export class SharingUnavailableOnHostError extends Error {

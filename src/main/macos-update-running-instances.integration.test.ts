@@ -25,7 +25,7 @@ it.runIf(process.platform === 'darwin')(
   async () => {
     const root = mkdtempSync(path.join(tmpdir(), 'orca-update-instances-'))
     const bundle = path.join(root, 'Orca Test.app')
-    const executable = path.join(bundle, 'Contents', 'MacOS', 'Orca Test')
+    const executable = path.join(bundle, 'Contents', 'MacOS', 'BrzA Studio Test')
     mkdirSync(path.dirname(executable), { recursive: true })
     const sourcePath = path.join(root, 'application.m')
     writeFileSync(sourcePath, APPLICATION_SOURCE)
@@ -52,7 +52,7 @@ it.runIf(process.platform === 'darwin')(
         [executable, []],
         [executable, []],
         [executable, ['--worker']],
-        [path.join(otherBundle, 'Contents', 'MacOS', 'Orca Test'), []]
+        [path.join(otherBundle, 'Contents', 'MacOS', 'BrzA Studio Test'), []]
       ] satisfies [string, string[]][]) {
         const child = spawnProcess({
           program,
@@ -70,7 +70,7 @@ it.runIf(process.platform === 'darwin')(
           expect(await getMacUpdateRunningInstances(executable, self.pid)).toEqual([sibling.pid])
           expect(
             await getMacUpdateRunningInstances(
-              path.join(otherBundle, 'Contents', 'MacOS', 'Orca Test'),
+              path.join(otherBundle, 'Contents', 'MacOS', 'BrzA Studio Test'),
               0
             )
           ).toEqual([otherCopy.pid])

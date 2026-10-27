@@ -777,7 +777,7 @@ describe('Jira site file cross-process visibility', () => {
     )
   })
 
-  it('picks up a site connected by another Orca process', async () => {
+  it('picks up a site connected by another BrzA Studio process', async () => {
     // Processes share ~/.orca; an initially empty read must observe later connections.
     const jira = await loadClientModule()
     expect(jira.getStatus()).toMatchObject({ connected: false, sites: [] })
@@ -791,7 +791,7 @@ describe('Jira site file cross-process visibility', () => {
     })
   })
 
-  it('drops a site disconnected by another Orca process', async () => {
+  it('drops a site disconnected by another BrzA Studio process', async () => {
     writeJiraFiles('site-alpha', 'token-alpha')
     const jira = await loadClientModule()
     expect(jira.getStatus()).toMatchObject({ connected: true })

@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { translate } from '@/i18n/i18n'
 
-const ORCA_REPO_URL = 'https://github.com/stablyai/orca'
+const ORCA_REPO_URL = 'https://github.com/brz-anderson/brza-studio'
 type StarNagMode = 'gh' | 'web'
 type StarNagToastStatus = 'idle' | 'busy' | 'starred' | 'opened'
 
@@ -122,7 +122,7 @@ function StarNagToast({
           <p className="text-sm leading-5 text-muted-foreground">
             {translate(
               'auto.components.star.nag.StarNagToastHost.body',
-              'If you’re enjoying Orca so far, a GitHub star helps other developers discover it.'
+              'If you’re enjoying BrzA Studio so far, a GitHub star helps other developers discover it.'
             )}
           </p>
         </div>

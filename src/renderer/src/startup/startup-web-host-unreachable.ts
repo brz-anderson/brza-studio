@@ -11,7 +11,9 @@ import type { RuntimeHostStatusSnapshot } from '../../../shared/runtime-host-sta
 // a socket that dropped mid-request.
 const WEB_CONNECTION_FAILURE_FRAGMENTS = [
   'timed out while connecting to the remote orca runtime',
-  'remote orca runtime connection interrupted'
+  'timed out while connecting to the remote brza studio runtime',
+  'remote orca runtime connection interrupted',
+  'remote brza studio runtime connection interrupted'
 ]
 
 function isConnectionFailure(error: unknown): boolean {
@@ -45,18 +47,21 @@ export function announceWebHostUnreachableAtStartup(signal: AbortSignal): void {
   const reload = (): void => {
     void window.api.app.relaunch()
   }
-  toast.error(translate('auto.startup.webHostUnreachable.title', "Couldn't reach your Orca host"), {
-    description: translate(
-      'auto.startup.webHostUnreachable.description',
-      "Nothing was lost. Orca will reload when the host answers, and won't save changes until then."
-    ),
-    duration: Infinity,
-    dismissible: true,
-    action: {
-      label: translate('auto.startup.webHostUnreachable.retry', 'Retry now'),
-      onClick: reload
+  toast.error(
+    translate('auto.startup.webHostUnreachable.title', "Couldn't reach your BrzA Studio host"),
+    {
+      description: translate(
+        'auto.startup.webHostUnreachable.description',
+        "Nothing was lost. BrzA Studio will reload when the host answers, and won't save changes until then."
+      ),
+      duration: Infinity,
+      dismissible: true,
+      action: {
+        label: translate('auto.startup.webHostUnreachable.retry', 'Retry now'),
+        onClick: reload
+      }
     }
-  })
+  )
   let reloading = false
   let unsubscribe: (() => void) | undefined
   const reloadOnce = (snapshots: readonly RuntimeHostStatusSnapshot[]): void => {

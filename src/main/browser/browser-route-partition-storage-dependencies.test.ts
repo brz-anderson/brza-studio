@@ -62,7 +62,7 @@ it('deletes the folder at startup without loading its session', async () => {
   expect(existsSync(folder)).toBe(false)
 })
 
-it('leaves a folder queued by one Orca profile for that profile to delete', async () => {
+it('leaves a folder queued by one BrzA Studio profile for that profile to delete', async () => {
   const profileDirectory = (id: string) => {
     const directory = join(mocks.userData, 'profiles', id)
     mkdirSync(directory, { recursive: true })

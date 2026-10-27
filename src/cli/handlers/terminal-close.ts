@@ -74,7 +74,7 @@ export const terminalCloseHandler: CommandHandler = async ({ flags, client, cwd,
       if (error instanceof RuntimeClientError && error.code === 'method_not_found') {
         throw new RuntimeClientError(
           'incompatible_runtime',
-          'This Orca host does not support closing every terminal in a workspace yet. Update Orca on the host and try again.'
+          'This BrzA Studio host does not support closing every terminal in a workspace yet. Update BrzA Studio on the host and try again.'
         )
       }
       throw error

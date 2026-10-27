@@ -174,7 +174,7 @@ describe('orphaned managed block ownership (#18861)', () => {
     expect(text).toBe('default_model = "x"\n[user.table]\nvalue = "keep"\n')
   })
 
-  it('does not treat a user [[hooks]] table as Orca-owned content', () => {
+  it('does not treat a user [[hooks]] table as BrzA Studio-owned content', () => {
     const orphan = [
       START_MARKER,
       '[[hooks]]',

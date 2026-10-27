@@ -81,7 +81,7 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals())
 
 describe('terminal file link actions', () => {
-  it('offers Orca and system-default actions for a local file', () => {
+  it('offers BrzA Studio and system-default actions for a local file', () => {
     const request = vi.fn()
     expect(
       handleTerminalFileLink('/repo/src/main.ts', 12, 4, plainEvent(), deps, context(request))
@@ -114,10 +114,10 @@ describe('terminal file link actions', () => {
     const [systemFirst, orcaFirst] = request.mock.calls.map(([call]) => call)
     expect([systemFirst.primary.label, systemFirst.alternate.label]).toEqual([
       'System Browser',
-      'Orca Browser'
+      'BrzA Studio Browser'
     ])
     expect([orcaFirst.primary.label, orcaFirst.alternate.label]).toEqual([
-      'Orca Browser',
+      'BrzA Studio Browser',
       'System Browser'
     ])
     systemFirst.primary.run()

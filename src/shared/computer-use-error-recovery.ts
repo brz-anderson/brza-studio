@@ -43,7 +43,7 @@ export function computerUseErrorRecoveryData(
     case 'provider_incompatible':
       return recoverWith(
         'Run `orca computer capabilities --json` and verify the local provider supports the requested operation.',
-        'Update Orca or use a supported platform/provider path before retrying.'
+        'Update BrzA Studio or use a supported platform/provider path before retrying.'
       )
     case 'unsupported_capability':
       return recoverWith(
@@ -95,7 +95,7 @@ export function computerUseErrorRecoveryData(
       // Why: an Orca server installed before it bundled computer use reports only this exit (#31777).
       if (message?.startsWith('computer sidecar exited with code')) {
         return recoverWith(
-          'If this targets an Orca server (`orca serve`, SSH or WSL), its install may not include computer use: update or reprovision the server, then retry.',
+          'If this targets a BrzA Studio server (`orca serve`, SSH or WSL), its install may not include computer use: update or reprovision the server, then retry.',
           'Run `orca computer capabilities --json` to confirm the provider is available before retrying.'
         )
       }

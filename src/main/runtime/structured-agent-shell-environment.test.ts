@@ -142,7 +142,7 @@ describe('structuredAgentBaseEnvironment', () => {
     })
   })
 
-  it('passes only the baseline and listed shell names over Orca env when off', () => {
+  it('passes only the baseline and listed shell names over BrzA Studio env when off', () => {
     expect(
       structuredAgentBaseEnvironment({
         shellEnv,

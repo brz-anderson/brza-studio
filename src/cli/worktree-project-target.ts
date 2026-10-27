@@ -90,7 +90,7 @@ export async function resolveProjectCreateTarget(
     if (error instanceof RuntimeClientError && error.code === 'method_not_found') {
       throw new RuntimeClientError(
         'incompatible_runtime',
-        'This Orca server does not support project host setup yet. Update Orca on the server and try again.'
+        'This BrzA Studio server does not support project host setup yet. Update BrzA Studio on the server and try again.'
       )
     }
     throw error
@@ -178,6 +178,6 @@ export async function getCreateRepoTarget(
   }
   throw new RuntimeClientError(
     'invalid_argument',
-    'Missing repo selector. Pass --repo or run from inside an Orca-managed worktree.'
+    'Missing repo selector. Pass --repo or run from inside a BrzA Studio-managed worktree.'
   )
 }

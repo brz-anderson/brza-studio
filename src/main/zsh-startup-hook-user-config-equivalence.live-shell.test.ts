@@ -367,7 +367,7 @@ describe.skipIf(process.platform === 'win32')('the fixes the old wrapper was bui
     }
   })
 
-  itWithZsh('refuses an inherited ZDOTDIR that is an Orca wrapper dir (#15258)', async () => {
+  itWithZsh('refuses an inherited ZDOTDIR that is a BrzA Studio wrapper dir (#15258)', async () => {
     // Older parents can supply stale ORCA_ORIG_ZDOTDIR without passing through Node's ownership check.
     const home = makeZshHome({ '.zshrc': 'export ORCA_TEST_FROM_ZSHRC=1\n' })
     const foreign = join(home, 'other-terminal', 'zsh')
@@ -388,24 +388,27 @@ describe.skipIf(process.platform === 'win32')('the fixes the old wrapper was bui
     }
   })
 
-  itWithZsh('leaves a nested Orca nothing of its own to inherit (#11044, #11146)', async () => {
-    const home = makeZshHome({ '.zshrc': 'export ORCA_TEST_FROM_ZSHRC=1\n' })
-    try {
-      const { values } = await runZshPty({
-        env: wrappedEnv(home),
-        commands: [
-          'ORCA_CHILD_ENV="$(env | grep -cE \'^(ORCA_SHELL_FEATURES|ORCA_HISTFILE)=\' || true)"',
-          'ORCA_CHILD_ZDOTDIR="$(env | sed -n \'s/^ZDOTDIR=//p\')"'
-        ],
-        report: ['ORCA_CHILD_ENV', 'ORCA_CHILD_ZDOTDIR']
-      })
+  itWithZsh(
+    'leaves a nested BrzA Studio nothing of its own to inherit (#11044, #11146)',
+    async () => {
+      const home = makeZshHome({ '.zshrc': 'export ORCA_TEST_FROM_ZSHRC=1\n' })
+      try {
+        const { values } = await runZshPty({
+          env: wrappedEnv(home),
+          commands: [
+            'ORCA_CHILD_ENV="$(env | grep -cE \'^(ORCA_SHELL_FEATURES|ORCA_HISTFILE)=\' || true)"',
+            'ORCA_CHILD_ZDOTDIR="$(env | sed -n \'s/^ZDOTDIR=//p\')"'
+          ],
+          report: ['ORCA_CHILD_ENV', 'ORCA_CHILD_ZDOTDIR']
+        })
 
-      expect(values.ORCA_CHILD_ENV).toBe('0')
-      expect(values.ORCA_CHILD_ZDOTDIR).toBe('UNSET')
-    } finally {
-      rmSync(home, { recursive: true, force: true })
+        expect(values.ORCA_CHILD_ENV).toBe('0')
+        expect(values.ORCA_CHILD_ZDOTDIR).toBe('UNSET')
+      } finally {
+        rmSync(home, { recursive: true, force: true })
+      }
     }
-  })
+  )
 
   itWithZsh('survives a user .zshenv that returns early (#1947)', async () => {
     const home = makeZshHome({

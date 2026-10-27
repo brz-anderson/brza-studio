@@ -41,7 +41,7 @@ export async function checkManagedServerUpdate(
       onUpdating
     })
   } catch (error) {
-    console.warn('[ssh] Could not check the managed Orca server for an update:', error)
+    console.warn('[ssh] Could not check the managed BrzA Studio server for an update:', error)
     return {
       note: {
         state: 'check-failed',

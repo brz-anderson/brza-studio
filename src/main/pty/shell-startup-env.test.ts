@@ -72,7 +72,7 @@ describe('readShellStartupEnvVar', () => {
   }
 
   // #1534: GUI env lacks rc-only exports; static discovery must preserve the user overlay source.
-  it('mirrors the user scenario: GUI-launched Orca discovers .zshrc-only export', () => {
+  it('mirrors the user scenario: GUI-launched BrzA Studio discovers .zshrc-only export', () => {
     mockStartupFiles({
       '.zshrc': 'export OPENCODE_CONFIG_DIR="$HOME/.config/opencode"\n'
     })

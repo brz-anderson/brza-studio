@@ -344,7 +344,7 @@ describe.skipIf(process.platform !== 'darwin')('a worktree delete Git fails part
     expect(await git(['status', '--porcelain'], other)).toBe('?? wip.txt\n')
   })
 
-  it('removes the push-target remote Orca added when a runtime delete fails', async () => {
+  it('removes the push-target remote BrzA Studio added when a runtime delete fails', async () => {
     const pushTarget = await addOrcaPushTargetRemote()
     const worktree = (await listWorktreesStrict(repoPath)).find((row) =>
       areWorktreePathsEqual(row.path, worktreePath)
@@ -385,7 +385,7 @@ describe.skipIf(process.platform !== 'darwin')('a worktree delete Git fails part
     expect(existsSync(lockedFile)).toBe(true)
   })
 
-  it('removes the push-target remote Orca added when the startup finish fails', async () => {
+  it('removes the push-target remote BrzA Studio added when the startup finish fails', async () => {
     const pushTarget = await addOrcaPushTargetRemote()
 
     expect(String(await finishAtStartup([], pushTarget))).toMatch(/Operation not permitted/)

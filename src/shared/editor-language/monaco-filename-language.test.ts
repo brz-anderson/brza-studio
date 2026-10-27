@@ -97,7 +97,7 @@ describe('Monaco filename detection', () => {
     ['constructor', 'plaintext'],
     ['toString', 'plaintext'],
     ['__proto__', 'plaintext']
-  ])('preserves Orca behavior for %s', (path, language) => {
+  ])('preserves BrzA Studio behavior for %s', (path, language) => {
     expect(detectLanguage(path)).toBe(language)
   })
 })

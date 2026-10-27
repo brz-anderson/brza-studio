@@ -152,7 +152,7 @@ describe.skipIf(process.platform === 'win32')('runtime transport', () => {
     expect(await response).toMatchObject({
       code: 'runtime_unavailable',
       message:
-        'The Orca runtime closed the connection before responding. Restart Orca and try again.'
+        'The BrzA Studio runtime closed the connection before responding. Restart BrzA Studio and try again.'
     })
     expect(vi.getTimerCount()).toBe(0)
   })

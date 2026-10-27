@@ -79,7 +79,7 @@ export function getWslHostRowTurnedOffDetail(): string {
 export function getWslHostServerFilesMissingLabel(): string {
   return translate(
     'auto.components.sidebar.wslHostRowStatus.serverFilesMissing',
-    'This build of Orca can’t run WSL hosts (server files missing).'
+    'This build of BrzA Studio can’t run WSL hosts (server files missing).'
   )
 }
 

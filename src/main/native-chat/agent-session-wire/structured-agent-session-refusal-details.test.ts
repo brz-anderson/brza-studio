@@ -275,7 +275,7 @@ describe('the store fallback copy', () => {
       code: 'execution_owner_reconciling',
       details: { reason: 'recordUnreadable' },
       message:
-        "Orca can't read this chat's saved state. If a newer version of Orca saved it, update Orca to open it; otherwise start a new chat."
+        "BrzA Studio can't read this chat's saved state. If a newer version of BrzA Studio saved it, update BrzA Studio to open it; otherwise start a new chat."
     })
   })
 

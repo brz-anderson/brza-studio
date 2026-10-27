@@ -24,7 +24,7 @@ function appImageHeader(machine: number): Buffer {
 
 function createFixture(appDirName = '.mount_Orca123', machine = 0x3e) {
   const root = mkdtempSync(join(tmpdir(), 'orca-appimage-identity-'))
-  const appImagePath = join(root, 'Applications', 'Orca.AppImage')
+  const appImagePath = join(root, 'Applications', 'BrzA Studio.AppImage')
   const appDirPath = join(root, appDirName)
   const execPath = join(appDirPath, 'orca-ide')
   const resourcesPath = join(appDirPath, 'resources')
@@ -76,7 +76,7 @@ describe.skipIf(process.platform === 'win32')('resolveAppImageRuntimeIdentity', 
 
   it('accepts an AppImage moved independently of its runtime directory', () => {
     const fixture = createFixture()
-    const movedPath = join(fixture.root, 'Moved Apps', 'Orca current.AppImage')
+    const movedPath = join(fixture.root, 'Moved Apps', 'BrzA Studio current.AppImage')
     mkdirSync(dirname(movedPath), { recursive: true })
     renameSync(fixture.appImagePath, movedPath)
     fixture.identity.environment.APPIMAGE = movedPath
@@ -149,7 +149,7 @@ describe.skipIf(process.platform === 'win32')('resolveAppImageRuntimeIdentity', 
         chmodSync(join(fixture.appDirPath, 'AppRun'), 0o644)
     ],
     [
-      'the Orca package marker',
+      'the BrzA Studio package marker',
       (fixture: ReturnType<typeof createFixture>) => rmSync(fixture.packageMarkerPath)
     ]
   ])('rejects a runtime missing %s', (_case, mutate) => {
@@ -167,7 +167,7 @@ describe.skipIf(process.platform === 'win32')('resolveAppImageRuntimeIdentity', 
     expect(resolveAppImageRuntimeIdentity(fixture.identity)).toBeNull()
   })
 
-  it('rejects an inexact package-type marker without the Orca fallback', () => {
+  it('rejects an inexact package-type marker without the BrzA Studio fallback', () => {
     const fixture = createFixture()
     rmSync(fixture.packageMarkerPath)
     writeFileSync(fixture.packageTypePath, 'appimage')

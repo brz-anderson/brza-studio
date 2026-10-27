@@ -227,7 +227,7 @@ describe('structuredAgentSessionStartFailure', () => {
     ],
     [
       'agentCommandNotRunnable',
-      "Claude's Command in Settings → Agents must be a program path or name Orca can find, with no arguments or variables. Change it or reset it."
+      "Claude's Command in Settings → Agents must be a program path or name BrzA Studio can find, with no arguments or variables. Change it or reset it."
     ]
   ] as const)('words a start refused for %s by that situation', (reason, sentence) => {
     const code = 'agent_session_operation_invalid'
@@ -245,7 +245,7 @@ describe('structuredAgentSessionStartFailure', () => {
         refusal: refuse(
           'agent_session_ownership_unknown',
           { reason: 'ownerUnproven' },
-          'Orca cannot prove that process 4242 on host-1 has exited.'
+          'BrzA Studio cannot prove that process 4242 on host-1 has exited.'
         )
       },
       { agentName: 'Claude' }
@@ -262,7 +262,7 @@ describe('structuredAgentSessionStartFailure', () => {
     })
   })
 
-  it("reads an exit before the start as a failed start, and an Orca fault as Orca's", () => {
+  it("reads an exit before the start as a failed start, and a BrzA Studio fault as BrzA Studio's", () => {
     expect(
       structuredAgentSessionStartFailure({
         exit: { kind: 'providerExited', detail: { text: 'stderr', audience: 'log' } }

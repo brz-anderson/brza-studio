@@ -7,7 +7,7 @@ export function automationsLeftDisabledLine(count: number): SshHostServerStatusL
     tone: 'warning',
     text: translate(
       'auto.components.settings.sshHostServer.automationsLeftDisabled',
-      'This host’s Orca server took over {{count}} automations but couldn’t turn them back on. Turn them on in Automations.',
+      'This host’s BrzA Studio server took over {{count}} automations but couldn’t turn them back on. Turn them on in Automations.',
       { count }
     )
   }

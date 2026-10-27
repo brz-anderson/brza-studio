@@ -364,12 +364,12 @@ describe('deleteRuntimeAiVaultSession', () => {
 
     mocks.callRuntimeEnvironment.mockResolvedValueOnce({
       ok: false,
-      error: { code: 'unavailable', message: 'Remote Orca server is unavailable.' }
+      error: { code: 'unavailable', message: 'Remote BrzA Studio server is unavailable.' }
     })
     await expect(deleteRuntimeAiVaultSession('/user-data', 'env-1', args)).resolves.toEqual({
       outcome: 'failed',
       agent: 'claude',
-      error: 'Remote Orca server is unavailable.'
+      error: 'Remote BrzA Studio server is unavailable.'
     })
   })
 })

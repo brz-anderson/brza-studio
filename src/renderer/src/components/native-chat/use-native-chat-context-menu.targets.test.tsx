@@ -116,8 +116,12 @@ describe('native chat right-click targets', () => {
     expect(mocks.writeClipboardText).toHaveBeenCalledWith('https://example.com/docs')
 
     await rightClick('docs link')
-    expect(menuItemNames().slice(0, 3)).toEqual(['System Browser', 'Orca Browser', 'Copy link'])
-    fireEvent.click(screen.getByRole('menuitem', { name: 'Orca Browser' }))
+    expect(menuItemNames().slice(0, 3)).toEqual([
+      'System Browser',
+      'BrzA Studio Browser',
+      'Copy link'
+    ])
+    fireEvent.click(screen.getByRole('menuitem', { name: 'BrzA Studio Browser' }))
     expect(mocks.openRoutedHttpLink).toHaveBeenCalledWith('https://example.com/docs', {
       worktreeId: 'wt-1',
       sourceOwner: { kind: 'local' },

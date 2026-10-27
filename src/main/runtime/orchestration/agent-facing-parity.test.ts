@@ -152,7 +152,7 @@ describe('a chat agent and a terminal agent see the same text but for how each i
     const terminal = await renderPreamble('terminal')
     const withoutRedispatch = chat.replace(CHAT_REDISPATCH, TERMINAL_REDISPATCH)
 
-    expect(terminal).not.toContain('Orca session ID')
+    expect(terminal).not.toContain('BrzA Studio session ID')
     expect(chat).toContain(`Your task ID is: task_1${SELF_LINE}\n`)
     expect(chat).not.toContain(CHAT_WORKER_HANDLE)
     expect(chat).not.toContain('this terminal')
@@ -192,7 +192,7 @@ describe('a chat agent and a terminal agent see the same text but for how each i
   )
 })
 
-describe('agent-read text about an Orca session ID', () => {
+describe('agent-read text about a BrzA Studio session ID', () => {
   const guideDir = join(process.cwd(), 'skill-guides')
   const guide = [
     join(guideDir, 'orchestration.md'),

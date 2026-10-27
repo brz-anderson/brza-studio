@@ -50,16 +50,16 @@ const COMMANDS: ReadonlySet<string> = new Set(
 )
 
 export const LEGACY_RELAY_CLI_CONTROL_OFF =
-  'This terminal was started by an older version of Orca. Its orca orchestration commands reach ' +
-  'this desktop only when "Allow this host\'s orca CLI to control Orca" is on for this host in ' +
+  'This terminal was started by an older version of BrzA Studio. Its orca orchestration commands reach ' +
+  'this desktop only when "Allow this host\'s orca CLI to control BrzA Studio" is on for this host in ' +
   'Settings > SSH. Otherwise, run them in a new terminal on this host.'
 
 export const LEGACY_RELAY_CLI_UNSUPPORTED =
-  'This terminal was started by an older version of Orca, so only orca orchestration check, ' +
+  'This terminal was started by an older version of BrzA Studio, so only orca orchestration check, ' +
   'inbox, send, ask and reply work in it. Run other orca commands in a new terminal on this host.'
 
 const LEGACY_RELAY_CLI_HELP =
-  'This terminal was started by an older version of Orca. It runs orca orchestration check, ' +
+  'This terminal was started by an older version of BrzA Studio. It runs orca orchestration check, ' +
   'inbox, send, ask and reply; open a new terminal on this host for full orca help.'
 
 type LegacyRelayCliServerDeps = {

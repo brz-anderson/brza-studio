@@ -328,7 +328,7 @@ describe('Canonical hook status readiness', () => {
 
     // Input starts a possible new turn, including typed agent restarts; prior done hooks cannot settle it.
     it.each([
-      ['a prompt Orca sent', 'next task\r'],
+      ['a prompt BrzA Studio sent', 'next task\r'],
       ['the user restarting the agent in the same shell', 'pi\r']
     ])('reads no done from before %s', async (_label, input) => {
       const before = Date.now() - 1000

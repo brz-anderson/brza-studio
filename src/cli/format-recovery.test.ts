@@ -86,7 +86,7 @@ describe('worktree selector recovery', () => {
       worktreeSelector: 'id:github:stablyai/orca'
     })
 
-    expect(output).toContain('No Orca workspace matched the worktree selector')
+    expect(output).toContain('No BrzA Studio workspace matched the worktree selector')
     expect(output).toContain('id:github:stablyai/orca')
     expect(output).toContain('Did you mean: id:github:stablyai/orca::<absolute-path>')
     expect(output).toContain('Valid selector forms:')
@@ -288,10 +288,10 @@ describe('CLI error recovery', () => {
   })
 
   it('keeps startup guidance when a local runtime-unavailable error has no next steps', () => {
-    const message = 'Could not connect to the running Orca app.'
+    const message = 'Could not connect to the running BrzA Studio app.'
 
     expect(formatCliError(new RuntimeClientError('runtime_unavailable', message))).toBe(
-      `${message}\nOrca is not running. Run 'orca open' first.`
+      `${message}\nBrzA Studio is not running. Run 'orca open' first.`
     )
   })
 
@@ -307,7 +307,9 @@ describe('CLI error recovery', () => {
       _meta: { runtimeId: 'runtime_local' }
     })
 
-    expect(formatCliError(error)).toBe(`${message}\nOrca is not running. Run 'orca open' first.`)
+    expect(formatCliError(error)).toBe(
+      `${message}\nBrzA Studio is not running. Run 'orca open' first.`
+    )
   })
 
   it('preserves the local request-id protection for an RPC runtime-unavailable error', () => {
@@ -363,7 +365,7 @@ describe('stale terminal handle recovery', () => {
     })
 
     expect(output).toContain('terminal_handle_stale')
-    expect(output).toContain('Next step: Terminal handles belong to the Orca server')
+    expect(output).toContain('Next step: Terminal handles belong to the BrzA Studio server')
     expect(output).toContain('--environment <server>')
   })
 

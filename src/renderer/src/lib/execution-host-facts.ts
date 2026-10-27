@@ -45,10 +45,10 @@ type WorktreeHostFactsState = HostFactsState &
 const SSH_PLATFORM_WITHHELD =
   'The SSH host has not reported its operating system yet. Connect to it and try again.'
 const RUNTIME_PLATFORM_WITHHELD =
-  'The Orca server has not reported its operating system yet. Reconnect to it and try again.'
+  'The BrzA Studio server has not reported its operating system yet. Reconnect to it and try again.'
 const RUNTIME_PLATFORM_UPDATE =
-  'This Orca server does not report its operating system. Update the server to launch agents on it.'
-const HOST_UNRESOLVED_WITHHELD = 'Orca cannot tell which host owns this workspace yet.'
+  'This BrzA Studio server does not report its operating system. Update the server to launch agents on it.'
+const HOST_UNRESOLVED_WITHHELD = 'BrzA Studio cannot tell which host owns this workspace yet.'
 
 function resolveLocalPlatform(
   projectRuntime: ProjectExecutionRuntimeResolution | undefined,

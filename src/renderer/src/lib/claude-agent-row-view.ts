@@ -60,7 +60,7 @@ export async function viewClaudeAgentFromRow(agent: DashboardAgentRow): Promise<
       toast.info(
         translate(
           'auto.lib.claudeAgentRowView.restartRequired',
-          'Enable Claude subagent navigation in Settings → Agents, then launch Claude 2.1.300+ in Orca. Check that keybindings.json still binds Ctrl+Alt+G, H, or V to command:orca-agent-view.'
+          'Enable Claude subagent navigation in Settings → Agents, then launch Claude 2.1.300+ in BrzA Studio. Check that keybindings.json still binds Ctrl+Alt+G, H, or V to command:orca-agent-view.'
         )
       )
     } else if (view.status === 'permission') {
@@ -91,7 +91,7 @@ export async function viewClaudeAgentFromRow(agent: DashboardAgentRow): Promise<
       toast.info(
         translate(
           'auto.lib.claudeAgentRowView.hostUnavailable',
-          'Subagent navigation is unavailable on this host. Update Orca and restart Claude in this pane.'
+          'Subagent navigation is unavailable on this host. Update BrzA Studio and restart Claude in this pane.'
         )
       )
     }

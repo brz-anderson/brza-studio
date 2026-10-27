@@ -444,7 +444,7 @@ describe('resolveTabSessionHistorySubject', () => {
     ).toBeNull()
   })
 
-  it('looks up both Chat and CLI conversations on their remote Orca server', () => {
+  it('looks up both Chat and CLI conversations on their remote BrzA Studio server', () => {
     const state = makeState(liveClaudeEntry, {
       executionHostId: 'runtime:server-1'
     })
@@ -745,7 +745,7 @@ describe('lookupTabSessionHistoryRow', () => {
     expect(claimAiVaultForcedRescan()).toBe(true)
   })
 
-  it('forces no scan on a remote Orca server', async () => {
+  it('forces no scan on a remote BrzA Studio server', async () => {
     const listSessions = vi.fn(async (_args: AiVaultListArgs) => listResult([]))
     await lookupTabSessionHistoryRow(
       {

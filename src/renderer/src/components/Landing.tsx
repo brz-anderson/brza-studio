@@ -25,7 +25,7 @@ type ShortcutItem = {
 }
 
 // Do not deep-link to /stargazers: GitHub 404s that page for users without repo write access.
-const ORCA_GITHUB_URL = 'https://github.com/stablyai/orca'
+const ORCA_GITHUB_URL = 'https://github.com/brz-anderson/brza-studio'
 
 type StarButtonProps = {
   hasRepos: boolean
@@ -251,7 +251,7 @@ export default function Landing(): React.JSX.Element {
           >
             <img
               src={logo}
-              alt={translate('auto.components.Landing.520304a067', 'Orca logo')}
+              alt={translate('auto.components.Landing.520304a067', 'BrzA Studio logo')}
               className="size-12"
             />
           </div>

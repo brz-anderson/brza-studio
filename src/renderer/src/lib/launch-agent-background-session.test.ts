@@ -621,7 +621,7 @@ describe('launchAgentBackgroundSession', () => {
     )
   })
 
-  it("keeps this client's Git Bash setting off a Windows Orca server's launch", async () => {
+  it("keeps this client's Git Bash setting off a Windows BrzA Studio server's launch", async () => {
     mockGetAgentLaunchPlatformForRepo.mockReturnValue('win32')
     mockHostKind.mockReturnValueOnce('runtime')
     Object.assign(state.settings, { terminalWindowsShell: 'bash.exe' })
