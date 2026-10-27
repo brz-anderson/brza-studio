@@ -66,3 +66,15 @@ export function isAgentSessionAccountSwitchRecord(
     value.switchedAt >= 0
   )
 }
+
+/** The session-record field an in-place account switch writes. */
+export type AccountSwitchField = {
+  /** The account a person switched this chat to; launches run on it instead of the selection. */
+  accountSwitch?: AgentSessionAccountSwitchRecord
+}
+
+export function isValidAccountSwitchField(record: { accountSwitch?: unknown }): boolean {
+  return (
+    record.accountSwitch === undefined || isAgentSessionAccountSwitchRecord(record.accountSwitch)
+  )
+}

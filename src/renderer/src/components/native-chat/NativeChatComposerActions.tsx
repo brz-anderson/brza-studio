@@ -5,7 +5,7 @@ import { translate } from '@/i18n/i18n'
 import type {
   SessionOptionDescriptor,
   SessionOptionsSurface
-} from '../../../../shared/native-chat-session-options'
+} from '../../../../shared/native-chat/input/native-chat-session-options'
 import { NativeChatSessionOptionPickers } from './NativeChatSessionOptionPickers'
 import { NativeChatAccountPicker } from './NativeChatAccountPicker'
 import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'

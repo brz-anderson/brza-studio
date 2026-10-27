@@ -43,6 +43,7 @@ export function createMacLocalBuildSteps(arch, target = 'dir') {
     ['pnpm', ['run', 'build:desktop']],
     ['pnpm', ['run', 'build:computer-macos']],
     ['pnpm', ['run', 'build:keyboard-layout-macos']],
+    ['pnpm', ['run', 'build:process-footprint-macos']],
     ['pnpm', ['run', 'build:notification-status-macos']],
     ['pnpm', ['run', 'ensure:electron-runtime']],
     // Why the host slice only: the other slice's native variants are not installed locally.

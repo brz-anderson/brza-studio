@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { NativeChatMessage } from '../../../../shared/native-chat-types'
-import { canMirrorLaunchDraftToNativeChat } from '../../../../shared/native-chat-launch-draft-mirrorability'
+import { canMirrorLaunchDraftToNativeChat } from '../../../../shared/native-chat/input/native-chat-launch-draft-mirrorability'
 import { MessageRow } from './NativeChatMessageRow'
 import {
   NativeChatNewChatContext,

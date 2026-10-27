@@ -2,7 +2,8 @@ import { useMemo } from 'react'
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
 import {
   useStructuredAgentSessionHostEditsQueuedImages,
-  useStructuredAgentSessionHostEditsQueuedMessages
+  useStructuredAgentSessionHostEditsQueuedMessages,
+  useStructuredAgentSessionHostReordersQueuedMessages
 } from '@/runtime/structured-agent-session-host-capability'
 import type { QueuedEditTransport } from './use-structured-agent-session-queued-edit'
 import type { StructuredAgentSessionWrite } from './use-structured-agent-session-mutate'
@@ -15,8 +16,9 @@ export function useStructuredAgentSessionQueuedEditTransport(
 ): QueuedEditTransport {
   const capable = useStructuredAgentSessionHostEditsQueuedMessages(target)
   const imagesCapable = useStructuredAgentSessionHostEditsQueuedImages(target)
+  const reorderCapable = useStructuredAgentSessionHostReordersQueuedMessages(target)
   return useMemo(
-    () => ({ target, sessionId, capable, imagesCapable, write }),
-    [capable, imagesCapable, sessionId, target, write]
+    () => ({ target, sessionId, capable, imagesCapable, reorderCapable, write }),
+    [capable, imagesCapable, reorderCapable, sessionId, target, write]
   )
 }
