@@ -1,6 +1,6 @@
 {
   "name": "orca",
-  "version": "1.4.242",
+  "version": "1.4.242-alpha.1",
   "description": "Next-gen IDE for parallel agentic development",
   "homepage": "https://github.com/brz-anderson/brza-studio",
   "author": "Anderson Pereira Brzezinski",
