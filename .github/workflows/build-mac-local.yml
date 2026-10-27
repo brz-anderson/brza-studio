@@ -1,0 +1,83 @@
+name: Local Mac Installer
+
+# Why a runner: hands out the ad-hoc, updater-off `-local.<ms>.<commit>` build `pnpm run build:mac`
+# makes on a Mac, as a drag-to-Applications DMG. Without CSC_NAME the app is signed ad hoc and not
+# notarized, so Gatekeeper asks for "Open Anyway" (or `xattr -dr com.apple.quarantine`) on first launch.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: build-mac-local-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository != 'stablyai/orca'
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    timeout-minutes: 120
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      NODE_OPTIONS: --max-old-space-size=4096
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      # pnpm must be on PATH before setup-node so setup-node can locate the store.
+      - name: Setup pnpm
+        uses: pnpm/setup@v2
+        with:
+          install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          check-latest: true
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            mobile/pnpm-lock.yaml
+
+      # Why: packaging bundles the pinned Node into the macOS terminal host.
+      - name: Locate the pinned Node runtime cache
+        shell: bash
+        run: echo "ORCA_NODE_RUNTIME_CACHE_DIR=$HOME/Library/Caches/orca-node-runtime" >>"$GITHUB_ENV"
+
+      - name: Cache the pinned Node runtime
+        uses: actions/cache@v5
+        with:
+          path: ~/Library/Caches/orca-node-runtime
+          key: orca-node-runtime-mac-${{ hashFiles('src/shared/node-runtime-pin.ts') }}
+
+      - name: Cache electron-builder downloads
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/Library/Caches/electron
+            ~/Library/Caches/electron-builder
+          key: electron-builder-mac-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            electron-builder-mac-
+
+      # Why retried: electron's postinstall pulls its binary from a CDN that returns transient 504s.
+      - name: Install dependencies
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 15
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: pnpm install --frozen-lockfile
+
+      - name: Build the arm64 DMG
+        run: pnpm run build:mac --dmg
+
+      - name: Upload the installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: orca-macos-arm64-dmg
+          path: dist/orca-macos-arm64.dmg
+          if-no-files-found: error
+          retention-days: 14

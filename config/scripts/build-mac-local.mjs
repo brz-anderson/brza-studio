@@ -30,9 +30,13 @@ export function getLocalBuildIdentity() {
 
 // Why the whole chain lives here: mobile/ is its own pnpm project the root install leaves empty,
 // and the helper builds must see the same signing identity electron-builder uses.
-export function createMacLocalBuildSteps(arch) {
+// Why `dir` by default: a local build is run in place; `dmg` is for handing the build to someone.
+export function createMacLocalBuildSteps(arch, target = 'dir') {
   if (arch !== 'arm64' && arch !== 'x64') {
     throw new Error(`Unsupported macOS build architecture: ${arch}`)
+  }
+  if (target !== 'dir' && target !== 'dmg') {
+    throw new Error(`Unsupported macOS build target: ${target}`)
   }
   return [
     ['pnpm', ['--dir', 'mobile', 'install', '--frozen-lockfile']],
@@ -50,8 +54,10 @@ export function createMacLocalBuildSteps(arch) {
         '--config',
         'config/electron-builder.config.cjs',
         '--mac',
-        'dir',
-        `--${arch}`
+        target,
+        `--${arch}`,
+        '--publish',
+        'never'
       ]
     ]
   ]
@@ -73,7 +79,8 @@ if (process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.filename
   const env = createMacLocalBuildEnv(process.env, identity)
   console.log(`[build:mac] local version ${identity.version}`)
   console.log(`[build:mac] signing identity ${env.CSC_NAME || '- (ad hoc)'}`)
-  for (const [command, args] of createMacLocalBuildSteps(process.arch)) {
+  const target = process.argv.includes('--dmg') ? 'dmg' : 'dir'
+  for (const [command, args] of createMacLocalBuildSteps(process.arch, target)) {
     execFileSync(command, args, { env, stdio: 'inherit' })
   }
 }

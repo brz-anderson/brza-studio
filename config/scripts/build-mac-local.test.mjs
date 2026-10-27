@@ -27,6 +27,13 @@ describe('createMacLocalBuildSteps', () => {
     expect(steps.at(-1)?.[1]).not.toContain('--x64')
   })
 
+  it('packages the drag-to-Applications image only when asked', () => {
+    expect(createMacLocalBuildSteps('arm64', 'dmg').at(-1)?.[1]).toEqual(
+      expect.arrayContaining(['--mac', 'dmg', '--arm64'])
+    )
+    expect(() => createMacLocalBuildSteps('arm64', 'zip')).toThrow('Unsupported macOS build target')
+  })
+
   it('rejects an architecture electron-builder cannot package for macOS', () => {
     expect(() => createMacLocalBuildSteps('ia32')).toThrow('Unsupported macOS build architecture')
   })
