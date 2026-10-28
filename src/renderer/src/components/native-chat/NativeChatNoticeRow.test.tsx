@@ -38,7 +38,7 @@ type ContinueOffer = Pick<NativeChatOrcaStopView, 'offeredTurnItemId' | 'continu
   Partial<
     Pick<
       NativeChatOrcaStopView,
-      'usageLimitTurnItemId' | 'continueUsageLimit' | 'usageLimitAutoResume'
+      'usageLimitTurnItemId' | 'continueUsageLimit' | 'usageLimitAutoResume' | 'accountSwitch'
     >
   >
 
@@ -325,6 +325,33 @@ describe('the row a usage limit leaves', () => {
     expect(screen.queryByRole('button', { name: 'Resume automatically' })).toBeNull()
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
     expect(autoResume.cancel).toHaveBeenCalledTimes(1)
+  })
+
+  it('places Continue in another account beside Resume automatically', () => {
+    renderStatus(limitRow, null, false, false, 'Claude', {
+      ...NO_OFFER,
+      usageLimitTurnItemId: 'cut-turn',
+      usageLimitAutoResume: {
+        turnItemId: 'cut-turn',
+        resumeAt: null,
+        plannedAt: resetsAt + 60_000,
+        busy: false,
+        schedule: vi.fn(),
+        cancel: vi.fn()
+      },
+      accountSwitch: {
+        current: { id: 'current', label: 'current@example.com' },
+        choices: [
+          { id: 'current', label: 'current@example.com', disabled: false },
+          { id: 'other', label: 'other@example.com', disabled: false }
+        ],
+        refresh: vi.fn(),
+        switching: false,
+        switchTo: vi.fn()
+      }
+    })
+    expect(screen.getByRole('button', { name: 'Resume automatically' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Continue in another account' })).toBeInTheDocument()
   })
 
   it('has no Resume automatically when the limit gave no reset time', () => {

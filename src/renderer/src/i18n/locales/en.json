@@ -20082,6 +20082,9 @@
         "scheduled": "Resumes at {{time}}",
         "cancel": "Cancel"
       },
+      "continueInOtherAccount": {
+        "continue": "Continue in another account"
+      },
       "antigravitySignIn": {
         "sentence": "Antigravity isn't signed in. Sign in under <settings>Settings → Accounts → Antigravity</settings>. Then send your message again."
       },

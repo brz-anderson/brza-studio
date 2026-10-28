@@ -19,6 +19,7 @@ import {
 import { useNativeChatOrcaStopView } from './native-chat-orca-stop-context'
 import { NativeChatInterruptedContinueButton } from './NativeChatInterruptedContinue'
 import { NativeChatUsageLimitAutoResume } from './NativeChatUsageLimitAutoResume'
+import { BrzaContinueInOtherAccount } from './brza/BrzaContinueInOtherAccount'
 import { nativeChatOrcaStopRowText } from './native-chat-orca-stop-words'
 import { ProviderFrameRow } from './NativeChatTranscriptChrome'
 import { Button } from '@/components/ui/button'
@@ -221,8 +222,18 @@ export function NativeChatNoticeRow({
         </p>
         {continueOffered ? (
           <NativeChatInterruptedContinueButton onContinue={orcaStopView.continueNow} />
-        ) : usageLimitAutoResume ? (
-          <NativeChatUsageLimitAutoResume autoResume={usageLimitAutoResume} />
+        ) : usageLimitCut ? (
+          <>
+            {usageLimitAutoResume ? (
+              <NativeChatUsageLimitAutoResume autoResume={usageLimitAutoResume} />
+            ) : null}
+            {orcaStopView.accountSwitch ? (
+              <BrzaContinueInOtherAccount
+                view={orcaStopView.accountSwitch}
+                onContinue={orcaStopView.continueUsageLimit}
+              />
+            ) : null}
+          </>
         ) : null}
       </div>
       {claudeSignIn && isClaudeSignInFailureKind(block.failure?.kind) ? (

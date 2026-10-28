@@ -177,7 +177,8 @@ export function useNativeChatInterruptedContinuation(input: {
       usageLimitTurnItemId,
       usageLimitContinueDisabled: usageCapability === 'unknown',
       continueUsageLimit,
-      usageLimitAutoResume
+      usageLimitAutoResume,
+      accountSwitch: transport.accountSwitch
     }),
     [
       hostLabel,
@@ -188,7 +189,8 @@ export function useNativeChatInterruptedContinuation(input: {
       usageLimitTurnItemId,
       usageCapability,
       continueUsageLimit,
-      usageLimitAutoResume
+      usageLimitAutoResume,
+      transport.accountSwitch
     ]
   )
   const failedHere =

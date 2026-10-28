@@ -20161,6 +20161,9 @@
         "scheduled": "Retomada às {{time}}",
         "cancel": "Cancelar"
       },
+      "continueInOtherAccount": {
+        "continue": "Continuar em outra conta"
+      },
       "antigravitySignIn": {
         "sentence": "Você não está conectado ao Antigravity. Entre em <settings>Configurações → Contas → Antigravity</settings>. Depois envie sua mensagem novamente."
       },
