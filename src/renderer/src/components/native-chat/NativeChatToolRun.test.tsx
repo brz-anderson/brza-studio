@@ -709,7 +709,7 @@ describe('NativeChatToolRun', () => {
     it('heads a run that is all shell with the terminal glyph, whatever each is named', () => {
       const blocks: NativeChatBlock[] = [
         call('shell', { command: 'npm test' }),
-        call('Bash', { command: 'git status' })
+        call('Bash', { command: 'ls' })
       ]
 
       const { container } = render(

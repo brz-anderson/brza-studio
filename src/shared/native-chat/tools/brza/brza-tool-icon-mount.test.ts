@@ -7,7 +7,7 @@ vi.mock('./brza-tool-categories', async (importOriginal) => {
   const original = await importOriginal<typeof BrzaToolCategories>()
   const resolver = original.createBrzaToolCategoryResolver([
     { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
-    { category: 'git', iconName: 'git-logo', matchesCommand: (command) => /^git\s/.test(command) }
+    { category: 'git', iconName: 'git-logo', matchesCommand: ({ argv }) => argv[0] === 'git' }
   ])
   return {
     ...original,

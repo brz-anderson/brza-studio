@@ -4,8 +4,10 @@ import { mcpToolIdentity, type NativeChatMcpIdentity } from '../native-chat-tool
 import { isCommandToolName } from '../native-chat-tool-activity'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCategoryCall } from '../native-chat-tool-icon'
-import { parseOrcaBrowserCommand, runsOrcaCliCommand } from '../../../orca-browser-cli-commands'
+import { parseOrcaBrowserCommand } from '../../../orca-browser-cli-commands'
 import { BRZA_FIGMA_CATEGORY } from './brza-figma-tool'
+import { BRZA_SHELL_CATEGORIES } from './brza-shell-categories'
+import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 
 /** Lucide ids D38/D39 name, plus brand fallbacks; each has a glyph in the desktop and mobile BrzA tables. */
 export type BrzaLucideIconName =
@@ -41,8 +43,10 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
   rowWords?: readonly string[]
   /** Receives the display identity, e.g. `{ server: 'Plugin figma figma', tool: 'get screenshot' }`. */
   matchesMcpTool?: (identity: NativeChatMcpIdentity) => boolean
-  /** Receives a command tool's full, login-shell-unwrapped command. */
-  matchesCommand?: (command: string) => boolean
+  /** Receives each segment of a command tool's full, login-shell-unwrapped command. */
+  matchesCommand?: (segment: BrzaShellSegment) => boolean
+  /** A matched segment's own icon, such as `git commit`'s; null keeps `iconName`. */
+  segmentIconName?: (segment: BrzaShellSegment) => BrzaToolIconName | null
 }
 
 /** Register a category here: the row word, MCP tool or command that names it, and its icon. */
@@ -59,13 +63,7 @@ const BRZA_TOOL_CATEGORIES = [
     iconName: 'book-open',
     matchesMcpTool: ({ server }) => /context7/i.test(server)
   },
-  {
-    category: 'brzaCli',
-    iconName: 'brza-logo',
-    // `brza`, or `orca` on the terminal PATH; a browser command keeps the upstream globe.
-    matchesCommand: (command) =>
-      runsOrcaCliCommand(command) && parseOrcaBrowserCommand(command) === null
-  }
+  ...BRZA_SHELL_CATEGORIES
 ] as const satisfies readonly BrzaToolCategoryDefinition[]
 
 export type BrzaToolCategory = (typeof BRZA_TOOL_CATEGORIES)[number]['category']
@@ -84,7 +82,13 @@ export type BrzaToolCategoryResolver<Category extends string> = {
   runIconName: (calls: readonly NativeChatToolCategoryCall[]) => BrzaToolIconName | null
 }
 
-/** Precedence mirrors upstream: MCP identity, then command input, then row word. */
+type BrzaToolCategoryMatch<Category extends string> = {
+  definition: BrzaToolCategoryDefinition<Category>
+  iconName: BrzaToolIconName
+}
+
+/** Precedence mirrors upstream: MCP identity, then command input, then row word. Command
+ * definitions weigh by their order, the first one any segment matches winning. */
 export function createBrzaToolCategoryResolver<Category extends string>(
   definitions: readonly BrzaToolCategoryDefinition<Category>[]
 ): BrzaToolCategoryResolver<Category> {
@@ -98,39 +102,62 @@ export function createBrzaToolCategoryResolver<Category extends string>(
   const mcpDefinitions = definitions.filter((definition) => definition.matchesMcpTool)
   const commandDefinitions = definitions.filter((definition) => definition.matchesCommand)
 
-  function definitionFor(
+  function commandMatch(command: string): BrzaToolCategoryMatch<Category> | null {
+    // A browser command keeps the upstream globe (R41.1).
+    if (parseOrcaBrowserCommand(command) !== null) {
+      return null
+    }
+    const segments = brzaShellSegments(command)
+    for (const definition of commandDefinitions) {
+      const matched = segments.filter((segment) => definition.matchesCommand?.(segment))
+      if (matched.length > 0) {
+        const refined = matched
+          .map((segment) => definition.segmentIconName?.(segment) ?? null)
+          .find((iconName) => iconName !== null)
+        return { definition, iconName: refined ?? definition.iconName }
+      }
+    }
+    return null
+  }
+
+  function match(
     rowWord: string,
     mcpIdentity?: NativeChatMcpIdentity,
     input?: unknown
-  ): BrzaToolCategoryDefinition<Category> | null {
+  ): BrzaToolCategoryMatch<Category> | null {
     const mcp = mcpDefinitions.length > 0 ? mcpToolIdentity(rowWord, mcpIdentity) : null
     if (mcp !== null) {
-      return mcpDefinitions.find((definition) => definition.matchesMcpTool?.(mcp)) ?? null
+      const definition = mcpDefinitions.find((candidate) => candidate.matchesMcpTool?.(mcp))
+      return definition ? { definition, iconName: definition.iconName } : null
     }
     if (commandDefinitions.length > 0 && isCommandToolName(rowWord)) {
       const command = nativeChatFullCommand(input)
-      return command === null
-        ? null
-        : (commandDefinitions.find((definition) => definition.matchesCommand?.(command)) ?? null)
+      return command === null ? null : commandMatch(command)
     }
-    return byRowWord.get(rowWord.trim().toLowerCase()) ?? null
+    const definition = byRowWord.get(rowWord.trim().toLowerCase())
+    return definition ? { definition, iconName: definition.iconName } : null
   }
 
   return {
     category: (rowWord, mcpIdentity, input) =>
-      definitionFor(rowWord, mcpIdentity, input)?.category ?? null,
-    iconName: (rowWord, mcpIdentity, input) =>
-      definitionFor(rowWord, mcpIdentity, input)?.iconName ?? null,
+      match(rowWord, mcpIdentity, input)?.definition.category ?? null,
+    iconName: (rowWord, mcpIdentity, input) => match(rowWord, mcpIdentity, input)?.iconName ?? null,
+    // A run shares a category's icon; a refined one only when every call has it (R41.2).
     runIconName: (calls) => {
-      let shared: BrzaToolCategoryDefinition<Category> | null = null
+      let shared: BrzaToolCategoryMatch<Category> | null = null
+      let sameIcon = true
       for (const call of calls) {
-        const definition = definitionFor(call.name, call.mcpIdentity, call.input)
-        if (definition === null || (shared !== null && shared !== definition)) {
+        const found = match(call.name, call.mcpIdentity, call.input)
+        if (found === null || (shared !== null && shared.definition !== found.definition)) {
           return null
         }
-        shared = definition
+        sameIcon &&= shared === null || shared.iconName === found.iconName
+        shared = found
       }
-      return shared?.iconName ?? null
+      if (shared === null) {
+        return null
+      }
+      return sameIcon ? shared.iconName : shared.definition.iconName
     }
   }
 }

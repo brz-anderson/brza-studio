@@ -29,6 +29,7 @@ import {
 import { NativeChatExpandable } from './NativeChatExpandable'
 import { useNativeChatDisclosure } from './native-chat-disclosure-store'
 import { NativeChatToolOutput } from './NativeChatToolOutput'
+import { BrzaToolLineChip } from './brza/BrzaToolLineChip'
 
 const TARGET_CLASS =
   'min-w-0 truncate text-chat-foreground transition-colors group-hover/tool-line:text-chat-foreground-strong'
@@ -165,6 +166,7 @@ export function NativeChatToolLine({
             {label?.target ?? resultPreview}
           </span>
         ) : null}
+        {isCall ? <BrzaToolLineChip call={block} result={result} /> : null}
         <span className="ml-auto flex shrink-0 items-center gap-1.5 pl-2">
           {isCall ? <NativeChatCommandMetadata block={block} /> : null}
           {hasDetail ? (

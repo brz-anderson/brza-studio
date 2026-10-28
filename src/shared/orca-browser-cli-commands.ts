@@ -158,7 +158,7 @@ function pageFlagValue(args: readonly string[]): string | null {
 }
 
 /** Splits a command line at `&&`, `||`, `;`, `|` and newlines outside quotes. */
-function splitUnquotedSegments(commandLine: string): string[] {
+export function splitUnquotedSegments(commandLine: string): string[] {
   const segments: string[] = []
   let current = ''
   let quote: '"' | "'" | null = null

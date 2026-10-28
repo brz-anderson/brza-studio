@@ -1,7 +1,10 @@
 import { normalizeToolInput } from '../native-chat-tool-summary'
+import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
 import { brzaFigmaToolLineTitle } from './brza-figma-tool'
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
+import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
+import { gitCommitSubject } from './brza-git-command'
 
 type BrzaToolLineTitle = { target: string; title: string }
 
@@ -17,6 +20,19 @@ const BRZA_TITLE_SUBJECTS: Partial<
   context7: { prefix: 'Context7', fields: ['libraryName', 'libraryId'] }
 }
 
+/** A command's row text from its segments and output; null keeps the command (R40.2). */
+const BRZA_COMMAND_TITLES: Partial<
+  Record<
+    BrzaToolCategory,
+    (segments: readonly BrzaShellSegment[], result?: NativeChatToolResultBlock) => string | null
+  >
+> = {
+  git: (segments, result) => {
+    const subject = gitCommitSubject(segments, result)
+    return subject === null ? null : `git commit — ${subject}`
+  }
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
 }
@@ -29,6 +45,13 @@ export function brzaToolLineTitle(
   const category = brzaToolCategory(call.name, call.mcpIdentity, call.input)
   if (category === 'figma') {
     return brzaFigmaToolLineTitle(call, result)
+  }
+  const commandTitle = category === null ? undefined : BRZA_COMMAND_TITLES[category]
+  if (commandTitle) {
+    // The tooltip keeps the whole command the row no longer shows.
+    const command = nativeChatFullCommand(call.input)
+    const target = command === null ? null : commandTitle(brzaShellSegments(command), result)
+    return command === null || target === null ? null : { target, title: command }
   }
   const subject = category === null ? undefined : BRZA_TITLE_SUBJECTS[category]
   const input = normalizeToolInput(call.input)

@@ -21478,7 +21478,8 @@
       "expandedLines_one": "{{count}} linha",
       "expandedLines_other": "{{count}} linhas",
       "closeExpanded": "Fechar (Esc)",
-      "runInTerminal": "Executar no terminal"
+      "runInTerminal": "Executar no terminal",
+      "openCommitDiff": "Abrir o diff do commit"
     }
   }
 }
