@@ -41,6 +41,7 @@ import { structuredAgentSessionStatusStartedAt } from './structured-agent-sessio
 import { owesStructuredAgentSessionWork } from './structured-agent-session-owed-work'
 import type { StructuredAgentSessionWorkScope } from './structured-agent-session-main-agent-working'
 import { agentSessionCurrentContextRows } from './agent-session-context-clear'
+import { isCodexAutoReviewApprovedNotice } from './native-chat/codex-auto-review-notice'
 
 // Keep existing live-turn/unanswered-send consumers on one import path.
 export {
@@ -131,7 +132,7 @@ function itemBlocks(item: AgentJournalRenderItem): {
     }
   }
   // Turn records are timing only; unknown newer-host kinds must not become text.
-  if (body.kind !== 'status' || body.turnLifecycle) {
+  if (body.kind !== 'status' || body.turnLifecycle || isCodexAutoReviewApprovedNotice(body)) {
     return null
   }
   return {
