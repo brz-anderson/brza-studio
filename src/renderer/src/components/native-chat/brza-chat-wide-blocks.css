@@ -1,0 +1,80 @@
+/* BrzA: at "Full" width, code blocks, tables, diagrams and diffs span 120 columns of the chat's code font
+   plus their padding, shrinking to the column and scrolling when the pane is narrower. Prose keeps full width.
+   Each frame sizes to a zero-height ruler of 120 code-font characters: `ch` alone would miss the letter
+   spacing the text inherits. Selector lists use :where() so per-frame paddings below win by order. */
+@container style(--chat-width: full) {
+  :where(
+    [data-native-chat-code-block],
+    [data-native-chat-wide-block],
+    [data-native-chat-diff],
+    /* The shared Mermaid renderer has no hook of its own: match its bordered p-3 frame. */
+    .native-chat-markdown div:has(> .mermaid-block):not(.group\/diagram),
+    .native-chat-markdown div:has(> .group\/diagram)
+  ) {
+    --native-chat-wide-ruler: '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000';
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  :where(
+    [data-native-chat-code-block],
+    [data-native-chat-wide-block],
+    [data-native-chat-diff],
+    .native-chat-markdown div:has(> .mermaid-block):not(.group\/diagram),
+    .native-chat-markdown div:has(> .group\/diagram)
+  )::before {
+    content: var(--native-chat-wide-ruler) / '';
+    display: block;
+    height: 0;
+    overflow: hidden;
+    white-space: pre;
+    width: max-content;
+    max-width: 100%;
+    font-family: var(--chat-code-font-family, var(--font-mono));
+    font-size: var(--text-chat-code);
+    /* The code block's px-3.5; its 1px border sits outside. */
+    padding-inline: calc(3.5 * var(--spacing));
+  }
+
+  /* Borderless frames add the code block's border so every outer edge lines up. */
+  [data-native-chat-wide-block]::before {
+    padding-inline: calc(3.5 * var(--spacing) + 1px);
+  }
+
+  /* The diagram frame's p-3 already supplies most of the code block's padding. */
+  :where(
+    .native-chat-markdown div:has(> .mermaid-block):not(.group\/diagram),
+    .native-chat-markdown div:has(> .group\/diagram)
+  )::before {
+    padding-inline: calc(0.5 * var(--spacing));
+  }
+
+  /* Tool-line diff: each px-2 line starts with its "+"/"-" prefix. */
+  [data-native-chat-diff='lines']::before {
+    content: '0' var(--native-chat-wide-ruler) / '';
+    padding-inline: calc(2 * var(--spacing));
+  }
+
+  /* Edit diff: the line-number gutter and w-3 sign come before the pr-2 text. */
+  [data-native-chat-diff='rows'] {
+    max-width: calc(100% - 6 * var(--spacing));
+  }
+
+  [data-native-chat-diff='rows']::before {
+    padding-inline: calc(
+        attr(data-native-chat-diff-gutter type(<number>), 0) * 1ch + 3 * var(--spacing)
+      )
+      calc(2 * var(--spacing));
+  }
+
+  /* Long lines, wide tables and diagrams fit the ruler's width instead of widening the frame. */
+  :where(
+    [data-native-chat-code-block] > pre,
+    [data-native-chat-wide-block] > *,
+    [data-native-chat-diff] > *,
+    .native-chat-markdown div:has(> .mermaid-block):not(.group\/diagram) > *,
+    .native-chat-markdown div:has(> .group\/diagram) > *
+  ) {
+    contain: inline-size;
+  }
+}

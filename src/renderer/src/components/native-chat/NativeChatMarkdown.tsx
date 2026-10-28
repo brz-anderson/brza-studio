@@ -22,6 +22,7 @@ import {
   NativeChatMarkdownImage,
   NativeChatMarkdownImageLinkContext
 } from './NativeChatMarkdownImage'
+import { NativeChatWideTable } from './brza-chat-wide-table'
 import './native-chat-markdown.css'
 
 /** Existing words stay opaque when a reply first starts growing. */
@@ -67,6 +68,7 @@ function createNativeChatImageExtension(
     sanitizeAttributes: visualExtension?.sanitizeAttributes ?? {},
     components: {
       ...visualExtension?.components,
+      table: NativeChatWideTable,
       img: ({ src, alt }) => (
         <NativeChatMarkdownImage src={src} alt={alt} onLinkClick={onLinkClick} />
       ),

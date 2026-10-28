@@ -5,6 +5,7 @@ export function NativeChatDiffView({ lines }: { lines: DiffLine[] }): React.JSX.
   return (
     <div
       data-native-chat-code-content
+      data-native-chat-diff="lines"
       className="overflow-hidden rounded-lg border border-chat-code-border bg-chat-code-surface py-1 font-mono text-chat-code leading-relaxed text-chat-foreground"
     >
       {lines.map((line, i) => (

@@ -99,6 +99,8 @@ function DiffCardRows({
     // Focusable so the rows can be scrolled from the keyboard.
     <div
       data-native-chat-code-content
+      data-native-chat-diff="rows"
+      data-native-chat-diff-gutter={gutterWidth}
       tabIndex={0}
       className="ml-6 mt-1 max-h-72 overflow-auto rounded-lg border border-chat-code-border bg-chat-code-surface py-1 font-mono text-chat-code leading-relaxed text-chat-foreground scrollbar-sleek focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
     >

@@ -1,4 +1,5 @@
 import './native-chat-appearance.css'
+import './brza-chat-wide-blocks.css'
 import { useMemo, type CSSProperties } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
@@ -86,6 +87,7 @@ export function nativeChatAppearanceStyle(
     '--chat-ui-font-size': `${uiFontSize}px`,
     '--chat-code-font-size': `${codeFontSize}px`,
     '--chat-content-max-width': width === 'full' ? 'none' : width === 'wide' ? '60rem' : '46rem',
+    '--chat-width': width,
     '--chat-inline-code-ratio': `${codeFontSize / fontSize}em`,
     '--chat-estimated-line-height': (22 * fontSize) / 14,
     '--chat-estimated-chars-per-line': Math.max(
