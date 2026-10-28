@@ -42,6 +42,14 @@ const ProviderCallId = z
   .string()
   .refine((value) => value.trim().length > 0, 'callId must contain a non-whitespace character')
 
+// Tool-result images keep `type` open, so a newer image kind adds no closed set (journal-closed-sets.test.ts).
+const ToolResultImage = z.object({
+  type: z.string(),
+  path: z.string().optional(),
+  url: z.string().optional(),
+  alt: z.string().optional()
+})
+
 /** Keep lifecycle strings open so newer states do not make persisted rows malformed. */
 const SubagentEntry = z.object({
   id: z.string(),
@@ -73,7 +81,8 @@ const Block = openDiscriminatedUnion(
     z.object({
       type: z.literal('tool-result'),
       output: z.string(),
-      isError: z.boolean().optional()
+      isError: z.boolean().optional(),
+      images: z.array(ToolResultImage).optional()
     }),
     z.object({
       type: z.literal('image-ref'),
@@ -204,7 +213,8 @@ const KnownItemBody = z.discriminatedUnion('kind', [
     state: z.string().min(1),
     // Open like `state`: an ending a newer build writes reads as the `state` beside it.
     endedAs: z.string().min(1).optional(),
-    output: BoundedPayload.optional()
+    output: BoundedPayload.optional(),
+    images: z.array(ToolResultImage).optional()
   }),
   z.object({ kind: z.literal('diff'), path: z.string(), patch: BoundedPayload }),
   z.object({

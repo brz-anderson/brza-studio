@@ -9,10 +9,9 @@ import type { AgentSessionFailureRowWords } from './agent-session-failure-words'
 import type { AgentType } from './agent-status-types'
 import type { AgentSessionQuestionAnswer } from './agent-session-question-answer'
 import type { AgentJournalTurnOutcome } from './agent-turn-outcome'
-import type { NativeChatToolMetadata } from './native-chat/tools/native-chat-tool-identity'
 import type { AgentSessionContextUsage } from './agent-session-context-usage'
 import type { AgentSessionProviderHandle } from './agent-session-provider-handle'
-import type { NativeChatBlock, NativeChatRole } from './native-chat-types'
+import type { BrzaToolCallMetadata, NativeChatBlock, NativeChatRole } from './native-chat-types'
 import type { AgentMessageSource } from './agent-session/agent-session-message-source'
 import type { AgentSessionExecutionOptions } from './agent-session-execution-options'
 
@@ -128,7 +127,7 @@ export type AgentJournalToolCallState = 'running' | 'completed' | 'failed'
 export const AGENT_JOURNAL_TOOL_CALL_ENDINGS = ['interrupted', 'unverifiable'] as const
 export type AgentJournalToolCallEnding = (typeof AGENT_JOURNAL_TOOL_CALL_ENDINGS)[number]
 
-export type AgentJournalToolCallItem = NativeChatToolMetadata & {
+export type AgentJournalToolCallItem = BrzaToolCallMetadata & {
   kind: 'tool-call'
   name: string
   input: unknown

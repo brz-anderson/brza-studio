@@ -4,6 +4,7 @@ import type {
   NativeChatToolResultBlock
 } from '../../shared/native-chat-types'
 import { asRecord, extractString } from '../ai-vault/session-scanner-values'
+import { brzaToolResultImages } from './brza/brza-tool-result-images'
 
 export function toolResultOutput(value: unknown): string {
   if (typeof value === 'string') {
@@ -89,11 +90,13 @@ function claudeContentBlock(record: Record<string, unknown>): NativeChatBlock | 
 
 function toolResultBlock(record: Record<string, unknown>): NativeChatToolResultBlock {
   const callId = extractString(record.tool_use_id)
+  const images = brzaToolResultImages(record.content)
   return {
     type: 'tool-result',
     output: toolResultOutput(record.content),
     ...(callId ? { callId } : {}),
-    ...(record.is_error === true ? { isError: true } : {})
+    ...(record.is_error === true ? { isError: true } : {}),
+    ...(images.length > 0 ? { images } : {})
   }
 }
 

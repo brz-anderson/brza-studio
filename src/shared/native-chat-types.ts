@@ -90,8 +90,12 @@ export type NativeChatEditPatch = {
   hunks: NativeChatEditPatchHunk[]
 }
 
+/** BrzA: images a tool returned beside its text, extracted to files (brza-tool-result-images.ts). */
+export type BrzaToolResultImages = { images?: NativeChatImageRefBlock[] }
+export type BrzaToolCallMetadata = NativeChatToolMetadata & BrzaToolResultImages
+
 /** The result returned to the agent for a prior tool call. */
-export type NativeChatToolResultBlock = {
+export type NativeChatToolResultBlock = BrzaToolResultImages & {
   type: 'tool-result'
   output: string
   isError?: boolean

@@ -3,8 +3,9 @@ import type {
   AgentJournalItemIdentity,
   AgentJournalMessageItem
 } from '../../shared/agent-session-journal-types'
-import type { NativeChatBlock } from '../../shared/native-chat-types'
+import type { NativeChatBlock, NativeChatImageRefBlock } from '../../shared/native-chat-types'
 import { journalPayload } from '../native-chat/agent-session-journal/journal-payload-bounds'
+import { brzaToolResultImages } from '../native-chat/brza/brza-tool-result-images'
 
 export type ClaudeMessageEnvelope = {
   sessionId: string
@@ -18,7 +19,12 @@ export type ClaudeMessageEnvelope = {
 }
 
 export type ClaudeToolUse = { id: string; name: string; input: unknown }
-export type ClaudeToolResult = { toolUseId: string; output: string; failed: boolean }
+export type ClaudeToolResult = {
+  toolUseId: string
+  output: string
+  failed: boolean
+  images?: NativeChatImageRefBlock[]
+}
 
 export function claudeRecord(value: unknown): Record<string, unknown> | null {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -156,7 +162,8 @@ export function claudeToolResults(envelope: ClaudeMessageEnvelope): ClaudeToolRe
           {
             toolUseId,
             output: resultText(part.content),
-            failed: part.is_error === true
+            failed: part.is_error === true,
+            images: brzaToolResultImages(part.content)
           }
         ]
       : []
@@ -182,7 +189,8 @@ export function claudeToolBody(input: {
     input: input.tool.input,
     callId: input.tool.id,
     state: input.result ? (input.result.failed ? 'failed' : 'completed') : 'running',
-    ...(input.result ? { output: journalPayload(input.result.output) } : {})
+    ...(input.result ? { output: journalPayload(input.result.output) } : {}),
+    ...(input.result?.images?.length ? { images: input.result.images } : {})
   }
 }
 
