@@ -19,6 +19,7 @@ import {
   nativeChatToolIconName,
   type NativeChatToolIconName
 } from '../../../../shared/native-chat/tools/native-chat-tool-icon'
+import { BRZA_TOOL_GLYPHS } from './brza/brza-tool-glyphs'
 
 const NATIVE_CHAT_TOOL_GLYPHS: Record<NativeChatToolIconName, LucideIcon> = {
   eye: Eye,
@@ -32,7 +33,8 @@ const NATIVE_CHAT_TOOL_GLYPHS: Record<NativeChatToolIconName, LucideIcon> = {
   'list-checks': ListChecks,
   wrench: Wrench,
   'message-square-more': MessageSquareMore,
-  brain: Brain
+  brain: Brain,
+  ...BRZA_TOOL_GLYPHS
 }
 
 /** Use the same fixed glyph slot for known and unknown categories to align rows. */

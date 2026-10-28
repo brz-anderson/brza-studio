@@ -14,6 +14,7 @@ import {
   type LucideIcon
 } from 'lucide-react-native'
 import type { NativeChatToolIconName } from '../../../../../src/shared/native-chat/tools/native-chat-tool-icon'
+import { BRZA_MOBILE_TOOL_GLYPHS } from './brza/brza-mobile-tool-glyphs'
 
 const GLYPHS: Record<NativeChatToolIconName, LucideIcon> = {
   eye: Eye,
@@ -27,7 +28,8 @@ const GLYPHS: Record<NativeChatToolIconName, LucideIcon> = {
   'list-checks': ListChecks,
   wrench: Wrench,
   'message-square-more': MessageSquareMore,
-  brain: Brain
+  brain: Brain,
+  ...BRZA_MOBILE_TOOL_GLYPHS
 }
 
 export function MobileNativeChatToolGlyph({

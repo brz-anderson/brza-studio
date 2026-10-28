@@ -6,6 +6,11 @@ import { isCommandToolName } from './native-chat-tool-activity'
 import { toolInputCommand } from './native-chat-tool-summary'
 import { nativeChatFullCommand } from './native-chat-tool-input-text'
 import { parseOrcaBrowserCommand } from '../../orca-browser-cli-commands'
+import {
+  brzaToolIconName,
+  brzaToolRunIconName,
+  type BrzaToolIconName
+} from './brza/brza-tool-categories'
 
 export type NativeChatToolCategory =
   | 'read'
@@ -39,6 +44,7 @@ export type NativeChatToolIconName =
   | 'message-square-more'
   /** The reasoning row's glyph, carried for the same aligned slot; it names no tool category. */
   | 'brain'
+  | BrzaToolIconName
 
 export const NATIVE_CHAT_TOOL_ICON_NAMES: Record<NativeChatToolCategory, NativeChatToolIconName> = {
   read: 'eye',
@@ -135,7 +141,10 @@ export function nativeChatToolIconName(
   mcpIdentity?: NativeChatMcpIdentity,
   input?: unknown
 ): NativeChatToolIconName {
-  return NATIVE_CHAT_TOOL_ICON_NAMES[nativeChatToolCategory(rowWord, mcpIdentity, input) ?? 'other']
+  return (
+    brzaToolIconName(rowWord, mcpIdentity, input) ??
+    NATIVE_CHAT_TOOL_ICON_NAMES[nativeChatToolCategory(rowWord, mcpIdentity, input) ?? 'other']
+  )
 }
 
 /** Use a category only when every call shares it; mixed/empty runs return null. */
@@ -160,7 +169,10 @@ export function nativeChatToolRunIconName(
   if (calls.length === 0) {
     return null
   }
-  return NATIVE_CHAT_TOOL_ICON_NAMES[nativeChatToolRunCategory(calls) ?? 'other']
+  return (
+    brzaToolRunIconName(calls) ??
+    NATIVE_CHAT_TOOL_ICON_NAMES[nativeChatToolRunCategory(calls) ?? 'other']
+  )
 }
 
 /** Mobile terminal/wrench classification needs input: Codex read/search/list shell rows can share lowercased names with non-shell Claude tools.
