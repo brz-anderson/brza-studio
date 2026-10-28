@@ -103,8 +103,9 @@ const BROWSER_COMMAND_WORDS = new Set<string>(
   )
 )
 
-// The published launcher names per platform, plus the dev build's.
-const ORCA_CLI_BASENAME = /^orca(?:-dev|-ide)?(?:\.cmd|\.exe)?$/i
+// The published launcher names per platform, the dev build's, and the fork's
+// installed `brza`; terminals the app opens still put `orca` on PATH.
+const ORCA_CLI_BASENAME = /^(?:orca(?:-dev|-ide)?|brza)(?:\.cmd|\.exe)?$/i
 const ENV_ASSIGNMENT = /^[A-Za-z_][A-Za-z0-9_]*=/
 
 export type OrcaBrowserCommand = { pageId: string | null }
@@ -112,6 +113,23 @@ export type OrcaBrowserCommand = { pageId: string | null }
 /** The first `orca <browser command>` a shell command line runs, with the page it
  *  targets, or null when it runs none. Quoted text is an argument, never a command. */
 export function parseOrcaBrowserCommand(command: string): OrcaBrowserCommand | null {
+  for (const args of orcaCliInvocations(command)) {
+    const word = args[0]
+    if (word !== undefined && BROWSER_COMMAND_WORDS.has(word)) {
+      return { pageId: pageFlagValue(args.slice(1)) }
+    }
+  }
+  return null
+}
+
+/** Whether a shell command line runs the CLI at all, under any launcher name.
+ *  Quoted text is an argument, never a command. */
+export function runsOrcaCliCommand(command: string): boolean {
+  return !orcaCliInvocations(command).next().done
+}
+
+/** The arguments of each CLI invocation a command line runs, segment by segment. */
+function* orcaCliInvocations(command: string): Generator<string[]> {
   const scanned = command.slice(0, COMMAND_TOKEN_SCAN_MAX_CHARS)
   for (const segment of splitUnquotedSegments(scanned)) {
     const tokens = tokenizeCommandLine(segment)
@@ -120,17 +138,10 @@ export function parseOrcaBrowserCommand(command: string): OrcaBrowserCommand | n
       index += 1
     }
     const binary = tokens[index]
-    const word = tokens[index + 1]
-    if (
-      binary !== undefined &&
-      word !== undefined &&
-      ORCA_CLI_BASENAME.test(getCommandTokenPathBasename(binary)) &&
-      BROWSER_COMMAND_WORDS.has(word)
-    ) {
-      return { pageId: pageFlagValue(tokens.slice(index + 2)) }
+    if (binary !== undefined && ORCA_CLI_BASENAME.test(getCommandTokenPathBasename(binary))) {
+      yield tokens.slice(index + 1)
     }
   }
-  return null
 }
 
 function pageFlagValue(args: readonly string[]): string | null {

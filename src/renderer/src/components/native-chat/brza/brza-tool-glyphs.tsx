@@ -18,6 +18,7 @@ import type { BrzaToolIconName } from '../../../../../shared/native-chat/tools/b
 import { GitHubIcon } from '@/components/icons/GitHubIcon'
 import { JiraIcon } from '@/components/icons/JiraIcon'
 import { BrzaGitLogo } from './BrzaGitLogo'
+import { BrzaFlameLogo } from './BrzaFlameLogo'
 
 /** Fits a className-only brand logo into the lucide-typed glyph table; the slot never takes a ref. */
 function brandGlyph(Logo: (props: { className?: string }) => React.JSX.Element): LucideIcon {
@@ -41,5 +42,6 @@ export const BRZA_TOOL_GLYPHS: Record<BrzaToolIconName, LucideIcon> = {
   'pen-tool': PenTool,
   'git-logo': brandGlyph(BrzaGitLogo),
   'github-logo': brandGlyph(GitHubIcon),
-  'jira-logo': brandGlyph(JiraIcon)
+  'jira-logo': brandGlyph(JiraIcon),
+  'brza-logo': brandGlyph(BrzaFlameLogo)
 }

@@ -37,5 +37,6 @@ export const BRZA_MOBILE_TOOL_GLYPHS: Record<BrzaToolIconName, LucideIcon> = {
   ...BRZA_LUCIDE_GLYPHS,
   'git-logo': BRZA_LUCIDE_GLYPHS[BRZA_BRAND_LOGO_FALLBACK_ICONS['git-logo']],
   'github-logo': BRZA_LUCIDE_GLYPHS[BRZA_BRAND_LOGO_FALLBACK_ICONS['github-logo']],
-  'jira-logo': BRZA_LUCIDE_GLYPHS[BRZA_BRAND_LOGO_FALLBACK_ICONS['jira-logo']]
+  'jira-logo': BRZA_LUCIDE_GLYPHS[BRZA_BRAND_LOGO_FALLBACK_ICONS['jira-logo']],
+  'brza-logo': BRZA_LUCIDE_GLYPHS[BRZA_BRAND_LOGO_FALLBACK_ICONS['brza-logo']]
 }

@@ -4,6 +4,7 @@ import { mcpToolIdentity, type NativeChatMcpIdentity } from '../native-chat-tool
 import { isCommandToolName } from '../native-chat-tool-activity'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCategoryCall } from '../native-chat-tool-icon'
+import { parseOrcaBrowserCommand, runsOrcaCliCommand } from '../../../orca-browser-cli-commands'
 
 /** Lucide ids D38/D39 name, plus brand fallbacks; each has a glyph in the desktop and mobile BrzA tables. */
 export type BrzaLucideIconName =
@@ -21,14 +22,15 @@ export type BrzaLucideIconName =
 
 /** Desktop-only logos; mobile draws BRZA_BRAND_LOGO_FALLBACK_ICONS (R29.4). Figma and Firebase stay
  * lucide (pen-tool, flame): their brand terms bar recolored in-product marks. Sources: renderer native-chat/brza/brza-brand-logos.md. */
-export type BrzaBrandLogoIconName = 'git-logo' | 'github-logo' | 'jira-logo'
+export type BrzaBrandLogoIconName = 'git-logo' | 'github-logo' | 'jira-logo' | 'brza-logo'
 
 export type BrzaToolIconName = BrzaLucideIconName | BrzaBrandLogoIconName
 
 export const BRZA_BRAND_LOGO_FALLBACK_ICONS: Record<BrzaBrandLogoIconName, BrzaLucideIconName> = {
   'git-logo': 'git-branch',
   'github-logo': 'git-pull-request',
-  'jira-logo': 'square-kanban'
+  'jira-logo': 'square-kanban',
+  'brza-logo': 'flame'
 }
 
 export type BrzaToolCategoryDefinition<Category extends string = string> = {
@@ -54,6 +56,13 @@ const BRZA_TOOL_CATEGORIES = [
     category: 'context7',
     iconName: 'book-open',
     matchesMcpTool: ({ server }) => /context7/i.test(server)
+  },
+  {
+    category: 'brzaCli',
+    iconName: 'brza-logo',
+    // `brza`, or `orca` on the terminal PATH; a browser command keeps the upstream globe.
+    matchesCommand: (command) =>
+      runsOrcaCliCommand(command) && parseOrcaBrowserCommand(command) === null
   }
 ] as const satisfies readonly BrzaToolCategoryDefinition[]
 

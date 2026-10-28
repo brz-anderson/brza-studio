@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseOrcaBrowserCommand } from './orca-browser-cli-commands'
+import { parseOrcaBrowserCommand, runsOrcaCliCommand } from './orca-browser-cli-commands'
 
 describe('parseOrcaBrowserCommand', () => {
   it.each([
@@ -13,7 +13,8 @@ describe('parseOrcaBrowserCommand', () => {
     ['cd app && orca click --element e3 --page p4', 'p4'],
     ['git status; ORCA_DEBUG=1 orca tab list', null],
     ['orca snapshot | head -20', null],
-    ['orca browser identity get', null]
+    ['orca browser identity get', null],
+    ['brza snapshot --page p5', 'p5']
   ])('matches %s', (command, pageId) => {
     expect(parseOrcaBrowserCommand(command)).toEqual({ pageId })
   })
@@ -29,5 +30,29 @@ describe('parseOrcaBrowserCommand', () => {
     'git log --oneline'
   ])('does not match %s', (command) => {
     expect(parseOrcaBrowserCommand(command)).toBeNull()
+  })
+})
+
+describe('runsOrcaCliCommand', () => {
+  it.each([
+    'brza worktree list',
+    'orca worktree ls',
+    'brza',
+    '/usr/local/bin/brza terminal read --terminal t1',
+    'C:\\Users\\me\\bin\\brza.cmd status',
+    'cd app && BRZA_X=1 brza orchestration ask',
+    'orca-dev snapshot'
+  ])('matches %s', (command) => {
+    expect(runsOrcaCliCommand(command)).toBe(true)
+  })
+
+  it.each([
+    'echo brza worktree list',
+    'git commit -m "brza worktree list"',
+    'brzastudio status',
+    'cat ~/.orca/brza.json',
+    'git log --oneline'
+  ])('does not match %s', (command) => {
+    expect(runsOrcaCliCommand(command)).toBe(false)
   })
 })

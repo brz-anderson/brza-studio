@@ -10,6 +10,7 @@ tool's name, to identify the tool the row ran — never as BrzA Studio's own mar
 | `git-logo`    | `BrzaGitLogo.tsx`                 | Path from [Simple Icons](https://simpleicons.org) 16.36.0, `icons/git.svg` | Git Logo by Jason Long, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) ([git-scm.com/community/logos](https://git-scm.com/community/logos)); Simple Icons path CC0     |
 | `github-logo` | `components/icons/GitHubIcon.tsx` | Upstream Orca's mark (Primer Octicons `mark-github`)                       | Octicons MIT; the mark follows [GitHub's logo guidelines](https://brand.github.com/foundations/logo), which permit it "to inform others that your project integrates with GitHub" |
 | `jira-logo`   | `components/icons/JiraIcon.tsx`   | Upstream Orca's monochrome Jira mark                                       | Atlassian trademark; used as upstream uses it, to identify the Jira provider                                                                                                      |
+| `brza-logo`   | `BrzaFlameLogo.tsx`               | BrzA Studio's launcher flame, `resources/brza-flame-mono.svg`              | The fork's own mark; it identifies a call to the `brza` CLI                                                                                                                       |
 
 Git's [trademark policy](https://git-scm.com/about/trademark) allows the marks "to identify the Git
 software as a distinct component of a software offering".
