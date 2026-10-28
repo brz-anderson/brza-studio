@@ -13,7 +13,14 @@ import type {
 
 const mocks = vi.hoisted(() => ({
   commitCompare: vi.fn(),
-  openCommitAllDiffs: vi.fn()
+  openCommitAllDiffs: vi.fn(),
+  openWebLink: vi.fn()
+}))
+
+vi.mock('../native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
+
+vi.mock('../native-chat-link-target-actions', () => ({
+  resolveNativeChatHttpLinkRouting: () => ({ sourceOwner: { kind: 'local' } })
 }))
 
 vi.mock('@/runtime/runtime-git-diff-client', () => ({
@@ -71,10 +78,14 @@ const summary = {
   status: 'ready' as const
 }
 
-function renderLine(result?: NativeChatToolResultBlock, value: Owner | null = owner): void {
+function renderLine(
+  result?: NativeChatToolResultBlock,
+  value: Owner | null = owner,
+  block: NativeChatToolCallBlock = commit
+): void {
   render(
     <NativeChatMarkdownImageOwnerContext.Provider value={value}>
-      <NativeChatToolLine block={commit} result={result} />
+      <NativeChatToolLine block={block} result={result} />
     </NativeChatMarkdownImageOwnerContext.Provider>
   )
 }
@@ -82,6 +93,7 @@ function renderLine(result?: NativeChatToolResultBlock, value: Owner | null = ow
 beforeEach(() => {
   mocks.commitCompare.mockReset()
   mocks.openCommitAllDiffs.mockReset()
+  mocks.openWebLink.mockReset()
 })
 
 afterEach(cleanup)
@@ -121,5 +133,24 @@ describe('BrzaToolLineChip', () => {
     renderLine(committed, null)
     expect(screen.getByText('9f8e7d6')).toBeInTheDocument()
     expect(screen.queryByRole('link')).toBeNull()
+  })
+
+  it('opens a PR number in the browser from the chat worktree', () => {
+    const url = 'https://github.com/o/r/pull/123'
+    renderLine({ type: 'tool-result', output: `${url}\n`, isError: false }, owner, {
+      type: 'tool-call',
+      name: 'Bash',
+      input: { command: 'gh pr create --title "feat: chips"' },
+      state: 'completed'
+    })
+
+    expect(screen.getByText('PR #123 — feat: chips')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('link', { name: /#123/ }))
+
+    expect(mocks.openWebLink).toHaveBeenCalledWith(
+      url,
+      { worktreeId: 'wt-1', sourceTabId: 'chat-tab', sourceOwner: { kind: 'local' } },
+      undefined
+    )
   })
 })

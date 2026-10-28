@@ -3,8 +3,11 @@ import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../.
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitHash, gitCommitSubject } from './brza-git-command'
+import { ghReference } from './brza-gh-command'
 
-export type BrzaToolLineChipTarget = { kind: 'commit'; hash: string; subject: string | null }
+export type BrzaToolLineChipTarget =
+  | { kind: 'commit'; hash: string; subject: string | null }
+  | { kind: 'url'; url: string }
 
 /** A clickable reference beside the row's title; desktop only (R41.3). */
 export type BrzaToolLineChip = { label: string; target: BrzaToolLineChipTarget }
@@ -18,6 +21,12 @@ const BRZA_COMMAND_CHIPS: Partial<
     ) => BrzaToolLineChip | null
   >
 > = {
+  gh: (segments, result) => {
+    const reference = ghReference(segments, result)
+    return reference === null
+      ? null
+      : { label: `#${reference.number}`, target: { kind: 'url', url: reference.url } }
+  },
   git: (segments, result) => {
     const hash = gitCommitHash(segments, result)
     if (hash === null) {

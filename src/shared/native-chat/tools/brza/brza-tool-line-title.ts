@@ -5,6 +5,7 @@ import { brzaFigmaToolLineTitle } from './brza-figma-tool'
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitSubject } from './brza-git-command'
+import { ghReference, ghReferenceTitle } from './brza-gh-command'
 
 type BrzaToolLineTitle = { target: string; title: string }
 
@@ -27,6 +28,10 @@ const BRZA_COMMAND_TITLES: Partial<
     (segments: readonly BrzaShellSegment[], result?: NativeChatToolResultBlock) => string | null
   >
 > = {
+  gh: (segments, result) => {
+    const reference = ghReference(segments, result)
+    return reference === null ? null : ghReferenceTitle(reference)
+  },
   git: (segments, result) => {
     const subject = gitCommitSubject(segments, result)
     return subject === null ? null : `git commit — ${subject}`
