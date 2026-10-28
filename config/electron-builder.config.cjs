@@ -339,6 +339,7 @@ module.exports = {
     'out/main/gemini/**',
     'out/main/gitlab/project-ref-parser.js',
     'out/main/grok/**',
+    'out/main/ipc/command-path-resolver.js',
     'out/main/hermes/**',
     'out/main/asar-transparent-fs.js',
     'out/main/macos-tree-clone.js',

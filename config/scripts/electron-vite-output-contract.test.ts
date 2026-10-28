@@ -185,6 +185,7 @@ describe('Electron Vite output contract', () => {
     ).createFilter()
     for (const name of [
       'gitlab/project-ref-parser',
+      'ipc/command-path-resolver',
       'macos-tree-clone',
       'orca-profiles/profile-index-store',
       'persistence/profile-state/profile-state-access',
