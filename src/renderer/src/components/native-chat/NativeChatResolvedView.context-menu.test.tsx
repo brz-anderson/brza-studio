@@ -276,7 +276,7 @@ describe('NativeChatResolvedView right-click targets', () => {
     fireEvent.contextMenu(screen.getByText('pnpm build'))
     fireEvent.click(await screen.findByRole('menuitem', { name: 'Copy code' }))
     expect(mocks.writeClipboardText.mock.lastCall).toEqual(hoverCopy)
-    expect(hoverCopy).toEqual(['pnpm build\n'])
+    expect(hoverCopy).toEqual(['pnpm build'])
 
     fireEvent.contextMenu(screen.getByText('Fix the build'))
     fireEvent.click(await screen.findByRole('menuitem', { name: 'Copy message' }))

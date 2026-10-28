@@ -117,8 +117,25 @@ describe('NativeChatCodeBlock', () => {
     expect(pre?.querySelector('span[style*="--syntax-dark"]')).not.toBeNull()
     expect(pre?.textContent).toBe(code)
     fireEvent.click(screen.getByRole('button', { name: 'Copy code' }))
-    await waitFor(() => expect(writeClipboardText).toHaveBeenCalledWith(code))
+    await waitFor(() => expect(writeClipboardText).toHaveBeenCalledWith(code.slice(0, -1)))
     expect(await screen.findByRole('button', { name: 'Copied' })).toBeInTheDocument()
+  })
+
+  it.each([
+    ['\n', 'one\n\n  two  \n\n', 'one\n\n  two  \n'],
+    ['\r\n', 'one\r\n  two  \r\n', 'one\r\n  two  ']
+  ])('copies without only the fence closing %j', async (_ending, code, copied) => {
+    const writeClipboardText = vi.fn().mockResolvedValue(undefined)
+    Object.assign(window, { api: { ui: { writeClipboardText } } })
+    render(
+      <NativeChatCodeBlock>
+        <code>{code}</code>
+      </NativeChatCodeBlock>
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Copy code' }))
+
+    await waitFor(() => expect(writeClipboardText).toHaveBeenCalledWith(copied))
   })
 
   it('keeps wrapping to the block the reader toggled', () => {

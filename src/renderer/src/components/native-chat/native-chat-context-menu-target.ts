@@ -1,6 +1,7 @@
 import type { FileLinkActions } from '@/components/terminal-pane/terminal-file-link-actions'
 import type { NativeChatComposerHandle } from './native-chat-composer-types'
 import type { NativeChatFileLinkContext } from './native-chat-file-link'
+import { nativeChatCodeCopyText } from './native-chat-code-copy-text'
 import { nativeChatLinkActions } from './native-chat-link-target-actions'
 import { readNativeChatQuotableSelection } from './native-chat-quote-selection'
 import type { NativeChatMessageListHandle } from './use-native-chat-reveal-latest'
@@ -46,9 +47,11 @@ export function readNativeChatContextMenuTarget(
     quoteText: quotable?.text ?? null,
     link: href ? nativeChatLinkActions(href, linkContext) : null,
     codeText:
-      element
-        ?.closest('[data-native-chat-code-block]')
-        ?.querySelector('[data-native-chat-code-content]')?.textContent || null,
+      nativeChatCodeCopyText(
+        element
+          ?.closest('[data-native-chat-code-block]')
+          ?.querySelector('[data-native-chat-code-content]')?.textContent ?? ''
+      ) || null,
     messageText: (messageId && messageList?.messageCopyText(messageId)) || null,
     rewindItemId:
       element

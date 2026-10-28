@@ -4,6 +4,7 @@ import { translate } from '@/i18n/i18n'
 import { cn } from '@/lib/utils'
 import { getCodeFenceLanguageLabel } from './code-fence-language-label'
 import { NativeChatCopyButton } from './NativeChatCopyButton'
+import { nativeChatCodeCopyText } from './native-chat-code-copy-text'
 import {
   NativeChatMarkdownRowKeyContext,
   useNativeChatDisclosure
@@ -23,6 +24,7 @@ export function NativeChatCodeBlock({
   plain?: boolean
 }): React.JSX.Element {
   const code = extractCodeText(children)
+  const copyText = nativeChatCodeCopyText(code)
   const rowKey = useContext(NativeChatMarkdownRowKeyContext)
   // Keep wrap state in the transcript store so windowing and streaming block recuts cannot reset it; never persist it.
   const { open: wrapped, setOpen: setWrapped } = useNativeChatDisclosure(
@@ -35,7 +37,7 @@ export function NativeChatCodeBlock({
     <>
       <NativeChatCodeWrapButton wrapped={wrapped} onToggle={() => setWrapped(!wrapped)} />
       <NativeChatCopyButton
-        text={code}
+        text={copyText}
         label={translate('components.native-chat.copyCode', 'Copy code')}
       />
     </>

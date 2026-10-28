@@ -85,7 +85,7 @@ describe('MessageRow control visibility', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Copy code' }))
 
     await waitFor(() => {
-      expect(writeClipboardText).toHaveBeenCalledWith('const answer = 42\n')
+      expect(writeClipboardText).toHaveBeenCalledWith('const answer = 42')
     })
   })
 
