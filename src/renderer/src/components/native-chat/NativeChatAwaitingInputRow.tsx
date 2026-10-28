@@ -73,7 +73,7 @@ export function NativeChatAwaitingInputRow({
       {question !== null && toggles && open ? null : (
         <span
           ref={question === null ? undefined : measureLine}
-          className="min-w-0 truncate text-chat-foreground"
+          className="min-w-0 truncate text-primary"
         >
           {text}
         </span>
@@ -114,13 +114,13 @@ export function NativeChatAwaitingInputRow({
       )}
       {toggles && open && question !== null ? (
         // Indented to the label, past the icon slot and its gap.
-        <p className="whitespace-pre-wrap break-words pl-5.5 text-sm leading-relaxed text-chat-foreground">
+        <p className="whitespace-pre-wrap break-words pl-5.5 text-sm leading-relaxed text-primary">
           {question}
         </p>
       ) : null}
       {open && questions !== null ? (
         // Numbers hang in the icon slot so each question starts under the label.
-        <ol className="list-decimal space-y-1 pl-5.5 text-sm leading-relaxed text-chat-foreground marker:text-chat-foreground-faint">
+        <ol className="list-decimal space-y-1 pl-5.5 text-sm leading-relaxed text-primary marker:text-chat-foreground-faint">
           {questions.map((entry) => (
             <li key={entry} className="whitespace-pre-wrap break-words">
               {entry}
