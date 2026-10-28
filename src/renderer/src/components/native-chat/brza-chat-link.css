@@ -8,3 +8,8 @@
 .native-chat-appearance[data-native-chat-scheme='dark'] {
   --chat-link: #79c0ff;
 }
+
+/* BrzA: inline code inside a link (file paths) keeps its chip but takes the link color. */
+.native-chat-markdown a code {
+  color: inherit;
+}
