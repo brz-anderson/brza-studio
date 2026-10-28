@@ -1,6 +1,7 @@
 import { stripAnsiEscapeSequences } from '../../../ansi-escape-sequences'
 import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
 import type { BrzaShellSegment } from './brza-shell-segments'
+import { packageRunWord } from './brza-package-command'
 
 type TestRunner = 'vitest' | 'jest' | 'pytest' | 'flutter test'
 type TestCounts = { passed: number; failed: number }
@@ -13,16 +14,6 @@ const TEST_RESULT_COPY = {
   failedMany: 'falharam'
 } as const
 
-const PACKAGE_RUNNERS = new Set(['pnpm', 'npm', 'yarn', 'bun', 'npx', 'pnpx', 'bunx'])
-const PACKAGE_OPTIONS_WITH_VALUE = new Set([
-  '--filter',
-  '-F',
-  '-C',
-  '--dir',
-  '--prefix',
-  '--workspace'
-])
-const PACKAGE_RUN_VERBS = new Set(['run', 'exec', 'dlx'])
 const DIRECT_RUNNERS = new Set<string>(['vitest', 'jest', 'pytest'])
 const RUN_VITEST_SCRIPT = /(?:^|[\\/])run-vitest\.mjs$/
 
@@ -71,19 +62,6 @@ const TEST_FOOTERS: readonly {
   }
 ]
 
-/** The words a package manager runs, past its own options and `run`/`exec`. */
-function packageRunWord(argv: readonly string[]): string | null {
-  for (let index = 1; index < argv.length; index += 1) {
-    const word = argv[index]
-    if (PACKAGE_OPTIONS_WITH_VALUE.has(word)) {
-      index += 1
-    } else if (!word.startsWith('-') && !PACKAGE_RUN_VERBS.has(word)) {
-      return word
-    }
-  }
-  return null
-}
-
 /** What a test segment runs: the runner when the command names it, else the package script. */
 function testSegmentRun(
   segment: BrzaShellSegment
@@ -101,10 +79,7 @@ function testSegmentRun(
   if (program === 'node' && segment.argv.some((word) => RUN_VITEST_SCRIPT.test(word))) {
     return { runner: 'vitest' }
   }
-  if (!PACKAGE_RUNNERS.has(program)) {
-    return null
-  }
-  const word = packageRunWord(segment.argv)
+  const word = packageRunWord(segment)
   if (word === 'vitest' || word === 'jest' || (word !== null && RUN_VITEST_SCRIPT.test(word))) {
     return { runner: word === 'jest' ? 'jest' : 'vitest' }
   }
