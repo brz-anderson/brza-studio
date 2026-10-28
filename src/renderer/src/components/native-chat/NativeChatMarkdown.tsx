@@ -24,6 +24,7 @@ import {
 } from './NativeChatMarkdownImage'
 import { NativeChatWideTable } from './brza-chat-wide-table'
 import './native-chat-markdown.css'
+import './brza-chat-link.css'
 
 /** Existing words stay opaque when a reply first starts growing. */
 function useWordFadeArmed(fadeWords: boolean): boolean {

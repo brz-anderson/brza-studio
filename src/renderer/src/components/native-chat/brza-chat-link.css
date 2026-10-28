@@ -1,0 +1,10 @@
+/* BrzA: chat links use a light link blue instead of the strong foreground. */
+:root,
+.native-chat-appearance[data-native-chat-scheme='light'] {
+  --chat-link: #0969da;
+}
+
+.dark,
+.native-chat-appearance[data-native-chat-scheme='dark'] {
+  --chat-link: #79c0ff;
+}
