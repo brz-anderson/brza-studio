@@ -5,6 +5,7 @@ import { isCommandToolName } from '../native-chat-tool-activity'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCategoryCall } from '../native-chat-tool-icon'
 import { parseOrcaBrowserCommand, runsOrcaCliCommand } from '../../../orca-browser-cli-commands'
+import { BRZA_FIGMA_CATEGORY } from './brza-figma-tool'
 
 /** Lucide ids D38/D39 name, plus brand fallbacks; each has a glyph in the desktop and mobile BrzA tables. */
 export type BrzaLucideIconName =
@@ -47,6 +48,7 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
 /** Register a category here: the row word, MCP tool or command that names it, and its icon. */
 const BRZA_TOOL_CATEGORIES = [
   { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
+  BRZA_FIGMA_CATEGORY,
   {
     category: 'firebase',
     iconName: 'flame',

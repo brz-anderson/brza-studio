@@ -141,7 +141,7 @@ export function nativeChatToolLineLabel(
       })
     }
   }
-  const brzaTitle = brzaToolLineTitle(call)
+  const brzaTitle = brzaToolLineTitle(call, result)
   if (brzaTitle) {
     ;({ target, title } = brzaTitle)
   }
