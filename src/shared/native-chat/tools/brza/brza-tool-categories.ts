@@ -8,6 +8,7 @@ import { parseOrcaBrowserCommand } from '../../../orca-browser-cli-commands'
 import { BRZA_FIGMA_CATEGORY } from './brza-figma-tool'
 import { BRZA_SHELL_CATEGORIES } from './brza-shell-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
+import { BRZA_CONFLUENCE_CATEGORY, BRZA_JIRA_CATEGORY } from './brza-atlassian-tool'
 
 /** Lucide ids D38/D39 name, plus brand fallbacks; each has a glyph in the desktop and mobile BrzA tables. */
 export type BrzaLucideIconName =
@@ -22,6 +23,7 @@ export type BrzaLucideIconName =
   | 'book-open'
   | 'square-kanban'
   | 'pen-tool'
+  | 'file-text'
 
 /** Desktop-only logos; mobile draws BRZA_BRAND_LOGO_FALLBACK_ICONS (R29.4). Figma and Firebase stay
  * lucide (pen-tool, flame): their brand terms bar recolored in-product marks. Sources: renderer native-chat/brza/brza-brand-logos.md. */
@@ -53,6 +55,8 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
 const BRZA_TOOL_CATEGORIES = [
   { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
   BRZA_FIGMA_CATEGORY,
+  BRZA_JIRA_CATEGORY,
+  BRZA_CONFLUENCE_CATEGORY,
   {
     category: 'firebase',
     iconName: 'flame',

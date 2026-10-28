@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import {
   BookOpen,
+  FileText,
   Flame,
   FlaskConical,
   GitBranch,
@@ -40,6 +41,7 @@ export const BRZA_TOOL_GLYPHS: Record<BrzaToolIconName, LucideIcon> = {
   'book-open': BookOpen,
   'square-kanban': SquareKanban,
   'pen-tool': PenTool,
+  'file-text': FileText,
   'git-logo': brandGlyph(BrzaGitLogo),
   'github-logo': brandGlyph(GitHubIcon),
   'jira-logo': brandGlyph(JiraIcon),

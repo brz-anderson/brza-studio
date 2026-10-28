@@ -4,10 +4,12 @@ import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitHash, gitCommitSubject } from './brza-git-command'
 import { ghReference } from './brza-gh-command'
+import { brzaAtlassianChip, type BrzaAtlassianChipTarget } from './brza-atlassian-tool'
 
 export type BrzaToolLineChipTarget =
   | { kind: 'commit'; hash: string; subject: string | null }
   | { kind: 'url'; url: string }
+  | BrzaAtlassianChipTarget
 
 /** A clickable reference beside the row's title; desktop only (R41.3). */
 export type BrzaToolLineChip = { label: string; target: BrzaToolLineChipTarget }
@@ -43,6 +45,9 @@ export function brzaToolLineChip(
   result?: NativeChatToolResultBlock
 ): BrzaToolLineChip | null {
   const category = brzaToolCategory(call.name, call.mcpIdentity, call.input)
+  if (category === 'jira' || category === 'confluence') {
+    return brzaAtlassianChip(call, result)
+  }
   const chip = category === null ? undefined : BRZA_COMMAND_CHIPS[category]
   const command = nativeChatFullCommand(call.input)
   return chip && result && command !== null ? chip(brzaShellSegments(command), result) : null

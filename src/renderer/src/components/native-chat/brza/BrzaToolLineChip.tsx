@@ -14,6 +14,7 @@ import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-ima
 import { resolveNativeChatHttpLinkRouting } from '../native-chat-link-target-actions'
 import { openNativeChatWebLink } from '../native-chat-web-link-actions'
 import type { NativeChatFileLinkContext } from '../native-chat-file-link'
+import { brzaAtlassianChipUrl } from '../../../../../shared/native-chat/tools/brza/brza-atlassian-tool'
 import { openCommitByHash } from './brza-open-commit-by-hash'
 
 const CHIP_CLASS = 'shrink-0 font-mono text-xs text-chat-foreground-faint'
@@ -24,7 +25,30 @@ function chipAction(target: BrzaToolLineChipTarget): string {
       return translate('brza.native-chat.openCommitDiff', 'Open commit diff')
     case 'url':
       return target.url
+    case 'atlassian':
+      return translate('brza.native-chat.openInBrowser', 'Open in the browser')
   }
+}
+
+async function copyReference(text: string): Promise<void> {
+  try {
+    await window.api.ui.writeClipboardText(text)
+  } catch {
+    /* best-effort: clipboard can reject when unfocused */
+  }
+}
+
+function openUrl(url: string, context: NativeChatFileLinkContext): void {
+  // Read at click time, as chat links do: ownership must not re-render the transcript.
+  const { sourceOwner } = resolveNativeChatHttpLinkRouting(
+    useAppStore.getState(),
+    context.worktreeId
+  )
+  openNativeChatWebLink(
+    url,
+    { worktreeId: context.worktreeId, sourceTabId: context.sourceTabId, sourceOwner },
+    undefined
+  )
 }
 
 function openChip(target: BrzaToolLineChipTarget, context: NativeChatFileLinkContext): void {
@@ -32,17 +56,19 @@ function openChip(target: BrzaToolLineChipTarget, context: NativeChatFileLinkCon
     case 'commit':
       void openCommitByHash(context, target.hash, target.subject ?? undefined)
       return
-    case 'url': {
-      // Read at click time, as chat links do: ownership must not re-render the transcript.
-      const { sourceOwner } = resolveNativeChatHttpLinkRouting(
-        useAppStore.getState(),
-        context.worktreeId
-      )
-      openNativeChatWebLink(
-        target.url,
-        { worktreeId: context.worktreeId, sourceTabId: context.sourceTabId, sourceOwner },
-        undefined
-      )
+    case 'url':
+      openUrl(target.url, context)
+      return
+    case 'atlassian': {
+      // Read at click time: the app's Jira site must not re-render the transcript.
+      const { sites, activeSiteId } = useAppStore.getState().jiraStatus
+      const appSite = (sites?.find((site) => site.id === activeSiteId) ?? sites?.[0])?.siteUrl
+      const url = brzaAtlassianChipUrl(target, appSite ?? null)
+      if (url) {
+        openUrl(url, context)
+      } else {
+        void copyReference(target.copyText)
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  FileText,
   Flame,
   FlaskConical,
   GitBranch,
@@ -29,7 +30,8 @@ const BRZA_LUCIDE_GLYPHS: Record<BrzaLucideIconName, LucideIcon> = {
   flame: Flame,
   'book-open': BookOpen,
   'square-kanban': SquareKanban,
-  'pen-tool': PenTool
+  'pen-tool': PenTool,
+  'file-text': FileText
 }
 
 /** Brand logos are desktop-only (R29.4): mobile draws each one's lucide fallback. */

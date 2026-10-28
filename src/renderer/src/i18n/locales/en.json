@@ -21776,7 +21776,8 @@
       "expandedLines_other": "{{count}} lines",
       "closeExpanded": "Close (Esc)",
       "runInTerminal": "Run in terminal",
-      "openCommitDiff": "Open commit diff"
+      "openCommitDiff": "Open commit diff",
+      "openInBrowser": "Open in the browser"
     }
   }
 }

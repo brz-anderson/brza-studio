@@ -2,6 +2,7 @@ import { normalizeToolInput } from '../native-chat-tool-summary'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
 import { brzaFigmaToolLineTitle } from './brza-figma-tool'
+import { brzaAtlassianToolLineTitle } from './brza-atlassian-tool'
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitSubject } from './brza-git-command'
@@ -56,6 +57,9 @@ export function brzaToolLineTitle(
   const category = brzaToolCategory(call.name, call.mcpIdentity, call.input)
   if (category === 'figma') {
     return brzaFigmaToolLineTitle(call, result)
+  }
+  if (category === 'jira' || category === 'confluence') {
+    return brzaAtlassianToolLineTitle(call, result)
   }
   const commandTitle = category === null ? undefined : BRZA_COMMAND_TITLES[category]
   if (commandTitle) {
