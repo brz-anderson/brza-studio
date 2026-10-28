@@ -1,7 +1,8 @@
 import { refuse, type AgentSessionOptionResult } from '../../../shared/agent-session-wire'
 import {
   AGENT_CHAT_PERMISSION_MODE_OPTION_ID,
-  agentChatPermissionModes
+  agentChatPermissionModes,
+  isAgentChatPermissionChoice
 } from '../../../shared/agent-chat-permission-mode'
 import type { AgentSessionRecordStore } from '../../runtime/agent-session-record-store'
 import type { StructuredAgentRegistry } from './structured-agent-registry'
@@ -54,7 +55,7 @@ export async function recordStructuredAgentSessionOptionIntent(
       'getRecord' | 'replaceSessionOptions' | 'reviseSessionOptions'
     >
     agents: Pick<StructuredAgentRegistry, 'definition'>
-    adapter?: Pick<StructuredAgentSessionAdapter, 'projectOptions'>
+    adapter?: Pick<StructuredAgentSessionAdapter, 'projectOptions' | 'applyPermissionMode'>
   } & Parameters<typeof savedAgentSessionCatalogModels>[0],
   ctx: Pick<AgentSessionTurnContext, 'sessionId' | 'fence' | 'publish' | 'now'>,
   input: { key: string; value: string }
@@ -76,6 +77,12 @@ export async function recordStructuredAgentSessionOptionIntent(
   if (input.key === AGENT_CHAT_PERMISSION_MODE_OPTION_ID) {
     const permissionMode = input.value
     await deps.store.replaceSessionOptions({ sessionId, fence, permissionMode, now: ctx.now() })
+    // A live switch also reaches the running turn; failure leaves it to the next acquisition.
+    if (isAgentChatPermissionChoice(permissionMode)) {
+      await deps.adapter
+        ?.applyPermissionMode?.({ sessionId, mode: permissionMode })
+        .catch(() => false)
+    }
     // Preserve the wire’s permission mode within options.
     options = { ...record.options, [input.key]: input.value }
   } else {

@@ -181,6 +181,12 @@ export type StructuredAgentSessionAdapter = StructuredAgentSessionAdapterStop & 
     sessionId: string,
     mode: AgentChatPermissionChoice
   ): boolean | undefined
+  /** Switch the live child's mode without a restart; false leaves the switch to the next acquisition. */
+  applyPermissionMode?(input: {
+    sessionId: string
+    mode: AgentChatPermissionChoice
+    signal?: AbortSignal
+  }): Promise<boolean>
   dispatch(input: {
     sessionId: string
     clientMessageId: string

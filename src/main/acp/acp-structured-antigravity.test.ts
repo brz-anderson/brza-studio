@@ -120,7 +120,7 @@ it('launches on its own private folder with file sign-in and no other Google cre
   }
 })
 
-it('runs the chat permission mode picked mid-chat as the server mode on the next send', async () => {
+it('switches the live server to the chat permission mode picked mid-chat, without a restart', async () => {
   let resumed = false
   const { rig, host, fence, ready } = await openHostRig({
     spec: ANTIGRAVITY,
@@ -128,6 +128,14 @@ it('runs the chat permission mode picked mid-chat as the server mode on the next
     script: (agent) => {
       agent.on('session/resume', (frame) => agent.reply(frame, {}))
       agent.on('session/prompt', (frame) => agent.reply(frame, { stopReason: 'end_turn' }))
+      // The server reports its mode option under the mode category.
+      agent.on('session/set_config_option', (frame) => {
+        const { configId: id, value } = z
+          .object({ configId: z.string(), value: z.string() })
+          .parse(frame.params)
+        const mode = { id, name: id, category: 'mode', type: 'select', currentValue: value }
+        agent.reply(frame, { configOptions: [{ ...mode, options: [] }] })
+      })
     },
     deps: {
       resolveLaunch: async () => ({
@@ -145,9 +153,8 @@ it('runs the chat permission mode picked mid-chat as the server mode on the next
   expect(await host.attach(CALLER, attach)).toMatchObject({ ok: true })
   await ready()
   resumed = true
-  const modes: unknown[] = []
-  let child = rig.child()
-  for (const value of ['accept-edits', 'full-access']) {
+  const child = rig.child()
+  for (const [index, value] of ['accept-edits', 'full-access'].entries()) {
     const fields = { key: 'permissionMode', value }
     const fingerprint = { method: 'agentSession.setOption', sessionId: HOST_TEST_SESSION, fields }
     const envelope = {
@@ -158,15 +165,11 @@ it('runs the chat permission mode picked mid-chat as the server mode on the next
     }
     expect(await host.setOption(CALLER, { envelope, ...fields })).toMatchObject({ ok: true })
     await send(host, value)
-    const previous = child
-    child = await waitFor(() => {
-      expect(rig.child()).not.toBe(previous)
-      expect(framesOf(rig.child(), 'session/prompt')).toHaveLength(1)
-      return rig.child()
-    })
-    modes.push(framesOf(child, 'session/set_config_option')[0]?.params)
+    await waitFor(() => expect(framesOf(child, 'session/prompt')).toHaveLength(index + 1))
   }
-  expect(modes).toEqual([
+  expect(rig.child()).toBe(child)
+  expect(framesOf(child, 'session/set_config_option').map((frame) => frame.params)).toEqual([
+    expect.objectContaining({ configId: 'mode', value: 'default' }),
     expect.objectContaining({ configId: 'mode', value: 'auto_edit' }),
     expect.objectContaining({ configId: 'mode', value: 'yolo' })
   ])

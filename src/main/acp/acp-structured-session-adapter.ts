@@ -31,6 +31,7 @@ import {
 } from './acp-structured-session-adapter-deps'
 import { readAcpLiveOptions } from './acp-structured-options'
 import { writeAcpSessionOption } from './acp-session-option-write'
+import { acpModeNeedsRestart, applyAcpMode, type AcpModeInput } from './acp-live-permission-mode'
 import { stopAcpChildren, acpChildStopCapabilities } from './acp-structured-child-stop'
 import { acpStartupFailure, isAcpReadySession } from './acp-structured-child'
 import { AcpStructuredChildren } from './acp-structured-child-lifecycle'
@@ -251,6 +252,12 @@ export class AcpStructuredSessionAdapter implements StructuredAgentSessionAdapte
     })
     return session.options.reported()
   }
+
+  permissionModeRequiresAcquisition = (sessionId: string, mode: AcpModeInput['mode']) =>
+    acpModeNeedsRestart(this.children.sessions.get(sessionId), mode)
+
+  applyPermissionMode = (input: AcpModeInput) =>
+    applyAcpMode(this.children.sessions.get(input.sessionId), input, this.deps)
 
   readOptions = async (input: { sessionId: string; fence: number }) => {
     const session = this.live(input.sessionId)
