@@ -10,6 +10,7 @@ import {
 } from './args'
 import { readOrcaCliVersion } from './cli-version'
 import { dispatch } from './dispatch'
+import { findExternalSubcommand, runExternalSubcommand } from './external-subcommand'
 import {
   resolveEnvironmentSelectorForStore,
   resolveHostFlagEnvironmentId
@@ -26,6 +27,13 @@ export { COMMAND_SPECS } from './specs'
 export { buildCurrentWorktreeSelector, normalizeWorktreeSelector } from './selectors'
 
 const COMMAND_PATHS = COMMAND_SPECS.flatMap((spec) => specPaths(spec))
+// main() routes these before the specs; an external `brza-<name>` must never shadow them.
+const BUILTIN_COMMAND_HEADS: ReadonlySet<string> = new Set([
+  ...COMMAND_PATHS.map((path) => path[0]),
+  'help',
+  'agent-teams-tmux',
+  'claude-teams'
+])
 
 function shouldIgnoreRemoteSelection(commandPath: string[]): boolean {
   return (
@@ -74,6 +82,16 @@ export async function main(
   }
   if (argv[0] === 'claude-teams') {
     await runClaudeTeams(argv.slice(1), cwd)
+    return
+  }
+  const external = await findExternalSubcommand(argv, BUILTIN_COMMAND_HEADS)
+  if (external) {
+    try {
+      process.exitCode = await runExternalSubcommand(external)
+    } catch (error) {
+      reportCliError(error, false, { commandPath: [external.name] })
+      process.exitCode = 1
+    }
     return
   }
   const parsed = normalizeCommandPositionals(
