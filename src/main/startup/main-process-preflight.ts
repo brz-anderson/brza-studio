@@ -8,6 +8,7 @@ import { runProfileStateRecoveryPreflight } from './profile-state-recovery-prefl
 import { argvRequestsServeMode, normalizeServeModeArgv } from './serve-mode-argv'
 import {
   configureDevUserDataPath,
+  configureEarlyUserDataPath,
   configureElectronNetworkCompatibility,
   configureOrcaUserDataPathEnv,
   disableUnsupportedChromiumFeatures,
@@ -110,7 +111,6 @@ import {
   acquireDesktopProfileLockOrExplain,
   handleMainProcessPreflightFailure
 } from './main-process-preflight-failure'
-import { ensureWindowsAppDataPath } from './windows-app-data-path'
 
 export type MainProcessPreflightOptions = {
   focusExistingWindow: () => void
@@ -129,8 +129,8 @@ export function runMainProcessPreflight(options: MainProcessPreflightOptions): b
 
 function initializeMainProcessPreflight(options: MainProcessPreflightOptions): boolean {
   const isDev = !app.isPackaged
-  // Resolve Windows appData before recovery/instance-lock steps can read userData.
-  ensureWindowsAppDataPath(app)
+  // Resolve Windows appData and packaged userData before recovery/instance-lock steps can read userData.
+  configureEarlyUserDataPath(app.isPackaged)
   if (runProfileStateRecoveryPreflight()) {
     return false
   }

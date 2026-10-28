@@ -14,12 +14,21 @@ function app_realpath() {
 
 APP_PATH="$(app_realpath "${BASH_SOURCE[0]}")"
 if [ -z "$APP_PATH" ]; then
-	echo "Unable to determine Orca.app path from symlink: ${BASH_SOURCE[0]}"
+	echo "Unable to determine BrzA Studio.app path from symlink: ${BASH_SOURCE[0]}"
 	exit 1
 fi
 
 CONTENTS="$APP_PATH/Contents"
-ELECTRON="$CONTENTS/MacOS/Orca"
+ELECTRON="$CONTENTS/MacOS/BrzA Studio"
+
+# A terminal of another app (upstream Orca, a dev build) exports its own profile and terminal
+# identity; following them would drive that app's runtime or open this app on its profile.
+if [ -n "${ORCA_CLI_BIN_DIR:-}" ] &&
+	[ "$(cd "$ORCA_CLI_BIN_DIR" 2>/dev/null && pwd -P)" != "$(cd "$CONTENTS/Resources/bin" && pwd -P)" ]; then
+	unset ORCA_USER_DATA_PATH ORCA_RUNTIME_SOURCE_ID ORCA_RUNTIME_SOURCE_INCARNATION \
+		ORCA_RUNTIME_SOURCE_PROFILE_PATH ORCA_TERMINAL_HANDLE ORCA_PANE_KEY ORCA_TAB_ID \
+		ORCA_WORKTREE_ID ORCA_WORKSPACE_ID ORCA_CLI_BIN_DIR ORCA_CLI_COMMAND
+fi
 # The unpacked entrypoint runs directly in Electron's Node mode.
 CLI="$CONTENTS/Resources/app.asar.unpacked/out/cli/index.js"
 

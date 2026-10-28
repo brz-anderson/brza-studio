@@ -8,6 +8,7 @@ import {
   parseAllowStaleBaseFromSpec
 } from './coordinator-stale-base-flag'
 import { isAgentPromptStalledError } from '../agent-prompt-submission-verification'
+import { isBrandDevUserDataPath } from '../../../shared/brand-identity'
 
 /** `dispatched-unobserved`: the preamble landed but the worker's turn start was never observed. */
 export type TaskDispatchResult = 'dispatched' | 'dispatched-unobserved' | 'stale-base-refused'
@@ -125,7 +126,7 @@ export async function dispatchTaskToWorker(params: {
     taskSpec: strippedSpec,
     coordinatorHandle: params.coordinatorHandle,
     workerHandle: targetHandle,
-    devMode: process.env.ORCA_USER_DATA_PATH?.includes('orca-dev'),
+    devMode: isBrandDevUserDataPath(process.env.ORCA_USER_DATA_PATH),
     ...(runtime.getTerminalOrchestrationCliCommand
       ? { cliCommand: runtime.getTerminalOrchestrationCliCommand(targetHandle) }
       : {}),

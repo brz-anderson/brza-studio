@@ -419,10 +419,10 @@ describe('Codex shell launch preflight command', () => {
   }
 
   it.each([
-    { platform: 'darwin' as const, bundled: 'orca', isPackaged: true },
+    { platform: 'darwin' as const, bundled: 'brza', isPackaged: true },
     { platform: 'linux' as const, bundled: 'orca-ide', isPackaged: true },
-    { platform: 'win32' as const, bundled: 'orca.exe', isPackaged: true },
-    { platform: 'darwin' as const, bundled: 'orca', isPackaged: false }
+    { platform: 'win32' as const, bundled: 'brza.exe', isPackaged: true },
+    { platform: 'darwin' as const, bundled: 'brza', isPackaged: false }
   ])(
     'gives a native $platform pane no preflight: the app prepares its Codex home (packaged $isPackaged)',
     (config) => {
@@ -443,7 +443,7 @@ describe('Codex shell launch preflight command', () => {
 
   it('carries the packaged Windows launcher, as an absolute path, for WSLENV path translation', () => {
     const { resourcesPath } = makeCliRoot()
-    const launcherPath = join(resourcesPath, 'bin', 'orca.exe')
+    const launcherPath = join(resourcesPath, 'bin', 'brza.exe')
     writeExecutable(launcherPath, '#!/bin/sh\nexit 0\n')
 
     const command = resolveCodexShellLaunchPreflightCommand(wslOptions(resourcesPath))

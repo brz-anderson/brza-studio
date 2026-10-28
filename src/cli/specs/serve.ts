@@ -24,7 +24,7 @@ export const SERVE_COMMAND_SPECS: CommandSpec[] = [
     ],
     notes: [
       'Runs in the foreground and prints the bound endpoint, advertised endpoint, and pairing status. Stop it with Ctrl+C.',
-      'With --port, serve exits with an error when that port is already in use. Without it, serve uses 6768 and moves to another port when 6768 is taken.',
+      'With --port, serve exits with an error when that port is already in use. Without it, serve uses 6868 and moves to another port when 6868 is taken.',
       '--pairing-address changes only the client-advertised address; use a reachable LAN, Tailscale, SSH-forward, or reverse-proxy endpoint.',
       'Use --recipe-json with --project-root from VM recipes to print the recipe result JSON and leave the server running.',
       'Use --mobile-pairing to print a mobile-scoped pairing QR/link instead of the default runtime-environment pairing link.',
@@ -41,7 +41,7 @@ export const SERVE_COMMAND_SPECS: CommandSpec[] = [
       'orca serve',
       'orca serve --json',
       'orca serve --project-root /workspace/repo --pairing-address wss://sandbox.example.com --recipe-json',
-      'orca serve --port 6768 --pairing-address 100.64.1.20',
+      'orca serve --port 6868 --pairing-address 100.64.1.20',
       'orca serve --pairing-address 100.64.1.20 --mobile-pairing',
       'orca serve --reclaim-stale-lock'
     ]

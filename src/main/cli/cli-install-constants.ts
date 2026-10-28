@@ -1,4 +1,6 @@
-export const DEFAULT_MAC_COMMAND_PATH = '/usr/local/bin/orca'
+import { BRAND_CLI_COMMAND_NAME } from '../../shared/brand-identity'
+
+export const DEFAULT_MAC_COMMAND_PATH = `/usr/local/bin/${BRAND_CLI_COMMAND_NAME}`
 export const DEV_COMMAND_NAME = 'orca-dev'
 export const LEGACY_LINUX_COMMAND_NAME = 'orca'
 export const DEV_LAUNCHER_DIR = ['cli', 'bin'] as const

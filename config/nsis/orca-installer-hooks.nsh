@@ -39,26 +39,33 @@
 
 ; Relocated hosts escape $INSTDIR’s process/file sweep, surviving updates but requiring real-uninstall cleanup.
 ; Keep ${isUpdated}: uninstallOldVersion runs this hook on every update and must preserve terminals.
-; Sync LOCALAPPDATA root with LOCAL_HOST_ROOT_NAME in src/main/daemon/daemon-host-relocation.ts;
+; Sync the LOCALAPPDATA root with BRAND_LOCAL_HOST_ROOT_NAME in src/shared/brand-identity.ts;
 ; see docs/reference/windows-daemon-host-relocation.md.
+; Upstream Orca can run side by side, so processes and folders are matched by this app's own paths,
+; never by image name alone: $INSTDIR and the relocated hosts under LOCALAPPDATA\BrzA Studio.
 !macro customUnInstall
   ${ifNot} ${isUpdated}
     Push $0
     Push $1
     Push $2
-    ; The verbatim app exe and an older renamed host both need cleanup, scoped to the current user
-    ; like upstream KILL_PROCESS. NSIS expands USERNAME directly, avoiding two cmd.exe spawns.
-    ReadEnvStr $1 USERNAME
-    ${if} $1 == ""
-      ; taskkill rejects an empty user filter and kills nothing. Fall back unfiltered if the normally set USERNAME is absent.
-      StrCpy $2 ""
-    ${else}
-      StrCpy $2 '/FI "USERNAME eq $1"'
+    Push $3
+    ReadEnvStr $3 LOCALAPPDATA
+    ; Same session as the uninstaller, like upstream KILL_PROCESS's current-user scope.
+    nsExec::Exec `"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -C "$$s = (Get-Process -Id $$PID).SessionId; Get-CimInstance -ClassName Win32_Process -ErrorAction Stop | ? { $$_.Path -and $$_.SessionId -eq $$s -and ($$_.Path.StartsWith('$INSTDIR\', 'OrdinalIgnoreCase') -or ('$3' -ne '' -and $$_.Path.StartsWith('$3\BrzA Studio\', 'OrdinalIgnoreCase'))) } | % { Stop-Process -Id $$_.ProcessId -Force -ErrorAction SilentlyContinue }"`
+    Pop $0
+    ${if} $0 != 0
+      ; Without PowerShell, fall back to the image name: the app and its relocated host copies are
+      ; "${APP_EXECUTABLE_FILENAME}", a name upstream Orca does not use. NSIS expands USERNAME directly.
+      ReadEnvStr $1 USERNAME
+      ${if} $1 == ""
+        ; taskkill rejects an empty user filter and kills nothing. Fall back unfiltered if the normally set USERNAME is absent.
+        StrCpy $2 ""
+      ${else}
+        StrCpy $2 '/FI "USERNAME eq $1"'
+      ${endIf}
+      nsExec::Exec 'taskkill /F /IM "${APP_EXECUTABLE_FILENAME}" $2'
+      Pop $0
     ${endIf}
-    nsExec::Exec 'taskkill /F /IM "${APP_EXECUTABLE_FILENAME}" $2'
-    Pop $0
-    nsExec::Exec 'taskkill /F /IM "orca-terminal-daemon.exe" $2'
-    Pop $0
     ; WSL hosts: the detached wsl.exe holders outlive the app and keep their distros running. Orca
     ; ends only the holders its profile recorded, each checked by pid, start time and command line.
     ; Only a userData that has a holder folder launches it: everyone who never ran a WSL host sees
@@ -89,13 +96,16 @@
       nsExec::Exec '"$INSTDIR\${APP_EXECUTABLE_FILENAME}" --orca-uninstall-release-wsl-holders'
       Pop $0
     ${endIf}
+    ; Give the OS a moment to release the image lock before removing the tree.
+    Sleep 500
+    ${if} $3 != ""
+      RMDir /r "$3\BrzA Studio\daemon-host"
+      RMDir /r "$3\BrzA Studio\daemon-host-profiles"
+    ${endIf}
+    Pop $3
     Pop $2
     Pop $1
     Pop $0
-    ; Give the OS a moment to release the image lock before removing the tree.
-    Sleep 500
-    RMDir /r "$LOCALAPPDATA\Orca\daemon-host"
-    RMDir /r "$LOCALAPPDATA\Orca\daemon-host-profiles"
   ${endIf}
   ; customInstall rewrites associations on every update, so remove them during uninstallOldVersion too.
   DeleteRegKey SHELL_CONTEXT "Software\Classes\${MARKDOWN_PROGID}"

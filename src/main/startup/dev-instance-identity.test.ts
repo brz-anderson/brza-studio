@@ -23,10 +23,9 @@ describe('dev-instance-identity', () => {
     expect(a.appName).not.toBe('BrzA Studio')
   })
 
-  it('never renames a packaged build before ready', () => {
-    // Packaged forks must retain their CFBundleName-derived safeStorage key or encrypted secrets become orphaned.
-    expect(shouldApplyPreReadyAppName(getDevInstanceIdentity(false, {}))).toBe(false)
-    expect(shouldApplyPreReadyAppName({ isDev: false })).toBe(false)
+  it("renames a packaged build before ready so it never shares upstream Orca's Keychain item", () => {
+    expect(shouldApplyPreReadyAppName(getDevInstanceIdentity(false, {}))).toBe(true)
+    expect(getDevInstanceIdentity(false, {}).appName).toBe('BrzA Studio')
   })
 
   it('applies the dev name before ready so safeStorage sees it', () => {

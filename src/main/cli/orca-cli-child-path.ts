@@ -4,7 +4,7 @@ import { getAppEnvironment, hasAppEnvironment } from '../../shared/app-environme
 import { readInheritedPath } from '../ipc/pty/host-env/path'
 import { resolvePathEnvKey } from '../pty/windows-environment-path'
 import { ensureLinuxTerminalOrcaCliShimDir } from './linux-terminal-orca-cli-shim'
-import { getBundledLauncherPath } from './bundled-cli-launcher-path'
+import { getBundledLauncherPath, getBundledTerminalAliasDir } from './bundled-cli-launcher-path'
 import { DEV_COMMAND_NAME } from './cli-install-constants'
 
 export type OrcaCliChildPathOptions = {
@@ -66,10 +66,14 @@ export function prependOrcaCliDirToChildPath(
     if (platform === 'darwin') {
       env.ORCA_CLI_BIN_DIR = bundledCliBin
     }
+    const terminalAliasDir = getBundledTerminalAliasDir(platform, opts.resourcesPath)
+    const bundledCliPath = terminalAliasDir
+      ? `${bundledCliBin}${pathDelimiter}${terminalAliasDir}`
+      : bundledCliBin
     const inheritedPath = readInheritedPath(env, platform)
     env[resolvePathEnvKey(env, platform)] = inheritedPath
-      ? `${bundledCliBin}${pathDelimiter}${inheritedPath}`
-      : bundledCliBin
+      ? `${bundledCliPath}${pathDelimiter}${inheritedPath}`
+      : bundledCliPath
     // Why the native launcher on Windows: `orca.cmd` refuses message bodies cmd.exe would mangle.
     return getBundledLauncherPath(platform, opts.resourcesPath)
   }

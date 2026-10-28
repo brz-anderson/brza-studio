@@ -52,6 +52,7 @@ import { resolveUpdateInstallMode } from '../updater'
 import { scheduleAgentLaunchRecordWarmup } from './agent-launch-record-warmup'
 import { emitServeBrowserIdentityActionLine } from '../server/serve-stdout-boundary'
 import { getBrowserIdentityModeStatus } from '../browser/browser-identity-mode-store'
+import { BRAND_DEV_WS_PORT } from '../../shared/brand-identity'
 
 type RuntimeService = NonNullable<typeof state.runtime>
 
@@ -84,7 +85,7 @@ function installRuntimeRpc(
     throw new Error(`Invalid ORCA_E2E_RUNTIME_WS_PORT value: ${requestedE2EWsPort}`)
   }
   // STA-1511: separate dev port from packaged Orca so pairing/repro URLs do not fall back unpredictably.
-  const devWsPort = !app.isPackaged && !isE2E ? 6769 : undefined
+  const devWsPort = !app.isPackaged && !isE2E ? BRAND_DEV_WS_PORT : undefined
   const runtimeRpc = new OrcaRuntimeRpcServer({
     runtime,
     // Pairing must use pre-setName canonical userData or restarts can lose devices.

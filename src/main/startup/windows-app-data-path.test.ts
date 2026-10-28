@@ -130,7 +130,8 @@ describe('startup ordering', () => {
       'utf8'
     )
     const body = source.slice(source.indexOf('function initializeMainProcessPreflight('))
-    const ensure = body.indexOf('ensureWindowsAppDataPath(app)')
+    // configureEarlyUserDataPath runs ensureWindowsAppDataPath first.
+    const ensure = body.indexOf('configureEarlyUserDataPath(app.isPackaged)')
     expect(ensure).toBeGreaterThan(0)
     for (const laterStep of [
       'runProfileStateRecoveryPreflight()',

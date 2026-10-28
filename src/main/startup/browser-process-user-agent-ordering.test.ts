@@ -65,6 +65,7 @@ vi.mock('./serve-mode-argv', () => ({
 }))
 vi.mock('./configure-process', () => ({
   configureDevUserDataPath: vi.fn(),
+  configureEarlyUserDataPath: vi.fn(),
   configureElectronNetworkCompatibility: vi.fn(),
   configureOrcaUserDataPathEnv: vi.fn(),
   disableUnsupportedChromiumFeatures: vi.fn(),

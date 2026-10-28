@@ -1,12 +1,13 @@
 import { readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { BRAND_DEV_WS_PORT } from '../../../shared/brand-identity'
 
 // Persist fallback endpoints across restarts so paired phones stay reachable even when the preferred port later becomes free (STA-1511).
 
 const FALLBACK_PORT_FILE = 'mobile-ws-fallback-port.json'
 const FALLBACK_LADDER_SIZE = 31
-// Reserve 6769 for pnpm dev (main-process-runtime-launch.ts) so other instances cannot steal its paired endpoint.
-const DEV_PINNED_WS_PORT = 6769
+// Reserve the dev port for pnpm dev (main-process-runtime-launch.ts) so other instances cannot steal its paired endpoint.
+const DEV_PINNED_WS_PORT = BRAND_DEV_WS_PORT
 
 // Try deterministic ports below OS dynamic ranges; rebooted Hyper-V/WSL reservations otherwise move advertised ports.
 export function wsFallbackPortLadder(preferredPort: number): number[] {

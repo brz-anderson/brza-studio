@@ -1,4 +1,5 @@
 import { RuntimeClientError } from '../../runtime-client'
+import { isBrandDevUserDataPath } from '../../../shared/brand-identity'
 
 export function resolveCompatibilityCliCommand(): 'orca' | 'orca-ide' | 'orca-dev' {
   const configured = process.env.ORCA_CLI_COMMAND
@@ -37,6 +38,6 @@ export async function flushOrchestrationStdout(): Promise<void> {
 export function isDevCliInvocation(): boolean {
   return (
     process.env.ORCA_DEV_CLI_INVOCATION === '1' ||
-    (process.env.ORCA_USER_DATA_PATH?.includes('orca-dev') ?? false)
+    isBrandDevUserDataPath(process.env.ORCA_USER_DATA_PATH)
   )
 }

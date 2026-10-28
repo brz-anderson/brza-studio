@@ -27,7 +27,7 @@ describe('renderServeService', () => {
 
   it('gives another profile its own label and pins its userData', () => {
     const spec = renderServeService({ ...base, userDataPath: '/tmp/profile & co' })
-    expect(spec.name).toMatch(/^com\.stablyai\.orca\.serve\.[0-9a-f]{8}$/)
+    expect(spec.name).toMatch(/^com\.brzanderson\.brzastudio\.serve\.[0-9a-f]{8}$/)
     expect(spec.content).toContain('<string>/tmp/profile &amp; co</string>')
   })
 

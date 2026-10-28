@@ -43,9 +43,9 @@ const unixLauncherFixtures = [
   {
     name: 'macOS',
     asset: darwinLauncherAsset,
-    appDir: ['Orca.app'],
-    launcher: ['Contents', 'Resources', 'bin', 'orca'],
-    executable: ['Contents', 'MacOS', 'Orca'],
+    appDir: ['BrzA Studio.app'],
+    launcher: ['Contents', 'Resources', 'bin', 'brza'],
+    executable: ['Contents', 'MacOS', 'BrzA Studio'],
     cli: ['Contents', 'Resources', 'app.asar.unpacked', 'out', 'cli', 'index.js']
   }
 ] as const

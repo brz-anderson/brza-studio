@@ -9,7 +9,9 @@ import { getMainE2EConfig } from '../e2e-config'
 import { DISABLED_CHROMIUM_FEATURES } from './disabled-chromium-features'
 import { readHttp1CompatibilityMarker } from './http1-compatibility-marker'
 import { checkServeUserDataPath } from './serve-user-data-path-guard'
+import { ensureWindowsAppDataPath } from './windows-app-data-path'
 import { stampRuntimeSourceEnv } from '../../shared/runtime-source-env'
+import { BRAND_DEV_USER_DATA_DIR_NAME, BRAND_USER_DATA_DIR_NAME } from '../../shared/brand-identity'
 import { isLinuxWaylandSession } from '../../shared/linux-wayland-session'
 import {
   hasMissingProfileStateDatabaseWithRetainedAuthority,
@@ -180,6 +182,15 @@ export function patchPackagedProcessPath(): void {
   }
 }
 
+/** Resolve Windows appData, then pin packaged userData: upstream Orca derives `orca` from its package name too. */
+export function configureEarlyUserDataPath(isPackaged: boolean): void {
+  ensureWindowsAppDataPath(app)
+  if (!isPackaged || app.commandLine.hasSwitch('user-data-dir')) {
+    return
+  }
+  app.setPath('userData', join(app.getPath('appData'), BRAND_USER_DATA_DIR_NAME))
+}
+
 export function configureDevUserDataPath(isDev: boolean): void {
   const e2eConfig = getMainE2EConfig()
   if (e2eConfig.userDataDir) {
@@ -201,12 +212,12 @@ export function configureDevUserDataPath(isDev: boolean): void {
   }
   const overrideUserDataPath = process.env.ORCA_DEV_USER_DATA_PATH
   if (overrideUserDataPath) {
-    // Why: run-electron-vite-dev.mjs resolves a per-worktree (or shared orca-dev) profile here; repros also pass isolated ones.
+    // Why: run-electron-vite-dev.mjs resolves a per-worktree (or shared brza-dev) profile here; repros also pass isolated ones.
     app.setPath('userData', overrideUserDataPath)
     return
   }
   // Why: launches that bypass the dev runner still need a dev-only path, or they overwrite the packaged app's runtime pointer under userData and break the orca CLI.
-  app.setPath('userData', join(app.getPath('appData'), 'orca-dev'))
+  app.setPath('userData', join(app.getPath('appData'), BRAND_DEV_USER_DATA_DIR_NAME))
 }
 
 function areSameE2EHomePath(left: string, right: string): boolean {

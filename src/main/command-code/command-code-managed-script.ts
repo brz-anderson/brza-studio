@@ -26,6 +26,10 @@ export function buildCommandCodeManagedScript(
       // Per-worktree `pnpm dev` profiles live one level down; FOR /R cannot take a FOR variable as its root.
       'if "%ORCA_AGENT_HOOK_TOKEN%"=="" if exist "%APPDATA%\\orca-dev-wt" for /d %%P in ("%APPDATA%\\orca-dev-wt\\*") do call :scanEndpointDir "%%~fP\\agent-hooks"',
       'if "%ORCA_AGENT_HOOK_TOKEN%"=="" if exist "%APPDATA%\\orca\\agent-hooks" for /r "%APPDATA%\\orca\\agent-hooks" %%F in (endpoint.cmd) do call :maybeSourceEndpoint "%%~fF"',
+      // The script is shared with upstream Orca, so it also scans BrzA Studio's profiles.
+      'if "%ORCA_AGENT_HOOK_TOKEN%"=="" if exist "%APPDATA%\\brza-dev\\agent-hooks" for /r "%APPDATA%\\brza-dev\\agent-hooks" %%F in (endpoint.cmd) do call :maybeSourceEndpoint "%%~fF"',
+      'if "%ORCA_AGENT_HOOK_TOKEN%"=="" if exist "%APPDATA%\\brza-dev-wt" for /d %%P in ("%APPDATA%\\brza-dev-wt\\*") do call :scanEndpointDir "%%~fP\\agent-hooks"',
+      'if "%ORCA_AGENT_HOOK_TOKEN%"=="" if exist "%APPDATA%\\brza-studio\\agent-hooks" for /r "%APPDATA%\\brza-studio\\agent-hooks" %%F in (endpoint.cmd) do call :maybeSourceEndpoint "%%~fF"',
       'exit /b 0',
       ':scanEndpointDir',
       'if not "%ORCA_AGENT_HOOK_TOKEN%"=="" exit /b 0',
@@ -115,7 +119,16 @@ export function buildCommandCodeManagedScript(
     '    "$HOME/Library/Application Support/orca-dev-wt"/*/agent-hooks/*/endpoint.env \\',
     '    "${XDG_CONFIG_HOME:-$HOME/.config}/orca-dev-wt"/*/agent-hooks/*/endpoint.env \\',
     '    "$HOME/Library/Application Support/orca/agent-hooks/endpoint.env" \\',
-    '    "${XDG_CONFIG_HOME:-$HOME/.config}/orca/agent-hooks/endpoint.env"; do',
+    '    "${XDG_CONFIG_HOME:-$HOME/.config}/orca/agent-hooks/endpoint.env" \\',
+    // The script is shared with upstream Orca, so it also scans BrzA Studio's profiles.
+    '    "$HOME/Library/Application Support/brza-dev/agent-hooks"/*/endpoint.env \\',
+    '    "$HOME/Library/Application Support/brza-dev/agent-hooks/endpoint.env" \\',
+    '    "${XDG_CONFIG_HOME:-$HOME/.config}/brza-dev/agent-hooks"/*/endpoint.env \\',
+    '    "${XDG_CONFIG_HOME:-$HOME/.config}/brza-dev/agent-hooks/endpoint.env" \\',
+    '    "$HOME/Library/Application Support/brza-dev-wt"/*/agent-hooks/*/endpoint.env \\',
+    '    "${XDG_CONFIG_HOME:-$HOME/.config}/brza-dev-wt"/*/agent-hooks/*/endpoint.env \\',
+    '    "$HOME/Library/Application Support/brza-studio/agent-hooks/endpoint.env" \\',
+    '    "${XDG_CONFIG_HOME:-$HOME/.config}/brza-studio/agent-hooks/endpoint.env"; do',
     '    [ -r "$endpoint" ] || continue',
     '    endpoint_port=$(sed -n "s/^ORCA_AGENT_HOOK_PORT=//p" "$endpoint" | head -n 1)',
     '    if [ "$endpoint_port" = "$ORCA_AGENT_HOOK_PORT" ]; then',

@@ -241,13 +241,19 @@ const ORCA_MAC_TEAM_ID = '6CX3WHS9HZ'
 module.exports = {
   appId,
   productName: 'BrzA Studio',
-  protocols: [{ name: 'BrzA Studio', schemes: ['orca'] }],
+  // Sync with BRAND_PROTOCOL_SCHEME in src/shared/brand-identity.ts; upstream Orca owns orca://.
+  protocols: [{ name: 'BrzA Studio', schemes: ['brza-studio'] }],
   toolsets: { appimage: '1.0.3' },
-  ...(devChannelBuildVersion
-    ? { extraMetadata: { version: devChannelBuildVersion } }
-    : localBuildVersion
-      ? { extraMetadata: { version: localBuildVersion } }
-      : {}),
+  // Why name: Electron's default userData/Keychain name, the updater cache and the Windows per-user
+  // install folder all derive from it, and upstream Orca owns `orca` (BRAND_USER_DATA_DIR_NAME).
+  extraMetadata: {
+    name: 'brza-studio',
+    ...(devChannelBuildVersion
+      ? { version: devChannelBuildVersion }
+      : localBuildVersion
+        ? { version: localBuildVersion }
+        : {})
+  },
   directories: {
     buildResources: 'resources/build'
   },
@@ -511,7 +517,8 @@ module.exports = {
     }
   },
   win: {
-    executableName: 'Orca',
+    // native/windows-cli-launcher execs this name; upstream Orca owns Orca.exe.
+    executableName: 'BrzA Studio',
     // SignPath signs Windows installers after packaging, so set release publisherName explicitly.
     // Unsigned dev channels omit it or updater signature checks reject dev updates and return to stable.
     // Sign hook signs nothing: it relays transient NSIS uninstaller files to CI SignPath; unset relay env leaves local/dev builds inert.
@@ -524,13 +531,22 @@ module.exports = {
       ...commonExtraResources,
       ...windowsRuntimeResources,
       winSpeechNativeResource,
+      // bin joins the user PATH and carries only `brza`; terminal-bin keeps `orca` for agents inside the app.
       {
-        from: 'resources/win32/bin/orca.cmd',
-        to: 'bin/orca.cmd'
+        from: 'resources/win32/bin/brza.cmd',
+        to: 'bin/brza.cmd'
       },
       {
         from: 'native/windows-cli-launcher/.build/orca.exe',
-        to: 'bin/orca.exe'
+        to: 'bin/brza.exe'
+      },
+      {
+        from: 'resources/win32/bin/orca.cmd',
+        to: 'terminal-bin/orca.cmd'
+      },
+      {
+        from: 'native/windows-cli-launcher/.build/orca.exe',
+        to: 'terminal-bin/orca.exe'
       },
       {
         from: 'native/windows-cli-launcher/.build/orca-administrator-restart.exe',
@@ -563,8 +579,8 @@ module.exports = {
     include: resolve(__dirname, 'nsis', 'orca-installer-hooks.nsh')
   },
   mac: {
-    // resources/darwin/bin/orca execs Contents/MacOS/Orca inside the renamed bundle.
-    executableName: 'Orca',
+    // resources/darwin/bin/orca execs Contents/MacOS/BrzA Studio; this also names BrzA Studio.app.
+    executableName: 'BrzA Studio',
     // Alternate rank preserves Finder’s default; one entry per extension because app-builder globs the value as a string.
     fileAssociations: [
       ...MARKDOWN_FILE_EXTENSIONS.map((ext) => ({
@@ -607,6 +623,11 @@ module.exports = {
       ...commonExtraResources,
       ...createPackagedRuntimeNodeModuleResources('darwin'),
       macSpeechNativeResource,
+      // /usr/local/bin/brza points at bin/brza; bin/orca only serves agents in the app's own terminals.
+      {
+        from: 'resources/darwin/bin/orca',
+        to: 'bin/brza'
+      },
       {
         from: 'resources/darwin/bin/orca',
         to: 'bin/orca'
@@ -766,7 +787,7 @@ function chmodUnixCliLaunchers(resourcesDir, electronPlatformName) {
   if (electronPlatformName === 'win32') {
     return
   }
-  for (const launcherName of ['orca', 'orca-ide']) {
+  for (const launcherName of ['brza', 'orca', 'orca-ide']) {
     const launcherPath = join(resourcesDir, 'bin', launcherName)
     if (!existsSync(launcherPath)) {
       continue

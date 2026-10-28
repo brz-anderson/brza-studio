@@ -75,17 +75,17 @@ export function installedElectronCandidates(
   const joinPath = platform === 'win32' ? win32.join : posix.join
   if (platform === 'darwin') {
     return [
-      '/Applications/BrzA Studio.app/Contents/MacOS/Orca',
-      joinPath(homePath, 'Applications', 'BrzA Studio.app', 'Contents', 'MacOS', 'Orca')
+      '/Applications/BrzA Studio.app/Contents/MacOS/BrzA Studio',
+      joinPath(homePath, 'Applications', 'BrzA Studio.app', 'Contents', 'MacOS', 'BrzA Studio')
     ]
   }
   if (platform === 'win32') {
     return [
       ...(environment.LOCALAPPDATA
-        ? [joinPath(environment.LOCALAPPDATA, 'Programs', 'BrzA Studio', 'Orca.exe')]
+        ? [joinPath(environment.LOCALAPPDATA, 'Programs', 'brza-studio', 'BrzA Studio.exe')]
         : []),
       ...(environment.ProgramFiles
-        ? [joinPath(environment.ProgramFiles, 'BrzA Studio', 'Orca.exe')]
+        ? [joinPath(environment.ProgramFiles, 'BrzA Studio', 'BrzA Studio.exe')]
         : [])
     ]
   }

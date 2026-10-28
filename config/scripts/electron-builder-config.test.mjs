@@ -6,6 +6,12 @@ import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { promisify } from 'node:util'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import {
+  BRAND_APP_NAME,
+  BRAND_CLI_COMMAND_NAME,
+  BRAND_PROTOCOL_SCHEME,
+  BRAND_USER_DATA_DIR_NAME
+} from '../../src/shared/brand-identity'
 import { writeMobileWebBundleFixtureTree } from './mobile-web-bundle-fixture-tree.mjs'
 
 const REPO_ROOT = join(import.meta.dirname, '..', '..')
@@ -15,6 +21,24 @@ const electronBuilderConfig = require('../electron-builder.config.cjs')
 const { copyFiles, FileMatcher } = require('app-builder-lib/out/fileMatcher')
 
 describe('electron-builder config', () => {
+  // The .cjs config cannot import src/shared/brand-identity.ts; this keeps both apart from upstream Orca.
+  it('packages the identity BrzA Studio needs beside upstream Orca', () => {
+    expect(electronBuilderConfig.extraMetadata.name).toBe(BRAND_USER_DATA_DIR_NAME)
+    expect(electronBuilderConfig.protocols).toEqual([
+      { name: BRAND_APP_NAME, schemes: [BRAND_PROTOCOL_SCHEME] }
+    ])
+    expect(electronBuilderConfig.mac.executableName).toBe(BRAND_APP_NAME)
+    expect(electronBuilderConfig.win.executableName).toBe(BRAND_APP_NAME)
+    expect(electronBuilderConfig.mac.extraResources).toContainEqual({
+      from: 'resources/darwin/bin/orca',
+      to: `bin/${BRAND_CLI_COMMAND_NAME}`
+    })
+    expect(electronBuilderConfig.win.extraResources).toContainEqual({
+      from: 'native/windows-cli-launcher/.build/orca.exe',
+      to: `bin/${BRAND_CLI_COMMAND_NAME}.exe`
+    })
+  })
+
   it('excludes repo-only source trees from app.asar', () => {
     const matcher = new FileMatcher('/app', '/dest', (value) => value, electronBuilderConfig.files)
     matcher.prependPattern('**/*')
@@ -373,6 +397,7 @@ describe('electron-builder config', () => {
       delete process.env.ORCA_MAC_RELEASE
       process.env.ORCA_LOCAL_BUILD_VERSION = '1.4.159-rc.0.local.123.abc'
       expect(require('../electron-builder.config.cjs').extraMetadata).toEqual({
+        name: 'brza-studio',
         version: '1.4.159-rc.0.local.123.abc'
       })
     } finally {
@@ -399,7 +424,9 @@ describe('electron-builder config', () => {
       delete require.cache[configPath]
       process.env.ORCA_LOCAL_BUILD_VERSION = '1.4.159-local.123.abc'
       process.env.ORCA_MAC_RELEASE = '1'
-      expect(require('../electron-builder.config.cjs').extraMetadata).toBeUndefined()
+      expect(require('../electron-builder.config.cjs').extraMetadata).toEqual({
+        name: 'brza-studio'
+      })
     } finally {
       if (originalLocalVersion === undefined) {
         delete process.env.ORCA_LOCAL_BUILD_VERSION

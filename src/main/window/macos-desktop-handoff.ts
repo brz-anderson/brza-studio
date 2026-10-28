@@ -2,6 +2,7 @@ import { app } from 'electron'
 import { dirname, resolve } from 'node:path'
 import { spawnProcess } from '@orca/process-host'
 import { applyBackgroundActivationPolicy } from './foreground-activation-policy'
+import { BRAND_PROTOCOL_SCHEME } from '../../shared/brand-identity'
 
 /** macOS 27 LaunchServices routes opens to the first registered bundle instance, even an SSH-started sidecar. Hand them to a fresh desktop instance instead of revealing the sidecar profile. */
 export function handOffToDesktopApp(
@@ -77,7 +78,7 @@ export function desktopHandoffArguments(pending: {
 }): string[] {
   const shareId = pending.skillShareDeepLinks.consume()
   return [
-    ...(shareId ? [`orca://skills/share/${shareId}`] : []),
+    ...(shareId ? [`${BRAND_PROTOCOL_SCHEME}://skills/share/${shareId}`] : []),
     ...pending.osOpenedDocuments.consume()
   ]
 }

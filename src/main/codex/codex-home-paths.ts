@@ -19,6 +19,7 @@ import {
 } from './codex-managed-home-resource-copy-marker'
 import { syncSystemCodexRulesIntoManagedHome } from './codex-managed-home-rules'
 import { observe, observeResolvedPathEntry } from './codex-path-observation'
+import { BRAND_USER_DATA_DIR_NAME } from '../../shared/brand-identity'
 
 const CODEX_GLOBAL_INSTRUCTIONS_ENTRY = 'AGENTS.md'
 
@@ -72,12 +73,15 @@ export function getOrcaUserDataPath(): string {
   }
   // Offline CLI hooks run outside Electron and must resolve the same userData path.
   if (process.platform === 'darwin') {
-    return join(homedir(), 'Library', 'Application Support', 'orca')
+    return join(homedir(), 'Library', 'Application Support', BRAND_USER_DATA_DIR_NAME)
   }
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA ?? join(homedir(), 'AppData', 'Roaming'), 'orca')
+    return join(
+      process.env.APPDATA ?? join(homedir(), 'AppData', 'Roaming'),
+      BRAND_USER_DATA_DIR_NAME
+    )
   }
-  return join(process.env.XDG_CONFIG_HOME || join(homedir(), '.config'), 'orca')
+  return join(process.env.XDG_CONFIG_HOME || join(homedir(), '.config'), BRAND_USER_DATA_DIR_NAME)
 }
 
 export function syncSystemCodexResourcesIntoManagedHome(managedHomePath?: string): void {

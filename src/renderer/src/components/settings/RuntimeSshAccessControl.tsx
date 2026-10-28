@@ -10,8 +10,9 @@ import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { SshTargetSelect } from './SshTargetSelect'
+import { BRAND_DEFAULT_WS_PORT } from '../../../../shared/brand-identity'
 
-const DEFAULT_REMOTE_PORT = '6768'
+const DEFAULT_REMOTE_PORT = String(BRAND_DEFAULT_WS_PORT)
 
 type RuntimeSshAccessControlProps = {
   api: Pick<ManagedOrcadPreloadApi, 'linkSshAccess' | 'unlinkSshAccess'>

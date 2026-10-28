@@ -16,8 +16,9 @@ import type {
   RelayDeviceBinding,
   RelayRevokeOutboxItem
 } from '../mobile-cloud-relay/relay-revoke-outbox'
+import { BRAND_DEFAULT_WS_PORT } from '../../../shared/brand-identity'
 
-export const DEFAULT_WS_PORT = 6768
+export const DEFAULT_WS_PORT = BRAND_DEFAULT_WS_PORT
 
 // Unpaired desktop starts on loopback; explicit network pairing or serve may expose interfaces (STA-2370).
 export const WS_BIND_HOST_LOOPBACK = '127.0.0.1'

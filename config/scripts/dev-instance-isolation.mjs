@@ -3,16 +3,17 @@ import { existsSync, lstatSync, mkdirSync, readFileSync, writeFileSync } from 'n
 import net from 'node:net'
 import path from 'node:path'
 
-export const SHARED_DEV_PROFILE_DIR_NAME = 'orca-dev'
-// Why the "orca-dev" prefix: CLI/orchestration dev-mode checks match "orca-dev" in ORCA_USER_DATA_PATH.
+// Sync with BRAND_DEV_*_DIR_NAME in src/shared/brand-identity.ts; upstream Orca dev owns orca-dev/orca-dev-wt.
+export const SHARED_DEV_PROFILE_DIR_NAME = 'brza-dev'
+// Why the "brza-dev" prefix: CLI/orchestration dev-mode checks match "brza-dev" in ORCA_USER_DATA_PATH.
 // Why short: runtime sockets live in userData and macOS caps socket paths at 104 bytes.
-export const WORKTREE_DEV_PROFILES_DIR_NAME = 'orca-dev-wt'
+export const WORKTREE_DEV_PROFILES_DIR_NAME = 'brza-dev-wt'
 export const WORKTREE_PROFILE_MARKER_FILE = 'orca-dev-worktree.json'
 export const WORKTREE_PROFILE_NAME_PATTERN = /^[\da-f]{10}$/
 export const DEV_PROFILE_MODES = ['shared', 'worktree']
 
 // Why these ranges: clear of Vite's 5173+ (common in projects opened inside dev Orca),
-// Chrome's 9222, and Orca's production ports (pairing WebSocket 6768).
+// Chrome's 9222, and BrzA Studio's and Orca's production ports (pairing WebSocket 6868 and 6768).
 export const RENDERER_PORT_RANGE = { base: 15200, spread: 200 }
 export const CDP_PORT_RANGE = { base: 9333, spread: 200 }
 const PORT_SWEEP = 64

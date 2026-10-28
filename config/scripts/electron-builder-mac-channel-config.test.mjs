@@ -93,7 +93,10 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_HOURLY: '1', ORCA_HOURLY_BUILD_VERSION: '1.4.160-hourly.202607281400' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-hourly.202607281400' })
+        expect(config.extraMetadata).toEqual({
+          name: 'brza-studio',
+          version: '1.4.160-hourly.202607281400'
+        })
       }
     )
   })
@@ -113,7 +116,10 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_ADHOC: '1', ORCA_ADHOC_BUILD_VERSION: '1.4.160-adhoc.20260728140533' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-adhoc.20260728140533' })
+        expect(config.extraMetadata).toEqual({
+          name: 'brza-studio',
+          version: '1.4.160-adhoc.20260728140533'
+        })
       }
     )
   })
@@ -132,7 +138,10 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_DAILY: '1', ORCA_DAILY_BUILD_VERSION: '1.4.160-daily.202607281300' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-daily.202607281300' })
+        expect(config.extraMetadata).toEqual({
+          name: 'brza-studio',
+          version: '1.4.160-daily.202607281300'
+        })
       }
     )
   })

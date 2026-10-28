@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { join } from 'node:path'
 import { SERVE_LAUNCHD_LABEL_PREFIX } from '../../shared/serve-bundle-coordination'
+import { BRAND_APP_NAME } from '../../shared/brand-identity'
 
 export type ServeServiceManager = 'launchd' | 'systemd'
 
@@ -60,7 +61,7 @@ export function renderServeService(input: ServeServiceInput): ServeServiceSpec {
   const argv = [input.command, ...serveServiceArgs(input)]
   if (manager === 'launchd') {
     const name = suffix ? `${SERVE_LAUNCHD_LABEL_PREFIX}.${suffix}` : SERVE_LAUNCHD_LABEL_PREFIX
-    const logPath = join(input.homeDir, 'Library', 'Logs', 'Orca', `${name}.log`)
+    const logPath = join(input.homeDir, 'Library', 'Logs', BRAND_APP_NAME, `${name}.log`)
     return {
       manager,
       name,

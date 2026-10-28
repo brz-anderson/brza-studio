@@ -169,17 +169,19 @@ describe('sealStructuredSessionChild identity', () => {
       installFakeAppEnvironment({ isPackaged: () => true, getPath: () => USER_DATA })
       const env = sealedChildEnv(SESSION_ID, { PATH: '/usr/bin' })
       expect(env.PATH).toBe(`${join(RESOURCES, 'bin')}:/usr/bin`)
-      expect(env.ORCA_CLI_COMMAND).toBe(join(RESOURCES, 'bin', 'orca'))
+      expect(env.ORCA_CLI_COMMAND).toBe(join(RESOURCES, 'bin', 'brza'))
     })
 
     it('on packaged Windows, through the bundled CLI dir under the env block spelling', () => {
       pinPlatform('win32')
       installFakeAppEnvironment({ isPackaged: () => true, getPath: () => USER_DATA })
       const env = sealedChildEnv(SESSION_ID, { Path: 'C:\\Windows' })
-      expect(env.Path).toBe(`${join(RESOURCES, 'bin')};C:\\Windows`)
+      expect(env.Path).toBe(
+        `${join(RESOURCES, 'bin')};${join(RESOURCES, 'terminal-bin')};C:\\Windows`
+      )
       expect(env.PATH).toBeUndefined()
       // The native launcher: `orca.cmd` refuses message bodies cmd.exe would mangle.
-      expect(env.ORCA_CLI_COMMAND).toBe(join(RESOURCES, 'bin', 'orca.exe'))
+      expect(env.ORCA_CLI_COMMAND).toBe(join(RESOURCES, 'bin', 'brza.exe'))
       expect(env.ORCA_CLI_BIN_DIR).toBeUndefined()
     })
 

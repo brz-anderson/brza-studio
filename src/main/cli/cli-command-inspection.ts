@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { lstat, readFile, readlink } from 'node:fs/promises'
-import { basename, dirname, resolve } from 'node:path'
+import { basename, dirname, join, resolve } from 'node:path'
 import type { CliInstallMethod, CliInstallStatus } from '../../shared/cli-install-types'
 import { isAppImageExtractedLauncherPath } from './appimage-extracted-root'
 import { DEV_COMMAND_NAME, DEV_LAUNCHER_DIR } from './cli-install-constants'
@@ -10,6 +10,7 @@ import { isMissingError } from './cli-install-errors'
 import { CliInstallLocation } from './cli-install-location'
 import { isPathInsideOrEqual, samePathEntry } from './cli-install-path-format'
 import { extractLegacyAppImageCliWrapperTarget } from './legacy-appimage-cli-wrapper'
+import { BRAND_DEV_USER_DATA_DIR_NAME, BRAND_USER_DATA_DIR_NAME } from '../../shared/brand-identity'
 
 // Match after-install.sh's electron-builder name variants when reclaiming packaged launchers.
 const PACKAGED_LINUX_LAUNCHER_DIRECTORIES = ['/opt/Orca', '/opt/orca-ide', '/opt/orca']
@@ -161,14 +162,15 @@ export class CliCommandInspection extends CliInstallLocation {
     }
 
     const packagedUserDataPath = resolve(this.userDataPath)
-    const siblingDevUserDataPath = `${packagedUserDataPath}-dev`
+    // The packaged brza-studio profile pairs with brza-dev, not brza-studio-dev.
+    const siblingDevUserDataPath =
+      basename(packagedUserDataPath) === BRAND_USER_DATA_DIR_NAME
+        ? join(dirname(packagedUserDataPath), BRAND_DEV_USER_DATA_DIR_NAME)
+        : `${packagedUserDataPath}-dev`
     const siblingDevLauncherDir = resolve(siblingDevUserDataPath, ...DEV_LAUNCHER_DIR)
 
-    // Why: dev builds generate launchers under the sibling `*-dev` profile; packaged Orca must reclaim that command.
-    return (
-      basename(siblingDevUserDataPath) === `${basename(packagedUserDataPath)}-dev` &&
-      isPathInsideOrEqual(siblingDevLauncherDir, resolvedTarget)
-    )
+    // Why: dev builds generate launchers under the sibling dev profile; packaged Orca must reclaim that command.
+    return isPathInsideOrEqual(siblingDevLauncherDir, resolvedTarget)
   }
 
   protected isLinuxAppImage(): boolean {

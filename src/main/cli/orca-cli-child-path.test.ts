@@ -132,7 +132,9 @@ describe('prependOrcaCliDirToChildPath', () => {
       resourcesPath: RESOURCES,
       platform: 'win32'
     })
-    expect(env.Path).toBe(`${join(RESOURCES, 'bin')};C:\\Windows\\System32`)
+    expect(env.Path).toBe(
+      `${join(RESOURCES, 'bin')};${join(RESOURCES, 'terminal-bin')};C:\\Windows\\System32`
+    )
     expect(env.PATH).toBeUndefined()
     expect(env.ORCA_CLI_BIN_DIR).toBeUndefined()
     expect(env.ORCA_WSL_CLI_DIR).toBe('/guest/orca/bin')

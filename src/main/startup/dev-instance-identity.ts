@@ -1,8 +1,9 @@
 import { createHash } from 'node:crypto'
 import path from 'node:path'
 import type { AppIdentity } from '../../shared/app-identity'
+import { BRAND_APP_NAME } from '../../shared/brand-identity'
 
-const BASE_APP_NAME = 'BrzA Studio'
+const BASE_APP_NAME = BRAND_APP_NAME
 const BASE_APP_USER_MODEL_ID = 'com.brzanderson.brzastudio'
 const MAX_LABEL_LENGTH = 80
 
@@ -12,9 +13,10 @@ export type DevInstanceIdentity = AppIdentity & {
   appName: string
 }
 
-/** Electron fixes the Keychain service before ready. Rename dev only; packaged forks must retain their CFBundleName-derived encryption keys. */
+/** Electron fixes the Keychain service before ready. Packaged BrzA Studio renames too: its pinned userData started clean, apart from upstream Orca's `orca Safe Storage`. */
 export function shouldApplyPreReadyAppName(identity: Pick<AppIdentity, 'isDev'>): boolean {
-  return identity.isDev
+  void identity
+  return true
 }
 
 function cleanEnvValue(value: string | undefined): string | null {

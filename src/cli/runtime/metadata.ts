@@ -7,6 +7,7 @@ import {
   type RuntimeMetadata
 } from '../../shared/runtime-bootstrap'
 import { RuntimeClientError } from './types'
+import { BRAND_USER_DATA_DIR_NAME } from '../../shared/brand-identity'
 
 export function readMetadata(userDataPath: string): RuntimeMetadata {
   const metadataPath = getRuntimeMetadataPath(userDataPath)
@@ -55,7 +56,7 @@ export function getPlatformUserDataPath(
   homeDir = homedir()
 ): string {
   if (platform === 'darwin') {
-    return join(homeDir, 'Library', 'Application Support', 'orca')
+    return join(homeDir, 'Library', 'Application Support', BRAND_USER_DATA_DIR_NAME)
   }
   if (platform === 'win32') {
     const appData = process.env.APPDATA
@@ -65,8 +66,8 @@ export function getPlatformUserDataPath(
         'APPDATA is not set, so the BrzA Studio runtime metadata path cannot be resolved.'
       )
     }
-    return join(appData, 'orca')
+    return join(appData, BRAND_USER_DATA_DIR_NAME)
   }
   // Match Electron’s packaged userData path.
-  return join(process.env.XDG_CONFIG_HOME || join(homeDir, '.config'), 'orca')
+  return join(process.env.XDG_CONFIG_HOME || join(homeDir, '.config'), BRAND_USER_DATA_DIR_NAME)
 }

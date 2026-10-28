@@ -53,13 +53,13 @@ export function profileHasState(userDataPath) {
   )
 }
 
-/** Prefer orca-dev: dev builds share its safeStorage key, so its account session stays decryptable. */
+/** Prefer brza-dev: dev builds share its safeStorage key, so its account session stays decryptable. */
 export function getDefaultSeedSource(env = process.env, platform = process.platform) {
   const devProfile = getSharedDevUserDataPath(env, platform)
   if (profileHasState(devProfile)) {
     return devProfile
   }
-  return path.join(getAppDataDir(env, platform), 'orca')
+  return path.join(getAppDataDir(env, platform), 'brza-studio')
 }
 
 async function readProfileStateDatabaseDomains(databasePath) {
@@ -209,7 +209,7 @@ async function main() {
         'Usage: pnpm dev:seed-profile [--from=<profile dir>] [--to=<profile dir>] [--reset]',
         '',
         'Copies projects, workspaces, settings, SSH targets, and the Orca account session into an empty',
-        "dev profile. Default --from: orca-dev, else the installed app's profile. Default --to: this",
+        "dev profile. Default --from: brza-dev, else the installed app's profile. Default --to: this",
         "worktree's `pnpm dev` profile. --reset first deletes an existing per-worktree profile."
       ].join('\n')
     )

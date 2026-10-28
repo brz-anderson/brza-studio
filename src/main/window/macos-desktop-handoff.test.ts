@@ -167,7 +167,7 @@ describe('desktopHandoffArguments', () => {
       osOpenedDocuments: { consume: () => ['/Users/me/notes.md'] }
     })
 
-    expect(args).toEqual(['orca://skills/share/abc_123', '/Users/me/notes.md'])
+    expect(args).toEqual(['brza-studio://skills/share/abc_123', '/Users/me/notes.md'])
     expect(skillShareIdFromArguments(args)).toBe('abc_123')
   })
 

@@ -21,6 +21,7 @@ import { WslCliRegistration } from './WslCliRegistration'
 import { useCliRegistrationActions } from './use-cli-registration-actions'
 import { useLocalCliSkillFreshnessName } from './use-local-cli-skill-freshness-name'
 import { translate } from '@/i18n/i18n'
+import { BRAND_CLI_COMMAND_NAME } from '../../../../shared/brand-identity'
 
 type CliSectionProps = {
   currentPlatform: string
@@ -42,19 +43,19 @@ function getRevealLabel(platform: string): string {
 
 function getInstallDescription(platform: string): string {
   if (platform === 'darwin') {
-    return 'Register `orca` in /usr/local/bin.'
+    return `Register \`${BRAND_CLI_COMMAND_NAME}\` in /usr/local/bin.`
   }
   if (platform === 'linux') {
     return 'Register `orca-ide` in ~/.local/bin.'
   }
   if (platform === 'win32') {
-    return 'Register `orca` in your user PATH.'
+    return `Register \`${BRAND_CLI_COMMAND_NAME}\` in your user PATH.`
   }
   return 'CLI registration is not yet available on this platform.'
 }
 
 function getFallbackCommandName(platform: string): string {
-  return platform === 'linux' ? 'orca-ide' : 'orca'
+  return platform === 'linux' ? 'orca-ide' : BRAND_CLI_COMMAND_NAME
 }
 
 export function CliSection({
