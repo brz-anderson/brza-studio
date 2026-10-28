@@ -43,7 +43,19 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
 }
 
 /** Register a category here: the row word, MCP tool or command that names it, and its icon. */
-const BRZA_TOOL_CATEGORIES = [] as const satisfies readonly BrzaToolCategoryDefinition[]
+const BRZA_TOOL_CATEGORIES = [
+  { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
+  {
+    category: 'firebase',
+    iconName: 'flame',
+    matchesMcpTool: ({ server }) => /firebase/i.test(server)
+  },
+  {
+    category: 'context7',
+    iconName: 'book-open',
+    matchesMcpTool: ({ server }) => /context7/i.test(server)
+  }
+] as const satisfies readonly BrzaToolCategoryDefinition[]
 
 export type BrzaToolCategory = (typeof BRZA_TOOL_CATEGORIES)[number]['category']
 

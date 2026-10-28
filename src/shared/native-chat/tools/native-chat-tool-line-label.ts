@@ -6,6 +6,7 @@ import {
   nativeChatPlainCommandInput,
   nativeChatToolInputText
 } from './native-chat-tool-input-text'
+import { brzaToolLineTitle } from './brza/brza-tool-line-title'
 import { createToolInputDisplay, summarizeToolInput } from './native-chat-tool-summary'
 import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 
@@ -139,6 +140,10 @@ export function nativeChatToolLineLabel(
         failed: 'triedSearchWeb'
       })
     }
+  }
+  const brzaTitle = brzaToolLineTitle(call)
+  if (brzaTitle) {
+    ;({ target, title } = brzaTitle)
   }
   return { verb, target, title, command, filePath, commandDetail, commandLanguage }
 }
