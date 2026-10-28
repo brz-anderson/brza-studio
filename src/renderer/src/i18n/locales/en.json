@@ -21762,5 +21762,10 @@
     "ok": "OK",
     "unavailableMessage": "BrzA Studio can't stop every terminal session right now.",
     "unavailableDetail": "Nothing was stopped. Try again once your terminals have opened. If a terminal says it was opened in a newer version of BrzA Studio, reopen it first. If your terminals are already open, quit and reopen BrzA Studio, then try again."
+  },
+  "brza": {
+    "native-chat": {
+      "runInTerminal": "Run in terminal"
+    }
   }
 }

@@ -10,6 +10,7 @@ import {
   useNativeChatDisclosure
 } from './native-chat-disclosure-store'
 import { NativeChatHighlightedCode } from './NativeChatHighlightedCode'
+import { BrzaRunCodeButton } from './brza/BrzaRunCodeButton'
 
 /** Code fences need their own copy target rather than the whole chat message. */
 export function NativeChatCodeBlock({
@@ -36,6 +37,7 @@ export function NativeChatCodeBlock({
   const actions = code ? (
     <>
       <NativeChatCodeWrapButton wrapped={wrapped} onToggle={() => setWrapped(!wrapped)} />
+      <BrzaRunCodeButton code={copyText} language={language} />
       <NativeChatCopyButton
         text={copyText}
         label={translate('components.native-chat.copyCode', 'Copy code')}

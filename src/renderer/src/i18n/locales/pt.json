@@ -21468,5 +21468,10 @@
     "ok": "OK",
     "unavailableMessage": "O BrzA Studio não consegue encerrar todas as sessões de terminal agora.",
     "unavailableDetail": "Nada foi encerrado. Tente novamente depois que seus terminais abrirem. Se um terminal indicar que foi aberto em uma versão mais recente do BrzA Studio, reabra-o primeiro. Se seus terminais já estiverem abertos, saia do BrzA Studio, abra-o novamente e tente outra vez."
+  },
+  "brza": {
+    "native-chat": {
+      "runInTerminal": "Executar no terminal"
+    }
   }
 }
