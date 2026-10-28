@@ -21765,6 +21765,13 @@
   },
   "brza": {
     "native-chat": {
+      "expandBlock": "Expand block",
+      "expandBlockHint": "Expand in chat (Esc closes)",
+      "expandedBlock": "Expanded block",
+      "expandedLines": "{{count}} lines",
+      "expandedLines_one": "{{count}} line",
+      "expandedLines_other": "{{count}} lines",
+      "closeExpanded": "Close (Esc)",
       "runInTerminal": "Run in terminal"
     }
   }
