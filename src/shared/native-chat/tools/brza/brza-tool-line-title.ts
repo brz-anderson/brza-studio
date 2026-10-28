@@ -6,6 +6,7 @@ import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitSubject } from './brza-git-command'
 import { ghReference, ghReferenceTitle } from './brza-gh-command'
+import { testRunTitle } from './brza-test-command'
 
 type BrzaToolLineTitle = { target: string; title: string }
 
@@ -25,9 +26,14 @@ const BRZA_TITLE_SUBJECTS: Partial<
 const BRZA_COMMAND_TITLES: Partial<
   Record<
     BrzaToolCategory,
-    (segments: readonly BrzaShellSegment[], result?: NativeChatToolResultBlock) => string | null
+    (
+      segments: readonly BrzaShellSegment[],
+      result: NativeChatToolResultBlock | undefined,
+      call: NativeChatToolCallBlock
+    ) => string | null
   >
 > = {
+  tests: testRunTitle,
   gh: (segments, result) => {
     const reference = ghReference(segments, result)
     return reference === null ? null : ghReferenceTitle(reference)
@@ -55,7 +61,7 @@ export function brzaToolLineTitle(
   if (commandTitle) {
     // The tooltip keeps the whole command the row no longer shows.
     const command = nativeChatFullCommand(call.input)
-    const target = command === null ? null : commandTitle(brzaShellSegments(command), result)
+    const target = command === null ? null : commandTitle(brzaShellSegments(command), result, call)
     return command === null || target === null ? null : { target, title: command }
   }
   const subject = category === null ? undefined : BRZA_TITLE_SUBJECTS[category]

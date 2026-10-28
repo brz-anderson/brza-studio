@@ -708,7 +708,7 @@ describe('NativeChatToolRun', () => {
 
     it('heads a run that is all shell with the terminal glyph, whatever each is named', () => {
       const blocks: NativeChatBlock[] = [
-        call('shell', { command: 'npm test' }),
+        call('shell', { command: 'pwd' }),
         call('Bash', { command: 'ls' })
       ]
 
@@ -725,7 +725,7 @@ describe('NativeChatToolRun', () => {
 
     it('heads a run spanning categories with the generic tool glyph', () => {
       const blocks: NativeChatBlock[] = [
-        call('shell', { command: 'npm test' }),
+        call('shell', { command: 'pwd' }),
         call('read', { command: "sed -n '1,50p' a.ts", path: 'a.ts' })
       ]
 
