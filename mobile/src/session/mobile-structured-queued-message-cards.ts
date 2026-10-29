@@ -18,11 +18,13 @@ import {
 } from '../../../src/shared/agent-session-wire'
 import { readAgentMessageSource } from '../../../src/shared/agent-session/agent-session-message-source'
 import { agentMessageAttribution } from './mobile-agent-message-attribution'
+import { agentMessageDisplayText } from '../../../src/shared/agent-session/agent-message-display-text'
 
 export type MobileQueuedMessageCard = {
   messageId: string
   automatic?: true
   text: string
+  displayText?: string
   state: 'waiting' | 'returned'
   paused: boolean
   needsAttention: boolean
@@ -124,17 +126,24 @@ export function mobileQueuedMessageCards(
           : behindReturned
             ? 'Waiting — a message ahead needs attention'
             : null
+    const from = readAgentMessageSource(draft.body.from)
     cards.push({
       messageId: draft.messageId,
       ...(draft.body.from !== undefined ? { automatic: true as const } : {}),
       text: queuedMessageBodyText(draft.body),
+      ...(from
+        ? {
+            displayText:
+              agentMessageDisplayText(draft.body.blocks, from) ?? queuedMessageBodyText(draft.body)
+          }
+        : {}),
       state: draft.state,
       paused,
       needsAttention:
         draft.state === 'returned' ||
         (paused && draft.pausedReason === QUEUED_MESSAGE_PAUSED_SEND_FAILED),
       caption,
-      attribution: agentMessageAttribution('From', readAgentMessageSource(draft.body.from)),
+      attribution: agentMessageAttribution('From', from),
       ...(draft.body.command !== undefined
         ? {
             command: true as const,

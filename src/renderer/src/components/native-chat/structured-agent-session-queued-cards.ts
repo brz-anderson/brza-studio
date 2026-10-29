@@ -1,5 +1,6 @@
 // Derive hold labels on the client; the wire carries queue state, not presentation wording.
 
+import { agentMessageDisplayText } from '../../../../shared/agent-session/agent-message-display-text'
 import type { UnreadAgentSessionFailureFact } from '../../../../shared/agent-session-failure'
 import type { AgentJournalSubmission } from '../../../../shared/agent-session-journal-types'
 import type { NativeChatImageRefBlock } from '../../../../shared/native-chat-types'
@@ -29,6 +30,7 @@ export type QueuedMessageCard = {
   messageId: string
   position: number
   text: string
+  displayText?: string
   /** The draft's images, which an edit of its text keeps. */
   images?: readonly NativeChatImageRefBlock[]
   state: 'waiting' | 'returned'
@@ -85,6 +87,13 @@ export function projectQueuedMessageCards(
       messageId: message.messageId,
       position: message.position,
       text: queuedMessageCardText(message.body),
+      ...(from
+        ? {
+            displayText:
+              agentMessageDisplayText(message.body.blocks, from) ??
+              queuedMessageCardText(message.body)
+          }
+        : {}),
       ...queuedMessageCardImages(message.body),
       state: message.state,
       hold,

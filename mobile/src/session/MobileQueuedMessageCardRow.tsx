@@ -78,7 +78,7 @@ function QueuedMessageCardContents({
             </Text>
           ) : null}
           <MobileQueuedCardText
-            text={card.text}
+            text={card.displayText ?? card.text}
             expanded={expanded}
             onToggle={() => setExpanded(!expanded)}
           />
@@ -161,7 +161,7 @@ function QueuedMessageCardContents({
               accessibilityHint="Shows less of the message"
               onPress={() => setExpanded(false)}
             >
-              <Text style={styles.bodyText}>{card.text}</Text>
+              <Text style={styles.bodyText}>{card.displayText ?? card.text}</Text>
             </Pressable>
           ) : null}
           {returned && card.caption ? (

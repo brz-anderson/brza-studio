@@ -26,6 +26,7 @@ import {
   MobileNativeChatReasoningRow
 } from './MobileNativeChatReasoningRow'
 import { mobileNativeChatRowId } from '../../mobile-native-chat-reading-place'
+import { brzaClaudeHandBack } from '../../../../../src/shared/native-chat/brza/brza-claude-peer-sender'
 import { nativeChatWorkRunEntries } from '../../../../../src/shared/native-chat-work-run'
 import { nativeChatReasoningDisclosureKey } from '../../../../../src/shared/native-chat-reasoning-row'
 import { MobileNativeChatTurnStatus } from './MobileNativeChatTurnStatus'
@@ -119,7 +120,10 @@ function MobileNativeChatMessageImpl({
   onToggleUserMessage?: (messageId: string) => void
 }): React.JSX.Element {
   const { shown: message, showFull, recovery } = useMobileNativeChatFullMessage(rowMessage)
-  const attribution = agentMessageAttribution('Message from', message.from)
+  const attribution = agentMessageAttribution(
+    message.from && brzaClaudeHandBack(message.from) ? 'Hand-back from' : 'Message from',
+    message.from
+  )
   const isUser = message.role === 'user' && attribution === null
   const isReasoning = message.role === 'reasoning'
   const { prose, tools: blocksOfTools } = splitNativeChatBlocks(message.blocks)

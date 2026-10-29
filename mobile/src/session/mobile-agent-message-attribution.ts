@@ -6,7 +6,7 @@ import {
 const UNNAMED_SENDER = 'an agent'
 
 export function agentMessageAttribution(
-  lead: 'From' | 'Message from',
+  lead: 'From' | 'Message from' | 'Hand-back from',
   source: AgentMessageSource | undefined
 ): string | null {
   if (!source) {

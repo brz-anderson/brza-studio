@@ -20075,7 +20075,12 @@
       "agentMessage": {
         "handBackFrom": "Devolução de",
         "messageFrom": "Mensagem de",
-        "unnamedSender": "um agente"
+        "unnamedSender": "um agente",
+        "goToAgent": "Ir para o agente",
+        "messageFromCoordinator": "Mensagem do seu coordenador",
+        "showMore": "Mostrar mais",
+        "taskFromCoordinator": "Tarefa do seu coordenador",
+        "updateFromWorker": "Atualização do seu worker"
       },
       "goal": {
         "placeholder": "Descreva seu objetivo e defina resultados mensuráveis para obter os melhores resultados",

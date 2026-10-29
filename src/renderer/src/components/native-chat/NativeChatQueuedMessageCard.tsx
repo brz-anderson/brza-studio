@@ -111,8 +111,9 @@ export function queuedMessageCardCaption(
 /** The card's line: its text, or for a card of images alone, the image's name or their count. */
 function queuedMessageCardLine(card: QueuedMessageCard): string {
   const images = card.images ?? []
-  if (card.text.trim() || images.length === 0) {
-    return card.text
+  const text = card.displayText ?? card.text
+  if (text.trim() || images.length === 0) {
+    return text
   }
   return images.length === 1
     ? nativeChatImageLabel(images[0])
