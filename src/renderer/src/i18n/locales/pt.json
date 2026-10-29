@@ -21483,7 +21483,8 @@
       "closeExpanded": "Fechar (Esc)",
       "runInTerminal": "Executar no terminal",
       "openCommitDiff": "Abrir o diff do commit",
-      "openInBrowser": "Abrir no navegador"
+      "openInBrowser": "Abrir no navegador",
+      "showAllImages": "Mostrar as {{total}} imagens"
     }
   }
 }

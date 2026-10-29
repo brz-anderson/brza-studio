@@ -30,6 +30,7 @@ import { NativeChatExpandable } from './NativeChatExpandable'
 import { useNativeChatDisclosure } from './native-chat-disclosure-store'
 import { NativeChatToolOutput } from './NativeChatToolOutput'
 import { BrzaToolLineChip } from './brza/BrzaToolLineChip'
+import { BrzaToolImageStrip } from './brza/BrzaToolImageStrip'
 
 const TARGET_CLASS =
   'min-w-0 truncate text-chat-foreground transition-colors group-hover/tool-line:text-chat-foreground-strong'
@@ -179,6 +180,11 @@ export function NativeChatToolLine({
           ) : null}
         </span>
       </button>
+      <BrzaToolImageStrip
+        images={body?.images}
+        expanded={expanded}
+        onExpand={() => setExpanded(true)}
+      />
       {hasDetail ? (
         <NativeChatExpandable open={expanded}>
           <ToolLineDetail
