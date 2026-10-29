@@ -23,6 +23,7 @@ import {
   NativeChatMarkdownImageLinkContext
 } from './NativeChatMarkdownImage'
 import { NativeChatWideTable } from './brza-chat-wide-table'
+import { useBrzaImageMentionExtension } from './brza/BrzaImageMention'
 import './native-chat-markdown.css'
 import './brza-chat-link.css'
 
@@ -115,13 +116,16 @@ export function NativeChatMarkdown({
 }: NativeChatMarkdownProps): React.JSX.Element {
   const wordFadeArmed = useWordFadeArmed(fadeWords)
   const visualExtension = useNativeChatVisualMarkdownExtension(visualMessageId)
-  const extension = useMemo(
+  const documentExtension = useMemo(
     () =>
       variant === 'document'
         ? createNativeChatImageExtension(visualExtension, onLinkClick)
-        : visualExtension,
+        : undefined,
     [onLinkClick, variant, visualExtension]
   )
+  const extension =
+    useBrzaImageMentionExtension(documentExtension, { settled: !streaming, content }) ??
+    visualExtension
   const fileLinkExists = useNativeChatFileLinkExists(linkifyFilePaths, streaming)
   return (
     <NativeChatMarkdownRowKeyContext.Provider value={rowKey}>

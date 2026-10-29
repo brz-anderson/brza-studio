@@ -18,6 +18,11 @@ import {
 } from './native-chat-markdown-image-owner'
 import { useNativeChatLinkActions } from './use-native-chat-link-actions'
 import {
+  NativeChatFileLinkExistenceContext,
+  type NativeChatFileLinkExistence
+} from './native-chat-file-link-existence'
+import type { FileLinkExists } from '@/components/sidebar/comment-markdown-native-chat-file-links'
+import {
   nativeChatFanoutFixture,
   nativeChatFanoutWorkspace,
   repoFixture,
@@ -77,6 +82,13 @@ class ImageVisibilityObserver implements IntersectionObserver {
       this
     )
   }
+}
+
+const onlyShotExists: FileLinkExists = (link) => link.pathText === '/abs/shot.png'
+const shotSnapshot = { check: onlyShotExists, peek: onlyShotExists }
+const shotExistence: NativeChatFileLinkExistence = {
+  watch: () => ({ subscribe: () => () => {}, getSnapshot: () => shotSnapshot }),
+  recheck: () => {}
 }
 
 const localOwner = {
@@ -730,6 +742,60 @@ describe('native chat Markdown image preview', () => {
     expect(screen.queryByRole('dialog')).toBeNull()
     rerender(<Transcript />)
     expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  it('shows a BrzA thumbnail below a settled paragraph naming an image, once per image and only once it loads', async () => {
+    const content = [
+      'Saved `/abs/shot.png`, then `/abs/shot.png` again.',
+      '![Shot](other.png) is [the same](other.png).',
+      'Remote https://cdn.example.com/a.png and https://cdn.example.com/broken.png.'
+    ].join('\n\n')
+    const reply = (streaming: boolean): React.JSX.Element => (
+      <TooltipProvider>
+        <NativeChatFileLinkExistenceContext.Provider value={shotExistence}>
+          <NativeChatMarkdownImageOwnerContext.Provider value={localOwner}>
+            <NativeChatMarkdown
+              content={content}
+              variant="document"
+              streaming={streaming}
+              linkifyFilePaths
+              allowFileUriLinks
+            />
+          </NativeChatMarkdownImageOwnerContext.Provider>
+        </NativeChatFileLinkExistenceContext.Provider>
+      </TooltipProvider>
+    )
+    const triggers = (hidden = false): HTMLElement[] =>
+      screen.queryAllByRole('button', { name: /^View image/, hidden })
+    const remote = (src: string): HTMLElement => {
+      const image = screen
+        .getAllByRole('img', { hidden: true })
+        .find((img) => img.getAttribute('src') === src)
+      if (!image) {
+        throw new Error(`no image ${src}`)
+      }
+      return image
+    }
+
+    const view = render(reply(true))
+    expect(triggers(true)).toHaveLength(1)
+
+    view.rerender(reply(false))
+    expect(screen.getAllByRole('link', { name: '/abs/shot.png' })).toHaveLength(2)
+    expect(screen.getByRole('link', { name: 'the same' })).toBeInTheDocument()
+    expect(triggers(true)).toHaveLength(4)
+    expect(triggers().map((trigger) => trigger.getAttribute('aria-label'))).toEqual([
+      'View image: Shot'
+    ])
+
+    fireEvent.load(await screen.findByRole('img', { name: 'shot.png', hidden: true }))
+    fireEvent.load(remote('https://cdn.example.com/a.png'))
+    fireEvent.error(remote('https://cdn.example.com/broken.png'))
+    expect(triggers().map((trigger) => trigger.getAttribute('aria-label'))).toEqual([
+      'View image: shot.png',
+      'View image: Shot',
+      'View image: Image'
+    ])
   })
 
   it('retains compact trust checks and GitHub attachment fallback', () => {
