@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { nativeChatToolIconName } from '../native-chat-tool-icon'
 import { nativeChatToolLineLabel } from '../native-chat-tool-line-label'
+import { summarizeToolInput } from '../native-chat-tool-summary'
 import type { NativeChatToolCallBlock } from '../../../native-chat-types'
 
 function call(
@@ -52,5 +53,19 @@ describe('BrzA tool line titles', () => {
     )
     expect(plain).toMatchObject({ target: 'hooks', title: 'hooks' })
     expect(nativeChatToolLineLabel(call('Skill', {})).title).not.toContain('Skill ·')
+  })
+
+  it('keeps the upstream verb, target and title for a command no BrzA category claims', () => {
+    const command = 'echo done && wc -l notes.txt'
+    expect(
+      nativeChatToolLineLabel({ ...call('Bash', { command }), state: 'running' })
+    ).toMatchObject({ verb: 'running', target: command, title: command, command: true })
+    expect(
+      nativeChatToolLineLabel(call('Bash', { command }), { type: 'tool-result', output: '3' })
+    ).toMatchObject({ verb: 'ran', target: command, title: command, command: true })
+    const long = `printf '%s\\n' ${'segment '.repeat(30)}| sort | uniq -c`
+    const label = nativeChatToolLineLabel(call('Bash', { command: long }))
+    expect(label).toMatchObject({ verb: 'ran', target: summarizeToolInput(long), title: long })
+    expect(label.target).toMatch(/…$/)
   })
 })
