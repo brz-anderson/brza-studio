@@ -13,6 +13,10 @@ import {
   unnamedSenderLabel,
   useAgentMessageSenderLabel
 } from './native-chat-agent-message-sender-label'
+import {
+  brzaClaudeHandBack,
+  brzaClaudePeerKind
+} from '../../../../shared/native-chat/brza/brza-claude-peer-sender'
 
 /** Open resolvable local senders; use plain names when chat context is absent or the sender belongs to another host. */
 export function NativeChatAgentMessageSenders({
@@ -32,7 +36,9 @@ export function NativeChatAgentMessageSenders({
       <span>
         {queued
           ? translate('components.native-chat.queuedMessages.fromSender', 'From')
-          : translate('components.native-chat.agentMessage.messageFrom', 'Message from')}
+          : brzaClaudeHandBack(from)
+            ? translate('components.native-chat.agentMessage.handBackFrom', 'Hand-back from')
+            : translate('components.native-chat.agentMessage.messageFrom', 'Message from')}
       </span>
       {shown.length === 0 ? <span className="px-2">{unnamedSenderLabel()}</span> : null}
       {shown.map((sender, index) => (
@@ -94,5 +100,6 @@ function SenderName({
 
 /** A federated sender (`dispatch:<id>`) runs on another host, which this chat's host cannot open. */
 function opensFromHere(sender: AgentMessageSender): boolean {
-  return !sender.party.address.startsWith('dispatch:')
+  // A Claude Code peer has no Orca mailbox entry to open.
+  return !sender.party.address.startsWith('dispatch:') && brzaClaudePeerKind(sender) === null
 }

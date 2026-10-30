@@ -287,7 +287,8 @@ export function legacyItemBody(
   return {
     kind: 'message',
     role: message.role,
-    blocks: limits ? message.blocks.map((block) => boundBlock(block, limits)) : message.blocks
+    blocks: limits ? message.blocks.map((block) => boundBlock(block, limits)) : message.blocks,
+    ...(message.from ? { from: message.from } : {})
   }
 }
 

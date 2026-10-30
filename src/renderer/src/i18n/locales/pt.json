@@ -20055,6 +20055,7 @@
         "unreported": "O uso de contexto não está disponível para esta sessão."
       },
       "agentMessage": {
+        "handBackFrom": "Devolução de",
         "messageFrom": "Mensagem de",
         "unnamedSender": "um agente"
       },

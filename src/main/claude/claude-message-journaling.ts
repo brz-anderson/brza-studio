@@ -1,6 +1,8 @@
 import { writeClaudeTerminalFailure } from './claude-terminal-failure'
 import { agentSessionFailureWords } from '../../shared/agent-session-failure-words'
 import { agentJournalItemKey } from '../../shared/agent-session-journal-item-key'
+import { AGENT_JOURNAL_THREAD_SCOPE } from '../../shared/agent-session-journal-types'
+import { brzaClaudePeerJournalBody } from '../native-chat/brza/brza-claude-peer-message'
 import type { StructuredAgentSessionEventSink } from '../native-chat/agent-session-wire/structured-agent-session-event-sink'
 import type { ClaudeBackgroundTaskRows } from './claude-background-task-rows'
 import type { ClaudeToolOriginRegistry } from './claude-tool-origin-registry'
@@ -178,6 +180,11 @@ export function journalClaudeMessage(
   changed =
     appendUnmodeledContent(ctx.providerFallback, outputEnvelope, message, openOutputTurn, stamp) ||
     changed
+  const peerBody = brzaClaudePeerJournalBody(message)
+  if (peerBody) {
+    ctx.sink.appendItem(identity, peerBody, { turnScope: AGENT_JOURNAL_THREAD_SCOPE })
+    changed = true
+  }
   const sendEchoTurn = claudeTurnOpenedBySendEcho({
     envelope,
     frame: message,

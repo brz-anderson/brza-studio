@@ -16,6 +16,7 @@ import { claudeContentBlocks } from './transcript-record-blocks'
 import { unwrapClaudePastedContentBlock } from '../../shared/claude-pasted-content'
 import { unwrapClaudeBashInputBlock } from '../../shared/claude-bash-input'
 import { claudeInterruptedMessageId } from './transcript-turn-markers'
+import { brzaClaudePeerChatMessage } from './brza/brza-claude-peer-message'
 
 const MAX_EDIT_PATCH_HUNKS = 40
 const MAX_EDIT_PATCH_HUNK_LINES = 400
@@ -94,6 +95,15 @@ export function decodeClaudeTranscriptLine(
       source: 'transcript',
       ...parent
     }
+  }
+  const peer = brzaClaudePeerChatMessage(record, {
+    id: recordMessageId,
+    timestamp,
+    source: 'transcript',
+    ...parent
+  })
+  if (peer) {
+    return peer
   }
   const message = asRecord(record.message)
   const editPatch = claudeEditPatch(record)
