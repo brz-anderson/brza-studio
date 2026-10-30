@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const electron = vi.hoisted(() => ({ app: { isPackaged: true, getVersion: () => '1.4.242' } }))
+const electron = vi.hoisted(() => ({
+  app: { isPackaged: true, getVersion: (): string => '1.4.242' }
+}))
 
 vi.mock('electron', () => electron)
 
