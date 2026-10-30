@@ -1,5 +1,6 @@
 import { isAgentChatPermissionMode } from '../../../../shared/agent-chat-permission-mode'
 import { normalizeNativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
+import { normalizeMarkdownThemeSettings } from '../../../../shared/markdown-theme-settings'
 import { normalizeAutoRenameBranchFromWorkDefaultOn } from '../../../../shared/auto-rename-branch-from-work-settings'
 import {
   getDefaultSettings,
@@ -213,6 +214,9 @@ export function mergeSettings(
       Object.hasOwn(updates, 'nativeChatAppearance')
         ? updates.nativeChatAppearance
         : base.nativeChatAppearance
+    ),
+    markdownTheme: normalizeMarkdownThemeSettings(
+      Object.hasOwn(updates, 'markdownTheme') ? updates.markdownTheme : base.markdownTheme
     ),
     uiLanguage: normalizeUiLanguage(updates.uiLanguage ?? base.uiLanguage)
   }

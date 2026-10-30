@@ -13,6 +13,7 @@ import { MarkdownTableOfContentsPanel } from './MarkdownTableOfContentsPanel'
 import { MarkdownPreviewBody } from './MarkdownPreviewBody'
 import { MarkdownPreviewReviewToolbar } from './MarkdownPreviewReviewToolbar'
 import { MarkdownPreviewSearchBar } from './MarkdownPreviewSearchBar'
+import { NATIVE_CHAT_THEME_SURFACE_CLASS } from '@/lib/native-chat-theme-surface-style'
 import type { MarkdownPreviewFoundation } from './use-markdown-preview-foundation'
 import type { MarkdownPreviewReviewActions } from './use-markdown-preview-review-actions'
 import type { MarkdownPreviewViewport } from './use-markdown-preview-viewport'
@@ -50,6 +51,7 @@ export function MarkdownPreviewSurface({
     tableOfContentsItems,
     editorFontSize,
     isDark,
+    markdownTheme,
     bodyRef,
     frontmatterVisible,
     renderedContent
@@ -61,7 +63,10 @@ export function MarkdownPreviewSurface({
   const frontMatterInner = useMemo(() => markdownFrontMatterInner(frontMatter), [frontMatter])
 
   return (
-    <div className="markdown-preview-shell">
+    <div
+      className={`markdown-preview-shell ${NATIVE_CHAT_THEME_SURFACE_CLASS}`}
+      style={markdownTheme.style}
+    >
       {showTableOfContents ? (
         <MarkdownTableOfContentsPanel
           virtualized={largePreview}

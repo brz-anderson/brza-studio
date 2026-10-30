@@ -5,7 +5,7 @@ import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
 import type { NodeViewProps } from '@tiptap/react'
 import { Copy, Check } from 'lucide-react'
 import MermaidBlock from './MermaidBlock'
-import { useDocumentDarkTheme } from '@/hooks/use-document-dark-theme'
+import { useMarkdownSurfaceTheme } from './use-markdown-surface-theme'
 import { translate } from '@/i18n/i18n'
 import {
   getCodeBlockLanguageLabel,
@@ -25,7 +25,7 @@ export function RichMarkdownCodeBlock({
   const copiedResetTimerRef = useRef<number | null>(null)
   // Clipboard IPC may settle after unmount; do not start an orphan reset timer.
   const isMountedRef = useRef(false)
-  const isDark = useDocumentDarkTheme()
+  const { isDark } = useMarkdownSurfaceTheme()
 
   const isMermaid = language === 'mermaid'
 

@@ -1,4 +1,4 @@
-import { normalizeNativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
+import { sanitizeChatThemeSettingsUpdate } from '../../../../shared/chat-theme-settings-update'
 import type { StateCreator } from 'zustand'
 import type { AppState } from '../types'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
@@ -98,11 +98,7 @@ function normalizeSettingsUpdates(
       createId: createBrowserUuid
     })
   }
-  if ('nativeChatAppearance' in updates) {
-    sanitizedUpdates.nativeChatAppearance = normalizeNativeChatAppearanceSettings(
-      updates.nativeChatAppearance
-    )
-  }
+  sanitizeChatThemeSettingsUpdate(sanitizedUpdates, updates)
   if ('disabledTuiAgents' in updates) {
     sanitizedUpdates.disabledTuiAgents = normalizeDisabledTuiAgents(updates.disabledTuiAgents)
   }

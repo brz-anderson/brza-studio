@@ -595,6 +595,18 @@
       "actionPermissions": {
         "sameAsAgent": "Same as {{agent}}"
       }
+    },
+    "editor": {
+      "markdownTheme": {
+        "followChat": "Markdown Follows the Chat",
+        "followChatDescription": "The Markdown preview, rich editor and source view use the chat's theme, font and size.",
+        "keywordMarkdown": "markdown",
+        "keywordTheme": "theme",
+        "keywordChat": "chat",
+        "keywordPreview": "preview",
+        "ownTheme": "Markdown theme",
+        "ownThemeDescription": "Colors of the Markdown viewer while it does not follow the chat."
+      }
     }
   },
   "menu": {

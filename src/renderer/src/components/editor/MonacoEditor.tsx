@@ -50,6 +50,8 @@ type MonacoEditorProps = {
   passiveMirror?: boolean
   liveTail?: boolean
   autoHeight?: boolean
+  /** Replaces the editor font, as the Markdown code mode does while it follows the chat. */
+  fontFamily?: string
 }
 
 export default function MonacoEditor({
@@ -72,7 +74,8 @@ export default function MonacoEditor({
   readOnly = false,
   passiveMirror = false,
   liveTail = false,
-  autoHeight = false
+  autoHeight = false,
+  fontFamily
 }: MonacoEditorProps): React.JSX.Element {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const editorContainerRef = useRef<HTMLDivElement | null>(null)
@@ -100,7 +103,7 @@ export default function MonacoEditor({
     settings?.terminalFontSize ?? 13,
     editorFontZoomLevel
   )
-  const editorFontFamily = resolveEditorFontFamily(settings)
+  const editorFontFamily = fontFamily ?? resolveEditorFontFamily(settings)
   const editorWordWrap = settings?.editorWordWrap
   const modelOwnerKey = useAppStore((state) => {
     const file = state.openFiles?.find((entry) => entry.id === fileId)

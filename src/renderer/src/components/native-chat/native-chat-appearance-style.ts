@@ -5,6 +5,7 @@ import { useShallow } from 'zustand/react/shallow'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
 import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
 import { resolveNativeChatTheme } from '../../../../shared/native-chat-theme'
+import { nativeChatThemeSurfaceStyle } from '@/lib/native-chat-theme-surface-style'
 import { buildFontFamily } from '@/lib/monospace-font-family'
 import { buildAppFontFamily } from '@/lib/app-font-family'
 import { getSystemPrefersDark } from '@/lib/terminal-theme'
@@ -81,51 +82,10 @@ export function nativeChatAppearanceStyle(
       ? { '--chat-font-family': buildAppFontFamily(appearance.fontFamily) }
       : {})
   }
-  const chatTheme = resolveNativeChatTheme(settings ?? {}, systemPrefersDark)
-  const light = chatTheme.scheme === 'light'
-  // The BrzA default leaves the app tokens in place; a catalog theme repaints the chat from its colors.
-  if (!chatTheme.followsAppScheme) {
-    style.colorScheme = light ? 'light' : 'dark'
-    // Ghost controls inherit a color, so remapping the token alone leaves the app's color in place.
-    style.color = 'var(--foreground)'
-    Object.assign(style, {
-      '--background': 'var(--chat-canvas)',
-      '--foreground': 'var(--chat-foreground-strong)',
-      '--muted-foreground': 'var(--chat-source-muted-foreground)',
-      '--accent': 'color-mix(in srgb, var(--chat-source-foreground) 9%, var(--chat-canvas))',
-      '--muted': 'color-mix(in srgb, var(--chat-source-foreground) 7%, var(--chat-canvas))',
-      '--popover': 'color-mix(in srgb, var(--chat-source-foreground) 4%, var(--chat-canvas))',
-      '--popover-foreground': 'var(--chat-foreground-strong)',
-      '--accent-foreground': 'var(--chat-foreground-strong)',
-      '--border': 'color-mix(in srgb, var(--chat-source-foreground) 7%, var(--chat-canvas))',
-      '--input': 'color-mix(in srgb, var(--chat-source-foreground) 7%, var(--chat-canvas))',
-      '--card': 'color-mix(in srgb, var(--chat-source-foreground) 4%, var(--chat-canvas))',
-      '--card-foreground': 'var(--chat-foreground-strong)',
-      '--primary': 'var(--chat-foreground-strong)',
-      '--primary-foreground': 'var(--chat-canvas)',
-      '--secondary': 'var(--muted)',
-      '--secondary-foreground': 'var(--chat-foreground-strong)',
-      '--ring': 'color-mix(in srgb, var(--chat-source-foreground) 44%, var(--chat-canvas))',
-      '--chat-source-background': chatTheme.background,
-      '--chat-source-foreground': chatTheme.foreground,
-      '--chat-source-muted-foreground':
-        'color-mix(in srgb, var(--chat-source-foreground) 62%, var(--chat-canvas))',
-      '--chat-canvas-mix': `${chatTheme.canvasMix}%`,
-      '--chat-faint-mix': light ? '100%' : '83%',
-      '--chat-user-mix': light ? '4%' : '7%',
-      '--chat-user-border-mix': light ? '7%' : '6%',
-      '--chat-code-mix': light ? '2%' : '3.5%',
-      '--chat-code-base': light ? 'var(--chat-canvas)' : 'transparent',
-      '--chat-inline-code-mix': light ? '4%' : '6%',
-      '--chat-inline-code-base': light ? 'var(--chat-canvas)' : 'transparent',
-      '--chat-inline-code-border-mix': light ? '9%' : '8%',
-      '--chat-composer-mix': light ? '0%' : '4%',
-      '--chat-composer-base': light ? 'var(--chat-canvas)' : 'transparent',
-      '--chat-composer-border-mix': light ? '11%' : '9%'
-    })
-  }
-  style['--chat-foreground-mix'] = `${chatTheme.foregroundMix}%`
-  style['--chat-strong-mix'] = `${chatTheme.strongMix}%`
+  Object.assign(
+    style,
+    nativeChatThemeSurfaceStyle(resolveNativeChatTheme(settings ?? {}, systemPrefersDark))
+  )
   return style
 }
 

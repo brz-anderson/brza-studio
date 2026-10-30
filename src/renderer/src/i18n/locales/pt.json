@@ -979,6 +979,18 @@
     "followSymlinkedDirectoriesDescription": "Busque em pastas vinculadas na Abertura rápida e expanda pastas vinculadas locais no Explorador de arquivos.",
     "accounts": {
       "claudeRemoveFolder": "O BrzA Studio exclui deste computador a pasta do Claude desta conta e seu login. O histórico de chat compartilhado com Padrão do sistema é mantido. Se esta conta estiver selecionada, o próximo Claude que você iniciar usará Padrão do sistema."
+    },
+    "editor": {
+      "markdownTheme": {
+        "followChat": "Markdown segue o chat",
+        "followChatDescription": "A prévia, o editor visual e o modo código do Markdown usam o tema, a fonte e o tamanho do chat.",
+        "keywordMarkdown": "markdown",
+        "keywordTheme": "tema",
+        "keywordChat": "chat",
+        "keywordPreview": "prévia",
+        "ownTheme": "Tema do Markdown",
+        "ownThemeDescription": "Cores do visualizador de Markdown enquanto ele não segue o chat."
+      }
     }
   },
   "auto": {

@@ -573,7 +573,8 @@ body:has(> [data-slot='dialog-overlay'], > [data-slot='sheet-overlay'])
 /* Re-evaluate chat colors where the appearance producer supplies their source colors. */
 :root,
 .dark,
-.native-chat-appearance {
+.native-chat-appearance,
+.native-chat-theme-surface {
   --chat-source-background: var(--background);
   --chat-source-foreground: var(--foreground);
   --chat-source-muted-foreground: var(--muted-foreground);
@@ -2291,6 +2292,14 @@ html.native-shell .app-layout {
 .landing-hint {
   font-size: 12px;
   color: var(--muted-foreground);
+}
+
+/* Markdown code mode on the viewer's canvas; Monaco's theme stays global. */
+.markdown-code-canvas .monaco-editor {
+  --vscode-editor-background: var(--markdown-code-canvas);
+  --vscode-editorGutter-background: var(--markdown-code-canvas);
+  --vscode-minimap-background: var(--markdown-code-canvas);
+  --vscode-editorStickyScroll-background: var(--markdown-code-canvas);
 }
 
 .monaco-editor .find-widget,

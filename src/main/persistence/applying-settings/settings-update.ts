@@ -1,5 +1,5 @@
 import { legacyChatPermissionWrite } from './legacy-chat-permission-write'
-import { normalizeNativeChatAppearanceSettings } from '../../../shared/native-chat-appearance-settings'
+import { sanitizeChatThemeSettingsUpdate } from '../../../shared/chat-theme-settings-update'
 import type { GlobalSettings } from '../../../shared/global-settings-types'
 import { retireAtRestCommandSettings } from '../../native-chat/agent-session-wire/at-rest-command-context'
 import { normalizeDisabledTuiAgents } from '../../../shared/tui-agent-selection'
@@ -87,11 +87,7 @@ export function updateSettings(
       orchestrationHeartbeatIntervalMinutes: updates.orchestrationHeartbeatIntervalMinutes
     })
   }
-  if ('nativeChatAppearance' in updates) {
-    sanitizedUpdates.nativeChatAppearance = normalizeNativeChatAppearanceSettings(
-      updates.nativeChatAppearance
-    )
-  }
+  sanitizeChatThemeSettingsUpdate(sanitizedUpdates, updates)
   if ('disabledTuiAgents' in updates) {
     sanitizedUpdates.disabledTuiAgents = normalizeDisabledTuiAgents(updates.disabledTuiAgents)
   }

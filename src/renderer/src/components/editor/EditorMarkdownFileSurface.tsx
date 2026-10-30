@@ -9,6 +9,7 @@ import { extractFrontMatter, prependFrontMatter } from './markdown-frontmatter'
 import { exceedsMarkdownRenderOverrideSizeLimit } from './markdown-rich-size-limit'
 import type { MarkdownRenderState } from './markdown-render-mode'
 import { RichMarkdownErrorBoundary } from './RichMarkdownErrorBoundary'
+import { useMarkdownSurfaceTheme } from './use-markdown-surface-theme'
 import type { useMarkdownDocuments } from './useMarkdownDocuments'
 
 type MarkdownDocumentsController = ReturnType<typeof useMarkdownDocuments>
@@ -51,8 +52,9 @@ export function EditorMarkdownFileSurface({
   if (activeFile.conflict?.conflictStatus === 'unresolved') {
     return <div className="h-full min-h-0">{monacoEditor}</div>
   }
+  const markdownCodeEditor = <MarkdownCodeSurface>{monacoEditor}</MarkdownCodeSurface>
   if (!inlineMarkdownRenderState) {
-    return <div className="h-full min-h-0">{monacoEditor}</div>
+    return markdownCodeEditor
   }
   const { renderMode, richModeUnsupportedMessage } = inlineMarkdownRenderState
   if (renderMode === 'source' && mdViewMode === 'rich') {
@@ -83,7 +85,7 @@ export function EditorMarkdownFileSurface({
             </Button>
           ) : null}
         </div>
-        <div className="min-h-0 flex-1 h-full">{monacoEditor}</div>
+        <div className="min-h-0 flex-1 h-full">{markdownCodeEditor}</div>
       </div>
     )
   }
@@ -165,7 +167,17 @@ export function EditorMarkdownFileSurface({
       </div>
     )
   }
-  return <div className="h-full min-h-0">{monacoEditor}</div>
+  return markdownCodeEditor
+}
+
+// Monaco's theme is global: code mode takes only the Markdown canvas, and only in the app's scheme.
+function MarkdownCodeSurface({ children }: { children: React.ReactNode }): React.JSX.Element {
+  const { codeStyle } = useMarkdownSurfaceTheme()
+  return (
+    <div className={`h-full min-h-0${codeStyle ? ' markdown-code-canvas' : ''}`} style={codeStyle}>
+      {children}
+    </div>
+  )
 }
 
 function FrontMatterBanner({ raw }: { raw: string }): React.JSX.Element {

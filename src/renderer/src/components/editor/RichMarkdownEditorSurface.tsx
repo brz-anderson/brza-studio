@@ -21,6 +21,8 @@ import type { RichMarkdownAnnotationTarget } from './rich-markdown-review-annota
 import type { RichMarkdownReviewNotePosition } from './rich-markdown-review-note-layout'
 import type { DiffComment } from '../../../../shared/diff-comment-types'
 import { focusRichMarkdownEditorFromSearch } from './rich-markdown-search-focus'
+import { useMarkdownSurfaceTheme } from './use-markdown-surface-theme'
+import { NATIVE_CHAT_THEME_SURFACE_CLASS } from '@/lib/native-chat-theme-surface-style'
 
 function shouldFocusEmptyEditorFromSurfaceClick(
   event: React.MouseEvent<HTMLDivElement>,
@@ -184,8 +186,12 @@ export function RichMarkdownEditorSurface({
   onNavigateTableOfContentsItem,
   onCloseTableOfContents
 }: RichMarkdownEditorSurfaceProps): React.JSX.Element {
+  const markdownTheme = useMarkdownSurfaceTheme()
   return (
-    <div className="rich-markdown-editor-layout">
+    <div
+      className={`rich-markdown-editor-layout ${NATIVE_CHAT_THEME_SURFACE_CLASS}`}
+      style={markdownTheme.style}
+    >
       {showTableOfContents ? (
         <MarkdownTableOfContentsPanel
           items={tableOfContentsItems}

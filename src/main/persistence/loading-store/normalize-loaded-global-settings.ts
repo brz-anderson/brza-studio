@@ -1,4 +1,5 @@
 import { migrateNativeChatAppearanceSettings } from '../../../shared/native-chat-appearance-settings'
+import { normalizeMarkdownThemeSettings } from '../../../shared/markdown-theme-settings'
 import { getDefaultVoiceSettings } from '../../../shared/constants'
 import { normalizePRBotAuthorOverrides } from '../../../shared/pr-bot-author-overrides'
 import { normalizeTerminalQuickCommands } from '../../../shared/terminal-quick-commands'
@@ -70,6 +71,7 @@ export function normalizeLoadedGlobalSettings(
       ? { experimentalNativeChat: false }
       : {}),
     nativeChatAppearance: migrateNativeChatAppearanceSettings(parsed.settings),
+    markdownTheme: normalizeMarkdownThemeSettings(parsed.settings?.markdownTheme),
     worktreeVisibilityDefaults: migratedExternalVisibility.defaults,
     prBotAuthorOverrides: normalizePRBotAuthorOverrides(parsed.settings?.prBotAuthorOverrides),
     // Carry the retired sidekick flag into pet settings.

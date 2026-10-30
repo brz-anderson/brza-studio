@@ -21,6 +21,7 @@ import type { FileContent } from './editor-panel-content-types'
 import { ExternalFileChangeBanner } from './ExternalFileChangeBanner'
 import type { useMarkdownDocuments } from './useMarkdownDocuments'
 import { EditorMarkdownFileSurface } from './EditorMarkdownFileSurface'
+import { useMarkdownSurfaceTheme } from './use-markdown-surface-theme'
 import type { MarkdownRenderState } from './markdown-render-mode'
 
 // Retry is a user act: it may start a stopped WSL distro.
@@ -96,6 +97,7 @@ export function EditorEditFileSurface({
   handleSave: (content: string) => Promise<boolean>
   reloadContent: (file: OpenFile, options?: { wakeWslDistro?: boolean }) => void
 }): React.JSX.Element {
+  const { codeFontFamily: markdownCodeFontFamily } = useMarkdownSurfaceTheme()
   if (activeFile.conflict?.kind === 'conflict-placeholder') {
     return <ConflictPlaceholderView file={activeFile} />
   }
@@ -232,6 +234,7 @@ export function EditorEditFileSurface({
         }
         worktreeId={activeFile.worktreeId}
         markdownAnnotationsEnabled={markdownAnnotationsEnabled && isMarkdown}
+        fontFamily={isMarkdown ? markdownCodeFontFamily : undefined}
         conflictDecorationsEnabled={activeFile.conflict?.conflictStatus === 'unresolved'}
         revealLine={
           matchesPendingEditorReveal(pendingEditorReveal, activeFile, viewStateScopeId)

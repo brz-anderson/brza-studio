@@ -2,7 +2,22 @@ import { translate } from '@/i18n/i18n'
 import { translateSearchKeyword } from './settings-search-keywords'
 import { createLocalizedCatalog } from '@/i18n/localized-catalog'
 
+export const markdownThemeSearchEntry = createLocalizedCatalog(() => ({
+  title: translate('settings.editor.markdownTheme.followChat', 'Markdown Follows the Chat'),
+  description: translate(
+    'settings.editor.markdownTheme.followChatDescription',
+    "The Markdown preview, rich editor and source view use the chat's theme, font and size."
+  ),
+  keywords: [
+    ...translateSearchKeyword('settings.editor.markdownTheme.keywordMarkdown', 'markdown'),
+    ...translateSearchKeyword('settings.editor.markdownTheme.keywordTheme', 'theme'),
+    ...translateSearchKeyword('settings.editor.markdownTheme.keywordChat', 'chat'),
+    ...translateSearchKeyword('settings.editor.markdownTheme.keywordPreview', 'preview')
+  ]
+}))
+
 export const getGeneralEditorSearchEntries = createLocalizedCatalog(() => [
+  markdownThemeSearchEntry(),
   {
     title: translate('auto.components.settings.general.search.ae21e806ce', 'Auto Save Files'),
     description: translate(

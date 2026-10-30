@@ -60,6 +60,26 @@ function normalizeThemeName(value: unknown): string {
   return name === NATIVE_CHAT_THEME_BRZA_DEFAULT ? '' : name
 }
 
+type StoredThemePair = {
+  themeDark?: unknown
+  useSeparateLightTheme?: unknown
+  themeLight?: unknown
+}
+
+/** The theme pair fields of a stored record, with the BrzA default and `false` left out. */
+export function normalizeNativeChatThemePair(
+  stored: StoredThemePair
+): Pick<NativeChatAppearanceSettings, 'themeDark' | 'useSeparateLightTheme' | 'themeLight'> {
+  const themeDark = normalizeThemeName(stored.themeDark)
+  const themeLight = normalizeThemeName(stored.themeLight)
+  const useSeparateLightTheme = stored.useSeparateLightTheme === true
+  return {
+    ...(themeDark ? { themeDark } : {}),
+    ...(useSeparateLightTheme ? { useSeparateLightTheme } : {}),
+    ...(themeLight ? { themeLight } : {})
+  }
+}
+
 function normalizeSize(value: unknown, min: number, max: number, fallback: number): number {
   return typeof value === 'number' && Number.isFinite(value)
     ? Math.min(max, Math.max(min, Math.round(value)))
@@ -82,10 +102,6 @@ export function normalizeNativeChatAppearanceSettings(
     12
   )
   const contrast = normalizeSize('contrast' in value ? value.contrast : undefined, 50, 150, 100)
-  const themeDark = normalizeThemeName('themeDark' in value ? value.themeDark : undefined)
-  const themeLight = normalizeThemeName('themeLight' in value ? value.themeLight : undefined)
-  const useSeparateLightTheme =
-    'useSeparateLightTheme' in value && value.useSeparateLightTheme === true
   const width =
     'width' in value && (value.width === 'wide' || value.width === 'full') ? value.width : undefined
   const normalized: NativeChatAppearanceSettings = {
@@ -97,9 +113,7 @@ export function normalizeNativeChatAppearanceSettings(
     ...(codeFontSize !== DEFAULT_NATIVE_CHAT_CODE_FONT_SIZE ? { codeFontSize } : {}),
     ...(width ? { width } : {}),
     ...(contrast !== DEFAULT_NATIVE_CHAT_CONTRAST ? { contrast } : {}),
-    ...(themeDark ? { themeDark } : {}),
-    ...(useSeparateLightTheme ? { useSeparateLightTheme } : {}),
-    ...(themeLight ? { themeLight } : {})
+    ...normalizeNativeChatThemePair(value)
   }
   return Object.keys(normalized).length ? normalized : undefined
 }
