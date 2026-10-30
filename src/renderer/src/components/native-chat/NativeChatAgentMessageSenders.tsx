@@ -16,6 +16,7 @@ import {
   useAgentMessageSenderLabel
 } from './native-chat-agent-message-sender-label'
 import { brzaClaudePeerKind } from '../../../../shared/native-chat/brza/brza-claude-peer-sender'
+import { BrzaClaudePeerSenderName } from './brza/BrzaClaudePeerSenderName'
 
 /** Open resolvable local senders; use plain names when chat context is absent or the sender belongs to another host. */
 export function NativeChatAgentMessageSenders({
@@ -78,12 +79,10 @@ function SenderName({
   queued: boolean
 }): React.JSX.Element {
   const label = useAgentMessageSenderLabel(sender, chatWorktreeId, target)
-  // A Claude Code peer has no Orca mailbox entry to open.
-  if (
-    !agentMessageSenderCanOpen(sender, Boolean(chatWorktreeId)) ||
-    !chatWorktreeId ||
-    brzaClaudePeerKind(sender) !== null
-  ) {
+  if (brzaClaudePeerKind(sender) !== null) {
+    return <BrzaClaudePeerSenderName sender={sender} label={label} queued={queued} />
+  }
+  if (!agentMessageSenderCanOpen(sender, Boolean(chatWorktreeId)) || !chatWorktreeId) {
     return (
       <span className={`max-w-48 truncate ${queued ? 'px-2' : 'px-2.5'}`} title={label}>
         {label}
