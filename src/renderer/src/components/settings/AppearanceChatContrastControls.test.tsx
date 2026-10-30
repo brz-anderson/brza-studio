@@ -30,14 +30,17 @@ function persistInMock(settings: GlobalSettings) {
 }
 
 describe('chat contrast controls', () => {
-  it('renders a switch and saves the opt-in choice', async () => {
-    const settings = createGlobalSettingsFixture()
+  it('saves a catalog theme picked for the dark mode', async () => {
+    const settings = createGlobalSettingsFixture({ theme: 'dark' })
     const updateSettings = persistInMock(settings)
     render(<AppearanceChatSection settings={settings} updateSettings={updateSettings} />)
-    fireEvent.click(screen.getByRole('switch', { name: 'Match terminal interface' }))
+    fireEvent.change(screen.getByPlaceholderText('Search terminal themes'), {
+      target: { value: 'Tango Dark' }
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Tango Dark' }))
     await waitFor(() =>
       expect(updateSettings).toHaveBeenCalledWith({
-        nativeChatAppearance: { matchTerminalInterface: true }
+        nativeChatAppearance: { themeDark: 'Tango Dark' }
       })
     )
   })

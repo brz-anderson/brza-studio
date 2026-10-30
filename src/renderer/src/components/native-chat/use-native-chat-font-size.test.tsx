@@ -49,21 +49,6 @@ afterEach(() => {
 })
 
 describe('persisted chat font-size shortcuts', () => {
-  it('consumes matching chat size keys without writing the saved font size', async () => {
-    mocks.settings.nativeChatAppearance = { fontSize: 18, matchTerminalInterface: true }
-    renderHook(() => useNativeChatFontSize(true))
-    const events: KeyboardEvent[] = []
-    act(() => {
-      events.push(key('+'), key('-'), key('0'))
-    })
-    await Promise.resolve()
-    expect(events.every((event) => event.defaultPrevented)).toBe(true)
-    expect(mocks.updateSettings).not.toHaveBeenCalled()
-    expect(mocks.settings.nativeChatAppearance).toEqual({
-      fontSize: 18,
-      matchTerminalInterface: true
-    })
-  })
   it('serializes quick repeats against the latest stored size, clamps, and resets only text size', async () => {
     mocks.settings.nativeChatAppearance = { fontSize: 19, codeFontSize: 16, width: 'wide' }
     renderHook(() => useNativeChatFontSize(true))

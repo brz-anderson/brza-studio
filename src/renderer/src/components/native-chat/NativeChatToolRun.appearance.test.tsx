@@ -24,14 +24,14 @@ import { revealNativeChatToolRunMember } from './NativeChatToolRunMembers'
 import { i18n } from '@/i18n/i18n'
 
 {
-  describe('tool-run summary in a matching chat', () => {
+  describe('tool-run summary in a themed chat', () => {
     afterEach(cleanup)
 
     it('keeps a long command available in the expanded detail', () => {
       const command = `printf ${'x'.repeat(5000)}`
       const style = nativeChatAppearanceStyle({
         terminalFontFamily: 'Menlo',
-        nativeChatAppearance: { matchTerminalInterface: true }
+        nativeChatAppearance: { themeDark: 'Ghostty Default Style Dark' }
       })
       const { container } = render(
         <div className="native-chat-appearance" style={style}>

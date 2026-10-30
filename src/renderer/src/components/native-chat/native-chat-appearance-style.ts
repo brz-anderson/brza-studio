@@ -4,10 +4,10 @@ import { useMemo, type CSSProperties } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
 import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
-import { resolveConfiguredTerminalColors } from '../../../../shared/terminal-theme-selection'
+import { resolveNativeChatTheme } from '../../../../shared/native-chat-theme'
 import { buildFontFamily } from '@/lib/monospace-font-family'
 import { buildAppFontFamily } from '@/lib/app-font-family'
-import { getSystemPrefersDark, isTerminalBackgroundLight } from '@/lib/terminal-theme'
+import { getSystemPrefersDark } from '@/lib/terminal-theme'
 import { useSystemPrefersDark } from '../terminal-pane/use-system-prefers-dark'
 
 export const NATIVE_CHAT_APPEARANCE_ROOT_CLASS = 'native-chat-appearance bg-chat-canvas'
@@ -42,24 +42,10 @@ export function selectNativeChatAppearanceSettings(
 ) {
   return {
     theme: settings?.theme,
-    terminalThemeDark: settings?.terminalThemeDark,
-    terminalThemeLight: settings?.terminalThemeLight,
-    terminalUseSeparateLightTheme: settings?.terminalUseSeparateLightTheme,
     terminalCustomThemes: settings?.terminalCustomThemes,
-    terminalColorOverrides: settings?.terminalColorOverrides,
     terminalFontFamily: settings?.terminalFontFamily,
-    terminalFontSize: settings?.nativeChatAppearance?.matchTerminalInterface
-      ? settings.terminalFontSize
-      : undefined,
     nativeChatAppearance: settings?.nativeChatAppearance
   }
-}
-
-export function nativeChatContrastMix(contrast: number, light: boolean): number {
-  const value = Number.isFinite(contrast) ? Math.min(150, Math.max(50, contrast)) : 100
-  return light
-    ? Math.min(100, Math.max(55, 82 + (value - 100) * 0.36))
-    : Math.min(100, Math.max(50, 78 + (value - 100) * 0.44))
 }
 
 export function nativeChatAppearanceStyle(
@@ -68,13 +54,8 @@ export function nativeChatAppearanceStyle(
   systemPrefersDark = getSystemPrefersDark()
 ): NativeChatAppearanceStyle {
   const appearance = resolveNativeChatAppearanceSettings(settings?.nativeChatAppearance)
-  const { width } = appearance
-  const matching = appearance.matchTerminalInterface
-  const terminalFontSize = settings?.terminalFontSize ?? 14
-  const fontSize = matching ? terminalFontSize : appearance.fontSize
-  const codeFontSize = matching ? terminalFontSize : appearance.codeFontSize
-  // Message text follows the terminal (10-24); labels, controls and spacing stay in the chat's 12-20.
-  const uiFontSize = Math.max(12, Math.min(20, fontSize))
+  const { width, fontSize, codeFontSize } = appearance
+  const uiFontSize = fontSize
   const maxWidthPx = width === 'wide' ? 960 : width === 'full' ? Number.POSITIVE_INFINITY : 736
   const measuredWidth = nativeChatColumnWidthBucket(measuredColumnWidthPx)
   const columnWidthPx = Math.min(
@@ -100,28 +81,14 @@ export function nativeChatAppearanceStyle(
       ? { '--chat-font-family': buildAppFontFamily(appearance.fontFamily) }
       : {})
   }
-  let light = settings?.theme === 'light' || (settings?.theme === 'system' && !systemPrefersDark)
-  if (matching) {
-    const colors = resolveConfiguredTerminalColors(
-      {
-        theme: settings?.theme ?? 'dark',
-        terminalThemeDark: settings?.terminalThemeDark ?? '',
-        terminalThemeLight: settings?.terminalThemeLight ?? '',
-        terminalUseSeparateLightTheme: settings?.terminalUseSeparateLightTheme ?? false,
-        terminalCustomThemes: settings?.terminalCustomThemes,
-        terminalColorOverrides: settings?.terminalColorOverrides
-      },
-      systemPrefersDark
-    )
-    const hasThemeColors = Boolean(colors.background && colors.foreground)
-    const background = hasThemeColors ? colors.background : '#000000'
-    const foreground = hasThemeColors ? colors.foreground : '#fafafa'
-    light = isTerminalBackgroundLight(background)
+  const chatTheme = resolveNativeChatTheme(settings ?? {}, systemPrefersDark)
+  const light = chatTheme.scheme === 'light'
+  // The BrzA default leaves the app tokens in place; a catalog theme repaints the chat from its colors.
+  if (!chatTheme.followsAppScheme) {
     style.colorScheme = light ? 'light' : 'dark'
     // Ghost controls inherit a color, so remapping the token alone leaves the app's color in place.
     style.color = 'var(--foreground)'
     Object.assign(style, {
-      '--chat-font-family': font,
       '--background': 'var(--chat-canvas)',
       '--foreground': 'var(--chat-foreground-strong)',
       '--muted-foreground': 'var(--chat-source-muted-foreground)',
@@ -139,11 +106,11 @@ export function nativeChatAppearanceStyle(
       '--secondary': 'var(--muted)',
       '--secondary-foreground': 'var(--chat-foreground-strong)',
       '--ring': 'color-mix(in srgb, var(--chat-source-foreground) 44%, var(--chat-canvas))',
-      '--chat-source-background': background,
-      '--chat-source-foreground': foreground,
+      '--chat-source-background': chatTheme.background,
+      '--chat-source-foreground': chatTheme.foreground,
       '--chat-source-muted-foreground':
         'color-mix(in srgb, var(--chat-source-foreground) 62%, var(--chat-canvas))',
-      '--chat-canvas-mix': '0%',
+      '--chat-canvas-mix': `${chatTheme.canvasMix}%`,
       '--chat-faint-mix': light ? '100%' : '83%',
       '--chat-user-mix': light ? '4%' : '7%',
       '--chat-user-border-mix': light ? '7%' : '6%',
@@ -157,9 +124,8 @@ export function nativeChatAppearanceStyle(
       '--chat-composer-border-mix': light ? '11%' : '9%'
     })
   }
-  const bodyMix = matching ? 100 : nativeChatContrastMix(appearance.contrast, light)
-  style['--chat-foreground-mix'] = `${bodyMix}%`
-  style['--chat-strong-mix'] = `${Math.min(100, bodyMix + (light ? 10 : 12))}%`
+  style['--chat-foreground-mix'] = `${chatTheme.foregroundMix}%`
+  style['--chat-strong-mix'] = `${chatTheme.strongMix}%`
   return style
 }
 

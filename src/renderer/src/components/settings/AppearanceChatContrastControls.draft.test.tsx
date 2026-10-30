@@ -31,6 +31,7 @@ describe('contrast drag persistence', () => {
     render(
       <AppearanceChatContrastControls
         appearance={resolveNativeChatAppearanceSettings(undefined)}
+        settings={{ theme: 'dark' }}
         onChange={onChange}
       />
     )
@@ -49,6 +50,7 @@ describe('contrast drag persistence', () => {
     const { rerender } = render(
       <AppearanceChatContrastControls
         appearance={resolveNativeChatAppearanceSettings(undefined)}
+        settings={{ theme: 'dark' }}
         onChange={onChange}
       />
     )
@@ -56,6 +58,7 @@ describe('contrast drag persistence', () => {
     rerender(
       <AppearanceChatContrastControls
         appearance={resolveNativeChatAppearanceSettings({ contrast: 80 })}
+        settings={{ theme: 'dark' }}
         onChange={onChange}
       />
     )

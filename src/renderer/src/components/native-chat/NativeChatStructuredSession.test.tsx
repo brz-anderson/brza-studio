@@ -1,4 +1,4 @@
-import * as terminalThemeSelection from '../../../../shared/terminal-theme-selection'
+import * as nativeChatTheme from '../../../../shared/native-chat-theme'
 import { getDefaultSettings } from '../../../../shared/constants'
 // @vitest-environment happy-dom
 
@@ -45,12 +45,11 @@ describe('NativeChatStructuredSession', () => {
           fontSize: 18,
           codeFontSize: 11,
           width: 'wide',
-          matchTerminalInterface: true,
+          themeDark: 'Ghostty Default Style Dark',
           contrast: 120
         },
         terminalFontFamily: 'Consolas',
-        terminalFontSize: 16,
-        terminalColorOverrides: { background: '#112233', foreground: '#ddeeff' }
+        terminalFontSize: 16
       }
     })
     const { container } = render(
@@ -67,13 +66,13 @@ describe('NativeChatStructuredSession', () => {
     expect(root?.style.colorScheme).toBe('dark')
     expect(root?.style.color).toBe('var(--foreground)')
     expect(root?.dataset.nativeChatScheme).toBe('dark')
-    expect(root?.style.getPropertyValue('--chat-source-background')).toBe('#112233')
-    expect(root?.style.getPropertyValue('--chat-source-foreground')).toBe('#ddeeff')
+    expect(root?.style.getPropertyValue('--chat-source-background')).toBe('#282c34')
+    expect(root?.style.getPropertyValue('--chat-source-foreground')).toBe('#ffffff')
     expect(root?.style.getPropertyValue('--chat-code-font-family')).toContain('Consolas')
-    expect(root?.style.getPropertyValue('--chat-font-family')).toContain('Consolas')
-    expect(root?.style.getPropertyValue('--chat-foreground-mix')).toBe('100%')
-    expect(root?.style.getPropertyValue('--chat-font-size')).toBe('16px')
-    expect(root?.style.getPropertyValue('--chat-code-font-size')).toBe('16px')
+    expect(root?.style.getPropertyValue('--chat-font-family')).toBe('')
+    expect(root?.style.getPropertyValue('--chat-foreground-mix')).toBe('86.8%')
+    expect(root?.style.getPropertyValue('--chat-font-size')).toBe('18px')
+    expect(root?.style.getPropertyValue('--chat-code-font-size')).toBe('11px')
     expect(root?.style.getPropertyValue('--chat-content-max-width')).toBe('60rem')
     act(() =>
       useAppStore.setState({
@@ -101,10 +100,10 @@ describe('NativeChatStructuredSession', () => {
     const settings = {
       ...getDefaultSettings('/tmp'),
       theme: 'dark' as const,
-      nativeChatAppearance: { matchTerminalInterface: true }
+      nativeChatAppearance: { themeDark: 'Ghostty Default Style Dark' }
     }
     useAppStore.setState({ settings })
-    const resolveColors = vi.spyOn(terminalThemeSelection, 'resolveConfiguredTerminalColors')
+    const resolveTheme = vi.spyOn(nativeChatTheme, 'resolveNativeChatTheme')
     const view = render(
       <NativeChatStructuredSession
         isVisible
@@ -115,20 +114,29 @@ describe('NativeChatStructuredSession', () => {
         agent="codex"
       />
     )
-    const initialResolutions = resolveColors.mock.calls.length
+    const initialResolutions = resolveTheme.mock.calls.length
     act(() =>
       useAppStore.setState({
         settings: { ...settings, terminalFontSize: settings.terminalFontSize + 1 }
       })
     )
-    expect(resolveColors).toHaveBeenCalledTimes(initialResolutions + 1)
+    expect(resolveTheme).toHaveBeenCalledTimes(initialResolutions)
+    act(() =>
+      useAppStore.setState({
+        settings: {
+          ...settings,
+          nativeChatAppearance: { ...settings.nativeChatAppearance, fontSize: 17 }
+        }
+      })
+    )
+    expect(resolveTheme).toHaveBeenCalledTimes(initialResolutions + 1)
     expect(
       view.container
         .querySelector<HTMLElement>('[data-native-chat-root]')
         ?.style.getPropertyValue('--chat-font-size')
-    ).toBe(`${settings.terminalFontSize + 1}px`)
+    ).toBe('17px')
     act(() => useAppStore.setState({ settings: { ...settings, terminalFontFamily: 'Menlo' } }))
-    expect(resolveColors).toHaveBeenCalledTimes(initialResolutions + 2)
+    expect(resolveTheme).toHaveBeenCalledTimes(initialResolutions + 2)
     expect(
       view.container
         .querySelector<HTMLElement>('[data-native-chat-root]')

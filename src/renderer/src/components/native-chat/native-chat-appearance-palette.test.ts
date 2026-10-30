@@ -21,6 +21,18 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
+const schemeTheme = (scheme: 'light' | 'dark') => ({
+  id: `manual:${scheme}`,
+  name: scheme,
+  source: 'manual' as const,
+  mode: scheme,
+  terminal:
+    scheme === 'light'
+      ? { background: '#ffffff', foreground: '#000000', black: '#000000' }
+      : { background: '#000000', foreground: '#ffffff', black: '#000000' },
+  importedAt: '2026-10-29T00:00:00.000Z'
+})
+
 function createChat(appScheme: 'light' | 'dark', terminalScheme: 'light' | 'dark'): HTMLElement {
   document.documentElement.classList.toggle('dark', appScheme === 'dark')
   const sheet = document.createElement('style')
@@ -31,11 +43,8 @@ function createChat(appScheme: 'light' | 'dark', terminalScheme: 'light' | 'dark
   const style = nativeChatAppearanceStyle(
     createGlobalSettingsFixture({
       theme: appScheme,
-      terminalColorOverrides:
-        terminalScheme === 'light'
-          ? { background: '#ffffff', foreground: '#000000' }
-          : { background: '#000000', foreground: '#ffffff' },
-      nativeChatAppearance: { matchTerminalInterface: true }
+      terminalCustomThemes: [schemeTheme(terminalScheme)],
+      nativeChatAppearance: { themeDark: `custom:manual:${terminalScheme}` }
     })
   )
   chat.dataset.nativeChatScheme = style.colorScheme
@@ -61,29 +70,26 @@ const statusRoles = [
   '--diff-removed-gutter'
 ]
 
-describe('matching chat surfaces with opposite app schemes', () => {
+describe('themed chat surfaces with opposite app schemes', () => {
   it.each([
     ['dark', 'light'],
     ['light', 'dark']
-  ] as const)('uses the %s app with a %s terminal palette', (appScheme, terminalScheme) => {
+  ] as const)('uses the %s app with a %s theme palette', (appScheme, terminalScheme) => {
     const chat = createChat(appScheme, terminalScheme)
     // These roles cover transcript payloads, question badges, inline completion menus and controls.
     const matched = getComputedStyle(chat)
-    const terminalForegroundAtFullStrength = `${terminalScheme === 'light' ? '#000000' : '#ffffff'} 100%`
+    const themeForeground = terminalScheme === 'light' ? '#000000' : '#ffffff'
+    const strongForeground = `${themeForeground} ${terminalScheme === 'light' ? 92 : 90}%`
     expect(chat.style.color).toBe('var(--foreground)')
     expect(matched.getPropertyValue('--chat-foreground')).toContain(
-      terminalForegroundAtFullStrength
+      `${themeForeground} ${terminalScheme === 'light' ? 82 : 78}%`
     )
-    expect(matched.getPropertyValue('--chat-foreground-strong')).toContain(
-      terminalForegroundAtFullStrength
-    )
-    expect(matched.getPropertyValue('--foreground')).toContain(terminalForegroundAtFullStrength)
+    expect(matched.getPropertyValue('--chat-foreground-strong')).toContain(strongForeground)
+    expect(matched.getPropertyValue('--foreground')).toContain(strongForeground)
     expect(matched.getPropertyValue('--muted')).toContain('7%')
     expect(matched.getPropertyValue('--muted-foreground')).toContain('62%')
     expect(matched.getPropertyValue('--popover')).toContain('4%')
-    expect(matched.getPropertyValue('--popover-foreground')).toContain(
-      terminalForegroundAtFullStrength
-    )
+    expect(matched.getPropertyValue('--popover-foreground')).toContain(strongForeground)
     expect(matched.getPropertyValue('--accent')).toContain('9%')
     expect(matched.getPropertyValue('--input')).toContain('7%')
     expect(matched.getPropertyValue('--secondary')).toContain('7%')
@@ -113,12 +119,12 @@ describe('matching chat surfaces with opposite app schemes', () => {
     ).toEqual(chatStatus)
   })
 
-  it('resolves an incomplete terminal palette without a local background variable cycle', () => {
-    vi.spyOn(terminalThemeSelection, 'resolveConfiguredTerminalColors').mockReturnValue({})
+  it('falls back to the app surfaces for an incomplete theme palette', () => {
+    vi.spyOn(terminalThemeSelection, 'lookupTerminalTheme').mockReturnValue({})
     const chat = createChat('dark', 'light')
-    expect(chat.dataset.nativeChatScheme).toBe('dark')
+    expect(chat.style.color).toBe('')
     const styles = getComputedStyle(chat)
-    expect(styles.getPropertyValue('--chat-canvas')).toContain('#000000')
-    expect(styles.getPropertyValue('--chat-source-foreground')).toBe('#fafafa')
+    expect(styles.getPropertyValue('--chat-source-background')).not.toBe('#ffffff')
+    expect(styles.getPropertyValue('--chat-canvas')).toContain('#0a0a0a')
   })
 })

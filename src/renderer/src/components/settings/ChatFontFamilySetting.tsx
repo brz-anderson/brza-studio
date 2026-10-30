@@ -7,13 +7,8 @@ import {
   useNativeChatAppearanceStyle
 } from '../native-chat/native-chat-appearance-style'
 import { FontAutocomplete, SettingsRow } from './SettingsFormControls'
-import { SettingsDisabledControlTooltip } from './SettingsDisabledControlTooltip'
 import { SearchableSetting } from './SearchableSetting'
-import {
-  chatTerminalControlledHint,
-  chatTerminalControlledTooltip,
-  getChatAppearanceEntriesByKey
-} from './chat-appearance-search'
+import { getChatAppearanceEntriesByKey } from './chat-appearance-search'
 
 const EMPTY_FONT_SUGGESTIONS: string[] = []
 
@@ -31,7 +26,6 @@ export function ChatFontFamilySetting({
   forceVisible?: boolean
 }): React.JSX.Element {
   const appearance = resolveNativeChatAppearanceSettings(settings.nativeChatAppearance)
-  const matching = appearance.matchTerminalInterface
   const [previewFamily, setPreviewFamily] = useState<string | null>(null)
   const entry = getChatAppearanceEntriesByKey().fontFamily
   const style = useNativeChatAppearanceStyle({
@@ -47,24 +41,19 @@ export function ChatFontFamilySetting({
     <SearchableSetting id={entry.targetSectionId} {...entry} forceVisible={forceVisible}>
       <SettingsRow
         label={entry.title}
-        description={matching ? chatTerminalControlledHint() : entry.description}
+        description={entry.description}
         control={
-          <SettingsDisabledControlTooltip
-            reason={matching ? chatTerminalControlledTooltip() : undefined}
-          >
-            <FontAutocomplete
-              value={appearance.fontFamily}
-              ariaLabel={entry.title}
-              suggestions={fontSuggestions}
-              placeholder={defaultLabel}
-              defaultOptionLabel={defaultLabel}
-              disabled={matching}
-              commitMode="blur"
-              onChange={onChange}
-              onRequestSuggestions={onRequestFontSuggestions}
-              onPreviewFontFamily={setPreviewFamily}
-            />
-          </SettingsDisabledControlTooltip>
+          <FontAutocomplete
+            value={appearance.fontFamily}
+            ariaLabel={entry.title}
+            suggestions={fontSuggestions}
+            placeholder={defaultLabel}
+            defaultOptionLabel={defaultLabel}
+            commitMode="blur"
+            onChange={onChange}
+            onRequestSuggestions={onRequestFontSuggestions}
+            onPreviewFontFamily={setPreviewFamily}
+          />
         }
       />
       <p

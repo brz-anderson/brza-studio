@@ -1,3 +1,8 @@
+import type { GlobalSettings } from './global-settings-types'
+import {
+  DEFAULT_TERMINAL_THEME_DARK,
+  DEFAULT_TERMINAL_THEME_LIGHT
+} from './terminal-theme-selection'
 import type { TuiAgent } from './tui-agent'
 
 export type NativeChatAppearanceSettings = {
@@ -11,9 +16,17 @@ export type NativeChatAppearanceSettings = {
   width?: 'comfortable' | 'wide' | 'full'
   /** Chat contrast, 50–150; absent = 100. */
   contrast?: number
-  /** Follow the terminal interface font and theme; absent = false. */
-  matchTerminalInterface?: boolean
+  /** Chat theme in dark mode, and in light mode without a separate light theme: a terminal theme
+   *  name, a `custom:` selection, or the BrzA default; absent = BrzA default. */
+  themeDark?: string
+  /** Use `themeLight` while the app is light; absent = false. */
+  useSeparateLightTheme?: boolean
+  /** Chat theme in light mode when `useSeparateLightTheme` is on; absent = BrzA default. */
+  themeLight?: string
 }
+
+/** The chat's look before it had a theme: the app background and the default terminal colors. */
+export const NATIVE_CHAT_THEME_BRZA_DEFAULT = 'brza:default'
 
 export type NativeChatGlobalSettings = {
   nativeChatAppearance?: NativeChatAppearanceSettings
@@ -28,6 +41,24 @@ export type NativeChatGlobalSettings = {
 export const DEFAULT_NATIVE_CHAT_FONT_SIZE = 14
 export const DEFAULT_NATIVE_CHAT_CODE_FONT_SIZE = 12
 export const DEFAULT_NATIVE_CHAT_CONTRAST = 100
+
+const NATIVE_CHAT_APPEARANCE_KEYS = [
+  'fontFamily',
+  'fontSize',
+  'codeFontSize',
+  'width',
+  'contrast',
+  'themeDark',
+  'useSeparateLightTheme',
+  'themeLight',
+  // Retired by the chat theme; migrated on load.
+  'matchTerminalInterface'
+]
+
+function normalizeThemeName(value: unknown): string {
+  const name = typeof value === 'string' ? value.trim() : ''
+  return name === NATIVE_CHAT_THEME_BRZA_DEFAULT ? '' : name
+}
 
 function normalizeSize(value: unknown, min: number, max: number, fallback: number): number {
   return typeof value === 'number' && Number.isFinite(value)
@@ -51,30 +82,24 @@ export function normalizeNativeChatAppearanceSettings(
     12
   )
   const contrast = normalizeSize('contrast' in value ? value.contrast : undefined, 50, 150, 100)
-  const matchTerminalInterface =
-    'matchTerminalInterface' in value && value.matchTerminalInterface === true
+  const themeDark = normalizeThemeName('themeDark' in value ? value.themeDark : undefined)
+  const themeLight = normalizeThemeName('themeLight' in value ? value.themeLight : undefined)
+  const useSeparateLightTheme =
+    'useSeparateLightTheme' in value && value.useSeparateLightTheme === true
   const width =
     'width' in value && (value.width === 'wide' || value.width === 'full') ? value.width : undefined
   const normalized: NativeChatAppearanceSettings = {
     ...Object.fromEntries(
-      Object.entries(value).filter(
-        ([key]) =>
-          ![
-            'fontFamily',
-            'fontSize',
-            'codeFontSize',
-            'width',
-            'contrast',
-            'matchTerminalInterface'
-          ].includes(key)
-      )
+      Object.entries(value).filter(([key]) => !NATIVE_CHAT_APPEARANCE_KEYS.includes(key))
     ),
     ...(fontFamily ? { fontFamily } : {}),
     ...(fontSize !== DEFAULT_NATIVE_CHAT_FONT_SIZE ? { fontSize } : {}),
     ...(codeFontSize !== DEFAULT_NATIVE_CHAT_CODE_FONT_SIZE ? { codeFontSize } : {}),
     ...(width ? { width } : {}),
     ...(contrast !== DEFAULT_NATIVE_CHAT_CONTRAST ? { contrast } : {}),
-    ...(matchTerminalInterface ? { matchTerminalInterface } : {})
+    ...(themeDark ? { themeDark } : {}),
+    ...(useSeparateLightTheme ? { useSeparateLightTheme } : {}),
+    ...(themeLight ? { themeLight } : {})
   }
   return Object.keys(normalized).length ? normalized : undefined
 }
@@ -89,7 +114,9 @@ export function resolveNativeChatAppearanceSettings(
     codeFontSize: normalized?.codeFontSize ?? DEFAULT_NATIVE_CHAT_CODE_FONT_SIZE,
     width: normalized?.width ?? 'comfortable',
     contrast: normalized?.contrast ?? DEFAULT_NATIVE_CHAT_CONTRAST,
-    matchTerminalInterface: normalized?.matchTerminalInterface ?? false
+    themeDark: normalized?.themeDark ?? NATIVE_CHAT_THEME_BRZA_DEFAULT,
+    useSeparateLightTheme: normalized?.useSeparateLightTheme ?? false,
+    themeLight: normalized?.themeLight ?? NATIVE_CHAT_THEME_BRZA_DEFAULT
   }
 }
 
@@ -98,17 +125,45 @@ export function resetNativeChatAppearanceSettings(
 ): NativeChatAppearanceSettings | undefined {
   return normalizeNativeChatAppearanceSettings(
     Object.fromEntries(
-      Object.entries(appearance ?? {}).filter(
-        ([key]) =>
-          ![
-            'fontFamily',
-            'fontSize',
-            'codeFontSize',
-            'width',
-            'contrast',
-            'matchTerminalInterface'
-          ].includes(key)
-      )
+      Object.entries(appearance ?? {}).filter(([key]) => !NATIVE_CHAT_APPEARANCE_KEYS.includes(key))
     )
   )
+}
+
+type RetiredMatchTerminalSource = Partial<
+  Pick<
+    GlobalSettings,
+    | 'nativeChatAppearance'
+    | 'terminalThemeDark'
+    | 'terminalUseSeparateLightTheme'
+    | 'terminalThemeLight'
+    | 'terminalFontFamily'
+    | 'terminalFontSize'
+  >
+>
+
+/** The retired "match terminal interface" becomes the terminal's theme pair, font and size as the chat's own. */
+export function migrateNativeChatAppearanceSettings(
+  settings: RetiredMatchTerminalSource | undefined
+): NativeChatAppearanceSettings | undefined {
+  const appearance: unknown = settings?.nativeChatAppearance
+  const matching =
+    !!appearance &&
+    typeof appearance === 'object' &&
+    'matchTerminalInterface' in appearance &&
+    appearance.matchTerminalInterface === true
+  if (!matching) {
+    return normalizeNativeChatAppearanceSettings(appearance)
+  }
+  const terminalFontFamily = settings?.terminalFontFamily?.trim()
+  return normalizeNativeChatAppearanceSettings({
+    ...appearance,
+    themeDark: settings?.terminalThemeDark || DEFAULT_TERMINAL_THEME_DARK,
+    useSeparateLightTheme: settings?.terminalUseSeparateLightTheme === true,
+    themeLight: settings?.terminalThemeLight || DEFAULT_TERMINAL_THEME_LIGHT,
+    ...(terminalFontFamily ? { fontFamily: terminalFontFamily } : {}),
+    fontSize: settings?.terminalFontSize,
+    codeFontSize: settings?.terminalFontSize,
+    contrast: undefined
+  })
 }

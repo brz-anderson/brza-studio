@@ -19,19 +19,21 @@ describe('native chat appearance normalization', () => {
         codeFontSize: 12,
         width: 'comfortable'
       })
-    ).toEqual({ ...future, fontSize: 20, contrast: 150, matchTerminalInterface: true })
+    ).toEqual({ ...future, fontSize: 20, contrast: 150 })
     expect(normalizeNativeChatAppearanceSettings(future)).toEqual(future)
   })
 
   it('preserves future fields without letting known defaults or malformed values survive', () => {
     const future = { futureSetting: { nested: 'keep' } }
     for (const contrast of [100, Number.NaN, Number.POSITIVE_INFINITY, '150', null]) {
-      for (const matchTerminalInterface of [false, 'true', null]) {
+      for (const useSeparateLightTheme of [false, 'true', null]) {
         expect(
           normalizeNativeChatAppearanceSettings({
             ...future,
             contrast,
-            matchTerminalInterface
+            useSeparateLightTheme,
+            themeDark: 'brza:default',
+            themeLight: '  '
           })
         ).toEqual(future)
       }
@@ -52,7 +54,9 @@ describe('native chat appearance normalization', () => {
       codeFontSize: 12,
       width: 'comfortable',
       contrast: 100,
-      matchTerminalInterface: false
+      themeDark: 'brza:default',
+      useSeparateLightTheme: false,
+      themeLight: 'brza:default'
     })
   })
   it('resets known controls while keeping settings from a newer version', () => {
@@ -62,7 +66,9 @@ describe('native chat appearance normalization', () => {
       codeFontSize: 16,
       width: 'wide' as const,
       contrast: 151,
-      matchTerminalInterface: true,
+      themeDark: 'Tango Dark',
+      useSeparateLightTheme: true,
+      themeLight: 'Builtin Tango Light',
       futureSetting: { nested: 'keep' }
     }
     expect(resetNativeChatAppearanceSettings(fromNewerVersion)).toEqual({
@@ -79,7 +85,9 @@ describe('native chat appearance normalization', () => {
       codeFontSize: 10,
       width: 'full',
       contrast: 100,
-      matchTerminalInterface: false
+      themeDark: 'brza:default',
+      useSeparateLightTheme: false,
+      themeLight: 'brza:default'
     })
     expect(
       normalizeNativeChatAppearanceSettings({ fontSize: 15.6, codeFontSize: 13.2, width: 'wide' })
@@ -110,31 +118,39 @@ describe('native chat appearance normalization', () => {
   })
 })
 
-describe('chat contrast and terminal interface normalization', () => {
-  it('removes default fields and the empty object', () => {
+describe('chat contrast and theme normalization', () => {
+  it('removes default fields, the retired terminal toggle and the empty object', () => {
     expect(
-      normalizeNativeChatAppearanceSettings({ contrast: 100, matchTerminalInterface: false })
+      normalizeNativeChatAppearanceSettings({ contrast: 100, matchTerminalInterface: true })
     ).toBeUndefined()
     expect(
       normalizeNativeChatAppearanceSettings({
         fontSize: 16,
         contrast: 100,
-        matchTerminalInterface: false
+        themeDark: 'brza:default'
       })
     ).toEqual({ fontSize: 16 })
     expect(
       normalizeNativeChatAppearanceSettings({
         codeFontSize: 13,
         contrast: 120,
-        matchTerminalInterface: true
+        themeDark: '  Tango Dark ',
+        useSeparateLightTheme: true,
+        themeLight: 'Builtin Tango Light'
       })
-    ).toEqual({ codeFontSize: 13, contrast: 120, matchTerminalInterface: true })
+    ).toEqual({
+      codeFontSize: 13,
+      contrast: 120,
+      themeDark: 'Tango Dark',
+      useSeparateLightTheme: true,
+      themeLight: 'Builtin Tango Light'
+    })
   })
 
   it('clamps and rounds persisted contrast, accepting only an explicit true toggle', () => {
     expect(
-      resolveNativeChatAppearanceSettings({ contrast: 999, matchTerminalInterface: 'true' })
-    ).toMatchObject({ contrast: 150, matchTerminalInterface: false })
+      resolveNativeChatAppearanceSettings({ contrast: 999, useSeparateLightTheme: 'true' })
+    ).toMatchObject({ contrast: 150, useSeparateLightTheme: false })
     expect(normalizeNativeChatAppearanceSettings({ contrast: -5 })).toEqual({ contrast: 50 })
     expect(normalizeNativeChatAppearanceSettings({ contrast: 120.6 })).toEqual({ contrast: 121 })
     for (const contrast of [Number.NaN, Number.POSITIVE_INFINITY, '150', null]) {

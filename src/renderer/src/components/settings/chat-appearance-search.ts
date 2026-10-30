@@ -4,30 +4,22 @@ import { translateSearchKeyword } from './settings-search-keywords'
 import type { SettingsSearchEntry } from './settings-search'
 import { formatPrimaryShortcutLabel } from '@/hooks/useShortcutLabel'
 
-export function chatTerminalControlledHint(): string {
-  return translate('settings.appearance.chat.terminalControlledHint', 'Set by terminal interface.')
-}
-
-export function chatTerminalControlledTooltip(): string {
-  return translate(
-    'settings.appearance.chat.terminalControlledTooltip',
-    'Matching your terminal interface. Turn off Match terminal interface to change this.'
-  )
-}
-
 export const getChatContrastEntriesByKey = createLocalizedCatalog(
   () =>
     ({
-      matchTerminalInterface: {
-        title: translate(
-          'settings.appearance.chat.matchTerminalInterface',
-          'Match terminal interface'
-        ),
+      theme: {
+        title: translate('settings.appearance.chat.theme', 'Theme'),
         description: translate(
-          'settings.appearance.chat.matchTerminalInterfaceDescription',
-          "Use your terminal interface's font and colors for the whole chat. Stays in sync if you change your terminal theme later."
+          'settings.appearance.chat.themeDescription',
+          'Colors of the chat: the BrzA default, or any terminal theme.'
         ),
-        targetSectionId: 'chat-match-terminal-interface'
+        keywords: [
+          translate('settings.appearance.chat.title', 'Chat'),
+          ...translateSearchKeyword('settings.appearance.chat.themeKeywordColors', 'colors'),
+          ...translateSearchKeyword('settings.appearance.chat.themeKeywordDark', 'dark'),
+          ...translateSearchKeyword('settings.appearance.chat.themeKeywordLight', 'light')
+        ],
+        targetSectionId: 'chat-theme'
       },
       contrast: {
         title: translate('settings.appearance.chat.contrast', 'Contrast'),

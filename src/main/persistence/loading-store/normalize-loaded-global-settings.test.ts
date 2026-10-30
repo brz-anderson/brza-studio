@@ -310,3 +310,34 @@ describe('terminal default shell', () => {
     expect(normalizeLegacyProfile({ terminalDefaultShell: '   ' }).terminalDefaultShell).toBe('')
   })
 })
+
+describe('retired chat match terminal interface', () => {
+  it('makes the terminal theme pair, font and size the chat own, at the default contrast', () => {
+    const normalized = normalizeLegacyProfile({
+      terminalThemeDark: 'Dracula',
+      terminalUseSeparateLightTheme: true,
+      terminalThemeLight: 'Builtin Tango Light',
+      terminalFontFamily: 'SF Mono',
+      terminalFontSize: 15,
+      nativeChatAppearance: { matchTerminalInterface: true, contrast: 130, width: 'full' }
+    })
+    expect(normalized.nativeChatAppearance).toEqual({
+      themeDark: 'Dracula',
+      useSeparateLightTheme: true,
+      themeLight: 'Builtin Tango Light',
+      fontFamily: 'SF Mono',
+      fontSize: 15,
+      codeFontSize: 15,
+      width: 'full'
+    })
+  })
+
+  it('leaves the chat on the BrzA default when it was off', () => {
+    expect(
+      normalizeLegacyProfile({
+        terminalThemeDark: 'Dracula',
+        nativeChatAppearance: { matchTerminalInterface: false, fontSize: 16 }
+      }).nativeChatAppearance
+    ).toEqual({ fontSize: 16 })
+  })
+})

@@ -37,6 +37,21 @@ export function resolveOpaqueTerminalBackground(
   return composited ? `rgb(${composited.r} ${composited.g} ${composited.b})` : null
 }
 
+/** `color-mix(in srgb, foreground percent%, background)`, opaque, as `#rrggbb`. */
+export function mixCssColors(
+  foreground: string | undefined,
+  background: string | undefined,
+  percent: number
+): string | null {
+  const front = parseCssRgbColor(foreground)
+  const back = parseCssRgbColor(background)
+  if (!front || !back) {
+    return null
+  }
+  const { r, g, b } = compositeRgb(front, back, clampNumber(percent, 0, 100) / 100)
+  return `#${[r, g, b].map((channel) => channel.toString(16).padStart(2, '0')).join('')}`
+}
+
 function compositeTerminalBackground(
   background: string | undefined,
   options: { backgroundOpacity?: number; appSurface?: 'dark' | 'light' } = {}

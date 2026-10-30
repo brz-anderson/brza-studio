@@ -2,7 +2,7 @@
 import { useMemo, useRef } from 'react'
 import { act, cleanup, renderHook } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import * as terminalThemeSelection from '../../../../shared/terminal-theme-selection'
+import * as nativeChatTheme from '../../../../shared/native-chat-theme'
 import { createGlobalSettingsFixture } from '../../../../shared/global-settings-test-fixture'
 import { useAppStore } from '../../store'
 import { resetSystemPrefersDarkSubscriptionForTests } from '../terminal-pane/use-system-prefers-dark'
@@ -34,10 +34,10 @@ describe('memoized transcript row typography', () => {
   it('does no theme work on message renders or unrelated settings writes and follows text size and measured width', () => {
     const settings = createGlobalSettingsFixture({
       theme: 'dark',
-      nativeChatAppearance: { matchTerminalInterface: true }
+      nativeChatAppearance: { themeDark: 'Tango Dark' }
     })
     useAppStore.setState({ settings })
-    const resolveColors = vi.spyOn(terminalThemeSelection, 'resolveConfiguredTerminalColors')
+    const resolveTheme = vi.spyOn(nativeChatTheme, 'resolveNativeChatTheme')
     const matchMedia = vi.spyOn(window, 'matchMedia')
     const rendered = vi.fn()
     const { result, rerender } = renderHook(() => {
@@ -45,43 +45,38 @@ describe('memoized transcript row typography', () => {
       return useNativeChatRowTypography(useRef<HTMLDivElement>(null))
     })
     const initial = result.current.typography
-    expect(resolveColors).toHaveBeenCalledTimes(1)
+    expect(resolveTheme).toHaveBeenCalledTimes(1)
     const initialMediaReads = matchMedia.mock.calls.length
     rerender()
     rerender()
     expect(result.current.typography).toBe(initial)
-    expect(resolveColors).toHaveBeenCalledTimes(1)
+    expect(resolveTheme).toHaveBeenCalledTimes(1)
     expect(matchMedia).toHaveBeenCalledTimes(initialMediaReads)
     const renders = rendered.mock.calls.length
-    const terminalSizeSettings = { ...settings, terminalFontSize: settings.terminalFontSize + 1 }
     act(() =>
       useAppStore.setState({
-        settings: terminalSizeSettings
+        settings: { ...settings, terminalFontSize: settings.terminalFontSize + 1 }
       })
     )
-    expect(rendered).toHaveBeenCalledTimes(renders + 1)
-    expect(result.current.typography.lineHeightPx).toBe((22 * 15) / 14)
-    expect(resolveColors).toHaveBeenCalledTimes(2)
+    expect(rendered).toHaveBeenCalledTimes(renders)
+    expect(resolveTheme).toHaveBeenCalledTimes(1)
     act(() =>
       useAppStore.setState({
-        settings: {
-          ...terminalSizeSettings,
-          nativeChatAppearance: { matchTerminalInterface: true, fontSize: 20 }
-        }
+        settings: { ...settings, nativeChatAppearance: { themeDark: 'Tango Dark', fontSize: 15 } }
       })
     )
     expect(result.current.typography.lineHeightPx).toBe((22 * 15) / 14)
-    expect(resolveColors).toHaveBeenCalledTimes(3)
+    expect(resolveTheme).toHaveBeenCalledTimes(2)
     const node = document.createElement('div')
     vi.spyOn(node, 'getBoundingClientRect').mockReturnValue(DOMRect.fromRect({ width: 384 }))
     act(() => result.current.measureContent(node))
     expect(result.current.typography.charsPerLine).toBe(46)
-    expect(resolveColors).toHaveBeenCalledTimes(4)
+    expect(resolveTheme).toHaveBeenCalledTimes(3)
     const measured = result.current.typography
     vi.mocked(node.getBoundingClientRect).mockReturnValue(DOMRect.fromRect({ width: 399 }))
     act(() => result.current.measureContent(node))
     expect(result.current.typography).toBe(measured)
-    expect(resolveColors).toHaveBeenCalledTimes(4)
+    expect(resolveTheme).toHaveBeenCalledTimes(3)
     act(() => result.current.measureContent(null))
   })
 

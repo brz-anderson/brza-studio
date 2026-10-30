@@ -756,14 +756,22 @@
         "full": "Total",
         "pixels": "px",
         "reset": "Restaurar",
-        "matchTerminalInterface": "Usar aparência da interface do terminal",
-        "matchTerminalInterfaceDescription": "Use a fonte e as cores da interface do terminal em todo o chat. A aparência permanece sincronizada se você mudar o tema do terminal depois.",
         "contrast": "Contraste",
         "contrastDescription": "O brilho do texto do chat em relação ao fundo. A extremidade direita corresponde à aparência anterior, mais clara.",
         "softer": "Mais suave",
         "sharper": "Mais nítido",
-        "terminalControlledHint": "Definido pela interface do terminal.",
-        "terminalControlledTooltip": "Usando a aparência da interface do terminal. Desative Usar aparência da interface do terminal para alterar isto."
+        "theme": "Tema",
+        "themeDescription": "Cores do chat: o padrão do BrzA ou qualquer tema do terminal.",
+        "themeKeywordColors": "cores",
+        "themeKeywordDark": "escuro",
+        "themeKeywordLight": "claro",
+        "themeDefault": "Padrão do BrzA",
+        "themeDark": "Tema escuro",
+        "themeDarkDescription": "Usado no modo escuro, e no claro quando não há tema claro separado.",
+        "themeLight": "Tema claro",
+        "themeLightDescription": "Usado enquanto o BrzA Studio está no modo claro.",
+        "separateLightTheme": "Tema claro separado",
+        "separateLightThemeDescription": "Desligado, o modo claro também usa o tema escuro."
       }
     },
     "browser": {

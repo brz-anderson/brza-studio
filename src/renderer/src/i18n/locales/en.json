@@ -394,14 +394,22 @@
         "full": "Full",
         "pixels": "px",
         "reset": "Reset",
-        "matchTerminalInterface": "Match terminal interface",
-        "matchTerminalInterfaceDescription": "Use your terminal interface's font and colors for the whole chat. Stays in sync if you change your terminal theme later.",
         "contrast": "Contrast",
         "contrastDescription": "How bright chat text is against the background. The right end matches the older, brighter look.",
         "softer": "Softer",
         "sharper": "Sharper",
-        "terminalControlledHint": "Set by terminal interface.",
-        "terminalControlledTooltip": "Matching your terminal interface. Turn off Match terminal interface to change this."
+        "theme": "Theme",
+        "themeDescription": "Colors of the chat: the BrzA default, or any terminal theme.",
+        "themeKeywordColors": "colors",
+        "themeKeywordDark": "dark",
+        "themeKeywordLight": "light",
+        "themeDefault": "BrzA default",
+        "themeDark": "Dark theme",
+        "themeDarkDescription": "Used in dark mode, and in light mode without a separate light theme.",
+        "themeLight": "Light theme",
+        "themeLightDescription": "Used while BrzA Studio is in light mode.",
+        "separateLightTheme": "Separate light theme",
+        "separateLightThemeDescription": "Off uses the dark theme in light mode too."
       }
     },
     "browser": {

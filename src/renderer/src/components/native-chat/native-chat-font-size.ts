@@ -13,9 +13,6 @@ export function chatFontSizeForAction(
   appearance: NativeChatAppearanceSettings | undefined,
   action: Exclude<ChatFontSizeAction, null>
 ): NativeChatAppearanceSettings | undefined {
-  if (appearance?.matchTerminalInterface) {
-    return appearance
-  }
   const { fontSize } = resolveNativeChatAppearanceSettings(appearance)
   return normalizeNativeChatAppearanceSettings({
     ...appearance,

@@ -243,21 +243,6 @@ describe('registerZoomIpcBridge', () => {
     expect(zoom.setEditorFontZoomLevel).not.toHaveBeenCalled()
   })
 
-  it('consumes menu chat zoom while matching without changing saved size or app zoom', async () => {
-    const zoom = await mountZoomBridge({
-      activeTabType: 'terminal',
-      activeElement: makeTarget({ chatClosest: true }),
-      nativeChatAppearance: { fontSize: 18, matchTerminalInterface: true }
-    })
-    zoom.fire('in')
-    zoom.fire('out')
-    zoom.fire('reset')
-    await vi.waitFor(() => expect(zoom.settings.nativeChatAppearance?.fontSize).toBe(18))
-    expect(zoom.updateSettings).not.toHaveBeenCalled()
-    expect(zoom.applyUIZoom).not.toHaveBeenCalled()
-    expect(zoom.setEditorFontZoomLevel).not.toHaveBeenCalled()
-  })
-
   it('zooms the page, not the app, while focus is in its browser pane', async () => {
     const zoom = await mountZoomBridge({
       activeTabType: 'browser',
