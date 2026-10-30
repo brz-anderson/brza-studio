@@ -6,7 +6,9 @@ import { Brain, ChevronRight } from 'lucide-react-native'
 import {
   nativeChatReasoningDisclosureKey,
   nativeChatReasoningHeadline,
-  nativeChatReasoningHeadlineText
+  nativeChatReasoningHeadlineText,
+  nativeChatReasoningLabelText,
+  nativeChatReasoningPreview
 } from '../../../../../src/shared/native-chat-reasoning-row'
 import type { NativeChatMessage } from '../../../../../src/shared/native-chat-types'
 import { deriveNativeChatRowContent } from '../../../../../src/shared/native-chat-row-content'
@@ -60,8 +62,15 @@ export function MobileNativeChatReasoningRow({
   const expanded = onToggle ? transcriptExpanded : localExpanded
   const toggle = () =>
     onToggle ? onToggle(nativeChatReasoningDisclosureKey(message.id)) : setLocalExpanded(!expanded)
-  const headline = nativeChatReasoningHeadlineText(nativeChatReasoningHeadline(message, { live }))
+  const kind = nativeChatReasoningHeadline(message, { live })
+  const preview = nativeChatReasoningPreview(markdown)
+  // As desktop: the text runs after the label while closed, and moves into the body once open.
+  const headline = preview
+    ? nativeChatReasoningLabelText(kind)
+    : nativeChatReasoningHeadlineText(kind)
+  const linePreview = preview && !expanded ? preview : null
   const label = nativeChatReasoningHeadlineText({ kind: 'reasoning' })
+  const spoken = kind.kind === 'reasoning' ? headline : `${label}: ${headline}`
   return (
     <View testID={mobileNativeChatMemberId(`thought:${message.id}`)}>
       <Pressable
@@ -71,12 +80,20 @@ export function MobileNativeChatReasoningRow({
         accessibilityRole="button"
         accessibilityState={{ expanded }}
         // Desktop's screen-reader prefix: the headline alone does not say what was thought.
-        accessibilityLabel={headline === label ? label : `${label}: ${headline}`}
+        accessibilityLabel={linePreview ? `${spoken} ${linePreview}` : spoken}
       >
         <Brain size={15} color={colors.textMuted} strokeWidth={2} />
-        <Text style={styles.reasoningHeadline} numberOfLines={1}>
+        <Text
+          style={linePreview ? styles.reasoningLabel : styles.reasoningHeadline}
+          numberOfLines={1}
+        >
           {headline}
         </Text>
+        {linePreview ? (
+          <Text style={styles.reasoningHeadline} numberOfLines={1}>
+            {linePreview}
+          </Text>
+        ) : null}
         <View style={expanded ? styles.reasoningCaretOpen : undefined}>
           <ChevronRight size={14} color={colors.textMuted} strokeWidth={2} />
         </View>

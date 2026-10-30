@@ -19364,6 +19364,9 @@
       },
       "thought": "Pensó",
       "thoughtForDuration": "Pensó durante {{duration}}",
+      "reasoningLabel": "Razonamiento:",
+      "thoughtLabel": "Pensó:",
+      "thoughtForDurationLabel": "Pensó durante {{duration}}:",
       "receipt": {
         "cancelled": "Cancelado",
         "unavailable": "Respuesta seleccionada no disponible",

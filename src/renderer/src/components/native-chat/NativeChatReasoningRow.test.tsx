@@ -2,7 +2,10 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { setRendererUiLanguage } from '@/i18n/i18n'
 import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import { UI_LANGUAGE_ENGLISH, UI_LANGUAGE_PORTUGUESE } from '../../../../shared/ui-language'
+import { NativeChatAwaitingInputRow } from './NativeChatAwaitingInputRow'
 import { NativeChatReasoningRow } from './NativeChatReasoningRow'
 import { MessageRow } from './NativeChatMessageRow'
 import { NativeChatToolRunIcon } from './NativeChatToolIcon'
@@ -30,10 +33,11 @@ describe('reasoning disclosure', () => {
         markdown={'\n\nInspecting the request\nFull reasoning'}
       />
     )
-    expect(screen.getByRole('button', { name: 'Reasoning: Thought' })).toHaveAttribute(
-      'aria-expanded',
-      'false'
-    )
+    expect(
+      screen.getByRole('button', {
+        name: 'Reasoning: Thought: Inspecting the request Full reasoning'
+      })
+    ).toHaveAttribute('aria-expanded', 'false')
     expect(screen.queryByTestId('markdown')).not.toBeInTheDocument()
     const glyph = screen.getByRole('button').querySelector('svg.lucide-brain')
     expect(glyph).toHaveAttribute('aria-hidden', 'true')
@@ -150,13 +154,13 @@ describe('the reasoning headline', () => {
   }
 
   it('reads Reasoning while the row is open and its turn or subagent is running', () => {
-    expect(headline({ timestamp: STARTED, state: 'running' }, true)).toBe('Reasoning')
+    expect(headline({ timestamp: STARTED, state: 'running' }, true)).toBe('Reasoning: Reasoned')
   })
 
   it('reads Thought for N s once it closes, while the turn goes on working', () => {
     expect(
       headline({ timestamp: STARTED, state: 'completed', completedAt: STARTED + 12_000 }, true)
-    ).toContain('Thought for 12s')
+    ).toBe('Reasoning: Thought for 12s: Reasoned')
   })
 
   it('measures the span the host saw, at least one second', () => {
@@ -170,13 +174,15 @@ describe('the reasoning headline', () => {
   })
 
   it('claims no duration it never saw, and draws an open row in a settled turn as Thought', () => {
-    expect(headline({ timestamp: STARTED, state: 'completed' })).toBe('Reasoning: Thought')
+    expect(headline({ timestamp: STARTED, state: 'completed' })).toBe(
+      'Reasoning: Thought: Reasoned'
+    )
     cleanup()
-    expect(headline({ timestamp: STARTED, state: 'running' })).toBe('Reasoning: Thought')
+    expect(headline({ timestamp: STARTED, state: 'running' })).toBe('Reasoning: Thought: Reasoned')
   })
 
   it('stays neutral for a row from a host that kept no lifecycle', () => {
-    expect(headline({ timestamp: STARTED }, true)).toBe('Reasoning')
+    expect(headline({ timestamp: STARTED }, true)).toBe('Reasoning: Reasoned')
   })
 
   it('draws through the message row while open, and reads its span once it closes', () => {
@@ -208,5 +214,80 @@ describe('the reasoning headline', () => {
     expect(screen.getByRole('button')).toHaveTextContent('Thought for 3s')
     fireEvent.click(screen.getByRole('button'))
     expect(screen.getByTestId('markdown')).toHaveTextContent('Full reasoning')
+  })
+})
+
+describe('the closed line, like the question line', () => {
+  const line = (markdown: string, fields: Partial<NativeChatMessage> = {}) =>
+    render(
+      <NativeChatReasoningRow
+        message={{
+          id: 'r-1',
+          role: 'reasoning',
+          timestamp: STARTED,
+          state: 'completed',
+          completedAt: STARTED + 3_000,
+          ...fields
+        }}
+        markdown={markdown}
+      />
+    )
+
+  it('runs the start of the reasoning after the label, cut to one line in the faint tone', () => {
+    line('**Inspecting** the request\n\n- then the tests')
+    expect(screen.getByText('Thought for 3s:')).toBeInTheDocument()
+    const preview = screen.getByText('Inspecting the request then the tests')
+    expect(preview).toHaveClass('truncate', 'text-chat-foreground-faint')
+    expect(preview).not.toHaveClass('text-primary')
+    expect(screen.queryByTestId('markdown')).not.toBeInTheDocument()
+  })
+
+  it('takes the text off the line once open, and shows it whole below', () => {
+    line('Inspecting the request\nFull reasoning')
+    fireEvent.click(screen.getByRole('button'))
+    expect(screen.getByRole('button')).toHaveTextContent(/^Reasoning: Thought for 3s:$/)
+    expect(screen.getByTestId('markdown')).toHaveTextContent('Full reasoning')
+  })
+
+  it('reads Thought: and the text when it saw no duration', () => {
+    line('Inspecting', { completedAt: undefined })
+    expect(screen.getByRole('button')).toHaveTextContent(/^Reasoning: Thought: Inspecting$/)
+  })
+
+  it('keeps the bare label when the reasoning is only markup', () => {
+    line('```\n```')
+    expect(screen.getByRole('button')).toHaveTextContent(/^Reasoning: Thought for 3s$/)
+  })
+})
+
+describe('in Portuguese', () => {
+  afterEach(async () => {
+    await setRendererUiLanguage(UI_LANGUAGE_ENGLISH)
+  })
+
+  it('reads Pensou por 3s: before the reasoning, and Perguntou: before the question', async () => {
+    await setRendererUiLanguage(UI_LANGUAGE_PORTUGUESE)
+    render(
+      <>
+        <NativeChatReasoningRow
+          message={{
+            id: 'r-1',
+            role: 'reasoning',
+            timestamp: STARTED,
+            state: 'completed',
+            completedAt: STARTED + 3_000
+          }}
+          markdown="Conferindo o pedido"
+        />
+        <NativeChatReasoningRow
+          message={{ id: 'r-2', role: 'reasoning', timestamp: STARTED, state: 'completed' }}
+          markdown="Sem duração"
+        />
+        <NativeChatAwaitingInputRow subject={{ kind: 'question', text: 'Qual?' }} pending={false} />
+      </>
+    )
+    expect(screen.getByText('Pensou por 3s:')).toBeInTheDocument()
+    expect(screen.getByText('Pensou:')).toBeInTheDocument()
+    expect(screen.getByText('Perguntou:')).toBeInTheDocument()
   })
 })

@@ -36,6 +36,7 @@ vi.mock('lucide-react-native', () => ({
   AlertCircle: 'AlertCircle',
   AlertTriangle: 'AlertTriangle',
   ArrowUp: 'ArrowUp',
+  BookOpen: 'BookOpen',
   Bot: 'Bot',
   Brain: 'Brain',
   Check: 'Check',
@@ -46,14 +47,25 @@ vi.mock('lucide-react-native', () => ({
   FileMinus2: 'FileMinus2',
   FilePen: 'FilePen',
   FilePlus2: 'FilePlus2',
+  FileText: 'FileText',
+  Flame: 'Flame',
+  FlaskConical: 'FlaskConical',
   Folder: 'Folder',
+  GitBranch: 'GitBranch',
+  GitCommitHorizontal: 'GitCommitHorizontal',
+  GitPullRequest: 'GitPullRequest',
   Globe: 'Globe',
+  Hammer: 'Hammer',
   ListChecks: 'ListChecks',
   MessageSquareMore: 'MessageSquareMore',
+  Package: 'Package',
   Pencil: 'Pencil',
+  PenTool: 'PenTool',
   Plug: 'Plug',
   Search: 'Search',
+  Sparkles: 'Sparkles',
   SquareChevronRight: 'SquareChevronRight',
+  SquareKanban: 'SquareKanban',
   SquareTerminal: 'SquareTerminal',
   Wrench: 'Wrench'
 }))
@@ -123,11 +135,15 @@ describe('MobileNativeChatMessage', () => {
     const markdownIn = (tree: ReactTestRenderer): ReactTestInstance[] =>
       tree.root.findAll((node) => String(node.type) === 'MobileMarkdown')
 
-    it('starts collapsed to its headline, with its text unmounted', () => {
+    it('starts collapsed to its headline and the start of its text, with the text unmounted', () => {
       const tree = render(reasoning())
-      expect(textIn(tree.root)).toContain('Thought for 3s')
+      expect(textIn(tree.root)).toEqual(
+        expect.arrayContaining(['Thought for 3s:', 'Weighing two approaches'])
+      )
       expect(toggleOf(tree).props.accessibilityState).toEqual({ expanded: false })
-      expect(toggleOf(tree).props.accessibilityLabel).toBe('Reasoning: Thought for 3s')
+      expect(toggleOf(tree).props.accessibilityLabel).toBe(
+        'Reasoning: Thought for 3s: Weighing two approaches'
+      )
       expect(toggleOf(tree).props.hitSlop).toBe(6)
       expect(markdownIn(tree)).toHaveLength(0)
     })
@@ -137,10 +153,14 @@ describe('MobileNativeChatMessage', () => {
       expect(typeof first === 'string' ? first : first?.type).toBe('Brain')
     })
 
-    it('mounts its text once opened', () => {
+    it('mounts its text once opened, and takes it off the line', () => {
       const tree = render(reasoning())
       act(() => toggleOf(tree).props.onPress())
       expect(toggleOf(tree).props.accessibilityState).toEqual({ expanded: true })
+      expect(toggleOf(tree).props.accessibilityLabel).toBe('Reasoning: Thought for 3s:')
+      expect(
+        findAllByHostType(toggleOf(tree), 'Text').map((text) => text.children.join(''))
+      ).toEqual(['Thought for 3s:'])
       expect(markdownIn(tree).map((node) => node.props.content)).toEqual([
         'Weighing two approaches'
       ])
@@ -170,16 +190,16 @@ describe('MobileNativeChatMessage', () => {
       const child = render(reasoning({ state: 'running', agentId: 'sub-1' }), {
         activeTurnIsWorking: true
       })
-      expect(textIn(child.root)).toContain('Reasoning')
-      expect(toggleOf(child).props.accessibilityLabel).toBe('Reasoning')
+      expect(textIn(child.root)).toContain('Reasoning:')
+      expect(toggleOf(child).props.accessibilityLabel).toBe('Reasoning: Weighing two approaches')
     })
 
     it('says only what the host saw', () => {
-      expect(textIn(render(reasoning({ state: 'running' })).root)).toContain('Thought')
+      expect(textIn(render(reasoning({ state: 'running' })).root)).toContain('Thought:')
       const unknown = render(reasoning({ state: undefined, completedAt: undefined }))
-      expect(textIn(unknown.root)).toContain('Reasoning')
-      expect(toggleOf(unknown).props.accessibilityLabel).toBe('Reasoning')
-      expect(textIn(render(reasoning({ completedAt: 1_300 })).root)).toContain('Thought for 1s')
+      expect(textIn(unknown.root)).toContain('Reasoning:')
+      expect(toggleOf(unknown).props.accessibilityLabel).toBe('Reasoning: Weighing two approaches')
+      expect(textIn(render(reasoning({ completedAt: 1_300 })).root)).toContain('Thought for 1s:')
     })
   })
 })

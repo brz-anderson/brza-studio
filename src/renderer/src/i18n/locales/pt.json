@@ -19787,7 +19787,7 @@
       },
       "ask": {
         "awaiting": "Aguardando entrada do usuário:",
-        "asked": "Perguntado:",
+        "asked": "Perguntou:",
         "questionCount": "{{value0}} perguntas",
         "awaitingUnnamed": "Aguardando sua resposta"
       },
@@ -20163,6 +20163,9 @@
       },
       "thought": "Raciocínio",
       "thoughtForDuration": "Pensou por {{duration}}",
+      "reasoningLabel": "Raciocínio:",
+      "thoughtLabel": "Pensou:",
+      "thoughtForDurationLabel": "Pensou por {{duration}}:",
       "explicitChatWsl": "O chat não está disponível no WSL. Abra o agente em um terminal.",
       "explicitChatSsh": "O chat não está disponível via SSH. Abra o agente em um terminal.",
       "explicitChatUnavailable": "Este espaço de trabalho não pode executar o chat. Confira a instalação do agente ou abra o agente em um terminal.",

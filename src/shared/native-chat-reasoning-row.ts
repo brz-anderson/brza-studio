@@ -91,3 +91,26 @@ export function nativeChatReasoningHeadlineText(headline: NativeChatReasoningHea
     ? NATIVE_CHAT_REASONING_COPY.thoughtFor(headline.duration)
     : NATIVE_CHAT_REASONING_COPY[headline.kind]
 }
+
+/** The closed line's label: the headline ending on a colon, before the reasoning's start. */
+export function nativeChatReasoningLabelText(headline: NativeChatReasoningHeadline): string {
+  return `${nativeChatReasoningHeadlineText(headline)}:`
+}
+
+// The line shows one row of text, so only the start of a long block is worth stripping.
+const NATIVE_CHAT_REASONING_PREVIEW_SOURCE_CHARS = 1_000
+
+/** The reasoning as one line of running text: markup dropped, line breaks as spaces. */
+export function nativeChatReasoningPreview(markdown: string): string {
+  return markdown
+    .slice(0, NATIVE_CHAT_REASONING_PREVIEW_SOURCE_CHARS)
+    .replace(/^\s*(?:`{3,}|~{3,}).*$/gm, ' ')
+    .replace(/^\s*([-*_])(?:\s*\1){2,}\s*$/gm, ' ')
+    .replace(/^\s*(?:>\s?|#{1,6}\s+|[-*+]\s+|\d+[.)]\s+)+/gm, '')
+    .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/`([^`]*)`/g, '$1')
+    .replace(/(\*\*|__|~~)(?=\S)(.+?)(?<=\S)\1/g, '$2')
+    .replace(/(^|[^\w*])([*_])(?=\S)(.+?)(?<=\S)\2(?![\w*])/g, '$1$3')
+    .replace(/\s+/g, ' ')
+    .trim()
+}

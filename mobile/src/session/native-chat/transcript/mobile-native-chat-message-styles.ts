@@ -52,6 +52,12 @@ export const styles = StyleSheet.create({
     fontSize: typography.bodySize,
     flexShrink: 1
   },
+  // Kept whole while the reasoning's start, after it, takes the ellipsis.
+  reasoningLabel: {
+    color: colors.textMuted,
+    fontSize: typography.bodySize,
+    flexShrink: 0
+  },
   reasoningCaretOpen: {
     transform: [{ rotate: '90deg' }]
   },

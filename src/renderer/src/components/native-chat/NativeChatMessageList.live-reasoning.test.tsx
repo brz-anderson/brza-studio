@@ -153,7 +153,7 @@ import type { NativeChatLiveSession } from './use-native-chat-live-session'
       fireEvent.click(screen.getByRole('button', { name: 'Thinking' }))
       rerender(list([reasoning('r-1', 'Weighing two approaches', 'completed')]))
       expect(screen.queryByRole('button', { name: /Thinking|Working/ })).toBeNull()
-      expect(screen.getByRole('button', { name: 'Reasoning: Thought for 12s' })).toHaveAttribute(
+      expect(screen.getByRole('button', { name: 'Reasoning: Thought for 12s:' })).toHaveAttribute(
         'aria-expanded',
         'true'
       )
@@ -203,7 +203,7 @@ import type { NativeChatLiveSession } from './use-native-chat-live-session'
         })
       )
       expect(screen.queryByText('Thinking')).toBeNull()
-      expect(screen.getByRole('button', { name: 'Reasoning' })).toHaveAttribute(
+      expect(screen.getByRole('button', { name: /^Reasoning: Weighing/ })).toHaveAttribute(
         'aria-expanded',
         'false'
       )
