@@ -128,6 +128,26 @@ function findElementByTypeName(node: unknown, typeName: string): ReactElementLik
   return findElementByTypeName(element.props?.children, typeName)
 }
 
+function findSwitchByLabel(node: unknown, label: string): ReactElementLike | null {
+  if (node == null || typeof node === 'string' || typeof node === 'number') {
+    return null
+  }
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const found = findSwitchByLabel(child, label)
+      if (found) {
+        return found
+      }
+    }
+    return null
+  }
+  const element = node as ReactElementLike
+  if (getTypeName(element) === 'SettingsSwitchRow' && element.props?.label === label) {
+    return element
+  }
+  return findSwitchByLabel(element.props?.children, label)
+}
+
 function findElementByClassSubstring(
   node: unknown,
   classNameSubstring: string
@@ -352,7 +372,7 @@ describe('TerminalThemeCatalogSection', () => {
       updateSettings,
       'light'
     )
-    const matchDarkModeSwitch = findElementByTypeName(element, 'SettingsSwitchRow')
+    const matchDarkModeSwitch = findSwitchByLabel(element, 'Match dark mode')
     const toggleMatchDarkMode = matchDarkModeSwitch?.props?.onChange as () => void
 
     expect(matchDarkModeSwitch?.props?.label).toBe('Match dark mode')
@@ -373,7 +393,7 @@ describe('TerminalThemeCatalogSection', () => {
       updateSettings,
       'light'
     )
-    const matchDarkModeSwitch = findElementByTypeName(element, 'SettingsSwitchRow')
+    const matchDarkModeSwitch = findSwitchByLabel(element, 'Match dark mode')
     const toggleMatchDarkMode = matchDarkModeSwitch?.props?.onChange as () => void
 
     expect(matchDarkModeSwitch?.props?.checked).toBe(false)
@@ -383,6 +403,24 @@ describe('TerminalThemeCatalogSection', () => {
     expect(updateSettings).toHaveBeenCalledWith({ terminalUseSeparateLightTheme: false })
   })
 
+  it('locks the terminal theme controls while following the chat theme', () => {
+    const updateSettings = vi.fn()
+    const element = renderCatalog(makeSettings(), updateSettings, 'light')
+    const followChatSwitch = findSwitchByLabel(element, 'Follow chat theme')
+
+    expect(followChatSwitch?.props?.checked).toBe(true)
+    expect(findSwitchByLabel(element, 'Match dark mode')?.props?.disabled).toBe(true)
+    expect(findElementByClassSubstring(element, 'opacity-50')?.props?.inert).toBe(true)
+
+    const toggleFollowChat = followChatSwitch?.props?.onChange
+    expect(toggleFollowChat).toBeTypeOf('function')
+    if (typeof toggleFollowChat === 'function') {
+      toggleFollowChat()
+    }
+
+    expect(updateSettings).toHaveBeenCalledWith({ terminalFollowsChatTheme: false })
+  })
+
   it('collapses light customization with a transition while matching dark mode', () => {
     const element = renderCatalog(
       makeSettings({ terminalUseSeparateLightTheme: false }),
@@ -390,7 +428,7 @@ describe('TerminalThemeCatalogSection', () => {
       'light'
     )
     const preview = findElementByTypeName(element, 'TerminalSettingsPreview')
-    const matchDarkModeSwitch = findElementByTypeName(element, 'SettingsSwitchRow')
+    const matchDarkModeSwitch = findSwitchByLabel(element, 'Match dark mode')
     const transitionRegion = findElementByClassSubstring(
       element,
       'transition-[grid-template-rows,padding-top]'

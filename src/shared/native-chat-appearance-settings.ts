@@ -36,6 +36,8 @@ export type NativeChatGlobalSettings = {
   nativeChatProviders?: Partial<Record<TuiAgent, boolean>>
   /** The chat composer shows its Markdown formatted; what it sends stays Markdown. Absent = off. */
   nativeChatMarkdownComposer?: boolean
+  /** The terminal paints the chat theme instead of its own; absent = on. */
+  terminalFollowsChatTheme?: boolean
 }
 
 export const DEFAULT_NATIVE_CHAT_FONT_SIZE = 14

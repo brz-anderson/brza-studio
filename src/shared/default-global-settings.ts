@@ -84,6 +84,7 @@ export function buildDefaultSettings(args: {
     terminalThemeLight: 'Builtin Tango Light',
     terminalCustomThemes: [],
     terminalDividerColorLight: '#d4d4d8',
+    terminalFollowsChatTheme: true,
     terminalInactivePaneOpacity: args.terminalInactivePaneOpacity,
     terminalActivePaneOpacity: 1,
     terminalPaneOpacityTransitionMs: 140,

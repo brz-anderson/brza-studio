@@ -9726,6 +9726,8 @@
           "target_light": "Light",
           "match_dark_mode": "Match dark mode",
           "match_dark_mode_description": "Share the dark terminal theme and divider color in light mode.",
+          "follow_chat": "Follow chat theme",
+          "follow_chat_description": "Use the chat's background and colors, keeping the terminal font. Turn off to pick a terminal theme.",
           "light_preview_description": "Shows the effective light terminal appearance.",
           "dark_preview_description": "Shows the effective dark terminal appearance."
         },
@@ -11646,6 +11648,10 @@
               "title": "Theme Mode",
               "keyword_target": "target",
               "keyword_editing": "editing"
+            },
+            "follow_chat": {
+              "title": "Follow chat theme",
+              "keyword_chat": "chat"
             },
             "39ea7c0d28": "terminal",
             "scroll": "scroll",

@@ -20,6 +20,8 @@ type LeftSidebarAppearanceSettings = Pick<
   | 'terminalDividerColorLight'
   | 'terminalColorOverrides'
   | 'terminalBackgroundOpacity'
+  | 'nativeChatAppearance'
+  | 'terminalFollowsChatTheme'
 >
 
 export type LeftSidebarStyleVariables = Record<string, string>

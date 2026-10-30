@@ -57,6 +57,30 @@ afterEach(() => {
 })
 
 describe('resolveEffectiveTerminalAppearance', () => {
+  it('takes the mode and divider from the chat theme while following the chat', () => {
+    const appearance = resolveEffectiveTerminalAppearance(
+      {
+        theme: 'dark',
+        terminalThemeDark: DEFAULT_TERMINAL_THEME_DARK,
+        terminalDividerColorDark: '#3f3f46',
+        terminalUseSeparateLightTheme: true,
+        terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
+        terminalDividerColorLight: '#d4d4d8',
+        nativeChatAppearance: { themeDark: DEFAULT_TERMINAL_THEME_LIGHT }
+      },
+      true
+    )
+
+    expect(appearance).toMatchObject({
+      mode: 'light',
+      themeName: DEFAULT_TERMINAL_THEME_LIGHT,
+      dividerColor: '#d4d4d8'
+    })
+    expect(appearance.theme?.background).toBe(
+      getBuiltinTheme(DEFAULT_TERMINAL_THEME_LIGHT)?.background
+    )
+  })
+
   it('uses the light terminal theme for system theme on light OS when light variant is enabled', () => {
     const appearance = resolveEffectiveTerminalAppearance(
       {
@@ -65,7 +89,8 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalDividerColorDark: '#3f3f46',
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
-        terminalDividerColorLight: '#d4d4d8'
+        terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false
       },
       false
     )
@@ -82,7 +107,8 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalDividerColorDark: '#3f3f46',
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
-        terminalDividerColorLight: '#d4d4d8'
+        terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false
       },
       true
     )
@@ -99,7 +125,8 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalDividerColorDark: '#3f3f46',
         terminalUseSeparateLightTheme: false,
         terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
-        terminalDividerColorLight: '#d4d4d8'
+        terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false
       },
       false
     )
@@ -116,7 +143,8 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalDividerColorDark: '#3f3f46',
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: '',
-        terminalDividerColorLight: '#d4d4d8'
+        terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false
       },
       false
     )
@@ -132,7 +160,8 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalDividerColorDark: '#3f3f46',
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: 'Invalid Theme Name',
-        terminalDividerColorLight: '#d4d4d8'
+        terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false
       },
       false
     )
@@ -150,6 +179,7 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
         terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false,
         terminalCustomThemes: [
           {
             id: 'warp:tokyo-night',
@@ -181,6 +211,7 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: DEFAULT_TERMINAL_THEME_LIGHT,
         terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false,
         terminalCustomThemes: []
       },
       true
@@ -199,6 +230,7 @@ describe('resolveEffectiveTerminalAppearance', () => {
         terminalUseSeparateLightTheme: true,
         terminalThemeLight: 'custom:warp:missing',
         terminalDividerColorLight: '#d4d4d8',
+        terminalFollowsChatTheme: false,
         terminalCustomThemes: []
       },
       false

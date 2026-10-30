@@ -170,6 +170,57 @@ describe('applyTerminalAppearance theme assignment', () => {
     )
   }
 
+  it('paints the chat theme on the chat canvas while following the chat, with the terminal font', () => {
+    const pane = makePane(1)
+    const settings = {
+      ...getDefaultSettings('/tmp'),
+      theme: 'dark' as const,
+      terminalThemeDark: 'Builtin Tango Light',
+      terminalFontFamily: 'JetBrains Mono',
+      terminalFontSize: 15,
+      terminalBackgroundOpacity: 0.5,
+      nativeChatAppearance: { fontFamily: 'Inter', fontSize: 18 }
+    }
+
+    apply(pane, settings)
+    // The BrzA default chat: the #161616 canvas and the default dark terminal ANSI colors.
+    expect(pane.terminal.options.theme).toMatchObject({
+      background: hexToRgba('#161616', 0.5),
+      foreground: '#fafafa',
+      red: '#cc6666',
+      brightBlue: '#7aa6da'
+    })
+    expect(pane.terminal.options.fontSize).toBe(15)
+    expect(pane.terminal.options.fontFamily).toContain('JetBrains Mono')
+
+    apply(pane, { ...settings, nativeChatAppearance: { themeDark: 'Dracula' } })
+    expect(pane.terminal.options.theme).toMatchObject({
+      background: hexToRgba('#282a36', 0.5),
+      foreground: '#f8f8f2',
+      red: '#ff5555'
+    })
+  })
+
+  it('keeps its own theme, overrides and opacity once it stops following the chat', () => {
+    const pane = makePane(1)
+
+    apply(pane, {
+      ...getDefaultSettings('/tmp'),
+      theme: 'dark',
+      terminalFollowsChatTheme: false,
+      terminalThemeDark: 'Dracula',
+      terminalColorOverrides: { foreground: '#123456' },
+      terminalBackgroundOpacity: 0.5,
+      nativeChatAppearance: { themeDark: 'Builtin Tango Light' }
+    })
+
+    expect(pane.terminal.options.theme).toMatchObject({
+      background: hexToRgba('#282a36', 0.5),
+      foreground: '#123456',
+      red: '#ff5555'
+    })
+  })
+
   it('keeps options.theme identity across attribute-neutral applies (font size tweak)', () => {
     const pane = makePane(1)
     const settings = getDefaultSettings('/tmp')
@@ -244,7 +295,12 @@ describe('applyTerminalAppearance theme assignment', () => {
     const pane = makePane(1)
     const settings = getDefaultSettings('/tmp')
 
-    apply(pane, { ...settings, theme: 'light', terminalUseSeparateLightTheme: false })
+    apply(pane, {
+      ...settings,
+      theme: 'light',
+      terminalUseSeparateLightTheme: false,
+      terminalFollowsChatTheme: false
+    })
 
     expect(pane.terminal.options.minimumContrastRatio).toBe(3)
   })
@@ -253,7 +309,12 @@ describe('applyTerminalAppearance theme assignment', () => {
     const pane = makePane(1)
     const settings = getDefaultSettings('/tmp')
 
-    apply(pane, { ...settings, theme: 'dark', terminalThemeDark: 'Builtin Tango Light' })
+    apply(pane, {
+      ...settings,
+      theme: 'dark',
+      terminalThemeDark: 'Builtin Tango Light',
+      terminalFollowsChatTheme: false
+    })
 
     expect(pane.terminal.options.minimumContrastRatio).toBe(4.5)
   })

@@ -35,6 +35,20 @@ export const getTerminalDarkThemeSearchEntries = createLocalizedCatalog(() => [
 
 export const getTerminalThemeTargetSearchEntries = createLocalizedCatalog(() => [
   {
+    title: translate(
+      'auto.components.settings.terminal.search.follow_chat.title',
+      'Follow chat theme'
+    ),
+    keywords: [
+      ...translateSearchKeyword('auto.components.settings.terminal.search.f66a7cf715', 'terminal'),
+      ...translateSearchKeyword('auto.components.settings.terminal.search.0ce176909a', 'theme'),
+      ...translateSearchKeyword(
+        'auto.components.settings.terminal.search.follow_chat.keyword_chat',
+        'chat'
+      )
+    ]
+  },
+  {
     title: translate('auto.components.settings.terminal.search.theme_target.title', 'Theme Mode'),
     keywords: [
       ...translateSearchKeyword('auto.components.settings.terminal.search.f66a7cf715', 'terminal'),

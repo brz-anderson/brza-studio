@@ -18,6 +18,7 @@ import {
   getAvailableTerminalThemeOptions,
   resolveEffectiveTerminalAppearance
 } from '@/lib/terminal-theme'
+import { terminalFollowsChatTheme } from '../../../../shared/terminal-chat-theme'
 import { translate } from '@/i18n/i18n'
 import { cn } from '@/lib/utils'
 
@@ -98,6 +99,7 @@ export function TerminalThemeCatalogSection({
   const themeOptions = getAvailableTerminalThemeOptions(settings)
   const isLightTarget = target === 'light'
   const matchDarkMode = !settings.terminalUseSeparateLightTheme
+  const followsChat = terminalFollowsChatTheme(settings)
   const lightModeMatchesDark = isLightTarget && matchDarkMode
   const showCustomControls = !lightModeMatchesDark
   const selectedTheme = isLightTarget ? settings.terminalThemeLight : settings.terminalThemeDark
@@ -147,6 +149,28 @@ export function TerminalThemeCatalogSection({
       <div className="ml-4 grid gap-4">
         <div className={advancedContent ? 'border-b border-border/40' : undefined}>
           <div className="space-y-3">
+            <SearchableSetting
+              title={translate(
+                'auto.components.settings.TerminalThemeSections.follow_chat',
+                'Follow chat theme'
+              )}
+              keywords={['terminal', 'theme', 'chat', 'follow']}
+              forceVisible
+            >
+              <SettingsSwitchRow
+                label={translate(
+                  'auto.components.settings.TerminalThemeSections.follow_chat',
+                  'Follow chat theme'
+                )}
+                description={translate(
+                  'auto.components.settings.TerminalThemeSections.follow_chat_description',
+                  "Use the chat's background and colors, keeping the terminal font. Turn off to pick a terminal theme."
+                )}
+                checked={followsChat}
+                onChange={() => updateSettings({ terminalFollowsChatTheme: !followsChat })}
+              />
+            </SearchableSetting>
+
             <SearchableSetting
               title={translate(
                 'auto.components.settings.TerminalThemeSections.target_title',
@@ -209,6 +233,7 @@ export function TerminalThemeCatalogSection({
                     'Share the dark terminal theme and divider color in light mode.'
                   )}
                   checked={matchDarkMode}
+                  disabled={followsChat}
                   onChange={() =>
                     // The legacy setting stores the inverse; the UI exposes the matching concept.
                     updateSettings({
@@ -242,32 +267,34 @@ export function TerminalThemeCatalogSection({
                 keywords={['terminal', 'theme', 'dark', 'light', 'preview']}
                 forceVisible
               >
-                <ThemePicker
-                  label={pickerTitle}
-                  description={pickerDescription}
-                  selectedTheme={selectedTheme}
-                  themeOptions={themeOptions}
-                  query={themeSearch}
-                  onQueryChange={setThemeSearch}
-                  onSelectTheme={(theme) => {
-                    rememberTerminalThemeTarget(target)
-                    // A selected theme must replace overrides or they mask the picker.
-                    const hasColorOverrides =
-                      Object.keys(settings.terminalColorOverrides ?? {}).length > 0
-                    updateSettings(
-                      isLightTarget
-                        ? {
-                            terminalThemeLight: theme,
-                            ...(hasColorOverrides ? { terminalColorOverrides: undefined } : {})
-                          }
-                        : {
-                            terminalThemeDark: theme,
-                            ...(hasColorOverrides ? { terminalColorOverrides: undefined } : {})
-                          }
-                    )
-                  }}
-                  importedHighlightSignal={importedHighlightSignal}
-                />
+                <div className={cn(followsChat && 'opacity-50')} inert={followsChat}>
+                  <ThemePicker
+                    label={pickerTitle}
+                    description={pickerDescription}
+                    selectedTheme={selectedTheme}
+                    themeOptions={themeOptions}
+                    query={themeSearch}
+                    onQueryChange={setThemeSearch}
+                    onSelectTheme={(theme) => {
+                      rememberTerminalThemeTarget(target)
+                      // A selected theme must replace overrides or they mask the picker.
+                      const hasColorOverrides =
+                        Object.keys(settings.terminalColorOverrides ?? {}).length > 0
+                      updateSettings(
+                        isLightTarget
+                          ? {
+                              terminalThemeLight: theme,
+                              ...(hasColorOverrides ? { terminalColorOverrides: undefined } : {})
+                            }
+                          : {
+                              terminalThemeDark: theme,
+                              ...(hasColorOverrides ? { terminalColorOverrides: undefined } : {})
+                            }
+                      )
+                    }}
+                    importedHighlightSignal={importedHighlightSignal}
+                  />
+                </div>
               </SearchableSetting>
 
               <SearchableSetting

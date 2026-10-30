@@ -6,7 +6,7 @@ import {
   setTerminalViewerColorsListener
 } from '../../../runtime/terminal-view-attribute-store'
 import { validateTerminalViewAttributes } from '../../../../shared/terminal-view-attributes'
-import { resolveConfiguredTerminalColors } from '../../../../shared/terminal-theme-selection'
+import { resolveSavedTerminalColors } from '../../../../shared/terminal-chat-theme'
 import { publishColorQueryReplyColors } from '../provider/registry'
 import type { PtyIpcSession } from '../session'
 
@@ -18,7 +18,7 @@ export function installTerminalViewAttributesIpc(
   // Answer with saved theme before any viewer push, including headless hosts that may never get one.
   if (settings) {
     seedTerminalViewerColors(
-      resolveConfiguredTerminalColors(settings, session.options?.systemPrefersDark?.() ?? true)
+      resolveSavedTerminalColors(settings, session.options?.systemPrefersDark?.() ?? true)
     )
   }
   const current = getTerminalViewerColors()

@@ -13,6 +13,7 @@ import {
   lookupTerminalTheme,
   selectTerminalTheme
 } from '../../../shared/terminal-theme-selection'
+import { resolveTerminalChatTheme } from '../../../shared/terminal-chat-theme'
 
 export const BUILTIN_TERMINAL_THEME_NAMES = getThemeNames()
 
@@ -103,9 +104,25 @@ export function resolveEffectiveTerminalAppearance(
     | 'terminalThemeLight'
     | 'terminalCustomThemes'
     | 'terminalDividerColorLight'
+    | 'nativeChatAppearance'
+    | 'terminalFollowsChatTheme'
   >,
   systemPrefersDark = getSystemPrefersDark()
 ): EffectiveTerminalAppearance {
+  const chat = resolveTerminalChatTheme(settings, systemPrefersDark)
+  if (chat) {
+    return {
+      mode: chat.mode,
+      sourceTheme: settings.theme,
+      themeName: chat.themeName,
+      dividerColor:
+        chat.mode === 'light'
+          ? normalizeColor(settings.terminalDividerColorLight, DEFAULT_TERMINAL_DIVIDER_LIGHT)
+          : normalizeColor(settings.terminalDividerColorDark, DEFAULT_TERMINAL_DIVIDER_DARK),
+      theme: chat.theme,
+      systemPrefersDark
+    }
+  }
   const {
     mode: sourceTheme,
     useLightVariant,

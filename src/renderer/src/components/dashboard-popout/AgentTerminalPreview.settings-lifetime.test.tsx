@@ -108,7 +108,11 @@ beforeEach(() => {
   harness.instances.length = 0
   harness.systemPrefersDark = false
   emitData = undefined
-  settings = createGlobalSettingsFixture({ theme: 'dark', activeRuntimeEnvironmentId: null })
+  settings = createGlobalSettingsFixture({
+    theme: 'dark',
+    activeRuntimeEnvironmentId: null,
+    terminalFollowsChatTheme: false
+  })
   connect.mockReset().mockResolvedValue(connection)
   originalApi = Object.getOwnPropertyDescriptor(window, 'api')
   Object.defineProperty(window, 'api', {

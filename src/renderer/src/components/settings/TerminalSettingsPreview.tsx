@@ -90,6 +90,8 @@ export function TerminalSettingsPreview({
       settings.terminalUseSeparateLightTheme,
       settings.terminalDividerColorDark,
       settings.terminalDividerColorLight,
+      settings.terminalFollowsChatTheme,
+      settings.nativeChatAppearance,
       systemPrefersDark
     ]
   )

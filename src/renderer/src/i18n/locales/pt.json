@@ -2974,6 +2974,10 @@
               "keyword_target": "destino",
               "keyword_editing": "edição"
             },
+            "follow_chat": {
+              "title": "Seguir o chat",
+              "keyword_chat": "chat"
+            },
             "39ea7c0d28": "terminal",
             "scroll": "rolagem",
             "scrolling": "rolando",
@@ -6514,6 +6518,8 @@
           "target_light": "Claro",
           "match_dark_mode": "Seguir o modo escuro",
           "match_dark_mode_description": "Compartilha o tema de terminal escuro e a cor do divisor no modo claro.",
+          "follow_chat": "Seguir o chat",
+          "follow_chat_description": "Usa o fundo e as cores do chat, com a fonte do terminal. Desligue para escolher um tema do terminal.",
           "light_preview_description": "Mostra a aparência efetiva do terminal no modo claro.",
           "dark_preview_description": "Mostra a aparência efetiva do terminal no modo escuro."
         },

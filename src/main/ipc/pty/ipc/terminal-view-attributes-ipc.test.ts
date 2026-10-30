@@ -40,7 +40,7 @@ const CLIENT = { foreground: '#2e3434', background: '#ffffff' }
 
 describe('seeding PTY owner colours from saved settings', () => {
   const originalLocal = getLocalPtyProvider()
-  const settings = getDefaultSettings('/tmp')
+  const settings = { ...getDefaultSettings('/tmp'), terminalFollowsChatTheme: false }
 
   afterEach(() => {
     _resetTerminalViewAttributesForTest()
@@ -69,6 +69,17 @@ describe('seeding PTY owner colours from saved settings', () => {
     expect(owner.pushes).toEqual([{ foreground: '#ffffff', background: '#282c34' }])
   })
 
+  it('seeds the chat canvas while the terminal follows the chat', () => {
+    const owner = new RecordingProvider()
+    setLocalPtyProvider(owner)
+
+    installTerminalViewAttributesIpc({
+      getSettings: () => ({ ...settings, theme: 'dark', terminalFollowsChatTheme: true })
+    })
+
+    expect(owner.pushes).toEqual([{ foreground: '#fafafa', background: '#161616' }])
+  })
+
   it('publishes colours a renderer already pushed instead of the saved theme', () => {
     setTerminalViewAttributes(DESKTOP_ATTRIBUTES)
     const owner = new RecordingProvider()
@@ -82,7 +93,7 @@ describe('seeding PTY owner colours from saved settings', () => {
 
 describe('one viewer colour value for every PTY owner', () => {
   const originalLocal = getLocalPtyProvider()
-  const settings = getDefaultSettings('/tmp')
+  const settings = { ...getDefaultSettings('/tmp'), terminalFollowsChatTheme: false }
   const SEED = { foreground: '#ffffff', background: '#282c34' }
 
   afterEach(() => {
