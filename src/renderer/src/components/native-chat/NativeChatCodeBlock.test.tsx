@@ -67,20 +67,13 @@ describe('NativeChatCodeBlock', () => {
   it.each([
     ['with a language header', 'typescript'],
     ['without a language header', undefined]
-  ])('wraps long lines only after the reader turns wrapping on (%s)', (_name, language) => {
+  ])('wraps long lines until the reader turns wrapping off (%s)', (_name, language) => {
     const { container } = render(
       <NativeChatCodeBlock language={language}>
         <code>{'const longLine = 1\n'}</code>
       </NativeChatCodeBlock>
     )
     const pre = container.querySelector('pre')
-
-    const wrapOn = screen.getByRole('button', { name: 'Wrap lines' })
-    expect(wrapOn).toHaveAttribute('aria-pressed', 'false')
-    expect(pre).toHaveClass('overflow-x-auto')
-    expect(pre).not.toHaveClass('whitespace-pre-wrap')
-
-    fireEvent.click(wrapOn)
 
     const wrapOff = screen.getByRole('button', { name: 'Disable line wrap' })
     expect(wrapOff).toHaveAttribute('aria-pressed', 'true')
@@ -89,11 +82,18 @@ describe('NativeChatCodeBlock', () => {
 
     fireEvent.click(wrapOff)
 
-    expect(screen.getByRole('button', { name: 'Wrap lines' })).toHaveAttribute(
-      'aria-pressed',
-      'false'
-    )
+    const wrapOn = screen.getByRole('button', { name: 'Wrap lines' })
+    expect(wrapOn).toHaveAttribute('aria-pressed', 'false')
     expect(pre).toHaveClass('overflow-x-auto')
+    expect(pre).not.toHaveClass('whitespace-pre-wrap')
+
+    fireEvent.click(wrapOn)
+
+    expect(screen.getByRole('button', { name: 'Disable line wrap' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    )
+    expect(pre).toHaveClass('whitespace-pre-wrap')
   })
 
   it('colors and wraps fenced code, copies its text, and confirms success', async () => {
@@ -110,8 +110,6 @@ describe('NativeChatCodeBlock', () => {
     await waitFor(() => expect(pre?.querySelector('span[style*="--syntax-dark"]')).not.toBeNull(), {
       timeout: 10_000
     })
-
-    fireEvent.click(screen.getByRole('button', { name: 'Wrap lines' }))
 
     expect(pre).toHaveClass('whitespace-pre-wrap')
     expect(pre?.querySelector('span[style*="--syntax-dark"]')).not.toBeNull()
@@ -150,15 +148,15 @@ describe('NativeChatCodeBlock', () => {
       </>
     )
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Wrap lines' })[0])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Disable line wrap' })[0])
 
-    expect(screen.getByRole('button', { name: 'Disable line wrap' })).toBeInTheDocument()
-    expect(screen.getAllByRole('button', { name: 'Wrap lines' })).toHaveLength(1)
+    expect(screen.getByRole('button', { name: 'Wrap lines' })).toBeInTheDocument()
+    expect(screen.getAllByRole('button', { name: 'Disable line wrap' })).toHaveLength(1)
   })
 
   it('shows no wrap control for an empty block', () => {
     render(<NativeChatCodeBlock language="typescript" />)
 
-    expect(screen.queryByRole('button', { name: 'Wrap lines' })).toBeNull()
+    expect(screen.queryByRole('button', { name: /^(Wrap lines|Disable line wrap)$/ })).toBeNull()
   })
 })

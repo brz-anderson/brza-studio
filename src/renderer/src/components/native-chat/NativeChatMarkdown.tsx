@@ -22,7 +22,6 @@ import {
   NativeChatMarkdownImage,
   NativeChatMarkdownImageLinkContext
 } from './NativeChatMarkdownImage'
-import { NativeChatWideTable } from './brza-chat-wide-table'
 import { useBrzaImageMentionExtension } from './brza/BrzaImageMention'
 import './native-chat-markdown.css'
 import './brza-chat-link.css'
@@ -70,7 +69,6 @@ function createNativeChatImageExtension(
     sanitizeAttributes: visualExtension?.sanitizeAttributes ?? {},
     components: {
       ...visualExtension?.components,
-      table: NativeChatWideTable,
       img: ({ src, alt }) => (
         <NativeChatMarkdownImage src={src} alt={alt} onLinkClick={onLinkClick} />
       ),

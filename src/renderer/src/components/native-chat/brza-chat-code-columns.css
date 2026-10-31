@@ -1,0 +1,58 @@
+/* BrzA: code and diff lines wrap at 120 columns, the norm of our own code, while their frames keep the
+   column's full width. A hairline in the color of the chat's `---` marks column 120. One column is the code
+   font's advance plus the 0.01em letter spacing the body sets, restated here so it follows the code font. */
+:where([data-native-chat-code-block] > pre, [data-native-chat-diff]) {
+  --brza-code-columns: calc(120 * (1ch + 0.01em) + 0.5px);
+  --brza-code-ruler: color-mix(in srgb, var(--border) 60%, transparent);
+  letter-spacing: 0.01em;
+}
+
+/* `local` keeps the ruler on its column while an unwrapped block scrolls sideways. */
+[data-native-chat-code-block] > pre {
+  background-image: linear-gradient(
+    to right,
+    transparent var(--brza-code-columns),
+    var(--brza-code-ruler) var(--brza-code-columns),
+    var(--brza-code-ruler) calc(var(--brza-code-columns) + 1px),
+    transparent calc(var(--brza-code-columns) + 1px)
+  );
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-attachment: local;
+}
+
+[data-native-chat-code-block] > pre > * {
+  display: block;
+  max-width: var(--brza-code-columns);
+}
+
+/* Tool-line diff: each px-2 line starts with its "+"/"-" prefix, one column ahead of the code. */
+[data-native-chat-diff='lines'] > * {
+  --brza-diff-text-start: calc(2 * var(--spacing) + 1ch + 0.01em);
+  padding-right: max(
+    calc(2 * var(--spacing)),
+    calc(100% - var(--brza-diff-text-start) - var(--brza-code-columns))
+  );
+}
+
+/* Edit diff: the line-number gutter and w-3 sign come before the text. */
+[data-native-chat-diff='rows'] {
+  --brza-diff-text-start: calc(
+    attr(data-native-chat-diff-gutter type(<number>), 0) * 1ch + 3 * var(--spacing)
+  );
+}
+
+[data-native-chat-diff='rows'] > * > :last-child {
+  max-width: calc(var(--brza-code-columns) + 2 * var(--spacing));
+}
+
+[data-native-chat-diff] > * {
+  background-image: linear-gradient(
+    to right,
+    transparent calc(var(--brza-diff-text-start) + var(--brza-code-columns)),
+    var(--brza-code-ruler) calc(var(--brza-diff-text-start) + var(--brza-code-columns)),
+    var(--brza-code-ruler) calc(var(--brza-diff-text-start) + var(--brza-code-columns) + 1px),
+    transparent calc(var(--brza-diff-text-start) + var(--brza-code-columns) + 1px)
+  );
+  background-repeat: no-repeat;
+}

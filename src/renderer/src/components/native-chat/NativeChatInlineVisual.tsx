@@ -112,7 +112,7 @@ export function NativeChatInlineVisual({
   const openLabel = translate('components.native-chat.visualOpenInNewTab', 'Open in new tab')
 
   return (
-    <div ref={boxRef} data-native-chat-wide-block className="group/visual my-3">
+    <div ref={boxRef} className="group/visual my-3">
       {state.status === 'ready' && near ? (
         <>
           {/* Above the frame, not over it: the page owns every pixel of its box. */}

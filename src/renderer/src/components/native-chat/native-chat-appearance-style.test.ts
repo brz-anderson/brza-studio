@@ -203,14 +203,6 @@ describe('chat root appearance style', () => {
       ]
     ).toBe('none')
   })
-
-  // brza-chat-wide-blocks.css queries this value to size code blocks, tables and diffs.
-  it('exposes the width setting for the full-width block rules', () => {
-    expect(
-      nativeChatAppearanceStyle({ nativeChatAppearance: { width: 'full' } })['--chat-width']
-    ).toBe('full')
-    expect(nativeChatAppearanceStyle(undefined)['--chat-width']).toBe('comfortable')
-  })
 })
 
 describe('contrast hierarchy and incomplete theme palettes', () => {

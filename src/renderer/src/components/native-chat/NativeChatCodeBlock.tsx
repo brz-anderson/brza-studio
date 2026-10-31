@@ -32,7 +32,8 @@ export function NativeChatCodeBlock({
     rowKey === undefined || sourceLine === undefined
       ? undefined
       : `code-wrap:${rowKey}:${sourceLine}`,
-    false
+    // BrzA: code wraps at 120 columns unless turned off (brza-chat-code-columns.css).
+    true
   )
   const actions = code ? (
     <>

@@ -66,35 +66,35 @@ function wrapToggle(): HTMLElement {
 }
 
 describe('native chat code block line wrap', () => {
-  it('stays on as the reply grows, re-cuts its blocks, and the row remounts', () => {
+  it('stays off as the reply grows, re-cuts its blocks, and the row remounts', () => {
     const view = render(<Transcript content={OPENING} />)
     fireEvent.click(wrapToggle())
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
 
     const grown = `${OPENING}Enter.\n\nAnother paragraph`
     view.rerender(<Transcript content={grown} />)
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
 
     // Inline HTML makes the whole reply render as one block from offset 0.
     const merged = `${grown} with <kbd>Ctrl</kbd>`
     view.rerender(<Transcript content={merged} />)
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
 
     view.rerender(<Transcript content={merged} mounted={false} />)
-    expect(screen.queryByRole('button', { name: 'Disable line wrap' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Wrap lines' })).toBeNull()
     view.rerender(<Transcript content={merged} />)
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('keeps each block of a row to its own wrap', () => {
     const content = '```ts\nconst first = 1\n```\n\n```ts\nconst second = 2\n```'
     render(<Transcript content={content} />)
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Wrap lines' })[1])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Disable line wrap' })[1])
 
     expect(screen.getAllByRole('button', { name: /^(Wrap lines|Disable line wrap)$/ })).toEqual([
-      screen.getByRole('button', { name: 'Wrap lines' }),
-      screen.getByRole('button', { name: 'Disable line wrap' })
+      screen.getByRole('button', { name: 'Disable line wrap' }),
+      screen.getByRole('button', { name: 'Wrap lines' })
     ])
   })
 
@@ -115,14 +115,14 @@ describe('native chat code block line wrap', () => {
       'Undo with git reset HEAD~1 first.\n\n```sh\ngit status\n```\n\nThen press ',
       (content: string) => ({ content: `${content}<kbd>Enter</kbd>`, growing: true })
     ]
-  ])('stays on when %s after streaming escaped text before it', (_name, content, next) => {
+  ])('stays off when %s after streaming escaped text before it', (_name, content, next) => {
     const view = render(<Transcript content={content} />)
     fireEvent.click(wrapToggle())
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
 
     view.rerender(<Transcript {...next(content)} />)
 
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('keeps a reasoning block and the reply of one message apart', () => {
@@ -147,11 +147,13 @@ describe('native chat code block line wrap', () => {
     render(<Row />)
     fireEvent.click(screen.getByRole('button', { name: /^Reasoning/ }))
 
-    const [reasoningWrap, replyWrap] = screen.getAllByRole('button', { name: 'Wrap lines' })
+    const [reasoningWrap, replyWrap] = screen.getAllByRole('button', {
+      name: 'Disable line wrap'
+    })
     fireEvent.click(replyWrap)
 
-    expect(reasoningWrap).toHaveAttribute('aria-pressed', 'false')
-    expect(replyWrap).toHaveAttribute('aria-pressed', 'true')
+    expect(reasoningWrap).toHaveAttribute('aria-pressed', 'true')
+    expect(replyWrap).toHaveAttribute('aria-pressed', 'false')
   })
 
   it("keeps a plan card's wrap when its row remounts", () => {
@@ -178,6 +180,6 @@ describe('native chat code block line wrap', () => {
     view.rerender(<Row mounted={false} />)
     view.rerender(<Row mounted />)
 
-    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'true')
+    expect(wrapToggle()).toHaveAttribute('aria-pressed', 'false')
   })
 })
