@@ -1,5 +1,5 @@
-import { spawn } from 'node:child_process'
 import { constants as osConstants } from 'node:os'
+import { spawnProcess } from '@orca/process-host'
 import { resolveCommandOnLocalPath } from '../main/ipc/command-path-resolver'
 import { stripElectronRunAsNode } from './runtime/orca-app-executable'
 
@@ -60,7 +60,9 @@ export async function runExternalSubcommand(
   env: NodeJS.ProcessEnv = process.env
 ): Promise<number> {
   return await new Promise((resolve, reject) => {
-    const child = spawn(command.executable, command.args, {
+    const child = spawnProcess({
+      program: command.executable,
+      args: command.args,
       stdio: 'inherit',
       env: externalSubcommandEnv(command.name, env)
     })
