@@ -54,7 +54,8 @@ export const NATIVE_CHAT_TOOL_ICON_NAMES: Record<NativeChatToolCategory, NativeC
   fileChange: 'pencil',
   webSearch: 'globe',
   browser: 'globe',
-  mcpToolCall: 'plug',
+  // BrzA swaps upstream's plug for sparkles; the plug marks the Skill call.
+  mcpToolCall: 'sparkles',
   subAgentActivity: 'bot',
   todoList: 'list-checks',
   other: 'wrench'

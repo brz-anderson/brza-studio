@@ -29,7 +29,13 @@ export type BrzaLucideIconName =
  * lucide (pen-tool, flame): their brand terms bar recolored in-product marks. Sources: renderer native-chat/brza/brza-brand-logos.md. */
 export type BrzaBrandLogoIconName = 'git-logo' | 'github-logo' | 'jira-logo' | 'brza-logo'
 
-export type BrzaToolIconName = BrzaLucideIconName | BrzaBrandLogoIconName
+/** Upstream ids a BrzA category reuses, such as Skill's plug; the upstream tables already draw them. */
+export type BrzaUpstreamIconName = 'plug'
+
+export type BrzaToolIconName = BrzaLucideIconName | BrzaBrandLogoIconName | BrzaUpstreamIconName
+
+/** The ids the BrzA glyph tables draw. */
+export type BrzaGlyphIconName = Exclude<BrzaToolIconName, BrzaUpstreamIconName>
 
 export const BRZA_BRAND_LOGO_FALLBACK_ICONS: Record<BrzaBrandLogoIconName, BrzaLucideIconName> = {
   'git-logo': 'git-branch',
@@ -53,7 +59,7 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
 
 /** Register a category here: the row word, MCP tool or command that names it, and its icon. */
 const BRZA_TOOL_CATEGORIES = [
-  { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
+  { category: 'skill', iconName: 'plug', rowWords: ['skill'] },
   BRZA_FIGMA_CATEGORY,
   BRZA_JIRA_CATEGORY,
   BRZA_CONFLUENCE_CATEGORY,

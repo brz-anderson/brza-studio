@@ -15,7 +15,7 @@ import {
   type LucideIcon,
   type LucideProps
 } from 'lucide-react'
-import type { BrzaToolIconName } from '../../../../../shared/native-chat/tools/brza/brza-tool-categories'
+import type { BrzaGlyphIconName } from '../../../../../shared/native-chat/tools/brza/brza-tool-categories'
 import { GitHubIcon } from '@/components/icons/GitHubIcon'
 import { JiraIcon } from '@/components/icons/JiraIcon'
 import { BrzaGitLogo } from './BrzaGitLogo'
@@ -29,7 +29,7 @@ function brandGlyph(Logo: (props: { className?: string }) => React.JSX.Element):
 }
 
 /** Desktop glyphs for BrzA icon ids; brand ids draw the logo, which mobile replaces with a lucide fallback. */
-export const BRZA_TOOL_GLYPHS: Record<BrzaToolIconName, LucideIcon> = {
+export const BRZA_TOOL_GLYPHS: Record<BrzaGlyphIconName, LucideIcon> = {
   'git-branch': GitBranch,
   'git-commit-horizontal': GitCommitHorizontal,
   'git-pull-request': GitPullRequest,

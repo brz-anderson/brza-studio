@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { createBrzaToolCategoryResolver } from './brza-tool-categories'
 
 const resolver = createBrzaToolCategoryResolver([
-  { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
+  { category: 'skill', iconName: 'plug', rowWords: ['skill'] },
   {
     category: 'figma',
     iconName: 'pen-tool',
@@ -28,7 +28,7 @@ function bash(command: string) {
 describe('BrzA tool categories', () => {
   it('resolves a registered row word case-insensitively to its category and icon', () => {
     expect(resolver.category(' Skill ')).toBe('skill')
-    expect(resolver.iconName('Skill')).toBe('sparkles')
+    expect(resolver.iconName('Skill')).toBe('plug')
   })
 
   it('resolves an MCP tool by its server, from the name prefix or explicit identity', () => {
@@ -69,7 +69,7 @@ describe('BrzA tool categories', () => {
   })
 
   it('gives a run its icon only when every call shares one BrzA category', () => {
-    expect(resolver.runIconName([{ name: 'Skill' }, { name: 'skill' }])).toBe('sparkles')
+    expect(resolver.runIconName([{ name: 'Skill' }, { name: 'skill' }])).toBe('plug')
     expect(resolver.runIconName([{ name: 'Skill' }, { name: 'Read' }])).toBeNull()
     expect(resolver.runIconName([])).toBeNull()
   })

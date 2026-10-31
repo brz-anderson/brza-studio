@@ -6,7 +6,7 @@ import type * as BrzaToolCategories from './brza-tool-categories'
 vi.mock('./brza-tool-categories', async (importOriginal) => {
   const original = await importOriginal<typeof BrzaToolCategories>()
   const resolver = original.createBrzaToolCategoryResolver([
-    { category: 'skill', iconName: 'sparkles', rowWords: ['skill'] },
+    { category: 'skill', iconName: 'plug', rowWords: ['skill'] },
     { category: 'git', iconName: 'git-logo', matchesCommand: ({ argv }) => argv[0] === 'git' }
   ])
   return {
@@ -18,7 +18,7 @@ vi.mock('./brza-tool-categories', async (importOriginal) => {
 
 describe('BrzA categories mounted on the shared tool icons', () => {
   it('draws the BrzA icon for a registered row word and command', () => {
-    expect(nativeChatToolIconName('Skill')).toBe('sparkles')
+    expect(nativeChatToolIconName('Skill')).toBe('plug')
     expect(nativeChatToolIconName('Bash', undefined, { command: 'git status' })).toBe('git-logo')
   })
 
@@ -28,7 +28,7 @@ describe('BrzA categories mounted on the shared tool icons', () => {
   })
 
   it('falls back to the upstream run glyph when BrzA categories are mixed', () => {
-    expect(nativeChatToolRunIconName([{ name: 'Skill' }])).toBe('sparkles')
+    expect(nativeChatToolRunIconName([{ name: 'Skill' }])).toBe('plug')
     const commands = [
       { name: 'Bash', input: { command: 'git status' } },
       { name: 'Bash', input: { command: 'ls' } }

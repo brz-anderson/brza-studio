@@ -199,7 +199,7 @@ it.each(['tools/read', 'browser.open', 'package.lock', 'linear/list_issues'])(
   (name) => {
     render(<NativeChatToolRun blocks={[{ type: 'tool-call', name, input: null }]} expandSignal />)
     expect(screen.getByText(name)).toBeTruthy()
-    expect(document.querySelector('.lucide-plug')).toBeNull()
+    expect(document.querySelector('.lucide-sparkles')).toBeNull()
   }
 )
 
@@ -226,7 +226,7 @@ it.each(['running', 'completed'] as const)(
     expect(screen.getByText('ns.tool')).toBeTruthy()
     expect(screen.getByTitle(name)).toBeTruthy()
     // Run and member glyphs must agree on MCP identity.
-    expect(document.querySelectorAll('.lucide-plug')).toHaveLength(2)
+    expect(document.querySelectorAll('.lucide-sparkles')).toHaveLength(2)
   }
 )
 

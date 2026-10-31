@@ -52,7 +52,7 @@ describe('native chat tool icons', () => {
 
   it('reads an MCP tool by its prefix, since the row is named after the tool', () => {
     expect(nativeChatToolCategory('mcp__linear__create_issue')).toBe('mcpToolCall')
-    expect(nativeChatToolIconName('mcp__playwright__browser_click')).toBe('plug')
+    expect(nativeChatToolIconName('mcp__playwright__browser_click')).toBe('sparkles')
     // Not a prefix match: a tool merely mentioning mcp is not an MCP call.
     expect(nativeChatToolCategory('run_mcp__thing')).toBeNull()
   })
@@ -247,8 +247,8 @@ describe('qualified tool identity icons', () => {
       name: 'linear/list_issues',
       mcpIdentity: { server: 'linear', tool: 'list_issues' }
     }
-    expect(nativeChatToolIconName(call.name, call.mcpIdentity)).toBe('plug')
-    expect(nativeChatToolRunIconName([call])).toBe('plug')
+    expect(nativeChatToolIconName(call.name, call.mcpIdentity)).toBe('sparkles')
+    expect(nativeChatToolRunIconName([call])).toBe('sparkles')
   })
   it('keeps classified command and web identities', () => {
     expect(nativeChatToolCategory('read')).toBe('read')

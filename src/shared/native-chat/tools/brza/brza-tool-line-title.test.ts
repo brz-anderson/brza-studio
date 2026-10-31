@@ -13,8 +13,8 @@ function call(
 }
 
 describe('BrzA tool line titles', () => {
-  it('gives Skill the sparkles icon and the skill name in its title', () => {
-    expect(nativeChatToolIconName('Skill')).toBe('sparkles')
+  it('gives Skill the plug icon and the skill name in its title', () => {
+    expect(nativeChatToolIconName('Skill')).toBe('plug')
     const label = nativeChatToolLineLabel(call('Skill', { skill: 'brainstorming', args: 'x' }))
     expect(label).toMatchObject({ target: 'brainstorming', title: 'Skill · brainstorming' })
   })
