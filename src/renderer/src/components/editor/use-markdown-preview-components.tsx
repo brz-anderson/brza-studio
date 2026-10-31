@@ -60,8 +60,9 @@ export function useMarkdownPreviewComponents({
     setMarkdownViewMode
   } = foundation
   const { scrollToAnchor } = viewport
-  const { getMarkdownCommentsForRange, handleAnnotatedMarkdownBlockClick } = reviewActions
-  const { renderAnnotationControls, wrapAnnotatedBlock } = annotationRenderers
+  const { handleAnnotatedMarkdownBlockClick } = reviewActions
+  const { annotationBlockClassName, renderAnnotationControls, wrapAnnotatedBlock } =
+    annotationRenderers
 
   return useMemo(() => {
     // Why: preview images come from document text, so main limits them to the document's roots.
@@ -210,7 +211,6 @@ export function useMarkdownPreviewComponents({
           return <li {...props}>{children}</li>
         }
         const blockKey = `li:${range.startLine}-${range.endLine}`
-        const hasReviewNotes = getMarkdownCommentsForRange(range).length > 0
         const controls = renderAnnotationControls(
           range,
           blockKey,
@@ -219,9 +219,11 @@ export function useMarkdownPreviewComponents({
         return (
           <li {...props}>
             <div
-              className={`markdown-annotation-list-block ${
-                hasReviewNotes ? 'has-review-notes' : ''
-              }`.trim()}
+              className={annotationBlockClassName(
+                'markdown-annotation-list-block',
+                range,
+                blockKey
+              )}
               data-source-line={range.startLine}
               data-source-end-line={range.endLine}
               data-annotation-block-key={controls ? blockKey : undefined}
@@ -288,7 +290,7 @@ export function useMarkdownPreviewComponents({
     isDark,
     isMac,
     imageRuntimeContext,
-    getMarkdownCommentsForRange,
+    annotationBlockClassName,
     handleAnnotatedMarkdownBlockClick,
     markdownDocumentIndex,
     onOpenDocument,

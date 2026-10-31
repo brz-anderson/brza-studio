@@ -212,6 +212,22 @@ export function useMarkdownPreviewAnnotationRenderers({
     ]
   )
 
+  // Only a block with notes or an open composer reserves the notes column; the rest take the full width.
+  const annotationBlockClassName = useCallback(
+    (baseClassName: string, range: MarkdownPreviewBlockRange, blockKey: string): string => {
+      const hasReviewNotes = getMarkdownCommentsForRange(range).length > 0
+      const hasPanel = hasReviewNotes || activeAnnotationBlockKey === blockKey
+      return [
+        baseClassName,
+        hasReviewNotes ? 'has-review-notes' : '',
+        hasPanel ? 'has-annotation-panel' : ''
+      ]
+        .filter(Boolean)
+        .join(' ')
+    },
+    [activeAnnotationBlockKey, getMarkdownCommentsForRange]
+  )
+
   const wrapAnnotatedBlock = useCallback(
     (
       tagName: string,
@@ -231,10 +247,9 @@ export function useMarkdownPreviewAnnotationRenderers({
       if (!controls) {
         return rendered
       }
-      const hasReviewNotes = getMarkdownCommentsForRange(range).length > 0
       return (
         <div
-          className={`markdown-annotation-block ${hasReviewNotes ? 'has-review-notes' : ''}`.trim()}
+          className={annotationBlockClassName('markdown-annotation-block', range, blockKey)}
           data-source-line={range.startLine}
           data-source-end-line={range.endLine}
           data-annotation-block-key={blockKey}
@@ -245,10 +260,10 @@ export function useMarkdownPreviewAnnotationRenderers({
         </div>
       )
     },
-    [getMarkdownCommentsForRange, handleAnnotatedMarkdownBlockClick, renderAnnotationControls]
+    [annotationBlockClassName, handleAnnotatedMarkdownBlockClick, renderAnnotationControls]
   )
 
-  return { renderAnnotationControls, wrapAnnotatedBlock }
+  return { annotationBlockClassName, renderAnnotationControls, wrapAnnotatedBlock }
 }
 
 export type MarkdownPreviewAnnotationRenderers = ReturnType<
