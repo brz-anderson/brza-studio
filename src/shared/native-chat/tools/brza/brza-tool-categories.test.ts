@@ -9,6 +9,16 @@ const resolver = createBrzaToolCategoryResolver([
     matchesMcpTool: ({ server }) => /figma/i.test(server)
   },
   {
+    category: 'jira',
+    iconName: 'jira-logo',
+    matchesMcpTool: ({ server }, input) =>
+      /atlassian/i.test(server) &&
+      typeof input === 'object' &&
+      input !== null &&
+      'name' in input &&
+      /jira/i.test(String(input.name))
+  },
+  {
     category: 'tests',
     iconName: 'flask-conical',
     matchesCommand: ({ argv }) => argv[0] === 'vitest'
@@ -33,10 +43,50 @@ describe('BrzA tool categories', () => {
 
   it('resolves an MCP tool by its server, from the name prefix or explicit identity', () => {
     expect(resolver.category('mcp__plugin_figma_figma__get_screenshot')).toBe('figma')
-    expect(resolver.iconName('get screenshot', { server: 'figma', tool: 'get_screenshot' })).toBe(
-      'pen-tool'
-    )
+    expect(
+      resolver.iconName('get screenshot', {
+        server: 'figma',
+        tool: 'get_screenshot'
+      })
+    ).toBe('pen-tool')
     expect(resolver.category('mcp__context7__query_docs')).toBeNull()
+  })
+
+  it('hands the call input to an MCP matcher, and the matchers that ignore it keep working', () => {
+    const atlassian = { server: 'atlassian', tool: 'executeRead' }
+    expect(
+      resolver.category('mcp__atlassian__executeRead', atlassian, {
+        name: 'getJiraIssue'
+      })
+    ).toBe('jira')
+    expect(
+      resolver.iconName('mcp__atlassian__executeRead', atlassian, {
+        name: 'getJiraIssue'
+      })
+    ).toBe('jira-logo')
+    expect(
+      resolver.category('mcp__atlassian__executeRead', atlassian, {
+        name: 'x'
+      })
+    ).toBeNull()
+    expect(resolver.category('mcp__atlassian__executeRead', atlassian)).toBeNull()
+    expect(resolver.category('mcp__plugin_figma_figma__get_screenshot', undefined, {})).toBe(
+      'figma'
+    )
+  })
+
+  it('shares a run icon across MCP calls that the input sends to one category', () => {
+    const run = [
+      { name: 'mcp__atlassian__executeRead', input: { name: 'getJiraIssue' } },
+      {
+        name: 'mcp__atlassian__executeWrite',
+        input: { name: 'editJiraIssue' }
+      }
+    ]
+    expect(resolver.runIconName(run)).toBe('jira-logo')
+    expect(
+      resolver.runIconName([...run, { name: 'mcp__atlassian__executeRead', input: {} }])
+    ).toBeNull()
   })
 
   it('resolves a shell command only from a command tool input', () => {
@@ -47,19 +97,29 @@ describe('BrzA tool categories', () => {
 
   it('matches each segment outside quotes, and the heaviest category wins a compound', () => {
     expect(resolver.category('Bash', undefined, { command: 'cd app && git status' })).toBe('git')
-    expect(resolver.category('Bash', undefined, { command: 'git add . && vitest run' })).toBe(
-      'tests'
-    )
-    expect(resolver.category('Bash', undefined, { command: 'echo "x && git status"' })).toBeNull()
+    expect(
+      resolver.category('Bash', undefined, {
+        command: 'git add . && vitest run'
+      })
+    ).toBe('tests')
+    expect(
+      resolver.category('Bash', undefined, {
+        command: 'echo "x && git status"'
+      })
+    ).toBeNull()
   })
 
   it('lets a matched segment refine the icon, and a browser command keep the upstream globe', () => {
     expect(resolver.iconName('Bash', undefined, { command: 'git status' })).toBe('git-logo')
-    expect(resolver.iconName('Bash', undefined, { command: 'git add -A && git commit -m x' })).toBe(
-      'git-commit-horizontal'
-    )
     expect(
-      resolver.iconName('Bash', undefined, { command: 'orca snapshot && git status' })
+      resolver.iconName('Bash', undefined, {
+        command: 'git add -A && git commit -m x'
+      })
+    ).toBe('git-commit-horizontal')
+    expect(
+      resolver.iconName('Bash', undefined, {
+        command: 'orca snapshot && git status'
+      })
     ).toBeNull()
   })
 

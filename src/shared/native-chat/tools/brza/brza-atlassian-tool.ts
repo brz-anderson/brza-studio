@@ -15,7 +15,10 @@ export type BrzaAtlassianChipTarget = {
   copyText: string
 }
 
-export type BrzaAtlassianChip = { label: string; target: BrzaAtlassianChipTarget }
+export type BrzaAtlassianChip = {
+  label: string
+  target: BrzaAtlassianChipTarget
+}
 
 type AtlassianReference = { target: string; chip: BrzaAtlassianChip | null }
 
@@ -23,26 +26,63 @@ const ISSUE_KEY = /^[A-Z][A-Z0-9_]*-\d+$/i
 const PAGE_ID = /^\w+$/
 const SITE_HOST = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i
 
-function atlassianProduct(identity: NativeChatMcpIdentity): AtlassianProduct | null {
+const EXECUTE_TOOL = /^execute(?:read|write|destructive)$/i
+const DISCOVER_TOOL = /^discover$/i
+
+/** The first product a free text names; a search that cites both is about the one it says first. */
+function productInText(value: string | null): AtlassianProduct | null {
+  const found = value === null ? null : /confluence|jira/i.exec(value)
+  if (!found) {
+    return null
+  }
+  return found[0].toLowerCase() === 'confluence' ? 'confluence' : 'jira'
+}
+
+/** What a meta-tool call names: the inner tool of `execute*`, the search of `discover`. */
+function metaToolSubject(
+  identity: NativeChatMcpIdentity,
+  input: unknown
+): { kind: 'execute' | 'discover'; value: string } | null {
+  const fields = normalizeToolInput(input)
+  if (!isRecord(fields)) {
+    return null
+  }
+  const kind = EXECUTE_TOOL.test(identity.tool)
+    ? 'execute'
+    : DISCOVER_TOOL.test(identity.tool)
+      ? 'discover'
+      : null
+  const value = text(kind === 'execute' ? fields.name : fields.query)
+  return kind && value ? { kind, value } : null
+}
+
+/** The product from the tool's name or, for a meta-tool, from what the call names. */
+function atlassianProduct(
+  identity: NativeChatMcpIdentity,
+  input?: unknown
+): AtlassianProduct | null {
   if (!/atlassian/i.test(identity.server)) {
     return null
   }
   if (/confluence/i.test(identity.tool)) {
     return 'confluence'
   }
-  return /jira/i.test(identity.tool) ? 'jira' : null
+  if (/jira/i.test(identity.tool)) {
+    return 'jira'
+  }
+  return productInText(metaToolSubject(identity, input)?.value ?? null)
 }
 
 export const BRZA_JIRA_CATEGORY = {
   category: 'jira',
   iconName: 'jira-logo',
-  matchesMcpTool: (identity) => atlassianProduct(identity) === 'jira'
+  matchesMcpTool: (identity, input) => atlassianProduct(identity, input) === 'jira'
 } as const satisfies BrzaToolCategoryDefinition
 
 export const BRZA_CONFLUENCE_CATEGORY = {
   category: 'confluence',
   iconName: 'file-text',
-  matchesMcpTool: (identity) => atlassianProduct(identity) === 'confluence'
+  matchesMcpTool: (identity, input) => atlassianProduct(identity, input) === 'confluence'
 } as const satisfies BrzaToolCategoryDefinition
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -145,15 +185,34 @@ function confluenceReference(
   }
 }
 
+/** An `execute*` call reads as its inner tool and action, a `discover` as its quoted search; neither has a chip. */
+function metaToolReference(
+  subject: NonNullable<ReturnType<typeof metaToolSubject>>,
+  input: Record<string, unknown>
+): AtlassianReference {
+  if (subject.kind === 'discover') {
+    return { target: `“${subject.value}”`, chip: null }
+  }
+  const action = isRecord(input.inputs) ? text(input.inputs.action) : null
+  return {
+    target: action ? `${subject.value} · ${action}` : subject.value,
+    chip: null
+  }
+}
+
 function atlassianReference(
   call: NativeChatToolCallBlock,
   result: NativeChatToolResultBlock | undefined
 ): AtlassianReference | null {
   const identity = mcpToolIdentity(call.name, call.mcpIdentity)
-  const product = identity ? atlassianProduct(identity) : null
+  const product = identity ? atlassianProduct(identity, call.input) : null
   const input = normalizeToolInput(call.input)
-  if (!product || !isRecord(input)) {
+  if (!identity || !product || !isRecord(input)) {
     return null
+  }
+  const meta = metaToolSubject(identity, input)
+  if (meta) {
+    return metaToolReference(meta, input)
   }
   const node = outputNode(result)
   return product === 'jira' ? jiraReference(input, node) : confluenceReference(input, node)

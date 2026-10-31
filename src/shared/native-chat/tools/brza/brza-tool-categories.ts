@@ -49,8 +49,11 @@ export type BrzaToolCategoryDefinition<Category extends string = string> = {
   iconName: BrzaToolIconName
   /** Row words (tool names) the lane renders, matched trimmed and lowercased. */
   rowWords?: readonly string[]
-  /** Receives the display identity, e.g. `{ server: 'Plugin figma figma', tool: 'get screenshot' }`. */
-  matchesMcpTool?: (identity: NativeChatMcpIdentity) => boolean
+  /**
+   * Receives the display identity, e.g. `{ server: 'Plugin figma figma', tool: 'get screenshot' }`, and
+   * the call's input, for a server whose meta-tools name the real tool there.
+   */
+  matchesMcpTool?: (identity: NativeChatMcpIdentity, input?: unknown) => boolean
   /** Receives each segment of a command tool's full, login-shell-unwrapped command. */
   matchesCommand?: (segment: BrzaShellSegment) => boolean
   /** A matched segment's own icon, such as `git commit`'s; null keeps `iconName`. */
@@ -137,7 +140,7 @@ export function createBrzaToolCategoryResolver<Category extends string>(
   ): BrzaToolCategoryMatch<Category> | null {
     const mcp = mcpDefinitions.length > 0 ? mcpToolIdentity(rowWord, mcpIdentity) : null
     if (mcp !== null) {
-      const definition = mcpDefinitions.find((candidate) => candidate.matchesMcpTool?.(mcp))
+      const definition = mcpDefinitions.find((candidate) => candidate.matchesMcpTool?.(mcp, input))
       return definition ? { definition, iconName: definition.iconName } : null
     }
     if (commandDefinitions.length > 0 && isCommandToolName(rowWord)) {
