@@ -118,6 +118,8 @@ playwright-report/
 
 # Agent skills are installed per machine.
 /.claude/skills/
+# The role subagents' memory lives in the brza-workspace workstream; brza tree links it here.
+/.claude/agent-memory
 /.agents/skills/
 /skills-lock.json
 
