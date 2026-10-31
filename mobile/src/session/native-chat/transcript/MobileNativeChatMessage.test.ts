@@ -50,31 +50,9 @@ vi.mock('react-native', async () => {
   }
 })
 vi.mock('expo-clipboard', () => ({ setStringAsync: vi.fn() }))
-vi.mock('lucide-react-native', () => ({
-  AlertCircle: 'AlertCircle',
-  AlertTriangle: 'AlertTriangle',
-  ArrowUp: 'ArrowUp',
-  Bot: 'Bot',
-  Brain: 'Brain',
-  Check: 'Check',
-  ChevronDown: 'ChevronDown',
-  ChevronRight: 'ChevronRight',
-  Copy: 'Copy',
-  Eye: 'Eye',
-  FileMinus2: 'FileMinus2',
-  FilePen: 'FilePen',
-  FilePlus2: 'FilePlus2',
-  Folder: 'Folder',
-  Globe: 'Globe',
-  ListChecks: 'ListChecks',
-  MessageSquareMore: 'MessageSquareMore',
-  Pencil: 'Pencil',
-  Plug: 'Plug',
-  Search: 'Search',
-  SquareChevronRight: 'SquareChevronRight',
-  SquareTerminal: 'SquareTerminal',
-  Wrench: 'Wrench'
-}))
+vi.mock('lucide-react-native', async () =>
+  (await import('../../../test-support/lucide-react-native-mock')).lucideMock()
+)
 vi.mock('../../../components/MobileMarkdown', () => ({ MobileMarkdown: 'MobileMarkdown' }))
 vi.mock('./MobileNativeChatMessageActionsSheet', () => ({
   MobileNativeChatMessageActionsSheet: 'MessageActionsSheet'
@@ -700,7 +678,7 @@ describe('MobileNativeChatMessage', () => {
     const runningCall = {
       type: 'tool-call' as const,
       name: 'Bash',
-      input: { command: 'npm test' },
+      input: { command: 'ls -la' },
       state: 'running' as const
     }
     const settledCall = {
@@ -715,7 +693,7 @@ describe('MobileNativeChatMessage', () => {
         structuredActivityUi: true,
         activeTurnIsWorking: true
       })
-      expect(textIn(tree.root)).toEqual(expect.arrayContaining(['Running 1 command', 'npm test']))
+      expect(textIn(tree.root)).toEqual(expect.arrayContaining(['Running 1 command', 'ls -la']))
       expect(findAllByHostType(tree.root, 'SquareTerminal')).toHaveLength(1)
       act(() =>
         tree.update(

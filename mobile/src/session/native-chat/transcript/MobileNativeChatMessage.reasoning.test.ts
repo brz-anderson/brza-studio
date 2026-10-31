@@ -32,43 +32,9 @@ vi.mock('react-native', async () => {
   }
 })
 vi.mock('expo-clipboard', () => ({ setStringAsync: vi.fn() }))
-vi.mock('lucide-react-native', () => ({
-  AlertCircle: 'AlertCircle',
-  AlertTriangle: 'AlertTriangle',
-  ArrowUp: 'ArrowUp',
-  BookOpen: 'BookOpen',
-  Bot: 'Bot',
-  Brain: 'Brain',
-  Check: 'Check',
-  ChevronDown: 'ChevronDown',
-  ChevronRight: 'ChevronRight',
-  Copy: 'Copy',
-  Eye: 'Eye',
-  FileMinus2: 'FileMinus2',
-  FilePen: 'FilePen',
-  FilePlus2: 'FilePlus2',
-  FileText: 'FileText',
-  Flame: 'Flame',
-  FlaskConical: 'FlaskConical',
-  Folder: 'Folder',
-  GitBranch: 'GitBranch',
-  GitCommitHorizontal: 'GitCommitHorizontal',
-  GitPullRequest: 'GitPullRequest',
-  Globe: 'Globe',
-  Hammer: 'Hammer',
-  ListChecks: 'ListChecks',
-  MessageSquareMore: 'MessageSquareMore',
-  Package: 'Package',
-  Pencil: 'Pencil',
-  PenTool: 'PenTool',
-  Plug: 'Plug',
-  Search: 'Search',
-  Sparkles: 'Sparkles',
-  SquareChevronRight: 'SquareChevronRight',
-  SquareKanban: 'SquareKanban',
-  SquareTerminal: 'SquareTerminal',
-  Wrench: 'Wrench'
-}))
+vi.mock('lucide-react-native', async () =>
+  (await import('../../../test-support/lucide-react-native-mock')).lucideMock()
+)
 vi.mock('../../../components/MobileMarkdown', () => ({ MobileMarkdown: 'MobileMarkdown' }))
 vi.mock('./MobileNativeChatMessageActionsSheet', () => ({
   MobileNativeChatMessageActionsSheet: 'MessageActionsSheet'

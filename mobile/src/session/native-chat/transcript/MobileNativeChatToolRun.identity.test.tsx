@@ -18,27 +18,9 @@ vi.mock('react-native', () => ({
   View: 'div',
   useWindowDimensions: () => ({ width: 400, height: 800 })
 }))
-vi.mock('lucide-react-native', () => ({
-  Bot: () => null,
-  Brain: () => null,
-  Check: () => null,
-  ChevronDown: () => null,
-  ChevronRight: () => null,
-  Eye: () => null,
-  FileMinus2: () => null,
-  FilePen: () => null,
-  FilePlus2: () => null,
-  Folder: () => null,
-  Globe: () => null,
-  ListChecks: () => null,
-  MessageSquareMore: () => null,
-  Pencil: () => null,
-  Plug: () => null,
-  Search: () => null,
-  SquareChevronRight: () => null,
-  SquareTerminal: () => null,
-  Wrench: () => null
-}))
+vi.mock('lucide-react-native', async () =>
+  (await import('../../../test-support/lucide-react-native-mock')).lucideMock()
+)
 
 vi.mock('../../../components/MobileSourceCopyButton', () => ({
   MobileSourceCopyButton: 'CopyButton'

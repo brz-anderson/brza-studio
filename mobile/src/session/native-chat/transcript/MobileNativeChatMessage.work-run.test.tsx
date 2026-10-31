@@ -31,28 +31,9 @@ vi.mock('react-native', async () => {
   }
 })
 vi.mock('expo-clipboard', () => ({ setStringAsync: vi.fn() }))
-vi.mock('lucide-react-native', () => ({
-  Bot: 'Bot',
-  Brain: 'Brain',
-  Check: 'Check',
-  ChevronRight: 'ChevronRight',
-  Circle: 'Circle',
-  CircleCheck: 'CircleCheck',
-  CircleDot: 'CircleDot',
-  Eye: 'Eye',
-  FileMinus2: 'FileMinus2',
-  FilePen: 'FilePen',
-  FilePlus2: 'FilePlus2',
-  Folder: 'Folder',
-  Globe: 'Globe',
-  ListChecks: 'ListChecks',
-  MessageSquareMore: 'MessageSquareMore',
-  Pencil: 'Pencil',
-  Plug: 'Plug',
-  Search: 'Search',
-  SquareTerminal: 'SquareTerminal',
-  Wrench: 'Wrench'
-}))
+vi.mock('lucide-react-native', async () =>
+  (await import('../../../test-support/lucide-react-native-mock')).lucideMock()
+)
 vi.mock('../../../components/MobileMarkdown', () => ({ MobileMarkdown: 'MobileMarkdown' }))
 vi.mock('../../../components/inline-text-selection', () => ({ INLINE_TEXT_SELECTION: false }))
 vi.mock('./MobileNativeChatMessageActionsSheet', () => ({

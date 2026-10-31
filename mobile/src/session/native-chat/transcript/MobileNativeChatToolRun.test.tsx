@@ -44,28 +44,9 @@ vi.mock('react-native', async () => {
     useWindowDimensions: () => ({ width: 400, height: 800 })
   }
 })
-vi.mock('lucide-react-native', () => ({
-  Bot: 'Bot',
-  Brain: 'Brain',
-  Check: 'Check',
-  ChevronRight: 'ChevronRight',
-  Circle: 'Circle',
-  CircleCheck: 'CircleCheck',
-  CircleDot: 'CircleDot',
-  Eye: 'Eye',
-  FileMinus2: 'FileMinus2',
-  FilePen: 'FilePen',
-  FilePlus2: 'FilePlus2',
-  Folder: 'Folder',
-  Globe: 'Globe',
-  ListChecks: 'ListChecks',
-  MessageSquareMore: 'MessageSquareMore',
-  Pencil: 'Pencil',
-  Plug: 'Plug',
-  Search: 'Search',
-  SquareTerminal: 'SquareTerminal',
-  Wrench: 'Wrench'
-}))
+vi.mock('lucide-react-native', async () =>
+  (await import('../../../test-support/lucide-react-native-mock')).lucideMock()
+)
 
 vi.mock('../../../components/MobileSourceCopyButton', () => ({
   MobileSourceCopyButton: 'CopyButton'
@@ -140,7 +121,7 @@ describe('ToolRun', () => {
     })
 
     it('opens a call to its output, plus the whole command only when the row shortened it', () => {
-      const command = `pnpm vitest run ${'src/session/'.repeat(10)}`
+      const command = `find ${'src/session/'.repeat(10)}`
       const tree = render([
         { type: 'tool-call', name: 'Bash', input: { command } },
         { type: 'tool-result', output: 'ok' },
@@ -150,7 +131,7 @@ describe('ToolRun', () => {
       open(tree, 'ls')
       expect(textIn(tree.root)).toContain('a.ts')
       expect(textIn(tree.root).some((text) => text.includes('"description"'))).toBe(false)
-      open(tree, 'pnpm vitest run')
+      open(tree, 'find src/session/')
       expect(textIn(tree.root)).toEqual(expect.arrayContaining([command, 'ok']))
     })
 
