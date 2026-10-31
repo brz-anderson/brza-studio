@@ -62,6 +62,8 @@ export type StructuredAgentSessionQueuedMessagesController = {
   edit: (messageId: string) => Promise<void>
   /** Cmd/Ctrl+Enter: Send-now the newest card. False when there is none to steer. */
   steerNewest: () => boolean
+  /** A pending prompt holds Send-now; the host would refuse it until the prompt is answered. */
+  steerHeld?: boolean
 }
 
 export type QueuedMessagesPendingAction = 'send' | 'delete' | 'resume' | 'clear'
@@ -193,7 +195,7 @@ export function useStructuredAgentSessionQueuedMessages(args: {
   })
 
   const steerNewest = useCallback((): boolean => {
-    if (!enabled) {
+    if (!enabled || hasPendingPrompt) {
       return false
     }
     const newest = newestSteerableQueuedMessageCard(cardsRef.current)
@@ -203,7 +205,7 @@ export function useStructuredAgentSessionQueuedMessages(args: {
     }
     void steer(newest.messageId)
     return true
-  }, [enabled, steer])
+  }, [enabled, hasPendingPrompt, steer])
 
   const resume = useCallback(
     (): Promise<boolean> =>
@@ -284,6 +286,7 @@ export function useStructuredAgentSessionQueuedMessages(args: {
     edit: editing.begin,
     editCapable: editing.capable,
     editor: editing.editor,
-    steerNewest
+    steerNewest,
+    steerHeld: hasPendingPrompt
   }
 }

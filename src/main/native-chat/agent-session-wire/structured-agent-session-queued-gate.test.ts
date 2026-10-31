@@ -92,6 +92,31 @@ describe('the one queue gate', () => {
       value: { submission: expect.anything() }
     })
   })
+
+  it('a queue-if-active send behind a pending question waits as a card and leaves the question pending', async () => {
+    await workingSend()
+    const journal = host.collaboratorsForTests().sessions.get(SESSION)!.journal
+    await journal.appendItem(
+      { provider: 'orca', clientMessageId: 'question-1' },
+      {
+        kind: 'question',
+        question: 'Pick a library',
+        options: [{ id: 'q1:react', label: 'React' }],
+        resolution: { state: 'pending', selectedOptionId: null, resolvedBy: null, resolvedAt: null }
+      },
+      { fence: 1, turnScope: AGENT_JOURNAL_THREAD_SCOPE }
+    )
+    const queued = await send('while the question waits', 'queue-if-active').result
+    expect(queued).toMatchObject({ ok: true, value: { queued: { state: 'waiting' } } })
+    expect(
+      structuredQueueHold({
+        record: store.getRecord(SESSION),
+        work: new StructuredAgentSessionCurrentWork(journal, 1)
+      })
+    ).toBe('prompt')
+    const question = journal.snapshot().items.find((item) => item.body.kind === 'question')
+    expect(question?.body).toMatchObject({ resolution: { state: 'pending' } })
+  })
 })
 
 describe('replay preference', () => {

@@ -483,19 +483,17 @@ describe('NativeChatQueuedMessageList', () => {
     }
   )
 
-  it('a card behind an open question shows no caption and keeps its actions', () => {
+  it('a card behind an open question shows no caption, keeps Delete, and holds Steer until it is answered', () => {
     const { mutate } = renderHeldQueue([waitingDraft('mail', 1)], null, true)
     const row = screen.getByRole('listitem')
     // The open question below already says the agent waits; the text is the card's only line.
     expect(row.querySelectorAll('p')).toHaveLength(1)
     expect(within(row).getByRole('button', { name: 'Delete' })).toBeTruthy()
     expect(within(row).getByRole('button', { name: 'More actions' })).toBeTruthy()
-    fireEvent.click(within(row).getByRole('button', { name: 'Steer' }))
-    expect(mutate).toHaveBeenCalledWith(
-      'agentSession.queuedMessageSend',
-      'agentSession.queuedMessageSend',
-      { messageId: 'mail' }
-    )
+    const steer = within(row).getByRole('button', { name: 'Steer' })
+    expect(steer.hasAttribute('disabled')).toBe(true)
+    fireEvent.click(steer)
+    expect(mutate).not.toHaveBeenCalled()
   })
 
   it('a paused queue holds every card, in order, under one header with Clear all and Resume', () => {

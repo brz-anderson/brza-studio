@@ -87,6 +87,7 @@ import {
   readNativeChatDraftCache
 } from './native-chat-draft-cache'
 import { useStructuredAgentSession } from './use-structured-agent-session'
+import { legacySingleQuestionPromptItems } from './native-chat-structured-question-test-fixtures'
 import { nativeChatStructuredStopControls } from './native-chat-structured-stop-controls'
 
 const RUNNING_TURN: AgentJournalRenderItem = {
@@ -233,6 +234,18 @@ describe('against a capable host', () => {
       capability: 'supported',
       enabled: true
     })
+  })
+
+  it('behind a pending question, queues the send and holds the newest card from steering', () => {
+    items = [RUNNING_TURN, ...legacySingleQuestionPromptItems]
+    queuedMessages = [draft('draft-1')]
+    const { result } = render()
+    expect(mocks.sendArgs.at(-1)?.queue).toEqual({ capability: 'supported', enabled: true })
+    expect(result.current.queuedMessages.steerHeld).toBe(true)
+    expect(result.current.queuedMessages.steerNewest()).toBe(false)
+    expect(
+      mocks.call.mock.calls.filter(([, method]) => method === 'agentSession.queuedMessageSend')
+    ).toHaveLength(0)
   })
 
   it('Stop is a plain cancel: drafts stay as cards and no text lands in the composer', async () => {

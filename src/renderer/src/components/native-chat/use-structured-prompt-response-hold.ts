@@ -2,19 +2,20 @@ import { useCallback, useState } from 'react'
 import type { useStructuredAgentSession } from './use-structured-agent-session'
 
 type Respond = ReturnType<typeof useStructuredAgentSession>['respond']
-type PromptItem = Parameters<Respond>[0]
+export type StructuredPromptItem = Parameters<Respond>[0]
 
-const promptKey = (item: PromptItem): string => `${item.itemId}:${item.revision}`
+export const structuredPromptKey = (item: StructuredPromptItem): string =>
+  `${item.itemId}:${item.revision}`
 
 /** Hold from response press until refusal; acceptance keeps the hold until the host retires the prompt to prevent duplicate responses. */
 export function useStructuredPromptResponseHold(respond: Respond): {
   respond: Respond
-  holds: (item: PromptItem) => boolean
+  holds: (item: StructuredPromptItem) => boolean
 } {
   const [heldKey, setHeldKey] = useState<string | null>(null)
   const holdingRespond = useCallback<Respond>(
     async (item, response) => {
-      const key = promptKey(item)
+      const key = structuredPromptKey(item)
       setHeldKey(key)
       const release = (): void => setHeldKey((held) => (held === key ? null : held))
       try {
@@ -30,5 +31,5 @@ export function useStructuredPromptResponseHold(respond: Respond): {
     },
     [respond]
   )
-  return { respond: holdingRespond, holds: (item) => heldKey === promptKey(item) }
+  return { respond: holdingRespond, holds: (item) => heldKey === structuredPromptKey(item) }
 }

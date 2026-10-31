@@ -21,7 +21,7 @@ export type NativeChatApprovalCardProps = {
   onChoose: (option: string) => void
   /** Cancel the active provider turn while this card owns the composer region. */
   onCancel?: () => void
-  /** Without `onCancel`: fold the card to a strip and give the input back, writing nothing. */
+  /** Fold the card to a strip and give the input back, writing nothing; Escape does too. */
   onCollapse?: () => void
   /** A choice is being delivered: the options wait for its answer. */
   isSubmitting?: boolean
@@ -54,7 +54,7 @@ export function NativeChatApprovalCard({
     approval.detail
   )
   useNativeChatPromptCardFocus(cardRef, shouldFocus)
-  const escape = onCancel ?? (isSubmitting ? undefined : onCollapse)
+  const escape = onCollapse ? (isSubmitting ? undefined : onCollapse) : onCancel
 
   return (
     <SecuritySurface>
@@ -83,6 +83,13 @@ export function NativeChatApprovalCard({
                   {approval.title}
                 </p>
               </div>
+              {onCollapse ? (
+                <NativeChatPromptCollapseToggle
+                  expanded
+                  disabled={isSubmitting}
+                  onToggle={onCollapse}
+                />
+              ) : null}
               {onCancel ? (
                 <button
                   type="button"
@@ -92,12 +99,6 @@ export function NativeChatApprovalCard({
                 >
                   <X className="size-4" />
                 </button>
-              ) : onCollapse ? (
-                <NativeChatPromptCollapseToggle
-                  expanded
-                  disabled={isSubmitting}
-                  onToggle={onCollapse}
-                />
               ) : null}
             </div>
             {hasContext ? (

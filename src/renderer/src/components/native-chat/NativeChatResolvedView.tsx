@@ -22,7 +22,7 @@ import { NativeChatInteractiveCard } from './NativeChatInteractiveCard'
 import { nativeChatAskRequiresTerminal } from '../../../../shared/native-chat-agent-support'
 import { useNativeChatInteractivePromptCard } from './use-native-chat-interactive-prompt-card'
 import { useNativeChatPromptCardPresentation } from './use-native-chat-prompt-card-presentation'
-import { NativeChatPromptStrip } from './NativeChatPromptCollapse'
+import { NativeChatPromptStrip, nativeChatPromptCardTitle } from './NativeChatPromptCollapse'
 import { NativeChatEmptyState } from './NativeChatEmptyState'
 import { useNativeChatInteractiveSend } from './use-native-chat-interactive-send'
 import { shouldClearNativeChatWorkingSuppression } from './native-chat-working-suppression'
@@ -388,7 +388,10 @@ export function NativeChatResolvedView({
         </div>
       ) : null}
       {collapsedCard ? (
-        <NativeChatPromptStrip card={collapsedCard} onExpand={promptCardPresentation.expand} />
+        <NativeChatPromptStrip
+          title={nativeChatPromptCardTitle(collapsedCard)}
+          onExpand={promptCardPresentation.expand}
+        />
       ) : null}
       {/* Honor mobile PTY ownership; retain the hidden composer’s state but detach its ref from typing, paste and focus routes. */}
       <div hidden={shownPromptCard !== null} className="contents">

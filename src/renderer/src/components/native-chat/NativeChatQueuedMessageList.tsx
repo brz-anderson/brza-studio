@@ -148,7 +148,7 @@ export function NativeChatQueuedMessageList({
                     agentName={agentName}
                     statedFailures={statedFailures}
                     showsSteerShortcut={controller.queueCapable && card === newest}
-                    steerHeld={steerHeld}
+                    steerHeld={steerHeld || controller.steerHeld === true}
                     pending={controller.pending(card.messageId)}
                     onSteer={() => refocusAfter(controller.steer(card.messageId))}
                     onDelete={() => refocusAfter(controller.remove(card.messageId))}
