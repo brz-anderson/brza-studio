@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse'
 import { unified } from 'unified'
 import { describe, expect, it } from 'vitest'
 import { remarkNativeChatFileLinks } from '@/components/sidebar/comment-markdown-native-chat-file-links'
-import { routeNativeChatHref } from '../../../../../shared/native-chat-href-routing'
+import { routeNativeChatHref } from '../../../../../shared/native-chat/native-chat-href-routing'
 import { BRZA_IMAGE_MENTION_PROPERTY, remarkBrzaImageMentions } from './brza-image-mention-markdown'
 
 const existing = new Set(['/abs/shot.png'])

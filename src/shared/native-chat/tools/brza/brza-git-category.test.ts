@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { nativeChatToolIconName, nativeChatToolRunIconName } from '../native-chat-tool-icon'
 import { nativeChatToolLineLabel } from '../native-chat-tool-line-label'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import { brzaToolLineChip } from './brza-tool-line-chip'
 
 function bash(command: string): NativeChatToolCallBlock {

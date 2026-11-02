@@ -182,7 +182,7 @@ export function RemoteServerFields({
       <div className="space-y-1.5">
         <Label htmlFor="add-server-name">
           {translate(
-            'auto.components.sidebar.AddRemoteHostDialog.serverName',
+            'auto.components.sidebar.AddRemoteHostDialog.nameInOrca',
             'Name in BrzA Studio'
           )}
         </Label>
@@ -200,7 +200,7 @@ export function RemoteServerFields({
       </div>
       <div className="space-y-1.5">
         <Label htmlFor="add-server-pairing-code">
-          {translate('auto.components.sidebar.AddRemoteHostDialog.pairingCode', 'Access link')}
+          {translate('auto.components.sidebar.AddRemoteHostDialog.accessLink', 'Access link')}
         </Label>
         <Input
           id="add-server-pairing-code"

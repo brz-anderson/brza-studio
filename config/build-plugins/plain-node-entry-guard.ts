@@ -21,6 +21,7 @@ export const CLI_MAIN_ENTRY_NAMES = [
   'skills/bundled-skill-install/cli-entry',
   'macos-tree-clone',
   'orcad/orcad-stale-lock-reclaim',
+  'plugins/plugin-authoring-checks',
   ...[
     'access',
     'active-location',
@@ -38,12 +39,15 @@ export const CLI_MAIN_ENTRY_NAMES = [
 
 // Plain-Node processes and CLI modules cannot load Electron's API.
 const PLAIN_NODE_ENTRY_NAMES = [
+  'browser-extension-native-host-supervisor-entry',
   'daemon-entry',
   'parcel-watcher-process-entry',
   'session-scanner-service-entry',
   'computer-sidecar',
   'wsl-transcript-fs-process-entry',
   'orcad/orcad-local-serve-selection-entry',
+  // ELECTRON_RUN_AS_NODE plugin worker host; it now bundles sucrase for TypeScript workers.
+  'plugin-host-entry',
   ...CLI_MAIN_ENTRY_NAMES
 ] as const
 
@@ -54,12 +58,12 @@ const WORKER_THREAD_ENTRY_NAMES = [
   'foreign-sqlite-reader-entry',
   'main-thread-hang-watchdog-entry',
   'port-scan-command-worker-entry',
+  'command-path-directory-worker-entry',
   'worker-thread-child-process-entry',
-  'usage-scan-worker-entry',
-  'workspace-space-scan-worker-entry',
+  ...(['usage-scan', 'workspace-space-scan'] as const).map((n) => `${n}-worker-entry` as const),
   'claude-profile-setup-worker-entry',
-  'profile-state-backup-worker-entry',
-  'profile-state-writer-worker-entry'
+  ...(['backup', 'writer'] as const).map((kind) => `profile-state-${kind}-worker-entry` as const),
+  'plugin-source-transpile-worker-entry'
 ] as const
 
 export const GUARDED_ENTRY_NAMES = [

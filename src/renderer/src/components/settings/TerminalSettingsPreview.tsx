@@ -87,11 +87,16 @@ export function TerminalSettingsPreview({
       settings.terminalThemeDark,
       settings.terminalThemeLight,
       settings.terminalCustomThemes,
+      settings.terminalPluginPalettes,
+      settings.pluginSystemEnabled,
+      settings.disabledPlugins,
       settings.terminalUseSeparateLightTheme,
       settings.terminalDividerColorDark,
       settings.terminalDividerColorLight,
       settings.terminalFollowsChatTheme,
       settings.nativeChatAppearance,
+      settings.terminalColorOverrides,
+      settings.terminalColorOverridesLight,
       systemPrefersDark
     ]
   )
@@ -100,12 +105,7 @@ export function TerminalSettingsPreview({
   const composedTheme = useMemo(
     () => composeActiveTerminalTheme(appearance.theme, settings),
     // oxlint-disable-next-line react-hooks/exhaustive-deps
-    [
-      appearance,
-      settings.terminalColorOverrides,
-      settings.terminalBackgroundOpacity,
-      settings.terminalCursorOpacity
-    ]
+    [appearance, settings.terminalBackgroundOpacity, settings.terminalCursorOpacity]
   )
 
   const dividerThicknessPx = clampNumber(settings.terminalDividerThicknessPx, 1, 32)

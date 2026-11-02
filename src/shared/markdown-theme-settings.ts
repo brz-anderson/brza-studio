@@ -2,7 +2,7 @@ import type { GlobalSettings } from './global-settings-types'
 import {
   NATIVE_CHAT_THEME_BRZA_DEFAULT,
   normalizeNativeChatThemePair
-} from './native-chat-appearance-settings'
+} from './native-chat/native-chat-appearance-settings'
 import {
   resolveNativeChatTheme,
   resolveNativeChatThemePair,

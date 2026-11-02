@@ -1,5 +1,5 @@
 /** Jira and Confluence calls of the Atlassian MCP server: icon, title and the chip that opens the page (D39). */
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import { mcpToolIdentity, type NativeChatMcpIdentity } from '../native-chat-tool-identity'
 import { normalizeToolInput } from '../native-chat-tool-summary'
 import type { BrzaToolCategoryDefinition } from './brza-tool-categories'

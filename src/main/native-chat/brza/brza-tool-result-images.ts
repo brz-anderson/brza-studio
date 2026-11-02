@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, renameSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { getAppEnvironment, hasAppEnvironment } from '../../../shared/app-environment'
-import type { NativeChatImageRefBlock } from '../../../shared/native-chat-types'
+import type { NativeChatImageRefBlock } from '../../../shared/native-chat/native-chat-types'
 import { asRecord } from '../../ai-vault/session-scanner-values'
 
 // The image types the Claude send path accepts (claude-structured-dispatch-content.ts).

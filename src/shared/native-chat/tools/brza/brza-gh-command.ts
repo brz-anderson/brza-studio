@@ -1,4 +1,4 @@
-import type { NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolResultBlock } from '../../native-chat-types'
 import type { BrzaShellSegment } from './brza-shell-segments'
 
 const GH_KINDS = {

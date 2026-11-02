@@ -4,7 +4,7 @@ import { resolveNativeChatTheme, type NativeChatThemeContext } from './native-ch
 import type { TerminalOscColorQueryReplyColors } from './terminal-osc-color-reply'
 import {
   resolveConfiguredTerminalColors,
-  type TerminalThemeSelectionSettings
+  type TerminalPaletteSettings
 } from './terminal-theme-selection'
 
 export type TerminalChatThemeSettings = NativeChatThemeContext &
@@ -38,18 +38,16 @@ export function resolveTerminalChatTheme(
   }
 }
 
-/** Saved-settings OSC 10/11 colors that follow the chat the way the rendered terminal does. */
+/** Saved-settings OSC 10/11 colors that follow the chat the way the rendered terminal does: the
+ *  live pane paints the chat theme without color overrides, so the replies leave them out too. */
 export function resolveSavedTerminalColors(
-  settings: TerminalThemeSelectionSettings &
-    Pick<GlobalSettings, 'terminalCustomThemes' | 'terminalColorOverrides'> &
-    TerminalChatThemeSettings,
+  settings: TerminalPaletteSettings & TerminalChatThemeSettings,
   systemPrefersDark: boolean
 ): TerminalOscColorQueryReplyColors {
   const chat = resolveTerminalChatTheme(settings, systemPrefersDark)
   if (!chat) {
     return resolveConfiguredTerminalColors(settings, systemPrefersDark)
   }
-  const foreground = settings.terminalColorOverrides?.foreground ?? chat.theme.foreground
-  const background = settings.terminalColorOverrides?.background ?? chat.theme.background
+  const { foreground, background } = chat.theme
   return { ...(foreground ? { foreground } : {}), ...(background ? { background } : {}) }
 }

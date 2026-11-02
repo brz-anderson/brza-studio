@@ -17,11 +17,13 @@ import {
 } from './execution-host-flag'
 import { fetchSshTargetSummaries, listSshTargets } from './host-selector-alternatives'
 import { reportCliError } from './cli-error'
+import { cliErrorExitCode } from './cli-exit-code'
 import { printHelp } from './help'
 import type { RuntimeClient } from './runtime-client'
 import { COMMAND_SPECS } from './specs'
 import { resolveOrchestrationCliExecutable } from './runtime/orchestration-recovery-command'
 import { refuseConflictingSessionCallerFlags } from './session-caller-flags'
+import { ignoresRemoteSelection } from './remote-selection-scope'
 
 export { COMMAND_SPECS } from './specs'
 export { buildCurrentWorktreeSelector, normalizeWorktreeSelector } from './selectors'
@@ -34,21 +36,6 @@ const BUILTIN_COMMAND_HEADS: ReadonlySet<string> = new Set([
   'agent-teams-tmux',
   'claude-teams'
 ])
-
-function shouldIgnoreRemoteSelection(commandPath: string[]): boolean {
-  return (
-    commandPath[0] === 'account' ||
-    commandPath[0] === 'artifacts' ||
-    commandPath[0] === 'environment' ||
-    // Paired servers come from the local store; routing SSH lookup would mix two machines in one list.
-    commandPath.join(' ') === 'host list' ||
-    commandPath[0] === 'serve' ||
-    (commandPath[0] === 'agent' && commandPath[1] !== 'launch') ||
-    commandPath[0] === 'vm' ||
-    commandPath[0] === 'agent-context' ||
-    commandPath[0] === 'profile'
-  )
-}
 
 // Defer the runtime graph until after help and validation; await it to keep ctx.client synchronous.
 async function loadRuntimeClientClass(): Promise<typeof RuntimeClient> {
@@ -114,6 +101,14 @@ export async function main(
     printHelp(COMMAND_SPECS, [])
     return
   }
+  if (
+    parsed.flags.size === 0 &&
+    !findCommandSpec(COMMAND_SPECS, parsed.commandPath) &&
+    isCommandGroup(COMMAND_SPECS, parsed.commandPath)
+  ) {
+    printHelp(COMMAND_SPECS, parsed.commandPath)
+    return
+  }
   const json = parsed.flags.has('json')
 
   try {
@@ -122,7 +117,7 @@ export async function main(
     const commandSpec = findCommandSpec(COMMAND_SPECS, parsed.commandPath)
     refuseConflictingSessionCallerFlags(commandSpec, parsed.flags)
     const RuntimeClientClass = await loadRuntimeClientClass()
-    const ignoreRemoteSelection = shouldIgnoreRemoteSelection(parsed.commandPath)
+    const ignoreRemoteSelection = ignoresRemoteSelection(parsed.commandPath)
     const pairingCode = ignoreRemoteSelection ? null : parsed.flags.get('pairing-code')
     const environmentSelector = ignoreRemoteSelection ? null : parsed.flags.get('environment')
     // Eagerly resolve explicit --environment; stale ambient config must not break local-only commands.
@@ -193,9 +188,10 @@ export async function main(
         parsed.flags.has('environment') ||
         parsed.flags.has('pairing-code') ||
         (typeof hostFlag === 'string' && hostFlag.startsWith('runtime:')) ||
-        Boolean(process.env.ORCA_ENVIRONMENT?.trim() || process.env.ORCA_PAIRING_CODE?.trim())
+        Boolean(process.env.ORCA_ENVIRONMENT?.trim() || process.env.ORCA_PAIRING_CODE?.trim()),
+      conciseOrchestration: parsed.commandPath[0] === 'orchestration' && !parsed.flags.has('full')
     })
-    process.exitCode = 1
+    process.exitCode = cliErrorExitCode(error, parsed.commandPath)
   }
 }
 

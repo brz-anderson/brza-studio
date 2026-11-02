@@ -1,5 +1,5 @@
 import { useState, type RefObject } from 'react'
-import { agentSessionPromptQuestions } from '../../../../shared/agent-session-question-answer'
+import { agentSessionPromptQuestions } from '../../../../shared/agent-session/agent-session-question-answer'
 import { chatApprovalFromJournal } from '../../../../shared/native-chat-interactive-prompt'
 import type { CommentMarkdownLinkClickHandler } from '@/components/sidebar/CommentMarkdown'
 import { NativeChatApprovalCard } from './NativeChatApprovalCard'

@@ -3,9 +3,9 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, expect, it, vi } from 'vitest'
-import type { AgentSessionOwnerProbe } from '../../shared/agent-session-lease-adjudication'
-import { agentSessionRecordFixture } from '../../shared/agent-session-record.test-fixture'
-import { claudeProviderHandle } from '../../shared/agent-session-provider-handle-encoding'
+import type { AgentSessionOwnerProbe } from '../../shared/agent-session/lifecycle/agent-session-lease-adjudication'
+import { agentSessionRecordFixture } from '../../shared/agent-session/lifecycle/agent-session-record.test-fixture'
+import { claudeProviderHandle } from '../../shared/agent-session/lifecycle/agent-session-provider-handle-encoding'
 import type { ClaudeManagedAccount } from '../../shared/managed-account-types'
 import {
   ClaudeProfileRouter,
@@ -15,7 +15,7 @@ import { installClaudeProfileRouter } from '../claude-accounts/claude-profile-in
 import { createClaudeProfileReport } from '../claude-accounts/claude-profile-report'
 import { AgentSessionJournal } from '../native-chat/agent-session-journal/journal-store'
 import { openTestJournalHostDatabase } from '../native-chat/agent-session-journal/journal-host-database-test-support'
-import { openTestAgentSessionRecordStore } from '../runtime/agent-session-record-store-test-harness'
+import { openTestAgentSessionRecordStore } from '../runtime/agent-session/records/agent-session-record-store-test-harness'
 import { claudePrepareAccountSwitch } from './claude-account-switch'
 
 const NOW = 1_800_000_000_000
@@ -221,7 +221,7 @@ it('switches a chat to another account by copying its transcript there and resum
     store: { getRecord: () => store.getRecord(SESSION)!, pinLaunchDirectory: vi.fn() },
     resolveLaunchArgs: () => [],
     resolveWorkspacePath: async (id) => `/repos/${id}`,
-    resolveCommand: () => '/usr/local/bin/claude',
+    resolveCommand: () => ({ command: '/usr/local/bin/claude', prefixArgs: [] }),
     resolveInheritedEnv: async () => ({ PATH: '/usr/bin' }),
     resolveAuthPolicy: () => ({ account: 'managed' })
   })
@@ -267,7 +267,7 @@ it('resumes a chat switched to System default there, and refuses one whose accou
     },
     resolveLaunchArgs: () => [],
     resolveWorkspacePath: async (id) => `/repos/${id}`,
-    resolveCommand: () => '/usr/local/bin/claude',
+    resolveCommand: () => ({ command: '/usr/local/bin/claude', prefixArgs: [] }),
     resolveInheritedEnv: async () => ({ PATH: '/usr/bin' }),
     resolveAuthPolicy: () => ({ account: 'managed' })
   })

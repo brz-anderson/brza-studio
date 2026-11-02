@@ -1,5 +1,5 @@
-import type { AgentJournalMessageItem } from '../../../shared/agent-session-journal-types'
-import type { NativeChatMessage } from '../../../shared/native-chat-types'
+import type { AgentJournalMessageItem } from '../../../shared/agent-session/journal/agent-session-journal-types'
+import type { NativeChatMessage } from '../../../shared/native-chat/native-chat-types'
 import {
   brzaClaudePeerSource,
   type BrzaClaudePeerKind

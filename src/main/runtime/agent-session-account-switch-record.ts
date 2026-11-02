@@ -1,7 +1,7 @@
-import { agentSessionRefusalError } from '../../shared/agent-session-wire-refusals'
-import type { AgentSessionAccountHome } from '../../shared/agent-session-account-home'
+import { agentSessionRefusalError } from '../../shared/agent-session/failures/agent-session-wire-refusals'
+import type { AgentSessionAccountHome } from '../../shared/agent-session/lifecycle/agent-session-account-home'
 import type { AgentSessionAccountSwitchRecord } from '../../shared/agent-session-account-switch'
-import type { AgentSessionStoreState } from './agent-session-store-state'
+import type { AgentSessionStoreState } from './agent-session/records/agent-session-store-state'
 
 export type AgentSessionAccountSwitch = {
   sessionId: string
@@ -23,8 +23,11 @@ export function commitAccountSwitchRecord(
   if (source.lease.ownerProcess !== null || source.lease.claimStatus !== 'released') {
     throw agentSessionRefusalError('agent_session_ownership_unknown', { reason: 'leaseMoved' })
   }
+  // The last launch's account receipt names the account the chat just left; keeping it would send
+  // a mail or native-work resume back there.
+  const { acquiredAccount: _left, ...kept } = source
   state.records.set(change.sessionId, {
-    ...source,
+    ...kept,
     accountHome: change.accountHome,
     accountSwitch: change.accountSwitch,
     updatedAt: change.accountSwitch.switchedAt

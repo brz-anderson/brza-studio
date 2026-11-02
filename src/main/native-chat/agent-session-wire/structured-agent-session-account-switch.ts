@@ -6,8 +6,8 @@ import {
   CLAUDE_PROFILE_MISSING_MESSAGE,
   CLAUDE_PROFILE_SETUP_FAILED_MESSAGE
 } from '../../../shared/claude-profile-routing'
-import type { AgentSessionMutationResult } from '../../../shared/agent-session-wire'
-import { refuse } from '../../../shared/agent-session-wire-refusals'
+import type { AgentSessionMutationResult } from '../../../shared/agent-session/agent-session-wire'
+import { refuse } from '../../../shared/agent-session/failures/agent-session-wire-refusals'
 import type { AgentSessionAccountSwitch } from '../../runtime/agent-session-account-switch-record'
 import { admitAndRunAgentSessionMutation } from './structured-agent-session-mutation-admission'
 import type { StructuredAgentSessionMutationContext } from './structured-agent-session-host-mutations'

@@ -1,4 +1,4 @@
-import type { AgentSessionMutationEnvelope } from './agent-session-wire'
+import type { AgentSessionMutationEnvelope } from './agent-session/agent-session-wire'
 
 /** A chat moved to another of its agent's accounts, in the same tab and Orca session; its next
  *  launch resumes the conversation there instead of following the account selection. */

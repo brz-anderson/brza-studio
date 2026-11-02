@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { translate } from '@/i18n/i18n'
+import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
 import { fetchProviderAccountsSnapshot } from '@/runtime/runtime-provider-accounts-client'
 import { useStructuredAgentSessionHostCapabilityState } from '@/runtime/structured-agent-session-host-capability'
@@ -7,7 +8,7 @@ import {
   getClaudeStatusActiveId,
   resolveClaudeStatusAccountState
 } from '@/components/status-bar/status-bar-claude-accounts'
-import { STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY } from '../../../../shared/protocol-version'
+import { STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY } from '../../../../shared/agent-session/structured-agent-session-surface-capabilities'
 import type { AgentSessionAccountSwitchResult } from '../../../../shared/agent-session-account-switch'
 import type { AgentType } from '../../../../shared/agent-status-types'
 import type { ClaudeRateLimitAccountsState } from '../../../../shared/managed-account-types'
@@ -54,7 +55,19 @@ export function useNativeChatAccountSwitch(
     STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY
   )
   const switched = useStructuredAgentSessionAccountSwitch(sessionId, target)
-  const settings = useAppStore((store) => store.settings)
+  // Only the account fields: any other setting change must not re-render the chat's controller.
+  const settings = useAppStore(
+    useShallow((store) =>
+      store.settings
+        ? {
+            claudeManagedAccounts: store.settings.claudeManagedAccounts,
+            activeClaudeManagedAccountIdsByRuntime:
+              store.settings.activeClaudeManagedAccountIdsByRuntime,
+            activeClaudeManagedAccountId: store.settings.activeClaudeManagedAccountId
+          }
+        : null
+    )
+  )
   const [hostAccounts, setHostAccounts] = useState<ClaudeRateLimitAccountsState | null>(null)
   const [switching, setSwitching] = useState(false)
   const inFlight = useRef(false)

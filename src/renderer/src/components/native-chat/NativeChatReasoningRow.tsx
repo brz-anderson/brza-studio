@@ -2,13 +2,13 @@ import type { CommentMarkdownLinkClickHandler } from '@/components/sidebar/Comme
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { cn } from '@/lib/utils'
 import { translate } from '@/i18n/i18n'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import {
   nativeChatReasoningDisclosureKey,
   nativeChatReasoningHeadline,
   nativeChatReasoningPreview,
   type NativeChatReasoningHeadline
-} from '../../../../shared/native-chat-reasoning-row'
+} from '../../../../shared/native-chat/transcript/native-chat-reasoning-row'
 import {
   NativeChatReasoningBody,
   NativeChatReasoningChevron

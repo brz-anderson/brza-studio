@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
-import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from '../../../../shared/native-chat-appearance-settings'
+import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from '../../../../shared/native-chat/native-chat-appearance-settings'
 import {
   resolveNativeChatThemePair,
   type NativeChatThemePair
 } from '../../../../shared/native-chat-theme'
 import { getAvailableTerminalThemeOptions, type TerminalThemeOption } from '@/lib/terminal-theme'
+import { usePluginTerminalThemes } from '@/store/plugin-themes'
 import { translate } from '@/i18n/i18n'
 import { cn } from '@/lib/utils'
 import { useSystemPrefersDark } from '../terminal-pane/use-system-prefers-dark'
@@ -22,7 +23,8 @@ export type ChatThemePairPickerProps = {
   title: string
   description: string
   pair: Required<NativeChatThemePair>
-  settings: Pick<GlobalSettings, 'theme' | 'terminalCustomThemes'>
+  settings: Pick<GlobalSettings, 'theme' | 'terminalCustomThemes' | 'terminalPluginPalettes'> &
+    Partial<Pick<GlobalSettings, 'pluginSystemEnabled' | 'disabledPlugins'>>
   onChange: (updates: NativeChatThemePair) => void
   disabled?: boolean
 }
@@ -37,6 +39,7 @@ export function ChatThemePairPicker({
   disabled = false
 }: ChatThemePairPickerProps): React.JSX.Element {
   const systemPrefersDark = useSystemPrefersDark()
+  const pluginTerminalThemes = usePluginTerminalThemes()
   const appMode =
     settings.theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : settings.theme
   const [target, setTarget] = useState<ThemeTarget>(appMode)
@@ -55,7 +58,7 @@ export function ChatThemePairPicker({
       group: 'built-in',
       previewTheme: { ...defaultPreview.palette, background: defaultPreview.canvas }
     },
-    ...getAvailableTerminalThemeOptions(settings)
+    ...getAvailableTerminalThemeOptions(settings, pluginTerminalThemes)
   ]
   const pickerTitle = isLightTarget
     ? translate('settings.appearance.chat.themeLight', 'Light theme')

@@ -3,7 +3,7 @@ import './brza-chat-code-columns.css'
 import { useMemo, type CSSProperties } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import type { GlobalSettings } from '../../../../shared/global-settings-types'
-import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
+import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat/native-chat-appearance-settings'
 import { resolveNativeChatTheme } from '../../../../shared/native-chat-theme'
 import { nativeChatThemeSurfaceStyle } from '@/lib/native-chat-theme-surface-style'
 import { buildFontFamily } from '@/lib/monospace-font-family'
@@ -44,6 +44,9 @@ export function selectNativeChatAppearanceSettings(
   return {
     theme: settings?.theme,
     terminalCustomThemes: settings?.terminalCustomThemes,
+    terminalPluginPalettes: settings?.terminalPluginPalettes,
+    pluginSystemEnabled: settings?.pluginSystemEnabled,
+    disabledPlugins: settings?.disabledPlugins,
     terminalFontFamily: settings?.terminalFontFamily,
     nativeChatAppearance: settings?.nativeChatAppearance
   }

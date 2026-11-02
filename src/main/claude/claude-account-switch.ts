@@ -1,6 +1,6 @@
-import { requireLegacyAgentSessionAccountHome } from '../../shared/agent-session-account-home'
-import { agentSessionProviderHandleChainHead } from '../../shared/agent-session-provider-handle'
-import { pendingAgentSessionRewindFork } from '../../shared/agent-session-rewind'
+import { requireLegacyAgentSessionAccountHome } from '../../shared/agent-session/lifecycle/agent-session-account-home'
+import { agentSessionProviderHandleChainHead } from '../../shared/agent-session/lifecycle/agent-session-provider-handle'
+import { pendingAgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
 import { getClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
 import {
   claudeLaunchAccountId,
@@ -8,7 +8,7 @@ import {
 } from '../claude-accounts/claude-account-launch'
 import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/structured-agent-session-adapter'
 import { copyClaudeTranscriptsToAccount } from './claude-account-switch-transcript'
-import { CLAUDE_STRUCTURED_AGENT } from './claude-structured-agent-definition'
+import { CLAUDE_STRUCTURED_AGENT } from './structured/claude-structured-agent-definition'
 
 /** Ready the account's folder and carry the chat's transcripts into it; the record changes after. */
 export const claudePrepareAccountSwitch: NonNullable<

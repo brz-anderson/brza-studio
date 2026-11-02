@@ -2,8 +2,8 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { setRendererUiLanguage } from '@/i18n/i18n'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import { i18n, loadRendererUiLanguage } from '@/i18n/i18n'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import { UI_LANGUAGE_ENGLISH, UI_LANGUAGE_PORTUGUESE } from '../../../../shared/ui-language'
 import { NativeChatAwaitingInputRow } from './NativeChatAwaitingInputRow'
 import { NativeChatReasoningRow } from './NativeChatReasoningRow'
@@ -262,11 +262,11 @@ describe('the closed line, like the question line', () => {
 
 describe('in Portuguese', () => {
   afterEach(async () => {
-    await setRendererUiLanguage(UI_LANGUAGE_ENGLISH)
+    await i18n.changeLanguage(await loadRendererUiLanguage(UI_LANGUAGE_ENGLISH))
   })
 
   it('reads Pensou por 3s: before the reasoning, and Perguntou: before the question', async () => {
-    await setRendererUiLanguage(UI_LANGUAGE_PORTUGUESE)
+    await i18n.changeLanguage(await loadRendererUiLanguage(UI_LANGUAGE_PORTUGUESE))
     render(
       <>
         <NativeChatReasoningRow

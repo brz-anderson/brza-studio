@@ -3,7 +3,7 @@ import { AlarmClock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { translate } from '@/i18n/i18n'
-import { formatUsageLimitResetClock } from '../../../../shared/agent-session-usage-limit'
+import { formatUsageLimitResetClock } from '../../../../shared/agent-session/failures/agent-session-usage-limit'
 import type { NativeChatUsageLimitAutoResumeView } from './use-native-chat-usage-limit-auto-resume'
 
 /** On a usage limit's row: schedule Continue for the reset, or show the schedule and Cancel. */

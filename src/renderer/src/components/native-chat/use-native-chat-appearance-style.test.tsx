@@ -103,4 +103,14 @@ describe('shared chat appearance hook', () => {
       expect(result.current, Object.keys(update).join(',')).not.toBe(style)
     }
   })
+  it('ignores terminal size changes while matching is off', () => {
+    const settings = createGlobalSettingsFixture({ nativeChatAppearance: { fontSize: 18 } })
+    const { result, rerender } = renderHook(
+      (current: GlobalSettings) => useNativeChatAppearanceStyle(current),
+      { initialProps: settings }
+    )
+    const style = result.current
+    rerender({ ...settings, terminalFontSize: settings.terminalFontSize + 1 })
+    expect(result.current).toBe(style)
+  })
 })

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { nativeChatToolIconName } from '../native-chat-tool-icon'
 import { nativeChatToolLineLabel } from '../native-chat-tool-line-label'
 import { summarizeToolInput } from '../native-chat-tool-summary'
-import type { NativeChatToolCallBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock } from '../../native-chat-types'
 
 function call(
   name: string,

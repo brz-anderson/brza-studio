@@ -1,5 +1,4 @@
-import { COMMAND_TOKEN_SCAN_MAX_CHARS, getCommandTokenPathBasename } from './command-token-scanner'
-import { tokenizeCommandLine } from './agent-command-line-entrypoint'
+import { orcaCliInvocations } from './orca-cli-invocations'
 
 /** The browser CLI's command keys per handler group. Kept apart from the CLI's
  *  lazy handler imports so the renderer and mobile can read them too. */
@@ -103,46 +102,24 @@ const BROWSER_COMMAND_WORDS = new Set<string>(
   )
 )
 
-// The published launcher names per platform, the dev build's, and the fork's
-// installed `brza`; terminals the app opens still put `orca` on PATH.
-const ORCA_CLI_BASENAME = /^(?:orca(?:-dev|-ide)?|brza)(?:\.cmd|\.exe)?$/i
-const ENV_ASSIGNMENT = /^[A-Za-z_][A-Za-z0-9_]*=/
-
 export type OrcaBrowserCommand = { pageId: string | null }
 
 /** The first `orca <browser command>` a shell command line runs, with the page it
  *  targets, or null when it runs none. Quoted text is an argument, never a command. */
 export function parseOrcaBrowserCommand(command: string): OrcaBrowserCommand | null {
-  for (const args of orcaCliInvocations(command)) {
-    const word = args[0]
-    if (word !== undefined && BROWSER_COMMAND_WORDS.has(word)) {
-      return { pageId: pageFlagValue(args.slice(1)) }
-    }
-  }
-  return null
+  const args = orcaCliInvocations(command).find((invocation) =>
+    BROWSER_COMMAND_WORDS.has(invocation[0] ?? '')
+  )
+  return args ? { pageId: pageFlagValue(args.slice(1)) } : null
 }
 
 /** Whether a shell command line runs the CLI at all, under any launcher name.
  *  Quoted text is an argument, never a command. */
 export function runsOrcaCliCommand(command: string): boolean {
-  return !orcaCliInvocations(command).next().done
+  return orcaCliInvocations(command).length > 0
 }
 
-/** The arguments of each CLI invocation a command line runs, segment by segment. */
-function* orcaCliInvocations(command: string): Generator<string[]> {
-  const scanned = command.slice(0, COMMAND_TOKEN_SCAN_MAX_CHARS)
-  for (const segment of splitUnquotedSegments(scanned)) {
-    const tokens = tokenizeCommandLine(segment)
-    let index = 0
-    while (index < tokens.length && ENV_ASSIGNMENT.test(tokens[index])) {
-      index += 1
-    }
-    const binary = tokens[index]
-    if (binary !== undefined && ORCA_CLI_BASENAME.test(getCommandTokenPathBasename(binary))) {
-      yield tokens.slice(index + 1)
-    }
-  }
-}
+export { splitUnquotedSegments } from './orca-cli-invocations'
 
 function pageFlagValue(args: readonly string[]): string | null {
   for (let index = 0; index < args.length; index += 1) {
@@ -155,26 +132,4 @@ function pageFlagValue(args: readonly string[]): string | null {
     }
   }
   return null
-}
-
-/** Splits a command line at `&&`, `||`, `;`, `|` and newlines outside quotes. */
-export function splitUnquotedSegments(commandLine: string): string[] {
-  const segments: string[] = []
-  let current = ''
-  let quote: '"' | "'" | null = null
-  for (let index = 0; index < commandLine.length; index += 1) {
-    const char = commandLine[index]
-    if (quote === null && (char === '"' || char === "'")) {
-      quote = char
-    } else if (quote === char) {
-      quote = null
-    } else if (quote === null && (char === ';' || char === '|' || char === '&' || char === '\n')) {
-      segments.push(current)
-      current = ''
-      continue
-    }
-    current += char
-  }
-  segments.push(current)
-  return segments
 }

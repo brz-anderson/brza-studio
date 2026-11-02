@@ -8,7 +8,7 @@ import {
   brzaClaudePeerSource,
   type BrzaClaudePeerKind
 } from '../../../../../shared/native-chat/brza/brza-claude-peer-sender'
-import type { NativeChatMessage } from '../../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
 
 afterEach(cleanup)
 

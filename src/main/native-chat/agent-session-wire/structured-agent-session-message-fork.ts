@@ -1,4 +1,4 @@
-import { parseAgentJournalItemKey } from '../../../shared/agent-session-journal-item-key'
+import { parseAgentJournalItemKey } from '../../../shared/agent-session/journal/agent-session-journal-item-key'
 import type { AgentSessionMessageForkResult } from '../../../shared/agent-session-message-fork'
 import type { StructuredAgentSessionHost } from './structured-agent-session-host'
 

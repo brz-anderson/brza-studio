@@ -1,11 +1,9 @@
 import { describe, expect, it, vi } from 'vitest'
 import { decodeClaudeTranscriptLine } from '../transcript-line-decoders-claude'
 import { legacyItemBody } from '../agent-session-journal/journal-legacy-import'
-import { createClaudeJournalTranslator } from '../../claude/claude-structured-journal-translation'
-import type {
-  AgentJournalItemBody,
-  AgentJournalItemIdentity
-} from '../../../shared/agent-session-journal-types'
+import { createClaudeJournalTranslator } from '../../claude/structured/journal/claude-structured-journal-translation'
+import type { AgentJournalItemIdentity } from '../../../shared/agent-session-journal-identity'
+import type { AgentJournalItemBody } from '../../../shared/agent-session/journal/agent-session-journal-types'
 import { brzaClaudePeerKind } from '../../../shared/native-chat/brza/brza-claude-peer-sender'
 
 const PREAMBLE = 'Another Claude session sent a message:\n'

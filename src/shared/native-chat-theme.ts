@@ -4,7 +4,7 @@ import {
   NATIVE_CHAT_THEME_BRZA_DEFAULT,
   resolveNativeChatAppearanceSettings,
   type NativeChatAppearanceSettings
-} from './native-chat-appearance-settings'
+} from './native-chat/native-chat-appearance-settings'
 import {
   DEFAULT_TERMINAL_THEME_DARK,
   DEFAULT_TERMINAL_THEME_LIGHT,
@@ -20,7 +20,17 @@ export type NativeChatThemePair = Pick<
   'themeDark' | 'useSeparateLightTheme' | 'themeLight'
 >
 
-export type NativeChatThemeContext = Partial<Pick<GlobalSettings, 'theme' | 'terminalCustomThemes'>>
+/** Plugin terminal themes are chat themes too, so the context carries what their lookup reads. */
+export type NativeChatThemeContext = Partial<
+  Pick<
+    GlobalSettings,
+    | 'theme'
+    | 'terminalCustomThemes'
+    | 'terminalPluginPalettes'
+    | 'pluginSystemEnabled'
+    | 'disabledPlugins'
+  >
+>
 
 /**
  * The effective chat theme. Contract read by the terminal and the Markdown viewer (PLN-001 D45):

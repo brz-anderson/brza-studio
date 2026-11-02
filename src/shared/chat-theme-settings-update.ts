@@ -1,6 +1,6 @@
 import type { GlobalSettings } from './global-settings-types'
 import { normalizeMarkdownThemeSettings } from './markdown-theme-settings'
-import { normalizeNativeChatAppearanceSettings } from './native-chat-appearance-settings'
+import { normalizeNativeChatAppearanceSettings } from './native-chat/native-chat-appearance-settings'
 
 /** Normalizes the chat appearance and the Markdown theme an update carries, in place. */
 export function sanitizeChatThemeSettingsUpdate(

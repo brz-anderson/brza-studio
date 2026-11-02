@@ -2,8 +2,9 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import type { AgentSessionMessageForkResult } from '../../../../shared/agent-session-message-fork'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import { MessageRow } from './NativeChatMessageRow'
 import { NativeChatForkContext, forkNativeChatFromMessage } from './native-chat-fork-from-message'
 
@@ -54,15 +55,17 @@ function renderAgentMessage(working = false) {
     blocks: [{ type: 'text', text: 'Ship the fix behind a flag.' }]
   }
   render(
-    <NativeChatForkContext.Provider value={forkFromSource}>
-      <MessageRow
-        message={message}
-        expandSignal={false}
-        onScrollMessageToTop={vi.fn()}
-        activeTurnIsWorking={working}
-        trailingRun={working}
-      />
-    </NativeChatForkContext.Provider>
+    <TooltipProvider>
+      <NativeChatForkContext.Provider value={forkFromSource}>
+        <MessageRow
+          message={message}
+          expandSignal={false}
+          onScrollMessageToTop={vi.fn()}
+          activeTurnIsWorking={working}
+          trailingRun={working}
+        />
+      </NativeChatForkContext.Provider>
+    </TooltipProvider>
   )
 }
 

@@ -1,5 +1,5 @@
 import { stripAnsiEscapeSequences } from '../../../ansi-escape-sequences'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import type { BrzaShellSegment } from './brza-shell-segments'
 import { packageRunWord } from './brza-package-command'
 

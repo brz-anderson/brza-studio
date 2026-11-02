@@ -4,7 +4,7 @@ import { translate } from '@/i18n/i18n'
 import type {
   NativeChatToolCallBlock,
   NativeChatToolResultBlock
-} from '../../../../../shared/native-chat-types'
+} from '../../../../../shared/native-chat/native-chat-types'
 import {
   brzaToolLineChip,
   type BrzaToolLineChipTarget

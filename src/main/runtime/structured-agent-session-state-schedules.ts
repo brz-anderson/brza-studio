@@ -1,6 +1,6 @@
 // Split out of structured-agent-session-runtime.ts, which is at its line limit.
 
-import type { AgentSessionRecordStore } from './agent-session-record-store'
+import type { AgentSessionRecordStore } from './agent-session/records/agent-session-record-store'
 import type { StructuredAgentSessionHost } from '../native-chat/agent-session-wire/structured-agent-session-host'
 import { installStructuredAgentSessionUsageLimitAutoResume } from '../native-chat/agent-session-wire/structured-agent-session-usage-limit-auto-resume-host'
 import { scheduleNativeChatVisualsSweep } from '../native-chat/native-chat-visuals-sweep'

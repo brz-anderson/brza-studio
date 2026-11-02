@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import type { GlobalSettings } from '../../../../shared/global-settings-types'
-import type { NativeChatAppearanceSettings } from '../../../../shared/native-chat-appearance-settings'
+import type { NativeChatAppearanceSettings } from '../../../../shared/native-chat/native-chat-appearance-settings'
 import { getChatContrastEntriesByKey } from './chat-appearance-search'
 import { translate } from '@/i18n/i18n'
 import { Slider } from '../ui/slider'
-import { ChatThemePairPicker } from './ChatThemePairPicker'
+import { ChatThemePairPicker, type ChatThemePairPickerProps } from './ChatThemePairPicker'
 import { SearchableSetting } from './SearchableSetting'
 import { SettingsRow } from './SettingsFormControls'
 
 type ChatContrastControlsProps = {
   appearance: Required<NativeChatAppearanceSettings>
-  settings: Pick<GlobalSettings, 'theme' | 'terminalCustomThemes'>
+  settings: ChatThemePairPickerProps['settings']
   onChange: (updates: NativeChatAppearanceSettings) => void
   forceVisiblePrimary?: boolean
 }

@@ -1,18 +1,18 @@
 import type { NativeChatUsageLimitAutoResumeView } from './use-native-chat-usage-limit-auto-resume'
-import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
 import { createContext, useContext } from 'react'
 
 /** Host stop details; only hosts known not to support continuation suppress Continue. */
 export type NativeChatOrcaStopView = {
   hostLabel: string | null
   remoteHost: boolean
+  /** The WSL distro a WSL host runs in, so failure rows can name where an agent is missing. */
+  wslDistro?: string | null
   continueAvailable: boolean
   offeredTurnItemId: string | null
   continueNow: () => void
   usageLimitTurnItemId: string | null
   usageLimitContinueDisabled?: boolean
   continueUsageLimit: (hadFocus?: boolean) => void
-  accountSwitch?: NativeChatAccountSwitchView | null
   /** Resume automatically beside that Continue; absent when the limit gave no reset time. */
   usageLimitAutoResume?: NativeChatUsageLimitAutoResumeView | null
 }

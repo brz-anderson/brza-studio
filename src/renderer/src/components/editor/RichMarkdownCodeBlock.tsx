@@ -6,6 +6,7 @@ import type { NodeViewProps } from '@tiptap/react'
 import { Copy, Check } from 'lucide-react'
 import MermaidBlock from './MermaidBlock'
 import { useMarkdownSurfaceTheme } from './use-markdown-surface-theme'
+import { useMermaidDiagramExpand } from './use-mermaid-diagram-expand'
 import { translate } from '@/i18n/i18n'
 import {
   getCodeBlockLanguageLabel,
@@ -26,6 +27,7 @@ export function RichMarkdownCodeBlock({
   // Clipboard IPC may settle after unmount; do not start an orphan reset timer.
   const isMountedRef = useRef(false)
   const { isDark } = useMarkdownSurfaceTheme()
+  const expandMermaidDiagram = useMermaidDiagramExpand()
 
   const isMermaid = language === 'mermaid'
 
@@ -136,10 +138,14 @@ export function RichMarkdownCodeBlock({
         )}
       </button>
       <NodeViewContent<'pre'> as="pre" />
-      {/* Keep Mermaid source editable; native SVG labels survive the preview’s sanitization. */}
+      {/* Keep Mermaid source editable; the diagram below is read-only output. */}
       {isMermaid && node.textContent.trim() && (
         <div contentEditable={false} className="mermaid-preview">
-          <MermaidBlock content={node.textContent.trim()} isDark={isDark} htmlLabels={false} />
+          <MermaidBlock
+            content={node.textContent.trim()}
+            isDark={isDark}
+            onExpand={expandMermaidDiagram}
+          />
         </div>
       )}
     </NodeViewWrapper>

@@ -1,5 +1,6 @@
 import { dirname } from 'node:path'
 import type { CrashReportBreadcrumbData } from '../../shared/crash-reporting'
+import { translateMain } from '../i18n/main-i18n'
 import { logStartupMilestone } from './startup-diagnostics'
 import {
   clearGpuFallbackMarker,
@@ -255,27 +256,35 @@ export async function repairKnownPoisonedInstallDirBeforeWindow(
   }
 }
 
-const CAUSE =
-  "Windows permissions on BrzA Studio's install folder are blocking its own sandboxed processes from reading the files it shipped with."
-
 // The blank-window recovery dialog is the only place to deliver exact admin commands.
 export function describeInstallDirAclPoison(): InstallDirAclPoisonDiagnosis | null {
   if (!poison) {
     return null
   }
   const commands = buildInstallDirAclRepairCommands(poison.installDir)
+  const cause = translateMain(
+    'installDirAcl.cause',
+    "Windows permissions on BrzA Studio's install folder are blocking its own sandboxed processes from reading the files it shipped with."
+  )
   if (poison.stage === 'repaired') {
     return {
-      detail: `${CAUSE}\n\nBrzA Studio repaired the permissions. Reload to use them.`,
+      detail: `${cause}\n\n${translateMain('installDirAcl.repaired', 'BrzA Studio repaired the permissions. Reload to use them.')}`,
       commands
     }
   }
   const status =
     poison.stage === 'pending'
-      ? 'BrzA Studio is repairing the permissions now.'
-      : 'BrzA Studio could not repair them, which usually means the folder needs an administrator.'
+      ? translateMain('installDirAcl.repairing', 'BrzA Studio is repairing the permissions now.')
+      : translateMain(
+          'installDirAcl.repairFailed',
+          'BrzA Studio could not repair them, which usually means the folder needs an administrator.'
+        )
+  const runCommands = translateMain(
+    'installDirAcl.runCommands',
+    'Run these in an Administrator Command Prompt, then relaunch BrzA Studio:'
+  )
   return {
-    detail: `${CAUSE} ${status}\n\nRun these in an Administrator Command Prompt, then relaunch BrzA Studio:\n\n${commands.join('\n')}`,
+    detail: `${cause} ${status}\n\n${runCommands}\n\n${commands.join('\n')}`,
     commands
   }
 }

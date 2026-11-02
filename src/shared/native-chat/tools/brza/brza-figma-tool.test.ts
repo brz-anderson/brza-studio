@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { nativeChatToolIconName } from '../native-chat-tool-icon'
 import { nativeChatToolLineLabel } from '../native-chat-tool-line-label'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 
 const identity = { server: 'plugin_figma_figma', tool: 'get_metadata' }
 

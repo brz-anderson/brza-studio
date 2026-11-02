@@ -61,7 +61,7 @@ export function NativeChatPromptStrip({
       ? translate('components.native-chat.prompt.review', 'Review')
       : translate('components.native-chat.prompt.answer', 'Answer')
   return (
-    <div className="shrink-0 bg-chat-canvas">
+    <div className="shrink-0 bg-chat-pane">
       <div className="mx-auto w-full max-w-(--chat-content-max-width) px-3 pt-2 sm:px-4">
         <div
           data-native-chat-prompt-strip="true"
@@ -81,5 +81,22 @@ export function NativeChatPromptStrip({
         </div>
       </div>
     </div>
+  )
+}
+
+/** The strip of a card collapsed in the terminal chat, which names its kind and title. */
+export function NativeChatCardPromptStrip({
+  card,
+  onExpand
+}: {
+  card: NonNullable<InteractivePromptCard>
+  onExpand: () => void
+}): React.JSX.Element {
+  return (
+    <NativeChatPromptStrip
+      kind={card.kind}
+      title={nativeChatPromptCardTitle(card)}
+      onExpand={onExpand}
+    />
   )
 }

@@ -55,3 +55,35 @@ export async function prepareClaudeAccountLaunch(
     provenance: home ? `profile:${launchId}` : 'system'
   }
 }
+
+/** The home a chat switched to `accountId` launches under, read without setting anything up; the
+ *  same answer `prepareClaudeAccountLaunch` gives. undefined when no router decides it, so the
+ *  caller falls back to the selection. `identity` names it before its folder exists. */
+export function pinnedClaudeAccountHome(
+  router: ClaudeProfileRouter | null | undefined,
+  pin: { accountId: string | null },
+  launchEnv: Record<string, string | undefined>,
+  purpose: 'read' | 'identity'
+): { variable: 'CLAUDE_CONFIG_DIR'; path: string } | undefined {
+  if (!router) {
+    return undefined
+  }
+  if (pin.accountId !== null && !claudeSavedHostAccount(router, pin.accountId)) {
+    if (purpose === 'identity') {
+      return { variable: 'CLAUDE_CONFIG_DIR', path: router.accountHome(pin.accountId) }
+    }
+    throw claudeProfileMissing()
+  }
+  const launchId = claudeLaunchAccountId(router, pin.accountId)
+  if (launchId === null) {
+    return {
+      variable: 'CLAUDE_CONFIG_DIR',
+      path: launchEnv.CLAUDE_CONFIG_DIR?.trim() || router.systemDefaultHome()
+    }
+  }
+  const path = router.accountHome(launchId)
+  if (purpose === 'read' && !isDirectory(path)) {
+    throw claudeProfileMissing()
+  }
+  return { variable: 'CLAUDE_CONFIG_DIR', path }
+}

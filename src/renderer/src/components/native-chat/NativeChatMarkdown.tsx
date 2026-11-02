@@ -2,6 +2,7 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  useContext,
   useEffect,
   useMemo,
   useState,
@@ -23,6 +24,9 @@ import {
   NativeChatMarkdownImageLinkContext
 } from './NativeChatMarkdownImage'
 import { useBrzaImageMentionExtension } from './brza/BrzaImageMention'
+import { remarkNativeChatFileDestinations } from './native-chat-markdown-file-destinations'
+import { NativeChatLinkPeek } from './NativeChatLinkPeek'
+import { NativeChatLinkPeekContext } from './native-chat-link-peek-context'
 import './native-chat-markdown.css'
 import './brza-chat-link.css'
 
@@ -49,6 +53,20 @@ type NativeChatMarkdownProps = Omit<ComponentProps<typeof CommentMarkdown>, 'fil
   rowKey?: string
 }
 
+/** Every chat surface rewrites `file:` destinations before sanitize can drop them. */
+function withFileDestinations(
+  visualExtension: CommentMarkdownExtension | undefined
+): CommentMarkdownExtension {
+  return {
+    remarkPlugins: [...(visualExtension?.remarkPlugins ?? []), remarkNativeChatFileDestinations],
+    extraFlowSyntaxMarkers: visualExtension?.remarkPlugins.length
+      ? visualExtension.extraFlowSyntaxMarkers
+      : [],
+    sanitizeAttributes: visualExtension?.sanitizeAttributes ?? {},
+    components: visualExtension?.components ?? {}
+  }
+}
+
 type MarkdownElementProps = { node?: { tagName: string }; children?: ReactNode }
 
 function containsImage(children: ReactNode): boolean {
@@ -64,21 +82,24 @@ function createNativeChatImageExtension(
   onLinkClick: CommentMarkdownLinkClickHandler | undefined
 ): CommentMarkdownExtension {
   const Anchor = createDocumentCommentMarkdownComponents(onLinkClick).a
+  const base = withFileDestinations(visualExtension)
   return {
-    remarkPlugins: visualExtension?.remarkPlugins ?? [],
-    sanitizeAttributes: visualExtension?.sanitizeAttributes ?? {},
+    ...base,
     components: {
-      ...visualExtension?.components,
+      ...base.components,
       img: ({ src, alt }) => (
         <NativeChatMarkdownImage src={src} alt={alt} onLinkClick={onLinkClick} />
       ),
       a: (props) => {
-        const renderAnchor = (children: ReactNode): ReactNode =>
-          typeof Anchor === 'function' ? (
-            <Anchor {...props}>{children}</Anchor>
-          ) : (
-            <a href={props.href}>{children}</a>
-          )
+        const renderAnchor = (children: ReactNode): ReactNode => (
+          <NativeChatLinkPeek href={props.href}>
+            {typeof Anchor === 'function' ? (
+              <Anchor {...props}>{children}</Anchor>
+            ) : (
+              <a href={props.href}>{children}</a>
+            )}
+          </NativeChatLinkPeek>
+        )
         const renderChild = (child: ReactNode): ReactNode => {
           if (!isValidElement<MarkdownElementProps>(child) || !containsImage(child)) {
             return renderAnchor(child)
@@ -114,22 +135,27 @@ export function NativeChatMarkdown({
 }: NativeChatMarkdownProps): React.JSX.Element {
   const wordFadeArmed = useWordFadeArmed(fadeWords)
   const visualExtension = useNativeChatVisualMarkdownExtension(visualMessageId)
-  const documentExtension = useMemo(
+  const baseExtension = useMemo(
     () =>
       variant === 'document'
         ? createNativeChatImageExtension(visualExtension, onLinkClick)
-        : undefined,
+        : withFileDestinations(visualExtension),
     [onLinkClick, variant, visualExtension]
   )
   const extension =
-    useBrzaImageMentionExtension(documentExtension, { settled: !streaming, content }) ??
-    visualExtension
+    useBrzaImageMentionExtension(variant === 'document' ? baseExtension : undefined, {
+      settled: !streaming,
+      content
+    }) ?? baseExtension
   const fileLinkExists = useNativeChatFileLinkExists(linkifyFilePaths, streaming)
+  const { githubRepo } = useContext(NativeChatLinkPeekContext)
   return (
     <NativeChatMarkdownRowKeyContext.Provider value={rowKey}>
       <CommentMarkdown
         {...props}
         variant={variant}
+        // Only the document variant's links can peek; bare #123 links follow it.
+        githubRepo={variant === 'document' ? githubRepo?.referenceRepo : undefined}
         onLinkClick={onLinkClick}
         content={
           visualExtension && streaming

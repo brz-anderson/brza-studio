@@ -1,4 +1,4 @@
-import type { NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolResultBlock } from '../../native-chat-types'
 import type { BrzaShellSegment } from './brza-shell-segments'
 
 // Global options that take the next word as their value, as in `git -C app commit`.

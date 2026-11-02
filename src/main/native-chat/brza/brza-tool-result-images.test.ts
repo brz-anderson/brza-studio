@@ -3,14 +3,14 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { isAdmissibleAgentJournalItemBody } from '../../../shared/agent-session-journal-schemas'
-import type { AgentJournalRenderItem } from '../../../shared/agent-session-journal-types'
-import { projectStructuredItemToNativeChat } from '../../../shared/structured-agent-session-projection'
+import { isAdmissibleAgentJournalItemBody } from '../../../shared/agent-session/journal/agent-session-journal-schemas'
+import type { AgentJournalRenderItem } from '../../../shared/agent-session/journal/agent-session-journal-types'
+import { projectStructuredItemToNativeChat } from '../../../shared/agent-session/view/structured-agent-session-projection'
 import {
   claudeToolBody,
   claudeToolResults,
   readClaudeMessageEnvelope
-} from '../../claude/claude-structured-item-translation'
+} from '../../claude/structured/journal/claude-structured-item-translation'
 import { claudeContentBlocks } from '../transcript-record-blocks'
 import { brzaToolResultImages } from './brza-tool-result-images'
 

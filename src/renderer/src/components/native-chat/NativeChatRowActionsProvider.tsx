@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import type { NativeChatStructuredViewProps } from './native-chat-view-types'
 import type { NativeChatRewindSurface } from './use-native-chat-rewind'
 import { NativeChatRewindContext } from './native-chat-rewind-context'

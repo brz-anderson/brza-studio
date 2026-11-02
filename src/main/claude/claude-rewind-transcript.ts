@@ -2,7 +2,7 @@ import type { SessionStoreEntry } from '@anthropic-ai/claude-agent-sdk'
 import { createReadStream } from 'node:fs'
 import { rm } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
-import type { AgentSessionRewindFork } from '../../shared/agent-session-rewind'
+import type { AgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
 import { durableWriteTempPath, renameDurable, writeTempFileDurable } from '../durable-file-write'
 import { splitTranscriptStreamLines } from '../native-chat/transcript-stream-lines'
 import { loadClaudeAgentSdk } from './claude-stream-json-connection'
@@ -31,10 +31,19 @@ export async function materializeClaudeRewindTranscript(
     return { ...fork, materialized: true }
   }
   const copy = await forkClaudeTranscript(sourcePath, fork.sourceSessionId, fork.throughEntryId)
-  return { ...fork, ...copy, materialized: true }
+  const { resumeCursor } = copy
+  return resumeCursor
+    ? { ...fork, sessionId: copy.sessionId, resumeCursor, materialized: true }
+    : {
+        sessionId: fork.sessionId,
+        sourceSessionId: fork.sourceSessionId,
+        replacesSessionId: fork.replacesSessionId,
+        materialized: true
+      }
 }
 
-/** Copy the conversation through one transcript entry into a new session beside the source. */
+/** Copy the conversation through one transcript entry into a new session beside the source.
+ *  `resumeCursor` stays undefined when the copy holds only metadata, so nothing was written. */
 export async function forkClaudeTranscript(
   sourcePath: string,
   sourceSessionId: string,
@@ -65,7 +74,8 @@ export async function forkClaudeTranscript(
           (entry) => entry.type === 'assistant' || entry.type === 'user'
         )?.uuid
         if (!resumeCursor) {
-          throw new Error('claude fork is missing its resume point')
+          // Metadata alone uses the same fresh launch as a rewind with no parent.
+          return
         }
         const destination = join(dirname(sourcePath), `${key.sessionId}.jsonl`)
         const temporary = durableWriteTempPath(destination)

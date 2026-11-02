@@ -1,6 +1,6 @@
 import { normalizeToolInput } from '../native-chat-tool-summary'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import { brzaFigmaToolLineTitle } from './brza-figma-tool'
 import { brzaAtlassianToolLineTitle } from './brza-atlassian-tool'
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'

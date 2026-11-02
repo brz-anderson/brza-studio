@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, screen, waitFor } from '@testing-library/react'
+import { render } from './native-chat-tooltip-test-harness'
 import { useState } from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import { MessageRow } from './NativeChatMessageRow'
 import { NativeChatMessageRail } from './NativeChatMessageRail'
 import { useNativeChatMessageRail } from './use-native-chat-message-rail'

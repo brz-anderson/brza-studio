@@ -1,3 +1,6 @@
+import { claudeAccountUsagePreparation } from './claude-account-usage-preparation'
+import { claudeProfileSelectionHomes } from './claude-profile-selection-homes'
+import { prepareClaudeProfileForLaunch } from './claude-profile-launch-preparation'
 import { getClaudeAgentViewService } from '../claude/agent-view-service'
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs'
 import { homedir } from 'node:os'
@@ -10,7 +13,6 @@ import {
   CLAUDE_USER_CONFIG_DIR_ENV
 } from '../../shared/claude-profile-routing'
 import { claudeProfileMissing } from './claude-profile-launch-errors'
-import { readyClaudeProfileForLaunch } from './claude-profile-launch-readiness'
 import type { GlobalSettings } from '../../shared/global-settings-types'
 import { probeRecentClaudeCliVersion } from '../claude/claude-hook-event-versions'
 import { writeFileAtomically } from '../codex-accounts/fs-utils'
@@ -41,8 +43,6 @@ import {
   type ClaudeFolderLogin
 } from './claude-account-folder'
 import { resolveLoginShellEnvironment } from '../startup/login-shell-environment'
-
-const REFRESH_WAIT_MS = 5_000
 
 export type ClaudeProfileRouterSettings = Pick<
   GlobalSettings,
@@ -124,10 +124,11 @@ export class ClaudeProfileRouter {
     return resolveClaudeDefaultHome(this.userHome, this.userConfigDir())
   }
 
-  /** Never fall back from a missing folder: that would run the wrong account. */
-  routedHome(): string | null {
+  /** Never fall back from a missing folder: that would run the wrong account. `identity` names
+   *  the selected route before its folder exists; launches and reads still check availability. */
+  routedHome(availability: 'checked' | 'identity' = 'checked'): string | null {
     const home = this.routedProfile()?.home ?? null
-    if (home !== null && !isDirectory(home)) {
+    if (availability === 'checked' && home !== null && !isDirectory(home)) {
       throw claudeProfileMissing()
     }
     return home
@@ -174,25 +175,36 @@ export class ClaudeProfileRouter {
     }
     // Login changes since publication can change the route.
     this.writePointer()
-    await this.readyForLaunch(this.routedProfile()?.accountId ?? null)
+    const profile = this.routedProfile()
+    if (!profile) {
+      return this.preparation()
+    }
+    await prepareClaudeProfileForLaunch(
+      profile,
+      (value) => this.setUp(value),
+      this.args.refreshWaitMs
+    )
     return this.preparation()
   }
 
   /** Ready a launch on `accountId`, or on System default when null, whatever the selection. */
   async readyForLaunch(accountId: string | null): Promise<void> {
-    if (accountId === null) {
-      // Only fallback routing needs the shell env.
-      await this.envReady
-      return
-    }
-    await readyClaudeProfileForLaunch(
-      this.describe(accountId),
-      (profile) => this.setUp(profile),
-      this.args.refreshWaitMs ?? REFRESH_WAIT_MS
-    )
+    // Only fallback routing needs the shell env.
+    await (accountId === null ? this.envReady : this.prepareReceivingAccount(accountId))
   }
 
   settings = (): ClaudeProfileRouterSettings => this.args.getSettings()
+
+  /** Prepare an observed receiving route without mutating selection or adopting a System-default alias. */
+  async prepareReceivingAccount(accountId: string): Promise<string> {
+    const profile = this.describe(accountId)
+    await prepareClaudeProfileForLaunch(
+      profile,
+      (value) => this.setUp(value),
+      this.args.refreshWaitMs
+    )
+    return profile.home
+  }
 
   accountHome(accountId: string): string {
     return this.describe(accountId).home
@@ -331,22 +343,14 @@ export class ClaudeProfileRouter {
 
   /** Read usage from the same login the account would launch with. */
   accountUsagePreparation(accountId: string): ClaudeRuntimeAuthPreparation {
-    if (this.coveredBySystemDefault(accountId)) {
-      // Setting CLAUDE_CONFIG_DIR for System default changes its Keychain identity.
-      return {
-        configDir: this.systemDefaultHome(),
-        envPatch: {},
-        provenance: 'system'
-      }
-    }
-    const home = this.accountHome(accountId)
-    return {
-      configDir: home,
-      envPatch: { CLAUDE_CONFIG_DIR: home },
-      provenance: `profile:${accountId}`
-    }
+    return claudeAccountUsagePreparation(this, accountId)
   }
 
+  async accountSelectionHomes(launchEnv: NodeJS.ProcessEnv = process.env): Promise<string[]> {
+    return claudeProfileSelectionHomes(this, this.args.getSettings(), this.envReady, launchEnv)
+  }
+
+  /** Every account folder on this host, selected or not. */
   accountHomes(): string[] {
     return listClaudeProfileHomes(this.args.dataRoot)
   }

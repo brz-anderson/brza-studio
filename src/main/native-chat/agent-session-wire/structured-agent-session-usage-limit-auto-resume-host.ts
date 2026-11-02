@@ -2,11 +2,11 @@
 // send path sends the Continue the row's button sends, as the person's message.
 
 import { randomUUID } from 'node:crypto'
-import { createStructuredAgentSessionOperationId } from '../../../shared/structured-agent-session-mutation'
+import { createStructuredAgentSessionOperationId } from '../../../shared/agent-session/lifecycle/structured-agent-session-mutation'
 import {
   structuredAgentSessionMessageSendMutation,
   structuredAgentSessionSendBody
-} from '../../../shared/structured-agent-session-send-mutation'
+} from '../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import {
   latestNativeChatUsageLimitCut,
   NATIVE_CHAT_USAGE_LIMIT_CONTINUE_MESSAGE

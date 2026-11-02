@@ -1,6 +1,5 @@
 import { app } from 'electron'
 import {
-  DEV_CHANNEL_PLATFORM_LABEL,
   getVersionChannel,
   hasDedicatedReleaseRepo,
   isChannelSupportedOnPlatform,
@@ -15,6 +14,8 @@ import { listReleaseBuilds, resolveTargetBuild } from '../updater-release-builds
 import { ReleaseBuildListCache, type ReleaseBuildListOptions } from '../updater-release-build-cache'
 import { UpdaterMenuChecks } from './updater-menu-checks'
 import { isUpdaterEnabled } from './updater-enabled'
+import { updaterCodedMessage } from '../../shared/updater-failure-copy'
+import { updaterErrorMessage } from './updater-coded-error'
 
 export abstract class UpdaterBuildSelection extends UpdaterMenuChecks {
   private readonly releaseBuildCache = new ReleaseBuildListCache((channel) =>
@@ -41,7 +42,7 @@ export abstract class UpdaterBuildSelection extends UpdaterMenuChecks {
         import('../local-builds/local-build-switch'),
         import('../local-builds/local-build-feed-server')
       ])
-      const candidate = await chooseLocalBuild(this.mainWindowRef)
+      const candidate = await chooseLocalBuild(this.getMainWindow)
       if (!candidate) {
         return
       }
@@ -97,7 +98,9 @@ export abstract class UpdaterBuildSelection extends UpdaterMenuChecks {
     if (!isChannelSupportedOnPlatform(channel, process.platform)) {
       this.sendStatus({
         state: 'error',
-        message: `${RELEASE_CHANNEL_LABELS[channel]} builds are produced only for ${DEV_CHANNEL_PLATFORM_LABEL}.`,
+        ...updaterCodedMessage('channelUnsupportedPlatform', {
+          channel: RELEASE_CHANNEL_LABELS[channel]
+        }),
         userInitiated: true
       })
       return
@@ -112,7 +115,7 @@ export abstract class UpdaterBuildSelection extends UpdaterMenuChecks {
     ) {
       this.sendStatus({
         state: 'error',
-        message: `${RELEASE_CHANNEL_LABELS[channel]} builds are unsigned, and this signed build only installs updates signed by BrzA Studio's publisher. Download the installer from the release page and run it once — updates work normally from there, including back to Stable.`,
+        ...updaterCodedMessage('unsignedDevChannel', { channel: RELEASE_CHANNEL_LABELS[channel] }),
         userInitiated: true
       })
       return
@@ -165,7 +168,7 @@ export abstract class UpdaterBuildSelection extends UpdaterMenuChecks {
       this.restoreReleaseUpdateSource()
       this.sendSettledCheckStatus({
         state: 'error',
-        message: String((error as Error)?.message ?? error),
+        ...updaterErrorMessage(error),
         userInitiated: true
       })
     } finally {

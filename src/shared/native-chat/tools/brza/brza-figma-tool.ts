@@ -1,5 +1,5 @@
 import { normalizeToolInput } from '../native-chat-tool-summary'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import type { BrzaToolCategoryDefinition } from './brza-tool-categories'
 
 export const BRZA_FIGMA_CATEGORY = {

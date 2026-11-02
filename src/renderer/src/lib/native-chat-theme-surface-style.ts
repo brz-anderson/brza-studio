@@ -39,6 +39,8 @@ export function nativeChatThemeSurfaceStyle(theme: NativeChatTheme): NativeChatT
     '--secondary': 'var(--muted)',
     '--secondary-foreground': 'var(--chat-foreground-strong)',
     '--ring': 'color-mix(in srgb, var(--chat-source-foreground) 44%, var(--chat-canvas))',
+    // The chat theme owns the surface, so a plugin theme's message bubble yields too.
+    '--chat-user-message': 'initial',
     '--chat-source-background': theme.background,
     '--chat-source-foreground': theme.foreground,
     '--chat-source-muted-foreground':

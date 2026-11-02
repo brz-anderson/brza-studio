@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from './native-chat-appearance-settings'
+import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from './native-chat/native-chat-appearance-settings'
 import { resolveNativeChatTheme } from './native-chat-theme'
 import { TERMINAL_THEME_CATALOG } from './terminal-themes'
 
@@ -97,5 +97,28 @@ describe('resolveNativeChatTheme', () => {
         true
       )
     ).toMatchObject({ themeName: NATIVE_CHAT_THEME_BRZA_DEFAULT, canvas: '#161616' })
+  })
+
+  it('paints a plugin terminal theme from its saved palette and drops it while the plugin is off', () => {
+    const id = 'plugin:samples.dawn/dawn' as const
+    const settings = {
+      theme: 'dark' as const,
+      terminalPluginPalettes: [
+        { id, colors: { background: '#fdf6e3', foreground: '#586e75', blue: '#268bd2' } }
+      ],
+      nativeChatAppearance: { themeDark: id }
+    }
+    expect(resolveNativeChatTheme(settings, true)).toMatchObject({
+      themeName: id,
+      scheme: 'light',
+      followsAppScheme: false,
+      background: '#fdf6e3'
+    })
+    expect(
+      resolveNativeChatTheme({ ...settings, disabledPlugins: ['samples.dawn'] }, true)
+    ).toMatchObject({ themeName: NATIVE_CHAT_THEME_BRZA_DEFAULT, followsAppScheme: true })
+    expect(resolveNativeChatTheme({ ...settings, terminalPluginPalettes: [] }, true)).toMatchObject(
+      { themeName: NATIVE_CHAT_THEME_BRZA_DEFAULT }
+    )
   })
 })

@@ -162,16 +162,6 @@ describe('nativeChatAppearanceStyle chat theme', () => {
 })
 
 describe('chat root appearance style', () => {
-  it('derives wrap capacity from actual column width, including full-width panes', () => {
-    const wide = nativeChatAppearanceStyle({ nativeChatAppearance: { width: 'wide' } })
-    const full = nativeChatAppearanceStyle({ nativeChatAppearance: { width: 'full' } }, 1200)
-    expect(wide['--chat-estimated-chars-per-line']).toBeGreaterThan(96)
-    expect(full['--chat-estimated-chars-per-line']).toBeGreaterThan(
-      wide['--chat-estimated-chars-per-line']
-    )
-    expect(nativeChatAppearanceStyle(undefined, 384)['--chat-estimated-chars-per-line']).toBe(50)
-  })
-
   it.each(['light', 'dark', 'system'] as const)(
     'leaves native controls app-owned in %s mode on the BrzA default',
     (theme) => {

@@ -10,7 +10,7 @@ import type {
   NativeChatImageRefBlock,
   NativeChatToolCallBlock,
   NativeChatToolResultBlock
-} from '../../../../../shared/native-chat-types'
+} from '../../../../../shared/native-chat/native-chat-types'
 
 type Owner = NonNullable<
   ComponentProps<typeof NativeChatMarkdownImageOwnerContext.Provider>['value']

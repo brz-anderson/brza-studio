@@ -2,7 +2,7 @@
 
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { AgentJournalRenderItem } from '../../../../shared/agent-session-journal-types'
+import type { AgentJournalRenderItem } from '../../../../shared/agent-session/journal/agent-session-journal-types'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { claudeGroupedQuestionPromptItems } from './native-chat-structured-question-test-fixtures'
 

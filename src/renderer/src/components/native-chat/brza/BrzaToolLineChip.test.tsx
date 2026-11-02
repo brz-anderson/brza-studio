@@ -9,7 +9,7 @@ import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-ima
 import type {
   NativeChatToolCallBlock,
   NativeChatToolResultBlock
-} from '../../../../../shared/native-chat-types'
+} from '../../../../../shared/native-chat/native-chat-types'
 
 const mocks = vi.hoisted(() => ({
   commitCompare: vi.fn(),

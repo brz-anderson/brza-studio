@@ -51,6 +51,10 @@ export async function resolveClaudeMessageFork(input: {
     )
     if (found) {
       const fork = await forkClaudeTranscript(found.path, input.message.sessionId, found.row.uuid)
+      // A copy with no resume point wrote no transcript, so a chat resuming it would start blank.
+      if (!fork.resumeCursor) {
+        throw new Error('claude fork is missing its resume point')
+      }
       return fork.sessionId
     }
   }

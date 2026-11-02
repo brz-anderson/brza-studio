@@ -125,13 +125,19 @@ export function createComputerUsePermissionsApi(): NonNullable<
         'computer.permissions',
         args ?? {},
         15_000
-      ).catch(() => ({
-        platform: getBrowserPlatform(),
-        helperAppPath: null,
-        openedSettings: false,
-        launchedHelper: false,
-        nextStep: 'Computer-use permissions are managed on the BrzA Studio server.'
-      })),
+      ).catch((error: unknown) => {
+        // Only a host without this method falls back; real failures (e.g. a cancelled Open) must surface.
+        if (!(error instanceof Error && 'code' in error && error.code === 'method_not_found')) {
+          throw error
+        }
+        return {
+          platform: getBrowserPlatform(),
+          helperAppPath: null,
+          openedSettings: false,
+          launchedHelper: false,
+          nextStep: 'Computer-use permissions are managed on the BrzA Studio server.'
+        }
+      }),
     reset: () =>
       Promise.resolve({
         platform: getBrowserPlatform(),
@@ -151,6 +157,8 @@ export function createSkillsApi(): NonNullable<Partial<PreloadApi>['skills']> {
     bundledPlan: () =>
       Promise.reject(new Error('Updating BrzA Studio skills requires the desktop app.')),
     bundledExecute: () =>
+      Promise.reject(new Error('Updating BrzA Studio skills requires the desktop app.')),
+    bundledAutoUpdate: () =>
       Promise.reject(new Error('Updating BrzA Studio skills requires the desktop app.')),
     prepareShare: () => Promise.reject(new Error('Skill publishing requires the desktop app.')),
     publishShare: () => Promise.reject(new Error('Skill publishing requires the desktop app.')),

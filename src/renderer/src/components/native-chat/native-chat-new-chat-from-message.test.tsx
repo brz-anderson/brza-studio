@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, screen } from '@testing-library/react'
+import { render } from './native-chat-tooltip-test-harness'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { NativeChatMessage } from '../../../../shared/native-chat-types'
+import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import { canMirrorLaunchDraftToNativeChat } from '../../../../shared/native-chat/input/native-chat-launch-draft-mirrorability'
 import { MessageRow } from './NativeChatMessageRow'
 import {

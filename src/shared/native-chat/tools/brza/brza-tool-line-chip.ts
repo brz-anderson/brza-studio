@@ -1,5 +1,5 @@
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
-import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../../native-chat-types'
+import type { NativeChatToolCallBlock, NativeChatToolResultBlock } from '../../native-chat-types'
 import { brzaToolCategory, type BrzaToolCategory } from './brza-tool-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'
 import { gitCommitHash, gitCommitSubject } from './brza-git-command'
