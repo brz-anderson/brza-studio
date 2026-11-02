@@ -20410,8 +20410,6 @@
       "scrollMessageToTop": "Rolar esta mensagem para o topo",
       "newChatFromMessage": "Novo chat a partir desta mensagem",
       "editUserMessage": "Editar mensagem",
-      "pinChapter": "Fixar capítulo",
-      "pinnedChapter": "Capítulo fixado",
       "forkFromMessage": "Bifurcar a partir desta mensagem",
       "forkFromMessageFailed": "Não foi possível bifurcar este chat.",
       "forkFromMessageNotSaved": "O Claude ainda não salvou esta mensagem. Tente de novo em instantes.",

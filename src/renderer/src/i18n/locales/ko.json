@@ -18839,8 +18839,6 @@
       "scrollMessageToTop": "이 메시지를 맨 위로 스크롤",
       "newChatFromMessage": "이 메시지로 새 채팅",
       "editUserMessage": "메시지 편집",
-      "pinChapter": "챕터 고정",
-      "pinnedChapter": "고정된 챕터",
       "forkFromMessage": "이 메시지에서 포크",
       "forkFromMessageFailed": "이 채팅을 포크할 수 없습니다.",
       "forkFromMessageNotSaved": "Claude가 아직 이 메시지를 저장하지 않았습니다. 잠시 후 다시 시도하세요.",

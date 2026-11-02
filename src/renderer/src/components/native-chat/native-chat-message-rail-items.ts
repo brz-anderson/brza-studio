@@ -34,11 +34,6 @@ export type NativeChatRailItem = {
   turnKey?: string
 }
 
-/** The chapter a tick belongs to: its turn, so a steer shares its turn's pin. */
-export function nativeChatRailChapterKey(item: NativeChatRailItem): string {
-  return item.turnKey ?? item.id
-}
-
 /** A user message older than the loaded window, oldest first. */
 export type NativeChatRailOutlineEntry = {
   id: string

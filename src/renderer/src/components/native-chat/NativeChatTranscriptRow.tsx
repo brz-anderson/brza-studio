@@ -141,7 +141,6 @@ export const NativeChatTranscriptRow = memo(function NativeChatTranscriptRow({
               : undefined
           }
           workRun={workRun}
-          chapterKey={slot.depth === 0 ? turnKey : undefined}
         />
       )}
       {newRowsMarker?.place === 'above-turn-bar' ? marker : null}

@@ -281,7 +281,6 @@ export function NativeChatImageAttachments({
 
 export function NativeChatAgentControls({
   messageId,
-  chapterKey,
   markdown,
   timestamp,
   onScrollToTop,
@@ -289,8 +288,6 @@ export function NativeChatAgentControls({
 }: {
   /** The row's message, for the actions that act from this point of the conversation. */
   messageId: string
-  /** The chapter the message answers, which the bar pins and unpins. */
-  chapterKey?: string
   markdown: string
   timestamp: number | null
   onScrollToTop: () => void
@@ -314,7 +311,7 @@ export function NativeChatAgentControls({
       >
         <ArrowUp className="size-3.5" />
       </button>
-      <BrzaAgentMessageActions messageId={messageId} chapterKey={chapterKey} text={text} />
+      <BrzaAgentMessageActions messageId={messageId} text={text} />
       <NativeChatMessageTimestamp timestamp={timestamp} />
     </div>
   )

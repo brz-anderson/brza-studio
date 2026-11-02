@@ -1,15 +1,12 @@
-import { memo, useContext, useLayoutEffect, useRef, useState } from 'react'
-import { Pin } from 'lucide-react'
+import { memo, useLayoutEffect, useRef, useState } from 'react'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { cn } from '@/lib/utils'
 import { translate } from '@/i18n/i18n'
 import { useUiLanguageRevision } from '@/i18n/use-ui-language-revision'
 import {
   NATIVE_CHAT_RAIL_ROOMY_TICKS,
-  nativeChatRailChapterKey,
   type NativeChatRailItem
 } from './native-chat-message-rail-items'
-import { NativeChatPinnedChaptersContext } from './native-chat-pinned-chapters'
 import type { NativeChatMessageRailState } from './use-native-chat-message-rail'
 
 const WHEEL_DELTA_LINE = 1
@@ -66,9 +63,6 @@ export const NativeChatMessageRail = memo(function NativeChatMessageRail({
   /** A message an arrow key asked to focus, whose tick may not be drawn until the next render. */
   const focusRequest = useRef<string | null>(null)
   const { ticks, items, focusId } = rail
-  const pins = useContext(NativeChatPinnedChaptersContext)
-  const pinnedChapter = (item: NativeChatRailItem): boolean | undefined =>
-    pins?.isPinned(nativeChatRailChapterKey(item))
 
   useLayoutEffect(() => {
     if (focusRequest.current !== focusId) {
@@ -161,7 +155,6 @@ export const NativeChatMessageRail = memo(function NativeChatMessageRail({
           {ticks.map((item) => {
             // Preview ownership overrides scroll-position highlighting.
             const lit = item.id === (previewedId ?? rail.activeId)
-            const pinned = pinnedChapter(item)
             return (
               <button
                 key={item.id}
@@ -170,7 +163,6 @@ export const NativeChatMessageRail = memo(function NativeChatMessageRail({
                 aria-label={railItemLabel(item)}
                 aria-current={item.id === rail.activeId ? 'true' : undefined}
                 aria-busy={item.id === pendingId ? true : undefined}
-                data-chapter-pinned={pinned}
                 onPointerEnter={(event) => {
                   if (event.pointerType !== 'touch') {
                     show(item, event.currentTarget)
@@ -194,12 +186,7 @@ export const NativeChatMessageRail = memo(function NativeChatMessageRail({
                   aria-hidden
                   className={cn(
                     'h-[3px] rounded-full transition-[width,background-color] duration-150 motion-reduce:transition-none',
-                    // An unpinned chapter recedes, so the pinned ones stand out.
-                    lit
-                      ? 'w-5 bg-foreground'
-                      : pinned === false
-                        ? 'w-2 bg-foreground/20'
-                        : 'w-3 bg-foreground/50',
+                    lit ? 'w-5 bg-foreground' : 'w-3 bg-foreground/50',
                     item.id === pendingId &&
                       'animate-pulse motion-reduce:animate-none motion-reduce:opacity-60'
                   )}
@@ -218,12 +205,6 @@ export const NativeChatMessageRail = memo(function NativeChatMessageRail({
       >
         {previewed ? (
           <div className="flex flex-col gap-1">
-            {pinnedChapter(previewed) ? (
-              <p className="flex items-center gap-1 text-xs leading-snug text-muted-foreground">
-                <Pin aria-hidden className="size-3" />
-                {translate('components.native-chat.pinnedChapter', 'Pinned chapter')}
-              </p>
-            ) : null}
             <p className="line-clamp-2 text-xs leading-snug text-foreground">
               {railItemLabel(previewed)}
             </p>

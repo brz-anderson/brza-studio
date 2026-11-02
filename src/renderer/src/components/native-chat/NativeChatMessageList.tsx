@@ -21,7 +21,6 @@ import type { NativeChatTurnActivity } from '../../../../shared/native-chat/tran
 import { NativeChatTurnActivityLine } from './NativeChatTurnActivityLine'
 import { useNativeChatDisclosures } from './native-chat-disclosure-store'
 import { NativeChatTranscriptContexts } from './NativeChatTranscriptContexts'
-import { useNativeChatPinnedChapters } from './native-chat-pinned-chapters'
 import {
   NativeChatTranscriptItems,
   NativeChatWaitingTranscriptItems
@@ -274,7 +273,6 @@ export function NativeChatMessageList({
     setNavigationRequest({ kind: 'rail', messageId: item.id, requestId })
   }, [])
   const sessionKey = `${session.agent}:${session.sessionId}`
-  const pinnedChapters = useNativeChatPinnedChapters(sessionKey)
   const railHistoryJump = useNativeChatRailHistoryJump({
     items: rail.items,
     sessionKey,
@@ -347,7 +345,7 @@ export function NativeChatMessageList({
   })
 
   return (
-    <NativeChatTranscriptContexts disclosures={disclosures} pinnedChapters={pinnedChapters}>
+    <NativeChatTranscriptContexts disclosures={disclosures}>
       <div className="relative flex min-h-0 flex-1 flex-col bg-chat-pane">
         <div className="relative min-h-0 flex-1">
           <div

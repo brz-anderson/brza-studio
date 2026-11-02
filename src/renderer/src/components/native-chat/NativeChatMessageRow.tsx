@@ -54,8 +54,6 @@ export type MessageRowProps = {
   runtimeContext?: RuntimeFileOperationArgs | null
   /** On a user row: discards it and everything after it. */
   rewind?: NativeChatRewindSurface
-  /** The chapter (turn) a top-level row belongs to, which its agent bar pins. */
-  chapterKey?: string
   /** All messages in this work run, message first; preserve row identity when a message becomes a run. */
   workRun?: readonly NativeChatMessage[]
 }

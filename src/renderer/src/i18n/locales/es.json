@@ -19328,8 +19328,6 @@
       "scrollMessageToTop": "Desplazar este mensaje hacia arriba",
       "newChatFromMessage": "Nuevo chat a partir de este mensaje",
       "editUserMessage": "Editar mensaje",
-      "pinChapter": "Fijar capítulo",
-      "pinnedChapter": "Capítulo fijado",
       "forkFromMessage": "Bifurcar desde este mensaje",
       "forkFromMessageFailed": "No se pudo bifurcar este chat.",
       "forkFromMessageNotSaved": "Claude aún no ha guardado este mensaje. Inténtalo de nuevo en un momento.",

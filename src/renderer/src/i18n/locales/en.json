@@ -19911,8 +19911,6 @@
       "scrollMessageToTop": "Scroll this message to top",
       "newChatFromMessage": "New chat from this message",
       "editUserMessage": "Edit message",
-      "pinChapter": "Pin chapter",
-      "pinnedChapter": "Pinned chapter",
       "forkFromMessage": "Fork from this message",
       "forkFromMessageFailed": "Could not fork this chat.",
       "forkFromMessageNotSaved": "Claude hasn't saved this message yet. Try again in a moment.",
