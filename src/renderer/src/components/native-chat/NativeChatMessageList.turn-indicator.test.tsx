@@ -110,9 +110,11 @@ describe('NativeChatMessageList turn indicator', () => {
 
     const activity = screen.getByText('Working…')
     const row = activity.closest('[data-native-chat-turn-activity]')
-    const spinner = row?.querySelector('svg')
+    const flame = row?.querySelector('[data-brza-working-flame]')
     expect(activity).not.toHaveClass('animate-pulse', 'animate-spin')
-    expect(spinner).toHaveClass('size-4', 'animate-spin', 'motion-reduce:hidden')
+    expect(activity).toHaveClass('brza-working-label')
+    expect(flame).toHaveClass('size-4.5')
+    expect(row?.querySelector('svg')).toBeNull()
     expect(row).toHaveAttribute('aria-live', 'polite')
     expect(screen.getByText('The answer is still streaming.').compareDocumentPosition(row!)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING
@@ -155,9 +157,11 @@ describe('NativeChatMessageList turn indicator', () => {
     expect(activity.textContent).not.toBe(toolLabel.textContent)
     expect(activity).not.toHaveTextContent('shell')
     expect(activity).not.toHaveTextContent('pnpm test')
-    const spinner = activity.closest('[data-native-chat-turn-activity]')?.querySelector('svg')
+    const row = activity.closest('[data-native-chat-turn-activity]')
     expect(activity).not.toHaveClass('animate-pulse', 'animate-spin')
-    expect(spinner).toHaveClass('animate-spin', 'motion-reduce:hidden')
+    expect(activity).toHaveClass('brza-working-label')
+    expect(row?.querySelector('[data-brza-working-flame]')).toHaveClass('size-4.5')
+    expect(row?.querySelector('svg')).toBeNull()
   })
 
   it('hides foreground turn activity without settling live tool state', () => {
@@ -264,9 +268,11 @@ describe('NativeChatMessageList turn indicator', () => {
     expect(liveRun?.querySelector('.lucide-check')).toBeNull()
     const activity = screen.getByText('Preparing the answer')
     expect(activity).not.toHaveClass('animate-pulse', 'animate-spin')
-    expect(activity.closest('[data-native-chat-turn-activity]')?.querySelector('svg')).toHaveClass(
-      'animate-spin'
-    )
+    expect(
+      activity
+        .closest('[data-native-chat-turn-activity]')
+        ?.querySelector('[data-brza-working-flame]')
+    ).toHaveClass('size-4.5')
 
     rerender(
       <NativeChatMessageList
@@ -376,9 +382,11 @@ describe('NativeChatMessageList turn indicator', () => {
     expect(bar.compareDocumentPosition(thinking)).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
     expect(screen.getAllByText('Thinking')).toHaveLength(1)
     expect(screen.queryByText('Working…')).toBeNull()
-    expect(thinking.closest('[data-native-chat-turn-activity]')?.querySelector('svg')).toHaveClass(
-      'animate-spin'
-    )
+    expect(
+      thinking
+        .closest('[data-native-chat-turn-activity]')
+        ?.querySelector('[data-brza-working-flame]')
+    ).toHaveClass('size-4.5')
     expect(container.querySelector('.animate-bounce')).toBeNull()
   })
 

@@ -184,6 +184,33 @@ describe('NativeChatComposerActions', () => {
     }
   )
 
+  it.each([false, true])(
+    'marks Send, and never Stop, for the brand gradient (working: %s)',
+    (isWorking) => {
+      render(
+        <NativeChatComposerActions
+          attachDisabled={false}
+          dictationDisabled={false}
+          sendDisabled={false}
+          isWorking={isWorking}
+          isDictating={false}
+          isDictationHoldMode={false}
+          onAttach={vi.fn()}
+          onDictationToggle={vi.fn()}
+          onDictationHoldStart={vi.fn()}
+          onDictationHoldEnd={vi.fn()}
+          onSend={vi.fn()}
+          onStop={vi.fn()}
+          sessionOptionsSurface={null}
+          sessionOptionsSnapshot={[]}
+        />
+      )
+
+      const button = screen.getByRole('button', { name: isWorking ? 'Stop the agent' : 'Send' })
+      expect(button.hasAttribute('data-brza-send')).toBe(!isWorking)
+    }
+  )
+
   it('says on the disabled send button what to do to send', () => {
     render(
       <NativeChatComposerActions

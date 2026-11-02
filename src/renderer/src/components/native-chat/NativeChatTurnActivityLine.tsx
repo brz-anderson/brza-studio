@@ -13,7 +13,6 @@ import {
   NativeChatReasoningChevron
 } from './NativeChatReasoningDisclosure'
 import { useNativeChatDisclosure } from './native-chat-disclosure-store'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
 
 // Literal keys with literal fallbacks: a dynamic key registers no catalog reference.
 function statusLabel(key: Extract<NativeChatActiveTurnLabel, { source: 'status' }>['key']): string {
@@ -58,8 +57,12 @@ export function NativeChatTurnActivityLine({
         aria-live="polite"
         aria-atomic="true"
       >
-        <LoadingSpinner className="size-4 shrink-0" />
-        <span id={labelId} className="min-w-0 truncate text-chat-foreground">
+        <span
+          aria-hidden="true"
+          data-brza-working-flame=""
+          className="brza-flame-glyph brza-working-flame size-4.5 shrink-0"
+        />
+        <span id={labelId} className="brza-working-label min-w-0 truncate text-chat-foreground">
           {label}
         </span>
         {reasoning ? (

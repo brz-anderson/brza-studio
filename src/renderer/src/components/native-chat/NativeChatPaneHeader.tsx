@@ -49,6 +49,7 @@ export function NativeChatPaneHeader({
       data-pane-title-surface={light ? 'light' : 'dark'}
       style={HEADER_STYLE}
     >
+      <span aria-hidden="true" className="brza-flame-glyph brza-pane-flame size-3.25" />
       <div className="pane-title-actions ml-auto flex shrink-0 items-center gap-0">
         {handOff && focused ? (
           <Tooltip>

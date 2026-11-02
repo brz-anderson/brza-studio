@@ -1,5 +1,6 @@
 import { MessageSquare, TriangleAlert } from 'lucide-react'
 import { translate } from '@/i18n/i18n'
+import { BrzaWordmark } from '@/components/brza/BrzaWordmark'
 import { formatAgentTypeLabel } from '@/lib/agent-status'
 import { NATIVE_CHAT_EMPTY_STATE_COPY } from '../../../../shared/native-chat/native-chat-empty-state'
 import type { NativeChatSession } from '../../../../shared/native-chat/native-chat-types'
@@ -22,19 +23,26 @@ export function NativeChatEmptyState({
   const copy = emptyStateCopy(kind, { message, headline }, agent, retrying)
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-6 text-center">
-      <div
-        className={
-          kind === 'error'
-            ? 'flex size-12 items-center justify-center rounded-full bg-destructive/10 text-destructive'
-            : 'flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground'
-        }
-      >
-        {kind === 'error' ? (
-          <TriangleAlert className="size-6" />
-        ) : (
-          <MessageSquare className="size-6" />
-        )}
-      </div>
+      {kind === 'empty' ? (
+        <>
+          <span aria-hidden="true" className="brza-flame-glyph size-12" />
+          <BrzaWordmark daughter="Studio" className="text-sm text-chat-foreground-strong" />
+        </>
+      ) : (
+        <div
+          className={
+            kind === 'error'
+              ? 'flex size-12 items-center justify-center rounded-full bg-destructive/10 text-destructive'
+              : 'flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground'
+          }
+        >
+          {kind === 'error' ? (
+            <TriangleAlert className="size-6" />
+          ) : (
+            <MessageSquare className="size-6" />
+          )}
+        </div>
+      )}
       <p className="text-sm font-medium text-chat-foreground-strong">{copy.title}</p>
       {copy.subtitle ? (
         <p className="max-w-sm text-balance text-xs text-chat-foreground-faint">{copy.subtitle}</p>

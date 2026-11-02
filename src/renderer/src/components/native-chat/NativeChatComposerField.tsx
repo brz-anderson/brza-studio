@@ -313,6 +313,7 @@ export function NativeChatComposerField({
               // Use a constant container border so focus changes cannot flash it.
               'rounded-xl border border-chat-composer-border p-1.5 shadow-xs',
               'bg-chat-composer-surface',
+              'brza-composer-focus',
               // Contain caret-blink repaint to the composer; keep 4px slack around overhanging attachment buttons, while menus use portals.
               '[contain:paint]'
             )}

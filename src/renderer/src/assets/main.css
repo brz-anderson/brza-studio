@@ -449,6 +449,12 @@
 .native-chat-appearance[data-native-chat-scheme='light'] {
   /* Native scrollbars and form controls follow the scheme instead of Chromium's light default. */
   color-scheme: light;
+  /* PLN-007 E2: declared with the chat scheme, so a chat theme opposite to the app keeps its own fill. */
+  --chat-composer-focus-fill: linear-gradient(
+    var(--chat-composer-surface),
+    var(--chat-composer-surface)
+  );
+  --chat-composer-focus-glow: 0 0 0 3px color-mix(in srgb, var(--brand-orange) 10%, transparent);
   --destructive: #e40014;
   --destructive-foreground: #fff;
   --status-success: #147638;
@@ -486,6 +492,10 @@
 .dark,
 .native-chat-appearance[data-native-chat-scheme='dark'] {
   color-scheme: dark;
+  --chat-composer-focus-fill: linear-gradient(180deg, #373a41 0%, #2c2d32 60%, #25252b 100%);
+  --chat-composer-focus-glow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 0 0 3px color-mix(in srgb, var(--brand-orange) 10%, transparent);
   --destructive: #ff6568;
   /* Dark --destructive is a light red, so its label needs dark ink to clear AA. */
   --destructive-foreground: #450a0a;
@@ -1167,6 +1177,91 @@ html.native-shell .app-layout {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.75;
+}
+
+/* PLN-007 S1: the small mark as a mask over the brand gradient. */
+.brza-flame-glyph {
+  background: var(--brand-gradient);
+  mask: url('../../../../resources/brza-flame-mono.svg') center / contain no-repeat;
+}
+
+/* PLN-007 E2: the brand rim on focus; the 1px width stays, so focus never shifts the layout. */
+.brza-composer-focus:focus-within {
+  border-color: transparent;
+  background:
+    var(--chat-composer-focus-fill) padding-box,
+    var(--brand-gradient) border-box;
+  box-shadow: var(--chat-composer-focus-glow);
+}
+
+/* PLN-007 K2: the send button takes the brand gradient while the composer has focus. */
+.brza-composer-focus:focus-within [data-brza-send]:not(:disabled) {
+  background: var(--brand-gradient);
+  color: #fff;
+}
+
+/* PLN-007 M2: the working flame flickers and the label carries a sheen. */
+@keyframes brza-flame-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) skewX(0deg);
+  }
+  30% {
+    transform: scale(0.97, 1.04) skewX(-1.5deg);
+  }
+  60% {
+    transform: scale(1.02, 0.97) skewX(1deg);
+  }
+}
+
+@keyframes brza-label-sheen {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.brza-working-flame {
+  transform-origin: 50% 90%;
+  animation: brza-flame-flicker 1.4s ease-in-out infinite;
+}
+
+.brza-working-label {
+  background: linear-gradient(
+    90deg,
+    var(--chat-foreground) 0 35%,
+    var(--brand-sheen) 50%,
+    var(--chat-foreground) 65% 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brza-label-sheen 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brza-working-flame {
+    animation: none;
+  }
+
+  .brza-working-label {
+    animation: none;
+    background: none;
+    color: var(--chat-foreground);
+  }
+}
+
+/* PLN-007 M5: the pane flame is muted, and takes the brand gradient only on the focused pane. */
+.brza-pane-flame {
+  margin-left: 6px;
+  background: var(--chat-foreground-faint);
+}
+
+.pane-title-bar[data-active-pane] .brza-pane-flame {
+  background: var(--brand-gradient);
 }
 
 /* Fixed window controls replace hidden native chrome in every layout mode. */

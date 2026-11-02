@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Progress } from '@/components/ui/progress'
 import { translate } from '@/i18n/i18n'
@@ -85,6 +85,7 @@ export function NativeChatContextUsageRing({
 }): React.JSX.Element {
   const filled = Math.min(Math.max(usage.percentage, 0), 100)
   const critical = usage.percentage >= CRITICAL_PERCENTAGE
+  const gradientId = useId()
   const used = formatContextTokenCount(usage.usedTokens)
   const window = formatContextTokenCount(usage.windowTokens)
   const label = translate(
@@ -136,6 +137,19 @@ export function NativeChatContextUsageRing({
               aria-hidden="true"
               className="-rotate-90"
             >
+              <defs>
+                <linearGradient
+                  id={gradientId}
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2={RING_SIZE}
+                  y2="0"
+                >
+                  <stop offset="0" stopColor="var(--brand-amber)" />
+                  <stop offset="1" stopColor="var(--brand-orange)" />
+                </linearGradient>
+              </defs>
               <circle
                 cx={RING_SIZE / 2}
                 cy={RING_SIZE / 2}
@@ -150,7 +164,7 @@ export function NativeChatContextUsageRing({
                 cy={RING_SIZE / 2}
                 r={RING_RADIUS}
                 fill="none"
-                stroke="currentColor"
+                stroke={critical ? 'currentColor' : `url(#${gradientId})`}
                 strokeWidth={RING_STROKE}
                 strokeLinecap="round"
                 strokeDasharray={RING_CIRCUMFERENCE}

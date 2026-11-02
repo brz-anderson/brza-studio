@@ -97,7 +97,29 @@ function pointer(type: 'pointerover' | 'pointerout', pointerType: string): Point
   })
 }
 
+function arcStroke(trigger: HTMLElement): string | null {
+  return trigger.querySelectorAll('circle')[1]?.getAttribute('stroke') ?? null
+}
+
 describe('NativeChatContextUsageRing', () => {
+  it('paints the arc with the brand gradient below the critical threshold', async () => {
+    const trigger = await renderRing({ ...USAGE, percentage: 60 })
+
+    const stroke = arcStroke(trigger)
+    const gradientId = trigger.querySelector('linearGradient')?.id
+    expect(gradientId).toBeTruthy()
+    expect(stroke).toBe(`url(#${gradientId})`)
+    expect(trigger.className).not.toContain('text-destructive')
+  })
+
+  it('keeps the flat destructive arc at the critical threshold', async () => {
+    const trigger = await renderRing({ ...USAGE, percentage: 95 })
+
+    expect(arcStroke(trigger)).toBe('currentColor')
+    expect(trigger.className).toContain('text-destructive')
+    expect(trigger.innerHTML).not.toContain('url(#')
+  })
+
   it('writes a million-token window with a capital M, in the label and the card', async () => {
     const trigger = await renderRing({ ...USAGE, usedTokens: 26_400, windowTokens: 1_000_000 })
 

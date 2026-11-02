@@ -143,6 +143,7 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
       variant={stops ? 'secondary' : 'default'}
       size="icon"
       className="size-8 rounded-full pointer-coarse:size-10"
+      data-brza-send={stops ? undefined : ''}
     >
       {stops ? <Square className="size-3.5 fill-current" /> : <ArrowUp className="size-4" />}
     </Button>
