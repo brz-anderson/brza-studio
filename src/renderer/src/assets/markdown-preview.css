@@ -665,8 +665,23 @@
   border-radius: 0;
 }
 
+/* Why: the theme rules above (0,2,1) outrank `.markdown-body pre code` (0,1,2), which left the
+   inline-code background on every line of a fenced block. */
+.markdown-dark .markdown-body pre code,
+.markdown-light .markdown-body pre code {
+  background: none;
+}
+
 .code-block-wrapper {
   position: relative;
+}
+/* Why: the wrapper is the positioning box of the copy button, and a grid item contains its child's
+   margin, so the pre's own margin would push the button above the block. */
+.code-block-wrapper:not(.code-block-wrapper-diagram) {
+  margin: 1em 0;
+}
+.code-block-wrapper > pre {
+  margin: 0;
 }
 .code-block-copy-btn {
   position: absolute;
