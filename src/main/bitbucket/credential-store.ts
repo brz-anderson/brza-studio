@@ -1,5 +1,4 @@
 import { existsSync, mkdirSync, readFileSync, unlinkSync } from 'node:fs'
-import { homedir } from 'node:os'
 import { join } from 'node:path'
 import {
   CredentialDecryptionError,
@@ -11,6 +10,7 @@ import {
 import type { BitbucketAuthMode } from '../../shared/bitbucket-credentials'
 import { readCredentialFileProtection } from '../credential-file-protection'
 import type { SecretAtRestProtection } from '../../shared/secret-at-rest-protection'
+import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 // Plaintext display metadata lets status reads avoid keychain prompts.
 export type BitbucketStoredMetadata = {
@@ -45,20 +45,16 @@ let metadataLoadedFromDisk = false
 let cachedSecret: BitbucketStoredSecret | null = null
 let credentialError: string | null = null
 
-function getOrcaDir(): string {
-  return join(homedir(), '.orca')
-}
-
 function getMetadataPath(): string {
-  return join(getOrcaDir(), 'bitbucket-credential.json')
+  return join(getIntegrationCredentialsDir(), 'bitbucket-credential.json')
 }
 
 export function getSecretPath(): string {
-  return join(getOrcaDir(), 'bitbucket-credential.enc')
+  return join(getIntegrationCredentialsDir(), 'bitbucket-credential.enc')
 }
 
-function ensureOrcaDir(): void {
-  const dir = getOrcaDir()
+function ensureCredentialsDir(): void {
+  const dir = getIntegrationCredentialsDir()
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true })
   }
@@ -153,7 +149,7 @@ export function getBitbucketCredentialProtection(): SecretAtRestProtection | nul
 }
 
 export function saveBitbucketCredential(input: BitbucketCredentialSaveInput): void {
-  ensureOrcaDir()
+  ensureCredentialsDir()
   const secret: BitbucketStoredSecret = {
     accessToken: input.accessToken,
     apiToken: input.apiToken,

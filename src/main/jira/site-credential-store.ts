@@ -1,5 +1,4 @@
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
-import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { writeEncryptedCredential } from '../integration-credential-file'
 import { readCredentialFileProtection } from '../credential-file-protection'
@@ -8,6 +7,7 @@ import type { JiraSite, JiraSiteSelection } from '../../shared/jira/jira-types'
 import { createIntegrationStateFileCache } from '../integration-state-file-cache'
 import { isJiraGatewayBaseUrl } from './gateway-base-url'
 import { createIntegrationTokenFileCache } from '../integration-token-file-cache'
+import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 export type JiraSiteFile = {
   version: 1
@@ -26,24 +26,20 @@ export function getCredentialError(siteId: string): string | undefined {
   return tokenFileCache.error(siteId)
 }
 
-function getOrcaDir(): string {
-  return join(homedir(), '.orca')
-}
-
 function getSiteFilePath(): string {
-  return join(getOrcaDir(), 'jira-sites.json')
+  return join(getIntegrationCredentialsDir(), 'jira-sites.json')
 }
 
 export function getTokenDir(): string {
-  return join(getOrcaDir(), 'jira-tokens')
+  return join(getIntegrationCredentialsDir(), 'jira-tokens')
 }
 
 function getTokenPath(siteId: string): string {
   return join(getTokenDir(), `${Buffer.from(siteId).toString('base64url')}.enc`)
 }
 
-function ensureOrcaDir(): void {
-  const dir = getOrcaDir()
+function ensureCredentialsDir(): void {
+  const dir = getIntegrationCredentialsDir()
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true })
   }
@@ -159,7 +155,7 @@ function selectableSiteFile(file: JiraSiteFile): JiraSiteFile {
 }
 
 export function writeSiteFile(file: JiraSiteFile): void {
-  ensureOrcaDir()
+  ensureCredentialsDir()
   const next = selectableSiteFile(file)
   writeFileSync(getSiteFilePath(), JSON.stringify(next, null, 2), {
     encoding: 'utf-8',
@@ -178,7 +174,7 @@ export function getSiteTokenProtection(siteId: string): SecretAtRestProtection |
 }
 
 export function saveToken(siteId: string, apiToken: string): void {
-  ensureOrcaDir()
+  ensureCredentialsDir()
   ensureTokenDir()
   writeEncryptedCredential('Jira', getTokenPath(siteId), apiToken)
   // The next action reads the actual file, including any overlapping writer's replacement.

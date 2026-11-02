@@ -5,8 +5,8 @@ import {
   type SecretAtRestProtection
 } from '../../shared/secret-at-rest-protection'
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
-import { homedir } from 'node:os'
 import { join } from 'node:path'
+import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 type StoredOpenAiKey = {
   encryptedKeyBase64: string
@@ -15,19 +15,15 @@ type StoredOpenAiKey = {
 const OPENAI_SPEECH_TOKEN_FILE = 'openai-speech-token.enc'
 let cachedOpenAiSpeechApiKey: string | null = null
 
-function getOrcaDir(): string {
-  return join(homedir(), '.orca')
-}
-
-function ensureOrcaDir(): void {
-  const dir = getOrcaDir()
+function ensureCredentialsDir(): void {
+  const dir = getIntegrationCredentialsDir()
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true })
   }
 }
 
 export function getOpenAiKeyPath(): string {
-  return join(getOrcaDir(), OPENAI_SPEECH_TOKEN_FILE)
+  return join(getIntegrationCredentialsDir(), OPENAI_SPEECH_TOKEN_FILE)
 }
 
 function readLegacyJsonStoredOpenAiKey(): StoredOpenAiKey | null {
@@ -78,7 +74,7 @@ export function saveOpenAiSpeechApiKey(apiKey: string): void {
   if (!trimmed) {
     throw new Error('OpenAI API key is required')
   }
-  ensureOrcaDir()
+  ensureCredentialsDir()
   if (getSecretStore().isEncryptionAvailable()) {
     writeFileSync(getOpenAiKeyPath(), getSecretStore().encryptString(trimmed), { mode: 0o600 })
     cachedOpenAiSpeechApiKey = trimmed

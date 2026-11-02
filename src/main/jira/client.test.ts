@@ -31,11 +31,11 @@ function mkdtempLike(prefix: string): string {
 }
 
 function tokenPathForSite(siteId: string): string {
-  return join(tempHome, '.orca', 'jira-tokens', `${Buffer.from(siteId).toString('base64url')}.enc`)
+  return join(tempHome, '.brza', 'jira-tokens', `${Buffer.from(siteId).toString('base64url')}.enc`)
 }
 
 function writeJiraFiles(siteId: string, token: string | Buffer): void {
-  const orcaDir = join(tempHome, '.orca')
+  const orcaDir = join(tempHome, '.brza')
   mkdirSync(join(orcaDir, 'jira-tokens'), { recursive: true })
   writeFileSync(
     join(orcaDir, 'jira-sites.json'),
@@ -66,7 +66,7 @@ function writeMultiSiteFiles(
   sites: { id: string; token: string | Buffer }[],
   selectedSiteId: string
 ): void {
-  const orcaDir = join(tempHome, '.orca')
+  const orcaDir = join(tempHome, '.brza')
   mkdirSync(join(orcaDir, 'jira-tokens'), { recursive: true })
   writeFileSync(
     join(orcaDir, 'jira-sites.json'),
@@ -508,7 +508,7 @@ describe('Jira client credential storage', () => {
 
   it('uses Basic auth for stored self-hosted sites that carry a username', async () => {
     const siteId = 'site-server-basic'
-    const orcaDir = join(tempHome, '.orca')
+    const orcaDir = join(tempHome, '.brza')
     mkdirSync(join(orcaDir, 'jira-tokens'), { recursive: true })
     writeFileSync(
       join(orcaDir, 'jira-sites.json'),
@@ -612,18 +612,16 @@ describe('Jira client credential storage', () => {
     })
 
     // Same-host PAT accounts need verified viewer identity to avoid overwriting each other.
-    const stored = JSON.parse(
-      readFileSync(join(tempHome, '.orca', 'jira-sites.json'), 'utf-8')
-    ) as {
-      sites: { accountId: string }[]
-    }
+    const stored: { sites: { accountId: string }[] } = JSON.parse(
+      readFileSync(join(tempHome, '.brza', 'jira-sites.json'), 'utf-8')
+    )
     expect(stored.sites).toHaveLength(2)
     expect(stored.sites.map((site) => site.accountId).sort()).toEqual(['alice', 'bot'])
   })
 
   it('uses Bearer auth and REST v2 for stored self-hosted sites', async () => {
     const siteId = 'site-server'
-    const orcaDir = join(tempHome, '.orca')
+    const orcaDir = join(tempHome, '.brza')
     mkdirSync(join(orcaDir, 'jira-tokens'), { recursive: true })
     writeFileSync(
       join(orcaDir, 'jira-sites.json'),
@@ -787,7 +785,7 @@ describe('Jira site file cross-process visibility', () => {
   })
 
   it('picks up a site connected by another BrzA Studio process', async () => {
-    // Processes share ~/.orca; an initially empty read must observe later connections.
+    // Processes share ~/.brza; an initially empty read must observe later connections.
     const jira = await loadClientModule()
     expect(jira.getStatus()).toMatchObject({ connected: false, sites: [] })
 
@@ -806,7 +804,7 @@ describe('Jira site file cross-process visibility', () => {
     expect(jira.getStatus()).toMatchObject({ connected: true })
 
     writeFileSync(
-      join(tempHome, '.orca', 'jira-sites.json'),
+      join(tempHome, '.brza', 'jira-sites.json'),
       JSON.stringify({ version: 1, activeSiteId: null, selectedSiteId: null, sites: [] }, null, 2),
       { encoding: 'utf-8' }
     )

@@ -8360,7 +8360,7 @@
         "OpenAiTranscriptionKeyDialog": {
           "fa83512e48": "Schlüssel speichern",
           "07b26f2742": "Schlüssel löschen",
-          "d246b2bdb3": "Schlüssel der lokalen Laufzeitumgebung werden in ~/.orca gespeichert, sofern verfügbar mit der verschlüsselten Speicherung von Electron.",
+          "d246b2bdb3": "Schlüssel der lokalen Laufzeitumgebung werden in ~/.brza gespeichert, sofern verfügbar mit der verschlüsselten Speicherung von Electron.",
           "c3380e4ca5": "sk-...",
           "2f797018f0": "API-Schlüssel konfiguriert",
           "16015322f9": "API-Schlüssel",

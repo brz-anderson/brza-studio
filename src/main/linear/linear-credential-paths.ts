@@ -1,27 +1,23 @@
 import { existsSync, mkdirSync } from 'node:fs'
-import { homedir } from 'node:os'
 import { join } from 'node:path'
+import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 export const LEGACY_WORKSPACE_ID = 'legacy'
 
-function getOrcaDir(): string {
-  return join(homedir(), '.orca')
-}
-
 function getLegacyTokenPath(): string {
-  return join(getOrcaDir(), 'linear-token.enc')
+  return join(getIntegrationCredentialsDir(), 'linear-token.enc')
 }
 
 export function getLegacyViewerPath(): string {
-  return join(getOrcaDir(), 'linear-viewer.json')
+  return join(getIntegrationCredentialsDir(), 'linear-viewer.json')
 }
 
 export function getWorkspaceFilePath(): string {
-  return join(getOrcaDir(), 'linear-workspaces.json')
+  return join(getIntegrationCredentialsDir(), 'linear-workspaces.json')
 }
 
 export function getWorkspaceTokenDir(): string {
-  return join(getOrcaDir(), 'linear-tokens')
+  return join(getIntegrationCredentialsDir(), 'linear-tokens')
 }
 
 export function getWorkspaceTokenPath(workspaceId: string): string {
@@ -31,8 +27,8 @@ export function getWorkspaceTokenPath(workspaceId: string): string {
   return join(getWorkspaceTokenDir(), `${Buffer.from(workspaceId).toString('base64url')}.enc`)
 }
 
-export function ensureOrcaDir(): void {
-  const dir = getOrcaDir()
+export function ensureCredentialsDir(): void {
+  const dir = getIntegrationCredentialsDir()
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true })
   }

@@ -8235,7 +8235,7 @@
         "OpenAiTranscriptionKeyDialog": {
           "fa83512e48": "Salvar Chave",
           "07b26f2742": "Limpar Chave",
-          "d246b2bdb3": "As chaves do runtime local são armazenadas em ~/.orca usando armazenamento criptografado do Electron quando disponível.",
+          "d246b2bdb3": "As chaves do runtime local são armazenadas em ~/.brza usando armazenamento criptografado do Electron quando disponível.",
           "c3380e4ca5": "sk-...",
           "2f797018f0": "Chave de API configurada",
           "16015322f9": "Chave de API",

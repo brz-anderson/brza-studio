@@ -1,9 +1,9 @@
 import { getSecretStore } from '../../shared/secret-store'
 import { existsSync, readFileSync, rmSync } from 'node:fs'
-import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { hardenExistingSecureFile, writeSecureFile } from '../../shared/secure-file'
 import type { SecretAtRestProtection } from '../../shared/secret-at-rest-protection'
+import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 const MINIMAX_COOKIE_FILE = 'minimax-session-cookie.enc'
 export const COOKIE_ENVELOPE_PREFIX = 'orca-minimax-cookie:v1:'
@@ -15,12 +15,8 @@ type MiniMaxCookieEnvelope = {
   payload: Buffer
 }
 
-function getOrcaDir(): string {
-  return join(homedir(), '.orca')
-}
-
 export function getMiniMaxCookiePath(): string {
-  return join(getOrcaDir(), MINIMAX_COOKIE_FILE)
+  return join(getIntegrationCredentialsDir(), MINIMAX_COOKIE_FILE)
 }
 
 function encodeCookieEnvelope(kind: MiniMaxCookieEnvelope['kind'], payload: Buffer): string {

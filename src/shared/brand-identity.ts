@@ -9,6 +9,8 @@ export const BRAND_DEV_USER_DATA_DIR_NAME = 'brza-dev'
 export const BRAND_DEV_WORKTREE_USER_DATA_DIR_NAME = 'brza-dev-wt'
 /** Applied before ready so macOS safeStorage uses the `BrzA Studio Safe Storage` Keychain item. */
 export const BRAND_APP_NAME = 'BrzA Studio'
+/** Home folder for BrzA's integration credentials; Orca's `~/.orca` seals them with another app's key. */
+export const BRAND_CREDENTIALS_DIR_NAME = '.brza'
 /** Packaged terminal command; upstream Orca owns `orca`. */
 export const BRAND_CLI_COMMAND_NAME = 'brza'
 /** OS-registered URL scheme. Pairing keeps `orca://pair`: the Orca mobile app only accepts that. */

@@ -8183,7 +8183,7 @@
         "OpenAiTranscriptionKeyDialog": {
           "fa83512e48": "儲存金鑰",
           "07b26f2742": "清除金鑰",
-          "d246b2bdb3": "本機執行階段金鑰使用 Electron 加密儲存（如果可用）儲存在 ~/.orca 中。",
+          "d246b2bdb3": "本機執行階段金鑰使用 Electron 加密儲存（如果可用）儲存在 ~/.brza 中。",
           "c3380e4ca5": "sk-...",
           "2f797018f0": "API 金鑰已設定",
           "16015322f9": "API 金鑰",

@@ -8346,7 +8346,7 @@
         "OpenAiTranscriptionKeyDialog": {
           "fa83512e48": "Anahtarı Kaydet",
           "07b26f2742": "Anahtarı Temizle",
-          "d246b2bdb3": "Yerel çalışma zamanı anahtarları, mevcut olduğunda Electron şifreli depolama kullanılarak ~/.orca içinde saklanır.",
+          "d246b2bdb3": "Yerel çalışma zamanı anahtarları, mevcut olduğunda Electron şifreli depolama kullanılarak ~/.brza içinde saklanır.",
           "c3380e4ca5": "sk-...",
           "2f797018f0": "API anahtarı yapılandırıldı",
           "16015322f9": "API Anahtarı",
