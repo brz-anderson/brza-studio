@@ -38,6 +38,14 @@ function keepSetupFocus(event: PointerEvent<HTMLDivElement>) {
   }
 }
 
+// BrzA: an agent that is not installed has nothing to launch, so the picker leaves it out.
+function isNotInstalled(entry: AgentPickerEntry): boolean {
+  return (
+    !entry.surfaces.length &&
+    entry.rows.some((row) => row.kind === 'chat-unavailable' && row.reason === 'not-installed')
+  )
+}
+
 export function AgentLaunchPickerMenu({
   disabled,
   runLaunch,
@@ -58,8 +66,10 @@ export function AgentLaunchPickerMenu({
   const root = useRef<HTMLDivElement>(null)
   const setups = searchAgentPickerSetups(entries, query)
   const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean)
-  const visible = entries.filter((entry) =>
-    words.every((word) => `${entry.agent} ${entry.label}`.toLowerCase().includes(word))
+  const visible = entries.filter(
+    (entry) =>
+      !isNotInstalled(entry) &&
+      words.every((word) => `${entry.agent} ${entry.label}`.toLowerCase().includes(word))
   )
   return (
     <div ref={root} data-agent-launch-picker="true">

@@ -266,7 +266,8 @@ export function ProjectedAgentMenuItems({
           // Chat rows come first; the rows that open a terminal start their own group.
           const startsCliGroup = row.kind === 'cli' && index > 0 && rows[index - 1]?.kind !== 'cli'
           if (row.kind === 'chat-unavailable') {
-            return (
+            // BrzA: an agent that is not installed has nothing to launch, so the menu leaves it out.
+            return row.reason === 'not-installed' ? null : (
               <DropdownMenuItem key={rowId(row)} variant="launch" disabled>
                 <AgentIcon agent={agent} size={14} />
                 <span className="flex-1">{label}</span>
