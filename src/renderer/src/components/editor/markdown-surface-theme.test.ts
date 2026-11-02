@@ -18,6 +18,7 @@ describe('markdownSurfaceTheme', () => {
           fontSize: 17
         }
       },
+      true,
       true
     )
     expect(surface).toMatchObject({
@@ -38,7 +39,7 @@ describe('markdownSurfaceTheme', () => {
   })
 
   it("keeps the BrzA default chat on the app's tokens with today's chat canvas", () => {
-    const surface = markdownSurfaceTheme({ theme: 'dark' }, true)
+    const surface = markdownSurfaceTheme({ theme: 'dark' }, true, true)
     expect(surface.isDark).toBe(true)
     expect(surface.style.backgroundColor).toBe('#161616')
     expect(surface.style).not.toHaveProperty('--background')
@@ -48,11 +49,23 @@ describe('markdownSurfaceTheme', () => {
   it("leaves code mode on Monaco's global theme when the chat's scheme differs from the app's", () => {
     const surface = markdownSurfaceTheme(
       { theme: 'dark', nativeChatAppearance: { themeDark: 'Builtin Tango Light' } },
+      true,
       true
     )
     expect(surface.isDark).toBe(false)
     expect(surface.style).toMatchObject({ colorScheme: 'light', backgroundColor: tangoLight })
     expect(surface.codeStyle).toBeUndefined()
+  })
+
+  it('leaves code mode on Monaco when Match Terminal paints it light under a dark request', () => {
+    const settings = {
+      theme: 'dark',
+      nativeChatAppearance: { themeDark: 'Ghostty Default Style Dark' }
+    } as const
+    expect(markdownSurfaceTheme(settings, true, false).codeStyle).toBeUndefined()
+    expect(markdownSurfaceTheme(settings, true, true).codeStyle).toEqual({
+      '--markdown-code-canvas': '#282c34'
+    })
   })
 
   it("uses its own theme with today's type when it does not follow the chat", () => {
@@ -63,6 +76,7 @@ describe('markdownSurfaceTheme', () => {
         nativeChatAppearance: { themeDark: 'Ghostty Default Style Dark', fontSize: 17 },
         markdownTheme: { followChat: false, themeDark: 'Builtin Tango Light' }
       },
+      true,
       true
     )
     expect(surface).toMatchObject({ isDark: false, fontSize: 14, codeFontFamily: undefined })

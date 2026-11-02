@@ -5,12 +5,17 @@ import { useCodeEditorThemeStore } from '@/store/code-editor-theme'
 
 const definedThemes = new Set<string>()
 
-/** The Monaco theme every editor surface uses: the editor or app theme's, else the built-in.
- *  `isDarkOverride` passes an already resolved app mode; a separate editor theme's base wins. */
-export function useMonacoTheme(isDarkOverride?: boolean): string {
+/** The mode Monaco paints in: a separate editor theme's base, else the painted app mode.
+ *  `isDarkOverride` passes an already resolved app mode. */
+export function useMonacoDark(isDarkOverride?: boolean): boolean {
   const documentDark = useDocumentDarkTheme()
   const editorBase = useCodeEditorThemeStore((state) => state.override?.base)
-  const isDark = editorBase ? editorBase === 'dark' : (isDarkOverride ?? documentDark)
+  return editorBase ? editorBase === 'dark' : (isDarkOverride ?? documentDark)
+}
+
+/** The Monaco theme every editor surface uses: the editor or app theme's, else the built-in. */
+export function useMonacoTheme(isDarkOverride?: boolean): string {
+  const isDark = useMonacoDark(isDarkOverride)
   const pluginTheme = useCodeEditorThemeStore((state) => state.monaco)
   const [defined, setDefined] = useState(() => definedThemes)
 

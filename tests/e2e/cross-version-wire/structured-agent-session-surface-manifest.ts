@@ -201,6 +201,14 @@ export function paramsFor(method: string): unknown {
       return { agent: 'codex', sessionId: SESSION }
     case 'agentSession.readVisual':
       return { sessionId: SESSION, file: 'usage-chart.html' }
+    case 'agentSession.forkThroughMessage':
+      return { sessionId: SESSION, itemId: 'item-1' }
+    case 'agentSession.switchAccount': {
+      const fields = { accountId: 'account-1' }
+      return { envelope: envelope({ method, fields, fence }), ...fields }
+    }
+    case 'agentSession.usageLimitAutoResume':
+      return { sessionId: SESSION, turnItemId: 'legacy:codex:s:turn-1' }
     case 'agentSession.rename':
       return { sessionId: SESSION, name: 'Release notes' }
     case 'agentSession.hold':

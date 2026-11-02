@@ -33,7 +33,7 @@ export type MarkdownSurfaceTheme = {
   fontSize: number
   /** Root style of the preview and rich editor. */
   style: NativeChatThemeSurfaceStyle
-  /** Code mode's canvas; absent when Monaco's global theme has the other scheme. */
+  /** Code mode's canvas; absent when Monaco paints the other scheme. */
   codeStyle: NativeChatThemeSurfaceStyle | undefined
   /** Code mode's font while following the chat; absent keeps the editor font. */
   codeFontFamily: string | undefined
@@ -54,15 +54,16 @@ export function selectMarkdownSurfaceThemeSettings(
   }
 }
 
-/** The Markdown viewer's look (PLN-001 D47): the chat's theme and type, or its own theme. */
+/** The Markdown viewer's look (PLN-001 D47): the chat's theme and type, or its own theme.
+ *  `monacoDark` is the mode Monaco paints, which Match Terminal or an editor theme can set apart
+ *  from the requested app mode. */
 export function markdownSurfaceTheme(
   settings: MarkdownSurfaceThemeSettings,
-  systemPrefersDark: boolean
+  systemPrefersDark: boolean,
+  monacoDark: boolean
 ): MarkdownSurfaceTheme {
   const theme = resolveMarkdownTheme(settings, systemPrefersDark)
   const isDark = theme.scheme === 'dark'
-  const appTheme = settings.theme ?? 'system'
-  const appIsDark = appTheme === 'system' ? systemPrefersDark : appTheme === 'dark'
   const style: NativeChatThemeSurfaceStyle = {
     ...nativeChatThemeSurfaceStyle(theme),
     backgroundColor: theme.canvas,
@@ -84,7 +85,7 @@ export function markdownSurfaceTheme(
     isDark,
     fontSize,
     style,
-    codeStyle: isDark === appIsDark ? { '--markdown-code-canvas': theme.canvas } : undefined,
+    codeStyle: isDark === monacoDark ? { '--markdown-code-canvas': theme.canvas } : undefined,
     codeFontFamily
   }
 }

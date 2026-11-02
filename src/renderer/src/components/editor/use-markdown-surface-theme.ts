@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
 import { useSystemPrefersDark } from '@/components/terminal-pane/use-system-prefers-dark'
+import { useMonacoDark } from '@/hooks/use-monaco-theme'
 import {
   markdownSurfaceTheme,
   selectMarkdownSurfaceThemeSettings,
@@ -14,8 +15,9 @@ export function useMarkdownSurfaceTheme(): MarkdownSurfaceTheme {
     useShallow((state) => selectMarkdownSurfaceThemeSettings(state.settings))
   )
   const systemPrefersDark = useSystemPrefersDark()
+  const monacoDark = useMonacoDark()
   return useMemo(
-    () => markdownSurfaceTheme(settings, systemPrefersDark),
-    [settings, systemPrefersDark]
+    () => markdownSurfaceTheme(settings, systemPrefersDark, monacoDark),
+    [settings, systemPrefersDark, monacoDark]
   )
 }

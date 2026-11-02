@@ -186,6 +186,29 @@ export const STRUCTURED_CALLS: {
     result: { name: 'Release notes', applied: true }
   },
   { method: 'agentSession.release', hostMethod: null, result: { released: true } },
+  // The stub has no record, so the fork answers its typed refusal; an older host answers `method_not_found`.
+  {
+    method: 'agentSession.forkThroughMessage',
+    hostMethod: null,
+    result: { ok: false, reason: 'unsupported' }
+  },
+  {
+    method: 'agentSession.switchAccount',
+    hostMethod: 'switchAccount',
+    result: {
+      ok: true,
+      replayed: false,
+      value: { accountId: 'account-1', account: 'dev@example.com' }
+    }
+  },
+  // The stub host is built without an auto-resume schedule, so each answers its empty reply.
+  { method: 'agentSession.usageLimitAutoResume', hostMethod: null, result: { resume: null } },
+  {
+    method: 'agentSession.usageLimitAutoResumeCancel',
+    hostMethod: null,
+    result: { cancelled: true }
+  },
+  { method: 'agentSession.usageLimitAutoResumeList', hostMethod: null, result: { resumes: [] } },
   {
     method: 'agentSession.history',
     hostMethod: 'history',

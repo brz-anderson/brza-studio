@@ -60,6 +60,11 @@ export function structuredHostStub(
     restartResumeAll: vi.fn(async () => []),
     restartContinueAll: vi.fn(async () => ({ resumed: [], continued: [] })),
     continueInterrupted: vi.fn(async () => ({ sessionId, outcome: 'superseded' })),
+    switchAccount: vi.fn(async () => ({
+      ok: true,
+      replayed: false,
+      value: { accountId: 'account-1', account: 'dev@example.com' }
+    })),
     attach: vi.fn(async () => ({ ok: true, replayed: false, value: { sessionId } })),
     create: vi.fn(async () => ({ ok: true, replayed: false, value: { sessionId } })),
     // Accept create-location probes so an unstubbed harness method cannot cause every ensure to refuse.
@@ -172,6 +177,7 @@ export function installableHost(
         getOperationRow: () => null
       }
     },
+    conversationCommands: { switchAccount: hostCalls.switchAccount },
     restartResume: {
       list: hostCalls.restartResumableList,
       listFailures: hostCalls.restartResumableFailures,
