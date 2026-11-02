@@ -12,6 +12,11 @@ const {
   resetUpdaterMocks
 } = await vi.hoisted(async () => (await import('./updater-test-harness')).createUpdaterMocks())
 
+const adHocSignedBuild = vi.hoisted(() => ({ value: false }))
+vi.mock('./updater/ad-hoc-signed-build', () => ({
+  isAdHocSignedBuild: () => adHocSignedBuild.value
+}))
+
 vi.mock('electron', () => moduleFactories.electron())
 vi.mock('electron-updater', () => moduleFactories.electronUpdater())
 vi.mock('./electron-updater-loader', () => moduleFactories.electronUpdaterLoader())
@@ -30,6 +35,18 @@ warmUpdaterModule()
 describe('updater', () => {
   beforeEach(() => {
     resetUpdaterMocks()
+    adHocSignedBuild.value = false
+  })
+
+  it('never polls the nudge feed or checks for updates from an ad hoc signed build', async () => {
+    adHocSignedBuild.value = true
+    const { setupAutoUpdater } = await loadUpdaterModule()
+
+    setupAutoUpdater(updaterMainWindow(vi.fn()), { getLastUpdateCheckAt: () => null })
+    await new Promise((resolve) => setTimeout(resolve, 0))
+
+    expect(fetchNudgeMock).not.toHaveBeenCalled()
+    expect(autoUpdaterMock.checkForUpdates).not.toHaveBeenCalled()
   })
 
   it('does not leak a nudge marker into a later ordinary update cycle', async () => {

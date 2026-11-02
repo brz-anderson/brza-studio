@@ -35,6 +35,7 @@ const {
   finalizePackagedWaylandClipboard
 } = require('./wayland-clipboard-resources.cjs')
 const { writeMacBuildCompatibility } = require('./scripts/mac-build-compatibility.cjs')
+const { writeMacAdHocMarker } = require('./scripts/mac-ad-hoc-marker.cjs')
 const {
   MOBILE_WEB_BUNDLE_DIR,
   assertMobileWebBundleBuilt
@@ -433,6 +434,7 @@ module.exports = {
         }
       }
       writeMacBuildCompatibility(resourcesDir, { version, commit, architecture })
+      writeMacAdHocMarker(resourcesDir, macLocalSigningIdentity)
     }
     stampPackagedCliVersion(resourcesDir, context.packager.appInfo.version)
     prunePackagedRuntimeNodeModules(resourcesDir, context.electronPlatformName, context.arch)
