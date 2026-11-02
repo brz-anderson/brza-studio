@@ -30,7 +30,7 @@ describe('orca computer observation CLI handlers', () => {
     await main(['computer', '--help'], '/tmp/repo')
 
     const output = vi.mocked(console.log).mock.calls[0][0]
-    expect(output).toContain('Usage: orca computer <command> [options]')
+    expect(output).toContain('Usage: brza computer <command> [options]')
     expect(output).toContain('get-app-state')
     expect(callMock).not.toHaveBeenCalled()
   })
@@ -40,7 +40,7 @@ describe('orca computer observation CLI handlers', () => {
 
     const output = vi.mocked(console.log).mock.calls[0][0]
     expect(output).toContain(
-      'orca computer permissions [--id <accessibility|screenshots>] [--json]'
+      'brza computer permissions [--id <accessibility|screenshots>] [--json]'
     )
     expect(output).toContain('--id <id>')
     expect(output).toContain('Identifier for a target item or permission')

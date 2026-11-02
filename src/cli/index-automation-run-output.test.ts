@@ -417,12 +417,12 @@ describe('automation run command output', () => {
     const log = vi.spyOn(console, 'log').mockImplementation(() => {})
     await main(['automations', 'run', '--help'], '/tmp/repo')
     expect(String(log.mock.calls[0]?.[0])).toContain(
-      'Use the full automation UUID from orca automations list; shortened prefixes are not accepted.'
+      'Use the full automation UUID from brza automations list; shortened prefixes are not accepted.'
     )
     expect(String(log.mock.calls[0]?.[0])).toContain(
       'A queued or dispatching run has been accepted'
     )
-    expect(String(log.mock.calls[0]?.[0])).toContain(`orca automations run ${AUTOMATION_ID}`)
+    expect(String(log.mock.calls[0]?.[0])).toContain(`brza automations run ${AUTOMATION_ID}`)
     expect(callMock).not.toHaveBeenCalled()
   })
 })

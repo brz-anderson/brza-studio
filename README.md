@@ -1,5 +1,8 @@
 <h1 align="center">
-  <img src="resources/build/icon.png" alt="BrzA Studio" width="96" valign="middle" /> BrzA Studio
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="resources/brand/brza-studio-lockup-horizontal-dark.svg" />
+    <img src="resources/brand/brza-studio-lockup-horizontal-light.svg" alt="BrzA Studio" height="64" />
+  </picture>
 </h1>
 
 <p align="center">
@@ -8,8 +11,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-F26B1D?style=flat" alt="Licença: MIT" />
-  <img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-F26B1D?style=flat-square" alt="Plataformas: macOS, Windows e Linux" />
+  <img src="https://img.shields.io/badge/license-MIT-F26228?style=flat" alt="Licença: MIT" />
+  <img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-F26228?style=flat-square" alt="Plataformas: macOS, Windows e Linux" />
 </p>
 
 ## Requisitos

@@ -532,7 +532,7 @@ describe('nested command group help', () => {
 
         expect(process.exitCode).toBe(0)
         const output = logSpy.mock.calls.flat().join('\n')
-        expect(output).toContain(`orca ${path}`)
+        expect(output).toContain(`brza ${path}`)
         for (const command of commands) {
           expect(output).toContain(command)
         }
@@ -600,7 +600,7 @@ describe('orca help', () => {
     await main(['linear', '--help'], '/tmp/repo')
 
     const groupHelp = String(logSpy.mock.calls[0][0])
-    expect(groupHelp).toContain('orca linear')
+    expect(groupHelp).toContain('brza linear')
     expect(groupHelp).toContain('issue')
     expect(groupHelp).not.toContain('--comments')
 
@@ -608,7 +608,7 @@ describe('orca help', () => {
     await main(['linear', 'issue', '--help'], '/tmp/repo')
 
     const issueHelp = String(logSpy.mock.calls[0][0])
-    expect(issueHelp).toContain('orca linear issue')
+    expect(issueHelp).toContain('brza linear issue')
     expect(issueHelp).toContain('--comments')
     expect(callMock).not.toHaveBeenCalled()
     logSpy.mockRestore()

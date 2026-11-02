@@ -1,5 +1,6 @@
 import type { CommandSpec } from './args'
 import { findCommandSpec, isCommandGroup, matches, supportsBrowserPageFlag } from './args'
+import { withBrzaCommandName } from './brza/cli-display-name'
 import { unknownCommandData } from './command-suggestion'
 import { formatCommandScopedFlagHelp } from './command-scoped-flag-help'
 import { FLAG_HELP_TEXT } from './flag-help-text'
@@ -11,12 +12,12 @@ const ROOT_HELP_TEXT = [ROOT_HELP_TEXT_PRIMARY, ROOT_HELP_TEXT_SECONDARY].join('
 export function printHelp(specs: CommandSpec[], commandPath: string[] = []): void {
   const exactSpec = findCommandSpec(specs, commandPath)
   if (exactSpec) {
-    console.log(formatCommandHelp(exactSpec))
+    console.log(withBrzaCommandName(formatCommandHelp(exactSpec)))
     return
   }
 
   if (isCommandGroup(specs, commandPath)) {
-    console.log(formatGroupHelp(specs, commandPath))
+    console.log(withBrzaCommandName(formatGroupHelp(specs, commandPath)))
     return
   }
 
@@ -26,7 +27,7 @@ export function printHelp(specs: CommandSpec[], commandPath: string[] = []): voi
     console.log(`Unknown command: ${commandPath.join(' ')}${recovery ? `\n${recovery}` : ''}\n`)
   }
 
-  console.log(ROOT_HELP_TEXT)
+  console.log(withBrzaCommandName(ROOT_HELP_TEXT))
 }
 
 export function formatCommandHelp(spec: CommandSpec): string {
