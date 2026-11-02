@@ -5,7 +5,9 @@ import {
 import { agentSessionSendSubmission } from '../../../../shared/agent-session/agent-session-wire'
 import type { StructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/structured-agent-session-host'
 import { STRUCTURED_AGENT_SESSION_START_WAIT_MS } from '../../../native-chat/agent-session-wire/structured-agent-session-send-settlement'
+import { chatTaskSource } from '../../orchestration/chat-task-source'
 import type { RpcContext } from '../core'
+import { callerChatCoordinator, callerChatSessionId } from './caller-chat-sender'
 import { requireStructuredSessionHost, structuredCallerFor } from './structured-agent-session-gate'
 import { readsQueuedImageCards } from './structured-agent-session-queued-image-capability'
 
@@ -16,10 +18,18 @@ export async function sendStructuredAgentSessionForClient(
   context: RpcContext
 ) {
   const host = requireStructuredSessionHost(context, params.envelope.sessionId)
+  // A chat's agent messaging another chat is that chat's task; a chat's own send stays a person's.
+  const coordinator =
+    callerChatSessionId(context) === params.envelope.sessionId
+      ? undefined
+      : callerChatCoordinator(context)
+  const task = coordinator
+    ? chatTaskSource(coordinator, params.envelope.clientOperationId)
+    : undefined
   // Person provenance lets undelivered text recover as an ordinary queued card.
   const result = await host.send(structuredCallerFor(context), {
     ...params,
-    userSend: true,
+    ...(task ? { body: { ...params.body, from: task } } : { userSend: true as const }),
     queuedImageCards: readsQueuedImageCards(context)
   })
   const capabilities = context.clientCapabilities ?? []

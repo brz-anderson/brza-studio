@@ -8,7 +8,10 @@ import type {
   AgentLaunchPromptDisposal,
   AgentLaunchResult
 } from '../../shared/agent-launch-intent'
+import type { AgentMessageSender } from '../../shared/agent-session/agent-session-message-source'
 import { agentPromptRidesLaunchCommand } from '../../shared/tui-agent-startup'
+import { chatTaskSource } from '../runtime/orchestration/chat-task-source'
+import { isLocalCommandPrompt } from './agent-launch-local-command-prompt'
 import type { AgentLaunchModeReceipt } from './agent-launch-mode'
 import type { CreatedSurface } from './agent-launch-executor'
 import type { AgentLaunchSurfaceExecution } from './agent-launch-execution'
@@ -20,20 +23,27 @@ function structuredLaunchSubmitText(intent: Pick<AgentLaunchIntent, 'prompt'>): 
     : undefined
 }
 
+/** `coordinator` is the chat that asked for the launch: its prompt opens the new chat as that chat's task. */
 export function launchPromptCreateInputs(
-  intent: Pick<AgentLaunchIntent, 'prompt'>,
-  signal?: AbortSignal
+  intent: Pick<AgentLaunchIntent, 'agent' | 'prompt'>,
+  signal?: AbortSignal,
+  coordinator?: AgentMessageSender
 ): { firstMessage?: StructuredAgentSessionFirstMessage; signal?: AbortSignal } {
   const text = structuredLaunchSubmitText(intent)
-  return text !== undefined
-    ? {
-        firstMessage: {
-          clientMessageId: createStructuredAgentSessionOperationId(randomUUID),
-          body: structuredAgentSessionSendBody(text, [])
-        },
-        ...(signal ? { signal } : {})
-      }
-    : {}
+  if (text === undefined) {
+    return {}
+  }
+  const clientMessageId = createStructuredAgentSessionOperationId(randomUUID)
+  return {
+    firstMessage: {
+      clientMessageId,
+      body: structuredAgentSessionSendBody(text, []),
+      ...(coordinator && !isLocalCommandPrompt(intent.agent, text)
+        ? { from: chatTaskSource(coordinator, clientMessageId) }
+        : {})
+    },
+    ...(signal ? { signal } : {})
+  }
 }
 
 export const HANDED_TO_TERMINAL: AgentLaunchPromptDisposal = { outcome: 'handed-to-terminal' }

@@ -13,6 +13,7 @@ import {
 import { getStructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/structured-agent-session-registry'
 import type { StructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/structured-agent-session-host'
 import type { RpcContext } from '../core'
+import { callerChatCoordinator } from './caller-chat-sender'
 import { STARTUP_CWD_FALLBACK_SENTENCE } from '../../../../shared/startup-cwd-fallback'
 import { structuredCallerFor } from './structured-agent-session-gate'
 import { createStructuredAgentSessionForWorktree } from './structured-agent-session-create'
@@ -48,6 +49,7 @@ export function agentLaunchSurfaceFactory(
   const movesHostWindow = agentLaunchMovesHostWindow(context)
   const { early: earlyTab, presentation } = view
   return {
+    promptCoordinator: callerChatCoordinator(context),
     createStructuredSession: async ({
       worktreeId,
       agent,

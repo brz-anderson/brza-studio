@@ -257,7 +257,7 @@ async function createSurface(
       ...(intent.chatOptions ? { chatOptions: intent.chatOptions } : {}),
       ...(intent.sessionId ? { sessionId: intent.sessionId } : {}),
       ...(reservedTabId ? { tabId: reservedTabId } : {}),
-      ...launchPromptCreateInputs(intent, execution.signal),
+      ...launchPromptCreateInputs(intent, execution.signal, surfaces.promptCoordinator),
       ...(intent.prompt ? {} : { withoutPrompt: true as const })
     })
     return {

@@ -3,6 +3,7 @@ import type { StructuredAgentId } from './lifecycle/agent-session-provider-handl
 import type { AgentSessionMutationEnvelope } from './agent-session-wire'
 import type { z } from 'zod'
 import type { SendBody } from '../rpc-contract/structured-agent-session-message-params'
+import type { AgentMessageSource } from './agent-session-message-source'
 import {
   createStructuredAgentSessionOperationId,
   structuredAgentSessionCreateFingerprint
@@ -37,6 +38,8 @@ export type StructuredAgentSessionFirstMessage = {
   clientMessageId: string
   body: z.infer<typeof SendBody>
   selection?: Readonly<Record<string, string>>
+  /** Host-set when another agent opens the chat; the create wire never accepts it from a client. */
+  from?: AgentMessageSource
 }
 
 /** Provider-prefixed IDs use underscore-only suffix tokens for embedding in tab IDs/log keys. */

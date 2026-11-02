@@ -1,5 +1,5 @@
 import '../unused-default-rpc-methods.test-fixture'
-/** An agent's own `orca agent launch` leaves one card in its chat; nothing else does, and the card never gates the launch. */
+/** An agent's own `orca agent launch` leaves one card in its chat and opens the new chat with its prompt as that chat's task; nothing else does, and neither gates the launch. */
 
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import {
@@ -225,4 +225,65 @@ it('records nothing when the launch fails, and the failure is the launch’s own
 
   expect(append).not.toHaveBeenCalled()
   expect(await cards()).toEqual([])
+})
+
+async function firstMessage(sessionId: string) {
+  const items = (await rig.host.journalSnapshot(sessionId)).items
+  const message = items.find((item) => item.body.kind === 'message' && item.body.role === 'user')
+  if (message?.body.kind !== 'message') {
+    throw new Error('expected the new chat to open with a message')
+  }
+  return message.body
+}
+
+async function launchedChat(params: Record<string, unknown>, context?: Partial<RpcContext>) {
+  const result = await launch(params, context)
+  if (result.outcome.kind !== 'structured') {
+    throw new Error('expected the launch to open a chat')
+  }
+  return result.outcome.sessionId
+}
+
+it('opens the new chat with the prompt as the launching chat’s task', async () => {
+  const sessionId = await launchedChat({ prompt: { text: TASK, delivery: 'submit' } })
+
+  const body = await firstMessage(sessionId)
+  const id = (await rig.host.journalSnapshot(sessionId)).submissions[0].clientMessageId
+  expect(body.blocks).toEqual([{ type: 'text', text: TASK }])
+  expect(body.from).toMatchObject({
+    kind: 'agent',
+    senders: [
+      {
+        party: { address: `orca_session_id:${CALLER}` },
+        name: 'Codex',
+        relation: 'coordinator'
+      }
+    ],
+    orchestration: { message: 'task', runId: id, taskId: id, dispatchId: id }
+  })
+})
+
+it.each([
+  [
+    'a window',
+    { prompt: { text: TASK, delivery: 'submit' } },
+    {
+      caller: DESKTOP_RPC_CALLER,
+      orchestrationCompatibilityEvidence: AGENT_CLI.orchestrationCompatibilityEvidence
+    }
+  ],
+  [
+    'a CLI outside a chat',
+    { prompt: { text: TASK, delivery: 'submit' } },
+    { caller: LOCAL_CLI_RPC_CALLER }
+  ],
+  [
+    'a prompt that is only a catalog command',
+    { prompt: { text: '/rename pln-009', delivery: 'submit' } },
+    AGENT_CLI
+  ]
+])('opens the new chat with a person’s message for %s', async (_label, params, context) => {
+  const body = await firstMessage(await launchedChat(params, context))
+
+  expect(body.from).toBeUndefined()
 })

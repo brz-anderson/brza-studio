@@ -2,6 +2,10 @@ import { agentSessionConversationView } from '../../../shared/agent-session-conv
 import { isFloatingWorkspaceId } from '../../../shared/floating-workspace-worktree'
 import { isAgentSessionCreateAdmissionRefusal } from '../../../shared/agent-session/failures/agent-session-definitive-refusal'
 import type { StructuredAgentSessionFirstMessage } from '../../../shared/agent-session/structured-agent-session-create'
+import {
+  AGENT_MESSAGE_SOURCE,
+  USER_MESSAGE_SOURCE
+} from '../../../shared/agent-session/agent-session-message-source'
 import { agentSessionSendBodyFingerprint } from '../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import {
   refuse,
@@ -213,10 +217,13 @@ async function foundConversation(
             now: context.now
           },
           {
-            ...first,
+            clientMessageId: first.clientMessageId,
+            ...(first.selection !== undefined ? { selection: first.selection } : {}),
             payloadFingerprint: agentSessionSendBodyFingerprint(sessionId, first.body),
-            origin: 'client',
-            source: { kind: 'user' },
+            // Another agent's opening task is host-written, like the Dispatch tasks that carry `from`.
+            origin: first.from ? 'host' : 'client',
+            source: first.from ? AGENT_MESSAGE_SOURCE : USER_MESSAGE_SOURCE,
+            body: first.from ? { ...first.body, from: first.from } : first.body,
             ...(first.selection === undefined
               ? openingMessageOptions(candidate.record.options)
               : {})

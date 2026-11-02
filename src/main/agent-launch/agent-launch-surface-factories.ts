@@ -11,6 +11,7 @@ import type {
   AgentLaunchMode
 } from '../../shared/agent-launch-intent'
 import type { StructuredAgentId } from '../../shared/agent-session/lifecycle/agent-session-provider-handle'
+import type { AgentMessageSender } from '../../shared/agent-session/agent-session-message-source'
 import type { StructuredAgentSessionFirstMessage } from '../../shared/agent-session/structured-agent-session-create'
 import type { TuiAgent } from '../../shared/tui-agent'
 import type { AgentLaunchParams } from '../../shared/rpc-contract/agent-launch-params'
@@ -19,6 +20,8 @@ import { assertOpenCodeModelLaunchPreferencesAbsent } from '../opencode/opencode
 
 /** Inject creation so orchestration can add subscriptions without duplicating launch sequencing. */
 export type AgentLaunchSurfaceFactory = {
+  /** The chat whose agent asked for the launch: its prompt opens the new chat as that chat's task. */
+  promptCoordinator?: AgentMessageSender
   createStructuredSession(args: {
     worktreeId: string
     agent: StructuredAgentId
