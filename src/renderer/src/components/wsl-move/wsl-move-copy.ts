@@ -38,13 +38,13 @@ export function wslMoveRefusalMessage(
       if (refusal.detail === 'preview-failed') {
         return translate(
           'wslMove.refusal.previewFailed',
-          'Orca could not check these projects. Try again.'
+          'BrzA Studio could not check these projects. Try again.'
         )
       }
       if (refusal.detail === 'start-failed') {
         return translate(
           'wslMove.refusal.startFailed',
-          'Orca lost contact with the move. Open this dialog again to see where it stands.'
+          'BrzA Studio lost contact with the move. Open this dialog again to see where it stands.'
         )
       }
       return translate(
@@ -67,7 +67,7 @@ export function wslMoveRefusalMessage(
       return context === 'preview'
         ? translate(
             'wslMove.refusal.alreadyInFlightPreview',
-            'A move of {{distro}} is still finishing. Starting this move first finishes or undoes it where Orca can.',
+            'A move of {{distro}} is still finishing. Starting this move first finishes or undoes it where BrzA Studio can.',
             { distro }
           )
         : translate(
@@ -96,7 +96,7 @@ export function wslMoveRefusalMessage(
     case 'wsl_move_host_update_required':
       return translate(
         'wslMove.refusal.hostUpdateRequired',
-        'The {{distro}} host runs an older version of Orca. Update it in Settings, then try again.',
+        'The {{distro}} host runs an older version of BrzA Studio. Update it in Settings, then try again.',
         { distro }
       )
     case 'wsl_move_terminals_blocked':
@@ -126,7 +126,7 @@ export function wslMoveRefusalMessage(
     case 'wsl_move_pause_failed':
       return translate(
         'wslMove.refusal.pauseFailed',
-        'Orca could not pause the terminals in these projects, so nothing was moved. Paused terminals start again when you open them. Try again.'
+        'BrzA Studio could not pause the terminals in these projects, so nothing was moved. Paused terminals start again when you open them. Try again.'
       )
     case 'wsl_move_scope_changed':
       return translate(
@@ -138,7 +138,7 @@ export function wslMoveRefusalMessage(
     case 'wsl_move_finished_earlier_move':
       return translate(
         'wslMove.refusal.finishedEarlierMove',
-        'Orca first finished an earlier move into {{distro}}. Reload the window, then start this move again.',
+        'BrzA Studio first finished an earlier move into {{distro}}. Reload the window, then start this move again.',
         { distro }
       )
   }
@@ -194,10 +194,13 @@ export function wslMoveBlockerTitle(kind: WslMoveBlockerKind, n: number): string
           )
     case 'unverifiable':
       return one
-        ? translate('wslMove.blocker.unverifiableOne', 'Orca cannot check a terminal right now')
+        ? translate(
+            'wslMove.blocker.unverifiableOne',
+            'BrzA Studio cannot check a terminal right now'
+          )
         : translate(
             'wslMove.blocker.unverifiableMany',
-            'Orca cannot check {{n}} terminals right now',
+            'BrzA Studio cannot check {{n}} terminals right now',
             {
               n
             }
@@ -288,7 +291,7 @@ export function wslMoveBrowserLoginsNotCopied(reason: string): string {
     case 'destination-environment-missing':
       return translate(
         'wslMove.result.browserLoginsHostUnknown',
-        'Browser logins were not copied, because Orca could not identify the host’s browser profile. Sign in again in the host’s browser tabs.'
+        'Browser logins were not copied, because BrzA Studio could not identify the host’s browser profile. Sign in again in the host’s browser tabs.'
       )
     case 'destination-partition-conflict':
       return translate(
@@ -301,16 +304,4 @@ export function wslMoveBrowserLoginsNotCopied(reason: string): string {
         'Browser logins were not copied to the host. Sign in again in the host’s browser tabs.'
       )
   }
-}
-
-export function formatWslMoveBytes(bytes: number): string {
-  // A small move read "0.0 MB of 0.0 MB".
-  if (bytes < 1024) {
-    return `${Math.max(0, Math.round(bytes))} B`
-  }
-  if (bytes < 1024 * 1024) {
-    return `${Math.round(bytes / 1024)} KB`
-  }
-  const megabytes = bytes / (1024 * 1024)
-  return megabytes >= 10 ? `${Math.round(megabytes)} MB` : `${megabytes.toFixed(1)} MB`
 }

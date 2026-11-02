@@ -159,7 +159,7 @@ function insertOutcome(field: string, key: string, json: string, format = 1): vo
 
 const newer = { newer: { sequence: 1 }, damage: null }
 
-it('refuses a field format 1 does not define as written by a newer Orca', () => {
+it('refuses a field format 1 does not define as written by a newer BrzA Studio', () => {
   insertOutcome('futureField', '"k"', '["k",1]')
   expect(restoreJournal(database.db, sessionId)).toMatchObject(newer)
 })

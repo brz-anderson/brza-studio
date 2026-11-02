@@ -123,7 +123,7 @@ describe('orca/testing with catalog 2', () => {
     expect(panel.find({ text: /file-03\.ts/ })?.type).toBe('Table')
   })
 
-  it('shows only the selected tab and an open Collapsible, like Orca draws them', async () => {
+  it('shows only the selected tab and an open Collapsible, like BrzA Studio draws them', async () => {
     panel = await mount(Files)
     expect(panel.find({ label: 'Notes' })).toBeNull()
     expect(panel.find({ text: 'Tree below' })).toBeNull()

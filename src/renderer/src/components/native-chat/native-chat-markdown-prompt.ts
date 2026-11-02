@@ -21,22 +21,29 @@ function decodeTypedEntities(markdown: string): string {
     .replace(/&amp;(?!#?\w+;)/g, '&')
 }
 
+/** The text encoder the Markdown manager keeps private in its typings. */
+type MarkdownManagerTextEncoding = {
+  encodeTextForMarkdown?: unknown
+}
+
 const NativeChatMarkdownTypedText = Extension.create({
   name: 'nativeChatMarkdownTypedText',
   onBeforeCreate() {
     // Every text node, marked or not, is encoded here; the method is private only in the typings.
-    const manager = this.editor.markdown
-    const encode: unknown = manager && Reflect.get(manager, 'encodeTextForMarkdown')
+    const manager: MarkdownManagerTextEncoding | undefined = this.editor.markdown as
+      | MarkdownManagerTextEncoding
+      | undefined
+    const encode = manager?.encodeTextForMarkdown
     if (!manager || typeof encode !== 'function') {
       return
     }
-    Reflect.set(manager, 'encodeTextForMarkdown', (text: string, ...rest: unknown[]) => {
+    manager.encodeTextForMarkdown = (text: string, ...rest: unknown[]): unknown => {
       const encoded: unknown = encode.call(manager, text, ...rest)
       // Code text comes back as it was, and stays so.
       return typeof encoded === 'string' && encoded !== text
         ? decodeTypedEntities(encoded)
         : encoded
-    })
+    }
   }
 })
 

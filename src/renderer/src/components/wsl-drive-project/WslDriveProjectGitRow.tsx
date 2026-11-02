@@ -48,7 +48,7 @@ export function WslDriveProjectGitRow({
         label={translate('wslDriveProject.label', 'Git')}
         description={translate(
           'wslDriveProject.converted',
-          'Orca runs Git on Windows for this project. Terminals and agents still run in {{distro}}.',
+          'BrzA Studio runs Git on Windows for this project. Terminals and agents still run in {{distro}}.',
           { distro: resolution.runtime.distro }
         )}
         control={null}
@@ -65,7 +65,9 @@ export function WslDriveProjectGitRow({
       setStep({ kind: 'review', preview: await window.api.wslDriveProject.preview(projectId) })
     } catch {
       setStep({ kind: 'idle' })
-      toast.error(translate('wslDriveProject.checkFailed', 'Orca could not check this project.'))
+      toast.error(
+        translate('wslDriveProject.checkFailed', 'BrzA Studio could not check this project.')
+      )
     }
   }
   const convert = async (preview: WslDriveProjectPreview): Promise<void> => {
@@ -80,7 +82,7 @@ export function WslDriveProjectGitRow({
       setStep({ kind: 'idle' })
     } catch {
       setStep({ kind: 'review', preview })
-      toast.error(translate('wslDriveProject.convertFailed', 'Orca could not switch Git.'))
+      toast.error(translate('wslDriveProject.convertFailed', 'BrzA Studio could not switch Git.'))
     }
   }
   const preview = step.kind === 'review' || step.kind === 'converting' ? step.preview : null
@@ -125,7 +127,7 @@ export function WslDriveProjectGitRow({
           <p className="text-xs text-muted-foreground">
             {translate(
               'wslDriveProject.review',
-              'Nothing in Orca changes for this project: its tabs, terminals, chats and workspaces stay as they are. Running terminals keep going.'
+              'Nothing in BrzA Studio changes for this project: its tabs, terminals, chats and workspaces stay as they are. Running terminals keep going.'
             )}
           </p>
           {offersLineEndings ? (

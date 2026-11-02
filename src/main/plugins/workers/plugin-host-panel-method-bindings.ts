@@ -32,7 +32,10 @@ function requireBridge(
   bridge: PluginPanelBridgeServices | null | undefined
 ): PluginPanelBridgeServices {
   if (!bridge) {
-    throw new PluginHostCallError('unavailable', 'panels cannot reach their worker in this Orca')
+    throw new PluginHostCallError(
+      'unavailable',
+      'panels cannot reach their worker in this BrzA Studio'
+    )
   }
   return bridge
 }

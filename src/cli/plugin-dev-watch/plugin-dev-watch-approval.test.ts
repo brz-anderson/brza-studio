@@ -47,7 +47,8 @@ function approvalRequired(): RuntimeClientError {
       isDev: true,
       grants: {
         execution: 'trusted-worker',
-        executionDescription: 'Runs its own code in a separate Node.js process on the Orca host.',
+        executionDescription:
+          'Runs its own code in a separate Node.js process on the BrzA Studio host.',
         capabilities: [{ kind: 'git.read', description: 'Read git status.' }],
         contributions: [{ kind: 'panels', name: 'Notes' }]
       },

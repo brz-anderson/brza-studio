@@ -51,7 +51,7 @@ export const BROWSER_BASIC_COMMAND_SPECS: CommandSpec[] = withBrowserPageTarget(
       'orca screenshot [--format <png|jpeg>] [--if-changed] [--annotate] [--worktree <selector>] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'format', 'if-changed', 'annotate', 'worktree'],
     notes: [
-      "In Orca's desktop browser the image is in CSS pixels, so its x/y match page coordinates for `orca mouse`."
+      "In BrzA Studio's desktop browser the image is in CSS pixels, so its x/y match page coordinates for `orca mouse`."
     ]
   },
   {

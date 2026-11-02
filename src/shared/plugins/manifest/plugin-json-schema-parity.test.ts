@@ -42,7 +42,7 @@ describe('published schema and runtime agree on rejection', () => {
     ],
     ['a wrong-typed name', { name: 5 }],
     ['a wrong-typed contributes', { contributes: [] }],
-    ['a range Orca cannot gate on', { engines: { orca: '^1.4.0' } }],
+    ['a range BrzA Studio cannot gate on', { engines: { orca: '^1.4.0' } }],
     ['an unknown execution profile', { execution: 'root' }],
     ['an unknown contribution point', { contributes: { widgets: [] } }],
     ['an http homepage', { homepage: 'http://example.com' }]
@@ -96,7 +96,9 @@ describe('published schema and runtime agree on rejection', () => {
     expect(pluginCatalogSchema.parse(raw).plugins.map((plugin) => plugin.description)).toEqual([
       'first'
     ])
-    expect(descriptionAt(catalogSchema, '/properties/plugins')).toContain('Orca keeps the first')
+    expect(descriptionAt(catalogSchema, '/properties/plugins')).toContain(
+      'BrzA Studio keeps the first'
+    )
   })
 })
 
@@ -196,7 +198,7 @@ const RUNTIME_ONLY_RULES = [
 ]
 
 describe('runtime-only rules', () => {
-  it.each(RUNTIME_ONLY_RULES)('$rule: schema allows, Orca refuses, docs say so', (rule) => {
+  it.each(RUNTIME_ONLY_RULES)('$rule: schema allows, BrzA Studio refuses, docs say so', (rule) => {
     const isCatalog = 'plugins' in rule.raw
     const schema = isCatalog ? catalogSchema : manifestSchema
     const raw = JSON.parse(JSON.stringify(rule.raw))

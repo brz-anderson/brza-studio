@@ -210,13 +210,13 @@ describe('orchestration agent views', () => {
             preferred: 'terminal',
             detail: 'Started a terminal agent worker.'
           },
-          next: 'Orca wakes you when workers report; end your turn.'
+          next: 'BrzA Studio wakes you when workers report; end your turn.'
         }
       )
 
     expect((await followUp('reopened')).stdout).toBe(
       'delivery=reopened followUpOf=ctx_1 dispatchId=ctx_2 taskId=task_1 runId=run_1 state=ready terminal=term_agent workspace=wt_1::/repo queued=true\n' +
-        'Next: Orca wakes you when workers report; end your turn.'
+        'Next: BrzA Studio wakes you when workers report; end your turn.'
     )
     expect((await followUp('started_fresh')).stdout).toContain('mode=terminal')
   })
@@ -371,7 +371,7 @@ describe('orchestration agent views', () => {
 
     expect(stdout).toBe(
       'dispatchId=ctx_1 taskId=task_1 runId=run_1 state=outcome_unknown terminal=term_agent workspace=wt_1::/repo\n' +
-        "Next: Task typed in but the worker hasn't been seen starting; don't resend or abandon it. End your turn; Orca wakes you when it reports. If nothing arrives, run orca-dev orchestration worker-show --dispatch ctx_1."
+        "Next: Task typed in but the worker hasn't been seen starting; don't resend or abandon it. End your turn; BrzA Studio wakes you when it reports. If nothing arrives, run orca-dev orchestration worker-show --dispatch ctx_1."
     )
     expect(stderr).toBe(
       "warning: turn_start_unobserved: task typed in; the worker may still be starting. Don't resend."
@@ -477,7 +477,7 @@ describe('orchestration agent views', () => {
     expect(stdout).not.toContain('Review add')
   })
 
-  it('never lets a payload stand in for Orca-computed message fields', async () => {
+  it('never lets a payload stand in for BrzA Studio-computed message fields', async () => {
     const { stdout } = await run('check', [['run', 'run_1']], {
       messages: [
         {

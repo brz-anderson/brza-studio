@@ -260,7 +260,7 @@ describe('reconcileManagedWslCliRegistrations', () => {
     expect(results).toContainEqual({ distro: 'Debian', outcome: 'deferred' })
   })
 
-  it("asks the registry to inspect only distros Orca deployed a host into, read from the user's store", async () => {
+  it("asks the registry to inspect only distros BrzA Studio deployed a host into, read from the user's store", async () => {
     const registry = {
       getCandidates: vi.fn(async () => []),
       recordObservations: vi.fn(async () => undefined)

@@ -92,7 +92,7 @@ function ProjectViewTab({
   }
   const message = translate(
     'projectViews.unsupported.layoutNotSupported',
-    "Orca doesn't support {{layout}} project views yet.",
+    "BrzA Studio doesn't support {{layout}} project views yet.",
     { layout: layoutLabel }
   )
   return (

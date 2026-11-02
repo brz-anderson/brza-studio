@@ -19,20 +19,20 @@ function editorRow(editor: { extensions: string[]; priority?: 'default' | 'optio
 }
 
 describe('custom editor rows', () => {
-  it('warns when an editor opens files in place of an Orca viewer', () => {
+  it('warns when an editor opens files in place of a BrzA Studio viewer', () => {
     expect(editorRow({ extensions: ['.svg', '.vec'], priority: 'default' })).toEqual({
-      detail: 'Editor · .svg, .vec · Opens .svg instead of Orca’s viewer',
+      detail: 'Editor · .svg, .vec · Opens .svg instead of BrzA Studio’s viewer',
       tone: 'warning'
     })
   })
 
   it('hedges when only a catalog summary names the editor', () => {
     expect(editorRow({ extensions: ['.png'] }).detail).toBe(
-      'Editor · .png · May open .png instead of Orca’s viewer'
+      'Editor · .png · May open .png instead of BrzA Studio’s viewer'
     )
   })
 
-  it('stays quiet for offered-only editors and file types Orca has no viewer for', () => {
+  it('stays quiet for offered-only editors and file types BrzA Studio has no viewer for', () => {
     expect(editorRow({ extensions: ['.svg'], priority: 'option' }).tone).toBe('default')
     expect(editorRow({ extensions: ['.excalidraw'], priority: 'default' }).tone).toBe('default')
   })

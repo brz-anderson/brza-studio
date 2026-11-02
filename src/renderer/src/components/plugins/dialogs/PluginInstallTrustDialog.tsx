@@ -35,42 +35,42 @@ function trustBody(prompt: PluginInstallTrustPrompt): string {
     case 'theme':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.theme',
-        'This theme is from {{value0}}, not Orca. Only install plugins from authors you trust.',
+        'This theme is from {{value0}}, not BrzA Studio. Only install plugins from authors you trust.',
         { value0 }
       )
     case 'content':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.content',
-        'This plugin is from {{value0}}, not Orca. Only install plugins from authors you trust.',
+        'This plugin is from {{value0}}, not BrzA Studio. Only install plugins from authors you trust.',
         { value0 }
       )
     case 'translations':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.translations',
-        'This translation is from {{value0}}, not Orca. Translations can change any text in Orca, so only install them from authors you trust.',
+        'This translation is from {{value0}}, not BrzA Studio. Translations can change any text in BrzA Studio, so only install them from authors you trust.',
         { value0 }
       )
     case 'code':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.code',
-        'This plugin is from {{value0}}, not Orca. It runs the publisher’s code inside Orca, so only install it if you trust {{value0}}.',
+        'This plugin is from {{value0}}, not BrzA Studio. It runs the publisher’s code inside BrzA Studio, so only install it if you trust {{value0}}.',
         { value0 }
       )
     case 'git':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.git',
-        'Orca hasn’t checked this repository. A plugin from it can run its publisher’s code inside Orca, so only install it if you trust {{value0}}.',
+        'BrzA Studio hasn’t checked this repository. A plugin from it can run its publisher’s code inside BrzA Studio, so only install it if you trust {{value0}}.',
         { value0 }
       )
     case 'local-folder':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.localFolder',
-        'This is an unverified local folder. A plugin from it can run code inside Orca, so only install it if you trust where it came from.'
+        'This is an unverified local folder. A plugin from it can run code inside BrzA Studio, so only install it if you trust where it came from.'
       )
     case 'dev-folder':
       return translate(
         'auto.components.settings.PluginInstallTrustDialog.devFolder',
-        'This is an unverified local folder. Orca loads its plugin as it is, and later code edits run without asking, so only add folders you trust.'
+        'This is an unverified local folder. BrzA Studio loads its plugin as it is, and later code edits run without asking, so only add folders you trust.'
       )
   }
 }

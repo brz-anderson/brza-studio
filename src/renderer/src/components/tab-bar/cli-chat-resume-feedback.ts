@@ -35,7 +35,7 @@ export function reportCliChatResumeTerminalChanged(source: CliChatResumeSource):
   toast.error(
     translate(
       'components.native-chat.resumeInNewChat.terminalChanged',
-      'The terminal running {{agent}} changed before it closed, so Orca left it open. Try again.',
+      'The terminal running {{agent}} changed before it closed, so BrzA Studio left it open. Try again.',
       { agent: agentLabel(source.agent) }
     )
   )
@@ -60,7 +60,7 @@ export async function reportCliChatResumeFailureInChat(
 export function cliChatResumeExitUnprovenText(source: CliChatResumeSource): string {
   return translate(
     'components.native-chat.resumeInNewChat.terminalExitUnprovenInChat',
-    "Orca closed {{agent}}'s terminal but couldn't confirm {{agent}} stopped. Make sure it has stopped, then try again.",
+    "BrzA Studio closed {{agent}}'s terminal but couldn't confirm {{agent}} stopped. Make sure it has stopped, then try again.",
     { agent: agentLabel(source.agent) }
   )
 }
@@ -78,7 +78,7 @@ export async function reportCliChatResumeFailure(
     toast.error(
       translate(
         'components.native-chat.resumeInNewChat.terminalExitUnproven',
-        "Orca closed {{agent}}'s terminal but couldn't confirm it stopped, so the chat didn't open. Check the host connection, then open the conversation from Session History.",
+        "BrzA Studio closed {{agent}}'s terminal but couldn't confirm it stopped, so the chat didn't open. Check the host connection, then open the conversation from Session History.",
         values
       )
     )

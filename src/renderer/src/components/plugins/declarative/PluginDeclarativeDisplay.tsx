@@ -116,7 +116,7 @@ export function PluginDeclarativeUnsupported({ name }: { name: string }): React.
     <div className="rounded-md border border-dashed border-border px-2 py-1.5 text-xs text-muted-foreground">
       {translate(
         'auto.components.plugins.declarative.PluginDeclarativeView.unsupported',
-        '{{value0}} is not available in this version of Orca',
+        '{{value0}} is not available in this version of BrzA Studio',
         { value0: name }
       )}
     </div>

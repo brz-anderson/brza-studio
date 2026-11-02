@@ -81,7 +81,7 @@ it('runs the prebuilt sample against the shipped guest runtime, like the guest i
 
 // A missing named import is a link-time SyntaxError in real ES modules (checked with node); the
 // test runner's module shim cannot show that, so this covers the documented fallback only.
-it('draws a component created by name with h() as a placeholder when Orca does not know it', async () => {
+it('draws a component created by name with h() as a placeholder when BrzA Studio does not know it', async () => {
   const runtimeCopy = path.join(scratch, 'orca-runtime-compat.mjs')
   writeFileSync(runtimeCopy, readFileSync(RUNTIME))
   const orca = await import(/* @vite-ignore */ pathToFileURL(runtimeCopy).href)

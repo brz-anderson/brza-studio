@@ -98,7 +98,7 @@ function RestartBanner(): React.JSX.Element {
         <p className="text-xs text-muted-foreground">
           {translate(
             'settings.windowMaterial.restartDescription',
-            'Restart Orca to apply the window material change.'
+            'Restart BrzA Studio to apply the window material change.'
           )}
         </p>
       </div>

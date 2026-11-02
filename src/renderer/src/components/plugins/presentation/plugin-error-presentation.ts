@@ -39,7 +39,7 @@ export function pluginInstallErrorMessage(cause: unknown): string {
   if (detail.includes('moved after it was checked')) {
     return translate(
       'auto.components.settings.pluginError.installGitMoved',
-      'The repository changed after Orca checked it. Try again.'
+      'The repository changed after BrzA Studio checked it. Try again.'
     )
   }
   if (/(git|repository|fetch|clone|checkout|remote)/.test(detail)) {
@@ -61,7 +61,7 @@ export function invalidPluginErrorMessage(detailValue: string, installed = false
   if (installed && !detail.includes('requires orca')) {
     return translate(
       'auto.components.settings.pluginError.installedManifestUnloadable',
-      "This version can't load in this Orca. Update or reinstall it."
+      "This version can't load in this BrzA Studio. Update or reinstall it."
     )
   }
   if (detail.includes('missing orca-plugin.json')) {

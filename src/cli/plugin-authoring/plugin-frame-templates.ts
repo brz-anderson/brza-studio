@@ -76,7 +76,7 @@ export function editor(input: PluginTemplateInput): PluginTemplate {
 `,
       'README.md': readme(
         input,
-        `A custom editor for \`${extension}\` files. It runs in a sandboxed frame and talks to Orca only through \`window.orca\`. Loading it needs approval: \`orca plugin dev watch .\` prints the exact access and the \`--approve\` fingerprint.`
+        `A custom editor for \`${extension}\` files. It runs in a sandboxed frame and talks to BrzA Studio only through \`window.orca\`. Loading it needs approval: \`orca plugin dev watch .\` prints the exact access and the \`--approve\` fingerprint.`
       ),
       ...COMMON_FILES
     }
@@ -110,7 +110,7 @@ export function panel(input: PluginTemplateInput): PluginTemplate {
       const label = document.getElementById('workspace')
       async function refresh() {
         if (!orca.host.has('workspace.readContext')) {
-          label.textContent = 'This Orca cannot read workspace context.'
+          label.textContent = 'This BrzA Studio cannot read workspace context.'
           return
         }
         try {

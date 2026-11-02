@@ -347,7 +347,7 @@ it.each(['chat', 'cli'] as const)(
       if (outcome === 'unconfirmed') {
         expect(toastError).toHaveBeenCalledWith(expect.stringContaining("Couldn't send to"), {
           description: expect.stringContaining(
-            "Orca couldn't confirm your message reached the agent"
+            "BrzA Studio couldn't confirm your message reached the agent"
           )
         })
       }

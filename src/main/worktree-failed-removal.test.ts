@@ -293,7 +293,7 @@ describe('a delete that fails after Git dropped the registration', () => {
       publish: () => {}
     }))
 
-    const message = `A different checkout is now at ${checkout}; Orca left it in place. Delete it again to remove it.`
+    const message = `A different checkout is now at ${checkout}; BrzA Studio left it in place. Delete it again to remove it.`
     await expect(retried).rejects.toThrow(message)
     await _settlePendingWorktreeRemovalsForTests()
     expect(run).not.toHaveBeenCalled()

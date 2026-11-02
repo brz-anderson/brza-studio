@@ -86,7 +86,7 @@ async function publicationRig(history: number, sends: number, ending: Ending) {
       },
       {
         kind: 'status',
-        text: 'Stopped by Orca',
+        text: 'Stopped by BrzA Studio',
         tone: 'error',
         orcaStop: { cause: ending === 'crash' ? 'crash' : ending === 'update' ? 'update' : 'quit' }
       },

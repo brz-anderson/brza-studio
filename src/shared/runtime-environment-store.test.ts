@@ -71,7 +71,7 @@ describe('runtime environment store', () => {
         name: 'myself',
         pairingCode: pairingCode('ws://192.0.2.10:6768')
       })
-    ).toThrow(/this Orca itself/)
+    ).toThrow(/this BrzA Studio itself/)
     expect(listEnvironments(userDataPath)).toEqual([])
   })
 

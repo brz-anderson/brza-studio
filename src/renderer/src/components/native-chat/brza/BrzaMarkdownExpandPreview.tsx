@@ -1,6 +1,7 @@
-import { useMemo, useRef } from 'react'
+import { useContext, useMemo, useRef } from 'react'
 import type { Components } from 'react-markdown'
-import { openHttpLink } from '@/lib/http-link-routing'
+import { openOwnedHttpLink } from '@/lib/http-link-routing'
+import { useAppStore } from '@/store'
 import { NATIVE_CHAT_THEME_SURFACE_CLASS } from '@/lib/native-chat-theme-surface-style'
 import { MarkdownPreviewBody } from '@/components/editor/MarkdownPreviewBody'
 import { MarkdownFrontMatterBlock } from '@/components/editor/MarkdownFrontMatterBlock'
@@ -10,6 +11,8 @@ import {
 } from '@/components/editor/markdown-frontmatter'
 import { isMarkdownPreviewSystemBrowserModifier } from '@/components/editor/markdown-preview-links'
 import { useMarkdownSurfaceTheme } from '@/components/editor/use-markdown-surface-theme'
+import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { resolveNativeChatHttpLinkSourceOwner } from '../native-chat-http-link-source-owner'
 
 const isMac = navigator.userAgent.includes('Mac')
 
@@ -20,6 +23,8 @@ function absoluteHttpUrl(value: string | undefined): string | null {
 /** The editor's eye for a chat fence: no file behind it, so relative links and images stay inert (PLN-001 D54). */
 export function BrzaMarkdownExpandPreview({ content }: { content: string }): React.JSX.Element {
   const theme = useMarkdownSurfaceTheme()
+  // The chat's own workspace owns the link, so the owner is resolved from it and not from the Active Server.
+  const worktreeId = useContext(NativeChatMarkdownImageOwnerContext)?.fileLinkContext?.worktreeId
   const bodyRef = useRef<HTMLDivElement>(null)
   const frontMatterInner = useMemo(
     () => markdownFrontMatterInner(extractFrontMatter(content)),
@@ -36,10 +41,14 @@ export function BrzaMarkdownExpandPreview({ content }: { content: string }): Rea
             event.preventDefault()
             const url = absoluteHttpUrl(href)
             if (url) {
-              openHttpLink(
-                url,
-                isMarkdownPreviewSystemBrowserModifier(event, isMac) ? { modifierHeld: true } : {}
-              )
+              openOwnedHttpLink(url, {
+                sourceOwner: worktreeId
+                  ? resolveNativeChatHttpLinkSourceOwner(useAppStore.getState(), worktreeId)
+                  : { kind: 'unknown' },
+                ...(isMarkdownPreviewSystemBrowserModifier(event, isMac)
+                  ? { modifierHeld: true }
+                  : {})
+              })
             } else if (href?.startsWith('#')) {
               const id = decodeURIComponent(href.slice(1))
               const body = bodyRef.current
@@ -64,7 +73,7 @@ export function BrzaMarkdownExpandPreview({ content }: { content: string }): Rea
         )
       }
     }),
-    []
+    [worktreeId]
   )
 
   return (

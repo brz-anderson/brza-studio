@@ -6,6 +6,9 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { claudeSourceBlockId } from './claude-streamed-block-identity'
 import { resolveClaudeMessageFork } from './claude-message-fork'
 
+/** One content block of an assistant entry in the fixture transcript. */
+type AssistantContentPart = { type: 'thinking'; thinking: string } | { type: 'text'; text: string }
+
 let root: string
 let home: string
 let project: string
@@ -33,7 +36,7 @@ beforeEach(async () => {
     parentUuid: string,
     id: string,
     index: number,
-    part: object
+    part: AssistantContentPart
   ) => ({
     type: 'assistant',
     uuid,

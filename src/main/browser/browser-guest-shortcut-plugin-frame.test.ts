@@ -52,8 +52,8 @@ function pluginGuestHarness() {
   return { send, press }
 }
 
-describe('Orca shortcuts while a plugin guest has focus', () => {
-  it('forwards app shortcuts to Orca and keeps them from the guest', () => {
+describe('BrzA Studio shortcuts while a plugin guest has focus', () => {
+  it('forwards app shortcuts to BrzA Studio and keeps them from the guest', () => {
     const { send, press } = pluginGuestHarness()
     const consumed = press(keyDown(',', 'Comma'))
     expect(send).toHaveBeenCalledWith('ui:openSettings')

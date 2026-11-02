@@ -29,7 +29,7 @@ async function componentsPlugin(): Promise<string> {
 
 describe('orca plugin test', () => {
   it(
-    "runs the components template's own test with node:test on Orca's runtime and passes",
+    "runs the components template's own test with node:test on BrzA Studio's runtime and passes",
     async () => {
       const dir = await componentsPlugin()
       const files = await findPluginTestFiles(dir)
@@ -111,7 +111,7 @@ const TESTED_EXAMPLES = readdirSync(EXAMPLES).filter((name) => {
 
 describe('orca plugin test with a worker', () => {
   it(
-    "runs a .ts worker's own tests through mountWorker, resolving its imports as Orca does",
+    "runs a .ts worker's own tests through mountWorker, resolving its imports as BrzA Studio does",
     async () => {
       const dir = await componentsPlugin()
       const manifestPath = join(dir, 'orca-plugin.json')
@@ -390,7 +390,7 @@ describe('orca plugin check', () => {
   })
 
   it(
-    'warns about host calls Orca would refuse, and reports a repeated throw once',
+    'warns about host calls BrzA Studio would refuse, and reports a repeated throw once',
     async () => {
       const dir = await componentsPlugin()
       await writeFile(

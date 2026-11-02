@@ -91,7 +91,7 @@ export const ORCHESTRATION_COMMAND_SPECS: CommandSpec[] = [
     usage:
       'orca orchestration check [--terminal <handle>] [--run <run_id>] [--ack <delivery_id>] [--unread | --peek | --all] [--types <type,...>] [--format] [--wait] [--timeout-ms <n>] [--retry-request <id>] [--json]\n' +
       "  default: return the bound Run's oldest unread FIFO batch and mark it handled.\n" +
-      '  --ack: optional; acknowledges a batch from an older Orca that does not mark it.\n' +
+      '  --ack: optional; acknowledges a batch from an older BrzA Studio that does not mark it.\n' +
       '  --peek: return only unread messages without marking them read.\n' +
       '  --all: return recent messages for the handle; does not mark read.\n' +
       '  --wait: block until a matching message arrives or --timeout-ms expires.\n' +
@@ -221,7 +221,7 @@ export const ORCHESTRATION_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['orchestration', 'ask'],
-    summary: 'Ask the coordinator a question; Orca wakes you with the answer',
+    summary: 'Ask the coordinator a question; BrzA Studio wakes you with the answer',
     usage:
       'orca orchestration ask (--question <text> | --resume <message_id>) [--to <run:id>] [--run <run_id>] [--options <csv>] [--wait] [--timeout-ms <n>] [--from <handle>] [--retry-request <id>] [--json]',
     allowedFlags: [
@@ -239,7 +239,7 @@ export const ORCHESTRATION_COMMAND_SPECS: CommandSpec[] = [
     ],
     identityFlagRoles: { from: 'caller' },
     notes: [
-      'From an active Dispatch, a new question goes to its owning Run mailbox and ask returns at once: end your turn, and Orca wakes you with the answer as mail. --wait and --resume block until the answer instead; --timeout-ms accepts 1 to 1800000 ms per wait (default 600000 = 10 minutes, max 30 minutes), and a timeout leaves the question pending.'
+      'From an active Dispatch, a new question goes to its owning Run mailbox and ask returns at once: end your turn, and BrzA Studio wakes you with the answer as mail. --wait and --resume block until the answer instead; --timeout-ms accepts 1 to 1800000 ms per wait (default 600000 = 10 minutes, max 30 minutes), and a timeout leaves the question pending.'
     ]
   },
   {

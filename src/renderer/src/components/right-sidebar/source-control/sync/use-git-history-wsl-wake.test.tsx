@@ -63,7 +63,7 @@ describe('Commits history and a stopped WSL distro', () => {
     expect(wakes()).toEqual([true, undefined])
   })
 
-  it('wakes when the user expands Commits, not when Orca re-shows it or a refresh follows', async () => {
+  it('wakes when the user expands Commits, not when BrzA Studio re-shows it or a refresh follows', async () => {
     const { result, rerender } = renderHook((p: Props) => useSourceControlGitHistory(p), {
       initialProps: props({ isGitHistoryExpanded: false })
     })

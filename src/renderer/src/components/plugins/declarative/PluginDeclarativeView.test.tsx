@@ -216,7 +216,9 @@ describe('PluginDeclarativeView', () => {
         node('IconButton', { icon: 'skull', label: 'Odd', onPress: cb('c0') })
       ])
     )
-    expect(screen.getByText('Carousel is not available in this version of Orca')).toBeTruthy()
+    expect(
+      screen.getByText('Carousel is not available in this version of BrzA Studio')
+    ).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Odd' }).querySelector('svg')).not.toBeNull()
   })
 

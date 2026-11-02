@@ -179,7 +179,7 @@ function HostRemoveDialogBody({
     target.kind === 'wsl'
       ? translate(
           'auto.components.sidebar.HostRemoveDialog.wslHostEndsTerminalsUnlessShared',
-          'Removes {{value0}} from Orca. Unless another Orca that’s open on this computer is using it, this also ends its open terminals and stops BrzA Studio’s server in that distro. Files in the distro are untouched.',
+          'Removes {{value0}} from BrzA Studio. Unless another BrzA Studio that’s open on this computer is using it, this also ends its open terminals and stops BrzA Studio’s server in that distro. Files in the distro are untouched.',
           { value0: label }
         )
       : target.kind === 'runtime'
@@ -206,7 +206,7 @@ function HostRemoveDialogBody({
   const deleteOptionLabel = translate(
     'auto.components.sidebar.HostRemoveDialog.alsoRemoveWorkspaces',
     'Also remove these {{count}} workspaces from BrzA Studio',
-    { count: workspaceCount, defaultValue_one: 'Also remove this workspace from Orca' }
+    { count: workspaceCount, defaultValue_one: 'Also remove this workspace from BrzA Studio' }
   )
 
   return (

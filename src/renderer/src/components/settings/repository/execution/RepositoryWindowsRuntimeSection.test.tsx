@@ -83,7 +83,7 @@ describe('RepositoryWindowsRuntimeSection D1c rows', () => {
       ...project,
       localWindowsRuntimePreference: { kind: 'wsl', distro: 'Ubuntu', git: 'windows-host' }
     })
-    expect(screen.getByText(/Orca runs Git on Windows for this project/)).toBeTruthy()
+    expect(screen.getByText(/BrzA Studio runs Git on Windows for this project/)).toBeTruthy()
     expect(screen.queryByRole('button', { name: 'Use Git for Windows' })).toBeNull()
   })
 })

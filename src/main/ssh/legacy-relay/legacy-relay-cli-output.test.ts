@@ -41,7 +41,7 @@ it('prints a relay-era check with its reply hints and the ack an older batch nee
       '[payload]',
       '  {"options":["yes","no"]}',
       '[Reply: orca orchestration reply --id msg_q --body "..."]',
-      'This Orca version does not acknowledge batches automatically. After handling every message, rerun this check with --ack delivery_1.',
+      'This BrzA Studio version does not acknowledge batches automatically. After handling every message, rerun this check with --ack delivery_1.',
       ''
     ].join('\n'),
     stderr: '',

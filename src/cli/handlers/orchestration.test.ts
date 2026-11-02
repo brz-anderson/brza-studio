@@ -632,7 +632,7 @@ describe('orchestration timeout flag validation', () => {
     expect(process.exitCode).toBe(1)
   })
 
-  it('asks without waiting only when the Orca it talks to advertises it', async () => {
+  it('asks without waiting only when the BrzA Studio it talks to advertises it', async () => {
     process.env.ORCA_TERMINAL_HANDLE = 'term_worker'
     const askedWith = async (capabilities: string[]) => {
       callMock.mockReset()

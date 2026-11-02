@@ -172,7 +172,10 @@ function BrzaExpandOverlay(props: {
     >
       <div className="flex shrink-0 items-center gap-1 border-b border-border px-2.5 py-1.5 text-xs text-muted-foreground">
         <span className="mr-auto">
-          {translate('brza.native-chat.expandedLines', '{{count}} lines', { count: lines })}
+          {translate('brza.native-chat.expandedLines', '{{count}} lines', {
+            count: lines,
+            defaultValue_one: '{{count}} line'
+          })}
         </span>
         {markdown ? (
           <EditorViewToggle

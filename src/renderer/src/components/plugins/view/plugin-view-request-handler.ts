@@ -38,7 +38,7 @@ const fail = (requestId: string, code: string, message: string): Failure => ({
 })
 
 const NO_WORKSPACE_MESSAGE =
-  'Orca shows plugin panels and editors beside an open workspace, and none is showing.'
+  'BrzA Studio shows plugin panels and editors beside an open workspace, and none is showing.'
 
 /** `open` may leave Settings for the workspace behind it; a capture never changes the view. */
 function showWorkspace(requestId: string, leaveSettings: boolean): Failure | null {

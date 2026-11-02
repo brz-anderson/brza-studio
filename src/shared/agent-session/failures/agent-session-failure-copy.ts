@@ -77,13 +77,13 @@ export const AGENT_SESSION_FAILURE_COPY = {
   claudeAccountFolderMissing: CLAUDE_PROFILE_MISSING_MESSAGE,
   claudeAccountSetupFailed: CLAUDE_PROFILE_SETUP_FAILED_MESSAGE,
   agentCommandNotRunnable:
-    "{{agent}}'s Command in Settings → Agents must start with a program Orca can find. Variables, pipes and other shell syntax aren't supported; use the Environment setting for variables. Change it or reset it.",
+    "{{agent}}'s Command in Settings → Agents must start with a program BrzA Studio can find. Variables, pipes and other shell syntax aren't supported; use the Environment setting for variables. Change it or reset it.",
   runtimeNotInstalled:
     "{{agent}} isn't installed on the computer running this chat. Install it from the chat in a current version of BrzA Studio.",
   fullAccessAsRoot:
     "{{agent}} won't use Full access while it runs as root. Choose another permission for {{agent}} in Settings → Agents for the computer running this chat, then start a new chat.",
   launchPreparationFailed:
-    "Orca couldn't prepare {{agent}} to start on the computer running this chat.",
+    "BrzA Studio couldn't prepare {{agent}} to start on the computer running this chat.",
   conversationOpenElsewhere:
     'Codex is still holding this conversation open. Try again in a moment, or close other Codex terminals.',
   conversationOpenInTerminal:

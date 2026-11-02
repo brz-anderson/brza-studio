@@ -241,7 +241,9 @@ describe('isLastingShotFailure', () => {
       })
     expect(isLastingShotFailure(new RuntimeClientError('runtime_unsupported', 'old'))).toBe(true)
     expect(
-      isLastingShotFailure(reply('Showing plugin panels is only available in the Orca desktop app'))
+      isLastingShotFailure(
+        reply('Showing plugin panels is only available in the BrzA Studio desktop app')
+      )
     ).toBe(true)
     expect(isLastingShotFailure(reply('no workspace'))).toBe(false)
     expect(isLastingShotFailure(new Error('timeout'))).toBe(false)

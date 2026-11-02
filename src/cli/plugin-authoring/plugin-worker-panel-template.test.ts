@@ -35,7 +35,7 @@ describe('orca plugin create --template worker-panel', () => {
   })
 
   it(
-    "passes its own panel and worker tests under `orca plugin test` on Orca's runtime",
+    "passes its own panel and worker tests under `orca plugin test` on BrzA Studio's runtime",
     async () => {
       const dir = await workerPanelPlugin()
       const files = await findPluginTestFiles(dir)

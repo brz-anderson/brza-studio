@@ -158,7 +158,7 @@ async function openComputerUsePermissionsAsync(
     // An error rather than launchedHelper: false, which clients render as "setup complete".
     throw new RuntimeClientError(
       'accessibility_error',
-      'Computer Use setup was cancelled because permissions were reset or Orca is quitting'
+      'Computer Use setup was cancelled because permissions were reset or BrzA Studio is quitting'
     )
   }
 

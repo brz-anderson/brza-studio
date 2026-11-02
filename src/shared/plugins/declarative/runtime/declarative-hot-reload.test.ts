@@ -66,7 +66,7 @@ describe('dev hot reload of keyed memory atoms', () => {
     runtime.dispose()
   })
 
-  it('posts keyed memory changes only once Orca asks, and non-JSON values as a drop', () => {
+  it('posts keyed memory changes only once BrzA Studio asks, and non-JSON values as a drop', () => {
     vi.useFakeTimers()
     const { runtime, send, retained } = booted()
     const count = atom('hot.count', 0)
@@ -124,7 +124,7 @@ describe('dev hot reload of keyed memory atoms', () => {
 describe('plugin error locations', () => {
   const base = 'orca-plugin-frame://0123456789abcdef/'
 
-  it('names the first plugin stack frame, skipping Orca runtime frames', () => {
+  it('names the first plugin stack frame, skipping BrzA Studio runtime frames', () => {
     const stack = [
       'TypeError: x is undefined',
       `    at evaluate (${base}__orca/orca-runtime.mjs:120:7)`,
@@ -136,7 +136,7 @@ describe('plugin error locations', () => {
     expect(describePluginError(error, base)).toBe('src/my panel.tsx:12:5: x is undefined')
   })
 
-  it("keeps a message that already names its file (Orca's transpile errors)", () => {
+  it("keeps a message that already names its file (BrzA Studio's transpile errors)", () => {
     const error = Object.assign(new Error('src/panel.tsx:3:5: Unexpected token'), {
       stack: `Error: src/panel.tsx:3:5: Unexpected token\n    at ${base}src/panel.tsx:1:7`
     })

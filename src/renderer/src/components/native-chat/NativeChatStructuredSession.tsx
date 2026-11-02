@@ -297,6 +297,7 @@ export function NativeChatStructuredSession(
           <NativeChatRowActionsProvider chat={props} rewind={controller.rewind.surface}>
             <NativeChatUsageLimitActionsProvider
               recovery={controller}
+              chatAccountSwitch={transport.accountSwitch}
               pane={props}
               directory={fileLinkContext}
               messages={controller.messages}

@@ -100,7 +100,7 @@ describe('a bridge WSL pane keeps its shell folder across quit', () => {
     expect(checkpointCwd(id)).toBe(DEEP)
   })
 
-  it('reopens in that folder when the distro stopped while Orca was quit', async () => {
+  it('reopens in that folder when the distro stopped while BrzA Studio was quit', async () => {
     vi.spyOn(startupCwdProbe, 'probeRecoveredStartupCwdDirectory').mockResolvedValue(true)
     const app = launch()
     const { id } = await openBridgePane(app, 'repo::/repo@@terminated')

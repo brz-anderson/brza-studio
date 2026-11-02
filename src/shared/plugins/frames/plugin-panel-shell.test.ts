@@ -100,7 +100,7 @@ describe('buildPluginGuestShellHtml', () => {
     )
   })
 
-  it("hands Orca's declarative boot script a post hook only on its own page", () => {
+  it("hands BrzA Studio's declarative boot script a post hook only on its own page", () => {
     expect(buildPluginGuestShellHtml('<main></main>')).not.toContain('__orcaDeclarativePost')
     expect(buildPluginGuestShellHtml('<main></main>', 'panel', { declarative: true })).toContain(
       '"declarativePost":"__orcaDeclarativePost"'
@@ -114,7 +114,7 @@ describe('buildPluginGuestShellHtml', () => {
     )
   })
 
-  it('offers user-gesture methods to guests only, where Orca can verify the gesture', () => {
+  it('offers user-gesture methods to guests only, where BrzA Studio can verify the gesture', () => {
     const methods = (html: string) => html.match(/"methods":(\[[^\]]*\])/)?.[1] ?? ''
     expect(methods(buildPluginPanelShellHtml('<main></main>'))).not.toContain('shell.openExternal')
     expect(methods(buildPluginGuestShellHtml('<main></main>'))).toContain('shell.openExternal')

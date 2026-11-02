@@ -97,7 +97,7 @@ describe('mountWorker', () => {
     expect(worker.stopped()).toBe(true)
   })
 
-  it('records calls Orca would refuse even when the worker catches them', async () => {
+  it('records calls BrzA Studio would refuse even when the worker catches them', async () => {
     const host = mockHost({ capabilities: [] })
     const mounted = await mountWorker(
       {
@@ -129,7 +129,7 @@ describe('mountWorker', () => {
     ).rejects.toThrow(/registered undeclared command other/)
   })
 
-  it('hands activate the same shape of orca object as Orca does', async () => {
+  it('hands activate the same shape of orca object as BrzA Studio does', async () => {
     let captured: unknown
     await mountWorker(
       { default: (orca: unknown) => (captured = orca) },
@@ -140,7 +140,7 @@ describe('mountWorker', () => {
 })
 
 describe('panel refusals', () => {
-  it('lists host calls Orca refuses even when the panel catches them', async () => {
+  it('lists host calls BrzA Studio refuses even when the panel catches them', async () => {
     const host = mockHost({ capabilities: [] })
     panel = await mount(
       () =>
@@ -203,7 +203,7 @@ describe('RelativeTime in the test kit', () => {
     vi.useRealTimers()
   })
 
-  it('reads as Orca draws it now, in a node and in a Table cell', async () => {
+  it('reads as BrzA Studio draws it now, in a node and in a Table cell', async () => {
     // Only Date is faked: the kit settles on real macrotasks.
     vi.useFakeTimers({ now: Date.UTC(2026, 10, 1, 12), toFake: ['Date'] })
     const at = Date.UTC(2026, 10, 1, 12) - 5 * 60_000

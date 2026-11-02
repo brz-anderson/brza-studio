@@ -106,7 +106,7 @@ describe('plugins.open on the desktop', () => {
       message: 'none is showing',
       data: {
         reason: 'no_workspace',
-        nextSteps: ['Open a workspace in Orca, then run this again.']
+        nextSteps: ['Open a workspace in BrzA Studio, then run this again.']
       }
     })
     expect(relay.requestPluginViewFromRenderer.mock.calls[0]?.[1]).toEqual({
@@ -203,7 +203,7 @@ describe('plugins.shot on the desktop', () => {
       colorScheme: 'dark',
       themeApplied: false,
       themeReason:
-        'the Orca window is visible; capturing in the current theme so the app is not repainted'
+        'the BrzA Studio window is visible; capturing in the current theme so the app is not repainted'
     })
     const capture = relay.requestPluginViewFromRenderer.mock.calls[0]?.[1]
     expect(capture).toMatchObject({ kind: 'open-panel' })
@@ -252,7 +252,7 @@ describe('plugins.shot on the desktop', () => {
       createPluginViewDesktop(deps({ windowShown: () => true })).shot({ pluginKey: KEY, acts })
     ).rejects.toMatchObject({
       message:
-        "shot --act needs Orca's window hidden or minimized, so it never clicks under the user",
+        "shot --act needs BrzA Studio's window hidden or minimized, so it never clicks under the user",
       data: { reason: 'window_shown' }
     })
     expect(relay.requestPluginViewFromRenderer).not.toHaveBeenCalled()

@@ -48,7 +48,7 @@ describe('plugin frame console formatting', () => {
     expect(pluginFrameSourceLocation(`${ORIGIN}/panel.js`, 0, KEY)).toBe('panel.js')
   })
 
-  it('omits a location from another origin or an Orca-shipped file', () => {
+  it('omits a location from another origin or a BrzA Studio-shipped file', () => {
     expect(pluginFrameSourceLocation(`orca-plugin-frame://${OTHER}/a.js`, 1, KEY)).toBeNull()
     expect(pluginFrameSourceLocation(`${ORIGIN}/__orca/orca-runtime.mjs`, 300, KEY)).toBeNull()
     expect(pluginFrameSourceLocation('', 1, KEY)).toBeNull()
@@ -61,7 +61,7 @@ describe('plugin frame console formatting', () => {
     )
   })
 
-  it("drops Orca's own runtime frames and sourceless engine frames from a logged stack", () => {
+  it("drops BrzA Studio's own runtime frames and sourceless engine frames from a logged stack", () => {
     const stack = [
       'Uncaught Error: boom',
       `    at Panel (${ORIGIN}/src/panel.tsx?rev=1:12:5)`,

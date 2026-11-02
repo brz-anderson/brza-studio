@@ -30,7 +30,7 @@ function input(home: SkillHome) {
 const orchestrationIn = (home: SkillHome, root: 'shared' | 'claude') =>
   join(dirname(home[root]), 'orchestration')
 
-describe('skills installed by much older Orca versions', () => {
+describe('skills installed by much older BrzA Studio versions', () => {
   it('recognizes the oldest shipped orchestration as unedited', async () => {
     const oldest = await readFile(OLDEST_FIXTURE)
     expect(SOURCE?.releasedDigests).toContain(bundledSkillTextDigest(oldest))

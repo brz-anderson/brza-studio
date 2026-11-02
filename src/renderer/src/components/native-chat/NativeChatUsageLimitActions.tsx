@@ -21,6 +21,8 @@ import {
 } from '@/lib/agent-session-continuation'
 import { ClaudeSwitcherMenu } from '@/components/status-bar/ClaudeSwitcherMenu'
 import { ProviderAccountChatButton } from '@/components/status-bar/ProviderAccountChatButton'
+import { useBrzaPinnedAccountSwitch } from './brza/BrzaPinnedAccountSwitch'
+import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
 import { isTuiAgent } from '../../../../shared/tui-agent-config'
 import { callStructuredAgentSession } from '@/runtime/structured-agent-session-client'
 import type { AgentSessionOptionsResult } from '../../../../shared/agent-session/options/agent-session-options-result'
@@ -47,6 +49,7 @@ export function NativeChatUsageLimitActionsProvider({
   messages,
   view,
   recovery,
+  chatAccountSwitch,
   children
 }: {
   pane: Omit<NativeChatStructuredViewProps, 'mode'>
@@ -58,6 +61,8 @@ export function NativeChatUsageLimitActionsProvider({
     canSwitchAccount: boolean | undefined
     epoch?: string | null
   }
+  /** The chat's own account switch, offered instead of the global one while the chat is pinned. */
+  chatAccountSwitch?: NativeChatAccountSwitchView | null
   children: ReactNode
 }): React.JSX.Element {
   const loading = !recovery.readCurrent
@@ -103,9 +108,12 @@ export function NativeChatUsageLimitActionsProvider({
     isTuiAgent(pane.agent) &&
     directory.runtimeEnvironmentId ===
       (pane.target.kind === 'environment' ? pane.target.environmentId : null)
+  const pinnedAccount = useBrzaPinnedAccountSwitch(pane, chatAccountSwitch)
   let account: ReactNode = null
   if (pane.agent === 'claude' && active && pane.isVisible) {
-    if (canSwitchAccount === undefined) {
+    if (pinnedAccount) {
+      account = pinnedAccount
+    } else if (canSwitchAccount === undefined) {
       account = <ProviderAccountChatButton provider="claude" target={pane.target} disabled />
     } else if (canSwitchAccount) {
       account = (

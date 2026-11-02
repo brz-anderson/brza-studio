@@ -18,14 +18,14 @@ function devices(entries: Partial<DeviceEntry>[]) {
 }
 
 describe('DeclaredDesktopClients', () => {
-  it('keeps the Orca of a closed control socket for a reconnect grace, then drops it', () => {
+  it('keeps the BrzA Studio of a closed control socket for a reconnect grace, then drops it', () => {
     let now = 1_000
     const clients = new DeclaredDesktopClients(() => now)
-    const getDevice = devices([{ name: 'Orca Dev' }])
+    const getDevice = devices([{ name: 'BrzA Studio Dev' }])
     clients.declare('dev-socket', 'd0', 'dev')
     clients.forget('dev-socket')
     expect(clients.peers({ connectionId: 'me', clientInstanceId: 'me' }, getDevice).peers).toEqual([
-      { name: 'Orca Dev' }
+      { name: 'BrzA Studio Dev' }
     ])
     // A re-declare on a new socket takes over; closing it starts a fresh grace.
     now += DECLARED_CLIENT_RECONNECT_GRACE_MS - 1
@@ -41,10 +41,10 @@ describe('DeclaredDesktopClients', () => {
     )
   })
 
-  it('starts the grace only when an Orca’s last declared socket closes', () => {
+  it('starts the grace only when a BrzA Studio’s last declared socket closes', () => {
     let now = 1_000
     const clients = new DeclaredDesktopClients(() => now)
-    const getDevice = devices([{ name: 'Orca Dev' }])
+    const getDevice = devices([{ name: 'BrzA Studio Dev' }])
     const peers = () =>
       clients.peers({ connectionId: 'me', clientInstanceId: 'me' }, getDevice).peers
     clients.declare('a', 'd0', 'dev')

@@ -141,7 +141,7 @@ export function ForgetSshWorkspaceDialog(): React.JSX.Element | null {
             <ServerOff className="size-4 text-muted-foreground" />
             {translate(
               'auto.components.sidebar.ForgetSshWorkspaceDialog.removeTitle',
-              'Remove “{{name}}” from Orca?',
+              'Remove “{{name}}” from BrzA Studio?',
               { name: displayName }
             )}
           </DialogTitle>
@@ -149,7 +149,7 @@ export function ForgetSshWorkspaceDialog(): React.JSX.Element | null {
             {resolution.kind === 'saved'
               ? translate(
                   'auto.components.sidebar.ForgetSshWorkspaceDialog.savedHostBody',
-                  'This workspace’s project isn’t served by Orca’s server on {{host}}, so Orca can’t delete it there. You can remove it from Orca; files, the Git worktree, and branches on {{host}} are left untouched.',
+                  'This workspace’s project isn’t served by BrzA Studio’s server on {{host}}, so BrzA Studio can’t delete it there. You can remove it from BrzA Studio; files, the Git worktree, and branches on {{host}} are left untouched.',
                   { host: hostLabel }
                 )
               : translate(

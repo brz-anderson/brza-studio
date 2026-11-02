@@ -18,7 +18,7 @@ const beginLaunch = vi.hoisted(() =>
   vi.fn(() => ({ settlement: Promise.resolve({ kind: 'structured' }) }))
 )
 const toastError = vi.hoisted(() => vi.fn())
-vi.mock('@/runtime/structured-agent-session-client', () => ({
+vi.mock('@/runtime/structured-agent-session-message-fork-client', () => ({
   forkStructuredAgentSessionThroughMessage: forkThroughMessage
 }))
 vi.mock('@/lib/agent-session/structured-agent-session-provisional-tab', () => ({

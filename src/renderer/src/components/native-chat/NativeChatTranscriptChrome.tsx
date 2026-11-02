@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { ArrowUp, Image as ImageIcon, MessageSquarePlus, Pin } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowUp, Image as ImageIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { translate } from '@/i18n/i18n'
 import { basename } from '@/lib/path'
@@ -20,9 +20,7 @@ import { copyableNativeChatImageSrc, keepPreviewOpenForChatMenu } from './native
 import { isNativeChatPastedImagePath } from '../../../../shared/native-chat-image-label'
 import { nativeChatImageLabel } from './native-chat-image-label'
 import { chatImageAccess } from '@/lib/local-file-access'
-import { NativeChatNewChatContext } from './native-chat-new-chat-from-message'
-import { NativeChatPinnedChaptersContext } from './native-chat-pinned-chapters'
-import { NativeChatForkButton } from './NativeChatForkButton'
+import { BrzaAgentMessageActions } from './brza/BrzaAgentMessageActions'
 
 type VisibilityListener = (isVisible: boolean) => void
 
@@ -281,9 +279,6 @@ export function NativeChatImageAttachments({
   )
 }
 
-const AGENT_CONTROL_BUTTON_CLASS =
-  'flex size-6 shrink-0 items-center justify-center rounded-md text-chat-foreground-faint transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
-
 export function NativeChatAgentControls({
   messageId,
   chapterKey,
@@ -301,15 +296,8 @@ export function NativeChatAgentControls({
   onScrollToTop: () => void
   className?: string
 }): React.JSX.Element {
-  const newChat = useContext(NativeChatNewChatContext)
-  const pins = useContext(NativeChatPinnedChaptersContext)
   // A visual line means nothing outside its own message, so copies and new chats leave it out.
   const text = withoutNativeChatVisualDirectiveLines(markdown)
-  const newChatLabel = translate(
-    'components.native-chat.newChatFromMessage',
-    'New chat from this message'
-  )
-  const pinLabel = translate('components.native-chat.pinChapter', 'Pin chapter')
   return (
     // Hover-only row chrome: find skips it rather than counting what the mouse happens to show.
     <div data-native-chat-find-skip className={cn('flex items-center gap-1', className)}>
@@ -322,37 +310,11 @@ export function NativeChatAgentControls({
           'Scroll this message to top'
         )}
         title={translate('components.native-chat.scrollMessageToTop', 'Scroll this message to top')}
-        className={AGENT_CONTROL_BUTTON_CLASS}
+        className="flex size-6 shrink-0 items-center justify-center rounded-md text-chat-foreground-faint transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <ArrowUp className="size-3.5" />
       </button>
-      {newChat ? (
-        <button
-          type="button"
-          onClick={() => newChat(text)}
-          aria-label={newChatLabel}
-          title={newChatLabel}
-          className={AGENT_CONTROL_BUTTON_CLASS}
-        >
-          <MessageSquarePlus className="size-3.5" />
-        </button>
-      ) : null}
-      {pins && chapterKey ? (
-        <button
-          type="button"
-          onClick={() => pins.toggle(chapterKey)}
-          aria-label={pinLabel}
-          aria-pressed={pins.isPinned(chapterKey)}
-          title={pinLabel}
-          className={cn(
-            AGENT_CONTROL_BUTTON_CLASS,
-            'aria-pressed:bg-accent aria-pressed:text-accent-foreground'
-          )}
-        >
-          <Pin className="size-3.5" />
-        </button>
-      ) : null}
-      <NativeChatForkButton messageId={messageId} className={AGENT_CONTROL_BUTTON_CLASS} />
+      <BrzaAgentMessageActions messageId={messageId} chapterKey={chapterKey} text={text} />
       <NativeChatMessageTimestamp timestamp={timestamp} />
     </div>
   )

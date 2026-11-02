@@ -19,10 +19,10 @@ export const PLUGIN_AUTHORING_COMMAND_SPECS: CommandSpec[] = [
       'Writes into a new or empty folder (a .git folder is allowed) and never overwrites; it runs no Git, package install or plugin code.',
       'theme, terminal-theme, icon-theme, syntax and language-pack are content only: loading them never needs approval.',
       'editor and panel run code in a sandboxed frame: loading them prints the access they ask for and needs --approve.',
-      'components is a panel written in TSX with Orca components and no build step; it also writes the editor typings to .orca/types (see `orca plugin types`).',
+      'components is a panel written in TSX with BrzA Studio components and no build step; it also writes the editor typings to .orca/types (see `orca plugin types`).',
       'worker-panel is a components panel plus its own TypeScript worker (`main`): requests, posts and storage typed by one src/protocol.ts, with panel and worker tests for `orca plugin test`. It needs --approve to load.',
-      'The id defaults to the folder name. Leave out --publisher: Orca names the publisher after the repository owner (or `local` for a folder). Pass it only to support Orca older than 1.4.246, and then it must be that owner.',
-      'Runs on the machine that runs this command; it does not reach the Orca app.',
+      'The id defaults to the folder name. Leave out --publisher: BrzA Studio names the publisher after the repository owner (or `local` for a folder). Pass it only to support BrzA Studio older than 1.4.246, and then it must be that owner.',
+      'Runs on the machine that runs this command; it does not reach the BrzA Studio app.',
       EXIT_CODES_NOTE
     ],
     examples: [
@@ -39,9 +39,9 @@ export const PLUGIN_AUTHORING_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'dir'],
     positionalArgs: ['dir'],
     notes: [
-      'Writes .orca/types/orca/index.d.ts and .orca/types/tsconfig.json; extend it from the plugin tsconfig (`"extends": "./.orca/types/tsconfig.json"`). `.orca/` ignores itself in Git, and Orca skips it when loading a development folder.',
-      'The typings match the Orca this CLI belongs to. `orca plugin dev load` rewrites them for folders that use TypeScript or components panels.',
-      'Runs on the machine that runs this command; it does not reach the Orca app.',
+      'Writes .orca/types/orca/index.d.ts and .orca/types/tsconfig.json; extend it from the plugin tsconfig (`"extends": "./.orca/types/tsconfig.json"`). `.orca/` ignores itself in Git, and BrzA Studio skips it when loading a development folder.',
+      'The typings match the BrzA Studio this CLI belongs to. `orca plugin dev load` rewrites them for folders that use TypeScript or components panels.',
+      'Runs on the machine that runs this command; it does not reach the BrzA Studio app.',
       EXIT_CODES_NOTE
     ],
     examples: ['orca plugin types .']
@@ -53,10 +53,10 @@ export const PLUGIN_AUTHORING_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'dir'],
     positionalArgs: ['dir'],
     notes: [
-      "Not sandboxed: this runs the plugin's code and tests on this machine with your user's full access, outside Orca's plugin sandbox. Run it only on code you trust.",
+      "Not sandboxed: this runs the plugin's code and tests on this machine with your user's full access, outside BrzA Studio's plugin sandbox. Run it only on code you trust.",
       'Runs every *.test.ts(x) (also .mts, .js, .jsx, .mjs) under the folder, skipping node_modules, .orca, dist and dot-folders. The folder defaults to the current one.',
-      "Uses Node's built-in test runner (node:test), or the plugin's own vitest when it has one in node_modules. No config: `orca` and `orca/testing` resolve to the files this Orca ships, and sources are transpiled and imported exactly as Orca loads them.",
-      'Runs on the `node` on PATH when it is 20.6 or newer, else on the Node built into Orca, so no Node install is needed. It does not reach the Orca app.',
+      "Uses Node's built-in test runner (node:test), or the plugin's own vitest when it has one in node_modules. No config: `orca` and `orca/testing` resolve to the files this BrzA Studio ships, and sources are transpiled and imported exactly as BrzA Studio loads them.",
+      'Runs on the `node` on PATH when it is 20.6 or newer, else on the Node built into BrzA Studio, so no Node install is needed. It does not reach the BrzA Studio app.',
       "Exit code: the runner's (0 when every test passes). With --json the runner output goes to stderr and one result object to stdout."
     ],
     examples: ['orca plugin test .', 'orca plugin test ./todo-panel --json']
@@ -69,9 +69,9 @@ export const PLUGIN_AUTHORING_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'dir'],
     positionalArgs: ['dir'],
     notes: [
-      "Not sandboxed: this runs the plugin's code on this machine with your user's full access, outside Orca's plugin sandbox. Check only code you trust.",
-      'Validates like `orca plugin validate`, then mounts each `ui: "components"` panel in Node against a stand-in host with the capabilities the manifest declares, and reports runtime errors (with file:line), layouts Orca would refuse, and props it would drop.',
-      'Runs on the `node` on PATH when it is 20.6 or newer, else on the Node built into Orca. It does not reach the Orca app.',
+      "Not sandboxed: this runs the plugin's code on this machine with your user's full access, outside BrzA Studio's plugin sandbox. Check only code you trust.",
+      'Validates like `orca plugin validate`, then mounts each `ui: "components"` panel in Node against a stand-in host with the capabilities the manifest declares, and reports runtime errors (with file:line), layouts BrzA Studio would refuse, and props it would drop.',
+      'Runs on the `node` on PATH when it is 20.6 or newer, else on the Node built into BrzA Studio. It does not reach the BrzA Studio app.',
       'Exit codes: 0 ok, 1 a panel failed to render, 2 the plugin is invalid (plugin_invalid).'
     ],
     examples: ['orca plugin check .', 'orca plugin check ./todo-panel --json']
@@ -119,7 +119,7 @@ export const PLUGIN_AUTHORING_COMMAND_SPECS: CommandSpec[] = [
 ]
 
 const APPROVE_NOTE =
-  'Content-only plugins (themes, icons, syntaxes, translations) need no approval. Anything that runs code or acts in Orca fails with approval_required, which lists exactly what it would be granted, why, and the command to re-run with --approve <fingerprint>. The fingerprint is bound to that plugin, version, files and access; anything different needs a new one.'
+  'Content-only plugins (themes, icons, syntaxes, translations) need no approval. Anything that runs code or acts in BrzA Studio fails with approval_required, which lists exactly what it would be granted, why, and the command to re-run with --approve <fingerprint>. The fingerprint is bound to that plugin, version, files and access; anything different needs a new one.'
 
 export const PLUGIN_RUNTIME_COMMAND_SPECS: CommandSpec[] = [
   {
@@ -208,12 +208,12 @@ export const PLUGIN_RUNTIME_COMMAND_SPECS: CommandSpec[] = [
       'The inner loop: loads the folder like `orca plugin dev load` (refreshing its .orca/types), then prints each log line its panels, editors and worker write, every reload a save causes, and status changes such as errored or invalid with the error.',
       'A first load that needs approval, run in a terminal without --json, shows the grants and asks `Approve and load? [y/N]`; yes loads it with that fingerprint and keeps watching. Anything else, --json or no terminal (agents, pipes) fails like `orca plugin dev load` (exit 3, with the re-run command).',
       'When an edit asks for new access it prints the `orca plugin dev reload <dir> --approve <fingerprint>` command to run from another shell; this one keeps watching.',
-      'Ctrl-C unloads the folder (unless it was loaded before this command) and exits 0; a second Ctrl-C exits at once. If the connection to Orca drops it says so and exits 1.',
-      "--check runs `orca plugin check` after the load and after each reload and prints the result inline (one `check` event with --json; it fails while Orca does not run the plugin, such as pending approval, even if the panels render). Like `orca plugin check` it runs the plugin's code on this machine, unsandboxed, so use it on code you trust; it needs a local folder.",
-      '--shot <out-dir> opens one panel in the right sidebar once (the first, or --shot-panel <id>; an unknown id fails at start), then after the load and each reload that leaves the plugin running saves a PNG of it, like `orca plugin shot`, to <out-dir>/<plugin-key>-<panel>.png (overwritten; a `shot` event). It never switches the sidebar again: while you show another tab or close the sidebar it skips, with one `shot_skipped` event per time away, and resumes when the panel is back. With --check, the check runs first. Needs the Orca desktop app.',
+      'Ctrl-C unloads the folder (unless it was loaded before this command) and exits 0; a second Ctrl-C exits at once. If the connection to BrzA Studio drops it says so and exits 1.',
+      "--check runs `orca plugin check` after the load and after each reload and prints the result inline (one `check` event with --json; it fails while BrzA Studio does not run the plugin, such as pending approval, even if the panels render). Like `orca plugin check` it runs the plugin's code on this machine, unsandboxed, so use it on code you trust; it needs a local folder.",
+      '--shot <out-dir> opens one panel in the right sidebar once (the first, or --shot-panel <id>; an unknown id fails at start), then after the load and each reload that leaves the plugin running saves a PNG of it, like `orca plugin shot`, to <out-dir>/<plugin-key>-<panel>.png (overwritten; a `shot` event). It never switches the sidebar again: while you show another tab or close the sidebar it skips, with one `shot_skipped` event per time away, and resumes when the panel is back. With --check, the check runs first. Needs the BrzA Studio desktop app.',
       '--json prints one JSON object per line: `loaded`, `log`, `reloaded`, `status`, `approval`, `check`, `shot`, `shot_skipped`, `warning`, `disconnected`, `unloaded` (field `type`). A failed first load prints the usual error envelope instead, on one line.',
       APPROVE_NOTE,
-      'With --environment the folder is a path on that Orca server; pass it absolute.',
+      'With --environment the folder is a path on that BrzA Studio server; pass it absolute.',
       EXIT_CODES_NOTE
     ],
     examples: [
@@ -230,12 +230,12 @@ export const PLUGIN_RUNTIME_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'dir', 'approve'],
     positionalArgs: ['dir'],
     notes: [
-      'Adds the folder to Settings → Plugins → Development folders on the Orca host; it overrides an installed plugin with the same key.',
-      'Orca reloads the plugin when its files change. For an approved panel, editor or worker, later code edits run without asking again; new access does not.',
+      'Adds the folder to Settings → Plugins → Development folders on the BrzA Studio host; it overrides an installed plugin with the same key.',
+      'BrzA Studio reloads the plugin when its files change. For an approved panel, editor or worker, later code edits run without asking again; new access does not.',
       '.ts, .tsx, .mts and .jsx files load without a build step. When the folder uses them (or components panels) and is on this machine, this also refreshes its .orca/types typings, like `orca plugin types`.',
       APPROVE_NOTE,
       'Without approval the folder stays loaded but nothing in it runs.',
-      'With --environment the folder is a path on that Orca server; pass it absolute.',
+      'With --environment the folder is a path on that BrzA Studio server; pass it absolute.',
       EXIT_CODES_NOTE
     ],
     examples: ['orca plugin dev load ./dusk-theme', 'orca plugin dev load ./notes-editor --json']
@@ -247,7 +247,7 @@ export const PLUGIN_RUNTIME_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'dir', 'approve'],
     positionalArgs: ['dir'],
     notes: [
-      'Orca already reloads on file changes; use this when a change was missed (network or WSL folders) or after changing commands or shortcuts, which need a new approval.',
+      'BrzA Studio already reloads on file changes; use this when a change was missed (network or WSL folders) or after changing commands or shortcuts, which need a new approval.',
       EXIT_CODES_NOTE
     ],
     examples: ['orca plugin dev reload', 'orca plugin dev reload ./notes-editor --json']

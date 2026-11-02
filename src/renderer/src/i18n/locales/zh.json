@@ -6,7 +6,7 @@
       "unsupportedLaunch": "OpenCode 无法在此次启动中应用所选模型。请使用受支持的启动参数打开新的本地终端，或不指定模型。"
     },
     "terminalPreparationFailed": "无法为 {{value0}} 打开终端。请检查工作区连接和智能体设置，然后重试。",
-    "terminalPromptFailed": "Orca 已为 {{value0}} 打开终端，但无法传递你的提示。请在该终端中发送提示。"
+    "terminalPromptFailed": "BrzA Studio 已为 {{value0}} 打开终端，但无法传递你的提示。请在该终端中发送提示。"
   },
   "app": {
     "saving": {
@@ -111,7 +111,7 @@
         "shared": "与其他终端应用共享。这是总容量，并非可用数量。",
         "disconnected": "此主机已断开连接。请重新连接以查看或更改终端上限。",
         "unsupported": "此主机的终端服务尚不支持更改此上限。",
-        "environment": "此 Orca 实例的终端上限由环境变量设置。要在此编辑，请先移除此主机上的相应环境设置。",
+        "environment": "此 BrzA Studio 实例的终端上限由环境变量设置。要在此编辑，请先移除此主机上的相应环境设置。",
         "savedUnreadable": "无法读取此主机已保存的终端上限。当前使用 {{value}}。输入数值并按 Enter 键即可替换。",
         "failed": "无法确认终端上限。请重试。",
         "retry": "重试",
@@ -270,8 +270,8 @@
         "remove": "移除",
         "reload": "从文件夹重新加载",
         "removeTitle": "移除 {{name}}？",
-        "removeUnpackedDescription": "它会连同已保存的数据一起从所有 Orca 浏览器配置文件中移除。磁盘上的文件夹会保留原位。",
-        "removeDescription": "它会连同已保存的数据一起从所有 Orca 浏览器配置文件中移除。",
+        "removeUnpackedDescription": "它会连同已保存的数据一起从所有 BrzA Studio 浏览器配置文件中移除。磁盘上的文件夹会保留原位。",
+        "removeDescription": "它会连同已保存的数据一起从所有 BrzA Studio 浏览器配置文件中移除。",
         "heldUpdate": "版本 {{version}} 正在等待更多访问权限。",
         "reviewAccess": "查看访问权限",
         "loadError": "无法启动：{{error}}",
@@ -284,7 +284,7 @@
         "keywordChrome": "chrome",
         "keywordUnpacked": "已解压",
         "keywordPassword": "密码管理器",
-        "desktopOnly": "浏览器扩展程序只能在 Orca 桌面应用中运行。",
+        "desktopOnly": "浏览器扩展程序只能在 BrzA Studio 桌面应用中运行。",
         "webStore": {
           "placeholder": "Chrome 应用商店链接或扩展程序 ID",
           "inputLabel": "从 Chrome 应用商店添加",
@@ -337,14 +337,14 @@
       "editRowPermissions": "{{agent}} 权限：{{mode}}",
       "expandAgentSettings": "展开智能体设置",
       "collapseAgentSettings": "折叠智能体设置",
-      "permissionArgsTerminalOnly": "这些参数可能控制 {{agent}} 的终端权限，因此 Orca 不添加任何标志。聊天使用上方的权限选择。",
+      "permissionArgsTerminalOnly": "这些参数可能控制 {{agent}} 的终端权限，因此 BrzA Studio 不添加任何标志。聊天使用上方的权限选择。",
       "localSaveFailed": "无法保存智能体设置。请重试。",
       "localSaveFailedAgent": "无法保存 {{agent}} 设置。请重试。",
       "permissionFromArgs": "{{agent}} 在终端和新聊天中已设为 {{mode}}。",
       "permissionFromArgsTerminals": "{{agent}} 在终端中已设为 {{mode}}。",
       "permissionOwnAgent": "使用 {{agent}} 自己的设置",
       "permissionOwnAll": "各智能体自己的设置",
-      "permissionOwnLegacyDescription": "Orca 不在终端中添加权限标志；聊天使用设置 → 聊天。",
+      "permissionOwnLegacyDescription": "BrzA Studio 不在终端中添加权限标志；聊天使用设置 → 聊天。",
       "permissionOwnDescription": "终端和聊天遵循智能体自己的权限设置。",
       "permissionOwnShort": "自己的设置",
       "permissionWithoutAuto": "未使用“替我批准”的智能体",
@@ -368,7 +368,7 @@
       "codexHistorySharing": {
         "title": "在账户之间共享 Codex 历史记录",
         "description": "让每个 Codex 账户以及你自己的 ~/.codex 都能继续在其他账户中开始的对话。关闭后，每个账户的历史记录将保持独立。关闭不会移除任何已共享的内容。",
-        "unsupported": "请更新 {{host}} 上的 Orca 以在那里更改此设置。",
+        "unsupported": "请更新 {{host}} 上的 BrzA Studio 以在那里更改此设置。",
         "updateFailed": "无法更新 {{host}} 上的设置。"
       },
       "installCliForTerminal": "安装 {{value0}} CLI 即可在终端中打开。",
@@ -774,15 +774,15 @@
           "localBaseRefRefreshFailedDetailNotFastForward": "本地 {{value0}} 不存在，或无法从远程基线干净快进。手动更新前请检查是否有仅存在于本地的提交。",
           "localBaseRefRefreshFailedDetailError": "更新本地 {{value0}} 时 Git 返回错误。请检查仓库是否有锁定的 refs 或异常工作树状态，然后手动更新本地 {{value0}}。",
           "localBaseRefShallowHistoryTitle": "本地 {{value0}} 未更新：浅克隆",
-          "localBaseRefShallowHistoryNamed": "“{{value0}}”由 {{value1}} 创建，不受影响。Orca 无法同时更新你的本地 {{value2}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value2}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
-          "localBaseRefShallowHistory": "你的工作区由 {{value0}} 创建，不受影响。Orca 无法同时更新你的本地 {{value1}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value1}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
+          "localBaseRefShallowHistoryNamed": "“{{value0}}”由 {{value1}} 创建，不受影响。BrzA Studio 无法同时更新你的本地 {{value2}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value2}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
+          "localBaseRefShallowHistory": "你的工作区由 {{value0}} 创建，不受影响。BrzA Studio 无法同时更新你的本地 {{value1}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value1}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
           "localBaseRefRefreshTurnOff": "禁用检查",
           "localBaseRefRefreshTurnOffHelp": "了解“禁用检查”的作用",
-          "localBaseRefRefreshTurnOffTooltip": "关闭 Orca 设置 {{value0}}。创建工作区时 Orca 将不再更新本地 {{value1}}，此警告也不会再出现。新工作区不受影响。可随时在设置 › Git 中重新开启。",
+          "localBaseRefRefreshTurnOffTooltip": "关闭 BrzA Studio 设置 {{value0}}。创建工作区时 BrzA Studio 将不再更新本地 {{value1}}，此警告也不会再出现。新工作区不受影响。可随时在设置 › Git 中重新开启。",
           "localBaseRefUnshallow": "取消浅克隆",
           "localBaseRefUnshallowFailed": "无法为此工作区打开终端",
           "localBaseRefUnshallowFailedDescription": "请改为在此仓库的终端中运行 {{value0}}。",
-          "localBaseRefRefreshTurnedOff": "Orca 将不再更新本地 {{value0}}",
+          "localBaseRefRefreshTurnedOff": "BrzA Studio 将不再更新本地 {{value0}}",
           "localBaseRefRefreshTurnedOffDescription": "可在设置 › {{value0}} 中重新开启。",
           "localBaseRefRefreshTurnOffFailed": "无法关闭 {{value0}}",
           "0216895fb5": "删除分支失败",
@@ -834,9 +834,9 @@
           "moveToGroupOtherHost": "无法将项目移动到分组",
           "moveToGroupOtherHostDesc": "运行此项目的计算机上没有此分组。项目只能加入保存在其所在计算机上的分组。",
           "pendingRemovalRefused": "服务器保留了你在其离线期间移除的项目",
-          "removeProjectHostUnreachable": "无法连接其服务器。现在从此桌面移除，Orca 会在服务器重新连接后将其从服务器移除。",
+          "removeProjectHostUnreachable": "无法连接其服务器。现在从此桌面移除，BrzA Studio 会在服务器重新连接后将其从服务器移除。",
           "removeProjectLocallyNow": "现在从此桌面移除",
-          "removeProjectHostDisconnected": "其服务器已断开连接。现在从此桌面移除，重新连接后 Orca 会将其从服务器移除。"
+          "removeProjectHostDisconnected": "其服务器已断开连接。现在从此桌面移除，重新连接后 BrzA Studio 会将其从服务器移除。"
         },
         "settings": {
           "e12dab333b": "切换服务器失败"
@@ -1265,9 +1265,9 @@
               "undecryptableAppBoundMixed": "BrzA Studio 无法解密该浏览器 cookie 的 {{value0}}，因为它们使用应用程序绑定加密；由于其他原因，{{value1}} more 无法解密。您可以使用“从文件...”从文件导入 cookie。",
               "undecryptableKeyring": "由于系统密钥环不可用，{{value0}} cookie 无法解密。解锁您的登录密钥环（或安装 Secret Service 提供程序，例如 gnome-keyring）并再次导入。",
               "undecryptableKeyringMixed": "由于系统密钥环不可用，{{value0}} cookie 无法解密；由于其他原因，{{value1}} more 无法解密。解锁您的登录密钥环（或安装 Secret Service 提供程序，例如 gnome-keyring）并再次导入。",
-              "secretToolMissing": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为未安装 secret-tool。请安装 libsecret-tools（或你的发行版的等效软件包）后重新导入。",
-              "cookieKeyLocked": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为系统密钥环已锁定或拒绝访问。请解锁你的登录密钥环，并在提示时允许访问，然后重新导入。",
-              "cookieKeyUnavailable": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为无法读取 Cookie 加密密钥。请重试导入、使用“从文件…”导入 Cookie，或直接在 Orca 中登录。",
+              "secretToolMissing": "BrzA Studio 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为未安装 secret-tool。请安装 libsecret-tools（或你的发行版的等效软件包）后重新导入。",
+              "cookieKeyLocked": "BrzA Studio 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为系统密钥环已锁定或拒绝访问。请解锁你的登录密钥环，并在提示时允许访问，然后重新导入。",
+              "cookieKeyUnavailable": "BrzA Studio 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为无法读取 Cookie 加密密钥。请重试导入、使用“从文件…”导入 Cookie，或直接在 BrzA Studio 中登录。",
               "otherUndecryptableCookies": "另有 {{count}} 个 Cookie 因其他原因无法解密。",
               "undecryptableUnknown": "{{value0}} cookie 无法解密并被跳过。完全关闭源浏览器并再次尝试导入。",
               "unrecognizedWarning": "cookie 导入结束时出现此版本的 BrzA Studio 无法识别的警告。更新 BrzA Studio 以查看详细信息，然后在依赖其 cookie 之前检查此配置文件。",
@@ -1362,7 +1362,7 @@
       "aiVaultResumeRefusal": {
         "openInChat": "此 {{value0}} 会话已在聊天中打开。请刷新会话历史以打开它。",
         "ownershipUnknown": "BrzA Studio 无法确认此 {{value0}} 会话的归属。请刷新会话历史并重试。",
-        "preparationRefused": "Orca 无法准备此 {{value0}} 对话。请开启新聊天继续。"
+        "preparationRefused": "BrzA Studio 无法准备此 {{value0}} 对话。请开启新聊天继续。"
       },
       "composerCreateHandoff": {
         "reopen": "重新打开",
@@ -1396,7 +1396,7 @@
         }
       },
       "claudeAgentRowView": {
-        "subagentNavigationSetup": "请在“设置 → 智能体”中启用 Claude 子智能体导航，然后在 Orca 中启动 Claude 2.1.300+。检查 keybindings.json 是否仍将 Ctrl+Alt+G、H 或 V 绑定到 command:orca-agent-view。",
+        "subagentNavigationSetup": "请在“设置 → 智能体”中启用 Claude 子智能体导航，然后在 BrzA Studio 中启动 Claude 2.1.300+。检查 keybindings.json 是否仍将 Ctrl+Alt+G、H 或 V 绑定到 command:orca-agent-view。",
         "permissionPrompt": "请先回应 Claude 的权限提示，再切换智能体。"
       },
       "wslHostWindowsDriveRefusal": {
@@ -1526,7 +1526,7 @@
         "linearTitle": "Linear",
         "linearDescription": "Linear 在 BrzA Studio 中的工作方式、设置清单、智能体技能和提示词示例。",
         "pluginsTitle": "插件",
-        "pluginsDescription": "安装和管理 Orca 插件（Alpha 版）。",
+        "pluginsDescription": "安装和管理 BrzA Studio 插件（Alpha 版）。",
         "tasksDescription": "连接提供商、安装 Linear 技能并选择要在任务中显示的内容。",
         "artifactsTitle": "工件",
         "artifactsDescription": "与您的团队共享 HTML 和 Markdown 文件并管理他们的公共链接。",
@@ -2670,7 +2670,7 @@
         "moreSinceLastUpdate": "自上次更新以来另有 +{{count}} 个版本",
         "downloadingPercent": "下载中... {{percent}}%",
         "restartToInstallFailed": "无法重启以安装更新。",
-        "http1RetryAvailable": "Orca 可以通过 HTTP/1.1 兼容模式重试。",
+        "http1RetryAvailable": "BrzA Studio 可以通过 HTTP/1.1 兼容模式重试。",
         "restarting": "正在重启...",
         "updateCheckFailed": "检查更新失败",
         "updateIncomplete": "无法完成更新。",
@@ -2860,7 +2860,7 @@
             "c5bc7ec007": "视图筛选条件：{{value0}}",
             "840c268665": "添加仓库",
             "dffa899f36": "取消",
-            "7037c8f5f1": "仓库不在 Orca 中",
+            "7037c8f5f1": "仓库不在 BrzA Studio 中",
             "512fc171d6": "选择一个项目来开始。",
             "71fb69926c": "刷新",
             "a8fa0d2bf5": "刷新中",
@@ -3652,8 +3652,8 @@
             "openSupportedWorkspace": "在恢复会话之前，请先打开一个工作区。",
             "sessionHostMismatchUnsupported": "此会话属于其他主机。请将其拖放到同一主机上的工作区。",
             "oldPayload": "此会话是从较早版本的 BrzA Studio 窗口拖入的。请改从会话历史恢复。",
-            "legacyDragCannotRetarget": "此会话是从旧版 Orca 窗口拖入的，因此 Orca 无法将其切换到所选的 Codex 账户。请从会话历史面板恢复。",
-            "legacyDragPrepareFailed": "Orca 无法准备此旧版 Codex 会话。请再次尝试恢复。"
+            "legacyDragCannotRetarget": "此会话是从旧版 BrzA Studio 窗口拖入的，因此 BrzA Studio 无法将其切换到所选的 Codex 账户。请从会话历史面板恢复。",
+            "legacyDragPrepareFailed": "BrzA Studio 无法准备此旧版 Codex 会话。请再次尝试恢复。"
           },
           "TabGroupDropOverlay": {
             "paneColumnLabel": "新建拆分"
@@ -3689,7 +3689,7 @@
             "465e432ef1": "无法为 {{value0}} 构建启动命令。",
             "e518f544b1": "未检测到智能体",
             "8dea9b5cdf": "没有启用智能体",
-            "terminalListNeedsServerUpdate": "更新此服务器上的 Orca 以列出终端智能体",
+            "terminalListNeedsServerUpdate": "更新此服务器上的 BrzA Studio 以列出终端智能体",
             "terminalListFailed": "无法列出此工作区的终端智能体",
             "chatNotInstalled": "未安装",
             "startChat": "开始与 {{value0}} 聊天",
@@ -4855,7 +4855,7 @@
           "updateOne": "更新技能",
           "updateMany": "更新技能",
           "description": "更新 {{value0}}，让智能体遵循此版本 BrzA Studio 的最新说明。",
-          "title_other": "{{count}} 个已安装的 Orca 技能需要更新"
+          "title_other": "{{count}} 个已安装的 BrzA Studio 技能需要更新"
         },
         "SkillFreshnessUpdateDialog": {
           "title": "更新技能",
@@ -4963,12 +4963,12 @@
         },
         "SkillInstallManagementDialog": {
           "8095927ff3": "关闭",
-          "64c71cf7b9": "Orca 尚未在此计算机上安装任何技能。",
+          "64c71cf7b9": "BrzA Studio 尚未在此计算机上安装任何技能。",
           "0900db719a": "— 已断开连接",
           "176fef9516": "· SSH",
           "6cb1fbe039": "这台电脑",
-          "3677ae58e7": "Orca 通过链接安装的技能。可以重新安装、回退到早期版本或将其删除。",
-          "44d118a8f7": "由 Orca 安装",
+          "3677ae58e7": "BrzA Studio 通过链接安装的技能。可以重新安装、回退到早期版本或将其删除。",
+          "44d118a8f7": "由 BrzA Studio 安装",
           "dab29e4b54": "{{installed}} 已安装 · {{updated}} 已更新 · {{keptLocal}} 保留在本地"
         },
         "SkillInstallReviewContent": {
@@ -5305,7 +5305,7 @@
           "a23b22d16f": "已复制",
           "74fc00776f": "错误详情",
           "ca3b225195": "分支自动命名失败",
-          "couldNotGenerateBranchName": "Orca 无法根据智能体的第一条消息为 <name>{{name}}</name> 生成分支名称。"
+          "couldNotGenerateBranchName": "BrzA Studio 无法根据智能体的第一条消息为 <name>{{name}}</name> 生成分支名称。"
         },
         "CreateProjectLocationField": {
           "95548e33bf": "选择父文件夹...",
@@ -5326,13 +5326,13 @@
           "86f0ae1257": "删除工作区",
           "removeFolderProjectInstead": "请移除文件夹项目，而不是删除此工作区。",
           "gitBlocksMainWorktree": "Git 不允许移除主工作树。",
-          "removeBatchFolder_other": "从 Orca 移除<target>{{count}} 个工作区</target>。磁盘上的项目文件夹不会被删除。",
-          "removeBatchMixed_other": "从 Orca 移除<target>{{count}} 个工作区</target>。Git 工作树也会从 git 和磁盘中移除；文件夹工作区只会移除 Orca 中的工作区条目。",
+          "removeBatchFolder_other": "从 BrzA Studio 移除<target>{{count}} 个工作区</target>。磁盘上的项目文件夹不会被删除。",
+          "removeBatchMixed_other": "从 BrzA Studio 移除<target>{{count}} 个工作区</target>。Git 工作树也会从 git 和磁盘中移除；文件夹工作区只会移除 BrzA Studio 中的工作区条目。",
           "removeBatchGit_other": "从 git 移除<target>{{count}} 个工作区</target>，并删除其工作区文件夹。",
-          "removeSingleFolder": "从 Orca 移除 <target/>。磁盘上的项目文件夹不会被删除。",
+          "removeSingleFolder": "从 BrzA Studio 移除 <target/>。磁盘上的项目文件夹不会被删除。",
           "removeSingleGit": "从 git 移除 <target/>，并删除其工作区文件夹。",
-          "removeWithChildrenFolder_other": "从 Orca 移除 <target/> 和<descendants>{{count}} 个子工作区</descendants>。磁盘上的项目文件夹不会被删除。",
-          "removeWithChildrenMixed_other": "从 Orca 移除 <target/> 和<descendants>{{count}} 个子工作区</descendants>。Git 工作树也会从 git 和磁盘中移除；文件夹工作区只会移除 Orca 中的工作区条目。",
+          "removeWithChildrenFolder_other": "从 BrzA Studio 移除 <target/> 和<descendants>{{count}} 个子工作区</descendants>。磁盘上的项目文件夹不会被删除。",
+          "removeWithChildrenMixed_other": "从 BrzA Studio 移除 <target/> 和<descendants>{{count}} 个子工作区</descendants>。Git 工作树也会从 git 和磁盘中移除；文件夹工作区只会移除 BrzA Studio 中的工作区条目。",
           "removeWithChildrenGit_other": "从 git 移除 <target/> 和<descendants>{{count}} 个子工作区</descendants>，并删除其工作区文件夹。"
         },
         "DeleteWorktreeDirtyChangeHint": {
@@ -6174,7 +6174,7 @@
                   "442552c656": "打开设置并重试。",
                   "34a03a6565": "保持 {{value0}} 最新",
                   "4a18052018": "本地 {{value0}} 落后于 {{value1}}",
-                  "staleLocalBranch_other": "新工作树已是最新状态，但本地分支 {{branch}} 落后 {{count}} 个提交，因此 AI 差异比较可能会基于过时的历史记录。让 Orca 自动更新此分支。你可以随时在<settings>设置 › {{setting}}</settings>中更改此设置"
+                  "staleLocalBranch_other": "新工作树已是最新状态，但本地分支 {{branch}} 落后 {{count}} 个提交，因此 AI 差异比较可能会基于过时的历史记录。让 BrzA Studio 自动更新此分支。你可以随时在<settings>设置 › {{setting}}</settings>中更改此设置"
                 }
               }
             }
@@ -6241,9 +6241,9 @@
           "workspacesFailed": "无法移除此主机的 {{count}} 个工作区。主机已保留，您可以重试。",
           "advanced": "高级",
           "alsoForgetLocalHint": "仅从 BrzA Studio 中清除。远程文件、工作树和分支均不受影响。",
-          "wslHostEndsTerminalsUnlessShared": "从 Orca 中移除 {{value0}}。除非此计算机上打开的另一个 Orca 正在使用它，否则还会结束其打开的终端，并停止该发行版中的 Orca 服务器。发行版中的文件不受影响。",
-          "hostKeepsWorkspaces_other": "从此电脑移除 {{host}} 及其凭据。其 {{count}} 个工作区会保留在 Orca 中，远程文件不会受到影响。",
-          "alsoRemoveWorkspaces_other": "同时从 Orca 移除这 {{count}} 个工作区"
+          "wslHostEndsTerminalsUnlessShared": "从 BrzA Studio 中移除 {{value0}}。除非此计算机上打开的另一个 BrzA Studio 正在使用它，否则还会结束其打开的终端，并停止该发行版中的 BrzA Studio 服务器。发行版中的文件不受影响。",
+          "hostKeepsWorkspaces_other": "从此电脑移除 {{host}} 及其凭据。其 {{count}} 个工作区会保留在 BrzA Studio 中，远程文件不会受到影响。",
+          "alsoRemoveWorkspaces_other": "同时从 BrzA Studio 移除这 {{count}} 个工作区"
         },
         "HostRenameDialog": {
           "1a2b3c4d5e": "重命名主机",
@@ -6353,7 +6353,7 @@
           "port": "端口",
           "identityFile": "身份文件",
           "identityFilePlaceholder": "~/.ssh/id_ed25519（可选）",
-          "nameInOrca": "在 Orca 中的名称",
+          "nameInOrca": "在 BrzA Studio 中的名称",
           "serverNamePlaceholder": "开发机",
           "accessLink": "访问链接",
           "pairingCodePlaceholder": "orca://pair?code=...",
@@ -6370,7 +6370,7 @@
           "sshConfigPickerRestartRequired": "重新启动 BrzA Studio 以完成应用 SSH 配置选择器更新。",
           "sshConfigPickerFilled": "从 {{value0}} 开始填充。查看并保存。",
           "sshConfigPickerTitle": "从 ~/.ssh/config 中选择",
-          "sshConfigPickerImportDescription": "选择一个主机以填写表单，或将所有新主机添加到 Orca 的主机列表。",
+          "sshConfigPickerImportDescription": "选择一个主机以填写表单，或将所有新主机添加到 BrzA Studio 的主机列表。",
           "sshConfigPickerFilter": "过滤主机...",
           "sshConfigPickerHostsLabel": "SSH 配置主机",
           "sshConfigPickerLoading": "正在读取 ~/.ssh/config...",
@@ -6391,7 +6391,7 @@
           "sshConfigPickerRetry": "重试",
           "sshConfigPickerResolving": "阅读…",
           "pairingHelpShareComputer": "在另一台电脑上通过“设置 → 远程 BrzA Studio 服务器 → 共享此电脑”创建。",
-          "sshImportSynced_other": "已向 Orca 添加 {{count}} 个主机。",
+          "sshImportSynced_other": "已向 BrzA Studio 添加 {{count}} 个主机。",
           "sshConfigPickerInvalidResponse": "SSH 配置主机响应无效"
         },
         "ForgetSshWorkspaceDialog": {
@@ -6480,7 +6480,7 @@
           "copyDiagnostics": "复制诊断",
           "wslStoppedTitle": "WSL 发行版 {{value0}} 已停止",
           "wslUnverifiableTitle": "无法确认 WSL 发行版 {{value0}} 正在运行",
-          "wslRetained": "正在显示 Orca 已知的工作树。Orca 检测到该发行版运行后会刷新。",
+          "wslRetained": "正在显示 BrzA Studio 已知的工作树。BrzA Studio 检测到该发行版运行后会刷新。",
           "wslStartAndScan": "启动发行版并扫描",
           "wslStartAndScanHint": "点击图标启动该发行版并重新扫描。"
         },
@@ -6522,7 +6522,7 @@
           "startAndAdd": "启动并添加",
           "add": "添加主机",
           "refresh": "刷新",
-          "wsl1Reason": "WSL 1 无法运行 Orca 主机；请使用 {{command}} 转换",
+          "wsl1Reason": "WSL 1 无法运行 BrzA Studio 主机；请使用 {{command}} 转换",
           "noWsl2Title": "未找到 WSL 2 发行版",
           "noWsl2Install": "在 Windows 终端中使用 {{command}} 安装一个，然后选择“刷新”。"
         },
@@ -6541,9 +6541,9 @@
           "removalPending": "移除未完成"
         },
         "wslHostRemoval": {
-          "keptForOthers": "已从此 Orca 中移除。该主机将继续为 {{value0}} 运行。",
+          "keptForOthers": "已从此 BrzA Studio 中移除。该主机将继续为 {{value0}} 运行。",
           "partial": "主机已被移除，但发行版中仍有内容在运行：{{value0}}",
-          "pending": "Orca 尚未移除该主机：{{value0}} 可再次移除以重试，或连接以保留它。",
+          "pending": "BrzA Studio 尚未移除该主机：{{value0}} 可再次移除以重试，或连接以保留它。",
           "unavailable": "此电脑上无法使用 WSL 主机。"
         },
         "addRepoWslHostFolderPicker": {
@@ -6559,7 +6559,7 @@
           "showError": "无法显示检测到的工作树。请重试。"
         },
         "repoHeaderProjectActions": {
-          "hideNonOrcaWorktrees": "隐藏非 Orca 工作树",
+          "hideNonOrcaWorktrees": "隐藏非 BrzA Studio 工作树",
           "showHiddenWorktrees": "显示隐藏的工作树"
         },
         "useWorktreeCardLinkedDetails": {
@@ -7426,7 +7426,7 @@
           "e2955d9ccb": "配置创建新工作区的位置。",
           "7511097c5d": "工作区",
           "externalWorktrees": "外部工作树",
-          "externalWorktreesDescription": "选择此主机上默认显示哪些在 Orca 外部创建的工作树。",
+          "externalWorktreesDescription": "选择此主机上默认显示哪些在 BrzA Studio 外部创建的工作树。",
           "31e300af1c": "删除工件之前询问",
           "fb29a73a17": "在删除共享工件并断开其公共链接之前显示确认对话框。",
           "bf46474e33": "在删除共享工件之前显示确认信息。任何持有其公共链接的人都会失去访问权限。"
@@ -7929,8 +7929,8 @@
           "c7ef4415de": "显示名称",
           "b0a0c14a1c": "侧边栏和选项卡的项目特定显示详细信息。",
           "removeProjectAllHosts": "从所有已配置主机的 BrzA Studio 中删除该项目。",
-          "removeProjectCheckout": "从 Orca 中删除此检出。此项目的其他检出将保留。",
-          "removeProjectKeepCheckouts": "从 Orca 中删除该项目。拥有独立设置的检出将保留。",
+          "removeProjectCheckout": "从 BrzA Studio 中删除此检出。此项目的其他检出将保留。",
+          "removeProjectKeepCheckouts": "从 BrzA Studio 中删除该项目。拥有独立设置的检出将保留。",
           "0909e5d650": "删除项目",
           "ee5a290616": "作为文件夹打开。 Git 功能对此工作区不可用。",
           "323debba71": "类型：",
@@ -9219,7 +9219,7 @@
             "a942905148": "创建新浏览器选项卡时打开的 URL。留空以打开空白选项卡。",
             "c3903322d2": "默认主页",
             "19ea5607cf": "localhost 工作树标签",
-            "4e0fdf0a3f": "将工作区端口作为工作树专属的 Orca localhost URL 打开，便于区分浏览器标签页。",
+            "4e0fdf0a3f": "将工作区端口作为工作树专属的 BrzA Studio localhost URL 打开，便于区分浏览器标签页。",
             "terminalLinkActions": {
               "terminal": "终端",
               "chat": "聊天",
@@ -9442,7 +9442,7 @@
             },
             "browserExtensions": {
               "title": "浏览器扩展程序",
-              "description": "在 Orca 浏览器标签页中运行 Chrome 扩展程序，例如密码管理器。",
+              "description": "在 BrzA Studio 浏览器标签页中运行 Chrome 扩展程序，例如密码管理器。",
               "extension": "扩展程序",
               "chrome": "chrome",
               "password": "密码管理器"
@@ -10932,7 +10932,7 @@
         },
         "BrowserLocalhostWorktreeLabelsSetting": {
           "8ac8c3ad19": "localhost 工作树标签",
-          "1db3c8b983": "将工作区端口作为工作树专属的 Orca localhost URL 打开，便于区分浏览器标签页。"
+          "1db3c8b983": "将工作区端口作为工作树专属的 BrzA Studio localhost URL 打开，便于区分浏览器标签页。"
         },
         "AgentRuntimeSetting": {
           "label": "智能体运行时",
@@ -11234,8 +11234,8 @@
           "managedOverSshHelp": "此桌面通过 SSH 更新此服务器。请在远程 BrzA Studio 服务器中该服务器所在行使用“更新”。"
         },
         "BrowserLinkRoutingSetting": {
-          "description": "在 Orca 内置浏览器中打开 Orca 各处的 http(s) 链接。登录页面和 {{shortcut}} 始终使用系统浏览器。",
-          "descriptionBase": "在 Orca 内置浏览器中打开 Orca 各处的 http(s) 链接。登录页面仍会在系统浏览器中打开。"
+          "description": "在 BrzA Studio 内置浏览器中打开 BrzA Studio 各处的 http(s) 链接。登录页面和 {{shortcut}} 始终使用系统浏览器。",
+          "descriptionBase": "在 BrzA Studio 内置浏览器中打开 BrzA Studio 各处的 http(s) 链接。登录页面仍会在系统浏览器中打开。"
         },
         "BrowserLinkRoutingModifierSetting": {
           "titleSystem": "按住 Shift 在系统浏览器中打开",
@@ -11263,7 +11263,7 @@
           },
           "decisionFailed": "无法保存权限决定。请重试。",
           "fullAccessWarning": "完全访问：作为普通程序运行，可以读取你的文件、使用网络并运行其他程序。",
-          "uiWarning": "在 Orca 内运行发布者的代码来绘制其视图。Orca 会显示它能访问的内容，并在启用前征求你的同意。"
+          "uiWarning": "在 BrzA Studio 内运行发布者的代码来绘制其视图。BrzA Studio 会显示它能访问的内容，并在启用前征求你的同意。"
         },
         "PluginConsentProvenance": {
           "official": "Official",
@@ -11301,14 +11301,14 @@
           "localHelp": "包含 orca-plugin.json 的文件夹",
           "gitLabel": "仓库 URL",
           "gitPlaceholder": "https://github.com/acme/orca-notes",
-          "gitHelp": "粘贴仓库、发行版或标签链接。未指定 #tag 或 #commit 时，Orca 使用最新的版本标签。",
+          "gitHelp": "粘贴仓库、发行版或标签链接。未指定 #tag 或 #commit 时，BrzA Studio 使用最新的版本标签。",
           "cancel": "取消",
           "installing": "正在安装…",
           "install": "安装",
           "installFailed": "插件安装失败。请检查来源后重试。",
           "checking": "正在检查…",
           "continue": "继续",
-          "gitUrlCredentials": "请从 URL 中删除用户名或令牌。Orca 会使用你的 Git 登录凭据。",
+          "gitUrlCredentials": "请从 URL 中删除用户名或令牌。BrzA Studio 会使用你的 Git 登录凭据。",
           "gitRefInvalid": "# 后面的版本不是有效的标签、分支或提交名称。",
           "gitRefNotFound": "此仓库中没有名为 {{value0}} 的标签或分支。",
           "gitUnreachable": "无法读取此仓库。请检查 URL，以及你的 Git 账户是否有访问权限。",
@@ -11468,7 +11468,7 @@
           "tryIt": "试一试",
           "mismatch": "下载内容与目录不符。未安装任何内容。",
           "catalogChanged": "目录已更改。请刷新后重试。",
-          "blocked": "Orca 的安全列表阻止了此插件。",
+          "blocked": "BrzA Studio 的安全列表阻止了此插件。",
           "downloadFailed": "无法下载。请检查网络连接。"
         },
         "pluginThemeApply": {
@@ -11484,15 +11484,15 @@
           "installGit": "无法获取此 Git 版本。请检查 URL、#ref 和访问权限。",
           "invalidManifestMissing": "插件根目录缺少 orca-plugin.json。请添加它，然后刷新插件。",
           "invalidManifest": "orca-plugin.json 无效。请修复它，然后刷新插件。",
-          "installedManifestUnloadable": "此版本无法在当前 Orca 中加载。请更新或重新安装。",
+          "installedManifestUnloadable": "此版本无法在当前 BrzA Studio 中加载。请更新或重新安装。",
           "invalidArtifact": "工作进程或面板文件缺失或不安全。修复后请刷新。",
           "consentChanged": "你审查期间此插件发生了变化。请重新审查。",
-          "installGitMoved": "Orca 检查后仓库发生了变化。请重试。"
+          "installGitMoved": "BrzA Studio 检查后仓库发生了变化。请重试。"
         },
         "plugins": {
           "search": {
             "title": "插件",
-            "description": "安装和管理 Orca 插件（Alpha 版）。",
+            "description": "安装和管理 BrzA Studio 插件（Alpha 版）。",
             "install": "安装插件",
             "permissions": "插件权限",
             "logs": "插件日志",
@@ -12068,7 +12068,7 @@
             "deferred": "尚未完成：服务器尚未准备好执行此操作。请稍后重试。",
             "failed": "BrzA Studio 无法在服务器上完成此操作。请重试。",
             "defaultServer": "未执行：此服务器是新项目的默认主机。停止前请在“新项目打开位置”中选择其他主机。",
-            "wslMoveRunning": "未完成：有项目正在移到此服务器上。移动完成后，Orca 会更新它。"
+            "wslMoveRunning": "未完成：有项目正在移到此服务器上。移动完成后，BrzA Studio 会更新它。"
           },
           "reassurance": "在各个主机上运行，通过你自己的 SSH 连接访问。你的代码和文件留在原处。只有 BrzA Studio 的项目、标签页和终端列表会移到该主机。"
         },
@@ -12106,8 +12106,8 @@
           "linkedProjects_one": "此主机的 BrzA Studio 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页和 {{count}} 个自动化未被迁移，它在那里创建的工作树会显示为外部工作树。",
           "linkedProjects_other": "此主机的 BrzA Studio 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页和 {{count}} 个自动化未被迁移，它在那里创建的工作树会显示为外部工作树。",
           "linkedProjectsNoAutomations": "此主机的 BrzA Studio 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页未被迁移，它在那里创建的工作树会显示为外部工作树。",
-          "automationsLeftDisabled_one": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
-          "automationsLeftDisabled_other": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
+          "automationsLeftDisabled_one": "此主机上的 BrzA Studio 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
+          "automationsLeftDisabled_other": "此主机上的 BrzA Studio 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
           "nodeDownloadBlocked": "这台电脑和这台主机都无法下载 BrzA Studio 服务器所需的 Node.js。请使用 Node.js 镜像，或检查两台机器的网络。",
           "nodeDownloadBlockedNoMirror": "这台电脑和这台主机都无法下载 BrzA Studio 服务器所需的 Node.js。请检查两台机器的网络或代理，然后重新连接。",
           "nodeDownloadBlockedMirrorTried": "这台电脑和这台主机都无法下载 Node.js，包括从 Node.js 下载镜像下载。请检查镜像设置，然后重新连接。",
@@ -12120,8 +12120,8 @@
           "refusedBlockedReason": "此主机尚未设置 BrzA Studio。{{reason}}",
           "refusedLeaveBehind": "此主机的部分已保存项目无法移到其 BrzA Studio 服务器：{{items}}。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
           "refusedLeaveBehindUnnamed": "此主机的部分已保存项目无法移到其 BrzA Studio 服务器。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
-          "windowsBuildUnsupported": "此主机运行的 Windows 版本低于 Windows 10 和 Windows Server 2016，无法运行 Orca 的服务器。请使用 Windows 版本较新的主机，或 Linux、macOS 主机。",
-          "windowsNoExtractor": "此 Windows 主机上既没有 tar.exe 也没有 PowerShell 的 Expand-Archive，Orca 无法在其中解包服务器。请先在主机上安装 Windows PowerShell 5.1，然后重新连接。",
+          "windowsBuildUnsupported": "此主机运行的 Windows 版本低于 Windows 10 和 Windows Server 2016，无法运行 BrzA Studio 的服务器。请使用 Windows 版本较新的主机，或 Linux、macOS 主机。",
+          "windowsNoExtractor": "此 Windows 主机上既没有 tar.exe 也没有 PowerShell 的 Expand-Archive，BrzA Studio 无法在其中解包服务器。请先在主机上安装 Windows PowerShell 5.1，然后重新连接。",
           "runtimeNoexec": "此主机不允许执行 ~/.orca-remote 中的程序，因此 BrzA Studio 无法在那里启动服务器。这通常是因为主目录以 noexec 选项挂载。请联系主机管理员，允许在该目录中执行程序，然后重新连接。",
           "setupContactLost": "BrzA Studio 在设置服务器时失去了与此主机的联系。主机上没有任何进程被停止。请重新连接以继续。"
         },
@@ -12384,30 +12384,30 @@
           "resultUpdateSkippedAgent": "{{result}} · 已跳过 {{agent}} 中的更新：{{reason}}"
         },
         "recoverServer": {
-          "title": "恢复 Orca 服务器",
-          "description": "此主机上的 Orca 服务器无法启动，因为上一次运行留下的锁仍然存在。",
+          "title": "恢复 BrzA Studio 服务器",
+          "description": "此主机上的 BrzA Studio 服务器无法启动，因为上一次运行留下的锁仍然存在。",
           "checking": "正在检查锁…",
-          "confirmCheck": "没有其他共享此主目录的机器在运行 Orca",
+          "confirmCheck": "没有其他共享此主目录的机器在运行 BrzA Studio",
           "cancel": "取消",
           "confirm": "清除锁并重启",
-          "eligible": "此机器的旧地址上没有响应，但 Orca 无法排除另一台同名机器共享此主目录文件夹的可能。",
+          "eligible": "此机器的旧地址上没有响应，但 BrzA Studio 无法排除另一台同名机器共享此主目录文件夹的可能。",
           "host": "主机",
           "lockBoot": "写入于启动时",
           "currentBoot": "当前启动",
-          "warning": "仅在没有其他共享此主目录的机器在此配置文件上运行 Orca 时才继续。",
-          "none": "已没有可清除的锁。重新连接以启动此主机上的 Orca 服务器。",
+          "warning": "仅在没有其他共享此主目录的机器在此配置文件上运行 BrzA Studio 时才继续。",
+          "none": "已没有可清除的锁。重新连接以启动此主机上的 BrzA Studio 服务器。",
           "manualCommand": "在主机上运行此命令，或删除“详情”中显示的锁文件：",
           "manualDelete": "确认没有其他机器使用它后，删除“详情”中显示的锁文件。",
           "action": "恢复服务器…",
           "written": "写入时间",
           "manualDeleteCommand": "在主机上手动删除锁：",
-          "manualDeleteWarning": "仅在没有其他共享此主目录的机器在此配置文件上运行 Orca 时才这样做。",
+          "manualDeleteWarning": "仅在没有其他共享此主目录的机器在此配置文件上运行 BrzA Studio 时才这样做。",
           "close": "关闭",
-          "reclaimedNotStarted": "锁已清除，但 Orca 服务器未启动。"
+          "reclaimedNotStarted": "锁已清除，但 BrzA Studio 服务器未启动。"
         },
         "claudeSubagentNavigation": {
           "title": "Claude 子智能体导航",
-          "description": "从侧边栏打开 Claude 子智能体。会在 Claude 的 keybindings.json 中添加快捷键，并在新的 Orca 窗格中加载 Orca mod。需要 Claude 2.1.300+ 和状态钩子。关闭时会移除 Orca 添加的快捷键；你删除过的快捷键保持删除状态。",
+          "description": "从侧边栏打开 Claude 子智能体。会在 Claude 的 keybindings.json 中添加快捷键，并在新的 BrzA Studio 窗格中加载 BrzA Studio mod。需要 Claude 2.1.300+ 和状态钩子。关闭时会移除 BrzA Studio 添加的快捷键；你删除过的快捷键保持删除状态。",
           "search": {
             "subagent": "子智能体",
             "navigation": "导航",
@@ -12473,20 +12473,20 @@
           "showInstalled": "显示已安装的插件"
         },
         "PluginDetailPage": {
-          "bundled": "随 Orca 附带",
+          "bundled": "随 BrzA Studio 附带",
           "localFolder": "本地文件夹",
           "gitUrl": "Git URL",
           "stoppedTitle": "因错误而停止",
           "stoppedBody": "它一直崩溃。重新启动以重试。",
-          "invalidTitle": "Orca 无法加载此插件",
-          "needsOrcaTitle": "需要 Orca {{value0}} 或更高版本",
-          "needsOrcaBody": "你的 Orca 版本为 {{value0}}。",
+          "invalidTitle": "BrzA Studio 无法加载此插件",
+          "needsOrcaTitle": "需要 BrzA Studio {{value0}} 或更高版本",
+          "needsOrcaBody": "你的 BrzA Studio 版本为 {{value0}}。",
           "back": "插件",
           "info": "信息",
           "version": "版本",
           "latest": "最新",
           "requires": "需要",
-          "requiresValue": "Orca {{value0}} 或更高版本",
+          "requiresValue": "BrzA Studio {{value0}} 或更高版本",
           "categories": "类别",
           "pluginId": "插件 ID",
           "repository": "仓库",
@@ -12505,7 +12505,7 @@
           "typeInstructions": "代理指令",
           "typePanel": "侧边栏面板",
           "typeWorker": "后台代码",
-          "adds": "为 Orca 添加",
+          "adds": "为 BrzA Studio 添加",
           "replaces": "替换你为 {{value0}} 设置的快捷键",
           "changeShortcuts": "在“快捷键”中更改",
           "command": "命令",
@@ -12530,7 +12530,7 @@
           "viewError": "查看错误",
           "copyId": "复制插件 ID",
           "checkUpdate": "检查更新",
-          "bundledWithOrca": "随 Orca 附带",
+          "bundledWithOrca": "随 BrzA Studio 附带",
           "installName": "安装 {{value0}}",
           "copied": "已复制插件 ID",
           "copyFailed": "无法复制插件 ID。",
@@ -12540,7 +12540,7 @@
           "updateAvailable": "有可用更新 {{value0}}",
           "updateLabel": "将 {{value0}} 更新到 {{value1}}",
           "update": "更新到 {{value0}}",
-          "needsOrca": "需要 Orca {{value0}}",
+          "needsOrca": "需要 BrzA Studio {{value0}}",
           "rollbackTo": "回滚到 {{value0}}…",
           "copyContentHash": "复制内容哈希",
           "reviewUpdate": "审核更新",
@@ -12577,7 +12577,7 @@
           "close": "关闭",
           "retry": "重试",
           "updated": "已更新",
-          "needsOrca": "需要 Orca {{value0}} 或更高版本",
+          "needsOrca": "需要 BrzA Studio {{value0}} 或更高版本",
           "current": "已安装",
           "allAccess": "查看全部访问权限",
           "newCommands": "命令",
@@ -12608,18 +12608,18 @@
         "pluginContributions": {
           "dark": "深色",
           "light": "浅色",
-          "languageIncomplete": "已翻译 {{value0}}%，不够完整，无法用作 Orca 的语言",
+          "languageIncomplete": "已翻译 {{value0}}%，不够完整，无法用作 BrzA Studio 的语言",
           "languageCoverage": "界面语言 · 已翻译 {{value0}}%",
           "newFileMenu": "添加到 + 菜单",
-          "editorReplacesViewer": "以此打开 {{value0}}，取代 Orca 的查看器",
-          "editorMayReplaceViewer": "可能以此打开 {{value0}}，取代 Orca 的查看器"
+          "editorReplacesViewer": "以此打开 {{value0}}，取代 BrzA Studio 的查看器",
+          "editorMayReplaceViewer": "可能以此打开 {{value0}}，取代 BrzA Studio 的查看器"
         },
         "PluginInstallConsent": {
           "noOtherAccess": "无其他访问权限",
           "replacesShortcut": "{{value0}}（{{value1}}）会替换你的“{{value2}}”快捷键。",
           "updatesKeepApproval": "仅在需要新访问权限时更新才会再次询问",
           "fullAccessUpdates": "更新可能会在不询问的情况下更改其代码",
-          "editsFileTypes": "在 Orca 中打开并编辑 {{value0}} 文件。它可以读取自己打开的文件。",
+          "editsFileTypes": "在 BrzA Studio 中打开并编辑 {{value0}} 文件。它可以读取自己打开的文件。",
           "install": "安装并启用",
           "keepOff": "保持关闭"
         },
@@ -12675,11 +12675,11 @@
         },
         "PluginNotOfficialWarning": {
           "unknownPublisher": "其发布者",
-          "install": "安装前请确认你信任 {{value0}}。此插件会在 Orca 中运行发布者的代码。",
-          "update": "更新前请确认你信任 {{value0}}。此插件会在 Orca 中运行发布者的代码。",
-          "installed": "请确认你信任 {{value0}}。此插件会在 Orca 中运行发布者的代码。",
+          "install": "安装前请确认你信任 {{value0}}。此插件会在 BrzA Studio 中运行发布者的代码。",
+          "update": "更新前请确认你信任 {{value0}}。此插件会在 BrzA Studio 中运行发布者的代码。",
+          "installed": "请确认你信任 {{value0}}。此插件会在 BrzA Studio 中运行发布者的代码。",
           "label": "非官方插件：",
-          "translations": "翻译可以更改 Orca 中的任何文字。请确认你信任 {{value0}}。"
+          "translations": "翻译可以更改 BrzA Studio 中的任何文字。请确认你信任 {{value0}}。"
         },
         "pluginConsentCopy": {
           "addsCommands": "添加命令",
@@ -12705,13 +12705,13 @@
         "PluginInstallTrustDialog": {
           "titleFolder": "请确认你信任此文件夹",
           "title": "请确认你信任 {{value0}}",
-          "theme": "此主题来自 {{value0}}，而非 Orca。请只安装你信任的作者的插件。",
-          "content": "此插件来自 {{value0}}，而非 Orca。请只安装你信任的作者的插件。",
-          "translations": "此翻译来自 {{value0}}，而非 Orca。翻译可以更改 Orca 中的任何文本，因此请只安装你信任的作者的翻译。",
-          "code": "此插件来自 {{value0}}，而非 Orca。它会在 Orca 内运行发布者的代码，因此仅在你信任 {{value0}} 时安装。",
-          "git": "Orca 尚未检查此仓库。来自它的插件可以在 Orca 内运行发布者的代码，因此仅在你信任 {{value0}} 时安装。",
-          "localFolder": "这是未经验证的本地文件夹。来自它的插件可以在 Orca 内运行代码，因此仅在你信任其来源时安装。",
-          "devFolder": "这是未经验证的本地文件夹。Orca 会按原样加载其插件，之后的代码修改会直接运行而不再询问，因此请只添加你信任的文件夹。",
+          "theme": "此主题来自 {{value0}}，而非 BrzA Studio。请只安装你信任的作者的插件。",
+          "content": "此插件来自 {{value0}}，而非 BrzA Studio。请只安装你信任的作者的插件。",
+          "translations": "此翻译来自 {{value0}}，而非 BrzA Studio。翻译可以更改 BrzA Studio 中的任何文本，因此请只安装你信任的作者的翻译。",
+          "code": "此插件来自 {{value0}}，而非 BrzA Studio。它会在 BrzA Studio 内运行发布者的代码，因此仅在你信任 {{value0}} 时安装。",
+          "git": "BrzA Studio 尚未检查此仓库。来自它的插件可以在 BrzA Studio 内运行发布者的代码，因此仅在你信任 {{value0}} 时安装。",
+          "localFolder": "这是未经验证的本地文件夹。来自它的插件可以在 BrzA Studio 内运行代码，因此仅在你信任其来源时安装。",
+          "devFolder": "这是未经验证的本地文件夹。BrzA Studio 会按原样加载其插件，之后的代码修改会直接运行而不再询问，因此请只添加你信任的文件夹。",
           "publisher": "发布者",
           "repository": "仓库",
           "folder": "文件夹",
@@ -14316,7 +14316,7 @@
           "yoloModeLabel": "Yolo 模式",
           "yoloPermissionsDescription": "智能体会在不询问的情况下运行命令和编辑文件，部分智能体还会绕过沙箱。仅在你信任的项目中使用。",
           "showMoreAgents_other": "再显示 {{count}} 个智能体 →",
-          "agentNotOnPath": "<agent>{{agent}}</agent> 尚未添加到 PATH。Orca 会将其设为默认，你可以随时安装。"
+          "agentNotOnPath": "<agent>{{agent}}</agent> 尚未添加到 PATH。BrzA Studio 会将其设为默认，你可以随时安装。"
         },
         "IntegrationsStep": {
           "277f30eb34": "Linear、GitLab、Bitbucket、Azure DevOps、Gitea 和 Jira 位于“设置”>“集成”中。",
@@ -14562,7 +14562,7 @@
           "aa97420ba4": "复制安装链接",
           "ac1eb64952": "安卓",
           "711e6f4b47": "iOS系统",
-          "e75647ace0": "用手机相机扫描此下载二维码。已经安装 Orca Mobile？继续到第 2 步查看配对二维码。",
+          "e75647ace0": "用手机相机扫描此下载二维码。已经安装 BrzA Studio Mobile？继续到第 2 步查看配对二维码。",
           "0d9b33299e": "下载应用。",
           "92ddfdfa1f": "第 1 步（共 2 步）",
           "ff48d9d520": "与另一台设备配对",
@@ -14595,7 +14595,7 @@
           "androidHelp": {
             "guide": "安装指南"
           },
-          "openAppAndScan": "打开 Orca Mobile，点按 <strong>配对桌面</strong>，然后扫描二维码。"
+          "openAppAndScan": "打开 BrzA Studio Mobile，点按 <strong>配对桌面</strong>，然后扫描二维码。"
         },
         "MobilePage": {
           "e17393c6a3": "手机预览",
@@ -15043,7 +15043,7 @@
                       "eddc532e58": "自动化工作区设置",
                       "56049b74c2": "自动运行安装和设置命令，以便每个新工作树都为智能体做好准备。",
                       "2cf795433b": "在多个仓库中开始工作",
-                      "42525ba8a4": "将您的关键仓库带入 Orca，这样您就可以开始智能体工作，而无需寻找文件夹。",
+                      "42525ba8a4": "将您的关键仓库带入 BrzA Studio，这样您就可以开始智能体工作，而无需寻找文件夹。",
                       "workOnTwoTasks": "同时处理两项任务",
                       "agentSkillsName": "为智能体提供 BrzA Studio 技能",
                       "agentSkillsDescription": "安装智能体用于操作 BrzA Studio 浏览器、控制你的电脑以及协调多步骤工作的技能。"
@@ -16154,7 +16154,7 @@
           "chooseEmoji": "选择表情符号"
         },
         "richMarkdownBlobImagePaste": {
-          "saveFailed": "无法将粘贴的图片保存到文档旁。重启 Orca 后可能无法加载该图片。"
+          "saveFailed": "无法将粘贴的图片保存到文档旁。重启 BrzA Studio 后可能无法加载该图片。"
         },
         "PluginCustomEditorFrame": {
           "loading": "正在加载编辑器…",
@@ -16162,13 +16162,13 @@
           "loadFailed": "无法加载 {{value0}}。请切换到源代码以编辑此文件。",
           "editTooLarge": "此文件过大，{{value0}} 无法保存更改。请改用源代码。",
           "saveBlocked": "无法保存 {{value0}} 的最新更改。",
-          "editsHeld": "{{value0}} 发送更改的速度过快；Orca 稍后会应用最新的一次。",
+          "editsHeld": "{{value0}} 发送更改的速度过快；BrzA Studio 稍后会应用最新的一次。",
           "largeFile": "文件较大，可能需要一点时间。"
         },
         "PluginBytesCustomEditorSurface": {
           "retry": "重试",
           "tooLarge": "{{value0}} 过大，无法在 {{value1}} 中打开（{{value2}}；上限为 {{value3}}）。",
-          "unsupported": "{{value0}} 无法从此文件的存储位置读取它。请更新托管该文件的 Orca 服务器，或切换到源代码。",
+          "unsupported": "{{value0}} 无法从此文件的存储位置读取它。请更新托管该文件的 BrzA Studio 服务器，或切换到源代码。",
           "readFailed": "无法为 {{value1}} 读取 {{value0}}。{{value2}}"
         }
       },
@@ -16252,7 +16252,7 @@
             "88fea8e84e": "不发送",
             "50b00dc327": "复制详情",
             "6d3ebe216a": "诊断文本",
-            "835037edc9": "Orca",
+            "835037edc9": "BrzA Studio",
             "8e24fe4f75": "已发送错误报告。",
             "8b8473c544": "已复制错误报告。",
             "765591798d": "正在检查错误报告...",
@@ -17225,7 +17225,7 @@
           "occurrencesCount_other": "{{count}} 次"
         },
         "capabilityProbe": {
-          "createIdempotencyUpdateRequired": "将自动化移至此主机需要更新版本的 Orca 服务器。请更新 HUB 后重试。"
+          "createIdempotencyUpdateRequired": "将自动化移至此主机需要更新版本的 BrzA Studio 服务器。请更新 HUB 后重试。"
         },
         "editDraft": {
           "unsupportedSchedule": "此自动化保存的计划不受支持。请在保存更改前选择受支持的计划。"
@@ -17760,7 +17760,7 @@
           "title": "工件",
           "refresh": "刷新",
           "shareSignInHeading": "登录以共享工件",
-          "shareSignInCopy": "使用您的 Orca 帐户上传工件并管理其公开链接。",
+          "shareSignInCopy": "使用您的 BrzA Studio 帐户上传工件并管理其公开链接。",
           "signIn": "登录 BrzA Studio",
           "empty": "没有共享工件",
           "emptyCopy": "打开 HTML 或 Markdown 文件并选择共享为工件，或要求您的智能体共享它。",
@@ -17875,7 +17875,7 @@
       },
       "NativeChatResumeOnRestartModal": {
         "serverTitle": "{{machine}} 已重启",
-        "serverBody": "这些聊天在 {{machine}} 上的 Orca 重启时正在进行中。恢复会把每个聊天还原到中断处，并让智能体继续。你自己的提示词不会重新发送。",
+        "serverBody": "这些聊天在 {{machine}} 上的 BrzA Studio 重启时正在进行中。恢复会把每个聊天还原到中断处，并让智能体继续。你自己的提示词不会重新发送。",
         "serverDismiss": "忽略",
         "serverResumeAll": "恢复 {{machine}} 上的全部 {{count}} 个",
         "title": "恢复中断的聊天？",
@@ -18284,10 +18284,10 @@
         "thisComputer": "此计算机"
       },
       "runtimeGitSyncClient": {
-        "completeMergeNeedsNewerHost": "完成合并需要此主机上安装更新版本的 Orca。请更新该主机上的 Orca。"
+        "completeMergeNeedsNewerHost": "完成合并需要此主机上安装更新版本的 BrzA Studio。请更新该主机上的 BrzA Studio。"
       },
       "runtimeGitWorkingTreeClient": {
-        "resolveConflictNeedsNewerHost": "解决冲突需要此主机上安装更新版本的 Orca。请更新该主机上的 Orca。"
+        "resolveConflictNeedsNewerHost": "解决冲突需要此主机上安装更新版本的 BrzA Studio。请更新该主机上的 BrzA Studio。"
       }
     },
     "ssh": {
@@ -18403,10 +18403,10 @@
         "historyInOtherAccount": "此聊天的历史记录位于另一个 Claude 账户中。请切换回该账户以继续此聊天。",
         "claudeAccountFolderMissing": "所选 Claude 账户的文件夹不存在。请重新登录该账户或选择其他账户。",
         "claudeAccountSetupFailed": "无法设置所选 Claude 账户。请重试或选择其他账户。",
-        "agentCommandNotRunnable": "设置 → 智能体中{{agent}}的“命令”必须以 Orca 能找到的程序开头。不支持变量、管道或其他 shell 语法；请在“环境”设置中配置变量。请修改或重置命令。",
+        "agentCommandNotRunnable": "设置 → 智能体中{{agent}}的“命令”必须以 BrzA Studio 能找到的程序开头。不支持变量、管道或其他 shell 语法；请在“环境”设置中配置变量。请修改或重置命令。",
         "runtimeNotInstalled": "运行此聊天的计算机上未安装 {{agent}}。请在最新版本的 BrzA Studio 中从聊天里安装。",
         "fullAccessAsRoot": "{{agent}} 以 root 身份运行时不会使用完全访问。请在运行此聊天的计算机的“设置”→“智能体”中为 {{agent}} 选择其他权限，然后开始新的聊天。",
-        "launchPreparationFailed": "Orca 无法在运行此聊天的计算机上准备启动 {{agent}}。",
+        "launchPreparationFailed": "BrzA Studio 无法在运行此聊天的计算机上准备启动 {{agent}}。",
         "conversationOpenElsewhere": "Codex 仍在保持此对话打开。请稍后重试，或关闭其他 Codex 终端。",
         "conversationOpenInTerminal": "{{agent}} 已在另一个终端中运行此对话。请退出那里的 {{agent}} 或关闭该终端，然后在这里继续。",
         "chooseClaudeAccount": "请在 Claude 账户设置中选择或添加一个。",
@@ -19087,7 +19087,7 @@
         "reconnect": "重新连接",
         "stopped": "{{distro}} 已停止",
         "start": "启动",
-        "unverifiable": "Orca 无法确认 {{distro}} 是否正在运行",
+        "unverifiable": "BrzA Studio 无法确认 {{distro}} 是否正在运行",
         "startToSend": "请启动 {{distro}} 后再发送。",
         "startDistro": "启动 {{distro}}"
       },
@@ -19621,7 +19621,7 @@
         "copySessionIdError": "复制会话 ID 失败"
       },
       "hostFile": {
-        "updateHostForOutsideFiles": "更新 {{value0}} 上的 Orca 以打开其工作区之外的文件"
+        "updateHostForOutsideFiles": "更新 {{value0}} 上的 BrzA Studio 以打开其工作区之外的文件"
       }
     },
     "onboarding": {
@@ -20134,7 +20134,7 @@
         "importFailed": "无法从 {{browser}} 导入 Cookie。",
         "importFailedTryClosing": "无法从 {{browser}} 导入 Cookie。请先尝试关闭 {{browser}}。",
         "importFailedWithLog": "无法从 {{browser}} 导入 Cookie：{{detail}}。详细信息已写入 {{logPath}}。",
-        "safariFullDiskAccess": "macOS 拒绝访问 Safari 的 Cookie。请在系统设置 → 隐私与安全 → 完全磁盘访问权限中授予 Orca 完全磁盘访问权限。",
+        "safariFullDiskAccess": "macOS 拒绝访问 Safari 的 Cookie。请在系统设置 → 隐私与安全 → 完全磁盘访问权限中授予 BrzA Studio 完全磁盘访问权限。",
         "connectionEnded": "导入期间与此服务器的连接已断开。请重新连接后重试。",
         "serverRepaired": "此服务器在导入期间已重新配对。请重试。"
       },
@@ -20213,20 +20213,20 @@
       "movedToHost": "已移至 {{distro}} 主机",
       "useHere": "重新在此电脑上使用",
       "useHereTitle": "要重新在此电脑上使用 {{name}} 吗？",
-      "useHereDescription": "Orca 会按移动前的状态在这里打开此项目。你的代码不受影响：它从未移动。移动后在 {{distro}} 主机上所做的更改（例如新标签页和聊天）会留在主机上，不会回来。与它一起移动的项目也会一起回来。在你于 {{distro}} 主机上将其移除之前，项目也会一直保留在那里。此窗口将重新加载。",
+      "useHereDescription": "BrzA Studio 会按移动前的状态在这里打开此项目。你的代码不受影响：它从未移动。移动后在 {{distro}} 主机上所做的更改（例如新标签页和聊天）会留在主机上，不会回来。与它一起移动的项目也会一起回来。在你于 {{distro}} 主机上将其移除之前，项目也会一直保留在那里。此窗口将重新加载。",
       "useHereConfirm": "在此电脑上使用",
       "useHereSuperseded": "之后一次移动到 {{distro}} 主机的操作包含此项目。请先将那次移动恢复。",
       "useHereRefusedTitle": "暂时无法在此处使用 {{name}}",
       "useHereRefusedOk": "确定",
       "useHereSupersededBy": "{{names}} 在此项目之后移到了 {{distro}} 主机。请先重新在此电脑上使用它们，再处理此项目。",
       "useHereMoveRunning": "移动到 {{distro}} 主机的操作仍在进行。请在其结束后重试。",
-      "useHereHostKeptForPeers": "{{project}} 已移到 {{distro}} 主机，该主机仍在为另一个 Orca 运行。重新添加该主机即可在此处再次使用它。",
-      "useHereHostUnreachable": "{{distro}} 主机没有响应，Orca 无法停止它上面的此项目副本，其智能体可能仍在运行。请在设置中连接或移除该主机，然后重试。",
+      "useHereHostKeptForPeers": "{{project}} 已移到 {{distro}} 主机，该主机仍在为另一个 BrzA Studio 运行。重新添加该主机即可在此处再次使用它。",
+      "useHereHostUnreachable": "{{distro}} 主机没有响应，BrzA Studio 无法停止它上面的此项目副本，其智能体可能仍在运行。请在设置中连接或移除该主机，然后重试。",
       "useHereHostStillRunning": "{{distro}} 主机上的此项目副本仍有终端在运行，其智能体可能会运行两次。请稍候再试。",
       "useHereHostTerminalsAsleep": "它在 {{distro}} 主机上的终端已进入休眠。打开该项目即可恢复。",
       "useHereFailed": "无法将此项目恢复到此电脑。",
-      "useHereHostRemovalPending": "{{distro}} 主机仍在移除中，因此 Orca 不会改动它。请在设置中完成移除，然后重试。",
-      "useHereHostAutomations": "Orca 无法关闭此项目在 {{distro}} 主机上的自动化，它们可能会运行两次。请在设置中连接该主机，然后重试。",
+      "useHereHostRemovalPending": "{{distro}} 主机仍在移除中，因此 BrzA Studio 不会改动它。请在设置中完成移除，然后重试。",
+      "useHereHostAutomations": "BrzA Studio 无法关闭此项目在 {{distro}} 主机上的自动化，它们可能会运行两次。请在设置中连接该主机，然后重试。",
       "useHereUnsavedTitle": "请先保存文件",
       "useHereUnsavedDescription": "将 {{name}} 恢复到此电脑会重新加载此窗口。请先保存或关闭以下文件：{{files}}",
       "automationRunsOnHost": "在 {{distro}} 主机上运行",
@@ -20259,18 +20259,18 @@
         "alreadyAdded": "{{distro}} 已是主机。",
         "distroStopped": "读取列表后，{{distro}} 已停止。选择“启动并添加”以启动它。",
         "distroUnverifiable": "WSL 没有回应 {{distro}} 是否正在运行。请刷新列表，或从对话框添加，系统会按需启动它。",
-        "wsl1": "{{distro}} 使用 WSL 1，Orca 已不再支持。请在 Windows 终端中使用以下命令将其转换为 WSL 2：{{command}}",
+        "wsl1": "{{distro}} 使用 WSL 1，BrzA Studio 已不再支持。请在 Windows 终端中使用以下命令将其转换为 WSL 2：{{command}}",
         "notRegistered": "{{distro}} 不是已安装的 WSL 发行版。请在 Windows 终端中运行 {{command}} 查看已安装的发行版，或重新安装它后重试。",
-        "sshManaged": "{{distro}} 已在为“{{server}}”运行 Orca 服务器，此电脑通过 SSH 访问该服务器。请先移除该服务器；暂不支持将其迁移为 WSL 主机。"
+        "sshManaged": "{{distro}} 已在为“{{server}}”运行 BrzA Studio 服务器，此电脑通过 SSH 访问该服务器。请先移除该服务器；暂不支持将其迁移为 WSL 主机。"
       },
       "statusDetails": {
         "runningListUnavailable": "Windows 未报告该发行版是否正在运行。",
-        "guestUnanswered": "发行版正在运行，但未响应 Orca 的检查。",
-        "orcadUnanswered": "发行版中的 Orca 服务器未响应。",
-        "restartGaveUp_other": "尝试 {{count}} 次后仍无法重启 {{distro}} 中的 Orca 服务器",
+        "guestUnanswered": "发行版正在运行，但未响应 BrzA Studio 的检查。",
+        "orcadUnanswered": "发行版中的 BrzA Studio 服务器未响应。",
+        "restartGaveUp_other": "尝试 {{count}} 次后仍无法重启 {{distro}} 中的 BrzA Studio 服务器",
         "serviceUnconfirmed": "WSL 服务未确认该发行版是否正在运行。",
-        "peerCheckFailed": "Orca 无法向 WSL 主机询问此电脑上的另一个 Orca 是否仍在使用该主机：{{detail}}",
-        "removalUnrecorded": "Orca 无法记录此次移除后仍在运行的内容：{{detail}}"
+        "peerCheckFailed": "BrzA Studio 无法向 WSL 主机询问此电脑上的另一个 BrzA Studio 是否仍在使用该主机：{{detail}}",
+        "removalUnrecorded": "BrzA Studio 无法记录此次移除后仍在运行的内容：{{detail}}"
       }
     },
     "agentSummary": {
@@ -20418,7 +20418,7 @@
     "eyebrowNew": "新功能",
     "eyebrowTip": "提示",
     "orcaCli": {
-      "title": "让智能体通过 Orca CLI 操控 Orca",
+      "title": "让智能体通过 BrzA Studio CLI 操控 BrzA Studio",
       "description": "让智能体协调子工作树，并在工作树之间通信。",
       "cta": "安装 CLI 与技能"
     },
@@ -20431,7 +20431,7 @@
       "title": "聊天界面来了",
       "offIntro": "智能体现在可以以聊天方式打开，支持富文本消息、可视化内容和图片。",
       "offTerminal": "更喜欢终端？终端将继续获得完整支持。在你选择聊天之前，智能体会继续在终端中打开。",
-      "onIntro": "聊天界面已结束实验阶段，正式成为 Orca 的一部分。你的智能体会继续以聊天方式打开，支持富文本消息、可视化内容和图片。",
+      "onIntro": "聊天界面已结束实验阶段，正式成为 BrzA Studio 的一部分。你的智能体会继续以聊天方式打开，支持富文本消息、可视化内容和图片。",
       "onTerminal": "终端同样会继续获得完整支持。你可以随时把任何智能体切换回终端。",
       "changeInSettings": "可随时在<link>设置 → 智能体</link>中更改。",
       "stayInTerminal": "继续使用终端",
@@ -20514,14 +20514,14 @@
         "stackGithubComOnly": "GitHub 堆栈中的 PR 仅在 GitHub.com 上可用。",
         "stackSameParent": "创建堆栈中的 PR 前，请选择其他父分支。",
         "stackParentWithoutReview": "父分支 {{base}} 没有打开的 PR。请先创建该 PR。",
-        "stackParentAmbiguous": "Orca 发现父分支 {{base}} 有多个打开的 PR。",
-        "stackHeadAmbiguous": "Orca 发现当前分支 {{head}} 有多个打开的 PR。",
+        "stackParentAmbiguous": "BrzA Studio 发现父分支 {{base}} 有多个打开的 PR。",
+        "stackHeadAmbiguous": "BrzA Studio 发现当前分支 {{head}} 有多个打开的 PR。",
         "stackParentMultipleStacks": "所选父 PR 属于多个堆栈。",
         "stackParentClosed": "所选父 PR 属于已关闭的堆栈。",
         "stackParentNotTop": "添加新层前，请选择堆栈最顶层的 PR 作为基础分支。",
         "stackConflict": "此 PR 已属于另一个 GitHub 堆栈。",
         "stacksUnavailable": "此仓库不支持 GitHub 堆栈中的 PR。",
-        "stackParentUnverified": "Orca 无法验证父 PR。请稍后重试。",
+        "stackParentUnverified": "BrzA Studio 无法验证父 PR。请稍后重试。",
         "stackExistingReviewOtherBase": "此分支已有打开的 PR，但其目标不是所选父分支。",
         "stackCreationUnconfirmed": "PR 可能已创建成功。请重试以完成堆栈注册。",
         "stackRegistrationUnavailable": "PR 已创建，但此仓库不支持 GitHub 堆栈。",
@@ -20543,7 +20543,7 @@
       "xhigh": "极高"
     },
     "variables": {
-      "basePrompt": "Orca 为此操作内置的提示词，包含 Orca 能安全收集的上下文。",
+      "basePrompt": "BrzA Studio 为此操作内置的提示词，包含 BrzA Studio 能安全收集的上下文。",
       "branch": "当前源代码管理分支名称。",
       "stagedFiles": "用于生成提交信息的已暂存文件列表，每行一个文件。",
       "stagedPatch": "用于生成提交信息的已暂存 Git 补丁。",
@@ -20554,7 +20554,7 @@
       "changedFiles": "当前分支与基准分支之间的文件更改摘要。",
       "patch": "用于生成 PR 详情的当前分支与基准分支的差异。",
       "firstPrompt": "此工作区或聊天中的第一个用户请求。",
-      "assistantMessage": "Orca 可获取的智能体初始回复。",
+      "assistantMessage": "BrzA Studio 可获取的智能体初始回复。",
       "linkedIssue": "与此工作区关联的 GitHub issue 编号。未关联 GitHub issue 时为空（包括关联 GitLab 的工作区）。优先使用带指示的模板：未关联时，单独的“Fixes #{linkedIssue}”会变成“Fixes #”。"
     },
     "textGeneration": {
@@ -20566,7 +20566,7 @@
         "agentBinaryNotFound": "在 PATH 中找不到 {{binary}}。请安装 {{label}} 以使用 AI 提交信息。",
         "timedOut": "生成在 {{seconds}} 秒后超时。",
         "outputTooLarge": "{{label}} CLI 命令产生了过多输出。请检查智能体的 CLI 配置后重试。",
-        "windowsBatchUnsafeArguments": "{{label}} 通过 Windows 批处理脚本运行，该脚本无法将多行提示词作为参数接收。请在设置中指定智能体的可执行文件，或使用不含 {prompt} 的自定义命令，让 Orca 通过 stdin 发送提示词。",
+        "windowsBatchUnsafeArguments": "{{label}} 通过 Windows 批处理脚本运行，该脚本无法将多行提示词作为参数接收。请在设置中指定智能体的可执行文件，或使用不含 {prompt} 的自定义命令，让 BrzA Studio 通过 stdin 发送提示词。",
         "cliTerminated": "{{label}} CLI 命令在退出前被终止。",
         "cliTerminatedWithDetail": "{{label}} CLI 命令在退出前被终止：{{detail}}",
         "cliFailed": "{{label}} CLI 命令执行失败，退出码为 {{exitCode}}。",
@@ -20609,7 +20609,7 @@
         "antigravityInvalidEvents": "Antigravity 返回了无效的 JSON 事件。",
         "antigravityInvalidResult": "Antigravity 返回了无效的结果。",
         "antigravityNoFinalResult": "Antigravity 未返回最终结果。",
-        "kimiUnreadableOutput": "Kimi 返回了 Orca 无法读取的输出。请重试。",
+        "kimiUnreadableOutput": "Kimi 返回了 BrzA Studio 无法读取的输出。请重试。",
         "kimiSessionOccupied": "Kimi 无法使用此会话，因为它在另一个客户端中处于活动状态。请在该客户端中停止会话或退出该客户端，然后重试。",
         "kimiInterrupted": "Kimi 在完成文本生成前被中断。请重试。",
         "kimiFailed": "Kimi 未能完成文本生成。请在执行主机上打开 Kimi，检查失败原因后再重试。",
@@ -20859,9 +20859,9 @@
       "openCodeDatabaseUnreadable": "无法读取 {{label}} 在 {{name}} 中的历史记录：{{detail}}",
       "openCodeWslDatabaseUnsupported": "目前尚无法从 Windows 搜索 WSL 内的 {{label}} 会话。",
       "openCodeWriteAheadLogUnreadable": "无法读取 {{label}} 在 {{name}} 中的历史记录。此文件系统不支持以只读方式打开其预写日志。请正常退出 {{label}} 以将日志写入数据库。",
-      "wslTranscriptFsSlow": "由于文件系统访问耗时过长，WSL 会话记录文件暂时不可用。请稍后重试；如果问题持续，请重启 Orca。",
-      "wslTranscriptFsCapacity": "由于已有太多文件系统请求在排队，暂时无法查找 WSL 会话记录。请稍后重试；如果问题持续，请重启 Orca。",
-      "wslTranscriptFsProcessFailed": "由于文件系统辅助进程失败（{{detail}}），WSL 会话记录文件暂时不可用。请稍后重试；如果问题持续，请重启 Orca。",
+      "wslTranscriptFsSlow": "由于文件系统访问耗时过长，WSL 会话记录文件暂时不可用。请稍后重试；如果问题持续，请重启 BrzA Studio。",
+      "wslTranscriptFsCapacity": "由于已有太多文件系统请求在排队，暂时无法查找 WSL 会话记录。请稍后重试；如果问题持续，请重启 BrzA Studio。",
+      "wslTranscriptFsProcessFailed": "由于文件系统辅助进程失败（{{detail}}），WSL 会话记录文件暂时不可用。请稍后重试；如果问题持续，请重启 BrzA Studio。",
       "wslDistroNotRunning": "由于 WSL 发行版“{{distro}}”未运行，WSL 会话记录文件不可用。请在该发行版中打开终端以启动它。",
       "wslDistroUnverifiable": "WSL 未回应“{{distro}}”是否正在运行，因此无法使用 WSL 会话记录文件。请稍后重试。",
       "wslSessionsFromLastScan": "无法检查 WSL；其会话来自上次扫描。",
@@ -20871,7 +20871,7 @@
       "scanTimedOut": "会话扫描在 {{seconds}} 秒后超时，计算机可能正忙。请刷新以重试。",
       "scannerPaused": "会话扫描因多次失败而暂停。请刷新以重试。",
       "scannerBusy": "同时进行的会话扫描过多。请稍等片刻，然后刷新。",
-      "scannerMissing": "此 Orca 安装中缺少会话扫描器。重新安装 Orca 可将其恢复。",
+      "scannerMissing": "此 BrzA Studio 安装中缺少会话扫描器。重新安装 BrzA Studio 可将其恢复。",
       "scannerStopped": "会话扫描器意外停止。请刷新以重试。"
     },
     "sessionAccount": "账户",
@@ -21299,21 +21299,21 @@
     "unsupported": {
       "switchLayout": "切换到表格、看板或路线图视图以在 BrzA Studio 中处理此项目。",
       "description": "BrzA Studio 可渲染表格、看板和路线图项目视图。此视图使用的布局尚无法渲染。",
-      "layoutNotSupported": "Orca 尚不支持{{layout}}项目视图。"
+      "layoutNotSupported": "BrzA Studio 尚不支持{{layout}}项目视图。"
     },
     "authHelp": {
       "hostSignedOut": "`gh` 尚未登录 {{host}}。",
       "hostSignedOutDetail": "GitHub Enterprise 主机需要单独的 `gh` 登录，与 github.com 分开。请在终端中运行登录命令，在 {{host}} 上完成浏览器流程，然后重新加载。",
       "ghMissing": "GitHub CLI（`gh`）未安装或不在 PATH 中。",
-      "ghMissingDetail": "Orca 使用 `gh` 与 GitHub Projects 通信。请从 cli.github.com 安装，然后登录。",
+      "ghMissingDetail": "BrzA Studio 使用 `gh` 与 GitHub Projects 通信。请从 cli.github.com 安装，然后登录。",
       "envTokenKeyringFallback": "你的钥匙串中已有 `gh` 登录，移除该环境变量后会自动接管。",
       "envTokenLoginAfterUnset": "取消设置后，请运行 `gh auth login` 正常登录，然后重试。",
-      "envTokenRemoveWindows": "找到设置 `{{varName}}` 的位置（系统或用户环境变量，或你的 PowerShell 配置文件），将其移除，然后重启 Orca 以加载新的环境。",
-      "envTokenRemovePosix": "找到导出 `{{varName}}` 的位置（通常是 `~/.zshrc`、`~/.zshenv`、`~/.bashrc`、`~/.profile` 或你的 shell 密钥管理器），将其移除，然后重启 Orca 以加载新的环境。",
+      "envTokenRemoveWindows": "找到设置 `{{varName}}` 的位置（系统或用户环境变量，或你的 PowerShell 配置文件），将其移除，然后重启 BrzA Studio 以加载新的环境。",
+      "envTokenRemovePosix": "找到导出 `{{varName}}` 的位置（通常是 `~/.zshrc`、`~/.zshenv`、`~/.bashrc`、`~/.profile` 或你的 shell 密钥管理器），将其移除，然后重启 BrzA Studio 以加载新的环境。",
       "envTokenActive": "你的环境中设置了 `{{varName}}`，因此 `gh` 使用的是该令牌，而不是钥匙串中的登录。`gh auth refresh` 无法修改来自环境变量的令牌，所以运行它没有效果。",
-      "envTokenInherited": "Orca 从你的 shell 继承了 `{{varName}}`，`gh` 正在使用该令牌。`gh auth refresh` 不适用于来自环境变量的令牌。",
-      "envTokenInheritedDetailWindows": "在启动 Orca 的 shell 中（或在用户环境变量中）取消设置 `{{varName}}`，然后重启 Orca。",
-      "envTokenInheritedDetailPosix": "在启动 Orca 的 shell 中（或在 shell rc 文件中）取消设置 `{{varName}}`，然后重启 Orca。",
+      "envTokenInherited": "BrzA Studio 从你的 shell 继承了 `{{varName}}`，`gh` 正在使用该令牌。`gh auth refresh` 不适用于来自环境变量的令牌。",
+      "envTokenInheritedDetailWindows": "在启动 BrzA Studio 的 shell 中（或在用户环境变量中）取消设置 `{{varName}}`，然后重启 BrzA Studio。",
+      "envTokenInheritedDetailPosix": "在启动 BrzA Studio 的 shell 中（或在 shell rc 文件中）取消设置 `{{varName}}`，然后重启 BrzA Studio。",
       "signedOut": "你尚未通过 `gh` 登录 GitHub。",
       "missingScopes": "你的 `gh` 令牌缺少 GitHub Projects 所需的权限范围：{{scopes}}。",
       "missingScopesDetail": "请在终端中运行刷新命令。它会打开浏览器以授权新的权限范围，完成后回到这里并重新加载。",
@@ -21358,9 +21358,9 @@
       "rateLimitNearlyExhausted": "GitHub 速率限制即将用尽（剩余 {{remaining}}/{{limit}}）。约 {{minutes}} 分钟后重置。",
       "rateLimited": "已达到 GitHub 速率限制。请几分钟后重试。",
       "network": "网络错误 — 请检查你的网络连接。",
-      "tooLargeUnknownCount": "此视图条目过多，无法在 Orca 中渲染。请在 GitHub 上缩小视图的筛选范围。",
+      "tooLargeUnknownCount": "此视图条目过多，无法在 BrzA Studio 中渲染。请在 GitHub 上缩小视图的筛选范围。",
       "schemaDriftDetail": "无法读取此项目视图：{{detail}}。",
-      "tooLargeCount_other": "此视图有 {{count}} 个条目，过多而无法在 Orca 中显示。请在 GitHub 上缩小视图的筛选范围。"
+      "tooLargeCount_other": "此视图有 {{count}} 个条目，过多而无法在 BrzA Studio 中显示。请在 GitHub 上缩小视图的筛选范围。"
     },
     "columns": {
       "type": "类型"
@@ -21498,7 +21498,7 @@
       "dialogDescriptionEnd": "生成名称。",
       "errors": {
         "noName": "聊天命名智能体未返回名称。",
-        "agentNotRun": "Orca 无法运行聊天命名智能体。",
+        "agentNotRun": "BrzA Studio 无法运行聊天命名智能体。",
         "noAgentAvailable": "此工作区中没有可运行的聊天命名智能体。",
         "grokFailed": "Grok 无法为此聊天命名。请尝试重新生成名称。",
         "antigravityFailed": "Antigravity 无法为此聊天命名。请尝试重新生成名称。"
@@ -21635,29 +21635,29 @@
       "releaseNotReady": "此设备暂时还无法获取更新的版本。请稍后再检查。",
       "updateServerUnreachable": "无法连接更新服务器。请几分钟后重试。",
       "channelUnsupportedPlatform": "{{channel}} 构建仅针对 macOS 和 Windows 提供。",
-      "unsignedDevChannel": "{{channel}} 构建未签名，而当前已签名的构建仅安装由 Orca 发布者签名的更新。请从版本发布页面下载安装程序并运行一次，之后更新即可正常进行，包括切回稳定版。",
+      "unsignedDevChannel": "{{channel}} 构建未签名，而当前已签名的构建仅安装由 BrzA Studio 发布者签名的更新。请从版本发布页面下载安装程序并运行一次，之后更新即可正常进行，包括切回稳定版。",
       "linuxPackageMissing": "下载的安装包已不在更新缓存中。请重新下载更新，或从官方版本发布页面获取。",
       "linuxPackageNotRegular": "更新缓存中下载的安装包已不再是有效文件。请重新下载更新，或从官方版本发布页面获取。",
-      "linuxPackageHashMismatch": "下载的安装包与已验证的版本不再匹配，因此 Orca 不会将其交给包管理器。请重新下载更新，或从官方版本发布页面获取。",
-      "linuxPackageReadFailed": "Orca 无法读取下载的安装包。请重新下载更新，或从官方版本发布页面获取。",
-      "linuxPackageNoSudo": "系统目录中未找到 sudo 命令，因此 Orca 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
-      "linuxPackageNoPackageManager": "系统目录中未找到受支持的包管理器，因此 Orca 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
-      "linuxPackageInvalidPath": "下载的安装包不在可用路径中，因此 Orca 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
-      "linuxPackageMarkerUnusable": "Orca 无法验证已安装的 Linux 软件包格式，因此不会自动安装此更新。请从官方版本发布页面下载更新并手动安装。",
-      "linuxPackageExternallyManaged": "此 Orca 由系统包管理器管理，因此 Orca 无法自行安装更新。请通过所用的发行版更新 Orca。",
-      "linuxPackageManualInstall": "运行系统软件包安装命令前，请先退出 Orca。",
-      "linuxPackageMetadataUnusable": "无法验证下载的安装包元数据。请先退出 Orca，再从官方版本发布页面下载并安装更新。",
+      "linuxPackageHashMismatch": "下载的安装包与已验证的版本不再匹配，因此 BrzA Studio 不会将其交给包管理器。请重新下载更新，或从官方版本发布页面获取。",
+      "linuxPackageReadFailed": "BrzA Studio 无法读取下载的安装包。请重新下载更新，或从官方版本发布页面获取。",
+      "linuxPackageNoSudo": "系统目录中未找到 sudo 命令，因此 BrzA Studio 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
+      "linuxPackageNoPackageManager": "系统目录中未找到受支持的包管理器，因此 BrzA Studio 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
+      "linuxPackageInvalidPath": "下载的安装包不在可用路径中，因此 BrzA Studio 无法生成安全的安装命令。请显示安装包并使用包管理器安装。",
+      "linuxPackageMarkerUnusable": "BrzA Studio 无法验证已安装的 Linux 软件包格式，因此不会自动安装此更新。请从官方版本发布页面下载更新并手动安装。",
+      "linuxPackageExternallyManaged": "此 BrzA Studio 由系统包管理器管理，因此 BrzA Studio 无法自行安装更新。请通过所用的发行版更新 BrzA Studio。",
+      "linuxPackageManualInstall": "运行系统软件包安装命令前，请先退出 BrzA Studio。",
+      "linuxPackageMetadataUnusable": "无法验证下载的安装包元数据。请先退出 BrzA Studio，再从官方版本发布页面下载并安装更新。",
       "unknownReleaseChannel": "未知的发布渠道“{{channel}}”。",
       "invalidReleaseTag": "“{{tag}}”不是有效的发布标签。",
       "releaseRepoNotFound": "在 {{repo}} 未找到发布版本的仓库。",
       "releaseListFailed": "无法列出 {{channel}} 构建（HTTP {{status}}）。",
       "releaseListUnreadable": "无法读取 {{channel}} 的版本发布列表。",
       "rateLimitedSoon": "已达到 GitHub 速率限制。请几分钟后重试。",
-      "rateLimitedSoonSignedOut": "已达到 GitHub 速率限制。请几分钟后重试，或运行 `gh auth login`，以便 Orca 使用你账户的更高限额。",
+      "rateLimitedSoonSignedOut": "已达到 GitHub 速率限制。请几分钟后重试，或运行 `gh auth login`，以便 BrzA Studio 使用你账户的更高限额。",
       "rateLimitedInMinute": "已达到 GitHub 速率限制。请约一分钟后重试。",
-      "rateLimitedInMinuteSignedOut": "已达到 GitHub 速率限制。请约一分钟后重试，或运行 `gh auth login`，以便 Orca 使用你账户的更高限额。",
+      "rateLimitedInMinuteSignedOut": "已达到 GitHub 速率限制。请约一分钟后重试，或运行 `gh auth login`，以便 BrzA Studio 使用你账户的更高限额。",
       "rateLimitedInMinutes_other": "已达到 GitHub 速率限制。请约 {{count}} 分钟后重试。",
-      "rateLimitedInMinutesSignedOut_other": "已达到 GitHub 速率限制。请约 {{count}} 分钟后重试，或运行 `gh auth login`，以便 Orca 使用你账户的更高限额。"
+      "rateLimitedInMinutesSignedOut_other": "已达到 GitHub 速率限制。请约 {{count}} 分钟后重试，或运行 `gh auth login`，以便 BrzA Studio 使用你账户的更高限额。"
     }
   },
   "onboarding": {
@@ -21762,7 +21762,7 @@
     "install": {
       "title": "添加 {{name}}？",
       "profileDescription": "它会在使用 {{profile}} 配置文件的标签页中运行。",
-      "description": "它会在 Orca 浏览器标签页中运行。",
+      "description": "它会在 BrzA Studio 浏览器标签页中运行。",
       "noAccess": "它不会请求读取或更改网站上的数据。",
       "canHeading": "它可以：",
       "cancel": "取消",
@@ -21774,7 +21774,7 @@
     },
     "unsupported": {
       "identity": "扩展程序登录",
-      "line": "Orca 暂不支持：{{features}}。"
+      "line": "BrzA Studio 暂不支持：{{features}}。"
     },
     "permissions": {
       "title": "允许 {{name}} 获得更多访问权限？",
@@ -21979,25 +21979,25 @@
       "keepSafeButton": "保持安全图形模式",
       "tryHardwareButton": "尝试硬件加速",
       "title": "安全图形模式已启用",
-      "message": "Orca 已在安全图形模式下恢复。",
+      "message": "BrzA Studio 已在安全图形模式下恢复。",
       "detail": "由于图形进程反复崩溃，已启用安全图形模式。保留它以获得稳定性，或重新启动并再次尝试硬件加速。"
     },
     "restartPrompt": {
       "restartButton": "以安全图形模式重新启动",
       "keepRunningButton": "继续运行",
-      "title": "以安全图形模式重新启动 Orca？",
-      "message": "Orca 的图形进程反复崩溃。",
-      "detail": "安全图形模式会为此 Orca 版本停用硬件加速和 WebGL。终端和 3D 内容的渲染可能会变慢。选择“继续运行”不会更改图形设置。"
+      "title": "以安全图形模式重新启动 BrzA Studio？",
+      "message": "BrzA Studio 的图形进程反复崩溃。",
+      "detail": "安全图形模式会为此 BrzA Studio 版本停用硬件加速和 WebGL。终端和 3D 内容的渲染可能会变慢。选择“继续运行”不会更改图形设置。"
     }
   },
   "profileState": {
     "startupRecovery": {
       "quitButton": "退出",
       "copyCommandButton": "复制恢复命令",
-      "copyCommandDetail": "复制恢复命令，然后在 Orca 关闭后运行它。",
-      "quitDetail": "退出 Orca，确定以哪份配置文件状态为准后再重试。",
-      "title": "无法打开 Orca 配置文件状态",
-      "message": "Orca 无法安全地打开此配置文件。"
+      "copyCommandDetail": "复制恢复命令，然后在 BrzA Studio 关闭后运行它。",
+      "quitDetail": "退出 BrzA Studio，确定以哪份配置文件状态为准后再重试。",
+      "title": "无法打开 BrzA Studio 配置文件状态",
+      "message": "BrzA Studio 无法安全地打开此配置文件。"
     },
     "copyChoice": {
       "lastSaved": "上次保存于 {{time}}。",
@@ -22006,34 +22006,34 @@
       "quitButton": "退出",
       "title": "选择配置文件状态",
       "message": "此配置文件有两个不一致的已保存副本。",
-      "cause": "这通常发生在用旧版本的 Orca 打开此配置文件之后。",
-      "sqliteOption": "SQLite：此版本的 Orca 保存的内容。在旧版本中所做的更改将被丢弃。",
+      "cause": "这通常发生在用旧版本的 BrzA Studio 打开此配置文件之后。",
+      "sqliteOption": "SQLite：此版本的 BrzA Studio 保存的内容。在旧版本中所做的更改将被丢弃。",
       "jsonOption": "JSON：包含在旧版本中所做的更改。此版本此后保存的更改将被丢弃。",
-      "archiveNote": "Orca 会在切换前归档两个副本，然后重新启动。"
+      "archiveNote": "BrzA Studio 会在切换前归档两个副本，然后重新启动。"
     },
     "repairChoice": {
       "sectionStartsEmpty": "{{section}}：没有可读取的备份，因此将从空白开始。",
       "sectionRestored": "{{section}}：将从 {{time}} 保存的备份中恢复。",
-      "projectsForgotten": "Orca 将忘记你的项目及其工作区详情。磁盘上的文件不受影响。",
-      "newerProjectsRemoved": "该备份之后添加的项目将连同其工作区详情一起从 Orca 中移除。磁盘上的文件不受影响。",
+      "projectsForgotten": "BrzA Studio 将忘记你的项目及其工作区详情。磁盘上的文件不受影响。",
+      "newerProjectsRemoved": "该备份之后添加的项目将连同其工作区详情一起从 BrzA Studio 中移除。磁盘上的文件不受影响。",
       "repairButton": "修复并重新启动",
       "quitButton": "退出",
       "title": "修复配置文件",
       "message": "此配置文件已保存状态的一部分已损坏。",
       "restUnchanged": "其他所有内容保持不变。",
-      "damagedCopyKept": "Orca 会在其数据文件夹中保留损坏文件的副本，然后重新启动。"
+      "damagedCopyKept": "BrzA Studio 会在其数据文件夹中保留损坏文件的副本，然后重新启动。"
     },
     "recoveryNotApplied": {
       "quitButton": "退出",
-      "title": "Orca 无法完成此配置文件的恢复",
-      "message": "Orca 无法应用所选的配置文件状态。",
-      "reopenDetail": "重新打开 Orca 以再次选择。"
+      "title": "BrzA Studio 无法完成此配置文件的恢复",
+      "message": "BrzA Studio 无法应用所选的配置文件状态。",
+      "reopenDetail": "重新打开 BrzA Studio 以再次选择。"
     },
     "writeFailure": {
       "title": "已停止保存",
-      "message": "Orca 已停止保存此配置文件。",
-      "indeterminateDetail": "Orca 无法确认你最近的更改是否已保存。在重新启动 Orca 之前，新的更改将不会被保存。",
-      "safeDetail": "此前保存的更改是安全的。在重新启动 Orca 之前，新的更改将不会被保存。",
+      "message": "BrzA Studio 已停止保存此配置文件。",
+      "indeterminateDetail": "BrzA Studio 无法确认你最近的更改是否已保存。在重新启动 BrzA Studio 之前，新的更改将不会被保存。",
+      "safeDetail": "此前保存的更改是安全的。在重新启动 BrzA Studio 之前，新的更改将不会被保存。",
       "okButton": "确定"
     },
     "section": {
@@ -22055,44 +22055,44 @@
       "noneFound": "（未找到）",
       "sqlitePath": "SQLite 路径：{{path}}",
       "sectionsDamaged": "此配置文件已保存状态的一部分已损坏：{{sections}}。其余内容均完好无损。",
-      "repairCommand": "关闭 Orca，然后运行 `{{command}}`，仅从备份中替换损坏的部分，并保留其余所有内容。Orca 会保留损坏文件的副本。",
+      "repairCommand": "关闭 BrzA Studio，然后运行 `{{command}}`，仅从备份中替换损坏的部分，并保留其余所有内容。BrzA Studio 会保留损坏文件的副本。",
       "restoreWholeBackup": "如需改为恢复整份备份，请先运行 `{{exportsCommand}}`，再运行 `{{rollbackCommand}}`。",
-      "sqliteUnreadable": "Orca 无法安全地打开当前配置文件，因为其 SQLite 状态无法读取。",
+      "sqliteUnreadable": "BrzA Studio 无法安全地打开当前配置文件，因为其 SQLite 状态无法读取。",
       "legacyJsonPath": "旧版 JSON 路径：{{path}}",
       "retainedBackups": "保留的 SQLite 备份：",
       "retainedExports": "保留的 JSON 导出：",
-      "chooseRecoveryArtifact": "关闭 Orca，然后运行 `{{command}}`，选择一份确认完好的恢复数据。",
+      "chooseRecoveryArtifact": "关闭 BrzA Studio，然后运行 `{{command}}`，选择一份确认完好的恢复数据。",
       "restoreCommands": "使用 `{{backupCommand}}` 恢复 SQLite，或使用 `{{revisionCommand}}` 恢复 JSON 导出。",
-      "authorityAmbiguous": "Orca 无法安全地确定以哪份配置文件状态为准：{{detail}}",
+      "authorityAmbiguous": "BrzA Studio 无法安全地确定以哪份配置文件状态为准：{{detail}}",
       "authorityBothPreserved": "旧版本可能修改过 JSON 文件。两个副本均已保留，不会自动选择任何一个。",
-      "authorityCopyFirst": "关闭 Orca 并复制配置文件目录，然后再选择要保留的状态。",
+      "authorityCopyFirst": "关闭 BrzA Studio 并复制配置文件目录，然后再选择要保留的状态。",
       "authorityKeepJson": "如需保留当前 JSON（包括旧版本中的修改），请运行 `{{command}}`。此操作会归档两个副本，不会合并其内容。",
       "authorityInspect": "运行 `{{command}}` 以查看保留的恢复点。",
       "authorityRestore": "请先选择要恢复的状态，再使用 `{{backupCommand}}` 或 `{{revisionCommand}}`。",
-      "newerSchema": "此配置文件由较新版本的 Orca 保存。请使用该版本或更新版本打开。你的配置文件未被更改。",
-      "revisionConflict": "Orca 启动期间，当前配置文件发生了更改。请关闭使用此配置文件的其他 Orca 进程，然后重新启动 Orca。",
-      "writerUnavailable": "Orca 无法启动配置文件保存功能。请重新启动 Orca；如果问题仍然存在，请修复或重新安装此版本。",
-      "publicationUnavailable": "Orca 无法将配置文件状态安全地保存到 {{directory}}。",
-      "publicationNeedsHardLinks": "此位置必须支持硬链接，且 Orca 需要创建硬链接的权限。",
-      "publicationMoveData": "在检查文件夹权限，或将整个 Orca 数据目录移动到支持硬链接的可写本地文件系统（如 APFS、NTFS 或 ext4）之前，请关闭 Orca 和 orcad。",
+      "newerSchema": "此配置文件由较新版本的 BrzA Studio 保存。请使用该版本或更新版本打开。你的配置文件未被更改。",
+      "revisionConflict": "BrzA Studio 启动期间，当前配置文件发生了更改。请关闭使用此配置文件的其他 BrzA Studio 进程，然后重新启动 BrzA Studio。",
+      "writerUnavailable": "BrzA Studio 无法启动配置文件保存功能。请重新启动 BrzA Studio；如果问题仍然存在，请修复或重新安装此版本。",
+      "publicationUnavailable": "BrzA Studio 无法将配置文件状态安全地保存到 {{directory}}。",
+      "publicationNeedsHardLinks": "此位置必须支持硬链接，且 BrzA Studio 需要创建硬链接的权限。",
+      "publicationMoveData": "在检查文件夹权限，或将整个 BrzA Studio 数据目录移动到支持硬链接的可写本地文件系统（如 APFS、NTFS 或 ext4）之前，请关闭 BrzA Studio 和 orcad。",
       "publicationKeepFiles": "请保留原始目录和所有恢复文件。"
     }
   },
   "startupFailure": {
-    "title": "Orca 无法启动",
-    "finishFailed": "Orca 无法完成启动：{{detail}}"
+    "title": "BrzA Studio 无法启动",
+    "finishFailed": "BrzA Studio 无法完成启动：{{detail}}"
   },
   "localBuild": {
-    "chooseTitle": "选择本地 Orca 构建",
+    "chooseTitle": "选择本地 BrzA Studio 构建",
     "chooseButton": "选择构建",
-    "manifestFilter": "Orca 更新清单",
+    "manifestFilter": "BrzA Studio 更新清单",
     "sameVersionError": "此构建与正在运行的应用版本相同。请再次运行 pn build:mac 以创建具有唯一版本的构建。",
     "noLiveTerminals": "没有需要重新连接的活动终端。",
     "liveTerminals_one": "{{count}} 个活动终端将在重新启动后重新连接。",
     "liveTerminals_other": "{{count}} 个活动终端将在重新启动后重新连接。",
-    "confirmTitle": "使用本地 Orca 构建？",
+    "confirmTitle": "使用本地 BrzA Studio 构建？",
     "schemaCompatibility": "工作区卡片和设置与状态架构 {{schemaVersion}} 兼容。",
-    "signatureRequirement": "该构建必须具有与 Orca 相同的有效代码签名，否则安装将停止。",
+    "signatureRequirement": "该构建必须具有与 BrzA Studio 相同的有效代码签名，否则安装将停止。",
     "useButton": "使用本地构建",
     "cancelButton": "取消"
   },
@@ -22109,27 +22109,27 @@
     },
     "compat": {
       "compatible": "运行时客户端与服务器兼容。",
-      "clientTooOld": "此 Orca 客户端版本过旧，无法连接所选服务器。请更新本机上的 Orca。客户端协议版本为 {{clientProtocol}}，服务器要求的客户端协议版本为 {{requiredProtocol}}。",
-      "serverTooOld": "所选 Orca 服务器版本过旧，无法与此客户端兼容。请更新服务器上的 Orca。服务器协议版本为 {{serverProtocol}}，客户端要求的服务器协议版本为 {{requiredProtocol}}。"
+      "clientTooOld": "此 BrzA Studio 客户端版本过旧，无法连接所选服务器。请更新本机上的 BrzA Studio。客户端协议版本为 {{clientProtocol}}，服务器要求的客户端协议版本为 {{requiredProtocol}}。",
+      "serverTooOld": "所选 BrzA Studio 服务器版本过旧，无法与此客户端兼容。请更新服务器上的 BrzA Studio。服务器协议版本为 {{serverProtocol}}，客户端要求的服务器协议版本为 {{requiredProtocol}}。"
     },
     "remoteServerPairingErrors": {
       "invalidPairingCode": "配对码无效。需要 orca://pair?... URL 或原始配对数据。",
-      "selfPairingCode": "这是当前 Orca 的配对码。请改在另一台计算机上生成配对码。",
-      "managedDeployment": "Orca 为你在 SSH 主机上运行此服务器；无法在此替换或移除其配对。要停用它，请运行 `orca environment stop --environment <name> --yes`，或前往设置 > SSH 主机上的 Orca；如果主机已不存在，请运行 `orca environment forget --environment <name> --yes`。",
-      "sshAccessChangePending": "此服务器的 SSH 访问更改未完成。替换配对或移除此服务器之前，请在设置 > 远程 Orca 服务器 > 已配对服务器的 SSH 访问下重试或取消更改。",
-      "sshAccessLinked": "替换配对或移除此服务器之前，请在设置 > 远程 Orca 服务器 > 已配对服务器的 SSH 访问下解除此服务器的 SSH 访问关联。",
+      "selfPairingCode": "这是当前 BrzA Studio 的配对码。请改在另一台计算机上生成配对码。",
+      "managedDeployment": "BrzA Studio 为你在 SSH 主机上运行此服务器；无法在此替换或移除其配对。要停用它，请运行 `orca environment stop --environment <name> --yes`，或前往设置 > SSH 主机上的 BrzA Studio；如果主机已不存在，请运行 `orca environment forget --environment <name> --yes`。",
+      "sshAccessChangePending": "此服务器的 SSH 访问更改未完成。替换配对或移除此服务器之前，请在设置 > 远程 BrzA Studio 服务器 > 已配对服务器的 SSH 访问下重试或取消更改。",
+      "sshAccessLinked": "替换配对或移除此服务器之前，请在设置 > 远程 BrzA Studio 服务器 > 已配对服务器的 SSH 访问下解除此服务器的 SSH 访问关联。",
       "alreadyPairedCloudWorkspace": "此服务器已作为“{{name}}”配对。它属于一个云工作区，该工作区恢复运行时会再次与其配对。",
       "alreadyPairedCloudIdentity": "此服务器已作为“{{name}}”配对。云工作区的服务器复用了该服务器的身份，因此未保存。",
-      "alreadyPairedWslHost": "此服务器已作为“{{name}}”配对。Orca 将其作为 WSL 主机管理，因此无法在此替换其配对。",
-      "alreadyPairedManagedDeployment": "此服务器已作为“{{name}}”配对。Orca 为你在 SSH 主机上运行此服务器；无法在此替换或移除其配对。要停用它，请运行 `orca environment stop --environment <name> --yes`，或前往设置 > SSH 主机上的 Orca；如果主机已不存在，请运行 `orca environment forget --environment <name> --yes`。",
-      "alreadyPairedSshAccessChangePending": "此服务器已作为“{{name}}”配对。此服务器的 SSH 访问更改未完成。替换配对或移除此服务器之前，请在设置 > 远程 Orca 服务器 > 已配对服务器的 SSH 访问下重试或取消更改。",
-      "alreadyPairedSshAccessLinked": "此服务器已作为“{{name}}”配对。替换配对或移除此服务器之前，请在设置 > 远程 Orca 服务器 > 已配对服务器的 SSH 访问下解除此服务器的 SSH 访问关联。",
-      "alreadyPairedAddAgain": "此服务器已作为“{{name}}”配对。要更新其连接，请在设置 > 远程 Orca 服务器下重新添加。",
-      "alreadyPairedUnreadable": "此服务器已作为“{{name}}”配对，但此版本的 Orca 无法读取其已保存的设置。",
+      "alreadyPairedWslHost": "此服务器已作为“{{name}}”配对。BrzA Studio 将其作为 WSL 主机管理，因此无法在此替换其配对。",
+      "alreadyPairedManagedDeployment": "此服务器已作为“{{name}}”配对。BrzA Studio 为你在 SSH 主机上运行此服务器；无法在此替换或移除其配对。要停用它，请运行 `orca environment stop --environment <name> --yes`，或前往设置 > SSH 主机上的 BrzA Studio；如果主机已不存在，请运行 `orca environment forget --environment <name> --yes`。",
+      "alreadyPairedSshAccessChangePending": "此服务器已作为“{{name}}”配对。此服务器的 SSH 访问更改未完成。替换配对或移除此服务器之前，请在设置 > 远程 BrzA Studio 服务器 > 已配对服务器的 SSH 访问下重试或取消更改。",
+      "alreadyPairedSshAccessLinked": "此服务器已作为“{{name}}”配对。替换配对或移除此服务器之前，请在设置 > 远程 BrzA Studio 服务器 > 已配对服务器的 SSH 访问下解除此服务器的 SSH 访问关联。",
+      "alreadyPairedAddAgain": "此服务器已作为“{{name}}”配对。要更新其连接，请在设置 > 远程 BrzA Studio 服务器下重新添加。",
+      "alreadyPairedUnreadable": "此服务器已作为“{{name}}”配对，但此版本的 BrzA Studio 无法读取其已保存的设置。",
       "nameTaken": "名为“{{name}}”的服务器已存在。",
-      "idNeedsNewerOrca": "具有此 ID 的服务器已存在，其格式需要更新版本的 Orca。",
-      "hostSaveFailed": "Orca 已验证主机，但无法保存。请检查本地设置存储并重试。",
-      "repairSaveFailed": "Orca 已验证服务器，但无法保存新的配对。请检查本地设置存储并重试。",
+      "idNeedsNewerOrca": "具有此 ID 的服务器已存在，其格式需要更新版本的 BrzA Studio。",
+      "hostSaveFailed": "BrzA Studio 已验证主机，但无法保存。请检查本地设置存储并重试。",
+      "repairSaveFailed": "BrzA Studio 已验证服务器，但无法保存新的配对。请检查本地设置存储并重试。",
       "repairCloudWorkspace": "此服务器属于一个云工作区，该工作区恢复运行时会再次与其配对。"
     }
   },
@@ -22148,8 +22148,8 @@
     },
     "dialog": {
       "importCookies": "导入 Cookie",
-      "spaceTitle": "Orca 空间测试版",
-      "dashboardTitle": "Orca 智能体仪表盘",
+      "spaceTitle": "BrzA Studio 空间测试版",
+      "dashboardTitle": "BrzA Studio 智能体仪表盘",
       "cookieFiles": "Cookie 文件",
       "allFiles": "所有文件",
       "importPetBundle": "选择 .codex-pet 包",
@@ -22172,12 +22172,12 @@
       "listLabel": "Linear 列表",
       "projectNotFound": "未找到项目。",
       "issuesLoadFailed": "无法加载 Linear issue。",
-      "apiKeyHint": "粘贴你希望 Orca 使用的 Linear 工作区的个人 API 密钥。如果该工作区已连接，Orca 会替换其已存储的密钥。",
+      "apiKeyHint": "粘贴你希望 BrzA Studio 使用的 Linear 工作区的个人 API 密钥。如果该工作区已连接，BrzA Studio 会替换其已存储的密钥。",
       "remoteKeyStorage": "此密钥由当前远程运行时存储。",
       "localKeyStorage": "本地运行时的密钥存储在此设备上，并在可用时使用 Electron 加密存储。",
       "commentsLoadFailed": "无法加载评论。",
       "updateWorkspaceAccess": "更新 {{workspace}} 的 Linear 访问权限",
-      "workspaceApiKeyHint": "粘贴 {{workspace}} 的个人 API 密钥。如果此工作区已连接，Orca 会替换其已存储的密钥。",
+      "workspaceApiKeyHint": "粘贴 {{workspace}} 的个人 API 密钥。如果此工作区已连接，BrzA Studio 会替换其已存储的密钥。",
       "connect": "连接",
       "descriptionUpdateFailed": "无法更新描述",
       "titleUpdateFailed": "无法更新标题",
@@ -22328,7 +22328,7 @@
       "moveOne": "移动 1 个项目",
       "moveMany": "移动 {{n}} 个项目",
       "heldByHost": "已在 {{distro}} 主机上。",
-      "changed": "之前已移动，之后又被旧版 Orca 在此处更改。不会再次移动。",
+      "changed": "之前已移动，之后又被旧版 BrzA Studio 在此处更改。不会再次移动。",
       "chatsStay": "现有聊天保留在此电脑上。此项目中的新聊天将在 WSL 主机上开始。",
       "browserLoginsConflict": "浏览器登录状态不会迁移，因为主机的浏览器配置文件已在使用中。移动后，请在主机的浏览器标签页中重新登录。",
       "browserLoginsNotCarried": "浏览器登录状态不会迁移到此主机。移动后，请在其浏览器标签页中重新登录。"
@@ -22336,8 +22336,8 @@
     "cancel": "取消",
     "progress": {
       "bytes": "{{sent}} / {{total}}",
-      "tooLate": "已无法取消：主机正在切换。请保持 Orca 打开，直到切换完成。",
-      "switching": "切换无法取消。请保持 Orca 打开，直到切换完成。",
+      "tooLate": "已无法取消：主机正在切换。请保持 BrzA Studio 打开，直到切换完成。",
+      "switching": "切换无法取消。请保持 BrzA Studio 打开，直到切换完成。",
       "readOnly": "这些项目在移动期间为只读。切换开始前你都可以取消。",
       "cancelUntilSwitch": "切换开始前你都可以取消。",
       "closeKeepsGoing": "关闭此对话框不会停止移动；移动结束时它会重新打开。",
@@ -22350,21 +22350,21 @@
       "waitingTitle": "正在等待 {{distro}} 主机",
       "earlierMoveTitle": "之前的一次移动先完成了",
       "refusedTitle": "项目未移动",
-      "reloadCheckpointRefused": "Orca 无法备份未保存的文件，因此窗口未重新加载。请关闭此对话框，保存或关闭这些文件，然后在保持显示的通知中点击“立即重新加载”。",
+      "reloadCheckpointRefused": "BrzA Studio 无法备份未保存的文件，因此窗口未重新加载。请关闭此对话框，保存或关闭这些文件，然后在保持显示的通知中点击“立即重新加载”。",
       "reloadVetoed": "有内容阻止了窗口重新加载。请关闭此对话框，保存你的工作，然后在保持显示的通知中点击“立即重新加载”。",
       "reloadFailed": "窗口未重新加载。请重试。",
-      "moved": "重新加载此窗口，即可在 {{distro}} 主机下看到这些项目。Orca 会在重新加载前备份未保存的文件。",
-      "automationsPendingOne": "主机上有一个自动化暂时处于关闭状态。Orca 会持续请求主机将其重新开启。",
-      "automationsPendingMany": "主机上有 {{n}} 个自动化暂时处于关闭状态。Orca 会持续请求主机将其重新开启。",
+      "moved": "重新加载此窗口，即可在 {{distro}} 主机下看到这些项目。BrzA Studio 会在重新加载前备份未保存的文件。",
+      "automationsPendingOne": "主机上有一个自动化暂时处于关闭状态。BrzA Studio 会持续请求主机将其重新开启。",
+      "automationsPendingMany": "主机上有 {{n}} 个自动化暂时处于关闭状态。BrzA Studio 会持续请求主机将其重新开启。",
       "undoHint": "改变主意了？重新加载后，侧边栏会将这些项目显示为“已移至 {{distro}} 主机”。在那里选择“重新在此电脑上使用”，即可将它们恢复到移动前的状态。",
       "reset": "移动已停止，所有内容均已还原。这些项目会像之前一样在此电脑上工作；已暂停的终端会在你打开时重新启动。",
       "resetReason": "停止原因：{{detail}}",
-      "waiting": "此次移动可能已到达 {{distro}} 主机，但主机没有响应。在主机响应之前，这些项目在此处保持只读。请在设置中连接该主机，然后再次打开此对话框并开始移动：Orca 会先完成或撤销这次移动。",
+      "waiting": "此次移动可能已到达 {{distro}} 主机，但主机没有响应。在主机响应之前，这些项目在此处保持只读。请在设置中连接该主机，然后再次打开此对话框并开始移动：BrzA Studio 会先完成或撤销这次移动。",
       "reloading": "正在重新加载…",
       "reload": "立即重新加载",
       "close": "关闭",
       "review": "返回项目",
-      "browserLoginsHostUnknown": "浏览器登录状态未复制，因为 Orca 无法识别主机的浏览器配置文件。请在主机的浏览器标签页中重新登录。",
+      "browserLoginsHostUnknown": "浏览器登录状态未复制，因为 BrzA Studio 无法识别主机的浏览器配置文件。请在主机的浏览器标签页中重新登录。",
       "browserLoginsConflict": "浏览器登录状态未复制，因为主机的浏览器配置文件已在使用中。请在主机的浏览器标签页中重新登录。",
       "browserLoginsNotCopied": "浏览器登录状态未复制到主机。请在主机的浏览器标签页中重新登录。"
     },
@@ -22374,29 +22374,29 @@
       "move": "移动项目"
     },
     "unfinished": {
-      "one": "已移到 {{distro}} 主机的一个自动化仍处于关闭状态。Orca 会持续请求主机将其重新开启。",
-      "many": "已移到 {{distro}} 主机的 {{n}} 个自动化仍处于关闭状态。Orca 会持续请求主机将其重新开启。"
+      "one": "已移到 {{distro}} 主机的一个自动化仍处于关闭状态。BrzA Studio 会持续请求主机将其重新开启。",
+      "many": "已移到 {{distro}} 主机的 {{n}} 个自动化仍处于关闭状态。BrzA Studio 会持续请求主机将其重新开启。"
     },
     "refusal": {
-      "previewFailed": "Orca 无法检查这些项目。请重试。",
-      "startFailed": "Orca 与此次移动失去了联系。请重新打开此对话框查看其进展。",
+      "previewFailed": "BrzA Studio 无法检查这些项目。请重试。",
+      "startFailed": "BrzA Studio 与此次移动失去了联系。请重新打开此对话框查看其进展。",
       "unavailable": "此窗口无法将项目移到 WSL 主机。",
       "alreadyRunning": "移到 {{distro}} 的操作已在进行中。请等待其完成，然后重试。",
       "undoRunning": "有项目正在从 {{distro}} 移回。完成后请重试。",
-      "alreadyInFlightPreview": "{{distro}} 的一次移动仍在收尾。开始此次移动时，Orca 会尽可能先完成或撤销那次移动。",
+      "alreadyInFlightPreview": "{{distro}} 的一次移动仍在收尾。开始此次移动时，BrzA Studio 会尽可能先完成或撤销那次移动。",
       "alreadyInFlight": "{{distro}} 的一次移动仍在收尾，因此此次移动未开始。请保持 {{distro}} 主机连接，稍后重试。",
       "nothingNew": "这些项目已在 {{distro}} 主机上。",
       "destinationChanged": "之前来自 {{distro}} 的项目已移到另一个 WSL 主机。请连接该主机以移动更多项目。",
       "hostUnavailable": "{{distro}} 主机未连接。请在设置中连接它，然后重试。",
-      "hostUpdateRequired": "{{distro}} 主机运行的是旧版 Orca。请在设置中更新它，然后重试。",
+      "hostUpdateRequired": "{{distro}} 主机运行的是旧版 BrzA Studio。请在设置中更新它，然后重试。",
       "terminalsBlocked": "这些项目中的部分终端、智能体或自动化正忙。未移动任何内容。",
       "exportIncomplete": "这些项目中的部分已保存状态暂时无法移动，因此未移动任何内容：",
       "exportIncompletePreview": "这些项目中的部分已保存状态暂时无法移动：",
       "tooLarge": "这些项目的已保存状态过多，无法一次移动。请每次少移动一些项目。",
-      "pauseFailed": "Orca 无法暂停这些项目中的终端，因此未移动任何内容。已暂停的终端会在你打开时重新启动。请重试。",
+      "pauseFailed": "BrzA Studio 无法暂停这些项目中的终端，因此未移动任何内容。已暂停的终端会在你打开时重新启动。请重试。",
       "scopeChanged": "移动准备期间有项目发生了更改，因此未移动任何内容。请检查项目后重试。",
       "cancelled": "移动已取消。未移动任何内容。",
-      "finishedEarlierMove": "Orca 先完成了之前一次移到 {{distro}} 的操作。请重新加载窗口，然后重新开始此次移动。"
+      "finishedEarlierMove": "BrzA Studio 先完成了之前一次移到 {{distro}} 的操作。请重新加载窗口，然后重新开始此次移动。"
     },
     "step": {
       "preparing": "准备中",
@@ -22413,8 +22413,8 @@
       "processRunningMany": "有 {{n}} 个终端正在运行程序",
       "agentNotResumableOne": "有一个智能体在移动后无法恢复",
       "agentNotResumableMany": "有 {{n}} 个智能体在移动后无法恢复",
-      "unverifiableOne": "Orca 目前无法检查一个终端",
-      "unverifiableMany": "Orca 目前无法检查 {{n}} 个终端",
+      "unverifiableOne": "BrzA Studio 目前无法检查一个终端",
+      "unverifiableMany": "BrzA Studio 目前无法检查 {{n}} 个终端",
       "automationRunningOne": "有一个自动化运行正在进行",
       "automationRunningMany": "有 {{n}} 个自动化运行正在进行",
       "dispatchRunningOne": "有一个智能体任务正在进行",
@@ -22426,7 +22426,7 @@
       "agentWorking": "等待它完成，或在其终端中停止它，然后重新检查。",
       "processRunning": "停止该程序（例如开发服务器或编辑器），然后重新检查。",
       "agentNotResumable": "在其终端中退出该智能体，然后重新检查。",
-      "unverifiable": "请稍候，然后重新检查。Orca 不会为了移动而停止任何内容。",
+      "unverifiable": "请稍候，然后重新检查。BrzA Studio 不会为了移动而停止任何内容。",
       "wait": "等待其完成，然后重新检查。",
       "scrollbackTooLarge": "清除这些终端中的输出，然后重新检查。"
     },
@@ -22456,23 +22456,23 @@
         "hostUpdate": "需要先更新主机",
         "attemptsExhausted": "多次尝试后仍未完成"
       },
-      "finishPending": "之前一次到 {{distro}} 主机的移动已在主机上完成。Orca 会在重启时在此处完成它，也可以点击“重新检查”立即完成。"
+      "finishPending": "之前一次到 {{distro}} 主机的移动已在主机上完成。BrzA Studio 会在重启时在此处完成它，也可以点击“重新检查”立即完成。"
     }
   },
   "automations": {
     "runFailures": {
-      "noDispatchHost": "没有可用于启动自动化的 Orca 窗口。",
-      "unevaluableSchedule": "Orca 无法评估此自动化，已跳过此次执行。",
+      "noDispatchHost": "没有可用于启动自动化的 BrzA Studio 窗口。",
+      "unevaluableSchedule": "BrzA Studio 无法评估此自动化，已跳过此次执行。",
       "noRunnableHost": "此自动化没有可运行的主机。",
-      "wslMoveInProgress": "此自动化的项目正在移到其 WSL 主机，因此 Orca 跳过了此次运行。移动完成后将恢复运行。",
-      "wslMoveOwnedByHost": "此自动化的项目现在在其 WSL 主机上运行，自动化本身也由该主机运行。Orca 不再运行此本地副本。",
-      "missedGraceWindow": "Orca 再次检查时，此次运行的补跑宽限期已过。",
+      "wslMoveInProgress": "此自动化的项目正在移到其 WSL 主机，因此 BrzA Studio 跳过了此次运行。移动完成后将恢复运行。",
+      "wslMoveOwnedByHost": "此自动化的项目现在在其 WSL 主机上运行，自动化本身也由该主机运行。BrzA Studio 不再运行此本地副本。",
+      "missedGraceWindow": "BrzA Studio 再次检查时，此次运行的补跑宽限期已过。",
       "targetMissing": "自动化主机已不在注册列表中，因此此自动化已无处运行。",
       "targetReplaced": "自动化主机已被移除并重新注册，因此必须重新关联此自动化后才能运行。",
-      "workspaceHostAmbiguous": "自动化工作区跨越多个主机，因此 Orca 无法确定应在哪个主机上运行。",
-      "legacyTwinHosts": "此自动化保存于 Orca 开始记录运行主机之前，且其项目位于多个主机上。请打开自动化，选择应运行它的主机。",
+      "workspaceHostAmbiguous": "自动化工作区跨越多个主机，因此 BrzA Studio 无法确定应在哪个主机上运行。",
+      "legacyTwinHosts": "此自动化保存于 BrzA Studio 开始记录运行主机之前，且其项目位于多个主机上。请打开自动化，选择应运行它的主机。",
       "targetUnavailable": "自动化运行目标已不可用。",
-      "remoteSchedulingUnavailable": "此 Orca 客户端尚不支持远程服务器上的自动化调度。请在远程服务器上运行此自动化，或等持久化远程调度可用后更新 Orca。",
+      "remoteSchedulingUnavailable": "此 BrzA Studio 客户端尚不支持远程服务器上的自动化调度。请在远程服务器上运行此自动化，或等持久化远程调度可用后更新 BrzA Studio。",
       "projectSetupMissing": "所选自动化主机上已没有此项目的配置。",
       "targetSetupMismatch": "自动化运行目标与项目所选主机的配置已不匹配。",
       "repoUnavailable": "所选自动化主机的仓库已不可用。",
@@ -22483,7 +22483,7 @@
       "hooksReviewBlocked": "智能体正在等待有人审查新增或更改的钩子（“Hooks need review”）。请打开此次运行，信任这些钩子或将其移除。计划运行会继续进行，待没有需要审查的内容后即可成功。",
       "agentNeverStarted": "提交提示词后，自动化智能体始终未启动。",
       "agentNoCompletion": "自动化智能体未报告完成。",
-      "watchTimedOut": "6 小时内未收到完成信号，Orca 已停止监视此次运行。",
+      "watchTimedOut": "6 小时内未收到完成信号，BrzA Studio 已停止监视此次运行。",
       "wslDistroStopped": "WSL 发行版 {{distro}} 已停止，因此本次计划运行没有启动它。请启动该发行版或使用“立即运行”；它运行期间，后续运行会照常进行。",
       "projectSetupState": {
         "notSetUp": "项目尚未在所选自动化主机上完成设置。",
@@ -22506,7 +22506,7 @@
         "modelRepeated": "额外参数重复设置了模型。",
         "effortRepeated": "额外参数重复设置了推理强度。"
       },
-      "hostUpdateRequired": "请更新此主机上的 Orca 以使用额外参数。"
+      "hostUpdateRequired": "请更新此主机上的 BrzA Studio 以使用额外参数。"
     }
   },
   "codeHost": {
@@ -22586,7 +22586,7 @@
     "workflows": {
       "workspaces": {
         "title": "工作区",
-        "lede": "Orca 为每项任务分配独立的工作区，让智能体能够并行工作。"
+        "lede": "BrzA Studio 为每项任务分配独立的工作区，让智能体能够并行工作。"
       },
       "tasks": {
         "title": "任务",
@@ -22594,11 +22594,11 @@
       },
       "agents": {
         "title": "智能体",
-        "lede": "同时运行多个智能体，跟踪进度，并在需要时通过自动化操控 Orca。"
+        "lede": "同时运行多个智能体，跟踪进度，并在需要时通过自动化操控 BrzA Studio。"
       },
       "workbench": {
         "title": "工作台",
-        "lede": "将常用的终端配置带入 Orca，再拆分窗格，让服务器、测试、日志和智能体并排运行。"
+        "lede": "将常用的终端配置带入 BrzA Studio，再拆分窗格，让服务器、测试、日志和智能体并排运行。"
       },
       "review": {
         "title": "代码评审",
@@ -22613,7 +22613,7 @@
       },
       "orchestration": {
         "name": "编排",
-        "description": "让智能体管理和协调 Orca 工作区，以执行更大规模的任务。"
+        "description": "让智能体管理和协调 BrzA Studio 工作区，以执行更大规模的任务。"
       },
       "usage": {
         "name": "用量",
@@ -22625,11 +22625,11 @@
       },
       "editor": {
         "name": "编辑器",
-        "description": "使用 Notion 风格的 Markdown 编辑器，无需离开 Orca 即可记笔记。"
+        "description": "使用 Notion 风格的 Markdown 编辑器，无需离开 BrzA Studio 即可记笔记。"
       },
       "browser": {
         "name": "浏览器",
-        "description": "在 Orca 浏览器中运行应用，将选中的 UI 元素发送给智能体，并让智能体与你的网页交互。"
+        "description": "在 BrzA Studio 浏览器中运行应用，将选中的 UI 元素发送给智能体，并让智能体与你的网页交互。"
       },
       "notes": {
         "name": "笔记",
@@ -22672,7 +22672,7 @@
         "title": "行内评审，反馈给智能体"
       },
       "tile09": {
-        "title": "Orca CLI"
+        "title": "BrzA Studio CLI"
       },
       "tile10": {
         "title": "键盘优先"
@@ -22738,7 +22738,7 @@
       "recipeExited": "环境模板已退出，退出码为 {{exitCode}}。",
       "recipeResultMissing": "环境模板未生成 JSON 结果。",
       "recipeResultNotJsonObject": "环境模板的 stdout 必须是单个 JSON 对象。",
-      "recipeResultPairingCodeInvalid": "环境模板结果中的 pairingCode 不是有效的 Orca 配对码。",
+      "recipeResultPairingCodeInvalid": "环境模板结果中的 pairingCode 不是有效的 BrzA Studio 配对码。",
       "recipeResultProjectRootNotAbsolute": "环境模板结果中的 projectRoot 必须是运行时中的绝对路径。",
       "provisionedRootResultRequired": "使用已预配根目录的环境模板必须返回 schemaVersion 2，且 checkoutMode 为 \"provisioned-root\"。",
       "provisionedRootNotConfigured": "环境模板结果请求使用已预配根目录检出模式，但环境模板未配置为使用此模式。",
@@ -22753,11 +22753,11 @@
     }
   },
   "installDirAcl": {
-    "cause": "Orca 安装文件夹的 Windows 权限阻止了 Orca 自身的沙箱进程读取随应用附带的文件。",
-    "repaired": "Orca 已修复权限。请重新加载以应用。",
-    "repairing": "Orca 正在修复权限。",
-    "repairFailed": "Orca 无法修复权限，这通常意味着该文件夹需要管理员权限。",
-    "runCommands": "在以管理员身份运行的命令提示符中执行以下命令，然后重新启动 Orca："
+    "cause": "BrzA Studio 安装文件夹的 Windows 权限阻止了 BrzA Studio 自身的沙箱进程读取随应用附带的文件。",
+    "repaired": "BrzA Studio 已修复权限。请重新加载以应用。",
+    "repairing": "BrzA Studio 正在修复权限。",
+    "repairFailed": "BrzA Studio 无法修复权限，这通常意味着该文件夹需要管理员权限。",
+    "runCommands": "在以管理员身份运行的命令提示符中执行以下命令，然后重新启动 BrzA Studio："
   },
   "pet": {
     "importErrors": {
@@ -22804,7 +22804,7 @@
     }
   },
   "wslDistroHold": {
-    "terminalStopped": "WSL 发行版 {{distro}} 已停止，因此 Orca 没有启动此终端。请启动该发行版后重试。",
-    "terminalUnverifiable": "Orca 无法确认 WSL 发行版 {{distro}} 是否正在运行，因此没有启动此终端。请启动该发行版后重试。"
+    "terminalStopped": "WSL 发行版 {{distro}} 已停止，因此 BrzA Studio 没有启动此终端。请启动该发行版后重试。",
+    "terminalUnverifiable": "BrzA Studio 无法确认 WSL 发行版 {{distro}} 是否正在运行，因此没有启动此终端。请启动该发行版后重试。"
   }
 }

@@ -387,7 +387,7 @@ describe('SkillFreshnessNudge', () => {
     expect(mocks.toastDismiss).toHaveBeenCalledTimes(2)
   })
 
-  it('warns where edits remain when Orca could not back them up', async () => {
+  it('warns where edits remain when BrzA Studio could not back them up', async () => {
     const strandedPath = '/home/u/.agents/skills/.orca-cli.orca-old-1'
     mocks.execute.mockResolvedValue({
       scope: 'global',

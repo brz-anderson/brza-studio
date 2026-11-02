@@ -249,7 +249,7 @@ describe('native host process', () => {
     expect(host.messages).toEqual([])
   })
 
-  it('forwards a bounded amount of stderr to Orca’s log', async () => {
+  it('forwards a bounded amount of stderr to BrzA Studio’s log', async () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const host = await start(NOISY)
     await expect.poll(() => warn.mock.calls.length).toBeGreaterThan(0)

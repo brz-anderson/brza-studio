@@ -227,9 +227,9 @@ describe('humanizeTerminalError', () => {
   it("leaves an SSH host's refusal words and other IPC channels' wrappers as they were", () => {
     expect(
       humanizeTerminalError(
-        "Error invoking remote method 'runtimeEnvironments:call': Error: Remote Orca runtime is not connected: ssh desk"
+        "Error invoking remote method 'runtimeEnvironments:call': Error: Remote BrzA Studio runtime is not connected: ssh desk"
       )
-    ).toBe('Remote Orca runtime is not connected: ssh desk')
+    ).toBe('Remote BrzA Studio runtime is not connected: ssh desk')
     const otherChannel = "Error invoking remote method 'ssh:connect': Error: Permission denied"
     expect(humanizeTerminalError(otherChannel)).toBe(otherChannel)
   })
@@ -459,7 +459,7 @@ describe('TerminalErrorToast environment footer', () => {
     const view = render(
       React.createElement(TerminalErrorToast, { error, paneOnClient: true, onDismiss })
     )
-    const footer = '---\nOrca: 1.4.178-rc.2\nOS: darwin 25.0.0 (arm64)\nShell: /bin/zsh'
+    const footer = '---\nBrzA Studio: 1.4.178-rc.2\nOS: darwin 25.0.0 (arm64)\nShell: /bin/zsh'
     await waitFor(() => expect(view.container.textContent).toContain(footer))
 
     const text = view.container.querySelector('span')?.textContent ?? ''

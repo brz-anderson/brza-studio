@@ -68,10 +68,10 @@ describe('plugins.open / plugins.shot', () => {
   it('refuse clearly on a host with no desktop window', async () => {
     await expect(
       method('plugins.open').handler({ pluginKey: 'acme.todos' }, context)
-    ).rejects.toThrow(/only available in the Orca desktop app/)
+    ).rejects.toThrow(/only available in the BrzA Studio desktop app/)
     await expect(
       method('plugins.shot').handler({ pluginKey: 'acme.todos' }, context)
-    ).rejects.toThrow(/only available in the Orca desktop app/)
+    ).rejects.toThrow(/only available in the BrzA Studio desktop app/)
   })
 
   it('hand the request to the desktop view', async () => {

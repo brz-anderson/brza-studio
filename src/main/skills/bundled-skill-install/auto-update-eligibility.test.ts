@@ -54,7 +54,7 @@ function lateWriterFilesystem(home: SkillHome): BundledSkillFilesystem {
   }
 }
 
-describe('per-skill silent update of unedited Orca copies', () => {
+describe('per-skill silent update of unedited BrzA Studio copies', () => {
   it('updates every unedited skill, including CRLF legacy copies, and leaves nothing to ask', async () => {
     const home = await makeSkillHome()
     for (const name of NAMES) {

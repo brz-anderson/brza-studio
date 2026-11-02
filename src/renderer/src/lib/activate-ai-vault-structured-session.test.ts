@@ -99,7 +99,7 @@ it('keeps simultaneous different hosts independent and ignores terminal History'
 
 it.each([
   ['gone', 'This chat is no longer on this host, so it cannot be reopened here.'],
-  ['hostCannotOpen', "This chat can't be reopened until Orca is updated."],
+  ['hostCannotOpen', "This chat can't be reopened until BrzA Studio is updated."],
   ['unavailable', 'The structured agent session is not available yet. Retry in a moment.']
 ] as const)(
   'keeps the actual desktop %s key, default and translated toast',

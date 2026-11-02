@@ -39,7 +39,8 @@ vi.mock('./browser-process-user-agent', () => ({
   getBrowserProcessUserAgentIdentity: () => ({
     mode: processUserAgentMode.value,
     userAgent: 'Mozilla/5.0 Chrome/150.0.0.0 Safari/537.36',
-    electronUserAgent: 'Mozilla/5.0 Orca/1.0.0 Chrome/150.0.0.0 Electron/43.0.0 Safari/537.36'
+    electronUserAgent:
+      'Mozilla/5.0 BrzA Studio/1.0.0 Chrome/150.0.0.0 Electron/43.0.0 Safari/537.36'
   })
 }))
 

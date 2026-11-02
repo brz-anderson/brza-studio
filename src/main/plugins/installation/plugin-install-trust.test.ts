@@ -46,7 +46,7 @@ describe('plugin install trust', () => {
     plugin: { url: plugin, ref: 'main' }
   })
   const refused = (key: string): string =>
-    `${key} uses a name reserved for official Orca plugins; Orca installs it only from its official catalog`
+    `${key} uses a name reserved for official BrzA Studio plugins; BrzA Studio installs it only from its official catalog`
 
   it.each<[string, PluginInstallSource, boolean]>([
     [

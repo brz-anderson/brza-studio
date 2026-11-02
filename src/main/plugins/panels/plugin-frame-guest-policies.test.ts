@@ -38,7 +38,7 @@ function fakeGuest() {
 }
 
 describe('plugin guest policies', () => {
-  it("forwards Orca's shortcuts with plugin-frame scoping and offers the editable context menu", () => {
+  it("forwards BrzA Studio's shortcuts with plugin-frame scoping and offers the editable context menu", () => {
     mocks.buildFromTemplate.mockReturnValue({ popup: mocks.popup })
     mocks.template.mockReturnValue([{ role: 'copy' }])
     const guest = fakeGuest()

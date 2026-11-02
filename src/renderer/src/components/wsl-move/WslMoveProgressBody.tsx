@@ -9,7 +9,8 @@ import type {
   WslMoveProgressEvent,
   WslMoveProgressStep
 } from '../../../../shared/wsl-move/wsl-move-driver-types'
-import { formatWslMoveBytes, wslMoveStepLabel } from './wsl-move-copy'
+import { formatWslMoveBytes } from './wsl-move-bytes'
+import { wslMoveStepLabel } from './wsl-move-copy'
 
 // 'finishing' is the tail of the switch on this desktop; the stepper shows it under Switching.
 const STEPS: WslMoveProgressStep[] = [
@@ -85,12 +86,12 @@ export function WslMoveProgressBody({
         {cancel === 'too-late'
           ? translate(
               'wslMove.progress.tooLate',
-              'Too late to cancel: the host is already switching over. Keep Orca open until it finishes.'
+              'Too late to cancel: the host is already switching over. Keep BrzA Studio open until it finishes.'
             )
           : !cancellable
             ? translate(
                 'wslMove.progress.switching',
-                'The switch cannot be cancelled. Keep Orca open until it finishes.'
+                'The switch cannot be cancelled. Keep BrzA Studio open until it finishes.'
               )
             : current > 0
               ? translate(

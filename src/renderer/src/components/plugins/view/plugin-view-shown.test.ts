@@ -19,10 +19,10 @@ describe('pluginPanelNotShownReason', () => {
       'the right sidebar shows another tab'
     )
     expect(pluginPanelNotShownReason({ ...shown, activeView: 'settings' }, TAB)).toBe(
-      'Orca is not showing a workspace'
+      'BrzA Studio is not showing a workspace'
     )
     expect(pluginPanelNotShownReason({ ...shown, activeWorktreeId: null }, TAB)).toBe(
-      'Orca is not showing a workspace'
+      'BrzA Studio is not showing a workspace'
     )
   })
 })

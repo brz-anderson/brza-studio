@@ -398,7 +398,7 @@ describe('custom editor document channel', () => {
     await expect(host.flush()).resolves.toBe(false)
   })
 
-  it('forwards key chords from the shell for Orca to match, dropping malformed ones', () => {
+  it('forwards key chords from the shell for BrzA Studio to match, dropping malformed ones', () => {
     const { onKeyChord, send } = setup({ text: 'a' })
     send(keydown({ key: 'x'.repeat(65), code: 'a' }))
     expect(onKeyChord).not.toHaveBeenCalled()

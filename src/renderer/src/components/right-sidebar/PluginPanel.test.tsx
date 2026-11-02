@@ -345,7 +345,7 @@ describe('PluginPanel', () => {
       Reflect.deleteProperty(window, '__ORCA_WEB_CLIENT__')
     }
     expect(container.querySelector('iframe')).toBeNull()
-    expect(container.textContent).toContain('only in the Orca desktop app')
+    expect(container.textContent).toContain('only in the BrzA Studio desktop app')
   })
 
   it('says a declarative panel is unavailable on desktop while isolated frames are off', async () => {

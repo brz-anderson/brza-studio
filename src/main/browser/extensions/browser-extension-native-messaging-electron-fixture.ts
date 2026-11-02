@@ -82,7 +82,7 @@ function writeManifest(name: string, path: string, extensionId: string): void {
     join(folder, `${name}.json`),
     JSON.stringify({
       name,
-      description: 'Orca test host',
+      description: 'BrzA Studio test host',
       type: 'stdio',
       path,
       allowed_origins: [`chrome-extension://${extensionId}/`]

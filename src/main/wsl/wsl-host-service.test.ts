@@ -777,8 +777,8 @@ describe('WslHostService', () => {
   it.each([
     [
       'unsupported-distro',
-      () => new OrcadHostUnsupportedError('No Orca runtime supports linux-arm64-glibc.'),
-      'No Orca runtime supports linux-arm64-glibc.'
+      () => new OrcadHostUnsupportedError('No BrzA Studio runtime supports linux-arm64-glibc.'),
+      'No BrzA Studio runtime supports linux-arm64-glibc.'
     ],
     [
       'unsupported-distro',

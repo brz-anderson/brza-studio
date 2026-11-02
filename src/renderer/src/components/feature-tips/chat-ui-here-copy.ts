@@ -28,7 +28,7 @@ export function getChatUiHereVariantCopy(variant: ShownChatUiLaunchTipVariant): 
     paragraphs: [
       translate(
         'featureTips.chatUiHere.onIntro',
-        'Chat UI is out of Experimental and now part of Orca. Your agents keep opening as chats, with rich messages, visuals and images.'
+        'Chat UI is out of Experimental and now part of BrzA Studio. Your agents keep opening as chats, with rich messages, visuals and images.'
       ),
       translate(
         'featureTips.chatUiHere.onTerminal',

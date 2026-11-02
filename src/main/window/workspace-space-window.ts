@@ -89,7 +89,7 @@ export function createOrFocusWorkspaceSpaceWindow(store: Store): BrowserWindow {
   })
   const updateTitle = (): void => {
     if (!window.isDestroyed()) {
-      window.setTitle(translateMain('native.dialog.spaceTitle', 'Orca Space Beta'))
+      window.setTitle(translateMain('native.dialog.spaceTitle', 'BrzA Studio Space Beta'))
     }
   }
   mainI18n.on('languageChanged', updateTitle)

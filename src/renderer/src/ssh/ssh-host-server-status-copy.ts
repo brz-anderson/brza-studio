@@ -270,7 +270,7 @@ function unservedLine(
               {
                 count: status.terminals,
                 defaultValue_one:
-                  '{{count}} terminal started by an older version of Orca is still running on this host, and it doesn’t stop on its own. Close it in that version of BrzA Studio or end it on the host, then reconnect.'
+                  '{{count}} terminal started by an older version of BrzA Studio is still running on this host, and it doesn’t stop on its own. Close it in that version of BrzA Studio or end it on the host, then reconnect.'
               }
             )
           : translate(

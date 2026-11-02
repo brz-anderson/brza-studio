@@ -28,6 +28,10 @@ const mocks = vi.hoisted(() => ({
 vi.mock('@/runtime/structured-agent-session-client', () => ({
   callStructuredAgentSession: mocks.options
 }))
+// No chat here is pinned to an account (P36); the pinned row is in the .pinned test.
+vi.mock('./structured-agent-session-status-hooks', () => ({
+  useStructuredAgentSessionAccountSwitch: () => null
+}))
 vi.mock('@/runtime/structured-conversation-name', () => ({
   useStructuredChatTabConversationName: () => 'My chat'
 }))

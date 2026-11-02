@@ -169,7 +169,7 @@ export function managedServerOutcomeLabel(result: {
   if (code === ORCAD_UPDATE_WSL_MOVE_RUNNING_CODE) {
     return translate(
       'auto.components.settings.managedServers.outcome.wslMoveRunning',
-      'Not done: a project is moving onto this server. Orca updates it once the move finishes.'
+      'Not done: a project is moving onto this server. BrzA Studio updates it once the move finishes.'
     )
   }
   if (MIGRATION_CODES.has(code)) {

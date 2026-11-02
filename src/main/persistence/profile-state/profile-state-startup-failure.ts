@@ -140,7 +140,7 @@ export function formatProfileStateStartupFailure(
     return [
       translate(
         'profileState.startupFailure.authorityAmbiguous',
-        'Orca cannot safely choose a profile-state authority: {{detail}}',
+        'BrzA Studio cannot safely choose a profile-state authority: {{detail}}',
         { detail: error.message }
       ),
       translate(
@@ -211,16 +211,16 @@ export function profileStatePublicationFailureText(
   return [
     translate(
       'profileState.startupFailure.publicationUnavailable',
-      'Orca could not safely publish profile state in {{directory}}.',
+      'BrzA Studio could not safely publish profile state in {{directory}}.',
       { directory }
     ),
     translate(
       'profileState.startupFailure.publicationNeedsHardLinks',
-      'This location must support hard links, and Orca needs permission to create them.'
+      'This location must support hard links, and BrzA Studio needs permission to create them.'
     ),
     translate(
       'profileState.startupFailure.publicationMoveData',
-      'Close Orca and orcad before checking folder permissions or moving the complete Orca data directory to a writable local filesystem that supports hard links, such as APFS, NTFS, or ext4.'
+      'Close BrzA Studio and orcad before checking folder permissions or moving the complete BrzA Studio data directory to a writable local filesystem that supports hard links, such as APFS, NTFS, or ext4.'
     ),
     translate(
       'profileState.startupFailure.publicationKeepFiles',

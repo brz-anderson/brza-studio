@@ -46,7 +46,7 @@ describe('updater', () => {
 
     expect(autoUpdaterMock.setFeedURL).toHaveBeenLastCalledWith({
       provider: 'generic',
-      url: 'https://github.com/stablyai/orca/releases/latest/download'
+      url: 'https://github.com/brz-anderson/brza-studio/releases/latest/download'
     })
     expect(autoUpdaterMock.allowPrerelease).not.toBe(true)
 
@@ -135,7 +135,7 @@ describe('updater', () => {
     expect(autoUpdaterMock.setFeedURL.mock.calls.slice(feedCallsBeforeCheck)).not.toContainEqual([
       {
         provider: 'generic',
-        url: 'https://github.com/stablyai/orca/releases/latest/download'
+        url: 'https://github.com/brz-anderson/brza-studio/releases/latest/download'
       }
     ])
   })
@@ -234,7 +234,7 @@ describe('updater', () => {
     expect(autoUpdaterMock.setFeedURL.mock.calls.slice(feedCallsBeforeCheck)).not.toContainEqual([
       {
         provider: 'generic',
-        url: 'https://github.com/stablyai/orca/releases/latest/download'
+        url: 'https://github.com/brz-anderson/brza-studio/releases/latest/download'
       }
     ])
     expect(sendMock).not.toHaveBeenCalledWith(

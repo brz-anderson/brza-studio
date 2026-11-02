@@ -155,7 +155,7 @@ describe("undo's host automation port", () => {
   })
 
   // R39: another Orca on this computer kept the removed host's server, so the move's copies may run.
-  it('refuses a removed host whose server was kept for another Orca', async () => {
+  it('refuses a removed host whose server was kept for another BrzA Studio', async () => {
     host.disabled = []
     host.listed = false
     host.keptForPeers = true

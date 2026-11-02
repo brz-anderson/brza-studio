@@ -65,9 +65,9 @@ describe('panel ui', () => {
     )
   })
 
-  it('lets an older Orca say which release it needs', () => {
+  it('lets an older BrzA Studio say which release it needs', () => {
     expect(
       pluginManifestCompatibilityError(manifest('>=1.4.246', { ui: 'components' }), '1.4.245')
-    ).toBe('requires Orca >=1.4.246 (this is 1.4.245)')
+    ).toBe('requires BrzA Studio >=1.4.246 (this is 1.4.245)')
   })
 })

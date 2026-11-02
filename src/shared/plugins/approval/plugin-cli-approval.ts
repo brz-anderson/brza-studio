@@ -87,11 +87,11 @@ type ApprovalSubject = {
 const EXECUTION_DESCRIPTIONS: Record<PluginExecutionProfile, string> = {
   data: 'Content only (themes, icons, syntaxes, translations); nothing runs.',
   declarative:
-    'Runs Orca actions you could run yourself through the commands, shortcuts or VM recipes it declares.',
+    'Runs BrzA Studio actions you could run yourself through the commands, shortcuts or VM recipes it declares.',
   'sandboxed-ui':
-    'Shows its own code in sandboxed panels or editors inside Orca; an editor reads every file it opens.',
+    'Shows its own code in sandboxed panels or editors inside BrzA Studio; an editor reads every file it opens.',
   'trusted-worker':
-    'Runs its own code in a separate Node.js process on the Orca host, with your user account’s access to that machine.'
+    'Runs its own code in a separate Node.js process on the BrzA Studio host, with your user account’s access to that machine.'
 }
 
 /** Content-only plugins never need the flag; main decides this from the verified manifest. */
@@ -159,7 +159,7 @@ export function buildPluginApprovalRequest(
     contentIdentity: subject.contentIdentity,
     isDev: subject.isDev,
     grants,
-    why: `It can run code or act in Orca, so Orca does not enable it without an explicit approval bound to exactly these files and this access.${devNote}`,
+    why: `It can run code or act in BrzA Studio, so BrzA Studio does not enable it without an explicit approval bound to exactly these files and this access.${devNote}`,
     approveFlag,
     nextSteps: [
       'Approving grants the access listed above. Confirm with your user first unless they already asked for exactly this plugin and access.',
@@ -209,12 +209,12 @@ export class PluginNotFoundError extends Error {
   readonly data: { pluginKey: string; nextSteps: string[] }
 
   constructor(pluginKey: string) {
-    super(`No valid plugin ${pluginKey} is loaded on this Orca host.`)
+    super(`No valid plugin ${pluginKey} is loaded on this BrzA Studio host.`)
     this.name = 'PluginNotFoundError'
     this.data = {
       pluginKey,
       nextSteps: [
-        'Check the plugin key, and that the plugin is installed or loaded on this Orca host.'
+        'Check the plugin key, and that the plugin is installed or loaded on this BrzA Studio host.'
       ]
     }
   }

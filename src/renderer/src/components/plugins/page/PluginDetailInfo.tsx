@@ -131,7 +131,7 @@ export function PluginDetailInfo({
             label={translate('auto.components.settings.PluginDetailPage.requires', 'Requires')}
             value={translate(
               'auto.components.settings.PluginDetailPage.requiresValue',
-              'Orca {{value0}} or later',
+              'BrzA Studio {{value0}} or later',
               { value0: entry.minimumOrca }
             )}
           />

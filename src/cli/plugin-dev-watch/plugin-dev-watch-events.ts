@@ -86,7 +86,7 @@ function checkHeadline(event: Extract<PluginDevWatchEvent, { type: 'check' }>): 
   if (!event.checkOk) {
     return `✗ check failed for ${event.pluginKey}`
   }
-  return `✗ check passed, but in Orca ${event.pluginKey} is ${pluginStatusPhrase(event.pluginStatus, event.pluginError)}`
+  return `✗ check passed, but in BrzA Studio ${event.pluginKey} is ${pluginStatusPhrase(event.pluginStatus, event.pluginError)}`
 }
 
 export function formatPluginDevWatchEvent(event: PluginDevWatchEvent): string {
@@ -117,7 +117,7 @@ export function formatPluginDevWatchEvent(event: PluginDevWatchEvent): string {
       return [
         checkHeadline(event),
         ...(!event.ok && !event.checkOk && !PLUGIN_DEV_WATCH_SHOOTABLE.has(event.pluginStatus)
-          ? [`  in Orca: ${pluginStatusPhrase(event.pluginStatus, event.pluginError)}`]
+          ? [`  in BrzA Studio: ${pluginStatusPhrase(event.pluginStatus, event.pluginError)}`]
           : []),
         ...event.invalid.map((error) => `  invalid: ${error}`),
         ...event.panels.flatMap(formatPluginPanelCheck).map((line) => `  ${line}`)
@@ -132,7 +132,7 @@ export function formatPluginDevWatchEvent(event: PluginDevWatchEvent): string {
     case 'warning':
       return `warning: ${event.message}`
     case 'disconnected':
-      return `Lost the connection to Orca: ${event.message}`
+      return `Lost the connection to BrzA Studio: ${event.message}`
     case 'unloaded':
       return event.removed
         ? `Unloaded ${event.pluginKey} (${event.path}).`

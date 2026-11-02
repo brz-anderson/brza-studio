@@ -57,7 +57,7 @@ afterEach(() => {
 describe('RepositoryHostSetupsSection settings entry scope', () => {
   it('lists only its own settings entry when same-host clones split the project (#20861)', () => {
     const cloneA = makeRepo({ id: 'clone-a', displayName: 'Orca', path: '/work/orca' })
-    const cloneB = makeRepo({ id: 'clone-b', displayName: 'Orca B', path: '/work/orca-b' })
+    const cloneB = makeRepo({ id: 'clone-b', displayName: 'BrzA Studio B', path: '/work/orca-b' })
     const remoteRepo = makeRepo({
       id: 'remote-repo',
       displayName: 'Orca',

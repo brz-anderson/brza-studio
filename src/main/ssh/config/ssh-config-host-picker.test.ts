@@ -57,7 +57,7 @@ describe('SSH config host picker search', () => {
     expect(last.hasMore).toBe(false)
   })
 
-  it('marks an alias the import skips as a route duplicate In Orca and leaves it out of Add all', () => {
+  it('marks an alias the import skips as a route duplicate In BrzA Studio and leaves it out of Add all', () => {
     const result = searchSshConfigHosts(
       [{ host: 'aimp' }, { host: 'fresh' }],
       [{ configHost: '172.16.203.131', label: 'AI Box' }],

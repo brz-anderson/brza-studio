@@ -27,7 +27,7 @@ export class WslDistroNotRunningError extends Error {
 export class WslDistroUnverifiableConnectError extends Error {
   constructor(distro: string) {
     super(
-      `WSL didn’t answer whether ${distro} is running, so Orca didn’t start anything there yet.`
+      `WSL didn’t answer whether ${distro} is running, so BrzA Studio didn’t start anything there yet.`
     )
     this.name = 'WslDistroUnverifiableConnectError'
   }

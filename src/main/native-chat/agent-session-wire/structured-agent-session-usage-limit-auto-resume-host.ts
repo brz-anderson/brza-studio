@@ -22,17 +22,26 @@ import {
 export const STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_CALLER =
   'trusted-local:usage-limit-auto-resume'
 
-const installed = new WeakMap<object, StructuredAgentSessionUsageLimitAutoResume>()
+/** The slice of a host the schedule is bound to. */
+export type StructuredAgentSessionUsageLimitAutoResumeHost = Pick<
+  StructuredAgentSessionHost,
+  'deps' | 'send' | 'journalSnapshot'
+>
+
+const installed = new WeakMap<
+  StructuredAgentSessionUsageLimitAutoResumeHost,
+  StructuredAgentSessionUsageLimitAutoResume
+>()
 
 /** The schedule a host serves; undefined on a host built without one. */
 export function structuredAgentSessionUsageLimitAutoResumeOf(
-  host: object
+  host: StructuredAgentSessionUsageLimitAutoResumeHost
 ): StructuredAgentSessionUsageLimitAutoResume | undefined {
   return installed.get(host)
 }
 
 export function installStructuredAgentSessionUsageLimitAutoResume(
-  host: Pick<StructuredAgentSessionHost, 'deps' | 'send' | 'journalSnapshot'>,
+  host: StructuredAgentSessionUsageLimitAutoResumeHost,
   file: StructuredAgentSessionUsageLimitAutoResumeDeps['file']
 ): StructuredAgentSessionUsageLimitAutoResume {
   const autoResume = createStructuredAgentSessionUsageLimitAutoResume({

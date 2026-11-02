@@ -42,7 +42,7 @@ describe('usePluginPanelActDriver', () => {
     expect(changes).toHaveBeenCalledTimes(4)
   })
 
-  it("snapshots and restores the shown guest's atoms, then redraws Orca's controls", () => {
+  it("snapshots and restores the shown guest's atoms, then redraws BrzA Studio's controls", () => {
     const { hook, driver, sendToGuest } = mount()
     driver.snapshot()
     expect(sendToGuest).toHaveBeenLastCalledWith('ui.snapshot', { document: 'doc-1' })

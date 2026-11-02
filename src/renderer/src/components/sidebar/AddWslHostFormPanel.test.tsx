@@ -92,7 +92,9 @@ describe('AddWslHostFormPanel', () => {
     const html = render()
     expect(html).toMatch(/<li data-value="Legacy" data-disabled="true">/)
     expect(html).toMatch(/<li data-value="Ubuntu" data-disabled="false">/)
-    expect(html).toContain('WSL 1 can’t run an Orca host; convert with wsl --set-version Legacy 2')
+    expect(html).toContain(
+      'WSL 1 can’t run a BrzA Studio host; convert with wsl --set-version Legacy 2'
+    )
     expect(canAddWslDistro(legacy)).toBe(false)
     expect(wsl1DistroReason('Legacy')).toContain('wsl --set-version Legacy 2')
   })

@@ -144,7 +144,9 @@ describe('installed plugin discovery identity', () => {
 
     // An older host still names the version gap rather than a schema error.
     const [old] = await discoverPlugins({ pluginsDir, devPluginPaths: [], hostVersion: '1.4.200' })
-    expect(old && 'error' in old ? old.error : '').toBe('requires Orca >=1.4.244 (this is 1.4.200)')
+    expect(old && 'error' in old ? old.error : '').toBe(
+      'requires BrzA Studio >=1.4.244 (this is 1.4.200)'
+    )
   })
 
   it('rejects an oversized current pointer without an unbounded startup read', async () => {

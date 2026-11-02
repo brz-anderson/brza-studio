@@ -20,12 +20,12 @@
     "ok": false,
     "error": {
       "code": "runtime_access_denied",
-      "message": "Permission denied connecting to Orca (EPERM). Orca may be running normally; this command's sandbox or OS permissions block the connection.",
+      "message": "Permission denied connecting to BrzA Studio (EPERM). BrzA Studio may be running normally; this command's sandbox or OS permissions block the connection.",
       "data": {
         "systemCode": "EPERM",
         "nextSteps": [
-          "Re-run this command outside its sandbox, or as a user allowed to reach the Orca runtime.",
-          "Do not restart Orca or run 'orca open'; a restart cannot grant this command access."
+          "Re-run this command outside its sandbox, or as a user allowed to reach the BrzA Studio runtime.",
+          "Do not restart BrzA Studio or run 'orca open'; a restart cannot grant this command access."
         ]
       }
     },

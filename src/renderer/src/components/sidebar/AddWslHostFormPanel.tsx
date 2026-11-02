@@ -34,7 +34,7 @@ export function wslDistroStateLabel(distro: WslHostDistro): string {
 export function wsl1DistroReason(name: string): string {
   return translate(
     'auto.components.sidebar.AddWslHostFormPanel.wsl1Reason',
-    'WSL 1 can’t run an Orca host; convert with {{command}}',
+    'WSL 1 can’t run a BrzA Studio host; convert with {{command}}',
     { command: wslSetVersion2Command(name) }
   )
 }

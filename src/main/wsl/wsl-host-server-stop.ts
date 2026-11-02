@@ -69,7 +69,7 @@ export async function stopWslHostServer(steps: WslHostServerStopSteps): Promise<
   }
   if (peers.kind === 'unsupported') {
     console.warn(
-      '[wsl-hosts] This WSL host’s server predates the shared-host check; removing it ends its terminals for every Orca using it.'
+      '[wsl-hosts] This WSL host’s server predates the shared-host check; removing it ends its terminals for every BrzA Studio using it.'
     )
   }
   let leftovers: WslHostTerminalLeftover[] = []

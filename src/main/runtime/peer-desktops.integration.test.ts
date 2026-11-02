@@ -124,8 +124,8 @@ describe(ORCAD_PEER_DESKTOPS_METHOD, () => {
     const dev = await socket(startup)
     await dev.request(ORCAD_DECLARE_CLIENT_METHOD, { clientInstanceId: DEV })
     // The startup row's "CLI <date>" name says nothing to a person.
-    expect(await peerNames(startup, STABLE)).toEqual(['another Orca'])
-    expect(await peerNames(startup, DEV)).toEqual(['another Orca'])
+    expect(await peerNames(startup, STABLE)).toEqual(['another BrzA Studio'])
+    expect(await peerNames(startup, DEV)).toEqual(['another BrzA Studio'])
 
     // Dev's control socket closes: lost contact isn't proof it left, so it still counts while it
     // reconnects (the grace's expiry is unit-tested with a clock).
@@ -136,12 +136,12 @@ describe(ORCAD_PEER_DESKTOPS_METHOD, () => {
     dev.session.ws.close()
     await closed
     await expect.poll(declared).toBe(1)
-    expect(await peerNames(startup, STABLE)).toEqual(['another Orca'])
+    expect(await peerNames(startup, STABLE)).toEqual(['another BrzA Studio'])
 
     // A reconnect declares again.
     const devAgain = await socket(startup)
     await devAgain.request(ORCAD_DECLARE_CLIENT_METHOD, { clientInstanceId: DEV })
-    expect(await peerNames(startup, STABLE)).toEqual(['another Orca'])
+    expect(await peerNames(startup, STABLE)).toEqual(['another BrzA Studio'])
   })
 
   it('sanitizes a peer name and ignores phones', async () => {
@@ -162,7 +162,7 @@ describe(ORCAD_PEER_DESKTOPS_METHOD, () => {
 
   // R39 follow-up: Stable removed the host while Dev used it, so the server was kept. Once Stable
   // is gone past the reconnect grace, Dev is the last Orca, and its own Remove may tear down.
-  it('lets the last Orca tear down once the other one has been gone past the grace', async () => {
+  it('lets the last BrzA Studio tear down once the other one has been gone past the grace', async () => {
     const server = await startServer()
     const startup = pair(server, 'CLI 10/28/2026', 'runtime')
     const stable = await socket(startup)
@@ -170,7 +170,7 @@ describe(ORCAD_PEER_DESKTOPS_METHOD, () => {
     const dev = await socket(startup)
     await dev.request(ORCAD_DECLARE_CLIENT_METHOD, { clientInstanceId: DEV })
     // Stable's Remove: Dev is connected, so the server is kept.
-    expect(await peerNames(startup, STABLE)).toEqual(['another Orca'])
+    expect(await peerNames(startup, STABLE)).toEqual(['another BrzA Studio'])
 
     // Stable lets go of the host.
     const declared = () => server['declaredDesktopClients']['byConnection'].size
@@ -179,7 +179,7 @@ describe(ORCAD_PEER_DESKTOPS_METHOD, () => {
     await closed
     await expect.poll(declared).toBe(1)
     // Within the grace, Stable could still be reconnecting, so Dev's Remove keeps the server.
-    expect(await peerNames(startup, DEV)).toEqual(['another Orca'])
+    expect(await peerNames(startup, DEV)).toEqual(['another BrzA Studio'])
 
     const real = performance.now.bind(performance)
     const clock = vi

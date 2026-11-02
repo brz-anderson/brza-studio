@@ -143,7 +143,7 @@ describe('PluginMarketplaceService', () => {
     })
 
     await expect(service.addSource(source())).rejects.toThrow(
-      "community.orca-secrets uses a name reserved for official Orca plugins; only Orca's official catalog may list it"
+      "community.orca-secrets uses a name reserved for official BrzA Studio plugins; only BrzA Studio's official catalog may list it"
     )
     await expect(service.listSources()).resolves.toEqual([])
   })
@@ -157,7 +157,9 @@ describe('PluginMarketplaceService', () => {
         )
     })
 
-    await expect(service.addSource(source())).rejects.toThrow('reserved for official Orca plugins')
+    await expect(service.addSource(source())).rejects.toThrow(
+      'reserved for official BrzA Studio plugins'
+    )
   })
 
   it('derives the Official badge only from the canonical marketplace and source organization', async () => {
@@ -335,7 +337,11 @@ describe('PluginMarketplaceService', () => {
   })
 
   const communityMarketplace = (): PluginMarketplace => ({
-    ...marketplace('Orca Community Plugins', 'acme.dusk', 'https://github.com/acme/dusk.git'),
+    ...marketplace(
+      'BrzA Studio Community Plugins',
+      'acme.dusk',
+      'https://github.com/acme/dusk.git'
+    ),
     owner: 'stablyai'
   })
 

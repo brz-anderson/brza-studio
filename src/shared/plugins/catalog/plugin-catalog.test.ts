@@ -107,7 +107,7 @@ describe('plugin catalog', () => {
 
   it('refuses a newer catalog format with the fix, and requires the version', () => {
     expect(pluginCatalogVersionError(catalog([], { catalogVersion: 3 }))).toBe(
-      'uses catalog format 3; update Orca to browse this catalog'
+      'uses catalog format 3; update BrzA Studio to browse this catalog'
     )
     expect(pluginCatalogVersionError(catalog([]))).toBeNull()
     expect(
@@ -115,7 +115,7 @@ describe('plugin catalog', () => {
     ).toBe(false)
   })
 
-  it('offers the newest release this Orca can install', () => {
+  it('offers the newest release this BrzA Studio can install', () => {
     const releases = [
       release('3.0.0', '2.0.0'),
       release('2.0.0', '1.5.0'),

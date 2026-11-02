@@ -428,7 +428,7 @@ describe('producer linkage on the persisted row', () => {
     expect(parsed.ok).toBe(true)
   })
 
-  it("refuses the same row with linkage put INSIDE a prompt option as a newer Orca's", () => {
+  it("refuses the same row with linkage put INSIDE a prompt option as a newer BrzA Studio's", () => {
     // A key a prompt option does not declare is a newer build's; linkage stays on the row base.
     const smuggled = {
       ...BASE,

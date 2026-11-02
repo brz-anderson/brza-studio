@@ -183,7 +183,7 @@ describe('pairing a server that is already saved', () => {
     // The English message keeps its wording; the code lets clients translate it.
     expect(refusal).toMatchObject({
       message: expect.stringMatching(
-        /^This server is already paired as "Managed box"\. Orca runs this server on an SSH host for you;/
+        /^This server is already paired as "Managed box"\. BrzA Studio runs this server on an SSH host for you;/
       ),
       pairingFailure: {
         errorCode: 'alreadyPairedManagedDeployment',

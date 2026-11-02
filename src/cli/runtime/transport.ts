@@ -91,8 +91,8 @@ export async function sendRequest<TResult>(
           classifySocketError(error) ??
           new RuntimeClientError(
             'runtime_unavailable',
-            'This terminal could not connect to Orca.',
-            { nextSteps: ['Check that Orca is open and that this terminal can access it.'] }
+            'This terminal could not connect to BrzA Studio.',
+            { nextSteps: ['Check that BrzA Studio is open and that this terminal can access it.'] }
           )
       })
     })
@@ -102,8 +102,8 @@ export async function sendRequest<TResult>(
         ok: false,
         error: new RuntimeClientError(
           'runtime_unavailable',
-          'Orca closed the connection before responding.',
-          { nextSteps: ['Check that Orca is open and that this terminal can access it.'] }
+          'BrzA Studio closed the connection before responding.',
+          { nextSteps: ['Check that BrzA Studio is open and that this terminal can access it.'] }
         )
       })
     })

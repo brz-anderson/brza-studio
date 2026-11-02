@@ -44,7 +44,8 @@
 ; Sync the LOCALAPPDATA root with BRAND_LOCAL_HOST_ROOT_NAME in src/shared/brand-identity.ts;
 ; see docs/reference/windows-daemon-host-relocation.md.
 ; Upstream Orca can run side by side, so processes and folders are matched by this app's own paths,
-; never by image name alone: $INSTDIR and the relocated hosts under LOCALAPPDATA\BrzA Studio.
+; never by image name alone: $INSTDIR and the relocated hosts under LOCALAPPDATA\BrzA
+; (LOCALAPPDATA\BrzA Studio before v1.4.246).
 !macro customUnInstall
   ${ifNot} ${isUpdated}
     Push $0
@@ -53,7 +54,7 @@
     Push $3
     ReadEnvStr $3 LOCALAPPDATA
     ; Same session as the uninstaller, like upstream KILL_PROCESS's current-user scope.
-    nsExec::Exec `"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -C "$$s = (Get-Process -Id $$PID).SessionId; Get-CimInstance -ClassName Win32_Process -ErrorAction Stop | ? { $$_.Path -and $$_.SessionId -eq $$s -and ($$_.Path.StartsWith('$INSTDIR\', 'OrdinalIgnoreCase') -or ('$3' -ne '' -and $$_.Path.StartsWith('$3\BrzA Studio\', 'OrdinalIgnoreCase'))) } | % { Stop-Process -Id $$_.ProcessId -Force -ErrorAction SilentlyContinue }"`
+    nsExec::Exec `"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -C "$$s = (Get-Process -Id $$PID).SessionId; Get-CimInstance -ClassName Win32_Process -ErrorAction Stop | ? { $$_.Path -and $$_.SessionId -eq $$s -and ($$_.Path.StartsWith('$INSTDIR\', 'OrdinalIgnoreCase') -or ('$3' -ne '' -and ($$_.Path.StartsWith('$3\BrzA\', 'OrdinalIgnoreCase') -or $$_.Path.StartsWith('$3\BrzA Studio\', 'OrdinalIgnoreCase')))) } | % { Stop-Process -Id $$_.ProcessId -Force -ErrorAction SilentlyContinue }"`
     Pop $0
     ${if} $0 != 0
       ; Without PowerShell, fall back to the image name: the app and its relocated host copies are
@@ -125,6 +126,9 @@
     ; Give the OS a moment to release the image lock before removing the tree.
     Sleep 500
     ${if} $3 != ""
+      RMDir /r "$3\BrzA\daemon-host"
+      RMDir /r "$3\BrzA\daemon-host-profiles"
+      ; Builds before v1.4.246 relocated hosts under LOCALAPPDATA\BrzA Studio.
       RMDir /r "$3\BrzA Studio\daemon-host"
       RMDir /r "$3\BrzA Studio\daemon-host-profiles"
     ${endIf}

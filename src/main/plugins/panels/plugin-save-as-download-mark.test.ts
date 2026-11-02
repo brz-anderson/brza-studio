@@ -33,7 +33,7 @@ describe('markPluginSavedFileAsDownloaded', () => {
     expect(d.runProcess).toHaveBeenCalledWith(
       expect.objectContaining({
         program: '/usr/bin/xattr',
-        args: ['-w', 'com.apple.quarantine', '0083;10000;Orca;', '/out/a.txt']
+        args: ['-w', 'com.apple.quarantine', '0083;10000;BrzA Studio;', '/out/a.txt']
       })
     )
   })

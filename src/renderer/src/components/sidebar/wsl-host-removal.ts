@@ -40,7 +40,7 @@ export function warnWslHostServerStop(serverStop: WslHostServerStop | undefined)
     toast.info(
       translate(
         'auto.components.sidebar.wslHostRemoval.keptForOthers',
-        'Removed from this Orca. The host keeps running for {{value0}}.',
+        'Removed from this BrzA Studio. The host keeps running for {{value0}}.',
         { value0: names }
       )
     )

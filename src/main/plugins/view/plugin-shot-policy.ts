@@ -1,7 +1,7 @@
 import type { PluginViewColorScheme } from '../../../shared/plugins/view/plugin-view-protocol'
 
 export const PLUGIN_SHOT_VISIBLE_THEME_REASON =
-  'the Orca window is visible; capturing in the current theme so the app is not repainted'
+  'the BrzA Studio window is visible; capturing in the current theme so the app is not repainted'
 
 /** `--theme` repaints the whole app, so it only applies while nobody can see the window. */
 export function pluginShotThemeDecision(
@@ -26,7 +26,7 @@ export function isPluginShotWindowShown(window: {
 }
 
 export const PLUGIN_SHOT_ACT_WINDOW_SHOWN_MESSAGE =
-  "shot --act needs Orca's window hidden or minimized, so it never clicks under the user"
+  "shot --act needs BrzA Studio's window hidden or minimized, so it never clicks under the user"
 
 /** `--act` drives a components panel, and only while nobody can be using the window. */
 export function pluginShotActRefusal(
@@ -44,7 +44,7 @@ export function pluginShotActRefusal(
     ? {
         reason: 'window_shown',
         message: PLUGIN_SHOT_ACT_WINDOW_SHOWN_MESSAGE,
-        nextSteps: ['Minimize or hide Orca, then run this again.']
+        nextSteps: ['Minimize or hide BrzA Studio, then run this again.']
       }
     : null
 }

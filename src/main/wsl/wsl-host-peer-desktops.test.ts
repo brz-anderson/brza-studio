@@ -17,17 +17,17 @@ function server(peers: unknown, capabilities = [ORCAD_PEER_DESKTOPS_RUNTIME_CAPA
 
 describe('readWslHostPeerDesktops', () => {
   it('names the other Orcas connected now, asking as this installation', async () => {
-    const call = server([{ name: 'Orca Dev' }])
+    const call = server([{ name: 'BrzA Studio Dev' }])
     await expect(readWslHostPeerDesktops(call, 'this-installation')).resolves.toEqual({
       kind: 'shared',
-      names: ['Orca Dev']
+      names: ['BrzA Studio Dev']
     })
     expect(call).toHaveBeenCalledWith(ORCAD_PEER_DESKTOPS_METHOD, {
       clientInstanceId: 'this-installation'
     })
   })
 
-  it('lets the teardown proceed when no other Orca is connected', async () => {
+  it('lets the teardown proceed when no other BrzA Studio is connected', async () => {
     await expect(readWslHostPeerDesktops(server([]), 'this-installation')).resolves.toEqual({
       kind: 'none'
     })

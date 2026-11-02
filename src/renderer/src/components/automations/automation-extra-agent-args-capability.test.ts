@@ -145,7 +145,7 @@ describe('extra agent args capability gate', () => {
         { ...INPUT, launchSetupPatch: { surface: 'chat' } },
         { selector: { kind: 'self' } }
       )
-    ).rejects.toThrow('Update Orca on this host')
+    ).rejects.toThrow('Update BrzA Studio on this host')
     expect(callRuntimeRpc).not.toHaveBeenCalled()
   })
 })

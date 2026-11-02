@@ -441,7 +441,7 @@ describe('useStructuredAgentSession options', () => {
       expect(mocks.toastError).toHaveBeenCalledTimes(schedule === 'same-pane' ? 1 : 0)
       if (schedule === 'same-pane') {
         expect(mocks.toastError).toHaveBeenCalledWith(
-          "Orca couldn't confirm what happened. Check the chat."
+          "BrzA Studio couldn't confirm what happened. Check the chat."
         )
       }
       expect(mocks.enqueueSettingsWrite).not.toHaveBeenCalled()

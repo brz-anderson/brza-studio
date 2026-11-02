@@ -139,7 +139,7 @@ export function describeUnsupportedBrowserExtensionFeatures(permissions: string[
   }
   return translate(
     'browserExtensions.unsupported.line',
-    'Not available in Orca yet: {{features}}.',
+    'Not available in BrzA Studio yet: {{features}}.',
     { features: features.map(featureLabel).join(', ') }
   )
 }

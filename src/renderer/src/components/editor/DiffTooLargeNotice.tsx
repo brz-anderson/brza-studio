@@ -12,7 +12,7 @@ export function DiffTooLargeNotice(): React.JSX.Element {
         <div className="text-xs text-muted-foreground">
           {translate(
             'editor.diffTooLarge.detail',
-            'One version of this file is over 10 MB, so Orca doesn’t load it for a text diff.'
+            'One version of this file is over 10 MB, so BrzA Studio doesn’t load it for a text diff.'
           )}
         </div>
       </div>

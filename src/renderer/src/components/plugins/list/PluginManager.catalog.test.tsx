@@ -312,7 +312,7 @@ describe('PluginManager catalog', () => {
     const dialog = trustDialog('theme')
     expect(dialog.textContent).toContain('Make sure you trust example')
     expect(dialog.textContent).toContain(
-      'This theme is from example, not Orca. Only install plugins from authors you trust.'
+      'This theme is from example, not BrzA Studio. Only install plugins from authors you trust.'
     )
     // Why Cancel holds focus: Enter on a link-opened page must never install unseen.
     expect(document.activeElement?.textContent).toBe('Cancel')
@@ -343,7 +343,7 @@ describe('PluginManager catalog', () => {
     await act(async () => button('Install & enable').click())
     const dialog = trustDialog('code')
     expect(dialog.textContent).toContain(
-      'It runs the publisher’s code inside Orca, so only install it if you trust example.'
+      'It runs the publisher’s code inside BrzA Studio, so only install it if you trust example.'
     )
     expect(dialog.textContent).toContain('example.com/notes')
     await act(async () => trustButton(dialog, 'Install').click())

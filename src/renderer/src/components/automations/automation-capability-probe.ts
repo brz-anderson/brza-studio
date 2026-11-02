@@ -220,7 +220,7 @@ export async function prepareAutomationLaunchSetup<
   }
   if (launchSetupPatch.surface === 'chat') {
     throw new AutomationHostScopeUnsupportedError(
-      'Update Orca on this host to run automations in Chat.'
+      'Update BrzA Studio on this host to run automations in Chat.'
     )
   }
   const extraAgentArgs = launchSetupPatch.arguments?.value

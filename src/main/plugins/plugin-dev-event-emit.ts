@@ -47,7 +47,7 @@ function parseEventName(event: string): PluginEventName {
   const known = PLUGIN_EVENT_NAMES.find((name) => name === event)
   const resolved = known ?? PLUGIN_V1_EVENT_ALIASES.get(event)
   if (!resolved) {
-    throw new PluginCliError('invalid_argument', `${event} is not an Orca plugin event.`, {
+    throw new PluginCliError('invalid_argument', `${event} is not a BrzA Studio plugin event.`, {
       events: [...PLUGIN_EVENT_NAMES],
       nextSteps: [`Pass one of: ${PLUGIN_EVENT_NAMES.join(', ')}.`]
     })
@@ -125,7 +125,7 @@ export function assertPluginSystemEnabled(service: {
   if (!service.options.isPluginSystemEnabled()) {
     throw new PluginCliError(
       PLUGIN_SYSTEM_DISABLED_CODE,
-      'Plugins are turned off on this Orca host.',
+      'Plugins are turned off on this BrzA Studio host.',
       {
         nextSteps: ['Turn plugins on (Settings → Plugins, or `orca plugin system on`).']
       }

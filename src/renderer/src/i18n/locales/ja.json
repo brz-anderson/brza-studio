@@ -6,7 +6,7 @@
       "unsupportedLaunch": "OpenCode はこの起動に選択したモデルを適用できません。対応する起動引数で新しいローカルターミナルを開くか、モデルの指定を省略してください。"
     },
     "terminalPreparationFailed": "{{value0}} のターミナルを開けませんでした。ワークスペースの接続と Agent の設定を確認して、もう一度お試しください。",
-    "terminalPromptFailed": "Orca は {{value0}} のターミナルを開きましたが、プロンプトを渡せませんでした。そのターミナルでプロンプトを送信してください。"
+    "terminalPromptFailed": "BrzA Studio は {{value0}} のターミナルを開きましたが、プロンプトを渡せませんでした。そのターミナルでプロンプトを送信してください。"
   },
   "app": {
     "saving": {
@@ -111,7 +111,7 @@
         "shared": "他のターミナルアプリと共有されます。空き数ではなく総容量です。",
         "disconnected": "このホストは切断されています。再接続してターミナルの上限を確認または変更してください。",
         "unsupported": "このホストのターミナルサービスは、まだ上限の変更に対応していません。",
-        "environment": "このOrcaインスタンスのターミナル上限は環境変数で設定されています。ここで編集するには、このホストの環境変数による設定を削除してください。",
+        "environment": "このBrzA Studioインスタンスのターミナル上限は環境変数で設定されています。ここで編集するには、このホストの環境変数による設定を削除してください。",
         "savedUnreadable": "このホストに保存されたターミナル上限を読み取れませんでした。{{value}} を使用しています。値を入力し、Enter キーを押して置き換えてください。",
         "failed": "ターミナルの上限を確認できませんでした。もう一度お試しください。",
         "retry": "再試行",
@@ -270,8 +270,8 @@
         "remove": "削除",
         "reload": "フォルダーから再読み込み",
         "removeTitle": "{{name}} を削除しますか？",
-        "removeUnpackedDescription": "保存されたデータとともに、すべての Orca ブラウザプロファイルから削除されます。ディスク上のフォルダーはそのまま残ります。",
-        "removeDescription": "保存されたデータとともに、すべての Orca ブラウザプロファイルから削除されます。",
+        "removeUnpackedDescription": "保存されたデータとともに、すべての BrzA Studio ブラウザプロファイルから削除されます。ディスク上のフォルダーはそのまま残ります。",
+        "removeDescription": "保存されたデータとともに、すべての BrzA Studio ブラウザプロファイルから削除されます。",
         "heldUpdate": "バージョン {{version}} は追加のアクセス許可を待っています。",
         "reviewAccess": "アクセスを確認",
         "loadError": "起動できませんでした: {{error}}",
@@ -284,7 +284,7 @@
         "keywordChrome": "クローム",
         "keywordUnpacked": "パッケージ化されていない",
         "keywordPassword": "パスワードマネージャー",
-        "desktopOnly": "ブラウザ拡張機能は Orca デスクトップアプリでのみ動作します。",
+        "desktopOnly": "ブラウザ拡張機能は BrzA Studio デスクトップアプリでのみ動作します。",
         "webStore": {
           "placeholder": "Chrome ウェブストアのリンクまたは拡張機能 ID",
           "inputLabel": "Chrome ウェブストアから追加",
@@ -340,14 +340,14 @@
       "permissionsTitle": "権限",
       "permissionsChoiceExplanation": "すべての Agent が確認なしで実行できる操作です。個別の Agent は下で別に設定できます。",
       "permissionEachOwn": "各 Agent 独自の設定",
-      "permissionArgsTerminalOnly": "これらの引数が {{agent}} のターミナル権限を制御する可能性があるため、Orca はフラグを追加しません。チャットでは上の権限の選択が使われます。",
+      "permissionArgsTerminalOnly": "これらの引数が {{agent}} のターミナル権限を制御する可能性があるため、BrzA Studio はフラグを追加しません。チャットでは上の権限の選択が使われます。",
       "localSaveFailed": "Agent 設定を保存できませんでした。もう一度お試しください。",
       "localSaveFailedAgent": "{{agent}} の設定を保存できませんでした。もう一度お試しください。",
       "permissionFromArgs": "ターミナルと新しいチャットで {{agent}} を {{mode}} に設定しました。",
       "permissionFromArgsTerminals": "ターミナルで {{agent}} を {{mode}} に設定しました。",
       "permissionOwnAgent": "{{agent}} 独自の設定を使用",
       "permissionOwnAll": "Agent 独自の設定",
-      "permissionOwnLegacyDescription": "Orca はターミナルで権限フラグを追加しません。チャットでは 設定 → チャット が使われます。",
+      "permissionOwnLegacyDescription": "BrzA Studio はターミナルで権限フラグを追加しません。チャットでは 設定 → チャット が使われます。",
       "permissionOwnDescription": "ターミナルとチャットは Agent 独自の権限設定に従います。",
       "permissionOwnShort": "独自の設定",
       "permissionWithoutAuto": "「代わりに承認」がない Agent",
@@ -368,7 +368,7 @@
       "codexHistorySharing": {
         "title": "アカウント間で Codex の履歴を共有する",
         "description": "各 Codex アカウントとご自身の ~/.codex で、ほかのアカウントで始めた会話を再開できるようにします。オフにすると、アカウントごとに履歴を分けたままにします。オフにしても、すでに共有されたものは削除されません。",
-        "unsupported": "この設定を変更するには、{{host}} の Orca を更新してください。",
+        "unsupported": "この設定を変更するには、{{host}} の BrzA Studio を更新してください。",
         "updateFailed": "{{host}} の設定を更新できませんでした。"
       },
       "installCliForTerminal": "ターミナルで開くには {{value0}} CLI をインストールしてください。",
@@ -803,15 +803,15 @@
             }
           },
           "localBaseRefShallowHistoryTitle": "ローカルの {{value0}} は更新されていません: シャロークローン",
-          "localBaseRefShallowHistoryNamed": "「{{value0}}」は {{value1}} から作成されており、影響はありません。このクローンには最近の履歴しかないため、Git はローカルの {{value2}} が単に遅れているだけかを確認できず、Orca はローカルの {{value2}} ブランチを更新できませんでした。すべての新しいワークスペースでこれを解決するには、次を一度実行してください:",
-          "localBaseRefShallowHistory": "ワークスペースは {{value0}} から作成されており、影響はありません。このクローンには最近の履歴しかないため、Git はローカルの {{value1}} が単に遅れているだけかを確認できず、Orca はローカルの {{value1}} ブランチを更新できませんでした。すべての新しいワークスペースでこれを解決するには、次を一度実行してください:",
+          "localBaseRefShallowHistoryNamed": "「{{value0}}」は {{value1}} から作成されており、影響はありません。このクローンには最近の履歴しかないため、Git はローカルの {{value2}} が単に遅れているだけかを確認できず、BrzA Studio はローカルの {{value2}} ブランチを更新できませんでした。すべての新しいワークスペースでこれを解決するには、次を一度実行してください:",
+          "localBaseRefShallowHistory": "ワークスペースは {{value0}} から作成されており、影響はありません。このクローンには最近の履歴しかないため、Git はローカルの {{value1}} が単に遅れているだけかを確認できず、BrzA Studio はローカルの {{value1}} ブランチを更新できませんでした。すべての新しいワークスペースでこれを解決するには、次を一度実行してください:",
           "localBaseRefRefreshTurnOff": "チェックを無効化",
           "localBaseRefRefreshTurnOffHelp": "「チェックを無効化」の動作",
-          "localBaseRefRefreshTurnOffTooltip": "Orca の設定 {{value0}} をオフにします。ワークスペースの作成時に Orca はローカルの {{value1}} を更新しなくなり、この警告も表示されなくなります。新しいワークスペースには影響しません。設定 › Git からいつでも再度オンにできます。",
+          "localBaseRefRefreshTurnOffTooltip": "BrzA Studio の設定 {{value0}} をオフにします。ワークスペースの作成時に BrzA Studio はローカルの {{value1}} を更新しなくなり、この警告も表示されなくなります。新しいワークスペースには影響しません。設定 › Git からいつでも再度オンにできます。",
           "localBaseRefUnshallow": "完全な履歴を取得",
           "localBaseRefUnshallowFailed": "このワークスペースのターミナルを開けませんでした",
           "localBaseRefUnshallowFailedDescription": "代わりに、このリポジトリのターミナルで {{value0}} を実行してください。",
-          "localBaseRefRefreshTurnedOff": "Orca はローカルの {{value0}} を更新しなくなります",
+          "localBaseRefRefreshTurnedOff": "BrzA Studio はローカルの {{value0}} を更新しなくなります",
           "localBaseRefRefreshTurnedOffDescription": "設定 › {{value0}} で再度オンにできます。",
           "localBaseRefRefreshTurnOffFailed": "{{value0}} をオフにできませんでした"
         },
@@ -834,9 +834,9 @@
           "moveToGroupOtherHost": "プロジェクトをグループに移動できませんでした",
           "moveToGroupOtherHostDesc": "このプロジェクトを実行しているコンピューターにはこのグループがありません。プロジェクトは同じコンピューターに保存されたグループにのみ参加できます。",
           "pendingRemovalRefused": "オフライン中に削除したプロジェクトがサーバーに残っています",
-          "removeProjectHostUnreachable": "サーバーに接続できません。今すぐこのデスクトップから削除すると、再接続時に Orca がサーバーからも削除します。",
+          "removeProjectHostUnreachable": "サーバーに接続できません。今すぐこのデスクトップから削除すると、再接続時に BrzA Studio がサーバーからも削除します。",
           "removeProjectLocallyNow": "今すぐこのデスクトップから削除",
-          "removeProjectHostDisconnected": "サーバーとの接続が切断されています。今すぐこのデスクトップから削除すると、再接続時に Orca がサーバーからも削除します。"
+          "removeProjectHostDisconnected": "サーバーとの接続が切断されています。今すぐこのデスクトップから削除すると、再接続時に BrzA Studio がサーバーからも削除します。"
         },
         "settings": {
           "e12dab333b": "サーバーの切り替えに失敗しました"
@@ -1276,9 +1276,9 @@
               "googleCookiesSkippedLocal": "Google Cookie はインポートされませんでした。このプロファイルを使用して BrzA Studio でブラウザを開き、Google にサインインします。",
               "googleCookiesSkippedClientHosted": "Google Cookie はインポートされませんでした。このプロファイルを使用して {{value0}} ワークスペースのブラウザタブを開き、このデバイスで開きます。次に、Google にサインインします。",
               "googleCookiesSkippedRemoteWorkspace": "Google Cookie はインポートされませんでした。このプロファイルを使用して {{value0}} ワークスペースのブラウザタブを開き、Google にサインインします。",
-              "secretToolMissing": "secret-tool がインストールされていないため、Orca は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。libsecret-tools (またはお使いのディストリビューションの同等パッケージ) をインストールして、もう一度インポートしてください。",
-              "cookieKeyLocked": "システムキーリングへのアクセスがロックまたは拒否されたため、Orca は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。ログインキーリングのロックを解除し、確認が表示されたらアクセスを許可してから、もう一度インポートしてください。",
-              "cookieKeyUnavailable": "Cookie の暗号化キーを読み取れなかったため、Orca は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。もう一度インポートするか、「ファイルから…」で Cookie をインポートするか、Orca で直接サインインしてください。",
+              "secretToolMissing": "secret-tool がインストールされていないため、BrzA Studio は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。libsecret-tools (またはお使いのディストリビューションの同等パッケージ) をインストールして、もう一度インポートしてください。",
+              "cookieKeyLocked": "システムキーリングへのアクセスがロックまたは拒否されたため、BrzA Studio は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。ログインキーリングのロックを解除し、確認が表示されたらアクセスを許可してから、もう一度インポートしてください。",
+              "cookieKeyUnavailable": "Cookie の暗号化キーを読み取れなかったため、BrzA Studio は {{browser}} の暗号化された Cookie のうち {{count}} 件を読み取れませんでした。もう一度インポートするか、「ファイルから…」で Cookie をインポートするか、BrzA Studio で直接サインインしてください。",
               "otherUndecryptableCookies": "ほかに {{count}} 件の Cookie を別の理由で復号できませんでした。"
             }
           }
@@ -1353,7 +1353,7 @@
       "aiVaultResumeRefusal": {
         "openInChat": "この {{value0}} の会話はチャットで開かれています。開くにはセッション履歴を更新してください。",
         "ownershipUnknown": "BrzA Studio はこの {{value0}} の会話の所有者を確認できませんでした。セッション履歴を更新して、再試行してください。",
-        "preparationRefused": "Orca はこの {{value0}} の会話を準備できませんでした。続けるには新しいチャットを開始してください。"
+        "preparationRefused": "BrzA Studio はこの {{value0}} の会話を準備できませんでした。続けるには新しいチャットを開始してください。"
       },
       "composerCreateHandoff": {
         "reopen": "再度開く",
@@ -1387,7 +1387,7 @@
         }
       },
       "claudeAgentRowView": {
-        "subagentNavigationSetup": "設定 → Agent で Claude のサブ Agent ナビゲーションを有効にしてから、Orca で Claude 2.1.300 以降を起動してください。keybindings.json で Ctrl+Alt+G、H、または V が引き続き command:orca-agent-view に割り当てられていることを確認してください。",
+        "subagentNavigationSetup": "設定 → Agent で Claude のサブ Agent ナビゲーションを有効にしてから、BrzA Studio で Claude 2.1.300 以降を起動してください。keybindings.json で Ctrl+Alt+G、H、または V が引き続き command:orca-agent-view に割り当てられていることを確認してください。",
         "permissionPrompt": "Agent を切り替える前に、Claude の権限確認に応答してください。"
       },
       "dropFailureReason": {
@@ -1526,7 +1526,7 @@
         "linearTitle": "Linear",
         "linearDescription": "BrzA Studio での Linear の仕組み、セットアップチェックリスト、Agent スキル、プロンプト例。",
         "pluginsTitle": "プラグイン",
-        "pluginsDescription": "Orca プラグインをインストール・管理します（アルファ版）。",
+        "pluginsDescription": "BrzA Studio プラグインをインストール・管理します（アルファ版）。",
         "tasksDescription": "プロバイダーを接続し、Linear スキルをインストールして、タスクに表示する項目を選択します。",
         "artifactsTitle": "アーティファクト",
         "artifactsDescription": "HTML および Markdown ファイルをチームと共有し、パブリックリンクを管理します。",
@@ -2670,7 +2670,7 @@
         "moreSinceLastUpdate": "+{{count}} 件（前回の更新以降）",
         "downloadingPercent": "ダウンロード中… {{percent}}%",
         "restartToInstallFailed": "アップデートをインストールするために再起動できませんでした。",
-        "http1RetryAvailable": "Orca は HTTP/1.1 互換モードで再試行できます。",
+        "http1RetryAvailable": "BrzA Studio は HTTP/1.1 互換モードで再試行できます。",
         "restarting": "再起動中…",
         "updateCheckFailed": "アップデートの確認に失敗",
         "updateIncomplete": "アップデートを完了できませんでした。",
@@ -3652,8 +3652,8 @@
             "openSupportedWorkspace": "セッションを再開する前に、ワークスペースを開いてください。",
             "sessionHostMismatchUnsupported": "このセッションは別のホストに属しています。同じホスト上のワークスペースにドロップしてください。",
             "oldPayload": "このセッションは古い BrzA Studio ウィンドウからドラッグされました。代わりにセッション履歴から再開してください。",
-            "legacyDragCannotRetarget": "このセッションは古いバージョンの Orca ウィンドウからドラッグされたため、選択した Codex アカウントに切り替えられません。セッション履歴パネルから再開してください。",
-            "legacyDragPrepareFailed": "Orca はこの旧形式の Codex セッションを準備できませんでした。もう一度再開を試してください。"
+            "legacyDragCannotRetarget": "このセッションは古いバージョンの BrzA Studio ウィンドウからドラッグされたため、選択した Codex アカウントに切り替えられません。セッション履歴パネルから再開してください。",
+            "legacyDragPrepareFailed": "BrzA Studio はこの旧形式の Codex セッションを準備できませんでした。もう一度再開を試してください。"
           },
           "TabGroupDropOverlay": {
             "paneColumnLabel": "新規分割"
@@ -3699,7 +3699,7 @@
             "chatCheckFailed": "チャットを利用できるか確認できませんでした",
             "agentsLoading": "Agent を読み込んでいます",
             "cliTag": "(CLI)",
-            "terminalListNeedsServerUpdate": "ターミナル Agent を一覧表示するには、このサーバーの Orca を更新してください",
+            "terminalListNeedsServerUpdate": "ターミナル Agent を一覧表示するには、このサーバーの BrzA Studio を更新してください",
             "terminalListFailed": "このワークスペースのターミナル Agent を一覧表示できませんでした"
           },
           "RecentTabSwitcher": {
@@ -4855,7 +4855,7 @@
           "updateOne": "スキルを更新",
           "updateMany": "スキルを更新",
           "description": "Agent がこのバージョンの BrzA Studio の最新の手順に従うように、{{value0}} を更新してください。",
-          "title_other": "インストール済みの Orca スキル {{count}} 件が古くなっています"
+          "title_other": "インストール済みの BrzA Studio スキル {{count}} 件が古くなっています"
         },
         "SkillFreshnessUpdateDialog": {
           "title": "スキルを更新",
@@ -4937,12 +4937,12 @@
         },
         "SkillInstallManagementDialog": {
           "8095927ff3": "閉じる",
-          "64c71cf7b9": "Orca はまだこのマシンにスキルをインストールしていません。",
+          "64c71cf7b9": "BrzA Studio はまだこのマシンにスキルをインストールしていません。",
           "0900db719a": "— 切断されました",
           "176fef9516": "・ SSH",
           "6cb1fbe039": "このコンピュータ",
-          "3677ae58e7": "Orca がリンクからインストールしたスキルです。再インストール、以前のバージョンへの切り戻し、または削除ができます。",
-          "44d118a8f7": "Orca でインストール済み",
+          "3677ae58e7": "BrzA Studio がリンクからインストールしたスキルです。再インストール、以前のバージョンへの切り戻し、または削除ができます。",
+          "44d118a8f7": "BrzA Studio でインストール済み",
           "dab29e4b54": "{{installed}} がインストールされました · {{updated}} が更新されました · {{keptLocal}} はローカルに保持されました"
         },
         "SkillInstallReviewContent": {
@@ -5305,7 +5305,7 @@
           "a23b22d16f": "コピーしました",
           "74fc00776f": "エラーの詳細",
           "ca3b225195": "ブランチの自動名前付けに失敗しました",
-          "couldNotGenerateBranchName": "Orca は最初の Agent メッセージから <name>{{name}}</name> のブランチ名を生成できませんでした。"
+          "couldNotGenerateBranchName": "BrzA Studio は最初の Agent メッセージから <name>{{name}}</name> のブランチ名を生成できませんでした。"
         },
         "CreateProjectLocationField": {
           "95548e33bf": "親フォルダーを選択…",
@@ -5326,13 +5326,13 @@
           "86f0ae1257": "ワークスペースの削除",
           "removeFolderProjectInstead": "このワークスペースを削除する代わりに、フォルダープロジェクトを削除してください。",
           "gitBlocksMainWorktree": "Git ではメインワークツリーを削除できません。",
-          "removeBatchFolder_other": "Orca から<target>{{count}} 個のワークスペース</target>を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
-          "removeBatchMixed_other": "Orca から<target>{{count}} 個のワークスペース</target>を削除します。Git ワークツリーは git とディスクからも削除されます。フォルダーワークスペースは Orca の登録のみ削除されます。",
+          "removeBatchFolder_other": "BrzA Studio から<target>{{count}} 個のワークスペース</target>を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
+          "removeBatchMixed_other": "BrzA Studio から<target>{{count}} 個のワークスペース</target>を削除します。Git ワークツリーは git とディスクからも削除されます。フォルダーワークスペースは BrzA Studio の登録のみ削除されます。",
           "removeBatchGit_other": "git から<target>{{count}} 個のワークスペース</target>を削除し、そのワークスペースフォルダーも削除します。",
-          "removeSingleFolder": "Orca から <target/> を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
+          "removeSingleFolder": "BrzA Studio から <target/> を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
           "removeSingleGit": "git から <target/> を削除し、そのワークスペースフォルダーも削除します。",
-          "removeWithChildrenFolder_other": "Orca から <target/> と<descendants>{{count}} 個の子ワークスペース</descendants>を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
-          "removeWithChildrenMixed_other": "Orca から <target/> と<descendants>{{count}} 個の子ワークスペース</descendants>を削除します。Git ワークツリーは git とディスクからも削除されます。フォルダーワークスペースは Orca の登録のみ削除されます。",
+          "removeWithChildrenFolder_other": "BrzA Studio から <target/> と<descendants>{{count}} 個の子ワークスペース</descendants>を削除します。ディスク上のプロジェクトフォルダーは削除されません。",
+          "removeWithChildrenMixed_other": "BrzA Studio から <target/> と<descendants>{{count}} 個の子ワークスペース</descendants>を削除します。Git ワークツリーは git とディスクからも削除されます。フォルダーワークスペースは BrzA Studio の登録のみ削除されます。",
           "removeWithChildrenGit_other": "git から <target/> と<descendants>{{count}} 個の子ワークスペース</descendants>を削除し、それらのワークスペースフォルダーも削除します。"
         },
         "DeleteWorktreeDirtyChangeHint": {
@@ -6174,7 +6174,7 @@
                   "442552c656": "設定を開いてもう一度お試しください。",
                   "34a03a6565": "{{value0}} を最新の状態に保つ",
                   "4a18052018": "ローカル {{value0}} は {{value1}} より遅れています",
-                  "staleLocalBranch_other": "新規ワークツリーは最新ですが、ローカルの {{branch}} は {{count}} コミット遅れているため、AI の差分比較に古い履歴が使われる可能性があります。Orca にこのブランチの自動更新を任せられます。<settings>設定 › {{setting}}</settings>でいつでも変更できます"
+                  "staleLocalBranch_other": "新規ワークツリーは最新ですが、ローカルの {{branch}} は {{count}} コミット遅れているため、AI の差分比較に古い履歴が使われる可能性があります。BrzA Studio にこのブランチの自動更新を任せられます。<settings>設定 › {{setting}}</settings>でいつでも変更できます"
                 }
               }
             }
@@ -6241,9 +6241,9 @@
           "workspacesFailed": "このホストの {{count}} 個のワークスペースを削除できませんでした。ホストは保持されたので、再試行できます。",
           "advanced": "詳細設定",
           "alsoForgetLocalHint": "BrzA Studio からのみ削除します。リモートのファイル、ワークツリー、ブランチはそのまま残ります。",
-          "wslHostEndsTerminalsUnlessShared": "Orca から {{value0}} を削除します。このコンピューターで開いている別の Orca が使用していない場合は、開いているターミナルも終了し、そのディストリビューション内の Orca サーバーを停止します。ディストリビューション内のファイルは変更されません。",
-          "hostKeepsWorkspaces_other": "このコンピュータから {{host}} とその認証情報を削除します。ホストの {{count}} 件のワークスペースは Orca に残ります。リモートファイルは変更されません。",
-          "alsoRemoveWorkspaces_other": "この {{count}} 件のワークスペースも Orca から削除"
+          "wslHostEndsTerminalsUnlessShared": "BrzA Studio から {{value0}} を削除します。このコンピューターで開いている別の BrzA Studio が使用していない場合は、開いているターミナルも終了し、そのディストリビューション内の BrzA Studio サーバーを停止します。ディストリビューション内のファイルは変更されません。",
+          "hostKeepsWorkspaces_other": "このコンピュータから {{host}} とその認証情報を削除します。ホストの {{count}} 件のワークスペースは BrzA Studio に残ります。リモートファイルは変更されません。",
+          "alsoRemoveWorkspaces_other": "この {{count}} 件のワークスペースも BrzA Studio から削除"
         },
         "HostRenameDialog": {
           "1a2b3c4d5e": "ホスト名を変更",
@@ -6353,7 +6353,7 @@
           "port": "ポート",
           "identityFile": "秘密鍵ファイル",
           "identityFilePlaceholder": "~/.ssh/id_ed25519 (オプション)",
-          "nameInOrca": "Orca での名前",
+          "nameInOrca": "BrzA Studio での名前",
           "serverNamePlaceholder": "開発環境",
           "accessLink": "アクセスリンク",
           "pairingCodePlaceholder": "orca://pair?code=...",
@@ -6370,7 +6370,7 @@
           "sshConfigPickerRestartRequired": "BrzA Studio を再起動して、SSH 構成ピッカーの更新の適用を完了します。",
           "sshConfigPickerFilled": "{{value0}} から埋められます。確認して保存します。",
           "sshConfigPickerTitle": "~/.ssh/config から選択します",
-          "sshConfigPickerImportDescription": "フォームに入力するホストを選択するか、すべての新しいホストを Orca のホスト一覧に追加します。",
+          "sshConfigPickerImportDescription": "フォームに入力するホストを選択するか、すべての新しいホストを BrzA Studio のホスト一覧に追加します。",
           "sshConfigPickerFilter": "ホストをフィルタリング…",
           "sshConfigPickerHostsLabel": "SSH 構成ホスト",
           "sshConfigPickerLoading": "~/.ssh/config を読み取り中…",
@@ -6391,7 +6391,7 @@
           "sshConfigPickerRetry": "再試行",
           "sshConfigPickerResolving": "読む…",
           "pairingHelpShareComputer": "もう一方のコンピューターで「設定 → リモート BrzA Studio サーバー → このコンピューターを共有」から作成します。",
-          "sshImportSynced_other": "{{count}} 台のホストを Orca に追加しました。",
+          "sshImportSynced_other": "{{count}} 台のホストを BrzA Studio に追加しました。",
           "sshConfigPickerInvalidResponse": "SSH 設定のホスト応答が無効です"
         },
         "ForgetSshWorkspaceDialog": {
@@ -6480,7 +6480,7 @@
           "copyDiagnostics": "コピー診断",
           "wslStoppedTitle": "WSL ディストリビューション {{value0}} は停止しています",
           "wslUnverifiableTitle": "WSL ディストリビューション {{value0}} が実行中か確認できませんでした",
-          "wslRetained": "Orca が把握済みのワークツリーを表示しています。ディストリビューションの実行を Orca が確認すると更新されます。",
+          "wslRetained": "BrzA Studio が把握済みのワークツリーを表示しています。ディストリビューションの実行を BrzA Studio が確認すると更新されます。",
           "wslStartAndScan": "ディストリビューションを起動してスキャン",
           "wslStartAndScanHint": "アイコンをクリックすると、ディストリビューションを起動して再スキャンします。"
         },
@@ -6522,7 +6522,7 @@
           "startAndAdd": "起動して追加",
           "add": "ホストを追加",
           "refresh": "更新",
-          "wsl1Reason": "WSL 1 では Orca ホストを実行できません。{{command}} で変換してください",
+          "wsl1Reason": "WSL 1 では BrzA Studio ホストを実行できません。{{command}} で変換してください",
           "noWsl2Title": "WSL 2 ディストリビューションが見つかりません",
           "noWsl2Install": "Windows ターミナルで {{command}} を実行してインストールし、[更新] を選択してください。"
         },
@@ -6541,9 +6541,9 @@
           "removalPending": "削除が完了しませんでした"
         },
         "wslHostRemoval": {
-          "keptForOthers": "この Orca から削除しました。ホストは {{value0}} のために動作し続けます。",
+          "keptForOthers": "この BrzA Studio から削除しました。ホストは {{value0}} のために動作し続けます。",
           "partial": "ホストは削除されましたが、ディストリビューション内でまだ実行中のものがあります: {{value0}}",
-          "pending": "Orca はまだホストを削除していません: {{value0}} 再試行するにはもう一度削除し、残す場合は接続してください。",
+          "pending": "BrzA Studio はまだホストを削除していません: {{value0}} 再試行するにはもう一度削除し、残す場合は接続してください。",
           "unavailable": "このコンピュータでは WSL ホストを利用できません。"
         },
         "addRepoWslHostFolderPicker": {
@@ -7426,7 +7426,7 @@
           "e2955d9ccb": "新規ワークスペースを作成する場所を構成します。",
           "7511097c5d": "ワークスペース",
           "externalWorktrees": "外部ワークツリー",
-          "externalWorktreesDescription": "このホストで、Orca 外で作成されたどのワークツリーをデフォルトで表示するかを選択します。",
+          "externalWorktreesDescription": "このホストで、BrzA Studio 外で作成されたどのワークツリーをデフォルトで表示するかを選択します。",
           "31e300af1c": "アーティファクトを削除する前に確認する",
           "fb29a73a17": "共有アーティファクトを削除し、そのパブリックリンクを解除する前に、確認ダイアログを表示します。",
           "bf46474e33": "共有アーティファクトを削除する前に確認を表示します。そのパブリックリンクを保持している人はアクセスできなくなります。"
@@ -7966,8 +7966,8 @@
           "c7ef4415de": "表示名",
           "b0a0c14a1c": "サイドバーとタブのプロジェクト固有の表示詳細。",
           "removeProjectAllHosts": "このプロジェクトを、設定済みのすべてのホストの BrzA Studio から削除します。",
-          "removeProjectCheckout": "このチェックアウトを Orca から削除します。このプロジェクトの他のチェックアウトは残ります。",
-          "removeProjectKeepCheckouts": "このプロジェクトを Orca から削除します。独自の設定を持つチェックアウトは残ります。",
+          "removeProjectCheckout": "このチェックアウトを BrzA Studio から削除します。このプロジェクトの他のチェックアウトは残ります。",
+          "removeProjectKeepCheckouts": "このプロジェクトを BrzA Studio から削除します。独自の設定を持つチェックアウトは残ります。",
           "0909e5d650": "プロジェクトの削除",
           "ee5a290616": "フォルダーとして開きます。このワークスペースでは Git 機能を使用できません。",
           "323debba71": "タイプ：",
@@ -9479,7 +9479,7 @@
             },
             "browserExtensions": {
               "title": "ブラウザ拡張機能",
-              "description": "パスワードマネージャーなどの Chrome 拡張機能を Orca のブラウザタブで実行します。",
+              "description": "パスワードマネージャーなどの Chrome 拡張機能を BrzA Studio のブラウザタブで実行します。",
               "extension": "拡張機能",
               "chrome": "クローム",
               "password": "パスワードマネージャー"
@@ -11234,8 +11234,8 @@
           "managedOverSshHelp": "このサーバーはこのデスクトップから SSH で更新されます。リモート BrzA Studio サーバーの行にある「更新」を使ってください。"
         },
         "BrowserLinkRoutingSetting": {
-          "description": "Orca 内のあらゆる場所の http(s) リンクを組み込みブラウザで開きます。サインインページと {{shortcut}} は常にシステムブラウザを使用します。",
-          "descriptionBase": "Orca 内のあらゆる場所の http(s) リンクを組み込みブラウザで開きます。サインインページは引き続きシステムブラウザで開きます。"
+          "description": "BrzA Studio 内のあらゆる場所の http(s) リンクを組み込みブラウザで開きます。サインインページと {{shortcut}} は常にシステムブラウザを使用します。",
+          "descriptionBase": "BrzA Studio 内のあらゆる場所の http(s) リンクを組み込みブラウザで開きます。サインインページは引き続きシステムブラウザで開きます。"
         },
         "BrowserLinkRoutingModifierSetting": {
           "titleSystem": "Shift を押しながらクリックすると Web ブラウザで開きます",
@@ -11263,7 +11263,7 @@
           },
           "decisionFailed": "権限の選択を保存できませんでした。再試行してください。",
           "fullAccessWarning": "フルアクセス：通常のプログラムとして実行され、ファイルの読み取り、ネットワークの使用、他のプログラムの実行ができます。",
-          "uiWarning": "ビューを描画するため、公開元のコードを Orca 内で実行します。Orca はアクセスできる範囲を表示し、有効にする前に確認します。"
+          "uiWarning": "ビューを描画するため、公開元のコードを BrzA Studio 内で実行します。BrzA Studio はアクセスできる範囲を表示し、有効にする前に確認します。"
         },
         "PluginConsentProvenance": {
           "official": "公式",
@@ -11308,7 +11308,7 @@
           "installFailed": "プラグインのインストールに失敗しました。ソースを確認して再試行してください。",
           "checking": "確認中…",
           "continue": "続行",
-          "gitUrlCredentials": "URL からユーザー名またはトークンを削除してください。Orca はお使いの Git の認証情報を使用します。",
+          "gitUrlCredentials": "URL からユーザー名またはトークンを削除してください。BrzA Studio はお使いの Git の認証情報を使用します。",
           "gitRefInvalid": "# の後のバージョンは有効なタグ、ブランチ、またはコミット名ではありません。",
           "gitRefNotFound": "このリポジトリには {{value0}} という名前のタグまたはブランチがありません。",
           "gitUnreachable": "このリポジトリを読み取れませんでした。URL と、Git アカウントがアクセスできるかを確認してください。",
@@ -11468,7 +11468,7 @@
           "tryIt": "試す",
           "mismatch": "ダウンロードがカタログと一致しません。何もインストールされていません。",
           "catalogChanged": "カタログが変更されました。更新して再試行してください。",
-          "blocked": "Orca の安全リストがこのプラグインをブロックしています。",
+          "blocked": "BrzA Studio の安全リストがこのプラグインをブロックしています。",
           "downloadFailed": "ダウンロードできませんでした。接続を確認してください。"
         },
         "pluginThemeApply": {
@@ -11484,15 +11484,15 @@
           "installGit": "この Git リビジョンを取得できませんでした。URL、#ref、アクセス権を確認してください。",
           "invalidManifestMissing": "プラグインルートにorca-plugin.jsonがありません。追加してからプラグインを更新してください。",
           "invalidManifest": "orca-plugin.jsonが無効です。修正してからプラグインを更新してください。",
-          "installedManifestUnloadable": "このバージョンはこの Orca では読み込めません。更新するか再インストールしてください。",
+          "installedManifestUnloadable": "このバージョンはこの BrzA Studio では読み込めません。更新するか再インストールしてください。",
           "invalidArtifact": "ワーカーまたはパネルのファイルが見つからないか安全ではありません。修正してから更新してください。",
           "consentChanged": "確認中にこのプラグインが変更されました。もう一度確認してください。",
-          "installGitMoved": "Orca が確認した後にリポジトリが変更されました。もう一度お試しください。"
+          "installGitMoved": "BrzA Studio が確認した後にリポジトリが変更されました。もう一度お試しください。"
         },
         "plugins": {
           "search": {
             "title": "プラグイン",
-            "description": "Orca プラグインをインストール・管理します（アルファ版）。",
+            "description": "BrzA Studio プラグインをインストール・管理します（アルファ版）。",
             "install": "プラグインをインストール",
             "permissions": "プラグイン権限",
             "logs": "プラグインログ",
@@ -12054,7 +12054,7 @@
             "deferred": "まだ未完了です: サーバーはこの操作の準備ができていません。しばらくしてから、もう一度お試しください。",
             "failed": "BrzA Studio はサーバー上でこれを完了できませんでした。もう一度お試しください。",
             "defaultServer": "実行されませんでした: このサーバーは新しいプロジェクトの既定のホストです。停止する前に「新しいプロジェクトを開く場所」で別のものを選んでください。",
-            "wslMoveRunning": "未完了: このサーバーへプロジェクトを移動中です。移動が完了すると Orca が更新します。"
+            "wslMoveRunning": "未完了: このサーバーへプロジェクトを移動中です。移動が完了すると BrzA Studio が更新します。"
           },
           "reassurance": "各ホスト上で動作し、あなた自身の SSH 接続を通じて利用します。コードやファイルは今の場所から動きません。ホストに移るのは、BrzA Studio のプロジェクト、タブ、ターミナルの一覧だけです。"
         },
@@ -12106,10 +12106,10 @@
           "refusedLeaveBehindUnnamed": "このホストの保存済み項目の一部は BrzA Studio サーバーに移動できません。「それでも移行」を選ぶとホストに接続し、これらはこのコンピューターに残ります。",
           "setupContactLost": "BrzA Studio はサーバーのセットアップ中にこのホストとの接続を失いました。ホスト上では何も停止されませんでした。続行するには再度接続してください。",
           "runtimeNoexec": "このホストでは ~/.orca-remote からのプログラムの実行が許可されていないため、BrzA Studio はそこでサーバーを起動できません。これは通常、ホームフォルダーが noexec でマウントされていることを意味します。ホストの管理者にそこでプログラムの実行を許可するよう依頼してから、再度接続してください。",
-          "automationsLeftDisabled_one": "このホストの Orca サーバーは {{count}} 件の自動化を引き継ぎましたが、再度オンにできませんでした。自動化でオンにしてください。",
-          "automationsLeftDisabled_other": "このホストの Orca サーバーは {{count}} 件の自動化を引き継ぎましたが、再度オンにできませんでした。自動化でオンにしてください。",
-          "windowsBuildUnsupported": "このホストは Windows 10 および Windows Server 2016 より古いバージョンの Windows を実行しているため、Orca のサーバーを実行できません。より新しいバージョンの Windows のホスト、または Linux か macOS のホストを使用してください。",
-          "windowsNoExtractor": "この Windows ホストには tar.exe も PowerShell の Expand-Archive もないため、Orca はサーバーを展開できません。ホストに Windows PowerShell 5.1 をインストールしてから、もう一度接続してください。"
+          "automationsLeftDisabled_one": "このホストの BrzA Studio サーバーは {{count}} 件の自動化を引き継ぎましたが、再度オンにできませんでした。自動化でオンにしてください。",
+          "automationsLeftDisabled_other": "このホストの BrzA Studio サーバーは {{count}} 件の自動化を引き継ぎましたが、再度オンにできませんでした。自動化でオンにしてください。",
+          "windowsBuildUnsupported": "このホストは Windows 10 および Windows Server 2016 より古いバージョンの Windows を実行しているため、BrzA Studio のサーバーを実行できません。より新しいバージョンの Windows のホスト、または Linux か macOS のホストを使用してください。",
+          "windowsNoExtractor": "この Windows ホストには tar.exe も PowerShell の Expand-Archive もないため、BrzA Studio はサーバーを展開できません。ホストに Windows PowerShell 5.1 をインストールしてから、もう一度接続してください。"
         },
         "deltaMove": {
           "action": "新規プロジェクトを移動…",
@@ -12440,20 +12440,20 @@
           "showInstalled": "インストール済みのプラグインを表示"
         },
         "PluginDetailPage": {
-          "bundled": "Orca に同梱",
+          "bundled": "BrzA Studio に同梱",
           "localFolder": "ローカルフォルダー",
           "gitUrl": "Git URL",
           "stoppedTitle": "エラーのため停止しました",
           "stoppedBody": "クラッシュが続きました。再起動して再試行してください。",
-          "invalidTitle": "Orca はこのプラグインを読み込めません",
-          "needsOrcaTitle": "Orca {{value0}} 以降が必要です",
-          "needsOrcaBody": "現在は Orca {{value0}} です。",
+          "invalidTitle": "BrzA Studio はこのプラグインを読み込めません",
+          "needsOrcaTitle": "BrzA Studio {{value0}} 以降が必要です",
+          "needsOrcaBody": "現在は BrzA Studio {{value0}} です。",
           "back": "プラグイン",
           "info": "情報",
           "version": "バージョン",
           "latest": "最新",
           "requires": "必要条件",
-          "requiresValue": "Orca {{value0}} 以降",
+          "requiresValue": "BrzA Studio {{value0}} 以降",
           "categories": "カテゴリ",
           "pluginId": "プラグイン ID",
           "repository": "リポジトリ",
@@ -12472,7 +12472,7 @@
           "typeInstructions": "Agent 向けの指示",
           "typePanel": "サイドバーパネル",
           "typeWorker": "バックグラウンドコード",
-          "adds": "Orca に追加されるもの",
+          "adds": "BrzA Studio に追加されるもの",
           "replaces": "{{value0}} のショートカットを置き換えます",
           "changeShortcuts": "ショートカットで変更",
           "command": "コマンド",
@@ -12497,7 +12497,7 @@
           "viewError": "エラーを表示",
           "copyId": "プラグイン ID をコピー",
           "checkUpdate": "アップデートを確認",
-          "bundledWithOrca": "Orca に同梱",
+          "bundledWithOrca": "BrzA Studio に同梱",
           "installName": "{{value0}} をインストール",
           "copied": "プラグイン ID をコピーしました",
           "copyFailed": "プラグイン ID をコピーできませんでした。",
@@ -12507,7 +12507,7 @@
           "updateAvailable": "アップデート {{value0}} あり",
           "updateLabel": "{{value0}} を {{value1}} にアップデート",
           "update": "{{value0}} にアップデート",
-          "needsOrca": "Orca {{value0}} が必要",
+          "needsOrca": "BrzA Studio {{value0}} が必要",
           "rollbackTo": "{{value0}} に戻す…",
           "copyContentHash": "コンテンツハッシュをコピー",
           "reviewUpdate": "アップデートを確認",
@@ -12544,7 +12544,7 @@
           "close": "閉じる",
           "retry": "再試行",
           "updated": "更新済み",
-          "needsOrca": "Orca {{value0}} 以降が必要です",
+          "needsOrca": "BrzA Studio {{value0}} 以降が必要です",
           "current": "インストール済み",
           "allAccess": "すべてのアクセスを表示",
           "newCommands": "コマンド",
@@ -12575,18 +12575,18 @@
         "pluginContributions": {
           "dark": "ダーク",
           "light": "ライト",
-          "languageIncomplete": "{{value0}}% 翻訳済み。Orca の言語として使うには不完全です",
+          "languageIncomplete": "{{value0}}% 翻訳済み。BrzA Studio の言語として使うには不完全です",
           "languageCoverage": "インターフェース言語 · {{value0}}% 翻訳済み",
           "newFileMenu": "+ メニューに追加",
-          "editorReplacesViewer": "Orca のビューアーの代わりに {{value0}} を開きます",
-          "editorMayReplaceViewer": "Orca のビューアーの代わりに {{value0}} を開く場合があります"
+          "editorReplacesViewer": "BrzA Studio のビューアーの代わりに {{value0}} を開きます",
+          "editorMayReplaceViewer": "BrzA Studio のビューアーの代わりに {{value0}} を開く場合があります"
         },
         "PluginInstallConsent": {
           "noOtherAccess": "その他のアクセスはありません",
           "replacesShortcut": "{{value0}}（{{value1}}）が {{value2}} のショートカットを置き換えます。",
           "updatesKeepApproval": "アップデートは新しいアクセスがあるときだけ確認します",
           "fullAccessUpdates": "アップデートで確認なしにコードが変わることがあります",
-          "editsFileTypes": "Orca で {{value0}} ファイルを開いて編集します。開いたファイルを読み取れます。",
+          "editsFileTypes": "BrzA Studio で {{value0}} ファイルを開いて編集します。開いたファイルを読み取れます。",
           "install": "インストールして有効化",
           "keepOff": "オフのままにする"
         },
@@ -12633,30 +12633,30 @@
           }
         },
         "recoverServer": {
-          "title": "Orca のサーバーを復旧",
-          "description": "以前の実行時のロックが残っているため、このホストの Orca サーバーを起動できません。",
+          "title": "BrzA Studio のサーバーを復旧",
+          "description": "以前の実行時のロックが残っているため、このホストの BrzA Studio サーバーを起動できません。",
           "checking": "ロックを確認中…",
-          "confirmCheck": "このホームフォルダーを共有している他のマシンで Orca は実行されていません",
+          "confirmCheck": "このホームフォルダーを共有している他のマシンで BrzA Studio は実行されていません",
           "cancel": "キャンセル",
           "confirm": "ロックを解除して再起動",
-          "eligible": "このマシンの以前のアドレスでは何も応答しませんが、同じ名前でこのホームフォルダーを共有する別のマシンがある可能性を Orca は否定できません。",
+          "eligible": "このマシンの以前のアドレスでは何も応答しませんが、同じ名前でこのホームフォルダーを共有する別のマシンがある可能性を BrzA Studio は否定できません。",
           "host": "ホスト",
           "lockBoot": "書き込み時のブート",
           "currentBoot": "現在のブート",
-          "warning": "このホームフォルダーを共有する他のマシンでこのプロファイルの Orca が実行されていない場合にのみ続行してください。",
-          "none": "解除するロックはもうありません。このホストの Orca サーバーを起動するには再接続してください。",
+          "warning": "このホームフォルダーを共有する他のマシンでこのプロファイルの BrzA Studio が実行されていない場合にのみ続行してください。",
+          "none": "解除するロックはもうありません。このホストの BrzA Studio サーバーを起動するには再接続してください。",
           "manualCommand": "ホストで次を実行するか、詳細に表示されているロックファイルを削除してください:",
           "manualDelete": "他のマシンが使用していないことを確認したら、詳細に表示されているロックファイルを削除してください。",
           "action": "サーバーを復旧…",
           "written": "書き込み日時",
           "manualDeleteCommand": "ホストでロックを手動で削除してください:",
-          "manualDeleteWarning": "このホームフォルダーを共有する他のマシンでこのプロファイルの Orca が実行されていない場合にのみ、この操作を行ってください。",
+          "manualDeleteWarning": "このホームフォルダーを共有する他のマシンでこのプロファイルの BrzA Studio が実行されていない場合にのみ、この操作を行ってください。",
           "close": "閉じる",
-          "reclaimedNotStarted": "ロックは解除されましたが、Orca のサーバーは起動しませんでした。"
+          "reclaimedNotStarted": "ロックは解除されましたが、BrzA Studio のサーバーは起動しませんでした。"
         },
         "claudeSubagentNavigation": {
           "title": "Claude のサブ Agent ナビゲーション",
-          "description": "サイドバーから Claude のサブ Agent を開きます。Claude の keybindings.json にショートカットを追加し、新しい Orca ペインで Orca の mod を読み込みます。Claude 2.1.300 以降とステータスフックが必要です。オフにすると Orca のショートカットは削除されますが、自分で削除したショートカットは削除されたままになります。",
+          "description": "サイドバーから Claude のサブ Agent を開きます。Claude の keybindings.json にショートカットを追加し、新しい BrzA Studio ペインで BrzA Studio の mod を読み込みます。Claude 2.1.300 以降とステータスフックが必要です。オフにすると BrzA Studio のショートカットは削除されますが、自分で削除したショートカットは削除されたままになります。",
           "search": {
             "subagent": "サブ Agent",
             "navigation": "ナビゲーション",
@@ -12675,11 +12675,11 @@
         },
         "PluginNotOfficialWarning": {
           "unknownPublisher": "公開元",
-          "install": "インストールする前に、{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを Orca 内で実行します。",
-          "update": "アップデートする前に、{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを Orca 内で実行します。",
-          "installed": "{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを Orca 内で実行します。",
+          "install": "インストールする前に、{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを BrzA Studio 内で実行します。",
+          "update": "アップデートする前に、{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを BrzA Studio 内で実行します。",
+          "installed": "{{value0}} を信頼できることを確認してください。このプラグインは公開元のコードを BrzA Studio 内で実行します。",
           "label": "公式プラグインではありません:",
-          "translations": "翻訳は Orca 内のあらゆるテキストを変更できます。{{value0}} を信頼できることを確認してください。"
+          "translations": "翻訳は BrzA Studio 内のあらゆるテキストを変更できます。{{value0}} を信頼できることを確認してください。"
         },
         "pluginConsentCopy": {
           "addsCommands": "コマンドを追加",
@@ -12705,13 +12705,13 @@
         "PluginInstallTrustDialog": {
           "titleFolder": "このフォルダーを信頼できることを確認してください",
           "title": "{{value0}} を信頼できることを確認してください",
-          "theme": "このテーマは Orca ではなく {{value0}} によるものです。信頼できる作者のプラグインだけをインストールしてください。",
-          "content": "このプラグインは Orca ではなく {{value0}} によるものです。信頼できる作者のプラグインだけをインストールしてください。",
-          "translations": "この翻訳は Orca ではなく {{value0}} によるものです。翻訳は Orca 内のあらゆるテキストを変更できるため、信頼できる作者のものだけをインストールしてください。",
-          "code": "このプラグインは Orca ではなく {{value0}} によるものです。公開元のコードを Orca 内で実行するため、{{value0}} を信頼できる場合にのみインストールしてください。",
-          "git": "Orca はこのリポジトリを確認していません。ここからのプラグインは公開元のコードを Orca 内で実行できるため、{{value0}} を信頼できる場合にのみインストールしてください。",
-          "localFolder": "これは未検証のローカルフォルダーです。ここからのプラグインは Orca 内でコードを実行できるため、入手元を信頼できる場合にのみインストールしてください。",
-          "devFolder": "これは未検証のローカルフォルダーです。Orca はそのプラグインをそのまま読み込み、以降のコード変更は確認なしで実行されます。信頼できるフォルダーだけを追加してください。",
+          "theme": "このテーマは BrzA Studio ではなく {{value0}} によるものです。信頼できる作者のプラグインだけをインストールしてください。",
+          "content": "このプラグインは BrzA Studio ではなく {{value0}} によるものです。信頼できる作者のプラグインだけをインストールしてください。",
+          "translations": "この翻訳は BrzA Studio ではなく {{value0}} によるものです。翻訳は BrzA Studio 内のあらゆるテキストを変更できるため、信頼できる作者のものだけをインストールしてください。",
+          "code": "このプラグインは BrzA Studio ではなく {{value0}} によるものです。公開元のコードを BrzA Studio 内で実行するため、{{value0}} を信頼できる場合にのみインストールしてください。",
+          "git": "BrzA Studio はこのリポジトリを確認していません。ここからのプラグインは公開元のコードを BrzA Studio 内で実行できるため、{{value0}} を信頼できる場合にのみインストールしてください。",
+          "localFolder": "これは未検証のローカルフォルダーです。ここからのプラグインは BrzA Studio 内でコードを実行できるため、入手元を信頼できる場合にのみインストールしてください。",
+          "devFolder": "これは未検証のローカルフォルダーです。BrzA Studio はそのプラグインをそのまま読み込み、以降のコード変更は確認なしで実行されます。信頼できるフォルダーだけを追加してください。",
           "publisher": "公開元",
           "repository": "リポジトリ",
           "folder": "フォルダー",
@@ -14316,7 +14316,7 @@
           "yoloModeLabel": "Yolo モード",
           "yoloPermissionsDescription": "Agent は確認なしでコマンドを実行しファイルを編集します。一部はサンドボックスも回避します。信頼できるプロジェクトでのみ使用してください。",
           "showMoreAgents_other": "Agent をさらに {{count}} 件表示 →",
-          "agentNotOnPath": "<agent>{{agent}}</agent> はまだ PATH にありません。Orca がデフォルトに設定します。インストールはいつでも可能です。"
+          "agentNotOnPath": "<agent>{{agent}}</agent> はまだ PATH にありません。BrzA Studio がデフォルトに設定します。インストールはいつでも可能です。"
         },
         "IntegrationsStep": {
           "277f30eb34": "Linear、GitLab、Bitbucket、Azure DevOps、Gitea、Jira は [設定] > [連携] にあります。",
@@ -14562,7 +14562,7 @@
           "aa97420ba4": "インストールリンクをコピーする",
           "ac1eb64952": "Android",
           "711e6f4b47": "iOS",
-          "e75647ace0": "スマートフォンのカメラでこのダウンロード用QRコードをスキャンしてください。すでにOrca Mobileをお持ちですか？ステップ2に進むとペアリング用QRコードが表示されます。",
+          "e75647ace0": "スマートフォンのカメラでこのダウンロード用QRコードをスキャンしてください。すでにBrzA Studio Mobileをお持ちですか？ステップ2に進むとペアリング用QRコードが表示されます。",
           "0d9b33299e": "アプリをダウンロード。",
           "92ddfdfa1f": "ステップ 1/2",
           "ff48d9d520": "別のデバイスをペアリングする",
@@ -14595,7 +14595,7 @@
           "androidHelp": {
             "guide": "インストールガイド"
           },
-          "openAppAndScan": "Orca Mobile を開き、<strong>デスクトップのペアリング</strong>をタップしてコードをスキャンしてください。"
+          "openAppAndScan": "BrzA Studio Mobile を開き、<strong>デスクトップのペアリング</strong>をタップしてコードをスキャンしてください。"
         },
         "MobilePage": {
           "e17393c6a3": "スマートフォンプレビュー",
@@ -16154,7 +16154,7 @@
           "chooseEmoji": "絵文字を選択"
         },
         "richMarkdownBlobImagePaste": {
-          "saveFailed": "貼り付けた画像をドキュメントの隣に保存できませんでした。Orca の再起動後に読み込めない場合があります。"
+          "saveFailed": "貼り付けた画像をドキュメントの隣に保存できませんでした。BrzA Studio の再起動後に読み込めない場合があります。"
         },
         "PluginCustomEditorFrame": {
           "loading": "エディターを読み込み中…",
@@ -16162,13 +16162,13 @@
           "loadFailed": "{{value0}} を読み込めませんでした。このファイルを編集するにはソースに切り替えてください。",
           "editTooLarge": "このファイルは大きすぎるため、{{value0}} では変更を保存できません。代わりにソースを使用してください。",
           "saveBlocked": "{{value0}} からの最新の変更を保存できませんでした。",
-          "editsHeld": "{{value0}} からの変更の送信が速すぎます。Orca はまもなく最新の変更を適用します。",
+          "editsHeld": "{{value0}} からの変更の送信が速すぎます。BrzA Studio はまもなく最新の変更を適用します。",
           "largeFile": "大きなファイルです。少し時間がかかる場合があります。"
         },
         "PluginBytesCustomEditorSurface": {
           "retry": "再試行",
           "tooLarge": "{{value0}} は大きすぎるため {{value1}} で開けません（{{value2}}、上限は {{value3}}）。",
-          "unsupported": "{{value0}} はこのファイルの保存場所から読み取れません。ホストしている Orca サーバーをアップデートするか、ソースに切り替えてください。",
+          "unsupported": "{{value0}} はこのファイルの保存場所から読み取れません。ホストしている BrzA Studio サーバーをアップデートするか、ソースに切り替えてください。",
           "readFailed": "{{value1}} 用に {{value0}} を読み取れませんでした。{{value2}}"
         }
       },
@@ -16252,7 +16252,7 @@
             "88fea8e84e": "送信しないでください",
             "50b00dc327": "詳細をコピー",
             "6d3ebe216a": "診断テキスト",
-            "835037edc9": "Orca",
+            "835037edc9": "BrzA Studio",
             "8e24fe4f75": "クラッシュレポートが送信されました。",
             "8b8473c544": "クラッシュレポートがコピーされました。",
             "765591798d": "クラッシュレポートを確認しています…",
@@ -17225,7 +17225,7 @@
           "occurrencesCount_other": "{{count}} 回"
         },
         "capabilityProbe": {
-          "createIdempotencyUpdateRequired": "このホストにオートメーションを移動するには、最新の Orca サーバーが必要です。HUB を更新して再試行してください。"
+          "createIdempotencyUpdateRequired": "このホストにオートメーションを移動するには、最新の BrzA Studio サーバーが必要です。HUB を更新して再試行してください。"
         },
         "editDraft": {
           "unsupportedSchedule": "このオートメーションには未対応のスケジュールが保存されています。変更を保存する前に、対応するスケジュールを選択してください。"
@@ -17760,7 +17760,7 @@
           "title": "アーティファクト",
           "refresh": "更新",
           "shareSignInHeading": "サインインしてアーティファクトを共有",
-          "shareSignInCopy": "Orca アカウントを使用して、アーティファクトをアップロードし、公開リンクを管理します。",
+          "shareSignInCopy": "BrzA Studio アカウントを使用して、アーティファクトをアップロードし、公開リンクを管理します。",
           "signIn": "BrzA Studio にサインインする",
           "empty": "共有アーティファクトなし",
           "emptyCopy": "HTML または Markdown ファイルを開き、[成果物として共有] を選択するか、Agent に共有するように依頼します。",
@@ -17905,7 +17905,7 @@
         "done": "完了",
         "resultListLabel": "今回再開したチャット",
         "serverTitle": "{{machine}} が再起動しました",
-        "serverBody": "{{machine}} の Orca が再起動したとき、これらのチャットは作業中でした。再開すると、各チャットを停止した位置から復元し、Agent に作業の続行を依頼します。あなたのプロンプトは再送信されません。",
+        "serverBody": "{{machine}} の BrzA Studio が再起動したとき、これらのチャットは作業中でした。再開すると、各チャットを停止した位置から復元し、Agent に作業の続行を依頼します。あなたのプロンプトは再送信されません。",
         "serverDismiss": "閉じる",
         "serverResumeAll": "{{machine}} の {{count}} 件をすべて再開",
         "resumeChats_one": "{{count}} 件のチャットを再開",
@@ -18284,10 +18284,10 @@
         "thisComputer": "このコンピュータ"
       },
       "runtimeGitSyncClient": {
-        "completeMergeNeedsNewerHost": "マージを完了するには、このホストに新しいバージョンの Orca が必要です。このホストの Orca を更新してください。"
+        "completeMergeNeedsNewerHost": "マージを完了するには、このホストに新しいバージョンの BrzA Studio が必要です。このホストの BrzA Studio を更新してください。"
       },
       "runtimeGitWorkingTreeClient": {
-        "resolveConflictNeedsNewerHost": "競合を解決するには、このホストに新しいバージョンの Orca が必要です。このホストの Orca を更新してください。"
+        "resolveConflictNeedsNewerHost": "競合を解決するには、このホストに新しいバージョンの BrzA Studio が必要です。このホストの BrzA Studio を更新してください。"
       }
     },
     "ssh": {
@@ -18438,10 +18438,10 @@
         "historyInOtherAccount": "このチャットの履歴は別の Claude アカウントにあります。続けるには、そのアカウントに切り替えてください。",
         "claudeAccountFolderMissing": "選択した Claude アカウントのフォルダーが見つかりません。もう一度サインインするか、別のアカウントを選択してください。",
         "claudeAccountSetupFailed": "選択した Claude アカウントを設定できませんでした。もう一度試すか、別のアカウントを選択してください。",
-        "agentCommandNotRunnable": "設定 → Agent にある {{agent}} の「コマンド」は、Orca が見つけられるプログラムで始める必要があります。変数、パイプなどのシェル構文には対応していません。変数には「環境」設定を使用してください。コマンドを変更するかリセットしてください。",
+        "agentCommandNotRunnable": "設定 → Agent にある {{agent}} の「コマンド」は、BrzA Studio が見つけられるプログラムで始める必要があります。変数、パイプなどのシェル構文には対応していません。変数には「環境」設定を使用してください。コマンドを変更するかリセットしてください。",
         "runtimeNotInstalled": "{{agent}} はこのチャットを実行しているコンピューターにインストールされていません。最新バージョンの BrzA Studio でチャットからインストールしてください。",
         "fullAccessAsRoot": "{{agent}} は root として実行されている間はフルアクセスを使用しません。このチャットを実行しているコンピューターの [設定 → Agent] で {{agent}} に別の権限を選択してから、新しいチャットを開始してください。",
-        "launchPreparationFailed": "Orca は、このチャットを実行しているコンピューターで {{agent}} の起動を準備できませんでした。",
+        "launchPreparationFailed": "BrzA Studio は、このチャットを実行しているコンピューターで {{agent}} の起動を準備できませんでした。",
         "conversationOpenElsewhere": "Codex がまだこの会話を開いたままにしています。少し待ってからもう一度試すか、ほかの Codex ターミナルを閉じてください。",
         "conversationOpenInTerminal": "{{agent}} は別のターミナルですでにこの会話を実行しています。そちらの {{agent}} を終了するか、そのターミナルを閉じて、ここで続けてください。",
         "chooseClaudeAccount": "Claude アカウントの設定で選択または追加してください。",
@@ -19117,7 +19117,7 @@
         "reconnect": "再接続",
         "stopped": "{{distro}} は停止しています",
         "start": "起動",
-        "unverifiable": "Orca は {{distro}} が実行中かどうかを確認できませんでした",
+        "unverifiable": "BrzA Studio は {{distro}} が実行中かどうかを確認できませんでした",
         "startToSend": "送信するには {{distro}} を開始してください。",
         "startDistro": "{{distro}} を開始"
       },
@@ -19655,7 +19655,7 @@
         "copySessionIdError": "セッション ID のコピーに失敗しました"
       },
       "hostFile": {
-        "updateHostForOutsideFiles": "ワークスペース外のファイルを開くには、{{value0}} の Orca を更新してください"
+        "updateHostForOutsideFiles": "ワークスペース外のファイルを開くには、{{value0}} の BrzA Studio を更新してください"
       }
     },
     "jiraUserPicker": {
@@ -20133,7 +20133,7 @@
         "importFailed": "{{browser}} から Cookie をインポートできませんでした。",
         "importFailedTryClosing": "{{browser}} から Cookie をインポートできませんでした。先に {{browser}} を閉じてみてください。",
         "importFailedWithLog": "{{browser}} から Cookie をインポートできませんでした: {{detail}}。詳細は {{logPath}} に記録されました。",
-        "safariFullDiskAccess": "macOS が Safari の Cookie へのアクセスを拒否しました。「システム設定」→「プライバシーとセキュリティ」→「フルディスクアクセス」で Orca にフルディスクアクセスを許可してください。",
+        "safariFullDiskAccess": "macOS が Safari の Cookie へのアクセスを拒否しました。「システム設定」→「プライバシーとセキュリティ」→「フルディスクアクセス」で BrzA Studio にフルディスクアクセスを許可してください。",
         "connectionEnded": "インポート中にこのサーバーへの接続が切れました。再接続して、もう一度お試しください。",
         "serverRepaired": "インポート中にこのサーバーが再ペアリングされました。もう一度お試しください。"
       },
@@ -20212,20 +20212,20 @@
       "movedToHost": "{{distro}} ホストに移動済み",
       "useHere": "このコンピューターで再び使用",
       "useHereTitle": "{{name}} をこのコンピューターで再び使用しますか？",
-      "useHereDescription": "Orca はこのプロジェクトを移動前の状態でここに開きます。コードには影響しません（移動していません）。移動後に {{distro}} ホストで行った変更（新しいタブやチャットなど）はホストに残り、戻りません。一緒に移動したプロジェクトも戻ります。プロジェクトは、{{distro}} ホストで削除するまでそこにも残ります。このウィンドウは再読み込みされます。",
+      "useHereDescription": "BrzA Studio はこのプロジェクトを移動前の状態でここに開きます。コードには影響しません（移動していません）。移動後に {{distro}} ホストで行った変更（新しいタブやチャットなど）はホストに残り、戻りません。一緒に移動したプロジェクトも戻ります。プロジェクトは、{{distro}} ホストで削除するまでそこにも残ります。このウィンドウは再読み込みされます。",
       "useHereConfirm": "このコンピューターで使用",
       "useHereSuperseded": "{{distro}} ホストへの後の移動にこのプロジェクトが含まれています。先にそちらを戻してください。",
       "useHereRefusedTitle": "{{name}} はまだここで使用できません",
       "useHereRefusedOk": "OK",
       "useHereSupersededBy": "このプロジェクトの後に、{{names}} が {{distro}} ホストに移動しました。先にそれらをこのコンピューターで再び使用してから、このプロジェクトを戻してください。",
       "useHereMoveRunning": "{{distro}} ホストへの移動がまだ実行中です。終了してからもう一度お試しください。",
-      "useHereHostKeptForPeers": "{{project}} は {{distro}} ホストに移動しました。そのホストは別の Orca のために動作中です。ここで再び使うには、ホストを追加し直してください。",
-      "useHereHostUnreachable": "{{distro}} ホストが応答しないため、Orca はこのプロジェクトのホスト側のコピーを停止できず、そのAgentがまだ実行中の可能性があります。設定でホストに接続するか削除してから、もう一度お試しください。",
+      "useHereHostKeptForPeers": "{{project}} は {{distro}} ホストに移動しました。そのホストは別の BrzA Studio のために動作中です。ここで再び使うには、ホストを追加し直してください。",
+      "useHereHostUnreachable": "{{distro}} ホストが応答しないため、BrzA Studio はこのプロジェクトのホスト側のコピーを停止できず、そのAgentがまだ実行中の可能性があります。設定でホストに接続するか削除してから、もう一度お試しください。",
       "useHereHostStillRunning": "{{distro}} ホスト上のこのプロジェクトのコピーでまだターミナルが実行中のため、Agentが二重に動く可能性があります。少し待ってからもう一度お試しください。",
       "useHereHostTerminalsAsleep": "{{distro}} ホスト上のターミナルはスリープしました。プロジェクトを開くと再開します。",
       "useHereFailed": "このプロジェクトをこのコンピューターに戻せませんでした。",
-      "useHereHostRemovalPending": "{{distro}} ホストはまだ削除中のため、Orca はそのままにしています。設定で削除を完了してから、もう一度お試しください。",
-      "useHereHostAutomations": "Orca は {{distro}} ホスト上のこのプロジェクトのオートメーションをオフにできなかったため、二重に実行される可能性があります。設定でホストに接続してから、もう一度お試しください。",
+      "useHereHostRemovalPending": "{{distro}} ホストはまだ削除中のため、BrzA Studio はそのままにしています。設定で削除を完了してから、もう一度お試しください。",
+      "useHereHostAutomations": "BrzA Studio は {{distro}} ホスト上のこのプロジェクトのオートメーションをオフにできなかったため、二重に実行される可能性があります。設定でホストに接続してから、もう一度お試しください。",
       "useHereUnsavedTitle": "先にファイルを保存してください",
       "useHereUnsavedDescription": "{{name}} を戻すとこのウィンドウが再読み込みされます。先に次のファイルを保存するか閉じてください: {{files}}",
       "automationRunsOnHost": "{{distro}} ホストで実行",
@@ -20258,18 +20258,18 @@
         "alreadyAdded": "{{distro}} はすでにホストです。",
         "distroStopped": "一覧の読み取り後に {{distro}} が停止しました。「起動して追加」を選択して起動してください。",
         "distroUnverifiable": "WSL から {{distro}} が実行中かどうかの応答がありませんでした。一覧を更新するか、ダイアログから追加してください（必要に応じて起動します）。",
-        "wsl1": "{{distro}} は Orca がサポートを終了した WSL 1 を使用しています。Windows のターミナルで次のコマンドを実行し、WSL 2 に変換してください: {{command}}",
+        "wsl1": "{{distro}} は BrzA Studio がサポートを終了した WSL 1 を使用しています。Windows のターミナルで次のコマンドを実行し、WSL 2 に変換してください: {{command}}",
         "notRegistered": "{{distro}} はインストール済みの WSL ディストリビューションではありません。Windows のターミナルで {{command}} を実行してインストール済みのものを確認するか、再インストールしてからやり直してください。",
-        "sshManaged": "{{distro}} ではすでに「{{server}}」の Orca サーバーが実行されており、このコンピューターは SSH 経由で接続しています。先にそのサーバーを削除してください。WSL ホストへの移行はまだサポートされていません。"
+        "sshManaged": "{{distro}} ではすでに「{{server}}」の BrzA Studio サーバーが実行されており、このコンピューターは SSH 経由で接続しています。先にそのサーバーを削除してください。WSL ホストへの移行はまだサポートされていません。"
       },
       "statusDetails": {
         "runningListUnavailable": "Windows からディストリビューションの実行状態が報告されませんでした。",
-        "guestUnanswered": "ディストリビューションは実行中ですが、Orca の確認に応答しませんでした。",
-        "orcadUnanswered": "ディストリビューション内の Orca サーバーが応答しませんでした。",
-        "restartGaveUp_other": "{{count}} 回試行しましたが、{{distro}} 内の Orca サーバーを再起動できませんでした",
+        "guestUnanswered": "ディストリビューションは実行中ですが、BrzA Studio の確認に応答しませんでした。",
+        "orcadUnanswered": "ディストリビューション内の BrzA Studio サーバーが応答しませんでした。",
+        "restartGaveUp_other": "{{count}} 回試行しましたが、{{distro}} 内の BrzA Studio サーバーを再起動できませんでした",
         "serviceUnconfirmed": "WSL サービスからディストリビューションが実行中かどうかの確認が得られませんでした。",
-        "peerCheckFailed": "Orca は WSL ホストに、このコンピューター上の別の Orca がまだ使用しているかを問い合わせられませんでした: {{detail}}",
-        "removalUnrecorded": "Orca は、今回の削除後も実行中のものを記録できませんでした: {{detail}}"
+        "peerCheckFailed": "BrzA Studio は WSL ホストに、このコンピューター上の別の BrzA Studio がまだ使用しているかを問い合わせられませんでした: {{detail}}",
+        "removalUnrecorded": "BrzA Studio は、今回の削除後も実行中のものを記録できませんでした: {{detail}}"
       }
     },
     "agentSummary": {
@@ -20417,7 +20417,7 @@
     "eyebrowNew": "新機能",
     "eyebrowTip": "ヒント",
     "orcaCli": {
-      "title": "Orca CLI で Agent に Orca を操作させる",
+      "title": "BrzA Studio CLI で Agent に BrzA Studio を操作させる",
       "description": "Agent が子ワークツリーを連携させ、ワークツリー間で通信できるようにします。",
       "cta": "CLI とスキルをインストール"
     },
@@ -20430,7 +20430,7 @@
       "title": "チャット UI が登場",
       "offIntro": "Agent をチャットとして開けるようになりました。リッチなメッセージ、ビジュアル、画像を表示できます。",
       "offTerminal": "ターミナルのほうが好みですか？ターミナルは引き続き完全にサポートされます。チャットを選ぶまで、Agent はこれまでどおりターミナルで開きます。",
-      "onIntro": "チャット UI は実験的機能を卒業し、Orca の標準機能になりました。Agent はこれまでどおりチャットとして開き、リッチなメッセージ、ビジュアル、画像を表示できます。",
+      "onIntro": "チャット UI は実験的機能を卒業し、BrzA Studio の標準機能になりました。Agent はこれまでどおりチャットとして開き、リッチなメッセージ、ビジュアル、画像を表示できます。",
       "onTerminal": "ターミナルも引き続き完全にサポートされます。どの Agent もいつでもターミナルに戻せます。",
       "changeInSettings": "<link>設定 → Agent</link> でいつでも変更できます。",
       "stayInTerminal": "ターミナルのまま使う",
@@ -20513,14 +20513,14 @@
         "stackGithubComOnly": "GitHub のスタックされた PR は GitHub.com でのみ利用できます。",
         "stackSameParent": "スタックされた PR を作成する前に、別の親ブランチを選択してください。",
         "stackParentWithoutReview": "親ブランチ {{base}} にオープンな PR がありません。先にその PR を作成してください。",
-        "stackParentAmbiguous": "Orca が親ブランチ {{base}} のオープンな PR を複数検出しました。",
-        "stackHeadAmbiguous": "Orca が現在のブランチ {{head}} のオープンな PR を複数検出しました。",
+        "stackParentAmbiguous": "BrzA Studio が親ブランチ {{base}} のオープンな PR を複数検出しました。",
+        "stackHeadAmbiguous": "BrzA Studio が現在のブランチ {{head}} のオープンな PR を複数検出しました。",
         "stackParentMultipleStacks": "選択した親 PR は複数のスタックに属しています。",
         "stackParentClosed": "選択した親 PR はクローズ済みのスタックに属しています。",
         "stackParentNotTop": "別のレイヤーを追加する前に、スタック最上位の PR をベースブランチとして選択してください。",
         "stackConflict": "この PR はすでに別の GitHub スタックに属しています。",
         "stacksUnavailable": "このリポジトリでは GitHub のスタックされた PR を利用できません。",
-        "stackParentUnverified": "Orca は親 PR を確認できませんでした。しばらくしてから再試行してください。",
+        "stackParentUnverified": "BrzA Studio は親 PR を確認できませんでした。しばらくしてから再試行してください。",
         "stackExistingReviewOtherBase": "このブランチにはすでにオープンな PR がありますが、選択した親ブランチを対象にしていません。",
         "stackCreationUnconfirmed": "PR の作成が完了している可能性があります。再試行してスタックへの登録を完了してください。",
         "stackRegistrationUnavailable": "PR は作成されましたが、このリポジトリでは GitHub スタックを利用できません。",
@@ -20542,7 +20542,7 @@
       "xhigh": "最高"
     },
     "variables": {
-      "basePrompt": "Orca が安全に収集できるコンテキストを含む、この操作用の組み込みプロンプトです。",
+      "basePrompt": "BrzA Studio が安全に収集できるコンテキストを含む、この操作用の組み込みプロンプトです。",
       "branch": "現在のソース管理ブランチ名です。",
       "stagedFiles": "コミットメッセージの生成に使う、ステージ済みファイルの改行区切りリストです。",
       "stagedPatch": "コミットメッセージの生成に使う、ステージ済みの Git パッチです。",
@@ -20553,7 +20553,7 @@
       "changedFiles": "このブランチとベースブランチの間で変更されたファイルの概要です。",
       "patch": "PR の詳細の生成に使う、このブランチとベースブランチの差分です。",
       "firstPrompt": "このワークスペースまたはチャットでの最初のユーザーの依頼です。",
-      "assistantMessage": "Orca が取得できる場合の、Agent の最初の応答です。",
+      "assistantMessage": "BrzA Studio が取得できる場合の、Agent の最初の応答です。",
       "linkedIssue": "このワークスペースにリンクされた GitHub Issue の番号です。GitHub Issue がリンクされていない場合は空です（GitLab にリンクされたワークスペースを含む）。指示を含むテンプレートを使ってください。リンクがない場合、単独の「Fixes #{linkedIssue}」は「Fixes #」になります。"
     },
     "textGeneration": {
@@ -20565,7 +20565,7 @@
         "agentBinaryNotFound": "PATH に {{binary}} が見つかりません。AI コミットメッセージを使用するには、{{label}} をインストールしてください。",
         "timedOut": "生成が {{seconds}} 秒でタイムアウトしました。",
         "outputTooLarge": "{{label}} の CLI コマンドの出力が多すぎます。Agent の CLI 設定を確認し、もう一度お試しください。",
-        "windowsBatchUnsafeArguments": "{{label}} の実行に使われる Windows バッチスクリプトは、複数行のプロンプトを引数として受け取れません。設定で Agent の実行ファイルを指定するか、{prompt} を含まないカスタムコマンドを使用して、Orca がプロンプトを stdin に送信できるようにしてください。",
+        "windowsBatchUnsafeArguments": "{{label}} の実行に使われる Windows バッチスクリプトは、複数行のプロンプトを引数として受け取れません。設定で Agent の実行ファイルを指定するか、{prompt} を含まないカスタムコマンドを使用して、BrzA Studio がプロンプトを stdin に送信できるようにしてください。",
         "cliTerminated": "{{label}} の CLI コマンドは終了前に停止されました。",
         "cliTerminatedWithDetail": "{{label}} の CLI コマンドは終了前に停止されました：{{detail}}",
         "cliFailed": "{{label}} の CLI コマンドがコード {{exitCode}} で失敗しました。",
@@ -20608,7 +20608,7 @@
         "antigravityInvalidEvents": "Antigravity が無効な JSON イベントを返しました。",
         "antigravityInvalidResult": "Antigravity が無効な結果を返しました。",
         "antigravityNoFinalResult": "Antigravity が最終結果を返しませんでした。",
-        "kimiUnreadableOutput": "Kimi が Orca で読み取れない出力を返しました。もう一度お試しください。",
+        "kimiUnreadableOutput": "Kimi が BrzA Studio で読み取れない出力を返しました。もう一度お試しください。",
         "kimiSessionOccupied": "Kimi は、別のクライアントで使用中のため、このセッションを使用できませんでした。そのクライアントでセッションを停止するか、クライアントを終了してから、もう一度お試しください。",
         "kimiInterrupted": "Kimi はテキストの生成が完了する前に中断されました。もう一度お試しください。",
         "kimiFailed": "Kimi はテキストの生成を完了できませんでした。再試行する前に実行ホストで Kimi を開き、エラーを確認してください。",
@@ -20858,9 +20858,9 @@
       "openCodeDatabaseUnreadable": "{{name}} 内の {{label}} の履歴を読み取れませんでした: {{detail}}",
       "openCodeWslDatabaseUnsupported": "WSL 内の {{label}} セッションを Windows から検索することはまだできません。",
       "openCodeWriteAheadLogUnreadable": "{{name}} 内の {{label}} の履歴を読み取れませんでした。このファイルシステムでは先行書き込みログを読み取り専用で開けません。ログを書き出すには {{label}} を正常に終了してください。",
-      "wslTranscriptFsSlow": "ファイルシステムへのアクセスに時間がかかりすぎているため、WSL のセッション記録ファイルを一時的に利用できません。少し待ってから再試行するか、問題が続く場合は Orca を再起動してください。",
-      "wslTranscriptFsCapacity": "ファイルシステムへのリクエストがすでに多数待機しているため、WSL のセッション記録を一時的に検出できません。少し待ってから再試行するか、問題が続く場合は Orca を再起動してください。",
-      "wslTranscriptFsProcessFailed": "ファイルシステムの補助プロセスで障害が発生したため、WSL のセッション記録ファイルを一時的に利用できません（{{detail}}）。少し待ってから再試行するか、問題が続く場合は Orca を再起動してください。",
+      "wslTranscriptFsSlow": "ファイルシステムへのアクセスに時間がかかりすぎているため、WSL のセッション記録ファイルを一時的に利用できません。少し待ってから再試行するか、問題が続く場合は BrzA Studio を再起動してください。",
+      "wslTranscriptFsCapacity": "ファイルシステムへのリクエストがすでに多数待機しているため、WSL のセッション記録を一時的に検出できません。少し待ってから再試行するか、問題が続く場合は BrzA Studio を再起動してください。",
+      "wslTranscriptFsProcessFailed": "ファイルシステムの補助プロセスで障害が発生したため、WSL のセッション記録ファイルを一時的に利用できません（{{detail}}）。少し待ってから再試行するか、問題が続く場合は BrzA Studio を再起動してください。",
       "wslDistroNotRunning": "WSL ディストリビューション「{{distro}}」が実行されていないため、WSL のセッション記録ファイルを利用できません。起動するには、そのディストリビューションでターミナルを開いてください。",
       "wslDistroUnverifiable": "「{{distro}}」が実行中かどうか WSL から応答がなかったため、WSL のセッション記録ファイルを利用できません。少し待ってから再試行してください。",
       "wslSessionsFromLastScan": "WSL を確認できませんでした。セッションは前回のスキャン時のものです。",
@@ -20870,7 +20870,7 @@
       "scanTimedOut": "セッションスキャンが {{seconds}} 秒後にタイムアウトしました。マシンがビジー状態の可能性があります。更新して再試行してください。",
       "scannerPaused": "繰り返し失敗したため、セッションのスキャンを一時停止しました。更新して再試行してください。",
       "scannerBusy": "実行中のセッションスキャンが多すぎます。少し待ってから更新してください。",
-      "scannerMissing": "この Orca にはセッションスキャナーが含まれていません。Orca を再インストールすると復元されます。",
+      "scannerMissing": "この BrzA Studio にはセッションスキャナーが含まれていません。BrzA Studio を再インストールすると復元されます。",
       "scannerStopped": "セッションスキャナーが予期せず停止しました。更新して再試行してください。"
     },
     "sessionAccount": "アカウント",
@@ -21298,21 +21298,21 @@
     "unsupported": {
       "switchLayout": "BrzA Studio でこのプロジェクトを操作するには、テーブル、ボード、またはロードマップビューに切り替えます。",
       "description": "BrzA Studio はテーブル、ボード、ロードマップのプロジェクトビューをレンダリングします。このビューは、まだレンダリングできないレイアウトを使用しています。",
-      "layoutNotSupported": "Orca は{{layout}}のプロジェクトビューにはまだ対応していません。"
+      "layoutNotSupported": "BrzA Studio は{{layout}}のプロジェクトビューにはまだ対応していません。"
     },
     "authHelp": {
       "hostSignedOut": "`gh` は {{host}} にサインインしていません。",
       "hostSignedOutDetail": "GitHub Enterprise ホストには github.com とは別に `gh` のログインが必要です。ターミナルでログインコマンドを実行し、{{host}} でブラウザーのフローを完了してから再読み込みしてください。",
       "ghMissing": "GitHub CLI（`gh`）がインストールされていないか、PATH にありません。",
-      "ghMissingDetail": "Orca は `gh` を使って GitHub Projects と通信します。cli.github.com からインストールしてサインインしてください。",
+      "ghMissingDetail": "BrzA Studio は `gh` を使って GitHub Projects と通信します。cli.github.com からインストールしてサインインしてください。",
       "envTokenKeyringFallback": "キーリングにはすでに `gh` のログインがあり、環境変数を削除するとそちらが使われます。",
       "envTokenLoginAfterUnset": "削除したら `gh auth login` を実行して通常どおりサインインし、もう一度お試しください。",
-      "envTokenRemoveWindows": "`{{varName}}` が設定されている場所（システムまたはユーザーの環境変数、あるいは PowerShell プロファイル）を見つけて削除し、新しい環境を読み込むために Orca を再起動してください。",
-      "envTokenRemovePosix": "`{{varName}}` を export している場所（一般的には `~/.zshrc`、`~/.zshenv`、`~/.bashrc`、`~/.profile`、またはシェルのシークレットマネージャー）を見つけて削除し、新しい環境を読み込むために Orca を再起動してください。",
+      "envTokenRemoveWindows": "`{{varName}}` が設定されている場所（システムまたはユーザーの環境変数、あるいは PowerShell プロファイル）を見つけて削除し、新しい環境を読み込むために BrzA Studio を再起動してください。",
+      "envTokenRemovePosix": "`{{varName}}` を export している場所（一般的には `~/.zshrc`、`~/.zshenv`、`~/.bashrc`、`~/.profile`、またはシェルのシークレットマネージャー）を見つけて削除し、新しい環境を読み込むために BrzA Studio を再起動してください。",
       "envTokenActive": "環境に `{{varName}}` が設定されているため、`gh` はキーリングのログインではなくそのトークンを使っています。`gh auth refresh` は環境変数で渡されたトークンを変更できないため、実行しても効果がありませんでした。",
-      "envTokenInherited": "Orca はシェルから `{{varName}}` を引き継いでおり、`gh` はそのトークンを使っています。`gh auth refresh` は環境変数で渡されたトークンには適用されません。",
-      "envTokenInheritedDetailWindows": "Orca を起動するシェル（またはユーザー環境変数）で `{{varName}}` を削除してから、Orca を再起動してください。",
-      "envTokenInheritedDetailPosix": "Orca を起動するシェル（またはシェルの rc ファイル）で `{{varName}}` を削除してから、Orca を再起動してください。",
+      "envTokenInherited": "BrzA Studio はシェルから `{{varName}}` を引き継いでおり、`gh` はそのトークンを使っています。`gh auth refresh` は環境変数で渡されたトークンには適用されません。",
+      "envTokenInheritedDetailWindows": "BrzA Studio を起動するシェル（またはユーザー環境変数）で `{{varName}}` を削除してから、BrzA Studio を再起動してください。",
+      "envTokenInheritedDetailPosix": "BrzA Studio を起動するシェル（またはシェルの rc ファイル）で `{{varName}}` を削除してから、BrzA Studio を再起動してください。",
       "signedOut": "`gh` で GitHub にサインインしていません。",
       "missingScopes": "`gh` トークンに GitHub Projects に必要なスコープがありません: {{scopes}}。",
       "missingScopesDetail": "ターミナルで refresh コマンドを実行してください。ブラウザーが開いて新しいスコープを承認できます。完了したらここに戻って再読み込みしてください。",
@@ -21357,9 +21357,9 @@
       "rateLimitNearlyExhausted": "GitHub のレート制限がまもなく上限に達します（残り {{remaining}}/{{limit}}）。約 {{minutes}} 分後にリセットされます。",
       "rateLimited": "GitHub のレート制限に達しました。数分後にもう一度お試しください。",
       "network": "ネットワークエラー — 接続を確認してください。",
-      "tooLargeUnknownCount": "このビューはアイテムが多すぎて Orca で表示できません。GitHub でビューのフィルターを絞り込んでください。",
+      "tooLargeUnknownCount": "このビューはアイテムが多すぎて BrzA Studio で表示できません。GitHub でビューのフィルターを絞り込んでください。",
       "schemaDriftDetail": "このプロジェクトビューを読み取れませんでした: {{detail}}。",
-      "tooLargeCount_other": "このビューには {{count}} 件のアイテムがあり、Orca で表示するには多すぎます。GitHub でビューのフィルターを絞り込んでください。"
+      "tooLargeCount_other": "このビューには {{count}} 件のアイテムがあり、BrzA Studio で表示するには多すぎます。GitHub でビューのフィルターを絞り込んでください。"
     },
     "columns": {
       "type": "タイプ"
@@ -21497,7 +21497,7 @@
       "settings": "設定",
       "errors": {
         "noName": "チャット名 Agent から名前が返されませんでした。",
-        "agentNotRun": "Orca はチャット名 Agent を実行できませんでした。",
+        "agentNotRun": "BrzA Studio はチャット名 Agent を実行できませんでした。",
         "noAgentAvailable": "このワークスペースで実行できるチャット名 Agent はありません。",
         "grokFailed": "Grok はこのチャットに名前を付けられませんでした。もう一度名前を生成してください。",
         "antigravityFailed": "Antigravity はこのチャットに名前を付けられませんでした。もう一度名前を生成してください。"
@@ -21634,29 +21634,29 @@
       "releaseNotReady": "このデバイス向けの新しいリリースはまだ利用できません。後でもう一度確認してください。",
       "updateServerUnreachable": "更新サーバーに接続できませんでした。数分後にもう一度お試しください。",
       "channelUnsupportedPlatform": "{{channel}} ビルドは macOS と Windows 向けにのみ提供されます。",
-      "unsignedDevChannel": "{{channel}} ビルドは未署名で、この署名済みビルドでは Orca の発行元が署名した更新のみをインストールできます。リリースページからインストーラーをダウンロードして一度実行してください。その後は Stable に戻す場合も含め、通常どおり更新できます。",
+      "unsignedDevChannel": "{{channel}} ビルドは未署名で、この署名済みビルドでは BrzA Studio の発行元が署名した更新のみをインストールできます。リリースページからインストーラーをダウンロードして一度実行してください。その後は Stable に戻す場合も含め、通常どおり更新できます。",
       "linuxPackageMissing": "ダウンロードしたパッケージが更新キャッシュにありません。更新を再ダウンロードするか、公式リリースページから入手してください。",
       "linuxPackageNotRegular": "更新キャッシュ内のダウンロード済みパッケージが有効なファイルではなくなっています。更新を再ダウンロードするか、公式リリースページから入手してください。",
-      "linuxPackageHashMismatch": "ダウンロードしたパッケージが検証済みリリースと一致しなくなったため、Orca はパッケージマネージャーに渡しません。更新を再ダウンロードするか、公式リリースページから入手してください。",
-      "linuxPackageReadFailed": "Orca はダウンロードしたパッケージを読み取れませんでした。更新を再ダウンロードするか、公式リリースページから入手してください。",
-      "linuxPackageNoSudo": "システムディレクトリに sudo コマンドが見つからないため、Orca は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
-      "linuxPackageNoPackageManager": "システムディレクトリに対応するパッケージマネージャーが見つからないため、Orca は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
-      "linuxPackageInvalidPath": "ダウンロードしたパッケージのパスを使用できないため、Orca は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
-      "linuxPackageMarkerUnusable": "Orca はインストール済み Linux パッケージの形式を確認できなかったため、この更新を自動インストールしません。公式リリースページから更新をダウンロードし、手動でインストールしてください。",
-      "linuxPackageExternallyManaged": "この Orca はシステムのパッケージマネージャーで管理されているため、Orca 自体では更新をインストールできません。ディストリビューションの仕組みで Orca を更新してください。",
-      "linuxPackageManualInstall": "システムのパッケージインストールコマンドを実行する前に Orca を終了してください。",
-      "linuxPackageMetadataUnusable": "ダウンロードしたパッケージのメタデータを検証できませんでした。Orca を終了してから、公式リリースページから更新をダウンロードしてインストールしてください。",
+      "linuxPackageHashMismatch": "ダウンロードしたパッケージが検証済みリリースと一致しなくなったため、BrzA Studio はパッケージマネージャーに渡しません。更新を再ダウンロードするか、公式リリースページから入手してください。",
+      "linuxPackageReadFailed": "BrzA Studio はダウンロードしたパッケージを読み取れませんでした。更新を再ダウンロードするか、公式リリースページから入手してください。",
+      "linuxPackageNoSudo": "システムディレクトリに sudo コマンドが見つからないため、BrzA Studio は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
+      "linuxPackageNoPackageManager": "システムディレクトリに対応するパッケージマネージャーが見つからないため、BrzA Studio は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
+      "linuxPackageInvalidPath": "ダウンロードしたパッケージのパスを使用できないため、BrzA Studio は安全なインストールコマンドを生成できません。パッケージを表示し、パッケージマネージャーでインストールしてください。",
+      "linuxPackageMarkerUnusable": "BrzA Studio はインストール済み Linux パッケージの形式を確認できなかったため、この更新を自動インストールしません。公式リリースページから更新をダウンロードし、手動でインストールしてください。",
+      "linuxPackageExternallyManaged": "この BrzA Studio はシステムのパッケージマネージャーで管理されているため、BrzA Studio 自体では更新をインストールできません。ディストリビューションの仕組みで BrzA Studio を更新してください。",
+      "linuxPackageManualInstall": "システムのパッケージインストールコマンドを実行する前に BrzA Studio を終了してください。",
+      "linuxPackageMetadataUnusable": "ダウンロードしたパッケージのメタデータを検証できませんでした。BrzA Studio を終了してから、公式リリースページから更新をダウンロードしてインストールしてください。",
       "unknownReleaseChannel": "不明なリリースチャンネル「{{channel}}」。",
       "invalidReleaseTag": "「{{tag}}」は有効なリリースタグではありません。",
       "releaseRepoNotFound": "{{repo}} にリリース用リポジトリが見つかりません。",
       "releaseListFailed": "{{channel}} ビルドの一覧を取得できませんでした（HTTP {{status}}）。",
       "releaseListUnreadable": "{{channel}} のリリース一覧を読み取れませんでした。",
       "rateLimitedSoon": "GitHub のレート制限に達しました。数分後にもう一度お試しください。",
-      "rateLimitedSoonSignedOut": "GitHub のレート制限に達しました。数分後にもう一度試すか、`gh auth login` を実行して Orca がアカウントのより高い上限を利用できるようにしてください。",
+      "rateLimitedSoonSignedOut": "GitHub のレート制限に達しました。数分後にもう一度試すか、`gh auth login` を実行して BrzA Studio がアカウントのより高い上限を利用できるようにしてください。",
       "rateLimitedInMinute": "GitHub のレート制限に達しました。約 1 分後にもう一度お試しください。",
-      "rateLimitedInMinuteSignedOut": "GitHub のレート制限に達しました。約 1 分後にもう一度試すか、`gh auth login` を実行して Orca がアカウントのより高い上限を利用できるようにしてください。",
+      "rateLimitedInMinuteSignedOut": "GitHub のレート制限に達しました。約 1 分後にもう一度試すか、`gh auth login` を実行して BrzA Studio がアカウントのより高い上限を利用できるようにしてください。",
       "rateLimitedInMinutes_other": "GitHub のレート制限に達しました。約 {{count}} 分後にもう一度お試しください。",
-      "rateLimitedInMinutesSignedOut_other": "GitHub のレート制限に達しました。約 {{count}} 分後にもう一度試すか、`gh auth login` を実行して Orca がアカウントのより高い上限を利用できるようにしてください。"
+      "rateLimitedInMinutesSignedOut_other": "GitHub のレート制限に達しました。約 {{count}} 分後にもう一度試すか、`gh auth login` を実行して BrzA Studio がアカウントのより高い上限を利用できるようにしてください。"
     }
   },
   "onboarding": {
@@ -21925,25 +21925,25 @@
       "keepSafeButton": "セーフグラフィックモードを維持",
       "tryHardwareButton": "ハードウェアアクセラレーションを試す",
       "title": "セーフグラフィックモードが有効です",
-      "message": "Orca はセーフグラフィックモードで復旧しました。",
+      "message": "BrzA Studio はセーフグラフィックモードで復旧しました。",
       "detail": "グラフィックのクラッシュが繰り返されたため、セーフグラフィックモードが有効になりました。安定性のために維持するか、再起動してハードウェアアクセラレーションをもう一度試してください。"
     },
     "restartPrompt": {
       "restartButton": "セーフグラフィックモードで再起動",
       "keepRunningButton": "このまま実行",
-      "title": "Orca をセーフグラフィックモードで再起動しますか？",
-      "message": "Orca のグラフィックプロセスが繰り返しクラッシュしています。",
-      "detail": "セーフグラフィックモードでは、この Orca バージョンのハードウェアアクセラレーションと WebGL が無効になります。ターミナルや 3D コンテンツの描画が遅くなる場合があります。「このまま実行」を選ぶと、グラフィック設定は変更されません。"
+      "title": "BrzA Studio をセーフグラフィックモードで再起動しますか？",
+      "message": "BrzA Studio のグラフィックプロセスが繰り返しクラッシュしています。",
+      "detail": "セーフグラフィックモードでは、この BrzA Studio バージョンのハードウェアアクセラレーションと WebGL が無効になります。ターミナルや 3D コンテンツの描画が遅くなる場合があります。「このまま実行」を選ぶと、グラフィック設定は変更されません。"
     }
   },
   "profileState": {
     "startupRecovery": {
       "quitButton": "終了",
       "copyCommandButton": "復旧コマンドをコピー",
-      "copyCommandDetail": "復旧コマンドをコピーし、Orca が終了してから実行してください。",
-      "quitDetail": "Orca を終了し、どのプロファイル状態を正とするかを解決してから再試行してください。",
-      "title": "Orca のプロファイル状態を開けません",
-      "message": "Orca はこのプロファイルを安全に開けません。"
+      "copyCommandDetail": "復旧コマンドをコピーし、BrzA Studio が終了してから実行してください。",
+      "quitDetail": "BrzA Studio を終了し、どのプロファイル状態を正とするかを解決してから再試行してください。",
+      "title": "BrzA Studio のプロファイル状態を開けません",
+      "message": "BrzA Studio はこのプロファイルを安全に開けません。"
     },
     "copyChoice": {
       "lastSaved": "最終保存: {{time}}。",
@@ -21952,34 +21952,34 @@
       "quitButton": "終了",
       "title": "プロファイル状態を選択",
       "message": "このプロファイルには、一致しない保存コピーが 2 つあります。",
-      "cause": "これは通常、古いバージョンの Orca でプロファイルを開いた後に発生します。",
-      "sqliteOption": "SQLite: このバージョンの Orca が保存した内容です。古いバージョンで行った変更は破棄されます。",
+      "cause": "これは通常、古いバージョンの BrzA Studio でプロファイルを開いた後に発生します。",
+      "sqliteOption": "SQLite: このバージョンの BrzA Studio が保存した内容です。古いバージョンで行った変更は破棄されます。",
       "jsonOption": "JSON: 古いバージョンで行った変更を含みます。それ以降にこのバージョンが保存した変更は破棄されます。",
-      "archiveNote": "Orca は切り替える前に両方のコピーをアーカイブし、その後再起動します。"
+      "archiveNote": "BrzA Studio は切り替える前に両方のコピーをアーカイブし、その後再起動します。"
     },
     "repairChoice": {
       "sectionStartsEmpty": "{{section}}: 読み取れるバックアップがないため、空の状態から始まります。",
       "sectionRestored": "{{section}}: {{time}} に保存されたバックアップから復元されます。",
-      "projectsForgotten": "Orca はプロジェクトとそのワークスペースの詳細を忘れます。ディスク上のファイルには影響しません。",
-      "newerProjectsRemoved": "そのバックアップ以降に追加したプロジェクトは、ワークスペースの詳細とともに Orca から削除されます。ディスク上のファイルには影響しません。",
+      "projectsForgotten": "BrzA Studio はプロジェクトとそのワークスペースの詳細を忘れます。ディスク上のファイルには影響しません。",
+      "newerProjectsRemoved": "そのバックアップ以降に追加したプロジェクトは、ワークスペースの詳細とともに BrzA Studio から削除されます。ディスク上のファイルには影響しません。",
       "repairButton": "修復して再起動",
       "quitButton": "終了",
       "title": "プロファイルを修復",
       "message": "このプロファイルの保存状態の一部が破損しています。",
       "restUnchanged": "それ以外はすべて現在のまま維持されます。",
-      "damagedCopyKept": "Orca は破損したファイルのコピーをデータフォルダーに保存してから再起動します。"
+      "damagedCopyKept": "BrzA Studio は破損したファイルのコピーをデータフォルダーに保存してから再起動します。"
     },
     "recoveryNotApplied": {
       "quitButton": "終了",
-      "title": "Orca はこのプロファイルの復旧を完了できませんでした",
-      "message": "Orca は選択したプロファイル状態を適用できませんでした。",
-      "reopenDetail": "Orca を再度開いて、もう一度選択してください。"
+      "title": "BrzA Studio はこのプロファイルの復旧を完了できませんでした",
+      "message": "BrzA Studio は選択したプロファイル状態を適用できませんでした。",
+      "reopenDetail": "BrzA Studio を再度開いて、もう一度選択してください。"
     },
     "writeFailure": {
       "title": "保存が停止しました",
-      "message": "Orca はこのプロファイルの保存を停止しました。",
-      "indeterminateDetail": "Orca は最新の変更が保存されたかどうかを確認できませんでした。Orca を再起動するまで、新しい変更は保存されません。",
-      "safeDetail": "この時点までに保存された変更は安全です。Orca を再起動するまで、新しい変更は保存されません。",
+      "message": "BrzA Studio はこのプロファイルの保存を停止しました。",
+      "indeterminateDetail": "BrzA Studio は最新の変更が保存されたかどうかを確認できませんでした。BrzA Studio を再起動するまで、新しい変更は保存されません。",
+      "safeDetail": "この時点までに保存された変更は安全です。BrzA Studio を再起動するまで、新しい変更は保存されません。",
       "okButton": "OK"
     },
     "section": {
@@ -22001,44 +22001,44 @@
       "noneFound": "（見つかりません）",
       "sqlitePath": "SQLite パス: {{path}}",
       "sectionsDamaged": "このプロファイルの保存状態の一部が破損しています: {{sections}}。それ以外はすべて正常です。",
-      "repairCommand": "Orca を終了し、`{{command}}` を実行すると、破損した部分だけをバックアップから置き換え、それ以外をすべて維持できます。Orca は破損したファイルのコピーを保持します。",
+      "repairCommand": "BrzA Studio を終了し、`{{command}}` を実行すると、破損した部分だけをバックアップから置き換え、それ以外をすべて維持できます。BrzA Studio は破損したファイルのコピーを保持します。",
       "restoreWholeBackup": "代わりにバックアップ全体を復元するには、`{{exportsCommand}}`、次に `{{rollbackCommand}}` を実行してください。",
-      "sqliteUnreadable": "SQLite の状態を読み取れないため、Orca はアクティブなプロファイルを安全に開けません。",
+      "sqliteUnreadable": "SQLite の状態を読み取れないため、BrzA Studio はアクティブなプロファイルを安全に開けません。",
       "legacyJsonPath": "従来の JSON パス: {{path}}",
       "retainedBackups": "保持されている SQLite バックアップ:",
       "retainedExports": "保持されている JSON エクスポート:",
-      "chooseRecoveryArtifact": "Orca を終了し、`{{command}}` を実行して、正常であることが確認済みの復旧用データを選択してください。",
+      "chooseRecoveryArtifact": "BrzA Studio を終了し、`{{command}}` を実行して、正常であることが確認済みの復旧用データを選択してください。",
       "restoreCommands": "`{{backupCommand}}` で SQLite を復元するか、`{{revisionCommand}}` で JSON エクスポートを復元してください。",
-      "authorityAmbiguous": "Orca はどのプロファイル状態を正とするか安全に判断できません: {{detail}}",
+      "authorityAmbiguous": "BrzA Studio はどのプロファイル状態を正とするか安全に判断できません: {{detail}}",
       "authorityBothPreserved": "古いビルドが JSON ファイルを変更した可能性があります。両方のコピーは保持され、どちらも自動では選択されません。",
-      "authorityCopyFirst": "どの状態を保持するか選択する前に、Orca を終了してプロファイルディレクトリをコピーしてください。",
+      "authorityCopyFirst": "どの状態を保持するか選択する前に、BrzA Studio を終了してプロファイルディレクトリをコピーしてください。",
       "authorityKeepJson": "古いビルドでの編集を含む現在の JSON を保持するには、`{{command}}` を実行してください。両方のコピーがアーカイブされ、内容は統合されません。",
       "authorityInspect": "`{{command}}` を実行して、保持されている復旧ポイントを確認してください。",
       "authorityRestore": "復元する状態を選択してから、`{{backupCommand}}` または `{{revisionCommand}}` を使用してください。",
-      "newerSchema": "このプロファイルは新しいバージョンの Orca で保存されています。そのバージョン以降の Orca で開いてください。プロファイルは変更されていません。",
-      "revisionConflict": "Orca の起動中にアクティブなプロファイルが変更されました。このプロファイルを使用している他の Orca プロセスを終了し、Orca を再起動してください。",
-      "writerUnavailable": "Orca はプロファイルの保存処理を開始できませんでした。Orca を再起動してください。問題が続く場合は、このビルドを修復するか再インストールしてください。",
-      "publicationUnavailable": "Orca はプロファイル状態を {{directory}} に安全に保存できませんでした。",
-      "publicationNeedsHardLinks": "この場所はハードリンクをサポートしている必要があり、Orca にはその作成権限が必要です。",
-      "publicationMoveData": "フォルダーの権限を確認したり、Orca のデータディレクトリ全体を、APFS、NTFS、ext4 などのハードリンクをサポートする書き込み可能なローカルファイルシステムに移動したりする前に、Orca と orcad を終了してください。",
+      "newerSchema": "このプロファイルは新しいバージョンの BrzA Studio で保存されています。そのバージョン以降の BrzA Studio で開いてください。プロファイルは変更されていません。",
+      "revisionConflict": "BrzA Studio の起動中にアクティブなプロファイルが変更されました。このプロファイルを使用している他の BrzA Studio プロセスを終了し、BrzA Studio を再起動してください。",
+      "writerUnavailable": "BrzA Studio はプロファイルの保存処理を開始できませんでした。BrzA Studio を再起動してください。問題が続く場合は、このビルドを修復するか再インストールしてください。",
+      "publicationUnavailable": "BrzA Studio はプロファイル状態を {{directory}} に安全に保存できませんでした。",
+      "publicationNeedsHardLinks": "この場所はハードリンクをサポートしている必要があり、BrzA Studio にはその作成権限が必要です。",
+      "publicationMoveData": "フォルダーの権限を確認したり、BrzA Studio のデータディレクトリ全体を、APFS、NTFS、ext4 などのハードリンクをサポートする書き込み可能なローカルファイルシステムに移動したりする前に、BrzA Studio と orcad を終了してください。",
       "publicationKeepFiles": "元のディレクトリとすべての復旧用ファイルを保持してください。"
     }
   },
   "startupFailure": {
-    "title": "Orca を起動できませんでした",
-    "finishFailed": "Orca は起動を完了できませんでした: {{detail}}"
+    "title": "BrzA Studio を起動できませんでした",
+    "finishFailed": "BrzA Studio は起動を完了できませんでした: {{detail}}"
   },
   "localBuild": {
-    "chooseTitle": "ローカルの Orca ビルドを選択",
+    "chooseTitle": "ローカルの BrzA Studio ビルドを選択",
     "chooseButton": "ビルドを選択",
-    "manifestFilter": "Orca 更新マニフェスト",
+    "manifestFilter": "BrzA Studio 更新マニフェスト",
     "sameVersionError": "このビルドは実行中のアプリと同じバージョンです。pn build:mac をもう一度実行して、固有のバージョンのビルドを作成してください。",
     "noLiveTerminals": "再接続が必要な実行中のターミナルはありません。",
     "liveTerminals_one": "実行中のターミナル {{count}} 個が再起動後に再接続されます。",
     "liveTerminals_other": "実行中のターミナル {{count}} 個が再起動後に再接続されます。",
-    "confirmTitle": "ローカルの Orca ビルドを使用しますか？",
+    "confirmTitle": "ローカルの BrzA Studio ビルドを使用しますか？",
     "schemaCompatibility": "ワークスペースカードと設定は、状態スキーマ {{schemaVersion}} と互換性があります。",
-    "signatureRequirement": "ビルドには Orca と同じ有効なコード署名が必要です。一致しない場合、インストールは停止します。",
+    "signatureRequirement": "ビルドには BrzA Studio と同じ有効なコード署名が必要です。一致しない場合、インストールは停止します。",
     "useButton": "ローカルビルドを使用",
     "cancelButton": "キャンセル"
   },
@@ -22069,7 +22069,7 @@
     "install": {
       "title": "{{name}} を追加しますか？",
       "profileDescription": "{{profile}} プロファイルを使用するタブで実行されます。",
-      "description": "Orca のブラウザタブで実行されます。",
+      "description": "BrzA Studio のブラウザタブで実行されます。",
       "noAccess": "ウェブサイト上のデータの読み取りや変更は要求しません。",
       "canHeading": "次のことができます:",
       "cancel": "キャンセル",
@@ -22081,7 +22081,7 @@
     },
     "unsupported": {
       "identity": "拡張機能のサインイン",
-      "line": "Orca ではまだ利用できません: {{features}}。"
+      "line": "BrzA Studio ではまだ利用できません: {{features}}。"
     },
     "permissions": {
       "title": "{{name}} に追加のアクセスを許可しますか？",
@@ -22108,27 +22108,27 @@
     },
     "compat": {
       "compatible": "ランタイムのクライアントとサーバーは互換性があります。",
-      "clientTooOld": "この Orca クライアントは古すぎるため、選択したサーバーに接続できません。このマシンの Orca を更新してください。クライアントのプロトコルは {{clientProtocol}}、サーバーが要求するクライアントのプロトコルは {{requiredProtocol}} です。",
-      "serverTooOld": "選択した Orca サーバーは古すぎるため、このクライアントと互換性がありません。サーバーの Orca を更新してください。サーバーのプロトコルは {{serverProtocol}}、クライアントが要求するサーバーのプロトコルは {{requiredProtocol}} です。"
+      "clientTooOld": "この BrzA Studio クライアントは古すぎるため、選択したサーバーに接続できません。このマシンの BrzA Studio を更新してください。クライアントのプロトコルは {{clientProtocol}}、サーバーが要求するクライアントのプロトコルは {{requiredProtocol}} です。",
+      "serverTooOld": "選択した BrzA Studio サーバーは古すぎるため、このクライアントと互換性がありません。サーバーの BrzA Studio を更新してください。サーバーのプロトコルは {{serverProtocol}}、クライアントが要求するサーバーのプロトコルは {{requiredProtocol}} です。"
     },
     "remoteServerPairingErrors": {
       "invalidPairingCode": "ペアリングコードが無効です。orca://pair?... 形式の URL または生のペアリングデータが必要です。",
-      "selfPairingCode": "このペアリングコードは、この Orca 自身のものです。もう一方のコンピューターでコードを生成してください。",
-      "managedDeployment": "Orca が SSH ホスト上でこのサーバーを実行しているため、ここではペアリングを置き換えたり解除したりできません。廃止するには `orca environment stop --environment <name> --yes` を実行するか、設定 > SSH ホスト上の Orca を使用してください。ホストが存在しない場合は `orca environment forget --environment <name> --yes` を実行してください。",
-      "sshAccessChangePending": "このサーバーの SSH アクセスの変更が完了しませんでした。ペアリングの置き換えやサーバーの削除を行う前に、設定 > リモート Orca サーバー > ペアリング済みサーバーの SSH アクセスで再試行するかキャンセルしてください。",
-      "sshAccessLinked": "設定 > リモート Orca サーバー > ペアリング済みサーバーの SSH アクセスでこのサーバーの SSH アクセスのリンクを解除してから、ペアリングを置き換えるかサーバーを削除してください。",
+      "selfPairingCode": "このペアリングコードは、この BrzA Studio 自身のものです。もう一方のコンピューターでコードを生成してください。",
+      "managedDeployment": "BrzA Studio が SSH ホスト上でこのサーバーを実行しているため、ここではペアリングを置き換えたり解除したりできません。廃止するには `orca environment stop --environment <name> --yes` を実行するか、設定 > SSH ホスト上の BrzA Studio を使用してください。ホストが存在しない場合は `orca environment forget --environment <name> --yes` を実行してください。",
+      "sshAccessChangePending": "このサーバーの SSH アクセスの変更が完了しませんでした。ペアリングの置き換えやサーバーの削除を行う前に、設定 > リモート BrzA Studio サーバー > ペアリング済みサーバーの SSH アクセスで再試行するかキャンセルしてください。",
+      "sshAccessLinked": "設定 > リモート BrzA Studio サーバー > ペアリング済みサーバーの SSH アクセスでこのサーバーの SSH アクセスのリンクを解除してから、ペアリングを置き換えるかサーバーを削除してください。",
       "alreadyPairedCloudWorkspace": "このサーバーはすでに「{{name}}」としてペアリングされています。クラウドワークスペースに属しており、ワークスペースの再開時に再びペアリングされます。",
       "alreadyPairedCloudIdentity": "このサーバーはすでに「{{name}}」としてペアリングされています。クラウドワークスペースのサーバーがそのサーバーの識別情報を再利用しているため、保存されませんでした。",
-      "alreadyPairedWslHost": "このサーバーはすでに「{{name}}」としてペアリングされています。Orca が WSL ホストとして管理しているため、ここではペアリングを置き換えられません。",
-      "alreadyPairedManagedDeployment": "このサーバーはすでに「{{name}}」としてペアリングされています。Orca が SSH ホスト上でこのサーバーを実行しているため、ここではペアリングを置き換えたり解除したりできません。廃止するには `orca environment stop --environment <name> --yes` を実行するか、設定 > SSH ホスト上の Orca を使用してください。ホストが存在しない場合は `orca environment forget --environment <name> --yes` を実行してください。",
-      "alreadyPairedSshAccessChangePending": "このサーバーはすでに「{{name}}」としてペアリングされています。このサーバーの SSH アクセスの変更が完了しませんでした。ペアリングの置き換えやサーバーの削除を行う前に、設定 > リモート Orca サーバー > ペアリング済みサーバーの SSH アクセスで再試行するかキャンセルしてください。",
-      "alreadyPairedSshAccessLinked": "このサーバーはすでに「{{name}}」としてペアリングされています。設定 > リモート Orca サーバー > ペアリング済みサーバーの SSH アクセスでこのサーバーの SSH アクセスのリンクを解除してから、ペアリングを置き換えるかサーバーを削除してください。",
-      "alreadyPairedAddAgain": "このサーバーはすでに「{{name}}」としてペアリングされています。接続情報を更新するには、設定 > リモート Orca サーバーで再度追加してください。",
-      "alreadyPairedUnreadable": "このサーバーはすでに「{{name}}」としてペアリングされていますが、このバージョンの Orca では保存済みの設定を読み取れません。",
+      "alreadyPairedWslHost": "このサーバーはすでに「{{name}}」としてペアリングされています。BrzA Studio が WSL ホストとして管理しているため、ここではペアリングを置き換えられません。",
+      "alreadyPairedManagedDeployment": "このサーバーはすでに「{{name}}」としてペアリングされています。BrzA Studio が SSH ホスト上でこのサーバーを実行しているため、ここではペアリングを置き換えたり解除したりできません。廃止するには `orca environment stop --environment <name> --yes` を実行するか、設定 > SSH ホスト上の BrzA Studio を使用してください。ホストが存在しない場合は `orca environment forget --environment <name> --yes` を実行してください。",
+      "alreadyPairedSshAccessChangePending": "このサーバーはすでに「{{name}}」としてペアリングされています。このサーバーの SSH アクセスの変更が完了しませんでした。ペアリングの置き換えやサーバーの削除を行う前に、設定 > リモート BrzA Studio サーバー > ペアリング済みサーバーの SSH アクセスで再試行するかキャンセルしてください。",
+      "alreadyPairedSshAccessLinked": "このサーバーはすでに「{{name}}」としてペアリングされています。設定 > リモート BrzA Studio サーバー > ペアリング済みサーバーの SSH アクセスでこのサーバーの SSH アクセスのリンクを解除してから、ペアリングを置き換えるかサーバーを削除してください。",
+      "alreadyPairedAddAgain": "このサーバーはすでに「{{name}}」としてペアリングされています。接続情報を更新するには、設定 > リモート BrzA Studio サーバーで再度追加してください。",
+      "alreadyPairedUnreadable": "このサーバーはすでに「{{name}}」としてペアリングされていますが、このバージョンの BrzA Studio では保存済みの設定を読み取れません。",
       "nameTaken": "「{{name}}」という名前のサーバーはすでに存在します。",
-      "idNeedsNewerOrca": "この ID のサーバーは、新しいバージョンの Orca が必要な形式ですでに存在します。",
-      "hostSaveFailed": "Orca はホストを検証しましたが、保存できませんでした。ローカル設定の保存先を確認し、もう一度お試しください。",
-      "repairSaveFailed": "Orca はサーバーを検証しましたが、新しいペアリングを保存できませんでした。ローカル設定の保存先を確認し、もう一度お試しください。",
+      "idNeedsNewerOrca": "この ID のサーバーは、新しいバージョンの BrzA Studio が必要な形式ですでに存在します。",
+      "hostSaveFailed": "BrzA Studio はホストを検証しましたが、保存できませんでした。ローカル設定の保存先を確認し、もう一度お試しください。",
+      "repairSaveFailed": "BrzA Studio はサーバーを検証しましたが、新しいペアリングを保存できませんでした。ローカル設定の保存先を確認し、もう一度お試しください。",
       "repairCloudWorkspace": "このサーバーはクラウドワークスペースに属しており、ワークスペースの再開時に再びペアリングされます。"
     }
   },
@@ -22147,8 +22147,8 @@
     },
     "dialog": {
       "importCookies": "Cookie のインポート",
-      "spaceTitle": "Orca スペースベータ",
-      "dashboardTitle": "Orca Agent ダッシュボード",
+      "spaceTitle": "BrzA Studio スペースベータ",
+      "dashboardTitle": "BrzA Studio Agent ダッシュボード",
       "cookieFiles": "Cookie ファイル",
       "allFiles": "すべてのファイル",
       "importPetBundle": ".codex-pet バンドルを選択",
@@ -22171,7 +22171,7 @@
       "listLabel": "Linear リスト",
       "projectNotFound": "プロジェクトが見つかりませんでした。",
       "issuesLoadFailed": "Linear の Issue を読み込めませんでした。",
-      "apiKeyHint": "Orca で使う Linear ワークスペースの個人 API キーを貼り付けてください。すでに接続済みの場合、保存されたキーを置き換えます。",
+      "apiKeyHint": "BrzA Studio で使う Linear ワークスペースの個人 API キーを貼り付けてください。すでに接続済みの場合、保存されたキーを置き換えます。",
       "remoteKeyStorage": "このキーは現在のリモートランタイムに保存されます。",
       "localKeyStorage": "ローカルランタイムのキーはこのデバイスに保存され、利用可能な場合は Electron の暗号化ストレージを使います。",
       "commentsLoadFailed": "コメントを読み込めませんでした。",
@@ -22327,7 +22327,7 @@
       "moveOne": "1 件のプロジェクトを移動",
       "moveMany": "{{n}} 件のプロジェクトを移動",
       "heldByHost": "すでに {{distro}} ホスト上にあります。",
-      "changed": "以前に移動した後、古いバージョンの Orca によってここで変更されました。再び移動されることはありません。",
+      "changed": "以前に移動した後、古いバージョンの BrzA Studio によってここで変更されました。再び移動されることはありません。",
       "chatsStay": "既存のチャットはこのコンピューターに残ります。このプロジェクトの新しいチャットは WSL ホストで開始されます。",
       "browserLoginsConflict": "ホストのブラウザープロファイルがすでに使用中のため、ブラウザーのサインイン状態は引き継がれません。移動後、ホストのブラウザータブで再度サインインしてください。",
       "browserLoginsNotCarried": "ブラウザーのサインイン状態はこのホストに引き継がれません。移動後、そのブラウザータブで再度サインインしてください。"
@@ -22335,8 +22335,8 @@
     "cancel": "キャンセル",
     "progress": {
       "bytes": "{{sent}} / {{total}}",
-      "tooLate": "ホストがすでに切り替え中のため、キャンセルできません。完了するまで Orca を開いたままにしてください。",
-      "switching": "切り替えはキャンセルできません。完了するまで Orca を開いたままにしてください。",
+      "tooLate": "ホストがすでに切り替え中のため、キャンセルできません。完了するまで BrzA Studio を開いたままにしてください。",
+      "switching": "切り替えはキャンセルできません。完了するまで BrzA Studio を開いたままにしてください。",
       "readOnly": "移動中、これらのプロジェクトは読み取り専用です。切り替えが始まるまではキャンセルできます。",
       "cancelUntilSwitch": "切り替えが始まるまではキャンセルできます。",
       "closeKeepsGoing": "このダイアログを閉じても移動は止まりません。移動が終わると再び開きます。",
@@ -22349,21 +22349,21 @@
       "waitingTitle": "{{distro}} ホストを待っています",
       "earlierMoveTitle": "以前の移動が先に完了しました",
       "refusedTitle": "プロジェクトは移動されませんでした",
-      "reloadCheckpointRefused": "Orca は未保存のファイルをバックアップできなかったため、ウィンドウを再読み込みしませんでした。このダイアログを閉じ、それらのファイルを保存するか閉じてから、表示されたままの通知で「今すぐ再読み込み」を使用してください。",
+      "reloadCheckpointRefused": "BrzA Studio は未保存のファイルをバックアップできなかったため、ウィンドウを再読み込みしませんでした。このダイアログを閉じ、それらのファイルを保存するか閉じてから、表示されたままの通知で「今すぐ再読み込み」を使用してください。",
       "reloadVetoed": "ウィンドウの再読み込みが妨げられました。このダイアログを閉じ、作業を保存してから、表示されたままの通知で「今すぐ再読み込み」を使用してください。",
       "reloadFailed": "ウィンドウを再読み込みできませんでした。もう一度お試しください。",
-      "moved": "このウィンドウを再読み込みすると、プロジェクトが {{distro}} ホストの下に表示されます。Orca は再読み込みの前に未保存のファイルをバックアップします。",
-      "automationsPendingOne": "1 件のオートメーションがホスト上で一時的にオフになっています。Orca はホストに再びオンにするよう要求し続けます。",
-      "automationsPendingMany": "{{n}} 件のオートメーションがホスト上で一時的にオフになっています。Orca はホストに再びオンにするよう要求し続けます。",
+      "moved": "このウィンドウを再読み込みすると、プロジェクトが {{distro}} ホストの下に表示されます。BrzA Studio は再読み込みの前に未保存のファイルをバックアップします。",
+      "automationsPendingOne": "1 件のオートメーションがホスト上で一時的にオフになっています。BrzA Studio はホストに再びオンにするよう要求し続けます。",
+      "automationsPendingMany": "{{n}} 件のオートメーションがホスト上で一時的にオフになっています。BrzA Studio はホストに再びオンにするよう要求し続けます。",
       "undoHint": "気が変わった場合は、再読み込み後、サイドバーにこれらのプロジェクトが「{{distro}} ホストに移動済み」と表示されます。そこで「このコンピューターで再び使用」を選ぶと、移動前の状態に戻せます。",
       "reset": "移動は停止し、すべて元に戻されました。プロジェクトは以前と同じようにこのコンピューターで動作します。一時停止したターミナルは、開くと再び開始されます。",
       "resetReason": "停止した理由: {{detail}}",
-      "waiting": "移動は {{distro}} ホストに届いた可能性がありますが、ホストが応答しません。応答するまで、これらのプロジェクトはここで読み取り専用のままです。設定でホストに接続してから、このダイアログを再び開いて移動を開始してください。Orca は先にこの移動を完了するか取り消します。",
+      "waiting": "移動は {{distro}} ホストに届いた可能性がありますが、ホストが応答しません。応答するまで、これらのプロジェクトはここで読み取り専用のままです。設定でホストに接続してから、このダイアログを再び開いて移動を開始してください。BrzA Studio は先にこの移動を完了するか取り消します。",
       "reloading": "再読み込みしています…",
       "reload": "今すぐ再読み込み",
       "close": "閉じる",
       "review": "プロジェクトに戻る",
-      "browserLoginsHostUnknown": "Orca がホストのブラウザープロファイルを特定できなかったため、ブラウザーのログイン情報はコピーされませんでした。ホストのブラウザータブで再度サインインしてください。",
+      "browserLoginsHostUnknown": "BrzA Studio がホストのブラウザープロファイルを特定できなかったため、ブラウザーのログイン情報はコピーされませんでした。ホストのブラウザータブで再度サインインしてください。",
       "browserLoginsConflict": "ホストのブラウザープロファイルがすでに使用中のため、ブラウザーのログイン情報はコピーされませんでした。ホストのブラウザータブで再度サインインしてください。",
       "browserLoginsNotCopied": "ブラウザーのログイン情報はホストにコピーされませんでした。ホストのブラウザータブで再度サインインしてください。"
     },
@@ -22373,29 +22373,29 @@
       "move": "プロジェクトを移動"
     },
     "unfinished": {
-      "one": "{{distro}} ホストに移動した 1 件のオートメーションがまだオフです。Orca はホストに再びオンにするよう要求し続けます。",
-      "many": "{{distro}} ホストに移動した {{n}} 件のオートメーションがまだオフです。Orca はホストに再びオンにするよう要求し続けます。"
+      "one": "{{distro}} ホストに移動した 1 件のオートメーションがまだオフです。BrzA Studio はホストに再びオンにするよう要求し続けます。",
+      "many": "{{distro}} ホストに移動した {{n}} 件のオートメーションがまだオフです。BrzA Studio はホストに再びオンにするよう要求し続けます。"
     },
     "refusal": {
-      "previewFailed": "Orca はこれらのプロジェクトを確認できませんでした。もう一度お試しください。",
-      "startFailed": "Orca は移動の状況を把握できなくなりました。このダイアログを再び開いて、現在の状況を確認してください。",
+      "previewFailed": "BrzA Studio はこれらのプロジェクトを確認できませんでした。もう一度お試しください。",
+      "startFailed": "BrzA Studio は移動の状況を把握できなくなりました。このダイアログを再び開いて、現在の状況を確認してください。",
       "unavailable": "このウィンドウでは、プロジェクトを WSL ホストへ移動できません。",
       "alreadyRunning": "{{distro}} への移動がすでに実行中です。完了するのを待ってから、もう一度お試しください。",
       "undoRunning": "プロジェクトを {{distro}} から戻しています。完了してからもう一度お試しください。",
-      "alreadyInFlightPreview": "{{distro}} の移動がまだ完了処理中です。この移動を開始すると、Orca は可能な範囲で先にその移動を完了するか取り消します。",
+      "alreadyInFlightPreview": "{{distro}} の移動がまだ完了処理中です。この移動を開始すると、BrzA Studio は可能な範囲で先にその移動を完了するか取り消します。",
       "alreadyInFlight": "{{distro}} の移動がまだ完了処理中のため、この移動は開始されませんでした。{{distro}} ホストを接続したままにして、後でもう一度お試しください。",
       "nothingNew": "これらのプロジェクトはすでに {{distro}} ホスト上にあります。",
       "destinationChanged": "{{distro}} から以前に移動したプロジェクトは、別の WSL ホストに移動しています。さらに移動するには、そのホストに接続してください。",
       "hostUnavailable": "{{distro}} ホストが接続されていません。設定で接続してから、もう一度お試しください。",
-      "hostUpdateRequired": "{{distro}} ホストでは古いバージョンの Orca が実行されています。設定で更新してから、もう一度お試しください。",
+      "hostUpdateRequired": "{{distro}} ホストでは古いバージョンの BrzA Studio が実行されています。設定で更新してから、もう一度お試しください。",
       "terminalsBlocked": "これらのプロジェクト内の一部のターミナル、Agent、またはオートメーションが使用中です。何も移動されませんでした。",
       "exportIncomplete": "これらのプロジェクトの一部の保存済み状態はまだ移動できないため、何も移動されませんでした:",
       "exportIncompletePreview": "これらのプロジェクトの一部の保存済み状態はまだ移動できません:",
       "tooLarge": "これらのプロジェクトは保存済み状態が多すぎて、一度に移動できません。一度に移動するプロジェクトを減らしてください。",
-      "pauseFailed": "Orca はこれらのプロジェクトのターミナルを一時停止できなかったため、何も移動されませんでした。一時停止したターミナルは、開くと再び開始されます。もう一度お試しください。",
+      "pauseFailed": "BrzA Studio はこれらのプロジェクトのターミナルを一時停止できなかったため、何も移動されませんでした。一時停止したターミナルは、開くと再び開始されます。もう一度お試しください。",
       "scopeChanged": "移動の準備中にプロジェクトが変更されたため、何も移動されませんでした。プロジェクトを確認して、もう一度お試しください。",
       "cancelled": "移動をキャンセルしました。何も移動されませんでした。",
-      "finishedEarlierMove": "Orca は先に {{distro}} への以前の移動を完了しました。ウィンドウを再読み込みしてから、この移動をもう一度開始してください。"
+      "finishedEarlierMove": "BrzA Studio は先に {{distro}} への以前の移動を完了しました。ウィンドウを再読み込みしてから、この移動をもう一度開始してください。"
     },
     "step": {
       "preparing": "準備中",
@@ -22412,8 +22412,8 @@
       "processRunningMany": "{{n}} 個のターミナルでプログラムが実行中です",
       "agentNotResumableOne": "移動後に再開できない Agent があります",
       "agentNotResumableMany": "移動後に再開できない Agent が {{n}} 個あります",
-      "unverifiableOne": "Orca は現在ターミナルを確認できません",
-      "unverifiableMany": "Orca は現在 {{n}} 個のターミナルを確認できません",
+      "unverifiableOne": "BrzA Studio は現在ターミナルを確認できません",
+      "unverifiableMany": "BrzA Studio は現在 {{n}} 個のターミナルを確認できません",
       "automationRunningOne": "オートメーションの実行が進行中です",
       "automationRunningMany": "{{n}} 件のオートメーションの実行が進行中です",
       "dispatchRunningOne": "Agent のタスクが進行中です",
@@ -22455,23 +22455,23 @@
         "hostUpdate": "先にホストを更新する必要があります",
         "attemptsExhausted": "何度か試しても完了しませんでした"
       },
-      "finishPending": "{{distro}} ホストへの以前の移動はホスト側で完了しています。Orca は再起動時、または「再確認」ですぐに、ここでの処理を完了します。"
+      "finishPending": "{{distro}} ホストへの以前の移動はホスト側で完了しています。BrzA Studio は再起動時、または「再確認」ですぐに、ここでの処理を完了します。"
     }
   },
   "automations": {
     "runFailures": {
-      "noDispatchHost": "オートメーションを起動できる Orca ウィンドウがありませんでした。",
-      "unevaluableSchedule": "Orca はこのオートメーションを評価できず、今回の実行をスキップしました。",
+      "noDispatchHost": "オートメーションを起動できる BrzA Studio ウィンドウがありませんでした。",
+      "unevaluableSchedule": "BrzA Studio はこのオートメーションを評価できず、今回の実行をスキップしました。",
       "noRunnableHost": "このオートメーションには実行するホストがありません。",
-      "wslMoveInProgress": "このオートメーションのプロジェクトを WSL ホストへ移動中のため、Orca は今回の実行をスキップしました。移動が完了すると実行が再開されます。",
-      "wslMoveOwnedByHost": "このオートメーションのプロジェクトは現在 WSL ホスト上で動作しており、オートメーションもそこで実行されます。Orca はこのローカルコピーを実行しなくなりました。",
-      "missedGraceWindow": "Orca が次に確認した時点で、この実行は実行漏れの猶予時間を過ぎていました。",
+      "wslMoveInProgress": "このオートメーションのプロジェクトを WSL ホストへ移動中のため、BrzA Studio は今回の実行をスキップしました。移動が完了すると実行が再開されます。",
+      "wslMoveOwnedByHost": "このオートメーションのプロジェクトは現在 WSL ホスト上で動作しており、オートメーションもそこで実行されます。BrzA Studio はこのローカルコピーを実行しなくなりました。",
+      "missedGraceWindow": "BrzA Studio が次に確認した時点で、この実行は実行漏れの猶予時間を過ぎていました。",
       "targetMissing": "オートメーションのホストは登録されていないため、このオートメーションを実行する場所がありません。",
       "targetReplaced": "オートメーションのホストが削除され、再登録されたため、実行するにはこのオートメーションを再度関連付ける必要があります。",
-      "workspaceHostAmbiguous": "オートメーションのワークスペースが複数のホストにまたがっているため、Orca はどのホストで実行すべきか判断できません。",
-      "legacyTwinHosts": "このオートメーションは、Orca が実行ホストを記録するようになる前に保存されており、プロジェクトが複数のホストにあります。オートメーションを開き、実行するホストを選択してください。",
+      "workspaceHostAmbiguous": "オートメーションのワークスペースが複数のホストにまたがっているため、BrzA Studio はどのホストで実行すべきか判断できません。",
+      "legacyTwinHosts": "このオートメーションは、BrzA Studio が実行ホストを記録するようになる前に保存されており、プロジェクトが複数のホストにあります。オートメーションを開き、実行するホストを選択してください。",
       "targetUnavailable": "オートメーションの実行ターゲットは利用できなくなりました。",
-      "remoteSchedulingUnavailable": "この Orca クライアントでは、リモートサーバーのオートメーションのスケジュール設定はまだ利用できません。リモートサーバー上でこのオートメーションを実行するか、永続的なリモートスケジュール機能が利用可能になったら Orca を更新してください。",
+      "remoteSchedulingUnavailable": "この BrzA Studio クライアントでは、リモートサーバーのオートメーションのスケジュール設定はまだ利用できません。リモートサーバー上でこのオートメーションを実行するか、永続的なリモートスケジュール機能が利用可能になったら BrzA Studio を更新してください。",
       "projectSetupMissing": "オートメーション用に選択したホストでは、プロジェクトがセットアップされていない状態になっています。",
       "targetSetupMismatch": "オートメーションの実行ターゲットが、プロジェクトで選択したホストの設定と一致しなくなりました。",
       "repoUnavailable": "選択したオートメーションのホストのリポジトリは利用できなくなりました。",
@@ -22482,7 +22482,7 @@
       "hooksReviewBlocked": "Agent は、新規または変更されたフックのレビューを待っています（「Hooks need review」）。この実行を開き、フックを信頼するか削除してください。スケジュールされた実行は継続され、レビューが必要なものがなくなれば成功します。",
       "agentNeverStarted": "プロンプトの送信後、オートメーションの Agent が起動しませんでした。",
       "agentNoCompletion": "オートメーションの Agent から完了の報告がありませんでした。",
-      "watchTimedOut": "完了シグナルがないまま 6 時間が経過したため、Orca はこの実行の監視を終了しました。",
+      "watchTimedOut": "完了シグナルがないまま 6 時間が経過したため、BrzA Studio はこの実行の監視を終了しました。",
       "wslDistroStopped": "WSL ディストリビューション {{distro}} が停止しているため、このスケジュール実行では起動しませんでした。ディストリビューションを起動するか、「今すぐ実行」を使ってください。起動中は以降の実行が行われます。",
       "projectSetupState": {
         "notSetUp": "選択したオートメーションのホストでは、プロジェクトがセットアップされていません。",
@@ -22505,7 +22505,7 @@
         "modelRepeated": "追加の引数でモデルが複数回指定されています。",
         "effortRepeated": "追加の引数で推論レベルが複数回指定されています。"
       },
-      "hostUpdateRequired": "追加の引数を使用するには、このホストの Orca を更新してください。"
+      "hostUpdateRequired": "追加の引数を使用するには、このホストの BrzA Studio を更新してください。"
     }
   },
   "codeHost": {
@@ -22585,7 +22585,7 @@
     "workflows": {
       "workspaces": {
         "title": "ワークスペース",
-        "lede": "Orca はタスクごとに独立したワークスペースを用意し、Agent が並行して作業できるようにします。"
+        "lede": "BrzA Studio はタスクごとに独立したワークスペースを用意し、Agent が並行して作業できるようにします。"
       },
       "tasks": {
         "title": "タスク",
@@ -22593,11 +22593,11 @@
       },
       "agents": {
         "title": "Agent",
-        "lede": "複数の Agent を同時に実行し、進捗を追跡。必要に応じて自動化で Orca を操作できます。"
+        "lede": "複数の Agent を同時に実行し、進捗を追跡。必要に応じて自動化で BrzA Studio を操作できます。"
       },
       "workbench": {
         "title": "ワークベンチ",
-        "lede": "使い慣れたターミナル環境を Orca に取り込み、ペインを分割してサーバー、テスト、ログ、Agent を並べて実行できます。"
+        "lede": "使い慣れたターミナル環境を BrzA Studio に取り込み、ペインを分割してサーバー、テスト、ログ、Agent を並べて実行できます。"
       },
       "review": {
         "title": "コードレビュー",
@@ -22612,7 +22612,7 @@
       },
       "orchestration": {
         "name": "オーケストレーション",
-        "description": "Agent が Orca のワークスペースを管理・連携させ、より大きなタスクを実行できるようにします。"
+        "description": "Agent が BrzA Studio のワークスペースを管理・連携させ、より大きなタスクを実行できるようにします。"
       },
       "usage": {
         "name": "使用量",
@@ -22624,11 +22624,11 @@
       },
       "editor": {
         "name": "エディター",
-        "description": "Notion スタイルの Markdown エディターで、Orca を離れずにノートを書けます。"
+        "description": "Notion スタイルの Markdown エディターで、BrzA Studio を離れずにノートを書けます。"
       },
       "browser": {
         "name": "ブラウザ",
-        "description": "Orca のブラウザでアプリを実行し、選択した UI 要素を Agent に送信。Agent にウェブページを操作させることもできます。"
+        "description": "BrzA Studio のブラウザでアプリを実行し、選択した UI 要素を Agent に送信。Agent にウェブページを操作させることもできます。"
       },
       "notes": {
         "name": "ノート",
@@ -22671,7 +22671,7 @@
         "title": "インラインレビューを Agent にフィードバック"
       },
       "tile09": {
-        "title": "Orca CLI"
+        "title": "BrzA Studio CLI"
       },
       "tile10": {
         "title": "キーボード中心の操作"
@@ -22737,7 +22737,7 @@
       "recipeExited": "レシピはコード {{exitCode}} で終了しました。",
       "recipeResultMissing": "レシピが JSON の結果を出力しませんでした。",
       "recipeResultNotJsonObject": "レシピの stdout は単一の JSON オブジェクトである必要があります。",
-      "recipeResultPairingCodeInvalid": "レシピの結果の pairingCode は有効な Orca ペアリングコードではありません。",
+      "recipeResultPairingCodeInvalid": "レシピの結果の pairingCode は有効な BrzA Studio ペアリングコードではありません。",
       "recipeResultProjectRootNotAbsolute": "レシピの結果の projectRoot はランタイム内の絶対パスである必要があります。",
       "provisionedRootResultRequired": "プロビジョニングされたルートレシピは、schemaVersion 2 と checkoutMode \"provisioned-root\" を返す必要があります。",
       "provisionedRootNotConfigured": "レシピの結果はプロビジョニングされたルートでのチェックアウトを要求していますが、レシピはそのように設定されていません。",
@@ -22752,11 +22752,11 @@
     }
   },
   "installDirAcl": {
-    "cause": "Orca のインストールフォルダーに設定された Windows の権限により、Orca 自身のサンドボックス内のプロセスが同梱ファイルを読み取れません。",
-    "repaired": "Orca が権限を修復しました。適用するにはリロードしてください。",
-    "repairing": "Orca が権限を修復しています。",
-    "repairFailed": "Orca は権限を修復できませんでした。通常、フォルダーへの操作に管理者権限が必要な場合に発生します。",
-    "runCommands": "管理者権限のコマンドプロンプトで次のコマンドを実行し、Orca を再起動してください:"
+    "cause": "BrzA Studio のインストールフォルダーに設定された Windows の権限により、BrzA Studio 自身のサンドボックス内のプロセスが同梱ファイルを読み取れません。",
+    "repaired": "BrzA Studio が権限を修復しました。適用するにはリロードしてください。",
+    "repairing": "BrzA Studio が権限を修復しています。",
+    "repairFailed": "BrzA Studio は権限を修復できませんでした。通常、フォルダーへの操作に管理者権限が必要な場合に発生します。",
+    "runCommands": "管理者権限のコマンドプロンプトで次のコマンドを実行し、BrzA Studio を再起動してください:"
   },
   "pet": {
     "importErrors": {
@@ -22803,7 +22803,7 @@
     }
   },
   "wslDistroHold": {
-    "terminalStopped": "WSL ディストリビューション {{distro}} が停止しているため、Orca はこのターミナルを起動しませんでした。ディストリビューションを起動してから、もう一度お試しください。",
-    "terminalUnverifiable": "WSL ディストリビューション {{distro}} が実行中か確認できなかったため、Orca はこのターミナルを起動しませんでした。ディストリビューションを起動してから、もう一度お試しください。"
+    "terminalStopped": "WSL ディストリビューション {{distro}} が停止しているため、BrzA Studio はこのターミナルを起動しませんでした。ディストリビューションを起動してから、もう一度お試しください。",
+    "terminalUnverifiable": "WSL ディストリビューション {{distro}} が実行中か確認できなかったため、BrzA Studio はこのターミナルを起動しませんでした。ディストリビューションを起動してから、もう一度お試しください。"
   }
 }

@@ -37,22 +37,22 @@ function getBatchDeleteDescription(count: number, scope: DeleteRemovalScope): st
   if (scope === 'folder') {
     return translate(
       'auto.components.sidebar.DeleteWorktreeDialog.removeBatchFolder',
-      'Remove <target>{{count}} workspaces</target> from Orca. Project folders on disk will not be deleted.',
+      'Remove <target>{{count}} workspaces</target> from BrzA Studio. Project folders on disk will not be deleted.',
       {
         count,
         defaultValue_one:
-          'Remove <target>{{count}} workspace</target> from Orca. Project folders on disk will not be deleted.'
+          'Remove <target>{{count}} workspace</target> from BrzA Studio. Project folders on disk will not be deleted.'
       }
     )
   }
   if (scope === 'mixed') {
     return translate(
       'auto.components.sidebar.DeleteWorktreeDialog.removeBatchMixed',
-      'Remove <target>{{count}} workspaces</target> from Orca. Git worktrees will also be removed from git and disk; folder workspaces will only remove the Orca workspace entry.',
+      'Remove <target>{{count}} workspaces</target> from BrzA Studio. Git worktrees will also be removed from git and disk; folder workspaces will only remove the BrzA Studio workspace entry.',
       {
         count,
         defaultValue_one:
-          'Remove <target>{{count}} workspace</target> from Orca. Git worktrees will also be removed from git and disk; folder workspaces will only remove the Orca workspace entry.'
+          'Remove <target>{{count}} workspace</target> from BrzA Studio. Git worktrees will also be removed from git and disk; folder workspaces will only remove the BrzA Studio workspace entry.'
       }
     )
   }

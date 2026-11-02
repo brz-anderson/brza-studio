@@ -39,7 +39,7 @@ class TestSocket extends EventEmitter {
 }
 
 const RESTART_OR_ABSENT_ADVICE =
-  /Restart Orca and try again|Orca is not running|Run 'orca open' first/
+  /Restart (?:BrzA Studio|Orca) and try again|(?:BrzA Studio|Orca) is not running|Run 'orca open' first/
 
 let socket: TestSocket
 

@@ -17,7 +17,7 @@ export const BRAND_PROTOCOL_SCHEME = 'brza-studio'
 export const BRAND_DEFAULT_WS_PORT = 6868
 export const BRAND_DEV_WS_PORT = 6869
 /** %LOCALAPPDATA% root for relocated Windows daemon hosts; upstream Orca owns `Orca`. */
-export const BRAND_LOCAL_HOST_ROOT_NAME = 'BrzA Studio'
+export const BRAND_LOCAL_HOST_ROOT_NAME = 'BrzA'
 
 export function isBrandDevUserDataPath(userDataPath: string | undefined): boolean {
   return userDataPath?.includes(BRAND_DEV_USER_DATA_DIR_NAME) ?? false

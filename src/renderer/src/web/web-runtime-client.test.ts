@@ -227,7 +227,7 @@ describe('WebRuntimeClient', () => {
       expect(fakeSockets).toHaveLength(2)
 
       client.close()
-      await expect(callPromise).rejects.toThrow('Remote Orca runtime connection closed.')
+      await expect(callPromise).rejects.toThrow('Remote BrzA Studio runtime connection closed.')
     } finally {
       client.close()
       random.mockRestore()

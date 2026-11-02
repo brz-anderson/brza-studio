@@ -211,7 +211,7 @@ describe('orca-plugin-frame protocol', () => {
     expect((await handle(get(`orca-plugin-frame://${KEY}/panel.html`, 'POST'))).status).toBe(405)
   })
 
-  it("serves Orca's declarative host page only for a declared declarative entry", async () => {
+  it("serves BrzA Studio's declarative host page only for a declared declarative entry", async () => {
     const { handle } = handlerFor(await fixture())
     const page = await handle(
       get(`orca-plugin-frame://${KEY}/__orca/declarative-host.html?entry=lib%2Fapp.js`)

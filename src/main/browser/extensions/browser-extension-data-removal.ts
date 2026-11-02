@@ -50,7 +50,9 @@ export function throwIfBrowserExtensionStorageAwaitingRestart(
   extensionId: string
 ): void {
   if (isStorageAwaitingRestart(sess, extensionId)) {
-    throw new Error("Restart Orca to finish removing this extension's old data, then try again")
+    throw new Error(
+      "Restart BrzA Studio to finish removing this extension's old data, then try again"
+    )
   }
 }
 

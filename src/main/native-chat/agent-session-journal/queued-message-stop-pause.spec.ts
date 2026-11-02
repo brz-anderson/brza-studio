@@ -23,7 +23,7 @@ export function registerQueuedMessageStopPauseTests(
       expect(fixture.pauseTables()).toBe(0)
     })
 
-    it("any turn sent after the Stop and accepted lifts it, Orca's own mail included", async () => {
+    it("any turn sent after the Stop and accepted lifts it, BrzA Studio's own mail included", async () => {
       const journal = await fixture.open()
       await fixture.turn(journal, 'before-stop', false)
       await fixture.userStop(journal)
@@ -63,7 +63,7 @@ export function registerQueuedMessageStopPauseTests(
       expect(fixture.pauseTables()).toBe(0)
     })
 
-    it('any accepted turn after /clear lifts its pause, a launch prompt Orca sent included', async () => {
+    it('any accepted turn after /clear lifts its pause, a launch prompt BrzA Studio sent included', async () => {
       const journal = await fixture.open()
       await fixture.queueDraft(journal, 'carried')
       await fixture.clearContext(journal)

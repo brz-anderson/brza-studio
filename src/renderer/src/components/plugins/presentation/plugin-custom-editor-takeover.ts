@@ -20,12 +20,12 @@ export function customEditorTakeover(editor: {
   return editor.priority === 'default'
     ? translate(
         'auto.components.settings.pluginContributions.editorReplacesViewer',
-        'Opens {{value0}} instead of Orca’s viewer',
+        'Opens {{value0}} instead of BrzA Studio’s viewer',
         { value0 }
       )
     : translate(
         'auto.components.settings.pluginContributions.editorMayReplaceViewer',
-        'May open {{value0}} instead of Orca’s viewer',
+        'May open {{value0}} instead of BrzA Studio’s viewer',
         { value0 }
       )
 }

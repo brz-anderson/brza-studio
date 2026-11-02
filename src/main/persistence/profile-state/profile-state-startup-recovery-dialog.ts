@@ -41,7 +41,7 @@ export async function presentProfileStateStartupRecoveryDialog(
       )
     : deps.translate(
         'profileState.startupRecovery.quitDetail',
-        'Quit Orca and resolve the profile-state authority before retrying.'
+        'Quit BrzA Studio and resolve the profile-state authority before retrying.'
       )
   const detail = `${deps.message}\n\n${nextStep}`
   const { response } = await deps.showMessageBox({

@@ -221,7 +221,7 @@ describe('WSL CLI registration registry', () => {
     expect(state.inspectionTimes['managed oldest']).toBe(0)
   })
 
-  it("never inspects a distro Orca has no record of: the user's own distros get no guest command", async () => {
+  it("never inspects a distro BrzA Studio has no record of: the user's own distros get no guest command", async () => {
     await expect(
       getWslCliRegistrationCandidates(userDataPath, ['Ubuntu', 'MyDevBox'], {
         inspectableDistros: ['Ubuntu']
@@ -230,7 +230,7 @@ describe('WSL CLI registration registry', () => {
     await expect(getWslCliRegistrationCandidates(userDataPath, ['MyDevBox'])).resolves.toEqual([])
   })
 
-  it("still reconciles a distro carrying Orca's own registration record", async () => {
+  it("still reconciles a distro carrying BrzA Studio's own registration record", async () => {
     await recordWslCliRegistrationObservations(userDataPath, [
       { distro: 'Ubuntu', inspected: true, managed: true, reconciled: null }
     ])

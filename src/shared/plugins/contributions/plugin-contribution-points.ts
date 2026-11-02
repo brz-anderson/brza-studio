@@ -92,10 +92,10 @@ export const PLUGIN_PLANNED_CONTRIBUTION_POINTS: Readonly<
   statusBarItems:
     'Declarative status bar widgets (label, icon, tooltip) whose values a worker updates.',
   sidebarCards: 'Declarative left-sidebar cards with fixed layouts whose values a worker updates.',
-  mcpServers: 'MCP server definitions that Orca offers to the agents it launches.',
-  skills: 'Agent skills shipped as files that Orca installs for the agents it launches.',
+  mcpServers: 'MCP server definitions that BrzA Studio offers to the agents it launches.',
+  skills: 'Agent skills shipped as files that BrzA Studio installs for the agents it launches.',
   hooks:
-    'Agent lifecycle hooks, such as before and after a tool call, for the agents Orca launches.'
+    'Agent lifecycle hooks, such as before and after a tool call, for the agents BrzA Studio launches.'
 }
 
 function reservedList(purpose: string) {

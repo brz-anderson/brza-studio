@@ -90,7 +90,7 @@ describe('orca/testing and the plugin bridge', () => {
     expect(host.data().storage).toEqual({ filter: 'open' })
   })
 
-  it('refuses storage without the capability, as Orca would', async () => {
+  it('refuses storage without the capability, as BrzA Studio would', async () => {
     panel = await mount(() => h('Text', null, 'x'), { host: mockHost({ capabilities: [] }) })
     await expect(storage.get('k')).rejects.toMatchObject({ code: 'capability_denied' })
   })

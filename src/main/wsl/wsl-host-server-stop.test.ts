@@ -76,16 +76,16 @@ describe('stopWslHostServer', () => {
     expect(single.all.sleep).not.toHaveBeenCalled()
   })
 
-  it('keeps a server another Orca shares: only this desktop lets go, nothing ends', async () => {
+  it('keeps a server another BrzA Studio shares: only this desktop lets go, nothing ends', async () => {
     const { all, order } = steps({
       peerDesktops: vi.fn(async (): Promise<WslHostPeerDesktops> => ({
         kind: 'shared',
-        names: ['Orca Dev']
+        names: ['BrzA Studio Dev']
       }))
     })
     await expect(stopWslHostServer(all)).resolves.toEqual({
       stopped: true,
-      keptForOtherDesktops: ['Orca Dev']
+      keptForOtherDesktops: ['BrzA Studio Dev']
     })
     expect(order).toEqual(['closeBridge'])
   })
@@ -99,7 +99,7 @@ describe('stopWslHostServer', () => {
     await expect(stopWslHostServer(all)).resolves.toMatchObject({
       stopped: false,
       verdict: 'unverifiable',
-      reason: expect.stringContaining('another Orca on this computer')
+      reason: expect.stringContaining('another BrzA Studio on this computer')
     })
     expect(order).toEqual(['closeBridge'])
   })

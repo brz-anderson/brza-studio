@@ -5,7 +5,7 @@ import { okFixture } from '../../test-fixtures'
 
 const client = new RuntimeClient('/tmp/orca-older-runtime-run', 60_000, null, null)
 
-describe('an older Orca server that binds one Run per coordinator', () => {
+describe('an older BrzA Studio server that binds one Run per coordinator', () => {
   let log: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
@@ -45,7 +45,7 @@ describe('an older Orca server that binds one Run per coordinator', () => {
     ).rejects.toMatchObject({
       code: 'incompatible_runtime',
       message:
-        'This Orca server is an older version and needs a Run first. Run `orca orchestration run-create --objective "<goal>" --json`, then run this worker-start again.'
+        'This BrzA Studio server is an older version and needs a Run first. Run `orca orchestration run-create --objective "<goal>" --json`, then run this worker-start again.'
     })
     expect(methods).not.toContain('orchestration.runCreate')
   })
@@ -79,7 +79,7 @@ describe('an older Orca server that binds one Run per coordinator', () => {
 
     expect(JSON.parse(String(log.mock.calls[0][0])).result).toMatchObject({
       run: { id: 'run_b' },
-      next: 'This Orca server is an older version and keeps one Run per coordinator; run_a is no longer bound to you. Switch back with `orca orchestration run-use --id run_a --json`.'
+      next: 'This BrzA Studio server is an older version and keeps one Run per coordinator; run_a is no longer bound to you. Switch back with `orca orchestration run-use --id run_a --json`.'
     })
   })
 })

@@ -26,7 +26,12 @@ vi.mock('@/runtime/structured-agent-session-status-feed', () => ({
 }))
 const initial = useAppStore.getState()
 const names = new Map()
-const feed = { subscribe: () => () => {}, activate: () => () => {}, getNamingSnapshot: () => names }
+const feed = {
+  subscribe: () => () => {},
+  activate: () => () => {},
+  getNamingSnapshot: () => names,
+  getSnapshot: () => new Map()
+}
 afterEach(() => {
   cleanup()
   useAppStore.setState(initial, true)

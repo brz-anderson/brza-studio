@@ -54,7 +54,7 @@ describe('receiving account through native work and exact parent disposition', (
     }
   )
 
-  it('retires owed ownership when a rewind retires the Orca send that carried the notice', async () => {
+  it('retires owed ownership when a rewind retires the BrzA Studio send that carried the notice', async () => {
     const f = await createReceivingAccountFixture()
     try {
       const target = () => structuredAgentSessionReceivingAccount(f.deps, f.record, f.session)

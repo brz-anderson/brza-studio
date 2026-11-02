@@ -87,7 +87,7 @@ function runDesktopRecovery(argv: readonly string[]): void {
         ),
         detail: `${response.message}\n\n${translateMain(
           'profileState.recoveryNotApplied.reopenDetail',
-          'Reopen Orca to choose again.'
+          'Reopen BrzA Studio to choose again.'
         )}`
       })
     )

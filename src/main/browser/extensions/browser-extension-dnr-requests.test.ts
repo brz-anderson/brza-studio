@@ -134,7 +134,7 @@ function headersReceived(
 mocks.tabs.add(TAB)
 afterEach(() => setBrowserSessionRequestDecider(null))
 
-describe('declarativeNetRequest in Orca request handlers', () => {
+describe('declarativeNetRequest in BrzA Studio request handlers', () => {
   it('does no work in a session whose extensions have no rules', async () => {
     const { session, runtime } = await loadedSession(blocker([]))
     expect(runtime.inUse).toBe(false)
@@ -175,7 +175,7 @@ describe('declarativeNetRequest in Orca request handlers', () => {
     })
   })
 
-  it("leaves Orca's own requests, the Web Store and extension URLs alone", async () => {
+  it("leaves BrzA Studio's own requests, the Web Store and extension URLs alone", async () => {
     const { session } = await loadedSession(
       blocker([{ id: 1, condition: { urlFilter: '*' }, action: { type: 'block' } }])
     )

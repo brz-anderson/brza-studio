@@ -56,7 +56,7 @@ describe('orca/testing', () => {
     expect(panel.persisted.plugin).toEqual({ 'testing.count': 2 })
   })
 
-  it('types, submits, toggles and selects like Orca does', async () => {
+  it('types, submits, toggles and selects like BrzA Studio does', async () => {
     panel = await mount(Counter)
     const title = panel.find({ label: 'Title' })!
     await panel.type(title, 'hi')
@@ -90,7 +90,7 @@ describe('orca/testing', () => {
     expect(panel.tree()).toEqual({ type: 'Text', children: ['migrated v1'] })
   })
 
-  it("reports a render Orca would refuse and the plugin's own errors", async () => {
+  it("reports a render BrzA Studio would refuse and the plugin's own errors", async () => {
     panel = await mount(() => h('List', null, h('Text', null, 'not an item')))
     expect(panel.errors).toEqual([
       expect.objectContaining({ kind: 'refused', message: expect.stringContaining('ListItem') })

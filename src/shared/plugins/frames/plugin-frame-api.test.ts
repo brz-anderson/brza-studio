@@ -237,7 +237,7 @@ describe('window.orca.document', () => {
     expect(posted().at(-1)).toEqual({ orca: 1, kind: 'res', id: 7, result: null })
   })
 
-  it('forwards modifier chords for Orca shortcuts', () => {
+  it('forwards modifier chords for BrzA Studio shortcuts', () => {
     const { posted } = mountShell('editor')
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 's', code: 'KeyS', metaKey: true }))
     expect(posted().at(-1)).toMatchObject({
@@ -326,7 +326,7 @@ describe('window.orca saveAs and locale', () => {
     await expect(cancelled).resolves.toEqual({ status: 'cancelled' })
   })
 
-  it("follows Orca's UI locale from hello, falling back to navigator.language", () => {
+  it("follows BrzA Studio's UI locale from hello, falling back to navigator.language", () => {
     const { orca, fromHost } = mountGuestShell()
     expect(orca.locale).toBe(navigator.language)
     fromHost({ orca: 1, kind: 'evt', event: 'hello', payload: { locale: 'de-DE', theme: null } })
@@ -375,7 +375,7 @@ describe('guest window.orca', () => {
 })
 
 describe('hello-orca example panel', () => {
-  it('talks to Orca only through window.orca', async () => {
+  it('talks to BrzA Studio only through window.orca', async () => {
     const html = readFileSync(
       join(process.cwd(), 'examples', 'plugins', 'hello-orca', 'panel.html'),
       'utf8'

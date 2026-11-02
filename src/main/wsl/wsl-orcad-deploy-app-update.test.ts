@@ -269,7 +269,7 @@ describe('deployAndLaunchWslOrcad across an app update (E1)', () => {
       outcome: 'installed-not-activated',
       fullVersion: '1.5.0+ab',
       code: 'orcad_activation_policy_refused',
-      reason: 'newer Orca ran this host'
+      reason: 'newer BrzA Studio ran this host'
     })
     await expect(launch()).resolves.toMatchObject({
       outcome: 'deferred',
@@ -289,7 +289,7 @@ describe('deployAndLaunchWslOrcad across an app update (E1)', () => {
       outcome: 'installed-not-activated',
       fullVersion: '1.5.0+ab',
       code: 'orcad_activation_policy_refused',
-      reason: 'newer Orca ran this host'
+      reason: 'newer BrzA Studio ran this host'
     }
 
     function withRecord(record: OrcadActivationRecord): void {
@@ -311,7 +311,7 @@ describe('deployAndLaunchWslOrcad across an app update (E1)', () => {
       reprobe: async () => readiness
     })
 
-    it('serves a newer build another Orca activated instead of deploying over it', async () => {
+    it('serves a newer build another BrzA Studio activated instead of deploying over it', async () => {
       withRecord(newer)
       mocks.deploy.mockResolvedValue(policyRefused)
       mocks.adoptRunning.mockResolvedValueOnce(adoptedAs('2.0.0+cd', NEWER_READINESS))
@@ -406,7 +406,7 @@ describe('deployAndLaunchWslOrcad across an app update (E1)', () => {
       const { admitRecord } = mocks.deploy.mock.calls[0][0]
       expect(admitRecord(rolledBack, '1.5.0+ab')).toMatch(/rolled back from 1\.5\.0\+ab/)
       expect(admitRecord(activeOld, '1.5.0+ab')).toBeNull()
-      expect(admitRecord(newer, '1.5.0+ab')).toMatch(/Orca 2\.0\.0 last ran/)
+      expect(admitRecord(newer, '1.5.0+ab')).toMatch(/BrzA Studio 2\.0\.0 last ran/)
     })
 
     const rejected = {

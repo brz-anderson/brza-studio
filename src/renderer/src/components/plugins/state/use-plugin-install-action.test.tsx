@@ -252,7 +252,7 @@ describe('usePluginInstallAction', () => {
     expect(window.api.plugins.installMarketplacePlugin).toHaveBeenCalledOnce()
   })
 
-  it('names the repository owner Orca parsed, not the publisher the manifest claims', async () => {
+  it('names the repository owner BrzA Studio parsed, not the publisher the manifest claims', async () => {
     const { hook, fetchPreview } = setup()
     const source = { kind: 'git' as const, url: 'https://github.com/Mallory/dusk.git', ref: 'main' }
     fetchPreview.mockResolvedValue({ ok: true, preview: { ...preview, source } })

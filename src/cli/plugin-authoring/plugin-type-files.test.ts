@@ -23,7 +23,7 @@ afterEach(async () => {
 })
 
 describe('orca plugin types', () => {
-  it('copies Orca typings and a tsconfig to extend into .orca/types, which ignores itself', async () => {
+  it('copies BrzA Studio typings and a tsconfig to extend into .orca/types, which ignores itself', async () => {
     const dir = await tempRoot()
     const files = await writePluginTypeFiles(dir)
     expect(files).toEqual([

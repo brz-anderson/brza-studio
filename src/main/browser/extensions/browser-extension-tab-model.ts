@@ -298,7 +298,7 @@ export async function openBrowserExtensionTab(
   // Why wait: extensions open tabs as they load (onInstalled), before Orca's window can take them.
   const mainWindow = profile ? await whenBrowserMainWindowReady(MAIN_WINDOW_WAIT_MS) : null
   if (!mainWindow || !profile) {
-    throw new BrowserExtensionApiError('Orca has no window to open a tab in')
+    throw new BrowserExtensionApiError('BrzA Studio has no window to open a tab in')
   }
   const { browserPageId } = await createBrowserTabInRenderer(
     { getAuthoritativeWindow: () => mainWindow },
