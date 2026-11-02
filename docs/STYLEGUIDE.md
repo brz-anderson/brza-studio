@@ -2,7 +2,7 @@
 
 UI rules for Orca. Token values live in `src/renderer/src/assets/main.css` (canonical); this file documents _roles and rules_, not values.
 
-The identity is **monochrome and quiet**: neutral grays carry the chrome, color is reserved for state (selection ring, destructive, git decorations). Orca mostly hosts other tools (Monaco, xterm, Markdown previews), so its own UI should recede and frame. When in doubt:
+The identity is **monochrome and quiet**: neutral grays carry the chrome, color is reserved for state (selection ring, destructive, git decorations). The one exception is the `brand-*` palette, for the BrzA mark and the chat's brand moments only ([color roles](./styleguide/color.md)). Orca mostly hosts other tools (Monaco, xterm, Markdown previews), so its own UI should recede and frame. When in doubt:
 
 - Reach for **muted/accent/border** before color.
 - Reach for **CSS variables** before hardcoded hex.
