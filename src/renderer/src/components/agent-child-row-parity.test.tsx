@@ -193,6 +193,13 @@ function fullRow(parent: AgentStatusEntry): { labels: string[]; text: string } {
   }
 }
 
+/** Only the strip puts the agent type before the tool (R64.1); every other surface reads the shared row. */
+const STRIP_TRAIL_WITH_TYPE: Record<string, string> = {
+  'working with a tool': 'general-purpose · Read: src/parser.ts',
+  'running a shell in the foreground': 'general-purpose · Bash: npm test',
+  'waiting on an approval': 'general-purpose · Edit: src/parser.ts'
+}
+
 const SCENARIOS: [string, AgentChildWorkView[], RenderedRow][] = [
   [
     'working, no known operation',
@@ -300,7 +307,7 @@ describe('a child reads the same in the sidebar and the chat strip', () => {
       return
     }
     const [strip] = stripRows(children)
-    expect(strip).toEqual(expected)
+    expect(strip).toEqual({ ...expected, trail: STRIP_TRAIL_WITH_TYPE[name] ?? expected.trail })
     const [sidebar] = sidebarRows(parentWith(children))
     expect(sidebar).toEqual(expected)
     const full = fullRow(parentWith(children))
@@ -398,12 +405,12 @@ describe('a child running a shell in its turn', () => {
       ['shell']
     ])
     expect(stripRows(children)).toEqual([
-      childRow,
+      { ...childRow, trail: 'general-purpose · Bash: npm run dev' },
       { dot: 'Working', lead: 'npm run dev', trail: '' }
     ])
   })
 
-  it('shows the sidebar only the child, saying what the strip says of it', () => {
+  it('shows the sidebar only the child, saying what the strip says of it less the agent type', () => {
     expect(sidebarRows(parentWith(children))).toEqual([childRow])
   })
 })

@@ -89,6 +89,7 @@ function BackgroundTaskRow(props: {
           trailClassName="text-muted-foreground"
           separator=" · "
           dotTitle={null}
+          agentTypeBeforeTool
         />
         {meta ? (
           <span className="shrink-0 font-mono text-3xs tabular-nums text-muted-foreground">

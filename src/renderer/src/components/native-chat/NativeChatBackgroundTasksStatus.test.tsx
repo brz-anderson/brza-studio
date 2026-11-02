@@ -477,3 +477,80 @@ it('lets the 1 Hz tick sleep while every row has settled, with each run frozen',
   expect(committed).not.toHaveBeenCalled()
   expect(vi.getTimerCount()).toBe(0)
 })
+
+describe('the agent type on a running agent row', () => {
+  const NOW = 1_000_000
+  const child = (overrides: Partial<AgentChildWorkView>): AgentChildWorkView => ({
+    id: 'child',
+    providerId: 'task-child',
+    kind: 'agent',
+    description: 'Revisar features do fork pós-sync',
+    state: 'working',
+    membership: 'live',
+    firstObservedAt: NOW - 60_000,
+    observedAt: NOW - 1_000,
+    stoppable: true,
+    invocation: { invocationId: 'spawn-child', generation: 1 },
+    ...overrides
+  })
+  const bash = { toolName: 'Bash', basis: 'open', observedAt: NOW } as const
+
+  function rowText(view: AgentChildWorkView): string {
+    render(
+      <NativeChatBackgroundTasksStatus
+        expanded
+        onExpandedChange={() => {}}
+        isVisible
+        tasks={[]}
+        settledTasks={[]}
+        childViews={[view]}
+        indicatorActive
+        supportsTaskStop
+        offersStopAll={false}
+        stoppingTaskIds={new Set()}
+        stoppingAll={false}
+        onStop={() => {}}
+      />
+    )
+    return screen.getAllByRole('listitem')[0].querySelector('span.truncate')?.textContent ?? ''
+  }
+
+  it('reads description, type and tool, in that order', () => {
+    expect(rowText(child({ agentType: 'reviewer', operation: bash }))).toBe(
+      'Revisar features do fork pós-sync · reviewer · Bash'
+    )
+  })
+
+  it('keeps the tool input after the tool name', () => {
+    expect(
+      rowText(child({ agentType: 'reviewer', operation: { ...bash, input: 'pnpm test' } }))
+    ).toBe('Revisar features do fork pós-sync · reviewer · Bash: pnpm test')
+  })
+
+  it('leaves the row as it was without an agent type', () => {
+    expect(rowText(child({ operation: bash }))).toBe('Revisar features do fork pós-sync · Bash')
+  })
+
+  it.each(['default', 'unknown', '  '])('does not name the type %j', (agentType) => {
+    expect(rowText(child({ agentType, operation: bash }))).toBe(
+      'Revisar features do fork pós-sync · Bash'
+    )
+  })
+
+  it('does not repeat a type that already names the row', () => {
+    expect(rowText(child({ description: undefined, agentType: 'reviewer', operation: bash }))).toBe(
+      'reviewer · Bash'
+    )
+  })
+
+  it('says the type once when the detail is the role, not a tool', () => {
+    expect(rowText(child({ agentType: 'reviewer' }))).toBe(
+      'Revisar features do fork pós-sync · reviewer'
+    )
+  })
+
+  it('does not change the Stop label', () => {
+    rowText(child({ agentType: 'reviewer', operation: bash }))
+    expect(screen.getByLabelText('Stop Revisar features do fork pós-sync')).toBeInTheDocument()
+  })
+})

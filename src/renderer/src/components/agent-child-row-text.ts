@@ -44,6 +44,20 @@ export function agentChildRowName(row: AgentChildRowModel): string {
   return sharedAgentChildRowName(row, agentStateLabel)
 }
 
+/** The agent type that sits between the name and the tool on a running row; '' when it adds nothing. */
+export function agentChildRowTypeBeforeTool(row: AgentChildRowModel): string {
+  if (row.detail?.kind !== 'operation' || row.displayState === 'monitoring') {
+    return ''
+  }
+  const agentType = row.agentType?.trim() ?? ''
+  return agentType === '' ||
+    agentType === 'unknown' ||
+    agentType === 'default' ||
+    agentType === agentChildRowName(row).trim()
+    ? ''
+    : agentType
+}
+
 export function agentChildRowText(row: AgentChildRowModel, now: number): AgentChildRowText {
   return agentChildRowLeadTrail(row, agentChildRowName(row), agentChildRowDetailText(row, now))
 }

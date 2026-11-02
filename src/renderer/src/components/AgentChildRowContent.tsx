@@ -2,7 +2,7 @@ import React from 'react'
 import type { AgentChildRowModel } from '../../../shared/agent-child-row-model'
 import { AgentStateDot } from '@/components/AgentStateDot'
 import type { StateIndicatorTooltipSide } from '@/components/StateIndicatorTooltip'
-import { agentChildRowText } from './agent-child-row-text'
+import { agentChildRowText, agentChildRowTypeBeforeTool } from './agent-child-row-text'
 
 type AgentChildRowContentProps = {
   row: AgentChildRowModel
@@ -16,6 +16,8 @@ type AgentChildRowContentProps = {
   tooltipSide?: StateIndicatorTooltipSide
   /** Name the whole line on hover, for surfaces that truncate it tightly. */
   lineTitle?: boolean
+  /** Put the agent type between the name and the tool (the chat strip); other surfaces keep name · tool. */
+  agentTypeBeforeTool?: boolean
 }
 
 /** Keep sidebar-child and chat-strip state/name/detail rendering consistent. */
@@ -27,9 +29,12 @@ export const AgentChildRowContent = React.memo(function AgentChildRowContent({
   separator,
   dotTitle,
   tooltipSide,
-  lineTitle = false
+  lineTitle = false,
+  agentTypeBeforeTool = false
 }: AgentChildRowContentProps): React.JSX.Element {
-  const { lead, trail } = agentChildRowText(row, now)
+  const { lead, trail: tool } = agentChildRowText(row, now)
+  const agentType = agentTypeBeforeTool && tool ? agentChildRowTypeBeforeTool(row) : ''
+  const trail = agentType ? `${agentType}${separator}${tool}` : tool
   return (
     <>
       <AgentStateDot
