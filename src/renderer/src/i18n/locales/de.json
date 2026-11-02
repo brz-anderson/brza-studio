@@ -2337,7 +2337,6 @@
       },
       "Landing": {
         "f9eaa9e12d": "Projekt hinzufügen",
-        "6ca6ff404e": "ORCA",
         "520304a067": "BrzA-Studio-Logo",
         "c1cf168479": "Ausblenden",
         "00cee697c1": "\"gh auth login\" in einem Terminal ausführen, um das GitHub-Konto zu verbinden.",
@@ -15018,7 +15017,6 @@
         "OnboardingFlow": {
           "1b5e182e9f": "Willkommen bei BrzA Studio",
           "adaa0aa627": "Zu Einrichtungsschritt {{value0}} wechseln: {{value1}}",
-          "a249f81538": "BrzA Studio",
           "277ba45540": "BrzA-Studio-Einrichtung",
           "97c42cda00": "Die GitHub CLI für folgende Funktionen installieren:",
           "ae3b00ca82": "GitHub-Aufgaben einrichten",

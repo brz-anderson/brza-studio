@@ -2315,7 +2315,6 @@
       },
       "Landing": {
         "f9eaa9e12d": "Proje ekle",
-        "6ca6ff404e": "ORCA",
         "520304a067": "BrzA Studio logosu",
         "c1cf168479": "Gizle",
         "00cee697c1": "GitHub hesabınızı bağlamak için bir terminalde \"gh auth login\" komutunu çalıştırın.",
@@ -15004,7 +15003,6 @@
         "OnboardingFlow": {
           "1b5e182e9f": "BrzA Studio'ya Hoş Geldiniz",
           "adaa0aa627": "Onboarding adımı {{value0}}'a git: {{value1}}",
-          "a249f81538": "BrzA Studio",
           "277ba45540": "BrzA Studio onboarding",
           "97c42cda00": "Şunlar için GitHub CLI'yi kurun:",
           "ae3b00ca82": "GitHub görevlerini ayarla",

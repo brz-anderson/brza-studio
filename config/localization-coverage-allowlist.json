@@ -208,5 +208,29 @@
     "dynamic": false,
     "count": 1,
     "reason": "Actual Claude CLI tool-result line in the terminal still; preserve the illustrative output and line count."
+  },
+  {
+    "filePath": "src/renderer/src/components/brza/BrzaWordmark.tsx",
+    "kind": "jsx-attribute:aria-label",
+    "text": "BrzA",
+    "dynamic": false,
+    "count": 1,
+    "reason": "Canonical product name in the BrzA wordmark's accessible name; preserve the exact brand."
+  },
+  {
+    "filePath": "src/renderer/src/components/brza/BrzaWordmark.tsx",
+    "kind": "jsx-attribute:aria-label",
+    "text": "BrzA",
+    "dynamic": true,
+    "count": 1,
+    "reason": "Canonical product name in the BrzA wordmark's accessible name; preserve the exact brand."
+  },
+  {
+    "filePath": "src/renderer/src/components/brza/BrzaWordmark.tsx",
+    "kind": "jsx-text",
+    "text": "Brz",
+    "dynamic": false,
+    "count": 1,
+    "reason": "First letters of the BrzA wordmark, the last one is a gradient span; preserve the exact brand."
   }
 ]

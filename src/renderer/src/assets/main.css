@@ -1129,17 +1129,44 @@ html.native-shell .app-layout {
   height: calc(var(--browser-page-viewport-height) / var(--ui-zoom-factor, 1));
 }
 
-/* Custom titlebars hide native app identity; invert the white SVG in light mode for contrast. */
+/* Custom titlebars hide native app identity; the BrzA tile is colored, so it needs no theme treatment. */
 .titlebar-logo {
   height: 16px;
   flex-shrink: 0;
   margin: 0 4px 0 10px;
-  opacity: 0.75;
 }
 
-/* .dark lives on the root; descendant :not(.dark) would also match dark mode. */
-:root:not(.dark) .titlebar-logo {
-  filter: invert(1);
+/* PLN-007 L2: the BrzA lockup as live Geist text. */
+.brza-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.brza-wordmark--vertical {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+}
+
+.brza-wordmark-mother {
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.brza-wordmark-a {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brza-wordmark-daughter {
+  font-size: 0.76em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
 }
 
 /* Fixed window controls replace hidden native chrome in every layout mode. */
