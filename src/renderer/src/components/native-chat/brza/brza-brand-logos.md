@@ -3,7 +3,7 @@
 Desktop draws these logos for the `*-logo` ids in
 `src/shared/native-chat/tools/brza/brza-tool-categories.ts`; mobile draws the lucide fallback
 (`BRZA_BRAND_LOGO_FALLBACK_ICONS`). Every logo renders monochrome in `currentColor`, beside the
-tool's name, to identify the tool the row ran — the small cut of the BrzA mark
+tool's name, to identify the tool the row ran. `brza-logo` is the small cut of the BrzA mark
 (PLN-007, S1), drawn monochrome in the tool row.
 
 | Id            | Component                         | Source                                                                     | License                                                                                                                                                                           |
