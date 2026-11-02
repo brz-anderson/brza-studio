@@ -4,6 +4,7 @@ import {
   ORCA_SESSION_ADDRESS_PREFIX
 } from '../../../../shared/orca-session-address'
 import type { AgentLaunchParams } from '../../../../shared/rpc-contract/agent-launch-params'
+import { getVerifiedNativeChatCommands } from '../../../../shared/native-chat/native-chat-agent-profiles'
 import { prepareAgentCreationCard, startedAgentSender } from '../../orchestration/worker-start-card'
 import type { RpcContext } from '../core'
 import { isAgentRpcCaller } from '../rpc-caller-identity'
@@ -41,7 +42,9 @@ function prepareHandoffRecord(
   return ({ outcome, prompt }) => {
     // The agent exists either way; the card shows a task only once it was sent to that agent.
     const task =
-      params.prompt?.delivery === 'submit' && prompt?.outcome !== 'not-delivered'
+      params.prompt?.delivery === 'submit' &&
+      prompt?.outcome !== 'not-delivered' &&
+      !isLocalCommandPrompt(params.agent, params.prompt.text)
         ? params.prompt.text
         : ''
     const address =
@@ -55,4 +58,11 @@ function prepareHandoffRecord(
       task
     }))
   }
+}
+
+/** A prompt that is only a catalog command, like the `/rename <name>` that names a Claude chat, is
+ *  session plumbing the new chat already hides, so the card does not repeat it as the task. */
+function isLocalCommandPrompt(agent: AgentLaunchParams['agent'], text: string): boolean {
+  const name = /^\s*\/([^\s/]+)/.exec(text)?.[1]
+  return name !== undefined && getVerifiedNativeChatCommands(agent).some((c) => c.name === name)
 }

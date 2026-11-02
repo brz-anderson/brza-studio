@@ -189,6 +189,14 @@ it.each([
   )
 })
 
+it('leaves the task off the card for a prompt that is only a catalog command', async () => {
+  await launch({ prompt: { text: '/rename pln-009', delivery: 'submit' } })
+
+  await vi.waitFor(async () =>
+    expect((await cards()).map((card) => card.body)).toMatchObject([{ task: '' }])
+  )
+})
+
 it.each([
   [
     'a window',
