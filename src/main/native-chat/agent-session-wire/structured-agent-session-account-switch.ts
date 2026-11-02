@@ -2,10 +2,7 @@ import type {
   AgentSessionAccountSwitchParams,
   AgentSessionAccountSwitchResult
 } from '../../../shared/agent-session-account-switch'
-import {
-  CLAUDE_PROFILE_MISSING_MESSAGE,
-  CLAUDE_PROFILE_SETUP_FAILED_MESSAGE
-} from '../../../shared/claude-profile-routing'
+import { claudeAccountPinRefusal } from '../../claude/claude-account-switch'
 import type { AgentSessionMutationResult } from '../../../shared/agent-session/agent-session-wire'
 import { refuse } from '../../../shared/agent-session/failures/agent-session-wire-refusals'
 import type { AgentSessionAccountSwitch } from '../../runtime/agent-session-account-switch-record'
@@ -118,20 +115,10 @@ async function switchUnderSerialize(
         }
         const prepared = await ctx.adapter.prepareAccountSwitch?.({ record: stopped, accountId })
         if (!prepared?.ok) {
+          const failure = claudeAccountPinRefusal(prepared?.reason ?? 'unknown-account')
           return {
             ok: false,
-            refusal:
-              prepared?.reason === 'setup-failed'
-                ? refuse(
-                    'agent_session_operation_invalid',
-                    { reason: 'claudeAccountSetupFailed' },
-                    CLAUDE_PROFILE_SETUP_FAILED_MESSAGE
-                  )
-                : refuse(
-                    'agent_session_operation_invalid',
-                    { reason: 'claudeAccountFolderMissing' },
-                    CLAUDE_PROFILE_MISSING_MESSAGE
-                  )
+            refusal: refuse('agent_session_operation_invalid', failure.details, failure.message)
           }
         }
         const value = { accountId, account: prepared.account }

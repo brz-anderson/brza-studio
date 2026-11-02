@@ -60,7 +60,10 @@ export async function forkNativeChatFromMessage(
       agent: 'claude',
       worktreeId: source.worktreeId,
       executionHostId: source.executionHostId,
-      resumeFrom: { providerSessionId: fork.providerSessionId }
+      resumeFrom: {
+        providerSessionId: fork.providerSessionId,
+        ...(fork.accountSwitch ? { accountSwitch: fork.accountSwitch } : {})
+      }
     }),
     hooks: {},
     afterTabId: source.tabId,

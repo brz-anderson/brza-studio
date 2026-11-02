@@ -22,7 +22,9 @@ import {
 } from '../agent-session/agent-session-wire'
 import { AGENT_SESSION_THREAD_GOAL_OBJECTIVE_MAX_LENGTH } from '../agent-session/agent-session-thread-goal-wire'
 import { MutationEnvelope } from './structured-agent-session-mutation-envelope'
+import { ResumeSource } from './structured-agent-session-resume-source-params'
 
+export { ResumeSource }
 export {
   SendBlock,
   MAX_BLOCKS,
@@ -94,20 +96,6 @@ export const AttachParams = z
     accountHome: AccountHome,
     runtimeKind: z.literal('native'),
     providerHandle: ProviderHandle
-  })
-  .strict()
-
-/** Identity only: derive transcript/account paths host-side so clients cannot choose imported files or credential directories. */
-export const ResumeSource = z
-  .object({
-    providerSessionId: Identifier('Invalid provider session id'),
-    cliSource: z
-      .object({
-        workspaceId: Identifier('Invalid workspace id'),
-        paneKey: Identifier('Invalid pane key')
-      })
-      .strict()
-      .optional()
   })
   .strict()
 

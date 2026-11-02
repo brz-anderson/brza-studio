@@ -192,6 +192,51 @@ describe('adopting a provider conversation on create', () => {
     expect(JSON.stringify(page.items)).toContain('ORCA-ADOPT-1')
   })
 
+  it('pins an adopted chat to the account it was forked on, with the "Account switched" divider', async () => {
+    root = await mkdtemp(join(tmpdir(), 'orca-adopt-pin-'))
+    const transcriptPath = join(root, 'rollout.jsonl')
+    await writeCodexRollout(transcriptPath, 'token ORCA-ADOPT-PIN')
+    const accountSwitch = { accountId: 'account-b', account: 'b@example.com' }
+
+    const result = await attach(
+      transcriptPath,
+      adapter(),
+      undefined,
+      attachParams(transcriptPath, { accountSwitch })
+    )
+
+    if (!result.ok) {
+      throw new Error('the pinned adoption was refused')
+    }
+    expect(store!.getRecord(SESSION)?.accountSwitch).toEqual({
+      ...accountSwitch,
+      operationId: OPERATION,
+      callerKey: 'client-1',
+      switchedAt: NOW
+    })
+    const items = result.value.page.items
+    expect(items.map(({ body }) => body)).toContainEqual(
+      expect.objectContaining({
+        kind: 'status',
+        presentation: 'account-switched',
+        accountSwitch
+      })
+    )
+    expect(JSON.stringify(items)).toContain('ORCA-ADOPT-PIN')
+  })
+
+  it('leaves a chat that follows the selection without a pin or divider', async () => {
+    root = await mkdtemp(join(tmpdir(), 'orca-adopt-nopin-'))
+    const transcriptPath = join(root, 'rollout.jsonl')
+    await writeCodexRollout(transcriptPath, 'token ORCA-ADOPT-NOPIN')
+
+    const result = await attach(transcriptPath, adapter())
+
+    expect(result).toMatchObject({ ok: true })
+    expect(store!.getRecord(SESSION)?.accountSwitch).toBeUndefined()
+    expect(JSON.stringify(result)).not.toContain('account-switched')
+  })
+
   it.each([
     {
       agent: 'grok',

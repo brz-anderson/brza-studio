@@ -13,6 +13,7 @@ import {
   agentSessionProviderHandleFromWire,
   type AgentSessionWireProviderHandle
 } from '../../../shared/agent-session/lifecycle/agent-session-provider-handle-encoding'
+import type { AgentSessionAccountSwitchResult } from '../../../shared/agent-session-account-switch'
 import type { AgentSessionAccountHome } from '../../../shared/agent-session/lifecycle/agent-session-account-home'
 import type {
   AgentSessionExecutionLocation,
@@ -55,6 +56,8 @@ export type AgentSessionAttachParams = {
   launchArgs?: string[]
   /** Omit only for create intent; fingerprint the client wire form before adapter proof. */
   providerHandle?: AgentSessionWireProviderHandle
+  /** Host-only: the account an adopted fork is pinned to, which its record and divider carry. */
+  accountSwitch?: AgentSessionAccountSwitchResult
   /** Host-only adoption seeds resume/import. Ordinary ensure handles must not imply adoption. */
   adopt?: {
     providerHandle: AgentSessionProviderHandle
@@ -204,6 +207,16 @@ export function reserveRequestFor(input: {
     location: params.location,
     provider: params.provider,
     accountHome: params.accountHome,
+    ...(params.accountSwitch
+      ? {
+          accountSwitch: {
+            ...params.accountSwitch,
+            operationId: params.envelope.clientOperationId,
+            callerKey: input.callerKey,
+            switchedAt: input.now
+          }
+        }
+      : {}),
     ...(params.options ? { options: params.options, models: input.models } : {}),
     ...(params.envelope.expectedRuntimeFence === null && params.surfaceTabId
       ? { surfaceTabId: params.surfaceTabId }

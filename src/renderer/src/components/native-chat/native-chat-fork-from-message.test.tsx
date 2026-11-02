@@ -94,6 +94,27 @@ describe('Fork from an agent message', () => {
     expect(toastError).not.toHaveBeenCalled()
   })
 
+  it.each([{ accountId: 'account-b' }, { accountId: null }])(
+    'resumes the fork on the account the chat is switched to (%o)',
+    async (accountSwitch) => {
+      forkThroughMessage.mockResolvedValueOnce({
+        ok: true,
+        providerSessionId: 'forked-session',
+        accountSwitch
+      })
+      renderAgentMessage()
+      fireEvent.click(forkButton()!)
+      await waitFor(() => expect(beginLaunch).toHaveBeenCalledTimes(1))
+      expect(beginLaunch).toHaveBeenCalledWith(
+        expect.objectContaining({
+          plan: expect.objectContaining({
+            resumeFrom: { providerSessionId: 'forked-session', accountSwitch }
+          })
+        })
+      )
+    }
+  )
+
   it('opens nothing and says so when Claude has not saved the message yet', async () => {
     forkThroughMessage.mockResolvedValueOnce({ ok: false, reason: 'not-saved' })
     renderAgentMessage()

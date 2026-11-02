@@ -43,6 +43,7 @@ import {
   type AgentSessionStoreState
 } from '../records/agent-session-store-state'
 import { agentSessionRecordIdentityFields } from '../records/agent-session-record-founding'
+import type { AgentSessionAccountSwitchRecord } from '../../../../shared/agent-session-account-switch'
 import {
   agentSessionAccountHomesEqual,
   type AgentSessionAccountHome
@@ -67,6 +68,8 @@ export type AgentSessionReserveRequest = {
   models?: AgentSessionAdmissionModels
   /** Reserved tab ids are checked before spawn and claimed only when the tab publishes. */
   surfaceTabId?: string
+  /** The account an adopted fork is pinned to from birth; launches run on it whatever the selection. */
+  accountSwitch?: AgentSessionAccountSwitchRecord
   /** Seed an adopted handle to resume its conversation; absent means a fresh provider conversation. */
   adoptedHandleLink?: AgentSessionProviderHandleLink
   /** Null when the session does not exist yet; otherwise the fence the caller last observed. */

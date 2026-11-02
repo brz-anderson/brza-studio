@@ -1,11 +1,24 @@
 import { parseAgentJournalItemKey } from '../../../shared/agent-session/journal/agent-session-journal-item-key'
 import type { AgentSessionMessageForkResult } from '../../../shared/agent-session-message-fork'
-import type { StructuredAgentSessionHost } from './structured-agent-session-host'
+import type { AgentSessionRecordStore } from '../../runtime/agent-session/records/agent-session-record-store'
+import type { StructuredAgentSessionAdapter } from './structured-agent-session-adapter'
+import type { AgentJournalItemBody } from '../../../shared/agent-session/journal/agent-session-journal-types'
+
+/** What a fork reads of the host: the chat's record, its journal, and the adapter that copies. */
+type ForkSourceHost = {
+  deps: {
+    store: Pick<AgentSessionRecordStore, 'getRecord'>
+    adapter: Pick<StructuredAgentSessionAdapter, 'forkThroughMessage'>
+  }
+  journalSnapshot: (
+    sessionId: string
+  ) => Promise<{ items: readonly { itemId: string; body: AgentJournalItemBody }[] }>
+}
 
 /** Fork the chat's conversation through one agent message into a new provider session, for a new
  *  chat to resume; the chat and its conversation do not change. */
 export async function forkStructuredAgentSessionThroughMessage(
-  host: Pick<StructuredAgentSessionHost, 'deps' | 'journalSnapshot'>,
+  host: ForkSourceHost,
   input: { sessionId: string; itemId: string }
 ): Promise<AgentSessionMessageForkResult> {
   const record = host.deps.store.getRecord(input.sessionId)
@@ -21,8 +34,11 @@ export async function forkStructuredAgentSessionThroughMessage(
   if (message?.provider !== 'claude') {
     return { ok: false, reason: 'invalid-target' }
   }
-  return host.deps.adapter.forkThroughMessage({
+  const forked = await host.deps.adapter.forkThroughMessage({
     record,
     message: { sessionId: message.sessionId, uuid: message.uuid }
   })
+  return forked.ok && record.accountSwitch
+    ? { ...forked, accountSwitch: { accountId: record.accountSwitch.accountId } }
+    : forked
 }

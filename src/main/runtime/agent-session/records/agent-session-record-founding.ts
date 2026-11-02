@@ -17,6 +17,7 @@ export type AgentSessionRecordIdentity = Pick<
   | 'options'
   | 'launchArgs'
   | 'launchDirectory'
+  | 'accountSwitch'
 >
 
 export function agentSessionRecordIdentityFields(
@@ -37,6 +38,8 @@ export function agentSessionRecordIdentityFields(
     ...(identity.launchArgs ? { launchArgs: [...identity.launchArgs] } : {}),
     // /clear retains its tab and launch directory.
     ...(identity.launchDirectory ? { launchDirectory: identity.launchDirectory } : {}),
+    // A fork of a pinned chat is born on its account.
+    ...(identity.accountSwitch ? { accountSwitch: identity.accountSwitch } : {}),
     createdAt: now,
     updatedAt: now
   }
