@@ -68,10 +68,10 @@ describe('usage credential RPC methods', () => {
     rmSync(home.dir, { recursive: true, force: true })
   })
 
-  it('saves and clears the MiniMax API key in this host’s ~/.orca and refreshes its usage', async () => {
+  it('saves and clears the MiniMax API key in this host’s ~/.brza and refreshes its usage', async () => {
     const { runtime, rateLimits } = createRuntime()
     const dispatcher = new RpcDispatcher({ runtime, methods: [...USAGE_CREDENTIAL_METHODS] })
-    const keyPath = join(home.dir, '.orca', 'minimax-api-key.enc')
+    const keyPath = join(home.dir, '.brza', 'minimax-api-key.enc')
 
     const saved = await call(dispatcher, 'accounts.minimaxSaveApiKey', { apiKey: SECRET })
 
@@ -107,7 +107,7 @@ describe('usage credential RPC methods', () => {
       result: { apiKeyConfigured: true, zcodeCliConfigured: false, apiKeyProtection: 'plaintext' }
     })
     expect(JSON.stringify(saved)).not.toContain(SECRET)
-    expect(existsSync(join(home.dir, '.orca', 'zcode-plan-api-key.enc'))).toBe(true)
+    expect(existsSync(join(home.dir, '.brza', 'zcode-plan-api-key.enc'))).toBe(true)
     expect(rateLimits.invalidateZcodeCredentialState).toHaveBeenCalledTimes(1)
 
     await expect(call(dispatcher, 'accounts.zcodePlanClearApiKey')).resolves.toMatchObject({
@@ -128,7 +128,7 @@ describe('usage credential RPC methods', () => {
 
     expect(refused).toMatchObject({ ok: false })
     expect(JSON.stringify(refused)).not.toContain(SECRET)
-    expect(existsSync(join(home.dir, '.orca', 'minimax-session-cookie.enc'))).toBe(false)
+    expect(existsSync(join(home.dir, '.brza', 'minimax-session-cookie.enc'))).toBe(false)
     expect(rateLimits.refresh).not.toHaveBeenCalled()
     await expect(call(dispatcher, 'accounts.minimaxCredentialsStatus')).resolves.toMatchObject({
       ok: true,
@@ -145,7 +145,7 @@ describe('usage credential RPC methods', () => {
 
     expect(refused).toMatchObject({ ok: false, error: { code: 'invalid_argument' } })
     expect(JSON.stringify(refused)).not.toContain(SECRET)
-    expect(existsSync(join(home.dir, '.orca', 'minimax-api-key.enc'))).toBe(false)
+    expect(existsSync(join(home.dir, '.brza', 'minimax-api-key.enc'))).toBe(false)
   })
 
   it('rejects a blank key as invalid instead of saving it', async () => {
@@ -158,6 +158,7 @@ describe('usage credential RPC methods', () => {
   })
 
   // Why a tagged cipher: this process opens only what it sealed, as safeStorage and orcad do.
+  // The "other app" is the desktop app or orcad: both keep these keys in ~/.brza, each with its own key.
   function useSealingSecretStore(options: { working: boolean }): void {
     const tag = Buffer.from('this-host:')
     setSecretStore({
@@ -179,8 +180,8 @@ describe('usage credential RPC methods', () => {
   }
 
   function writeKeyFile(fileName: string, contents: string): string {
-    mkdirSync(join(home.dir, '.orca'), { recursive: true })
-    const keyPath = join(home.dir, '.orca', fileName)
+    mkdirSync(join(home.dir, '.brza'), { recursive: true })
+    const keyPath = join(home.dir, '.brza', fileName)
     writeFileSync(keyPath, contents)
     return keyPath
   }
@@ -317,6 +318,6 @@ describe('usage credential RPC methods', () => {
         error: { message: hostAccountsManagedByDesktopMessage('Ubuntu') }
       })
     }
-    expect(existsSync(join(home.dir, '.orca'))).toBe(false)
+    expect(existsSync(join(home.dir, '.brza'))).toBe(false)
   })
 })
