@@ -1185,6 +1185,11 @@ html.native-shell .app-layout {
   mask: url('../../../../resources/brza-flame-mono.svg') center / contain no-repeat;
 }
 
+/* PLN-007: a theme that sets the resting fill paints the focused composer's tone at rest. */
+.brza-composer-focus {
+  background-image: var(--chat-composer-resting-fill, none);
+}
+
 /* PLN-007 E2: the brand rim on focus; the 1px width stays, so focus never shifts the layout. */
 .brza-composer-focus:focus-within {
   border-color: transparent;

@@ -1,6 +1,33 @@
 import type { TerminalThemeMap } from './types'
 
+/** The BrzA graphite theme (PLN-007): chat canvas `#24272c`, the brand orange on the cursor. */
+export const BRZA_DARK_THEME_NAME = 'BrzA Dark Theme'
+
 export const DEFAULT_TERMINAL_THEMES: TerminalThemeMap = {
+  [BRZA_DARK_THEME_NAME]: {
+    background: '#24272c',
+    foreground: '#f0f0f0',
+    cursor: '#f26228',
+    cursorAccent: '#24272c',
+    selectionBackground: '#4a505a',
+    selectionForeground: '#ffffff',
+    black: '#1b1d21',
+    red: '#e06c6c',
+    green: '#8fc7a0',
+    yellow: '#f0c674',
+    blue: '#81a2be',
+    magenta: '#b294bb',
+    cyan: '#8abeb7',
+    white: '#c5c8c6',
+    brightBlack: '#7a7e85',
+    brightRed: '#ff8585',
+    brightGreen: '#a8d8b4',
+    brightYellow: '#ffaa44',
+    brightBlue: '#7aa6da',
+    brightMagenta: '#c397d8',
+    brightCyan: '#70c0b1',
+    brightWhite: '#ffffff'
+  },
   // Most colors come from Ghostty. Orca raises dark selection contrast because Ghostty's
   // original #3e4451 blends into Codex-style gray instruction blocks.
   'Ghostty Default Style Dark': {

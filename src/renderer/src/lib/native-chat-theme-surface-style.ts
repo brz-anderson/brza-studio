@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { NativeChatTheme } from '../../../shared/native-chat-theme'
+import { BRZA_DARK_THEME_NAME } from '../../../shared/terminal-themes/defaults'
 
 /** Re-evaluates the chat color mixes (main.css) where this style supplies their source colors. */
 export const NATIVE_CHAT_THEME_SURFACE_CLASS = 'native-chat-theme-surface'
@@ -56,6 +57,13 @@ export function nativeChatThemeSurfaceStyle(theme: NativeChatTheme): NativeChatT
     '--chat-inline-code-border-mix': light ? '9%' : '8%',
     '--chat-composer-mix': light ? '0%' : '4%',
     '--chat-composer-base': light ? 'var(--chat-canvas)' : 'transparent',
-    '--chat-composer-border-mix': light ? '11%' : '9%'
+    '--chat-composer-border-mix': light ? '11%' : '9%',
+    // PLN-007: the BrzA Dark Theme keeps the focused composer's fill at rest, so focus changes only the border.
+    ...(theme.themeName === BRZA_DARK_THEME_NAME
+      ? {
+          '--chat-composer-resting-fill':
+            'linear-gradient(180deg, rgb(255 255 255 / 0.07) 0 1px, transparent 1px), var(--chat-composer-focus-fill)'
+        }
+      : {})
   }
 }
