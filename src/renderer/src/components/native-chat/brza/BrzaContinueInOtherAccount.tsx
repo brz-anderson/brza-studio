@@ -1,0 +1,102 @@
+import { useState } from 'react'
+import { ChevronDown, UserRound } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { translate } from '@/i18n/i18n'
+import { useNativeChatOrcaStopView } from '../native-chat-orca-stop-context'
+import { useNativeChatUsageLimitContinueInOtherAccount } from '../NativeChatUsageLimitActions'
+import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+import type { NativeChatUsageLimitAutoResumeView } from '../use-native-chat-usage-limit-auto-resume'
+
+/** Beside "Resume automatically" on a usage-limit row (P40, P79): moves the chat to the chosen
+ *  account and continues now, which drops the scheduled resume. */
+export function BrzaUsageLimitContinueInOtherAccount({
+  autoResume
+}: {
+  autoResume: NativeChatUsageLimitAutoResumeView | null | undefined
+}): React.JSX.Element | null {
+  const view = useNativeChatUsageLimitContinueInOtherAccount()
+  const orcaStopView = useNativeChatOrcaStopView()
+  if (!view) {
+    return null
+  }
+  return (
+    <BrzaContinueInOtherAccount
+      view={view}
+      disabled={orcaStopView.usageLimitContinueDisabled}
+      onContinue={() => {
+        if (autoResume?.resumeAt != null) {
+          autoResume.cancel()
+        }
+        orcaStopView.continueUsageLimit()
+      }}
+    />
+  )
+}
+
+export function BrzaContinueInOtherAccount({
+  view,
+  disabled = false,
+  onContinue
+}: {
+  view: NativeChatAccountSwitchView
+  disabled?: boolean
+  onContinue: () => void
+}): React.JSX.Element | null {
+  const [pending, setPending] = useState(false)
+  const otherAccounts = view.choices.filter((choice) => choice.id !== view.current.id)
+  if (!otherAccounts.some((choice) => choice.id !== null)) {
+    return null
+  }
+  const label = translate(
+    'components.native-chat.continueInOtherAccount.continue',
+    'Continue in another account'
+  )
+  const choose = async (accountId: string | null): Promise<void> => {
+    if (pending || view.switching) {
+      return
+    }
+    setPending(true)
+    try {
+      if (await view.switchTo(accountId)) {
+        onContinue()
+      }
+    } finally {
+      setPending(false)
+    }
+  }
+  return (
+    <DropdownMenu onOpenChange={(open) => open && view.refresh()}>
+      <DropdownMenuTrigger asChild disabled={disabled || pending || view.switching}>
+        <Button type="button" variant="outline" size="xs" aria-label={label}>
+          <UserRound aria-hidden="true" />
+          {label}
+          <ChevronDown aria-hidden="true" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" side="top" collisionPadding={8} className="w-72">
+        {otherAccounts.map((choice) => (
+          <DropdownMenuItem
+            key={choice.id ?? ''}
+            disabled={choice.disabled}
+            onSelect={() => void choose(choice.id)}
+          >
+            <div className="min-w-0 py-0.5">
+              <div className="truncate">{choice.label}</div>
+              {choice.detail ? (
+                <div className="truncate text-xs font-normal text-muted-foreground">
+                  {choice.detail}
+                </div>
+              ) : null}
+            </div>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

@@ -28,7 +28,11 @@ export const STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_METHODS = [
     params: UsageLimitAutoResumeScheduleParams,
     handler: async (params, ctx) => ({
       resume:
-        (await (await autoResumeFor(ctx))?.schedule(params.sessionId, params.turnItemId)) ?? null
+        (await (
+          await autoResumeFor(ctx)
+        )?.schedule(params.sessionId, params.turnItemId, {
+          automatic: params.automatic === true
+        })) ?? null
     })
   }),
   defineMethod({

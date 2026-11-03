@@ -19130,6 +19130,9 @@
         "scheduled": "{{time}} に再開",
         "cancel": "キャンセル"
       },
+      "continueInOtherAccount": {
+        "continue": "別のアカウントで続行"
+      },
       "rewind": {
         "unsupported": "このチャットは以前のメッセージに戻れません。",
         "historyNotPaginated": "この古い Codex チャットは以前のメッセージに戻れません。「ここに巻き戻す」を使用するには、新規チャットを開始してください。",

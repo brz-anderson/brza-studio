@@ -2,7 +2,10 @@ import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { NativeChatUsageLimitAutoResume } from '../../../shared/native-chat/native-chat-usage-limit-auto-resume'
+import type {
+  NativeChatUsageLimitAutoResume,
+  NativeChatUsageLimitAutoResumeCut
+} from '../../../shared/native-chat/native-chat-usage-limit-auto-resume'
 import { AgentSessionUsageLimitAutoResumeFile } from '../../runtime/agent-session-usage-limit-auto-resume-file'
 import {
   createStructuredAgentSessionUsageLimitAutoResume,
@@ -17,11 +20,13 @@ type Cut = { turnItemId: string; resetsAt?: number } | null
 
 function memoryFile(initial: NativeChatUsageLimitAutoResume[] = []) {
   let entries = initial
+  let declined: NativeChatUsageLimitAutoResumeCut[] = []
   const file: StructuredAgentSessionUsageLimitAutoResumeDeps['file'] = {
     read: async () => [...entries],
     update: async (change) => {
-      const changed = change([...entries])
+      const changed = change([...entries], [...declined])
       entries = changed.entries
+      declined = changed.declined ?? declined
       return changed.result
     }
   }
@@ -126,6 +131,57 @@ describe('usage-limit auto-resume schedule', () => {
   })
 })
 
+describe('usage-limit auto-resume scheduled by itself (BrzA P79)', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ now: T0 })
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+  const scheduled = { sessionId: 'chat-1', turnItemId: 'turn-1', resumeAt: RESUME_AT }
+
+  it('does not schedule a cancelled cut by itself again, though a click still does', async () => {
+    const memory = memoryFile()
+    const { autoResume } = chat(memory.file, { turnItemId: 'turn-1', resetsAt: RESETS_AT })
+    await expect(autoResume.schedule('chat-1', 'turn-1', { automatic: true })).resolves.toEqual(
+      scheduled
+    )
+    await autoResume.cancel('chat-1')
+
+    await expect(autoResume.schedule('chat-1', 'turn-1', { automatic: true })).resolves.toBeNull()
+    expect(memory.entries()).toEqual([])
+    await expect(autoResume.schedule('chat-1', 'turn-1')).resolves.toEqual(scheduled)
+    autoResume.stop()
+  })
+
+  it('does not schedule by itself again a cut whose Continue was already sent', async () => {
+    const memory = memoryFile()
+    const { state, autoResume } = chat(memory.file, { turnItemId: 'turn-1', resetsAt: RESETS_AT })
+    await autoResume.schedule('chat-1', 'turn-1', { automatic: true })
+    await vi.advanceTimersByTimeAsync(RESUME_AT - T0)
+    expect(state.sent).toEqual(['turn-1'])
+
+    // The agent refused that Continue, so the chat still sits on the cut.
+    state.cut = { turnItemId: 'turn-1', resetsAt: RESETS_AT }
+    await expect(autoResume.schedule('chat-1', 'turn-1', { automatic: true })).resolves.toBeNull()
+    autoResume.stop()
+  })
+
+  it('schedules the next cut by itself after an earlier one was cancelled', async () => {
+    const memory = memoryFile()
+    const { state, autoResume } = chat(memory.file, { turnItemId: 'turn-1', resetsAt: RESETS_AT })
+    await autoResume.schedule('chat-1', 'turn-1', { automatic: true })
+    await autoResume.cancel('chat-1')
+
+    state.cut = { turnItemId: 'turn-2', resetsAt: RESETS_AT }
+    await expect(autoResume.schedule('chat-1', 'turn-2', { automatic: true })).resolves.toEqual({
+      ...scheduled,
+      turnItemId: 'turn-2'
+    })
+    autoResume.stop()
+  })
+})
+
 describe('usage-limit auto-resume across a restart', () => {
   let directory: string
 
@@ -150,6 +206,22 @@ describe('usage-limit auto-resume across a restart', () => {
       { sessionId: 'chat-1', turnItemId: 'turn-1', resumeAt: RESUME_AT }
     ])
     expect(after.state.sent).toEqual([])
+    after.autoResume.stop()
+  })
+
+  it('keeps a Cancel on disk, so the cut does not schedule by itself in the next BrzA Studio', async () => {
+    vi.useFakeTimers({ now: T0, toFake: ['Date'] })
+    const cut = { turnItemId: 'turn-1', resetsAt: RESETS_AT }
+    const before = chat(new AgentSessionUsageLimitAutoResumeFile(directory), cut)
+    await before.autoResume.schedule('chat-1', 'turn-1', { automatic: true })
+    await before.autoResume.cancel('chat-1')
+    before.autoResume.stop()
+
+    const after = chat(new AgentSessionUsageLimitAutoResumeFile(directory), cut)
+    await after.autoResume.start()
+    await expect(
+      after.autoResume.schedule('chat-1', 'turn-1', { automatic: true })
+    ).resolves.toBeNull()
     after.autoResume.stop()
   })
 

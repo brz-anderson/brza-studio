@@ -19130,6 +19130,9 @@
         "scheduled": "{{time}}에 재개",
         "cancel": "취소"
       },
+      "continueInOtherAccount": {
+        "continue": "다른 계정에서 계속"
+      },
       "rewind": {
         "unsupported": "이 채팅은 이전 메시지로 돌아갈 수 없습니다.",
         "historyNotPaginated": "이 오래된 Codex 채팅은 이전 메시지로 돌아갈 수 없습니다. 여기로 되감기를 사용하려면 새 채팅을 시작하세요.",

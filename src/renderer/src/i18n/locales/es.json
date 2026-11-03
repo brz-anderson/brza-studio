@@ -19668,6 +19668,9 @@
         "scheduled": "Se reanuda a las {{time}}",
         "cancel": "Cancelar"
       },
+      "continueInOtherAccount": {
+        "continue": "Continuar en otra cuenta"
+      },
       "rewind": {
         "unsupported": "Este chat no puede volver a un mensaje anterior.",
         "historyNotPaginated": "Este chat de Codex más antiguo no puede volver a un mensaje anterior. Inicia un chat nuevo para usar Rebobinar hasta aquí.",

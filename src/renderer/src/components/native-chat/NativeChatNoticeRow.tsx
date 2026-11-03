@@ -21,6 +21,7 @@ import {
 import { useNativeChatOrcaStopView } from './native-chat-orca-stop-context'
 import { NativeChatInterruptedContinueButton } from './NativeChatInterruptedContinue'
 import { NativeChatUsageLimitAutoResume } from './NativeChatUsageLimitAutoResume'
+import { BrzaUsageLimitContinueInOtherAccount } from './brza/BrzaContinueInOtherAccount'
 import { nativeChatOrcaStopRowText } from '../../../../shared/native-chat/native-chat-orca-stop-words'
 import { sayNativeChatOrcaStopTranslated } from './native-chat-orca-stop-words-text'
 import { NativeChatDetailsDisclosure, ProviderFrameRow } from './NativeChatTranscriptChrome'
@@ -284,6 +285,7 @@ export function NativeChatNoticeRow({
             {usageLimitAutoResume ? (
               <NativeChatUsageLimitAutoResume autoResume={usageLimitAutoResume} />
             ) : null}
+            <BrzaUsageLimitContinueInOtherAccount autoResume={usageLimitAutoResume} />
           </>
         ) : null}
       </div>

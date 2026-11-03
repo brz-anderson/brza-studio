@@ -1,22 +1,31 @@
 // Resume automatically: the host sends a chat's usage-limit Continue once the limit resets.
 // One schedule per chat, bound to the cut turn and kept on disk; it fires once, and only while the
-// chat still sits on that cut, so any message sent since cancels it.
+// chat still sits on that cut, so any message sent since cancels it. A cut cancelled or already
+// sent is kept, one per chat, so a client's own default never schedules it again (BrzA P79).
 
 import {
   nativeChatUsageLimitAutoResumeAt,
-  type NativeChatUsageLimitAutoResume
+  type NativeChatUsageLimitAutoResume,
+  type NativeChatUsageLimitAutoResumeCut
 } from '../../../shared/native-chat/native-chat-usage-limit-auto-resume'
 import type { StructuredAgentSessionLogger } from './structured-agent-session-logger'
 
 /** Wall-clock checks this often: a monotonic timer stalls while the machine sleeps. */
 const CHECK_INTERVAL_MS = 60_000
+/** A chat that old is long past its cut; the bound keeps the file small. */
+const MAX_DECLINED_CUTS = 500
 
 export type StructuredAgentSessionUsageLimitAutoResumeDeps = {
   file: {
     read: () => Promise<NativeChatUsageLimitAutoResume[]>
+    /** `declined` left out keeps the cuts the file holds. */
     update: <T>(
-      change: (entries: NativeChatUsageLimitAutoResume[]) => {
+      change: (
+        entries: NativeChatUsageLimitAutoResume[],
+        declined: NativeChatUsageLimitAutoResumeCut[]
+      ) => {
         entries: NativeChatUsageLimitAutoResume[]
+        declined?: NativeChatUsageLimitAutoResumeCut[]
         result: T
       }
     ) => Promise<T>
@@ -33,10 +42,12 @@ export type StructuredAgentSessionUsageLimitAutoResume = {
   /** Arms what the file holds; a schedule that came due while Orca was closed fires now. */
   start: () => Promise<void>
   stop: () => void
-  /** Null when the chat no longer sits on that cut, or its limit gave no reset time. */
+  /** Null when the chat no longer sits on that cut, or its limit gave no reset time; with
+   *  `automatic`, also when that cut was cancelled or its Continue already sent. */
   schedule: (
     sessionId: string,
-    turnItemId: string
+    turnItemId: string,
+    options?: { automatic?: boolean }
   ) => Promise<NativeChatUsageLimitAutoResume | null>
   cancel: (sessionId: string) => Promise<void>
   list: (sessionId?: string) => Promise<NativeChatUsageLimitAutoResume[]>
@@ -69,28 +80,35 @@ export function createStructuredAgentSessionUsageLimitAutoResume(
     }, delay)
   }
 
-  const write = <T>(
-    change: (entries: NativeChatUsageLimitAutoResume[]) => {
-      entries: NativeChatUsageLimitAutoResume[]
-      result: T
-    }
-  ): Promise<T> =>
-    deps.file.update((entries) => {
-      const changed = change(entries)
+  const write: StructuredAgentSessionUsageLimitAutoResumeDeps['file']['update'] = (change) =>
+    deps.file.update((entries, declined) => {
+      const changed = change(entries, declined)
       known = changed.entries
       return changed
     })
+
+  /** One mark per chat: a newer cut replaces the older one, and the oldest chats' marks go. */
+  const declineIn = (
+    declined: NativeChatUsageLimitAutoResumeCut[],
+    cuts: readonly NativeChatUsageLimitAutoResumeCut[]
+  ): NativeChatUsageLimitAutoResumeCut[] =>
+    [
+      ...declined.filter((mark) => !cuts.some((cut) => cut.sessionId === mark.sessionId)),
+      ...cuts.map(({ sessionId, turnItemId }) => ({ sessionId, turnItemId }))
+    ].slice(-MAX_DECLINED_CUTS)
 
   const sendDue = async (): Promise<void> => {
     if (!known.some((entry) => entry.resumeAt <= deps.now())) {
       return
     }
     // Off the disk before sending, so a crash mid-send never sends twice.
-    const due = await write((entries) => {
+    const due = await write((entries, declined) => {
       const now = deps.now()
+      const sending = entries.filter((entry) => entry.resumeAt <= now)
       return {
         entries: entries.filter((entry) => entry.resumeAt > now),
-        result: entries.filter((entry) => entry.resumeAt <= now)
+        declined: declineIn(declined, sending),
+        result: sending
       }
     })
     for (const entry of due) {
@@ -143,7 +161,7 @@ export function createStructuredAgentSessionUsageLimitAutoResume(
       clearTimeout(timer)
       timer = undefined
     },
-    schedule: async (sessionId, turnItemId) => {
+    schedule: async (sessionId, turnItemId, options) => {
       const cut = await deps.readCut(sessionId)
       if (cut?.turnItemId !== turnItemId || cut.resetsAt === undefined) {
         return null
@@ -153,15 +171,32 @@ export function createStructuredAgentSessionUsageLimitAutoResume(
         turnItemId,
         resumeAt: nativeChatUsageLimitAutoResumeAt(cut.resetsAt)
       }
-      await write((entries) => ({
-        entries: [...withoutSession(entries, sessionId), entry],
-        result: undefined
-      }))
+      const scheduled = await write((entries, declined) => {
+        // A mark for an older cut of this chat no longer holds anything back.
+        const marks = declined.filter(
+          (mark) => mark.sessionId !== sessionId || mark.turnItemId === turnItemId
+        )
+        if (options?.automatic && marks.some((mark) => mark.sessionId === sessionId)) {
+          return { entries, declined: marks, result: null }
+        }
+        return {
+          entries: [...withoutSession(entries, sessionId), entry],
+          declined: marks,
+          result: entry
+        }
+      })
       arm()
-      return entry
+      return scheduled
     },
     cancel: async (sessionId) => {
-      await write((entries) => ({ entries: withoutSession(entries, sessionId), result: undefined }))
+      await write((entries, declined) => ({
+        entries: withoutSession(entries, sessionId),
+        declined: declineIn(
+          declined,
+          entries.filter((entry) => entry.sessionId === sessionId)
+        ),
+        result: undefined
+      }))
       arm()
     },
     list: async (sessionId) => {

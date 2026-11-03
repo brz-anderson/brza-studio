@@ -19888,6 +19888,9 @@
         "scheduled": "Reprise à {{time}}",
         "cancel": "Annuler"
       },
+      "continueInOtherAccount": {
+        "continue": "Continuer dans un autre compte"
+      },
       "rewind": {
         "unsupported": "Ce chat ne peut pas revenir à un message antérieur.",
         "historyNotPaginated": "Ce chat Codex plus ancien ne peut pas revenir à un message antérieur. Démarrez un nouveau chat pour utiliser « Revenir ici ».",

@@ -19100,6 +19100,9 @@
         "scheduled": "将于 {{time}} 恢复",
         "cancel": "取消"
       },
+      "continueInOtherAccount": {
+        "continue": "在其他账户中继续"
+      },
       "rewind": {
         "unsupported": "此聊天无法返回到更早的消息。",
         "historyNotPaginated": "此旧版 Codex 聊天无法返回到更早的消息。请开始新聊天以使用“回溯到此处”。",

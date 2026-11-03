@@ -21,7 +21,7 @@ import {
 } from '@/lib/agent-session-continuation'
 import { ClaudeSwitcherMenu } from '@/components/status-bar/ClaudeSwitcherMenu'
 import { ProviderAccountChatButton } from '@/components/status-bar/ProviderAccountChatButton'
-import { useBrzaPinnedAccountSwitch } from './brza/BrzaPinnedAccountSwitch'
+import { useBrzaContinueInOtherAccount } from './brza/use-brza-continue-in-other-account'
 import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
 import { isTuiAgent } from '../../../../shared/tui-agent-config'
 import { callStructuredAgentSession } from '@/runtime/structured-agent-session-client'
@@ -38,6 +38,8 @@ import { nativeChatMessageCopyText } from '../../../../shared/native-chat-messag
 
 type UsageLimitActions = {
   account: ReactNode
+  /** BrzA P79: beside Resume automatically, and in place of `account`. */
+  continueInOtherAccount: NativeChatAccountSwitchView | null
   handOff?: () => void
   disabled: boolean
 }
@@ -108,12 +110,12 @@ export function NativeChatUsageLimitActionsProvider({
     isTuiAgent(pane.agent) &&
     directory.runtimeEnvironmentId ===
       (pane.target.kind === 'environment' ? pane.target.environmentId : null)
-  const pinnedAccount = useBrzaPinnedAccountSwitch(pane, chatAccountSwitch)
+  const otherAccount = useBrzaContinueInOtherAccount(pane, chatAccountSwitch, canSwitchAccount)
+  const continueInOtherAccount =
+    pane.agent === 'claude' && active && pane.isVisible ? otherAccount : null
   let account: ReactNode = null
-  if (pane.agent === 'claude' && active && pane.isVisible) {
-    if (pinnedAccount) {
-      account = pinnedAccount
-    } else if (canSwitchAccount === undefined) {
+  if (pane.agent === 'claude' && active && pane.isVisible && !continueInOtherAccount) {
+    if (canSwitchAccount === undefined) {
       account = <ProviderAccountChatButton provider="claude" target={pane.target} disabled />
     } else if (canSwitchAccount) {
       account = (
@@ -206,6 +208,7 @@ export function NativeChatUsageLimitActionsProvider({
   const actions = useMemo<UsageLimitActions>(
     () => ({
       account,
+      continueInOtherAccount,
       disabled,
       ...(canHandOff || (loading && isTuiAgent(pane.agent))
         ? {
@@ -215,7 +218,7 @@ export function NativeChatUsageLimitActionsProvider({
           }
         : {})
     }),
-    [account, canHandOff, disabled, loading, openHandOff, pane.agent]
+    [account, canHandOff, continueInOtherAccount, disabled, loading, openHandOff, pane.agent]
   )
   const stopView = useMemo(
     () => ({
@@ -248,6 +251,10 @@ export function NativeChatUsageLimitActionsProvider({
       ) : null}
     </UsageLimitActionsContext.Provider>
   )
+}
+
+export function useNativeChatUsageLimitContinueInOtherAccount(): NativeChatAccountSwitchView | null {
+  return useContext(UsageLimitActionsContext)?.continueInOtherAccount ?? null
 }
 
 export function NativeChatUsageLimitActions(): React.JSX.Element | null {
