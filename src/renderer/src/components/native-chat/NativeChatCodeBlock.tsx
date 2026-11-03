@@ -59,7 +59,11 @@ export function NativeChatCodeBlock({
           >
             <span className="truncate">{getCodeFenceLanguageLabel(language)}</span>
           </span>
-          {code ? <div className="-mr-1 flex items-center gap-0.5">{actions}</div> : null}
+          {code ? (
+            <div data-native-chat-code-actions="" className="-mr-1 flex items-center gap-0.5">
+              {actions}
+            </div>
+          ) : null}
         </div>
       ) : null}
       <pre
@@ -79,7 +83,10 @@ export function NativeChatCodeBlock({
         )}
       </pre>
       {code && !language ? (
-        <div className="absolute right-2 top-2 flex items-center gap-0.5 opacity-100 transition-opacity can-hover:pointer-events-none can-hover:opacity-0 group-hover/code:pointer-events-auto group-hover/code:opacity-100 [[class~='group/code']:has(:focus-visible)_&]:pointer-events-auto [[class~='group/code']:has(:focus-visible)_&]:opacity-100">
+        <div
+          data-native-chat-code-actions=""
+          className="absolute right-2 top-2 flex items-center gap-0.5 opacity-100 transition-opacity can-hover:pointer-events-none can-hover:opacity-0 group-hover/code:pointer-events-auto group-hover/code:opacity-100 [[class~='group/code']:has(:focus-visible)_&]:pointer-events-auto [[class~='group/code']:has(:focus-visible)_&]:opacity-100"
+        >
           {actions}
         </div>
       ) : null}

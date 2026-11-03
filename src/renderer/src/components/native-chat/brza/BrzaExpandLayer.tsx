@@ -6,9 +6,15 @@ import EditorViewToggle from '@/components/editor/EditorViewToggle'
 import { nativeChatCodeCopyText } from '../native-chat-code-copy-text'
 import { BrzaMarkdownExpandPreview } from './BrzaMarkdownExpandPreview'
 import { brzaCodeBlockLanguage, isBrzaMarkdownFence } from './brza-markdown-fence'
+import './brza-expand-button.css'
 
 const CONTENT = '[data-native-chat-code-content]'
 const BLOCK = '[data-native-chat-code-block]'
+const ACTIONS = '[data-native-chat-code-actions]'
+const SHOWN = 'data-brza-expand-shown'
+const BUTTON_PX = 24
+const ACTIONS_GAP_PX = 2
+const CORNER_INSET_PX = 4
 const OVERLAY = '[data-brza-expand-overlay]'
 const HIDE_DELAY_MS = 200
 const MARKDOWN_MODES = ['preview', 'source'] as const
@@ -25,6 +31,21 @@ export function brzaExpandTarget(node: EventTarget | null, root: Element): HTMLE
 
 type Hover = { element: HTMLElement; top: number; left: number }
 
+/** On the block's actions row, left of them; a block without actions (tool output, diff) gets its inner top-right corner. */
+function brzaExpandButtonPosition(element: HTMLElement): { top: number; left: number } {
+  const block = element.closest(BLOCK)
+  const actions = block?.querySelector(ACTIONS)
+  if (actions) {
+    const rect = actions.getBoundingClientRect()
+    return { top: rect.top, left: rect.left - ACTIONS_GAP_PX - BUTTON_PX }
+  }
+  const rect = (block ?? element).getBoundingClientRect()
+  return {
+    top: Math.max(rect.top + CORNER_INSET_PX, CORNER_INSET_PX),
+    left: rect.right - BUTTON_PX - CORNER_INSET_PX
+  }
+}
+
 /** One ⤢ for every block in the chat, delegated from the root so no Orca row changes. */
 export function BrzaExpandLayer(): React.JSX.Element {
   const anchorRef = useRef<HTMLSpanElement>(null)
@@ -33,6 +54,11 @@ export function BrzaExpandLayer(): React.JSX.Element {
   const [root, setRoot] = useState<Element | null>(null)
   const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
+  const scheduleHide = useCallback((): void => {
+    clearTimeout(hideTimer.current)
+    hideTimer.current = setTimeout(() => setHover(null), HIDE_DELAY_MS)
+  }, [])
+
   useEffect(() => {
     const root = anchorRef.current?.closest('[data-native-chat-root]')
     if (!root) {
@@ -40,35 +66,35 @@ export function BrzaExpandLayer(): React.JSX.Element {
     }
     setRoot(root)
     const onOver = (event: Event): void => {
-      if (event.target instanceof Element && event.target.closest('[data-brza-expand-button]')) {
-        clearTimeout(hideTimer.current)
-        return
-      }
       const element = brzaExpandTarget(event.target, root)
-      clearTimeout(hideTimer.current)
       if (!element) {
-        hideTimer.current = setTimeout(() => setHover(null), HIDE_DELAY_MS)
+        scheduleHide()
         return
       }
-      const block = element.closest(BLOCK)
-      const rect = (block ?? element).getBoundingClientRect()
-      // Left of the block's own actions, at its top right; without a header row it straddles the top border, off the text.
-      const header = block?.querySelector('[data-code-language]')
-      setHover({
-        element,
-        top: Math.max(rect.top + (header ? 4 : -12), 4),
-        left: rect.right - 28 - (block ? 96 : 4)
-      })
+      clearTimeout(hideTimer.current)
+      setHover({ element, ...brzaExpandButtonPosition(element) })
     }
     const onScroll = (): void => setHover(null)
     root.addEventListener('mouseover', onOver, true)
+    root.addEventListener('mouseleave', scheduleHide)
     root.addEventListener('scroll', onScroll, true)
     return () => {
       clearTimeout(hideTimer.current)
       root.removeEventListener('mouseover', onOver, true)
+      root.removeEventListener('mouseleave', scheduleHide)
       root.removeEventListener('scroll', onScroll, true)
     }
-  }, [])
+  }, [scheduleHide])
+
+  // ⤢ lives outside the block, so pointing at it would drop the block's hover and fade its actions away.
+  const shownBlock = hover?.element.closest(BLOCK) ?? null
+  useEffect(() => {
+    if (!shownBlock) {
+      return
+    }
+    shownBlock.setAttribute(SHOWN, '')
+    return () => shownBlock.removeAttribute(SHOWN)
+  }, [shownBlock])
 
   return (
     <span ref={anchorRef} className="contents">
@@ -83,8 +109,10 @@ export function BrzaExpandLayer(): React.JSX.Element {
                 setExpanded(hover.element)
                 setHover(null)
               }}
+              onMouseEnter={() => clearTimeout(hideTimer.current)}
+              onMouseLeave={scheduleHide}
               style={{ top: hover.top, left: hover.left }}
-              className="fixed z-50 flex size-6 items-center justify-center rounded-md border border-border bg-background text-muted-foreground shadow-xs hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="fixed z-50 flex size-6 shrink-0 items-center justify-center rounded-md text-chat-foreground-faint transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Maximize2 className="size-3.5" />
             </button>,

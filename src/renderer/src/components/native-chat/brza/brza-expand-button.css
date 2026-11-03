@@ -1,0 +1,12 @@
+/* BrzA: ⤢ sits on the code block's actions row, left of wrap and copy (BrzaExpandLayer). */
+
+/* The pointer on ⤢ leaves the block's hover; keep its actions up while ⤢ shows. */
+[data-brza-expand-shown] [data-native-chat-code-actions] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Without a language row (the code comes first) the actions float over it: pr-16 kept them off the text, now plus ⤢ and its gap. */
+[data-native-chat-code-block] > [data-native-chat-code-content]:first-child {
+  padding-right: calc(var(--spacing) * 22.5);
+}

@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
 
 import '@testing-library/jest-dom/vitest'
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { NativeChatCodeBlock } from '../NativeChatCodeBlock'
 import { BrzaExpandLayer } from './BrzaExpandLayer'
 
 const SKILL =
@@ -141,5 +142,80 @@ describe('BrzaExpandLayer', () => {
     const overlay = expand('ts')
     expect(within(overlay).queryByRole('radio')).toBeNull()
     expect(overlay).toHaveTextContent('const a = 1')
+  })
+})
+
+describe('the ⤢ button beside the block actions', () => {
+  afterEach(() => {
+    cleanup()
+    vi.useRealTimers()
+  })
+
+  function renderFence(language?: string): { block: HTMLElement; actions: HTMLElement } {
+    render(
+      <div data-native-chat-root="true">
+        <NativeChatCodeBlock language={language}>
+          <code>{'echo one\n'}</code>
+        </NativeChatCodeBlock>
+        <p data-testid="prose">prose</p>
+        <BrzaExpandLayer />
+      </div>
+    )
+    const actions = screen.getByRole('button', { name: 'Copy code' }).parentElement
+    const block = actions?.closest<HTMLElement>('[data-native-chat-code-block]')
+    if (!actions || !block) {
+      throw new Error('fence without actions')
+    }
+    return { block, actions }
+  }
+
+  function placeAt(element: Element, x: number, y: number, width: number, height: number): void {
+    vi.spyOn(element, 'getBoundingClientRect').mockReturnValue(new DOMRect(x, y, width, height))
+  }
+
+  it('looks like Copy: no border, background or shadow', () => {
+    renderFence('ts')
+    fireEvent.mouseOver(document.querySelector('pre') ?? document.body)
+    const expandClasses = screen.getByRole('button', { name: 'Expand block' }).classList
+    for (const name of ['border', 'border-border', 'bg-background', 'shadow-xs']) {
+      expect(expandClasses).not.toContain(name)
+    }
+    for (const name of screen.getByRole('button', { name: 'Copy code' }).classList) {
+      expect(expandClasses).toContain(name)
+    }
+  })
+
+  it.each([
+    ['with', 'ts'],
+    ['without', undefined]
+  ])('sits on the actions row, left of the actions, %s a language header', (_, language) => {
+    const { block, actions } = renderFence(language)
+    placeAt(block, 100, 200, 600, 120)
+    placeAt(actions, 614, 209, 76, 24)
+    fireEvent.mouseOver(document.querySelector('pre') ?? document.body)
+    const button = screen.getByRole('button', { name: 'Expand block' })
+    expect(button.style.top).toBe('209px')
+    expect(button.style.left).toBe('588px')
+  })
+
+  it('keeps a block without actions in its inner top-right corner', () => {
+    renderChat()
+    placeAt(screen.getByTestId('tool-diff'), 100, 300, 600, 80)
+    fireEvent.mouseOver(screen.getByTestId('tool-diff'))
+    const button = screen.getByRole('button', { name: 'Expand block' })
+    expect(button.style.top).toBe('304px')
+    expect(button.style.left).toBe('672px')
+  })
+
+  it('holds the actions up while ⤢ shows, and lets both go together', () => {
+    vi.useFakeTimers()
+    const { block } = renderFence()
+    fireEvent.mouseOver(document.querySelector('pre') ?? document.body)
+    expect(block).toHaveAttribute('data-brza-expand-shown')
+
+    fireEvent.mouseLeave(screen.getByTestId('prose').parentElement ?? document.body)
+    act(() => vi.runAllTimers())
+    expect(screen.queryByRole('button', { name: 'Expand block' })).toBeNull()
+    expect(block).not.toHaveAttribute('data-brza-expand-shown')
   })
 })
