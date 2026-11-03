@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { ArrowUp, CircleAlert, Mic, Plus, Square } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { translate } from '@/i18n/i18n'
 import { getScreenSubmitShortcutLabel } from '@/lib/screen-submit-shortcut'
@@ -142,7 +143,11 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
       onClick={handleCriticalAction}
       variant={stops ? 'secondary' : 'default'}
       size="icon"
-      className="size-8 rounded-full pointer-coarse:size-10"
+      className={cn(
+        'size-8 rounded-full pointer-coarse:size-10',
+        // PLN-007: Stop is the brand ember, soft, so it never reads as Send's gradient.
+        stops && 'bg-brand-ember/14 text-brand-ember hover:bg-brand-ember/24'
+      )}
       data-brza-send={stops ? undefined : ''}
     >
       {stops ? <Square className="size-3.5 fill-current" /> : <ArrowUp className="size-4" />}
