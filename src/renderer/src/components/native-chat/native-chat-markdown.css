@@ -32,7 +32,8 @@
   border-radius: var(--radius-sm, 0.375rem);
   background: var(--chat-inline-code-surface);
   padding: 0.0625rem 0.3125rem;
-  color: var(--chat-code-foreground);
+  /* PLN-007: inline code takes the brand colour that passes text contrast; blocks keep the code foreground. */
+  color: var(--brand-text);
   font-size: var(--chat-inline-code-ratio, 0.8571428571em);
 }
 
