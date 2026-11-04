@@ -108,6 +108,8 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
     // Why: status frames and turn markers can outweigh the readable rows on a page, so
     // page backward until the requested entry count is met or the journal is exhausted.
     let page = result.result.page
+    const firstTailCursor = page.liveCursor ??
+      page.window?.newest ?? { epoch: page.epoch, sequence: 0 }
     let entries = chatTranscript(page.items)
     while (entries.length < limit && page.hasOlder && page.window.oldest) {
       const cursor = page.window.oldest
@@ -142,9 +144,7 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
           session,
           entries: entries.slice(-limit),
           removedItemIds: [],
-          nextCursor: formatChatCursor(
-            page.liveCursor ?? page.window?.newest ?? { epoch: page.epoch, sequence: 0 }
-          ),
+          nextCursor: formatChatCursor(firstTailCursor),
           hasNewer: false
         }
       },

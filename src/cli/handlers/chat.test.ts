@@ -173,6 +173,73 @@ describe('chat read', () => {
     expect(result.hasNewer).toBe(false)
   })
 
+  it('keeps the first tail live cursor while paging backward', async () => {
+    const client = fakeClient([
+      historyPage([item({ kind: 'status', text: 'working' })], 3, {
+        window: {
+          oldest: { epoch: 'e', sequence: 8 },
+          newest: { epoch: 'e', sequence: 9 }
+        },
+        liveCursor: { epoch: 'e', sequence: 10 },
+        hasOlder: true
+      }),
+      historyPage(
+        [
+          item({ kind: 'message', role: 'user', blocks: [{ type: 'text', text: 'older' }] }),
+          item({ kind: 'status', text: 'still working' })
+        ],
+        3,
+        {
+          direction: 'before',
+          window: {
+            oldest: { epoch: 'e', sequence: 6 },
+            newest: { epoch: 'e', sequence: 7 }
+          },
+          liveCursor: { epoch: 'e', sequence: 11 },
+          hasOlder: false
+        }
+      )
+    ])
+
+    const result = await run('chat read', { session: SESSION, limit: '1' }, client)
+
+    expect(result.entries).toMatchObject([{ text: 'older' }])
+    expect(result.nextCursor).toBe('e:10')
+  })
+
+  it('falls back to the first tail window when its live cursor is absent', async () => {
+    const client = fakeClient([
+      historyPage([item({ kind: 'status', text: 'working' })], 3, {
+        window: {
+          oldest: { epoch: 'e', sequence: 8 },
+          newest: { epoch: 'e', sequence: 9 }
+        },
+        hasOlder: true
+      }),
+      historyPage(
+        [
+          item({ kind: 'message', role: 'user', blocks: [{ type: 'text', text: 'older' }] }),
+          item({ kind: 'status', text: 'still working' })
+        ],
+        3,
+        {
+          direction: 'before',
+          window: {
+            oldest: { epoch: 'e', sequence: 6 },
+            newest: { epoch: 'e', sequence: 7 }
+          },
+          liveCursor: { epoch: 'e', sequence: 11 },
+          hasOlder: false
+        }
+      )
+    ])
+
+    const result = await run('chat read', { session: SESSION, limit: '1' }, client)
+
+    expect(result.entries).toMatchObject([{ text: 'older' }])
+    expect(result.nextCursor).toBe('e:9')
+  })
+
   it('reads one after page with a cursor and returns its cursor, newer flag and removed ids', async () => {
     const client = fakeClient([
       historyPage(
@@ -210,6 +277,24 @@ describe('chat read', () => {
       limit: 200
     })
     expect(result).toMatchObject({ nextCursor: 'e:10', hasNewer: true, removedItemIds: ['gone'] })
+  })
+
+  it('passes a colon-containing epoch to the after request', async () => {
+    const client = fakeClient([
+      historyPage([], 3, {
+        direction: 'after',
+        window: { oldest: null, newest: null, nextCursor: { epoch: 'a:b', sequence: 7 } }
+      })
+    ])
+
+    await run('chat read', { session: SESSION, cursor: 'a:b:7' }, client)
+
+    expect(client.call).toHaveBeenCalledWith('agentSession.history', {
+      sessionId: SESSION,
+      direction: 'after',
+      cursor: { epoch: 'a:b', sequence: 7 },
+      limit: 200
+    })
   })
 
   it.each([
@@ -283,7 +368,14 @@ describe('chat read', () => {
         epoch: 'fresh',
         fence: 4,
         direction: 'tail',
-        items: [],
+        items: [
+          {
+            ...item({ kind: 'message', role: 'user', blocks: [{ type: 'text', text: 'fresh' }] }),
+            itemId: 'fresh-1',
+            revision: 1,
+            sequence: 2
+          }
+        ],
         removedItemIds: [],
         submissions: [],
         window: {
@@ -300,7 +392,11 @@ describe('chat read', () => {
     for (let index = 0; index < 2; index += 1) {
       process.exitCode = 0
       const result = await run('chat read', { session: SESSION, cursor: 'old:8' }, client)
-      expect(result.cursor_reset).toBe('cursor_compacted')
+      expect(result).toMatchObject({
+        cursor_reset: 'cursor_compacted',
+        entries: [{ text: 'fresh', itemId: 'fresh-1', sequence: 2 }],
+        nextCursor: 'fresh:3'
+      })
       expect(process.exitCode).toBe(2)
     }
     process.exitCode = 0

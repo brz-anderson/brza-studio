@@ -3,6 +3,9 @@ const FILE_OPEN_FOCUS_HELP =
   "--focus                Bring the user to the file (switches BrzA Studio's window to its worktree)"
 
 const COMMAND_SCOPED_FLAG_HELP: Record<string, Record<string, string>> = {
+  'chat read': {
+    cursor: '--cursor <epoch:sequence> Continue reading from a chat journal cursor'
+  },
   'reference add': {
     url: '--url <url-or-jira-key> Full review/issue URL or Jira key; use positionals or repeated --url',
     'reference-site': '--reference-site <id> Jira site for bare keys; see orca jira connection'
