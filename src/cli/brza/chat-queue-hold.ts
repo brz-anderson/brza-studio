@@ -7,9 +7,6 @@ export function chatQueueHold(page: AgentSessionHistoryPage): 'question' | 'work
   if ((page.actionablePromptIds?.length ?? 0) > 0) {
     return 'question'
   }
-  if (page.working === true) {
-    return 'working'
-  }
   if (page.actionablePromptIds === undefined) {
     const pendingPrompt =
       page.items?.some(
@@ -21,5 +18,5 @@ export function chatQueueHold(page: AgentSessionHistoryPage): 'question' | 'work
       return 'question'
     }
   }
-  return null
+  return page.working === true ? 'working' : null
 }

@@ -28,6 +28,7 @@ import {
 import { printResult } from '../format'
 import { RuntimeClientError } from '../runtime-client'
 import { formatChatCursor, parseChatCursor } from '../brza/chat-cursor'
+import { formatChatSendRetry } from '../brza/chat-send-retry'
 import { chatQueueHold } from '../brza/chat-queue-hold'
 import { chatSendOutcome } from '../brza/chat-send-outcome'
 
@@ -217,11 +218,7 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
           clientMessageId: null
         }
       }
-      printResult(
-        uncertain,
-        json,
-        () => `Delivery is uncertain. Retry with --operation ${operation} or read the chat.`
-      )
+      printResult(uncertain, json, () => formatChatSendRetry(session, text, operation))
       process.exitCode = 3
       return
     }

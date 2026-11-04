@@ -71,7 +71,12 @@ function fakeClient(
   }
 }
 
-async function run(command: string, flags: Record<string, string | boolean>, client: unknown) {
+async function run(
+  command: string,
+  flags: Record<string, string | boolean>,
+  client: unknown,
+  json = true
+) {
   const logs: string[] = []
   const spy = vi.spyOn(console, 'log').mockImplementation((line: string) => logs.push(line))
   const handler = CHAT_HANDLERS[command]
@@ -84,12 +89,12 @@ async function run(command: string, flags: Record<string, string | boolean>, cli
       flags: new Map(Object.entries(flags)),
       client,
       cwd: '/tmp',
-      json: true
+      json
     } as never)
   } finally {
     spy.mockRestore()
   }
-  return JSON.parse(logs.join('\n')).result
+  return json ? JSON.parse(logs.join('\n')).result : logs.join('\n')
 }
 
 afterEach(() => vi.restoreAllMocks())
@@ -742,6 +747,22 @@ describe('chat send — contrato P4', () => {
       clientMessageId: null
     })
     expect(result.operation).toBe(client.call.mock.calls[1]?.[1].envelope.clientOperationId)
+    expect(process.exitCode).toBe(3)
+  })
+
+  it('runtime_timeout imprime retry completo com argumentos literais seguros', async () => {
+    const client = fakeClient([historyPage([])])
+    client.call.mockRejectedValueOnce(new RuntimeClientError('runtime_timeout', 'Timed out'))
+    const text = "don't $(touch /tmp/unsafe); echo `whoami`"
+    const output = await run('chat send', { session: SESSION, text }, client, false)
+    const operation = client.call.mock.calls[1]?.[1].envelope.clientOperationId
+    const quotedText =
+      process.platform === 'win32'
+        ? "'don''t $(touch /tmp/unsafe); echo `whoami`'"
+        : "'don'\"'\"'t $(touch /tmp/unsafe); echo `whoami`'"
+    expect(output).toBe(
+      `retry without resending: orca chat send --session '${SESSION}' --text ${quotedText} --operation '${operation}'`
+    )
     expect(process.exitCode).toBe(3)
   })
 
