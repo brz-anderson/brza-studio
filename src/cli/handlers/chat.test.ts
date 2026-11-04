@@ -150,6 +150,162 @@ describe('chat list', () => {
 })
 
 describe('chat read', () => {
+  it('returns item identity and a live cursor for a tail read', async () => {
+    const client = fakeClient([
+      historyPage(
+        [
+          {
+            ...item({ kind: 'message', role: 'assistant', blocks: [{ type: 'text', text: 'hi' }] }),
+            itemId: 'item-1',
+            revision: 2,
+            sequence: 8
+          }
+        ],
+        3,
+        { liveCursor: { epoch: 'e', sequence: 9 } }
+      )
+    ])
+    const result = await run('chat read', { session: SESSION }, client)
+    expect(result.entries).toEqual([
+      { kind: 'message', role: 'assistant', text: 'hi', itemId: 'item-1', revision: 2, sequence: 8 }
+    ])
+    expect(result.nextCursor).toBe('e:9')
+    expect(result.hasNewer).toBe(false)
+  })
+
+  it('reads one after page with a cursor and returns its cursor, newer flag and removed ids', async () => {
+    const client = fakeClient([
+      historyPage(
+        [
+          {
+            ...item({
+              kind: 'message',
+              role: 'assistant',
+              blocks: [{ type: 'text', text: 'new' }]
+            }),
+            itemId: 'item-2',
+            revision: 1,
+            sequence: 10
+          }
+        ],
+        3,
+        {
+          direction: 'after',
+          window: {
+            oldest: null,
+            newest: { epoch: 'e', sequence: 10 },
+            nextCursor: { epoch: 'e', sequence: 10 }
+          },
+          liveCursor: { epoch: 'e', sequence: 12 },
+          hasNewer: true,
+          removedItemIds: ['gone']
+        }
+      )
+    ])
+    const result = await run('chat read', { session: SESSION, cursor: 'e:9' }, client)
+    expect(client.call).toHaveBeenCalledWith('agentSession.history', {
+      sessionId: SESSION,
+      direction: 'after',
+      cursor: { epoch: 'e', sequence: 9 },
+      limit: 200
+    })
+    expect(result).toMatchObject({ nextCursor: 'e:10', hasNewer: true, removedItemIds: ['gone'] })
+  })
+
+  it.each([
+    'epoch_changed',
+    'cursor_ahead',
+    'cursor_compacted',
+    'journal_gap',
+    'schema_unreadable'
+  ])('reports reset %s and reads the tail', async (reason) => {
+    process.exitCode = 0
+    const client = fakeClient([
+      ok({
+        ok: false,
+        reset: reason,
+        page: {
+          sessionId: SESSION,
+          epoch: 'fresh',
+          fence: 4,
+          direction: 'tail',
+          items: [
+            {
+              ...item({ kind: 'message', role: 'user', blocks: [{ type: 'text', text: 'fresh' }] }),
+              itemId: 'fresh-1',
+              revision: 1,
+              sequence: 1
+            }
+          ],
+          removedItemIds: [],
+          submissions: [],
+          liveCursor: { epoch: 'fresh', sequence: 2 },
+          hasOlder: false
+        }
+      })
+    ])
+    const result = await run('chat read', { session: SESSION, cursor: 'old:9' }, client)
+    expect(result).toMatchObject({
+      cursor_reset: reason,
+      entries: [{ text: 'fresh' }],
+      nextCursor: 'fresh:2',
+      hasNewer: false
+    })
+    expect(process.exitCode).toBe(2)
+    process.exitCode = 0
+  })
+
+  it.each(['abc', 'e:-1', ':3'])(
+    'rejects malformed cursor %s before calling the host',
+    async (cursor) => {
+      const client = fakeClient([])
+      await expect(run('chat read', { session: SESSION, cursor }, client)).rejects.toMatchObject({
+        code: 'invalid_argument'
+      })
+      expect(client.call).not.toHaveBeenCalled()
+    }
+  )
+
+  it('rejects a cursor combined with limit', async () => {
+    const client = fakeClient([])
+    await expect(
+      run('chat read', { session: SESSION, cursor: 'e:1', limit: '3' }, client)
+    ).rejects.toMatchObject({ code: 'invalid_argument' })
+    expect(client.call).not.toHaveBeenCalled()
+  })
+
+  it('accepts a repeated compacted reset and exits 2 each time', async () => {
+    const reset = ok({
+      ok: false,
+      reset: 'cursor_compacted',
+      page: {
+        sessionId: SESSION,
+        epoch: 'fresh',
+        fence: 4,
+        direction: 'tail',
+        items: [],
+        removedItemIds: [],
+        submissions: [],
+        window: {
+          oldest: null,
+          newest: { epoch: 'fresh', sequence: 2 },
+          nextCursor: { epoch: 'fresh', sequence: 2 }
+        },
+        liveCursor: { epoch: 'fresh', sequence: 3 },
+        hasOlder: false,
+        hasNewer: false
+      }
+    })
+    const client = fakeClient([reset, reset])
+    for (let index = 0; index < 2; index += 1) {
+      process.exitCode = 0
+      const result = await run('chat read', { session: SESSION, cursor: 'old:8' }, client)
+      expect(result.cursor_reset).toBe('cursor_compacted')
+      expect(process.exitCode).toBe(2)
+    }
+    process.exitCode = 0
+  })
+
   it('returns messages, tools and waiting prompts, without provider status frames', async () => {
     const client = fakeClient([
       historyPage([
@@ -177,10 +333,24 @@ describe('chat read', () => {
       limit: 16
     })
     expect(result.entries).toEqual([
-      { kind: 'message', role: 'user', text: 'Run tests' },
-      { kind: 'tool', name: 'shell', state: 'completed' },
-      { kind: 'approval', text: 'Allow git push?', pending: true },
-      { kind: 'message', role: 'assistant', text: '2 failures.' }
+      { kind: 'message', role: 'user', text: 'Run tests', itemId: 'i', revision: 1, sequence: 1 },
+      { kind: 'tool', name: 'shell', state: 'completed', itemId: 'i', revision: 1, sequence: 1 },
+      {
+        kind: 'approval',
+        text: 'Allow git push?',
+        pending: true,
+        itemId: 'i',
+        revision: 1,
+        sequence: 1
+      },
+      {
+        kind: 'message',
+        role: 'assistant',
+        text: '2 failures.',
+        itemId: 'i',
+        revision: 1,
+        sequence: 1
+      }
     ])
   })
 

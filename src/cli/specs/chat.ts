@@ -16,14 +16,20 @@ export const CHAT_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['chat', 'read'],
     summary: 'Read the latest messages of an agent chat',
-    usage: 'orca chat read --session <id-or-handle> [--limit <n>] [--json]',
-    allowedFlags: [...GLOBAL_FLAGS, 'session', 'limit'],
+    usage:
+      'orca chat read --session <id-or-handle> [--limit <n>] [--cursor <epoch:sequence>] [--json]',
+    allowedFlags: [...GLOBAL_FLAGS, 'session', 'limit', 'cursor'],
     notes: [
       '--session takes the session id or handle from `orca chat list` or `orca agent launch`.',
       '--limit is the number of entries shown (messages, tool calls, approvals and questions); the default is 20 and the maximum 100.',
+      '--cursor reads changes after the cursor, including new revisions; it returns nextCursor and hasNewer. It cannot be combined with --limit.',
+      'A cursor_reset exits 2 and returns the newest entries with a new nextCursor. Read without --cursor if the cursor resets again.',
       'Approvals and questions waiting for an answer are marked "waiting for you".'
     ],
-    examples: ['orca chat read --session codex_1234 --limit 10']
+    examples: [
+      'orca chat read --session codex_1234 --limit 10',
+      'orca chat read --session codex_1234 --cursor e:42 --json'
+    ]
   },
   {
     path: ['chat', 'send'],

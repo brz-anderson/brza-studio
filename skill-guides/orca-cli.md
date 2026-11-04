@@ -260,6 +260,8 @@ ORCA chat send --session <session> --text "<message>" --json
 ```
 
 - `chat read` returns messages, tool calls, and approvals or questions; `pending: true` marks one waiting for the user.
+- `chat read --cursor <nextCursor>` returns only what changed since the last read; keep the `nextCursor` it returns and read again while `hasNewer` is true. Exit 2 with `cursor_reset` means the cursor no longer applies: start over from the entries and `nextCursor` it returns.
+- Repeated `cursor_reset` in the same chat: read without `--cursor` and start over.
 - `chat send` sends the text as the user's message. While the agent works, a host with a message queue holds it until the turn ends and reports `delivery: "queued"`.
 - A refused send was not delivered. Read the chat again before resending.
 - When relaying for a user from outside Orca (for example a voice or messaging assistant on the same machine), report from `chat list` and `chat read`, repeat an instruction back and get the user's confirmation before `chat send`, and send the user's words without adding instructions.

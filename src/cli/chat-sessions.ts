@@ -21,9 +21,11 @@ export type ChatSessionEntry = {
 }
 
 export type ChatTranscriptEntry =
-  | { kind: 'message'; role: string; text: string }
-  | { kind: 'tool'; name: string; state: string }
-  | { kind: 'approval' | 'question'; text: string; pending: boolean }
+  | ({ kind: 'message'; role: string; text: string } & ChatTranscriptIdentity)
+  | ({ kind: 'tool'; name: string; state: string } & ChatTranscriptIdentity)
+  | ({ kind: 'approval' | 'question'; text: string; pending: boolean } & ChatTranscriptIdentity)
+
+type ChatTranscriptIdentity = Pick<AgentJournalRenderItem, 'itemId' | 'revision' | 'sequence'>
 
 /** The session id a chat is addressed by, from its id, its handle, or a pane key that names it. */
 export function parseChatSessionSelector(value: string): string {
@@ -87,25 +89,31 @@ export function chatTranscript(items: readonly AgentJournalRenderItem[]): ChatTr
     if (body.kind === 'message') {
       const text = messageText(item)
       if (text.length > 0) {
-        entries.push({ kind: 'message', role: body.role, text })
+        entries.push({ kind: 'message', role: body.role, text, ...identity(item) })
       }
     } else if (body.kind === 'tool-call') {
-      entries.push({ kind: 'tool', name: body.name, state: body.state })
+      entries.push({ kind: 'tool', name: body.name, state: body.state, ...identity(item) })
     } else if (body.kind === 'approval') {
       entries.push({
         kind: 'approval',
         text: body.title,
-        pending: body.resolution.state === 'pending'
+        pending: body.resolution.state === 'pending',
+        ...identity(item)
       })
     } else if (body.kind === 'question') {
       entries.push({
         kind: 'question',
         text: body.question,
-        pending: body.resolution.state === 'pending'
+        pending: body.resolution.state === 'pending',
+        ...identity(item)
       })
     }
   }
   return entries
+}
+
+function identity(item: AgentJournalRenderItem): ChatTranscriptIdentity {
+  return { itemId: item.itemId, revision: item.revision, sequence: item.sequence }
 }
 
 export function formatChatList(result: { chats: ChatSessionEntry[] }): string {
@@ -129,11 +137,16 @@ export function formatChatList(result: { chats: ChatSessionEntry[] }): string {
 export function formatChatRead(result: {
   session: string
   entries: ChatTranscriptEntry[]
+  nextCursor?: string
+  hasNewer?: boolean
 }): string {
   if (result.entries.length === 0) {
-    return `No messages in ${result.session}.`
+    return [
+      `No messages in ${result.session}.`,
+      ...(result.nextCursor ? [`next cursor: ${result.nextCursor}`] : [])
+    ].join('\n')
   }
-  return result.entries
+  const entries = result.entries
     .map((entry) => {
       if (entry.kind === 'message') {
         return `${entry.role}: ${entry.text}`
@@ -144,4 +157,11 @@ export function formatChatRead(result: {
       return `[${entry.kind}${entry.pending ? ', waiting for you' : ''}] ${entry.text}`
     })
     .join('\n')
+  return [
+    entries,
+    ...(result.nextCursor ? [`next cursor: ${result.nextCursor}`] : []),
+    ...(result.hasNewer && result.nextCursor
+      ? [`more after this page: run again with --cursor ${result.nextCursor}`]
+      : [])
+  ].join('\n')
 }

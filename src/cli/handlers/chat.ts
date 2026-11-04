@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import type {
-  AgentSessionHistoryPage,
+  AgentSessionHistoryResult,
   AgentSessionMutationResult,
   AgentSessionSendResult
 } from '../../shared/agent-session/agent-session-wire'
@@ -27,6 +27,7 @@ import {
 } from '../flags'
 import { printResult } from '../format'
 import { RuntimeClientError } from '../runtime-client'
+import { formatChatCursor, parseChatCursor } from '../brza/chat-cursor'
 
 const DEFAULT_READ_LIMIT = 20
 const MAX_READ_LIMIT = 100
@@ -35,7 +36,7 @@ const MAX_READ_LIMIT = 100
 const HISTORY_ROWS_PER_ENTRY = 4
 const MAX_HISTORY_ROWS = AGENT_SESSION_HISTORY_MAX_LIMIT
 
-type HistoryResult = { ok: boolean; page: AgentSessionHistoryPage }
+type HistoryResult = AgentSessionHistoryResult
 
 function readSession(flags: Map<string, string | boolean>): string {
   return parseChatSessionSelector(getRequiredStringFlag(flags, 'session'))
@@ -57,7 +58,45 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
   },
   'chat read': async ({ flags, client, json }) => {
     const session = readSession(flags)
-    const limit = getOptionalPositiveIntegerFlag(flags, 'limit') ?? DEFAULT_READ_LIMIT
+    const cursorValue = getOptionalStringFlag(flags, 'cursor')
+    const providedLimit = getOptionalPositiveIntegerFlag(flags, 'limit')
+    if (cursorValue !== undefined) {
+      if (providedLimit !== undefined) {
+        throw new RuntimeClientError('invalid_argument', '--cursor cannot be used with --limit.')
+      }
+      const cursor = parseChatCursor(cursorValue)
+      const result = await client.call<HistoryResult>('agentSession.history', {
+        sessionId: session,
+        direction: 'after',
+        cursor,
+        limit: MAX_HISTORY_ROWS
+      })
+      const page = result.result.page
+      const cursorReset = result.result.ok ? undefined : result.result.reset
+      const readResult = {
+        session,
+        entries: chatTranscript(page.items),
+        removedItemIds: page.removedItemIds,
+        nextCursor: formatChatCursor(
+          cursorReset
+            ? (page.liveCursor ?? page.window?.newest ?? { epoch: page.epoch, sequence: 0 })
+            : (page.window?.nextCursor ?? page.liveCursor ?? { epoch: page.epoch, sequence: 0 })
+        ),
+        hasNewer: cursorReset ? false : page.hasNewer,
+        ...(cursorReset ? { cursor_reset: cursorReset } : {})
+      }
+      if (cursorReset) {
+        console.error(
+          `cursor_reset: ${cursorReset}: the cursor no longer applies; showing the newest entries`
+        )
+      }
+      printResult({ ...result, result: readResult }, json, formatChatRead)
+      if (cursorReset) {
+        process.exitCode = 2
+      }
+      return
+    }
+    const limit = providedLimit ?? DEFAULT_READ_LIMIT
     if (limit > MAX_READ_LIMIT) {
       throw new RuntimeClientError('invalid_argument', `--limit must be at most ${MAX_READ_LIMIT}.`)
     }
@@ -99,7 +138,15 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
     printResult(
       {
         ...result,
-        result: { session, entries: entries.slice(-limit) }
+        result: {
+          session,
+          entries: entries.slice(-limit),
+          removedItemIds: [],
+          nextCursor: formatChatCursor(
+            page.liveCursor ?? page.window?.newest ?? { epoch: page.epoch, sequence: 0 }
+          ),
+          hasNewer: false
+        }
       },
       json,
       formatChatRead

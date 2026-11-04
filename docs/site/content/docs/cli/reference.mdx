@@ -225,6 +225,8 @@ orca chat send --session <session> --text "Run the tests, then summarize failure
 
 `chat read` returns the newest messages, tool calls, approvals and questions; an approval or question waiting for an answer has `pending: true`. `chat send` sends the text as your message. While the agent is working, hosts with a message queue hold it until the turn ends and report `delivery: "queued"`. A chat that restarted since it was read refuses the send.
 
+Use `chat read --cursor <nextCursor>` to read only changes since a previous read, including new revisions of older entries. Keep the returned `nextCursor` and read again while `hasNewer` is true. The command reads one page of up to 200 journal rows and returns `removedItemIds`; `--cursor` cannot be combined with `--limit`. A `cursor_reset` returns the newest entries and a new cursor with exit code 2; if the same chat resets again, read without `--cursor` and start over.
+
 ## Files
 
 ```bash
