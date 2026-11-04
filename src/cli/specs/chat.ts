@@ -34,12 +34,15 @@ export const CHAT_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['chat', 'send'],
     summary: 'Send a message to an agent chat',
-    usage: 'orca chat send --session <id-or-handle> --text <text> [--json]',
-    allowedFlags: [...GLOBAL_FLAGS, 'session', 'text'],
+    usage: 'orca chat send --session <id-or-handle> --text <text> [--operation <id>] [--json]',
+    allowedFlags: [...GLOBAL_FLAGS, 'session', 'text', 'operation'],
     notes: [
       'Sends the text as your message, as if typed in the chat.',
       'While the agent is working, hosts with a message queue hold the message until the turn ends; the result says "queued".',
       'Exit 0 when accepted or queued, 1 when refused or rejected, and 3 when pending or unknown. On 3, do not resend; retry with the same --operation or read the chat.',
+      '--operation retries with the operation printed by a previous send. With the same text and delivery, the host returns the recorded result without sending again; different text is refused. Trailing whitespace is ignored.',
+      'Operation ids have 13 timestamp digits, a hyphen and 32 lowercase hexadecimal digits. An unseen id is admitted as a new send only within 24 hours; older unseen ids are refused. An unknown operation stays unknown on replay.',
+      'Delivery depends on the host capability queued-messages.v2 and enters the payload fingerprint. If that capability changes between attempts, replay is refused with operationIdReused.',
       'A queued result reports queuePosition, nextQueuedMessageId and held_by: question, working or null. queuePaused is true when the queue is stopped.',
       'A chat that restarted since it was read refuses the send; read it again and resend.'
     ],

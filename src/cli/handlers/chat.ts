@@ -23,6 +23,7 @@ import type { CommandHandler } from '../dispatch'
 import {
   getOptionalPositiveIntegerFlag,
   getOptionalStringFlag,
+  getPresentStringFlag,
   getRequiredStringFlag
 } from '../flags'
 import { printResult } from '../format'
@@ -33,6 +34,7 @@ import { isChatHistoryTransportError } from '../brza/chat-history-transport'
 import { formatChatSendRetry } from '../brza/chat-send-retry'
 import { chatQueueHold } from '../brza/chat-queue-hold'
 import { chatSendOutcome } from '../brza/chat-send-outcome'
+import { parseChatOperationId } from '../brza/chat-operation-id'
 
 const DEFAULT_READ_LIMIT = 20
 const MAX_READ_LIMIT = 100
@@ -163,6 +165,11 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
     if (text.trim().length === 0) {
       throw new RuntimeClientError('invalid_argument', '--text must not be empty.')
     }
+    const operationValue = getPresentStringFlag(flags, 'operation')
+    const clientOperationId =
+      operationValue === undefined
+        ? createStructuredAgentSessionOperationId(randomUUID)
+        : parseChatOperationId(operationValue)
     const status = await client.getCliStatus()
     if (!status.result.runtime.reachable) {
       throw new RuntimeClientError(
@@ -191,7 +198,7 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
     }
     const mutation = structuredAgentSessionMessageSendMutation({
       sessionId: session,
-      clientOperationId: createStructuredAgentSessionOperationId(randomUUID),
+      clientOperationId,
       expectedRuntimeFence: fence,
       body: structuredAgentSessionSendBody(text, []),
       ...(queue ? { delivery: 'queue-if-active' as const } : {})
