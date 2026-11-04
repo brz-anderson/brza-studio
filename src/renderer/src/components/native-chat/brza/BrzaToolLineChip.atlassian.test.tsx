@@ -86,13 +86,13 @@ afterEach(() => {
 
 describe('Jira and Confluence chips', () => {
   it('opens the issue on the cloudId domain without toggling the row', () => {
-    renderLine(jiraCall('fixfy.atlassian.net'))
+    renderLine(jiraCall('example.atlassian.net'))
 
     expect(screen.getByText('FIX-110 — Corrigir o orçamento')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('link', { name: /FIX-110/ }))
 
     expect(mocks.openWebLink).toHaveBeenCalledWith(
-      'https://fixfy.atlassian.net/browse/FIX-110',
+      'https://example.atlassian.net/browse/FIX-110',
       { worktreeId: 'wt-1', sourceTabId: 'chat-tab', sourceOwner: { kind: 'local' } },
       undefined
     )
@@ -104,14 +104,14 @@ describe('Jira and Confluence chips', () => {
       connected: true,
       viewer: null,
       activeSiteId: 'site-1',
-      sites: [{ id: 'site-1', siteUrl: 'https://fixfy.atlassian.net/' }]
+      sites: [{ id: 'site-1', siteUrl: 'https://example.atlassian.net/' }]
     }
     renderLine(jiraCall(JIRA_SITE_ID))
 
     fireEvent.keyDown(screen.getByRole('link', { name: /FIX-110/ }), { key: 'Enter' })
 
     expect(mocks.openWebLink).toHaveBeenCalledWith(
-      'https://fixfy.atlassian.net/browse/FIX-110',
+      'https://example.atlassian.net/browse/FIX-110',
       expect.anything(),
       undefined
     )
@@ -131,7 +131,7 @@ describe('Jira and Confluence chips', () => {
       {
         type: 'tool-call',
         name: 'mcp__atlassian__getConfluencePage',
-        input: { cloudId: 'fixfy.atlassian.net', pageId: '21626881' },
+        input: { cloudId: 'example.atlassian.net', pageId: '21626881' },
         state: 'completed',
         mcpIdentity: { server: 'atlassian', tool: 'getConfluencePage' }
       },
@@ -142,7 +142,7 @@ describe('Jira and Confluence chips', () => {
     fireEvent.click(screen.getByRole('link', { name: /página/ }))
 
     expect(mocks.openWebLink).toHaveBeenCalledWith(
-      'https://fixfy.atlassian.net/wiki/pages/viewpage.action?pageId=21626881',
+      'https://example.atlassian.net/wiki/pages/viewpage.action?pageId=21626881',
       expect.anything(),
       undefined
     )

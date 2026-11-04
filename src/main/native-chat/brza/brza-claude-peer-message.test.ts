@@ -47,11 +47,11 @@ describe('Claude Code peer messages in the chat', () => {
   })
 
   it('names a cross-session sender by its session name and drops the harness note', () => {
-    const content = `${PREAMBLE}<cross-session-message from="uds:/tmp/cc-socks/81718.sock" from-name="fixfy-cc" from-mode="prompting">\nPedido de test1: responda.\n</cross-session-message>${PEER_NOTE}`
+    const content = `${PREAMBLE}<cross-session-message from="uds:/tmp/cc-socks/81718.sock" from-name="outro-cc" from-mode="prompting">\nPedido de test1: responda.\n</cross-session-message>${PEER_NOTE}`
     const expected = {
       role: 'user',
       blocks: [{ type: 'text', text: 'Pedido de test1: responda.' }],
-      name: 'fixfy-cc',
+      name: 'outro-cc',
       kind: 'message'
     }
 
@@ -61,7 +61,7 @@ describe('Claude Code peer messages in the chat', () => {
         metaLine(content, {
           kind: 'peer',
           from: 'uds:/tmp/cc-socks/81718.sock',
-          name: 'fixfy-cc',
+          name: 'outro-cc',
           body: 'Pedido de test1: responda.'
         })
       )
