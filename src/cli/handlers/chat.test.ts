@@ -799,11 +799,16 @@ describe('chat send — contrato P4', () => {
       await vi.advanceTimersByTimeAsync(500)
       expect(await promise).toMatchObject({ delivery: 'submitted', submission: { state } })
       expect(process.exitCode).toBe(state === 'accepted' ? 0 : state === 'rejected' ? 1 : 3)
-      expect(client.call).toHaveBeenNthCalledWith(4, 'agentSession.history', {
-        sessionId: SESSION,
-        direction: 'tail',
-        limit: 1
-      })
+      expect(client.call).toHaveBeenNthCalledWith(
+        4,
+        'agentSession.history',
+        {
+          sessionId: SESSION,
+          direction: 'tail',
+          limit: 1
+        },
+        { timeoutMs: 29_000 }
+      )
     }
   )
 

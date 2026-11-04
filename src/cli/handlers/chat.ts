@@ -28,6 +28,8 @@ import {
 import { printResult } from '../format'
 import { RuntimeClientError } from '../runtime-client'
 import { formatChatCursor, parseChatCursor } from '../brza/chat-cursor'
+import { observePendingChatSend } from '../brza/chat-send-observation'
+import { isChatHistoryTransportError } from '../brza/chat-history-transport'
 import { formatChatSendRetry } from '../brza/chat-send-retry'
 import { chatQueueHold } from '../brza/chat-queue-hold'
 import { chatSendOutcome } from '../brza/chat-send-outcome'
@@ -223,42 +225,23 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
       return
     }
     let submissionResult: AgentSessionMutationResult<AgentSessionSendResult> = result.result
-    if (
-      submissionResult.ok &&
-      'submission' in submissionResult.value &&
-      submissionResult.value.submission.dispatchState === 'pending'
-    ) {
-      const started = Date.now()
-      const pendingMessageId = submissionResult.value.clientMessageId
-      while (Date.now() - started < 30_000) {
-        await new Promise((resolve) => setTimeout(resolve, 500))
-        const latest = await client.call<HistoryResult>('agentSession.history', {
-          sessionId: session,
-          direction: 'tail',
-          limit: 1
-        })
-        const resolved = latest.result.page.submissions.find(
-          (entry) => entry.clientMessageId === pendingMessageId
-        )
-        if (resolved && resolved.dispatchState !== 'pending') {
-          submissionResult = {
-            ...submissionResult,
-            value: { clientMessageId: resolved.clientMessageId, submission: resolved }
-          }
-          break
-        }
-      }
-    }
+    submissionResult = await observePendingChatSend(client, session, submissionResult)
     const outcome = chatSendOutcome(submissionResult)
     const value = submissionResult.ok ? submissionResult.value : undefined
     let queuePage: HistoryResult['page'] | undefined
     if (value && 'queued' in value) {
-      const queuedHistory = await client.call<HistoryResult>('agentSession.history', {
-        sessionId: session,
-        direction: 'tail',
-        limit: 1
-      })
-      queuePage = queuedHistory.result.page
+      try {
+        const queuedHistory = await client.call<HistoryResult>('agentSession.history', {
+          sessionId: session,
+          direction: 'tail',
+          limit: 1
+        })
+        queuePage = queuedHistory.result.page
+      } catch (error) {
+        if (!isChatHistoryTransportError(error)) {
+          throw error
+        }
+      }
     }
     const visibleOutcome = { delivery: outcome.delivery, submission: outcome.submission }
     printResult(
@@ -274,9 +257,13 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
           ...(value && 'queued' in value
             ? {
                 queuePosition: value.queued.position,
-                nextQueuedMessageId: queuePage?.nextQueuedMessageId ?? null,
-                held_by: chatQueueHold(queuePage ?? history.result.page),
-                ...(queuePage?.queuePause ? { queuePaused: true } : {})
+                ...(queuePage
+                  ? {
+                      nextQueuedMessageId: queuePage.nextQueuedMessageId ?? null,
+                      held_by: chatQueueHold(queuePage),
+                      ...(queuePage.queuePause ? { queuePaused: true } : {})
+                    }
+                  : { queueMetadataUnavailable: true })
               }
             : {}),
           ...(!submissionResult.ok ? { refusal: submissionResult.refusal } : {})
