@@ -74,8 +74,13 @@ function fakeClient(
 async function run(command: string, flags: Record<string, string | boolean>, client: unknown) {
   const logs: string[] = []
   const spy = vi.spyOn(console, 'log').mockImplementation((line: string) => logs.push(line))
+  const handler = CHAT_HANDLERS[command]
+  if (!handler) {
+    throw new Error(`handler ausente: ${command}`)
+  }
   try {
-    await CHAT_HANDLERS[command]!({
+    // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: the fake client implements only the calls the chat handlers make.
+    await handler({
       flags: new Map(Object.entries(flags)),
       client,
       cwd: '/tmp',
