@@ -1,6 +1,9 @@
 import type { AgentSessionHistoryPage } from '../../shared/agent-session/agent-session-wire'
 
 export function chatQueueHold(page: AgentSessionHistoryPage): 'question' | 'working' | null {
+  if (page.queuePause?.reason === 'stopped') {
+    return null
+  }
   if ((page.actionablePromptIds?.length ?? 0) > 0) {
     return 'question'
   }

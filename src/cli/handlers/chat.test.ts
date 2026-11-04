@@ -608,3 +608,210 @@ describe('chat send', () => {
     expect(client.call).not.toHaveBeenCalled()
   })
 })
+
+describe('chat send — contrato P4', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.unstubAllEnvs()
+    process.exitCode = 0
+  })
+
+  function submission(dispatchState: string, clientMessageId = 'm-1') {
+    return {
+      clientMessageId,
+      dispatchState,
+      reason: null,
+      fence: 7,
+      payloadFingerprint: 'fp',
+      providerItemId: null,
+      submittedAt: 1,
+      resolvedAt: null
+    }
+  }
+
+  function sent(dispatchState: string) {
+    return ok({
+      ok: true,
+      replayed: false,
+      fence: 7,
+      cursor: { epoch: 'e', sequence: 1 },
+      value: { clientMessageId: 'm-1', submission: submission(dispatchState) }
+    })
+  }
+
+  it.each([
+    ['accepted', 0],
+    ['rejected', 1],
+    ['unknown', 3]
+  ] as const)('imprime %s e sai %i', async (state, exitCode) => {
+    const client = fakeClient([historyPage([], 7), sent(state)])
+    expect(await run('chat send', { session: SESSION, text: 'hi' }, client)).toMatchObject({
+      delivery: 'submitted',
+      submission: { state },
+      operation: expect.any(String)
+    })
+    expect(process.exitCode).toBe(exitCode)
+  })
+
+  it.each([
+    ['question', { actionablePromptIds: ['p1'] }, 'question', false],
+    ['working', { actionablePromptIds: [], working: true }, 'working', false],
+    ['precedência de question', { actionablePromptIds: ['p1'], working: true }, 'question', false],
+    [
+      'pausa',
+      { queuePause: { reason: 'stopped' }, actionablePromptIds: ['p1'], working: true },
+      null,
+      true
+    ],
+    ['fila escoada', { queuedMessages: [], actionablePromptIds: [], working: false }, null, false]
+  ] as const)('queued: %s', async (_name, page, heldBy, paused) => {
+    const client = fakeClient([
+      historyPage([], 7),
+      ok({
+        ok: true,
+        replayed: false,
+        fence: 7,
+        cursor: { epoch: 'e', sequence: 1 },
+        value: {
+          clientMessageId: 'm-1',
+          queued: { messageId: 'q1', position: 2, state: 'waiting' }
+        }
+      }),
+      historyPage([], 7, { ...page, nextQueuedMessageId: 'q2' })
+    ])
+    const result = await run('chat send', { session: SESSION, text: 'hi' }, client)
+    expect(result).toMatchObject({
+      delivery: 'queued',
+      submission: { state: 'queued' },
+      queuePosition: 2,
+      nextQueuedMessageId: 'q2',
+      held_by: heldBy
+    })
+    expect(result.queuePaused === true).toBe(paused)
+    expect(client.call).toHaveBeenNthCalledWith(3, 'agentSession.history', {
+      sessionId: SESSION,
+      direction: 'tail',
+      limit: 1
+    })
+    expect(process.exitCode).toBe(0)
+  })
+
+  it.each(['returned', 'withdrawn'] as const)('replay %s sai rejected/1', async (state) => {
+    const client = fakeClient([
+      historyPage([], 7),
+      ok({
+        ok: true,
+        replayed: true,
+        fence: 7,
+        cursor: { epoch: 'e', sequence: 1 },
+        value: { clientMessageId: 'm-1', queued: { messageId: 'q1', position: 1, state } }
+      }),
+      historyPage([])
+    ])
+    expect(await run('chat send', { session: SESSION, text: 'hi' }, client)).toMatchObject({
+      delivery: 'queued',
+      replayed: true,
+      submission: { state: 'rejected' }
+    })
+    expect(process.exitCode).toBe(1)
+  })
+
+  it.each([
+    ['agent_session_fence_mismatch', 'refused', 1],
+    ['agent_session_operation_unknown', 'unknown', 3]
+  ] as const)('recusa %s imprime resultado e sai %i', async (code, state, exitCode) => {
+    const client = fakeClient([
+      historyPage([]),
+      ok({ ok: false, refusal: { code, message: 'reason' } })
+    ])
+    expect(await run('chat send', { session: SESSION, text: 'hi' }, client)).toMatchObject({
+      delivery: state,
+      submission: { state },
+      refusal: { code }
+    })
+    expect(process.exitCode).toBe(exitCode)
+  })
+
+  it('runtime_timeout preserva operation e sai unknown/3', async () => {
+    const client = fakeClient([historyPage([])])
+    client.call.mockRejectedValueOnce(new RuntimeClientError('runtime_timeout', 'Timed out'))
+    const result = await run('chat send', { session: SESSION, text: 'hi' }, client)
+    expect(result).toMatchObject({
+      delivery: 'unknown',
+      submission: { state: 'unknown' },
+      clientMessageId: null
+    })
+    expect(result.operation).toBe(client.call.mock.calls[1]?.[1].envelope.clientOperationId)
+    expect(process.exitCode).toBe(3)
+  })
+
+  it('preserva corpo de pessoa e fence do tail com origem no ambiente', async () => {
+    vi.stubEnv('ORCA_AGENT_SESSION_ID', SESSION)
+    const client = fakeClient([historyPage([], 42), sent('accepted')])
+    await run('chat send', { session: SESSION, text: 'hi' }, client)
+    expect(client.call).toHaveBeenNthCalledWith(
+      2,
+      'agentSession.send',
+      expect.objectContaining({
+        envelope: expect.objectContaining({ expectedRuntimeFence: 42 }),
+        body: { kind: 'message', role: 'user', blocks: [{ type: 'text', text: 'hi' }] }
+      })
+    )
+  })
+
+  it.each(['accepted', 'rejected', 'unknown'] as const)(
+    'pending resolve em %s pelo tail após 500ms',
+    async (state) => {
+      vi.useFakeTimers()
+      vi.setSystemTime(new Date('2026-11-03T12:00:00Z'))
+      const client = fakeClient([
+        historyPage([], 7),
+        sent('pending'),
+        historyPage([], 7, { submissions: [submission('accepted', 'outro')] }),
+        historyPage([], 7, { submissions: [submission(state)] })
+      ])
+      const promise = run('chat send', { session: SESSION, text: 'hi' }, client)
+      await vi.advanceTimersByTimeAsync(499)
+      expect(client.call).toHaveBeenCalledTimes(2)
+      await vi.advanceTimersByTimeAsync(1)
+      expect(client.call).toHaveBeenCalledTimes(3)
+      await vi.advanceTimersByTimeAsync(500)
+      expect(await promise).toMatchObject({ delivery: 'submitted', submission: { state } })
+      expect(process.exitCode).toBe(state === 'accepted' ? 0 : state === 'rejected' ? 1 : 3)
+      expect(client.call).toHaveBeenNthCalledWith(4, 'agentSession.history', {
+        sessionId: SESSION,
+        direction: 'tail',
+        limit: 1
+      })
+    }
+  )
+
+  it('pending mantém espera até 30s, polling 500ms e sai 3 no teto', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-11-03T12:00:00Z'))
+    const client = fakeClient([historyPage([], 7), sent('pending')])
+    client.call.mockResolvedValue(historyPage([], 7, { submissions: [submission('pending')] }))
+    const promise = run('chat send', { session: SESSION, text: 'hi' }, client)
+    let completed = false
+    void promise.then(() => {
+      completed = true
+    })
+    await vi.advanceTimersByTimeAsync(29_999)
+    expect(completed).toBe(false)
+    expect(client.call).toHaveBeenCalledTimes(61)
+    await vi.advanceTimersByTimeAsync(1)
+    expect(await promise).toMatchObject({ delivery: 'submitted', submission: { state: 'pending' } })
+    expect(client.call).toHaveBeenCalledTimes(62)
+    expect(
+      client.call.mock.calls
+        .slice(2)
+        .every(
+          ([method, params]) =>
+            method === 'agentSession.history' && params.direction === 'tail' && params.limit === 1
+        )
+    ).toBe(true)
+    expect(process.exitCode).toBe(3)
+    await vi.advanceTimersByTimeAsync(500)
+    expect(client.call).toHaveBeenCalledTimes(62)
+  })
+})
