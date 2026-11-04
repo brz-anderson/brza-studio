@@ -28,6 +28,8 @@ import {
 import { printResult } from '../format'
 import { RuntimeClientError } from '../runtime-client'
 import { formatChatCursor, parseChatCursor } from '../brza/chat-cursor'
+import { chatQueueHold } from '../brza/chat-queue-hold'
+import { chatSendOutcome } from '../brza/chat-send-outcome'
 
 const DEFAULT_READ_LIMIT = 20
 const MAX_READ_LIMIT = 100
@@ -191,30 +193,101 @@ export const CHAT_HANDLERS: Record<string, CommandHandler> = {
       body: structuredAgentSessionSendBody(text, []),
       ...(queue ? { delivery: 'queue-if-active' as const } : {})
     })
-    const result = await client.call<AgentSessionMutationResult<AgentSessionSendResult>>(
-      'agentSession.send',
-      mutation
-    )
-    if (!result.result.ok) {
-      throw new RuntimeClientError(result.result.refusal.code, result.result.refusal.message)
+    const operation = mutation.envelope.clientOperationId
+    let result: Awaited<
+      ReturnType<typeof client.call<AgentSessionMutationResult<AgentSessionSendResult>>>
+    >
+    try {
+      result = await client.call<AgentSessionMutationResult<AgentSessionSendResult>>(
+        'agentSession.send',
+        mutation
+      )
+    } catch (error) {
+      if (!(error instanceof RuntimeClientError) || error.code !== 'runtime_timeout') {
+        throw error
+      }
+      const uncertain = {
+        ...history,
+        result: {
+          session,
+          operation,
+          replayed: false,
+          delivery: 'unknown' as const,
+          submission: { state: 'unknown' as const, reason: error.message },
+          clientMessageId: null
+        }
+      }
+      printResult(
+        uncertain,
+        json,
+        () => `Delivery is uncertain. Retry with --operation ${operation} or read the chat.`
+      )
+      process.exitCode = 3
+      return
     }
-    const value = result.result.value
-    const delivery = 'queued' in value ? 'queued' : 'submitted'
+    let submissionResult: AgentSessionMutationResult<AgentSessionSendResult> = result.result
+    if (
+      submissionResult.ok &&
+      'submission' in submissionResult.value &&
+      submissionResult.value.submission.dispatchState === 'pending'
+    ) {
+      const started = Date.now()
+      const pendingMessageId = submissionResult.value.clientMessageId
+      while (Date.now() - started < 30_000) {
+        await new Promise((resolve) => setTimeout(resolve, 500))
+        const latest = await client.call<HistoryResult>('agentSession.history', {
+          sessionId: session,
+          direction: 'tail',
+          limit: 1
+        })
+        const resolved = latest.result.page.submissions.find(
+          (entry) => entry.clientMessageId === pendingMessageId
+        )
+        if (resolved && resolved.dispatchState !== 'pending') {
+          submissionResult = {
+            ...submissionResult,
+            value: { clientMessageId: resolved.clientMessageId, submission: resolved }
+          }
+          break
+        }
+      }
+    }
+    const outcome = chatSendOutcome(submissionResult)
+    const value = submissionResult.ok ? submissionResult.value : undefined
+    let queuePage: HistoryResult['page'] | undefined
+    if (value && 'queued' in value) {
+      const queuedHistory = await client.call<HistoryResult>('agentSession.history', {
+        sessionId: session,
+        direction: 'tail',
+        limit: 1
+      })
+      queuePage = queuedHistory.result.page
+    }
+    const visibleOutcome = { delivery: outcome.delivery, submission: outcome.submission }
     printResult(
       {
         ...result,
         result: {
           session,
-          delivery,
-          clientMessageId: value.clientMessageId,
-          ...('queued' in value ? { queuePosition: value.queued.position } : {})
+          operation,
+          replayed:
+            submissionResult.ok && 'replayed' in result.result ? result.result.replayed : false,
+          ...visibleOutcome,
+          clientMessageId: value?.clientMessageId ?? null,
+          ...(value && 'queued' in value
+            ? {
+                queuePosition: value.queued.position,
+                nextQueuedMessageId: queuePage?.nextQueuedMessageId ?? null,
+                held_by: chatQueueHold(queuePage ?? history.result.page),
+                ...(queuePage?.queuePause ? { queuePaused: true } : {})
+              }
+            : {}),
+          ...(!submissionResult.ok ? { refusal: submissionResult.refusal } : {})
         }
       },
       json,
-      (sent) =>
-        sent.delivery === 'queued'
-          ? `Queued for ${sent.session}; it is sent when the current turn ends.`
-          : `Sent to ${sent.session}.`
+      (sent) => `Chat send ${sent.submission.state} for ${sent.session}.`
     )
+    process.exitCode = outcome.exitCode
   }
 }

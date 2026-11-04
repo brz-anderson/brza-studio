@@ -536,7 +536,8 @@ describe('chat send', () => {
           clientMessageId: 'm-1',
           queued: { messageId: 'q-1', position: 1, state: 'waiting' }
         }
-      })
+      }),
+      historyPage([], 7, { actionablePromptIds: ['p1'], nextQueuedMessageId: 'q-2' })
     ])
     const result = await run('chat send', { session: SESSION, text: 'Run the tests' }, client)
     const params = client.call.mock.calls[1]![1]
@@ -550,9 +551,14 @@ describe('chat send', () => {
     })
     expect(result).toEqual({
       session: SESSION,
+      operation: expect.any(String),
+      replayed: false,
       delivery: 'queued',
+      submission: { state: 'queued', reason: null },
       clientMessageId: 'm-1',
-      queuePosition: 1
+      queuePosition: 1,
+      nextQueuedMessageId: 'q-2',
+      held_by: 'question'
     })
   })
 
@@ -565,7 +571,10 @@ describe('chat send', () => {
           replayed: false,
           fence: 2,
           cursor: { epoch: 'e', sequence: 1 },
-          value: { clientMessageId: 'm-2', submission: {} }
+          value: {
+            clientMessageId: 'm-2',
+            submission: { clientMessageId: 'm-2', dispatchState: 'accepted', reason: null }
+          }
         })
       ],
       []
@@ -575,7 +584,7 @@ describe('chat send', () => {
     expect(result.delivery).toBe('submitted')
   })
 
-  it('reports a host refusal as an error instead of a sent message', async () => {
+  it('reports a host refusal as a result with exit code 1', async () => {
     const client = fakeClient([
       historyPage([], 2),
       ok({
@@ -583,9 +592,12 @@ describe('chat send', () => {
         refusal: { code: 'agent_session_fence_mismatch', message: 'The chat restarted.' }
       })
     ])
-    await expect(run('chat send', { session: SESSION, text: 'hi' }, client)).rejects.toMatchObject({
-      code: 'agent_session_fence_mismatch'
+    expect(await run('chat send', { session: SESSION, text: 'hi' }, client)).toMatchObject({
+      delivery: 'refused',
+      submission: { state: 'refused' },
+      refusal: { code: 'agent_session_fence_mismatch' }
     })
+    expect(process.exitCode).toBe(1)
   })
 
   it('refuses empty text before contacting the host', async () => {

@@ -39,6 +39,8 @@ export const CHAT_COMMAND_SPECS: CommandSpec[] = [
     notes: [
       'Sends the text as your message, as if typed in the chat.',
       'While the agent is working, hosts with a message queue hold the message until the turn ends; the result says "queued".',
+      'Exit 0 when accepted or queued, 1 when refused or rejected, and 3 when pending or unknown. On 3, do not resend; retry with the same --operation or read the chat.',
+      'A queued result reports queuePosition, nextQueuedMessageId and held_by: question, working or null. queuePaused is true when the queue is stopped.',
       'A chat that restarted since it was read refuses the send; read it again and resend.'
     ],
     examples: [

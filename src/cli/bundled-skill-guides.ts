@@ -675,6 +675,8 @@ const ORCA_CLI_MARKDOWN = [
   "- `chat read --cursor <nextCursor>` returns only what changed since the last read; keep the `nextCursor` it returns and read again while `hasNewer` is true. Exit 2 with `cursor_reset` means the cursor no longer applies: start over from the entries and `nextCursor` it returns.",
   "- Repeated `cursor_reset` in the same chat: read without `--cursor` and start over.",
   "- `chat send` sends the text as the user's message. While the agent works, a host with a message queue holds it until the turn ends and reports `delivery: \"queued\"`.",
+  "- `chat send` exits 0 when the message was accepted or queued, 1 when nothing was delivered, and 3 when delivery is uncertain. On 3, do not resend: retry with `--operation <operation>` or read the chat.",
+  "- A queued message reports `held_by`: `question` (an approval or question is waiting) or `working` (the current turn has not ended) or null (the queue drained or was stopped, with `queuePaused: true`).",
   "- A refused send was not delivered. Read the chat again before resending.",
   "- When relaying for a user from outside Orca (for example a voice or messaging assistant on the same machine), report from `chat list` and `chat read`, repeat an instruction back and get the user's confirmation before `chat send`, and send the user's words without adding instructions.",
   "",
