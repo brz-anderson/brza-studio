@@ -159,6 +159,7 @@ it('names no chat from a WSL session, whose id this host cannot resolve', async 
   })
 
   expect(await evidenceSent(new RuntimeClient(root), 'agent.launchReplay')).toBeUndefined()
+  expect(await evidenceSent(new RuntimeClient(root), 'agentSession.send')).toBeUndefined()
 })
 
 it('names no chat to a paired server', async () => {
@@ -168,6 +169,12 @@ it('names no chat to a paired server', async () => {
   await new RuntimeClient().call('agent.launchReplay', {})
   expect(transport.local).not.toHaveBeenCalled()
   expect(transport.remotePreflight.mock.calls[0]?.[5]).not.toHaveProperty(
+    'orchestrationCompatibilityEvidence'
+  )
+
+  await new RuntimeClient().call('agentSession.send', {})
+  expect(transport.local).not.toHaveBeenCalled()
+  expect(transport.remotePreflight.mock.calls.at(-1)?.[5]).not.toHaveProperty(
     'orchestrationCompatibilityEvidence'
   )
 })
