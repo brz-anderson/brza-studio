@@ -54,8 +54,13 @@ import {
 } from './orchestration-recovery-command'
 
 const LONG_POLL_CLIENT_GRACE_MS = 10_000
-// The host records the launched agent in the caller's chat; older hosts ignore the evidence.
-const AGENT_LAUNCH_METHODS: ReadonlySet<string> = new Set(['agent.launch', 'agent.launchReplay'])
+// The host records the launched agent in the caller's chat, and a chat-to-chat send as that chat's
+// task; older hosts ignore the evidence.
+const CALLER_CHAT_METHODS: ReadonlySet<string> = new Set([
+  'agent.launch',
+  'agent.launchReplay',
+  'agentSession.send'
+])
 
 const loadWebSocketTransport = async () => await import('./websocket-transport.js')
 
@@ -137,7 +142,7 @@ export class RuntimeClient {
           compatibilityInvocationId:
             orchestrationRequestId ?? this.orchestrationCompatibility.compatibilityInvocationId
         }
-      : AGENT_LAUNCH_METHODS.has(method) && !this.remote && this.agentLaunchCaller
+      : CALLER_CHAT_METHODS.has(method) && !this.remote && this.agentLaunchCaller
         ? { orchestrationCompatibilityEvidence: this.agentLaunchCaller }
         : {}
     const envelope = {

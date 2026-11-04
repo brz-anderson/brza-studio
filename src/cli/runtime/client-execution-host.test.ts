@@ -141,6 +141,15 @@ it('names the launching chat on launches from a native chat, and on nothing else
   expect(await evidenceSent(client, 'terminal.list')).toBeUndefined()
 })
 
+it('names the caller chat on a chat-to-chat send, and not on its history read', async () => {
+  const root = serverProfileWith({})
+  nativeChatEnv()
+  const client = new RuntimeClient(root)
+
+  expect(await evidenceSent(client, 'agentSession.send')).toEqual({ agentSessionId: CALLER_CHAT })
+  expect(await evidenceSent(client, 'agentSession.history')).toBeUndefined()
+})
+
 it('names no chat from a WSL session, whose id this host cannot resolve', async () => {
   const root = serverProfileWith({})
   nativeChatEnv({
