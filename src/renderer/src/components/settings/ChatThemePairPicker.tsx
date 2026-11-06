@@ -13,9 +13,9 @@ import { useSystemPrefersDark } from '../terminal-pane/use-system-prefers-dark'
 import {
   SettingsRow,
   SettingsSegmentedControl,
-  SettingsSwitchRow,
-  ThemePicker
-} from './SettingsFormControls'
+  SettingsSwitchRow
+} from './form-controls/SettingsFormControls'
+import { ThemePicker } from './terminal/themes/TerminalThemePicker'
 
 type ThemeTarget = 'dark' | 'light'
 

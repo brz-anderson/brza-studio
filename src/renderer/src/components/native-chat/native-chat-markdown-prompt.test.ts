@@ -1,6 +1,6 @@
 import { Editor, type JSONContent } from '@tiptap/core'
 import { afterEach, describe, expect, it } from 'vitest'
-import { createRichMarkdownEditorCodec } from '../editor/rich-markdown-source-transport'
+import { createRichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import {
   createNativeChatMarkdownPromptExtensions,
   markdownPromptContent,

@@ -2,6 +2,7 @@ import { AgentSessionSelectionSchema } from '../agent-session/options/agent-sess
 import {
   SendBody,
   MAX_OPTION_LABEL,
+  CompactInstructions,
   AgentSessionOptions
 } from './structured-agent-session-message-params'
 import { TerminalClose } from './terminal-unary-params'
@@ -22,9 +23,8 @@ import {
 } from '../agent-session/agent-session-wire'
 import { AGENT_SESSION_THREAD_GOAL_OBJECTIVE_MAX_LENGTH } from '../agent-session/agent-session-thread-goal-wire'
 import { MutationEnvelope } from './structured-agent-session-mutation-envelope'
-import { ResumeSource } from './structured-agent-session-resume-source-params'
+import { ResumeSource, ResumeWriterAdmission } from './structured-agent-session-resume-params'
 
-export { ResumeSource }
 export {
   SendBlock,
   MAX_BLOCKS,
@@ -39,6 +39,8 @@ export {
   MAX_ID_LENGTH,
   SessionId
 } from './structured-agent-session-identifiers'
+
+export { ResumeSource } from './structured-agent-session-resume-params'
 
 // Four Claude questions with all four generated choices occupy 610 chars when fully percent-encoded.
 export const MAX_RESPONSE_OPTION_ID_LENGTH = AGENT_SESSION_RESPONSE_OPTION_ID_MAX_LENGTH
@@ -102,7 +104,8 @@ export const AttachParams = z
 export const CreateSupportParams = z
   .object({
     worktree: Identifier('Invalid worktree selector'),
-    agent: StructuredAgent
+    agent: StructuredAgent,
+    resumeFrom: ResumeWriterAdmission.optional()
   })
   .strict()
 
@@ -172,8 +175,9 @@ export const CancelParams = z
     if (value.prompt !== undefined && value.scope === 'background-tasks') {
       ctx.addIssue({ code: 'custom', message: 'A prompt cannot use background-task scope' })
     }
-    if (value.turnId === undefined && (value.prompt !== undefined || value.scope !== undefined)) {
-      ctx.addIssue({ code: 'custom', message: 'A prompt or background-task cancel names its turn' })
+    // A card with no running turn names only itself; the host routes it.
+    if (value.turnId === undefined && value.scope !== undefined) {
+      ctx.addIssue({ code: 'custom', message: 'A background-task cancel names its turn' })
     }
   })
 
@@ -268,18 +272,24 @@ export const ModelCatalogParams = z.strictObject({
   worktree: Identifier('Invalid worktree selector').optional(),
   waitForListing: z.boolean().optional(),
   // Read saved data without starting a listing; gate on saved-only capability because older hosts refuse unknown keys.
-  savedOnly: z.boolean().optional()
+  savedOnly: z.boolean().optional(),
+  selectedModel: Identifier('Invalid selected model').optional()
 })
 
 export const ConversationCommandParams = z
   .object({
     envelope: MutationEnvelope,
     command: z.enum(['clear', 'compact']),
+    /** Only where the session's options report compactInstructions: older strict hosts refuse it. */
+    instructions: CompactInstructions.optional(),
     /** Queue active /compact only with agent-session.queued-commands.v1; older strict hosts refuse it.
      * /clear never queues: delivery is outside its fingerprint, so including it conflicts. */
     delivery: z.literal('queue-if-active').optional()
   })
   .strict()
+  .refine((params) => params.instructions === undefined || params.command === 'compact', {
+    message: 'Only /compact takes instructions'
+  })
 
 export const ThreadGoalParams = z
   .object({

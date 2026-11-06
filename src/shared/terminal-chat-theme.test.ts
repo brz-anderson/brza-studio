@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { getDefaultSettings } from './constants'
 import { resolveSavedTerminalColors } from './terminal-chat-theme'
-import { TERMINAL_THEME_CATALOG } from './terminal-themes'
+import { TERMINAL_THEME_CATALOG } from './terminal-themes/terminal-theme-catalog'
 
 const settings = { ...getDefaultSettings('/tmp'), theme: 'dark' as const }
 

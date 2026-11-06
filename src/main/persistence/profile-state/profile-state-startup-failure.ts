@@ -91,7 +91,7 @@ export function formatProfileStateStartupFailure(
         ),
         translate(
           'profileState.startupFailure.repairCommand',
-          'Stop BrzA Studio, then run `{{command}}` to replace only the damaged parts from backups and keep everything else. BrzA Studio keeps a copy of the damaged file.',
+          'Stop BrzA Studio, then run `{{command}}` to repair only the damaged parts and keep everything else. BrzA Studio keeps a copy of the damaged file.',
           {
             command: `orca profile state rollback --repair --profile-id ${error.profileId}`
           }

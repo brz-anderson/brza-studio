@@ -11,14 +11,14 @@ import { translate } from '@/i18n/i18n'
 import { useNativeChatOrcaStopView } from '../native-chat-orca-stop-context'
 import { useNativeChatUsageLimitContinueInOtherAccount } from '../NativeChatUsageLimitActions'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
-import type { NativeChatUsageLimitAutoResumeView } from '../use-native-chat-usage-limit-auto-resume'
+import type { NativeChatUsageLimitAutoContinueState } from '../NativeChatUsageLimitAutoContinue'
 
-/** Beside "Resume automatically" on a usage-limit row (P40, P79): moves the chat to the chosen
- *  account and continues now, which drops the scheduled resume. */
+/** Beside Continue on a usage-limit row (P40, P79): moves the chat to the chosen account and
+ *  continues now, which drops the scheduled automatic continue. */
 export function BrzaUsageLimitContinueInOtherAccount({
-  autoResume
+  autoContinue
 }: {
-  autoResume: NativeChatUsageLimitAutoResumeView | null | undefined
+  autoContinue: NativeChatUsageLimitAutoContinueState | null | undefined
 }): React.JSX.Element | null {
   const view = useNativeChatUsageLimitContinueInOtherAccount()
   const orcaStopView = useNativeChatOrcaStopView()
@@ -30,8 +30,8 @@ export function BrzaUsageLimitContinueInOtherAccount({
       view={view}
       disabled={orcaStopView.usageLimitContinueDisabled}
       onContinue={() => {
-        if (autoResume?.resumeAt != null) {
-          autoResume.cancel()
+        if (autoContinue?.kind === 'scheduled') {
+          autoContinue.cancel()
         }
         orcaStopView.continueUsageLimit()
       }}

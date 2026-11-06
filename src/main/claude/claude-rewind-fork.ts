@@ -14,16 +14,24 @@ import { splitTranscriptStreamLines } from '../native-chat/transcript-stream-lin
 import { claudeSessionIdForRewind } from './structured/claude-structured-session-id'
 import { materializeClaudeRewindTranscript } from './claude-rewind-transcript'
 
-type TranscriptPromptRow = { type: 'user'; uuid: string; parentUuid?: unknown }
+type TranscriptUserRow = {
+  type: 'user'
+  uuid: string
+  parentUuid?: unknown
+  isMeta?: unknown
+  message?: unknown
+}
 
-function isPromptRow(value: unknown, promptUuid: string): value is TranscriptPromptRow {
+const LOCAL_COMMAND_CAVEAT_OPEN = '<local-command-caveat>'
+
+function isUserRow(value: unknown): value is TranscriptUserRow {
   return (
     typeof value === 'object' &&
     value !== null &&
     'type' in value &&
     value.type === 'user' &&
     'uuid' in value &&
-    value.uuid === promptUuid
+    typeof value.uuid === 'string'
   )
 }
 
@@ -56,20 +64,58 @@ export async function findClaudeTranscriptRow<Row>(
   return undefined
 }
 
-/** Rewind cuts at the prompt's parent: null for the first prompt, undefined if not found. */
+function isLocalCommandCaveatRow(row: TranscriptUserRow): boolean {
+  return (
+    row.isMeta === true &&
+    typeof row.message === 'object' &&
+    row.message !== null &&
+    'content' in row.message &&
+    typeof row.message.content === 'string' &&
+    row.message.content.startsWith(LOCAL_COMMAND_CAVEAT_OPEN)
+  )
+}
+
+/**
+ * Rewind cuts at the prompt's parent, skipping a local command's caveat so the next prompt isn't
+ * read as that command. Null for the first prompt, undefined if not found.
+ */
 export async function readClaudePromptParentUuid(input: {
   providerSessionId: string
   promptUuid: string
   claudeConfigDir: string
 }): Promise<string | null | undefined> {
-  const found = await findClaudeTranscriptRow(input, input.promptUuid, (row) =>
-    isPromptRow(row, input.promptUuid)
-  )
-  if (!found) {
+  const path = await resolveSessionFilePath('claude', input.providerSessionId, {
+    claudeProjectsDir: join(input.claudeConfigDir, 'projects')
+  })
+  if (!path) {
     return undefined
   }
-  const { parentUuid } = found.row
-  return typeof parentUuid === 'string' && parentUuid ? parentUuid : null
+  // Claude appends a local command's caveat before the command row, so one pass sees it first.
+  const caveatParents = new Map<string, string | null>()
+  for await (const { line } of splitTranscriptStreamLines(createReadStream(path))) {
+    const mayBeCaveat = line.includes(LOCAL_COMMAND_CAVEAT_OPEN)
+    if (!mayBeCaveat && !line.includes(input.promptUuid)) {
+      continue
+    }
+    let row: unknown
+    try {
+      row = JSON.parse(line)
+    } catch {
+      continue
+    }
+    if (!isUserRow(row)) {
+      continue
+    }
+    const parent = typeof row.parentUuid === 'string' && row.parentUuid ? row.parentUuid : null
+    if (row.uuid === input.promptUuid) {
+      const caveatParent = parent ? caveatParents.get(parent) : undefined
+      return caveatParent === undefined ? parent : caveatParent
+    }
+    if (mayBeCaveat && isLocalCommandCaveatRow(row)) {
+      caveatParents.set(row.uuid, parent)
+    }
+  }
+  return undefined
 }
 
 /** Search the prompt's source session so rewinds across earlier forks still find it. */

@@ -10,6 +10,7 @@ import { NATIVE_CHAT_PASTED_TEXT_TOKEN } from './native-chat-pasted-text-referen
 import {
   FILE_REFERENCE_NODE,
   IMAGE_REFERENCE_NODE,
+  promptLeafString,
   promptTextContent
 } from './native-chat-prompt-document-text'
 import { ReactNodeViewRenderer, Node, type JSONContent } from '@tiptap/react'
@@ -124,10 +125,7 @@ export function fileReferenceContent(path: string): JSONContent {
 
 /** A pill reads as its token and a hard break as a newline, so the text is what the agent receives. */
 export function promptLeafText(node: ProseMirrorNode): string {
-  if (node.type.name === IMAGE_REFERENCE_NODE) {
-    return imageReferenceToken(String(node.attrs.attachmentId))
-  }
-  return node.type.name === 'hardBreak' ? '\n' : String(node.attrs.token ?? '')
+  return promptLeafString(node.type.name, node.attrs, node.text)
 }
 
 export function promptText(doc: ProseMirrorNode, from = 0, to = doc.content.size): string {

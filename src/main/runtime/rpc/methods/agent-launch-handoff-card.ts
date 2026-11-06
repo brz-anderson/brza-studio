@@ -1,4 +1,4 @@
-import type { AgentLaunchResult } from '../../../../shared/agent-launch-intent'
+import type { AgentLaunchResult } from '../../../../shared/agent-launch/contracts/agent-launch-intent'
 import { ORCA_SESSION_ADDRESS_PREFIX } from '../../../../shared/orca-session-address'
 import type { AgentLaunchParams } from '../../../../shared/rpc-contract/agent-launch-params'
 import { isLocalCommandPrompt } from '../../../agent-launch/agent-launch-local-command-prompt'

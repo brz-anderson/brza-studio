@@ -6,13 +6,13 @@ import type { StructuredAgentSessionFirstMessage } from '../../shared/agent-sess
 import type {
   AgentLaunchIntent,
   AgentLaunchPromptDisposal,
-  AgentLaunchResult
-} from '../../shared/agent-launch-intent'
+  AgentLaunchResult,
+  AgentLaunchModeReceipt
+} from '../../shared/agent-launch/contracts/agent-launch-intent'
 import type { AgentMessageSender } from '../../shared/agent-session/agent-session-message-source'
-import { agentPromptRidesLaunchCommand } from '../../shared/tui-agent-startup'
+import { agentPromptRidesLaunchCommand } from '../../shared/agent-launch/startup/tui-agent-startup'
 import { chatTaskSource } from '../runtime/orchestration/chat-task-source'
 import { isLocalCommandPrompt } from './agent-launch-local-command-prompt'
-import type { AgentLaunchModeReceipt } from './agent-launch-mode'
 import type { CreatedSurface } from './agent-launch-executor'
 import type { AgentLaunchSurfaceExecution } from './agent-launch-execution'
 import type { AgentLaunchStructuredSurface } from './agent-launch-surface-factories'

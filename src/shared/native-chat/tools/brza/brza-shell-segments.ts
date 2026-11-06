@@ -2,7 +2,7 @@ import {
   COMMAND_TOKEN_SCAN_MAX_CHARS,
   getCommandTokenPathBasename
 } from '../../../command-token-scanner'
-import { tokenizeCommandLine } from '../../../agent-command-line-entrypoint'
+import { tokenizeCommandLine } from '../../../agent-status/process/agent-command-line-entrypoint'
 import { splitUnquotedSegments } from '../../../orca-browser-cli-commands'
 
 /** One command of a shell line: its text, and its words without leading `VAR=x`, the program

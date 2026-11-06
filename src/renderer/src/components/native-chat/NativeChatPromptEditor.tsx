@@ -1,3 +1,4 @@
+import { insertAgentReferences } from './native-chat-agent-reference'
 import { nativeChatDraftPositions } from './native-chat-composer-draft-memory'
 import { createNativeChatPastedTextHistory } from './native-chat-pasted-text-history'
 import { resolveNativeChatPastedText } from './native-chat-composer-pasted-text-references'
@@ -34,7 +35,7 @@ import {
   useNativeChatPromptCoordinates,
   useNativeChatPromptMode
 } from './use-native-chat-prompt-mode'
-import { mountedEditorView } from './native-chat-mounted-editor-view'
+import { focusMountedNativeChatEditor, mountedEditorView } from './native-chat-mounted-editor-view'
 
 import { useNativeChatComposerMount } from './native-chat-composer-mount'
 
@@ -217,14 +218,13 @@ function NativePromptEditor({
     return subscribeToNativeChatComposerDraft(scopeKey, capture)
   }, [editor, scopeKey, historyPaths])
 
-  useLayoutEffect(() => {
-    editor?.setEditable(!disabled, false)
-  }, [disabled, editor])
+  useLayoutEffect(() => editor?.setEditable(!disabled, false), [disabled, editor])
 
   const input = useMemo<NativeChatComposerInput | null>(
     () =>
       editor
         ? {
+            insertAgentReferences: (references) => insertAgentReferences(editor, references),
             insertText: (text) => {
               const content = editor.schema.nodeFromJSON(coordinates.content(text))
               editor.view.dispatch(
@@ -307,16 +307,7 @@ function NativePromptEditor({
             get selectionEnd() {
               return coordinates.offset(editor.state.doc, editor.state.selection.to)
             },
-            focus: () => {
-              // A focus request can arrive before the view mounts (a chat opened while its
-              // workspace switches in); tiptap throws then, so wait for the next reveal instead.
-              const view = mountedEditorView(editor)
-              // Focus the editor view so an inserted caret replaces the stale DOM selection.
-              view?.focus()
-              if (view && !editor.isEditable) {
-                view.dom.focus()
-              }
-            },
+            focus: () => focusMountedNativeChatEditor(editor),
             contains: (node) => mountedEditorView(editor)?.dom.contains(node) === true,
             isCaretOnVisualEdge: (edge) => {
               const { selection, doc } = editor.state

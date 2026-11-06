@@ -3,7 +3,7 @@ import { useLayoutEffect, useMemo, useRef, type MutableRefObject } from 'react'
 import type { Editor } from '@tiptap/core'
 import Placeholder from '@tiptap/extension-placeholder'
 import { useAppStore } from '@/store'
-import { createRichMarkdownEditorCodec } from '../editor/rich-markdown-source-transport'
+import { createRichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import {
   NativeChatFileReference,
   NativeChatImageReference,
@@ -15,6 +15,7 @@ import {
   promptModeExtensions,
   replacePromptDocument
 } from './native-chat-prompt-editor-mode'
+import { NativeChatAgentReference } from './native-chat-agent-reference'
 import { NativeChatUnkernedRunDecorations } from './native-chat-unkerned-run-decorations'
 
 /** The mode, its codec and extensions, and the content a new editor starts with. */
@@ -33,6 +34,7 @@ export function useNativeChatPromptMode(
       NativeChatSkill,
       NativeChatFileReference,
       NativeChatImageReference,
+      NativeChatAgentReference,
       NativeChatUnkernedRunDecorations,
       // A disabled box still says why it is disabled, as the plain text box's placeholder does.
       Placeholder.configure({

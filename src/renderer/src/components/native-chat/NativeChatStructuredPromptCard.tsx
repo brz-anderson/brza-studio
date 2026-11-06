@@ -1,7 +1,6 @@
 import { useState, type RefObject } from 'react'
 import { agentSessionPromptQuestions } from '../../../../shared/agent-session/agent-session-question-answer'
-import { chatApprovalFromJournal } from '../../../../shared/native-chat-interactive-prompt'
-import type { CommentMarkdownLinkClickHandler } from '@/components/sidebar/CommentMarkdown'
+import { chatApprovalFromJournal } from '../../../../shared/native-chat/input/native-chat-interactive-prompt'
 import { NativeChatApprovalCard } from './NativeChatApprovalCard'
 import { NativeChatPromptStrip } from './NativeChatPromptCollapse'
 import { NativeChatStructuredQuestionCard } from './NativeChatStructuredQuestionCard'
@@ -37,18 +36,14 @@ export function NativeChatStructuredPromptCard({
   response,
   onCancel,
   shouldFocus,
-  answerInputRef,
-  onLinkClick,
-  allowFileUriLinks
+  answerInputRef
 }: {
   prompt: StructuredPromptItem
   collapse: StructuredPromptCollapse
   response: ReturnType<typeof useStructuredPromptResponseHold>
   onCancel: () => void
   shouldFocus: boolean
-  answerInputRef: RefObject<HTMLInputElement | null>
-  onLinkClick?: CommentMarkdownLinkClickHandler
-  allowFileUriLinks: boolean
+  answerInputRef: RefObject<HTMLTextAreaElement | null>
 }): React.JSX.Element {
   const key = structuredPromptKey(prompt)
   const approval = prompt.body.kind === 'approval' ? chatApprovalFromJournal(prompt.body) : null
@@ -69,8 +64,6 @@ export function NativeChatStructuredPromptCard({
             onCancel={onCancel}
             onCollapse={collapse.collapse}
             shouldFocus={shouldFocus && !collapse.collapsed}
-            onLinkClick={onLinkClick}
-            allowFileUriLinks={allowFileUriLinks}
           />
         ) : null}
         {questions ? (

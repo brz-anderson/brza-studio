@@ -3,9 +3,10 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { resetLocalImageSrcStateForTests } from '@/components/editor/useLocalImageSrc'
-import type { FileLinkExists } from '@/components/sidebar/comment-markdown-native-chat-file-links'
+import { resetLocalImageCacheState as resetLocalImageSrcStateForTests } from '@/components/editor/document-images/local-image-src-cache'
+import type { FileLinkExists } from '../../../../shared/native-chat/native-chat-file-link-tree'
 import { useAppStore } from '@/store'
+import { NativeChatLinkClickContext } from './native-chat-link-click-context'
 import { NativeChatMarkdown } from './NativeChatMarkdown'
 import {
   NativeChatFileLinkExistenceContext,
@@ -81,17 +82,18 @@ describe('native chat Markdown BrzA image thumbnails', () => {
     ].join('\n\n')
     const reply = (streaming: boolean): React.JSX.Element => (
       <TooltipProvider>
-        <NativeChatFileLinkExistenceContext.Provider value={shotExistence}>
-          <NativeChatMarkdownImageOwnerContext.Provider value={localOwner}>
-            <NativeChatMarkdown
-              content={content}
-              variant="document"
-              streaming={streaming}
-              linkifyFilePaths
-              allowFileUriLinks
-            />
-          </NativeChatMarkdownImageOwnerContext.Provider>
-        </NativeChatFileLinkExistenceContext.Provider>
+        <NativeChatLinkClickContext value={() => {}}>
+          <NativeChatFileLinkExistenceContext.Provider value={shotExistence}>
+            <NativeChatMarkdownImageOwnerContext.Provider value={localOwner}>
+              <NativeChatMarkdown
+                content={content}
+                variant="document"
+                streaming={streaming}
+                linkifyFilePaths
+              />
+            </NativeChatMarkdownImageOwnerContext.Provider>
+          </NativeChatFileLinkExistenceContext.Provider>
+        </NativeChatLinkClickContext>
       </TooltipProvider>
     )
     const triggers = (hidden = false): HTMLElement[] =>

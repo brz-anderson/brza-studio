@@ -10,8 +10,8 @@ import {
   DEFAULT_TERMINAL_THEME_LIGHT,
   lookupTerminalTheme,
   selectTerminalTheme
-} from './terminal-theme-selection'
-import { isTerminalBackgroundLight, mixCssColors } from './terminal-title-contrast'
+} from './terminal-themes/terminal-theme-selection'
+import { isTerminalBackgroundLight, mixCssColors } from './terminal-themes/terminal-title-contrast'
 
 /** A dark theme, a light theme, and whether the light one is used; shared by the chat and by any
  *  surface that offers its own theme in the chat's catalog. Absent names are the BrzA default. */

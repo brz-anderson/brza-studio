@@ -4,8 +4,8 @@ import {
   seedTerminalViewerColors,
   setTerminalViewAttributes,
   setTerminalViewerColorsListener
-} from '../../../runtime/terminal-view-attribute-store'
-import { validateTerminalViewAttributes } from '../../../../shared/terminal-view-attributes'
+} from '../../../runtime/terminal/view/terminal-view-attribute-store'
+import { validateTerminalViewAttributes } from '../../../../shared/terminal/protocol/queries/terminal-view-attributes'
 import { resolveSavedTerminalColors } from '../../../../shared/terminal-chat-theme'
 import { publishColorQueryReplyColors } from '../provider/registry'
 import type { PtyIpcSession } from '../session'

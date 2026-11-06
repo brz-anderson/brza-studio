@@ -5,8 +5,8 @@ import type {
 } from '../../shared/native-chat/native-chat-usage-limit-auto-resume'
 import { readNodeFileWithinLimit } from '../../shared/node-bounded-file-reader'
 import { stringifyJsonWithinByteLimit } from '../../shared/node-bounded-json-stringify'
-import { durableWriteTempPath, writeFileDurable } from '../durable-file-write'
-import { withFileTransactionLock } from '../file-transaction-lock'
+import { durableWriteTempPath, writeFileDurable } from '../filesystem/durable-file-write'
+import { withFileTransactionLock } from '../filesystem/file-transaction-lock'
 
 export const AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_FILE =
   'agent-session-usage-limit-auto-resume.json'

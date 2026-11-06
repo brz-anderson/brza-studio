@@ -2,8 +2,8 @@
 import { getSchema, type AnyExtension, type Editor, type JSONContent } from '@tiptap/core'
 import type { Schema } from '@tiptap/pm/model'
 import StarterKit from '@tiptap/starter-kit'
-import { encodeRawMarkdownHtmlForRichEditor } from '../editor/raw-markdown-html'
-import type { RichMarkdownEditorCodec } from '../editor/rich-markdown-source-transport'
+import { encodeRawMarkdownHtmlForRichEditor } from '../editor/rich-markdown/raw-source/raw-markdown-html'
+import type { RichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import { readNativeChatDraftDocument } from './native-chat-draft-cache'
 import {
   createNativeChatMarkdownPromptExtensions,

@@ -6,7 +6,7 @@ import { getConnectionId } from '@/lib/connection-context'
 import {
   getWorktreeGitOwnerTarget,
   requireGitOwnerTarget
-} from '@/components/right-sidebar/worktree-git-owner-target'
+} from '@/components/right-sidebar/source-control/sync/worktree-git-owner-target'
 import type { NativeChatFileLinkContext } from '../native-chat-file-link'
 
 /** Opens a commit's combined diff in the chat's worktree, as the history panel's row does (R38.1). */

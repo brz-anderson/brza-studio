@@ -5,9 +5,9 @@ import {
 } from '../../../../shared/markdown-theme-settings'
 import { translate } from '@/i18n/i18n'
 import { ChatThemePairPicker } from './ChatThemePairPicker'
-import { SearchableSetting } from './SearchableSetting'
-import { SettingsSwitchRow } from './SettingsFormControls'
-import { markdownThemeSearchEntry } from './general-editor-search'
+import { SearchableSetting } from './section-layout/SearchableSetting'
+import { SettingsSwitchRow } from './form-controls/SettingsFormControls'
+import { markdownThemeSearchEntry } from './editor/general-editor-search'
 
 type MarkdownThemeSettingProps = {
   settings: GlobalSettings
