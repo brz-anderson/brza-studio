@@ -189,7 +189,9 @@ export async function callStructuredAgentSession<TResult>(
     expectedEnvironmentPairingRevision?: number
   } = {}
 ): Promise<TResult> {
-  await assertServerSupportsRewind(method, target)
+  if (method === 'agentSession.rewind' && target.kind === 'environment') {
+    await assertServerSupportsRewind(method, target)
+  }
   const timeoutMs = STRUCTURED_AGENT_SESSION_METHOD_TIMEOUT_MS.get(method)
   return timeoutMs === undefined && Object.keys(options).length === 0
     ? callRuntimeRpc<TResult>(target, method, params)
