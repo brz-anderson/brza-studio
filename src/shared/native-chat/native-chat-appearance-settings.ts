@@ -44,6 +44,8 @@ export type NativeChatGlobalSettings = {
   terminalFollowsChatTheme?: boolean
   /** Own sends bring the latest into view; off keeps a reader who scrolled up in place. Absent means on. */
   nativeChatScrollToLatestOnSend?: boolean
+  /** The changed-files card under each turn that edited files. Absent means on. */
+  nativeChatTurnDiffSummary?: boolean
 }
 
 /** Only explicit OFF keeps a reader's place on send. */
@@ -51,6 +53,13 @@ export function nativeChatScrollsToLatestOnSend(
   settings: { readonly nativeChatScrollToLatestOnSend?: unknown } | null | undefined
 ): boolean {
   return settings?.nativeChatScrollToLatestOnSend !== false
+}
+
+/** Only explicit OFF hides the per-turn changed-files card. */
+export function nativeChatShowsTurnDiffSummary(
+  settings: { readonly nativeChatTurnDiffSummary?: unknown } | null | undefined
+): boolean {
+  return settings?.nativeChatTurnDiffSummary !== false
 }
 
 export const DEFAULT_NATIVE_CHAT_FONT_SIZE = 14
