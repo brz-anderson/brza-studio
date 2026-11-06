@@ -306,6 +306,8 @@ module.exports = {
     '!notes{,/**/*}',
     // Local tooling directories are not runtime inputs and may contain symlink loops.
     '!{.claude,.grok,.agents,.codex}{,/**/*}',
+    // Worktrees nested in the checkout hold whole copies of the repo and their node_modules (tens of GB).
+    '!.worktrees{,/**/*}',
     '!Casks{,/**/*}',
     '!{AGENTS.md,CLAUDE.md,DEVELOPING.md,bundle-size-progress.md,ORCHESTRATION_IMPLEMENTATION_CHECKLIST.md,ORCHESTRATION_STRUCTURED_OUTPUT_DESIGN.md}',
     '!out/**/*.test.js',
