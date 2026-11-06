@@ -7,14 +7,13 @@ import { isDirectory } from './claude-profile-homes'
 import { claudeProfileMissing } from './claude-profile-launch-errors'
 import type { ClaudeProfileRouter } from './claude-profile-router'
 import type { ClaudeRuntimeAuthPreparation } from './runtime-auth/runtime-auth-types'
-import { findClaudeAccount } from './runtime-selection'
 
 /** The saved account when it is this host's own; undefined for any other id. */
 export function claudeSavedHostAccount(
-  router: Pick<ClaudeProfileRouter, 'settings'>,
+  router: Pick<ClaudeProfileRouter, 'savedAccount'>,
   accountId: string
 ): ClaudeManagedAccount | undefined {
-  const saved = findClaudeAccount(router.settings(), accountId)
+  const saved = router.savedAccount(accountId)
   return saved && saved.managedAuthRuntime !== 'wsl' ? saved : undefined
 }
 

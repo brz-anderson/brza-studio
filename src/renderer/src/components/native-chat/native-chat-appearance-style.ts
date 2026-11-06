@@ -6,8 +6,8 @@ import type { GlobalSettings } from '../../../../shared/global-settings-types'
 import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat/native-chat-appearance-settings'
 import { resolveNativeChatTheme } from '../../../../shared/native-chat-theme'
 import { nativeChatThemeSurfaceStyle } from '@/lib/native-chat-theme-surface-style'
-import { buildFontFamily } from '@/lib/monospace-font-family'
 import { buildAppFontFamily } from '@/lib/app-font-family'
+import { resolveEditorFontStack } from '@/lib/editor-typography'
 import { getSystemPrefersDark } from '@/lib/terminal-theme'
 import { useSystemPrefersDark } from '../terminal-pane/use-system-prefers-dark'
 
@@ -47,6 +47,7 @@ export function selectNativeChatAppearanceSettings(
     terminalPluginPalettes: settings?.terminalPluginPalettes,
     pluginSystemEnabled: settings?.pluginSystemEnabled,
     disabledPlugins: settings?.disabledPlugins,
+    editorFontFamily: settings?.editorFontFamily,
     terminalFontFamily: settings?.terminalFontFamily,
     nativeChatAppearance: settings?.nativeChatAppearance
   }
@@ -66,7 +67,7 @@ export function nativeChatAppearanceStyle(
     measuredWidth ? measuredWidth : width === 'wide' ? 960 : 736,
     maxWidthPx
   )
-  const font = buildFontFamily(settings?.terminalFontFamily ?? '')
+  const codeFont = resolveEditorFontStack(settings)
   const style: NativeChatAppearanceStyle = {
     '--chat-font-size': `${fontSize}px`,
     '--chat-ui-font-size': `${uiFontSize}px`,
@@ -79,7 +80,7 @@ export function nativeChatAppearanceStyle(
       Math.floor((((96 * columnWidthPx) / 736) * 14) / fontSize)
     ),
     '--chat-estimated-spacing-scale': uiFontSize / 14,
-    '--chat-code-font-family': font,
+    '--chat-code-font-family': codeFont,
     ...(appearance.fontFamily
       ? { '--chat-font-family': buildAppFontFamily(appearance.fontFamily) }
       : {})

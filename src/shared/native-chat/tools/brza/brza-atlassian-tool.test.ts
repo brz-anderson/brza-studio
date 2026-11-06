@@ -297,7 +297,7 @@ describe('Atlassian MCP tool lines', () => {
     it('opens the issue on the site the cloudId names when it is a domain', () => {
       const chip = brzaAtlassianChip(
         call('getJiraIssue', {
-          cloudId: 'fixfy.atlassian.net',
+          cloudId: 'example.atlassian.net',
           issueIdOrKey: 'FIX-110'
         })
       )
@@ -306,19 +306,19 @@ describe('Atlassian MCP tool lines', () => {
         target: { copyText: 'FIX-110' }
       })
       expect(brzaAtlassianChipUrl(chip!.target, null)).toBe(
-        'https://fixfy.atlassian.net/browse/FIX-110'
+        'https://example.atlassian.net/browse/FIX-110'
       )
     })
 
     it('takes the host of a cloudId that is a URL', () => {
       const chip = brzaAtlassianChip(
         call('getJiraIssue', {
-          cloudId: 'https://fixfy.atlassian.net/jira',
+          cloudId: 'https://example.atlassian.net/jira',
           issueIdOrKey: 'FIX-1'
         })
       )
       expect(brzaAtlassianChipUrl(chip!.target, null)).toBe(
-        'https://fixfy.atlassian.net/browse/FIX-1'
+        'https://example.atlassian.net/browse/FIX-1'
       )
     })
 
@@ -329,8 +329,8 @@ describe('Atlassian MCP tool lines', () => {
           issueIdOrKey: 'FIX-110'
         })
       )
-      expect(brzaAtlassianChipUrl(chip!.target, 'https://fixfy.atlassian.net/')).toBe(
-        'https://fixfy.atlassian.net/browse/FIX-110'
+      expect(brzaAtlassianChipUrl(chip!.target, 'https://example.atlassian.net/')).toBe(
+        'https://example.atlassian.net/browse/FIX-110'
       )
       expect(brzaAtlassianChipUrl(chip!.target, null)).toBeNull()
       expect(chip?.target.copyText).toBe('FIX-110')
@@ -358,26 +358,26 @@ describe('Atlassian MCP tool lines', () => {
               id: '21626881',
               title: 'Sonda',
               webUrl: '/spaces/~71/pages/21626881/Sonda',
-              baseUrl: 'https://fixfy.atlassian.net/wiki'
+              baseUrl: 'https://example.atlassian.net/wiki'
             }
           }
         })
       )
       expect(brzaAtlassianChipUrl(chip!.target, null)).toBe(
-        'https://fixfy.atlassian.net/wiki/spaces/~71/pages/21626881/Sonda'
+        'https://example.atlassian.net/wiki/spaces/~71/pages/21626881/Sonda'
       )
     })
 
     it('builds the Confluence URL from the page id on the cloudId or app site', () => {
       const withDomain = brzaAtlassianChip(
         call('getConfluencePage', {
-          cloudId: 'fixfy.atlassian.net',
+          cloudId: 'example.atlassian.net',
           pageId: '21626881'
         }),
         output({ data: { id: '21626881', title: 'Guia' } })
       )
       expect(brzaAtlassianChipUrl(withDomain!.target, null)).toBe(
-        'https://fixfy.atlassian.net/wiki/pages/viewpage.action?pageId=21626881'
+        'https://example.atlassian.net/wiki/pages/viewpage.action?pageId=21626881'
       )
       const withId = brzaAtlassianChip(
         call('getConfluencePage', {
@@ -386,8 +386,8 @@ describe('Atlassian MCP tool lines', () => {
         }),
         output({ data: { id: '21626881', title: 'Guia' } })
       )
-      expect(brzaAtlassianChipUrl(withId!.target, 'https://fixfy.atlassian.net')).toBe(
-        'https://fixfy.atlassian.net/wiki/pages/viewpage.action?pageId=21626881'
+      expect(brzaAtlassianChipUrl(withId!.target, 'https://example.atlassian.net')).toBe(
+        'https://example.atlassian.net/wiki/pages/viewpage.action?pageId=21626881'
       )
       expect(brzaAtlassianChipUrl(withId!.target, null)).toBeNull()
       expect(withId?.target.copyText).toBe('21626881')

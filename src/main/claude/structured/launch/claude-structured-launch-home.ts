@@ -3,7 +3,7 @@ import type { AgentSessionAccountSwitchRecord } from '../../../../shared/agent-s
 import type { ClaudeProfileRouter } from '../../../claude-accounts/claude-profile-router'
 import { AgentSessionPreSpawnError } from '../../../native-chat/agent-session-wire/structured-agent-session-adapter-errors'
 import { resolveSessionFilePath } from '../../../native-chat/session-file-resolver'
-import { prepareClaudeReceivingAccount } from '../../claude-receiving-account'
+import { prepareClaudeLaunchAccount } from '../../claude-launch-account'
 
 /** Follow the current account selection, or the account the chat was switched to, and pin its
  *  environment for this launch. */
@@ -13,7 +13,7 @@ export async function resolveClaudeStructuredLaunchHome(
   recordHome: string,
   switched?: Pick<AgentSessionAccountSwitchRecord, 'accountId'>
 ): Promise<string> {
-  return (await prepareClaudeReceivingAccount(router, env, recordHome, undefined, switched)).home
+  return (await prepareClaudeLaunchAccount(router, env, recordHome, switched)).home
 }
 
 async function claudeTranscriptExists(input: {

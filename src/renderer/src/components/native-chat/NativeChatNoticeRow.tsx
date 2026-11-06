@@ -1,9 +1,13 @@
+import {
+  CLAUDE_MODEL_FALLBACK_COPY,
+  claudeModelFallbackLabels
+} from '../../../../shared/native-chat/claude-model-fallback'
+import { NativeChatUsageLimitAutoContinue } from './NativeChatUsageLimitAutoContinue'
 import { NativeChatUsageLimitActions } from './NativeChatUsageLimitActions'
 import { agentSessionGoalControlWords } from './agent-session-goal-control-words'
 import { AlertCircle, AlertTriangle, Info } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useSyncExternalStore } from 'react'
-import type { CommentMarkdownLinkClickHandler } from '@/components/sidebar/CommentMarkdown'
 import { NativeChatMarkdown } from './NativeChatMarkdown'
 import { NativeChatCodeBlock } from './NativeChatCodeBlock'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -20,7 +24,6 @@ import {
 } from '../../../../shared/native-chat/native-chat-notice'
 import { useNativeChatOrcaStopView } from './native-chat-orca-stop-context'
 import { NativeChatInterruptedContinueButton } from './NativeChatInterruptedContinue'
-import { NativeChatUsageLimitAutoResume } from './NativeChatUsageLimitAutoResume'
 import { BrzaUsageLimitContinueInOtherAccount } from './brza/BrzaContinueInOtherAccount'
 import { nativeChatOrcaStopRowText } from '../../../../shared/native-chat/native-chat-orca-stop-words'
 import { sayNativeChatOrcaStopTranslated } from './native-chat-orca-stop-words-text'
@@ -66,16 +69,12 @@ const HOST_STATUS_WORDS: Record<AgentSessionHostStatusPresentation, () => string
 export function NativeChatNoticeRow({
   block,
   messageId,
-  agentName,
-  onLinkClick,
-  allowFileUriLinks = false
+  agentName
 }: {
   block: NativeChatTextBlock
   /** The transcript row's message, so a plan's code blocks keep their wrap past the row's mount. */
   messageId?: string
   agentName?: string
-  onLinkClick?: CommentMarkdownLinkClickHandler
-  allowFileUriLinks?: boolean
 }): React.JSX.Element {
   useTranslation()
   const orcaStopView = useNativeChatOrcaStopView()
@@ -126,6 +125,17 @@ export function NativeChatNoticeRow({
       </p>
     )
   }
+  if (look.kind === 'model-fallback') {
+    return (
+      <p className="min-w-0 max-w-full select-text text-sm text-chat-foreground-faint [overflow-wrap:anywhere]">
+        {translate(
+          'components.native-chat.notices.modelFallback',
+          CLAUDE_MODEL_FALLBACK_COPY,
+          claudeModelFallbackLabels(look)
+        )}
+      </p>
+    )
+  }
   if (look.kind === 'plan') {
     return (
       <Card className="gap-3 py-3 shadow-xs">
@@ -141,9 +151,7 @@ export function NativeChatNoticeRow({
             variant="document"
             renderCodeBlock={NativeChatCodeBlock}
             className="text-sm text-chat-foreground"
-            onLinkClick={onLinkClick}
-            allowFileUriLinks={allowFileUriLinks}
-            linkifyFilePaths={onLinkClick !== undefined}
+            linkifyFilePaths
           />
         </CardContent>
       </Card>
@@ -196,14 +204,9 @@ export function NativeChatNoticeRow({
   const usageLimitContinue =
     block.usageLimitTurnItemId !== undefined &&
     block.usageLimitTurnItemId === orcaStopView.usageLimitTurnItemId
-  const usageLimitAutoResume =
-    usageLimitContinue &&
-    orcaStopView.usageLimitAutoResume?.turnItemId === block.usageLimitTurnItemId
-      ? orcaStopView.usageLimitAutoResume
-      : null
-  // Only reword auth text fully described by its fact; host text may also carry command advice.
-  const authSurface =
-    failure?.kind === 'notSignedIn'
+  // Only reword auth and missing-conversation text fully described by its fact; host text may also carry command advice.
+  const factSurface =
+    failure?.kind === 'notSignedIn' || failure?.kind === 'savedConversationMissing'
       ? (['row', 'rejection'] as const).find(
           (surface) => block.text === agentSessionFailureSentence(failure, surface, { agentName })
         )
@@ -232,10 +235,10 @@ export function NativeChatNoticeRow({
           },
           sayAgentSessionFailureTranslated
         )
-      : failure && authSurface
+      : failure && factSurface
         ? agentSessionFailureSentence(
             failure,
-            authSurface,
+            factSurface,
             { agentName },
             sayAgentSessionFailureTranslated
           )
@@ -282,14 +285,16 @@ export function NativeChatNoticeRow({
                 failure?.kind === 'usageLimitReached' ? failure.usageLimit?.resetsAt : undefined
               }
             />
-            {usageLimitAutoResume ? (
-              <NativeChatUsageLimitAutoResume autoResume={usageLimitAutoResume} />
-            ) : null}
-            <BrzaUsageLimitContinueInOtherAccount autoResume={usageLimitAutoResume} />
+            <BrzaUsageLimitContinueInOtherAccount
+              autoContinue={orcaStopView.usageLimitAutoContinue}
+            />
           </>
         ) : null}
       </div>
       {usageLimitContinue ? <NativeChatUsageLimitActions /> : null}
+      {usageLimitContinue && orcaStopView.usageLimitAutoContinue ? (
+        <NativeChatUsageLimitAutoContinue state={orcaStopView.usageLimitAutoContinue} />
+      ) : null}
       {claudeSignIn && isClaudeSignInFailureKind(block.failure?.kind) ? (
         <Button
           type="button"

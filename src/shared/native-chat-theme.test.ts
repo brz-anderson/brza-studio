@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from './native-chat/native-chat-appearance-settings'
 import { resolveNativeChatTheme } from './native-chat-theme'
-import { TERMINAL_THEME_CATALOG } from './terminal-themes'
+import { TERMINAL_THEME_CATALOG } from './terminal-themes/terminal-theme-catalog'
 
 describe('resolveNativeChatTheme', () => {
   it('keeps the chat canvas of before as the BrzA default, following the app scheme', () => {

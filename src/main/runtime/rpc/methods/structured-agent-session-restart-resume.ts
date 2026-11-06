@@ -5,6 +5,7 @@ import { defineMethod } from '../core'
 import {
   ensureStructuredHostInstalled,
   requireStructuredHost,
+  requireStructuredSessionHost,
   structuredCallerFor
 } from './structured-agent-session-gate'
 import {
@@ -13,7 +14,6 @@ import {
   RestartResumeParams
 } from './structured-agent-session-schemas'
 import { structuredAgentsReadBy } from './structured-agent-session-policy'
-import { STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_METHODS } from './structured-agent-session-usage-limit-auto-resume'
 
 export const STRUCTURED_AGENT_SESSION_RESTART_RESUME_METHODS = [
   defineMethod({
@@ -75,7 +75,7 @@ export const STRUCTURED_AGENT_SESSION_RESTART_RESUME_METHODS = [
     params: ContinueInterruptedParams,
     handler: async (params, ctx) => {
       await ensureStructuredHostInstalled(ctx)
-      const host = requireStructuredHost(ctx)
+      const host = requireStructuredSessionHost(ctx, params.sessionId)
       return host.restartResume.continueInterrupted(params.sessionId, params.turnItemId)
     }
   }),
@@ -89,6 +89,5 @@ export const STRUCTURED_AGENT_SESSION_RESTART_RESUME_METHODS = [
       requireStructuredHost(ctx)
       return { results: [] }
     }
-  }),
-  ...STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_METHODS
+  })
 ]

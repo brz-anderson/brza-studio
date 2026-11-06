@@ -5,12 +5,12 @@ import {
   terminalColorOverridesForSlot,
   withTerminalColorOverrides,
   type TerminalColorOverrideSettings
-} from './terminal-color-overrides'
-import type { TerminalOscColorQueryReplyColors } from './terminal-osc-color-reply'
+} from './terminal-themes/terminal-color-overrides'
+import type { TerminalOscColorQueryReplyColors } from './terminal/protocol/queries/terminal-osc-color-reply'
 import {
   resolveConfiguredTerminalColors,
   type TerminalPaletteSettings
-} from './terminal-theme-selection'
+} from './terminal-themes/terminal-theme-selection'
 
 export type TerminalChatThemeSettings = NativeChatThemeContext &
   Partial<

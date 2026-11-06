@@ -1,4 +1,4 @@
-import type { AgentChatPermissionChoice } from '../../shared/agent-chat-permission-mode'
+import type { AgentChatPermissionChoice } from '../../shared/agent-launch/permissions/agent-chat-permission-mode'
 import { writeAcpSessionOption } from './acp-session-option-write'
 import { isAcpReadySession, type AcpStructuredChild } from './acp-structured-child'
 import {

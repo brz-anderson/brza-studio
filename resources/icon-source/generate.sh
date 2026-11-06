@@ -59,7 +59,7 @@ echo "  -> resources/tray/orca-menu-barTemplate.png, @2x"
 # #5357: Windows scales the 1024px render with its 100px margin into undersized taskbar/Open-with icons.
 # Use the repo's pngjs trim script to remove the margin, re-square with 2% margin and emit multi-size ICO,
 # keeping committed output reproducible without ImageMagick.
-node "$PROJECT_DIR/config/scripts/trim-windows-icon-source.mjs"
+node "$PROJECT_DIR/config/scripts/desktop-distribution/windows/trim-windows-icon-source.mjs"
 echo "  -> resources/build/icon.ico (trimmed, filled multi-size ICO)"
 
 echo "Done! Icons generated in resources/build/ and resources/"

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { createPortal } from 'react-dom'
 import { Copy, Maximize2, WrapText, X } from 'lucide-react'
 import { translate } from '@/i18n/i18n'
-import EditorViewToggle from '@/components/editor/EditorViewToggle'
+import EditorViewToggle from '@/components/editor/view-mode/EditorViewToggle'
 import { nativeChatCodeCopyText } from '../native-chat-code-copy-text'
 import { BrzaMarkdownExpandPreview } from './BrzaMarkdownExpandPreview'
 import { brzaCodeBlockLanguage, isBrzaMarkdownFence } from './brza-markdown-fence'

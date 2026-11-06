@@ -1,6 +1,9 @@
 import { writeClaudeTerminalFailure } from './claude-terminal-failure'
 import { agentSessionFailureWords } from '../../shared/agent-session/failures/agent-session-failure-words'
-import { agentJournalItemKey } from '../../shared/agent-session/journal/agent-session-journal-item-key'
+import {
+  agentJournalItemKey,
+  agentJournalSubmissionKey
+} from '../../shared/agent-session/journal/agent-session-journal-item-key'
 import { AGENT_JOURNAL_THREAD_SCOPE } from '../../shared/agent-session/journal/agent-session-journal-types'
 import { brzaClaudePeerJournalBody } from '../native-chat/brza/brza-claude-peer-message'
 import type { StructuredAgentSessionEventSink } from '../native-chat/agent-session-wire/structured-agent-session-event-sink'
@@ -58,7 +61,8 @@ export function journalClaudeMessage(
   startsTurn: boolean,
   observedAt: number,
   /** Host clock on the submission that produced this send, when known. */
-  requestedAt?: number
+  requestedAt?: number,
+  clientMessageId?: string
 ): boolean {
   const envelope = readClaudeMessageEnvelope(message)
   if (!envelope) {
@@ -205,7 +209,10 @@ export function journalClaudeMessage(
   })
   if (sendEchoTurn) {
     ctx.turn.allowReopen()
-    ctx.turn.open(sendEchoTurn, observedAt)
+    // Output can open the send's turn before its echo confirms delivery.
+    if (!clientMessageId || ctx.turn.userItemId !== agentJournalSubmissionKey(clientMessageId)) {
+      ctx.turn.open(sendEchoTurn, observedAt)
+    }
   }
   if (changed) {
     ctx.sink.publish()

@@ -1,4 +1,3 @@
-import type { CommentMarkdownLinkClickHandler } from '@/components/sidebar/CommentMarkdown'
 import { useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -41,15 +40,13 @@ function ToolLineDetail({
   body,
   fullCommand,
   commandLanguage,
-  results,
-  onLinkClick
+  results
 }: {
   block: NativeChatBlock
   body: NativeChatToolResultBlock | undefined
   fullCommand: string | null
   commandLanguage: string | null
   results: NativeChatWebSearchResult[]
-  onLinkClick?: CommentMarkdownLinkClickHandler
 }): React.JSX.Element {
   const diff = isToolCallBlock(block)
     ? diffFromToolCall(block.name, block.input)
@@ -58,9 +55,7 @@ function ToolLineDetail({
       : null
   return (
     <div className="ml-6 space-y-1.5 py-1">
-      {results.length > 0 ? (
-        <NativeChatSearchResults results={results} onLinkClick={onLinkClick} />
-      ) : null}
+      {results.length > 0 ? <NativeChatSearchResults results={results} /> : null}
       {diff ? <NativeChatDiffView lines={diff} /> : null}
       {!diff && fullCommand ? (
         <pre
@@ -83,15 +78,13 @@ function ToolLineDetail({
 export function NativeChatToolLine({
   block,
   result,
-  disclosureKey,
-  onLinkClick
+  disclosureKey
 }: {
   block: NativeChatBlock
   /** Pair output with its call instead of adding a separate Result row. */
   result?: NativeChatToolResultBlock
   /** Identity this line's open state is remembered under while it is unmounted. */
   disclosureKey?: string
-  onLinkClick?: CommentMarkdownLinkClickHandler
 }): React.JSX.Element | null {
   const { open: expanded, setOpen: setExpanded } = useNativeChatDisclosure(disclosureKey, false)
 
@@ -160,7 +153,6 @@ export function NativeChatToolLine({
             path={label.filePath}
             label={label.target}
             className={TARGET_CLASS}
-            onLinkClick={onLinkClick}
           />
         ) : (label?.target ?? resultPreview) ? (
           <span className={TARGET_CLASS} title={label?.title ?? resultPreview}>
@@ -193,7 +185,6 @@ export function NativeChatToolLine({
             fullCommand={fullCommand}
             commandLanguage={label?.commandLanguage ?? null}
             results={results}
-            onLinkClick={onLinkClick}
           />
         </NativeChatExpandable>
       ) : null}

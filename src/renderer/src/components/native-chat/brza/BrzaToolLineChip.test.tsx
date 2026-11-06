@@ -31,7 +31,7 @@ vi.mock('@/store', () => ({
   useAppStore: { getState: () => ({ openCommitAllDiffs: mocks.openCommitAllDiffs }) }
 }))
 
-vi.mock('@/components/right-sidebar/worktree-git-owner-target', () => ({
+vi.mock('@/components/right-sidebar/source-control/sync/worktree-git-owner-target', () => ({
   getWorktreeGitOwnerTarget: () => ({ kind: 'local' }),
   requireGitOwnerTarget: (target: unknown) => target
 }))

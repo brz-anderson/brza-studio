@@ -1,7 +1,6 @@
-import { brzaRouterRecordMethods } from '../brza/brza-router-record-methods'
 import type { StructuredAgentSessionAtRestCommands } from './structured-agent-session-at-rest-commands'
-import type { AgentChatPermissionChoice } from '../../../shared/agent-chat-permission-mode'
-import type { AgentSessionJournalIdentity } from '../../../shared/agent-session-journal-identity'
+import type { AgentChatPermissionChoice } from '../../../shared/agent-launch/permissions/agent-chat-permission-mode'
+import type { AgentSessionJournalIdentity } from '../../../shared/agent-session/journal/agent-session-journal-identity'
 import type { AgentSessionExecutionLocation } from '../../../shared/agent-session/lifecycle/agent-session-record'
 import type { StructuredAgentSessionAdapter } from './structured-agent-session-adapter'
 import type { StructuredAgentSessionAcquisitionReceipt } from './structured-agent-session-startup-attempt-contract'
@@ -59,9 +58,11 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
   ): boolean | undefined =>
     this.liveOwnerOrNull(sessionId)?.permissionModeRequiresAcquisition?.(sessionId, mode)
 
-  applyPermissionMode: NonNullable<StructuredAgentSessionAdapter['applyPermissionMode']> = (
-    input
-  ) => this.liveOwnerOrNull(input.sessionId)?.applyPermissionMode?.(input) ?? Promise.resolve(false)
+  settlePermissionTransition: NonNullable<
+    StructuredAgentSessionAdapter['settlePermissionTransition']
+  > = (input) =>
+    this.liveOwnerOrNull(input.sessionId)?.settlePermissionTransition?.(input) ??
+    Promise.resolve(true)
 
   /** Session support may narrow the owner’s declared rewind, never widen it. */
   rewindSupport: NonNullable<StructuredAgentSessionAdapter['rewindSupport']> = (
@@ -83,12 +84,6 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
     this.capabilityOwner(input.record.sessionId, input.record.provider)?.adapter.forkForRewind?.(
       input
     ) ?? Promise.resolve({ ok: false, reason: 'unsupported' })
-
-  private readonly brza = brzaRouterRecordMethods(
-    (record) => this.capabilityOwner(record.sessionId, record.provider)?.adapter
-  )
-  prepareAccountSwitch = this.brza.prepareAccountSwitch
-  forkThroughMessage = this.brza.forkThroughMessage
 
   /** Routed by the record's agent so a chat at rest still reaches its adapter. */
   nameProviderConversation: NonNullable<StructuredAgentSessionAdapter['nameProviderConversation']> =
@@ -149,6 +144,8 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
   holdsDispatch = (sessionId: string): boolean =>
     this.liveOwnerOrNull(sessionId)?.holdsDispatch?.(sessionId) ?? false
 
+  confirmIdle = (id: string) => this.liveOwnerOrNull(id)?.confirmIdle?.(id)
+
   liveTurnId = (sessionId: string): string | null | undefined =>
     this.liveOwnerOrNull(sessionId)?.liveTurnId?.(sessionId)
 
@@ -166,6 +163,16 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
   holdsLiveProviderProcess = (sessionId: string, acquisitionGeneration: string): boolean =>
     this.liveOwnerOrNull(sessionId)?.holdsLiveProviderProcess?.(sessionId, acquisitionGeneration) ??
     false
+
+  // A start's owner outlives its route: exit acknowledgment may drop the route while the owner
+  // still reads its ending, so both calls reach the adapters by exact generation, not by route.
+  startupEnding = (sessionId: string, acquisitionGeneration: string) =>
+    this.adapters()
+      .map((adapter) => adapter.startupEnding?.(sessionId, acquisitionGeneration))
+      .find((ending) => ending !== undefined)
+
+  retireStartup = (sessionId: string, acquisitionGeneration: string): void =>
+    this.adapters().forEach((adapter) => adapter.retireStartup?.(sessionId, acquisitionGeneration))
 
   awaitStoppedRequestEnd = async (sessionId: string, stoppedAt: number) =>
     this.liveOwnerOrNull(sessionId)?.awaitStoppedRequestEnd?.(sessionId, stoppedAt)
@@ -329,7 +336,7 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
     return adapter
   }
 
-  private capabilityOwner(sessionId: string, agent?: string): StructuredAgentRegistration | null {
+  protected capabilityOwner(sessionId: string, agent?: string): StructuredAgentRegistration | null {
     const route = this.routes.get(sessionId)
     if (route?.state === 'live') {
       return route.registration
@@ -337,7 +344,7 @@ export class StructuredAgentSessionAdapterRouter implements StructuredAgentSessi
     return agent ? this.agents.registration(agent) : null
   }
 
-  private liveOwnerOrNull(sessionId: string): StructuredAgentSessionAdapter | null {
+  protected liveOwnerOrNull(sessionId: string): StructuredAgentSessionAdapter | null {
     const route = this.routes.get(sessionId)
     return route?.state === 'live' ? route.registration.adapter : null
   }

@@ -1,5 +1,5 @@
 import { COMMAND_TOKEN_SCAN_MAX_CHARS, getCommandTokenPathBasename } from './command-token-scanner'
-import { tokenizeCommandLine } from './agent-command-line-entrypoint'
+import { tokenizeCommandLine } from './agent-status/process/agent-command-line-entrypoint'
 
 // The published launcher names per platform, the dev build's, and the fork's
 // installed `brza`; terminals the app opens still put `orca` on PATH.

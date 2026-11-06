@@ -15,11 +15,11 @@ type OutputChunk = Rollup.OutputChunk
 export const CLI_MAIN_ENTRY_NAMES = [
   'agent-hooks/managed-agent-hook-controls',
   'gitlab/project-ref-parser',
-  'ipc/command-path-resolver',
+  'ipc/command-path/command-path-resolver',
   'orca-profiles/profile-index-store',
   'claude-accounts/keychain',
   'skills/bundled-skill-install/cli-entry',
-  'macos-tree-clone',
+  'filesystem/macos-tree-clone',
   'orcad/orcad-stale-lock-reclaim',
   'plugins/plugin-authoring-checks',
   ...[
@@ -176,7 +176,7 @@ function assertDaemonExternalsAreMirrored(
   }
 }
 
-// Owned by the argv parser in src/main/daemon/daemon-entry.ts — keep in sync.
+// Owned by the argv parser in src/main/daemon/launch/daemon-command-arguments.ts — keep in sync.
 const DAEMON_USAGE_PREFIX = 'Usage: daemon-entry'
 
 export type { SmokeTimings }

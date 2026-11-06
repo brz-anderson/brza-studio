@@ -1,6 +1,6 @@
 import { constants as osConstants } from 'node:os'
 import { spawnProcess } from '@orca/process-host'
-import { resolveCommandOnLocalPath } from '../main/ipc/command-path-resolver'
+import { resolveCommandOnLocalPath } from '../main/ipc/command-path/command-path-resolver'
 import { stripElectronRunAsNode } from './runtime/orca-app-executable'
 
 export const EXTERNAL_SUBCOMMAND_PREFIX = 'brza-'

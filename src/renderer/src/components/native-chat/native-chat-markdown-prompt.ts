@@ -3,11 +3,11 @@
 import { Extension, type AnyExtension, type Editor, type JSONContent } from '@tiptap/core'
 import { Fragment, Slice, type Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { Selection } from '@tiptap/pm/state'
-import { encodeRawMarkdownHtmlForRichEditor } from '../editor/raw-markdown-html'
-import { createRichMarkdownExtensions } from '../editor/rich-markdown-extensions'
-import { serializeRichMarkdownDocument } from '../editor/rich-markdown-literal-serialization'
-import type { RichMarkdownEditorCodec } from '../editor/rich-markdown-source-transport'
-import { getRichMarkdownSerializationDocument } from '../editor/rich-markdown-trailing-paragraph'
+import { encodeRawMarkdownHtmlForRichEditor } from '../editor/rich-markdown/raw-source/raw-markdown-html'
+import { createRichMarkdownExtensions } from '../editor/rich-markdown/schema/rich-markdown-extensions'
+import { serializeRichMarkdownDocument } from '../editor/rich-markdown/document/rich-markdown-literal-serialization'
+import type { RichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
+import { getRichMarkdownSerializationDocument } from '../editor/rich-markdown/schema/rich-markdown-trailing-paragraph'
 import type { NativeChatPromptCoordinates } from './native-chat-prompt-document'
 
 // Stands in for the caret while a document is serialized: a private-use character no prompt holds.

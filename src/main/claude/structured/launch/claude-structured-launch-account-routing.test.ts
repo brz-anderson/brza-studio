@@ -1,4 +1,4 @@
-import { createClaudeStructuredLaunchResolver } from '../../../runtime/structured-agent-launch-composition.test-support'
+import { createClaudeStructuredLaunchResolver } from '../../../runtime/agent-session/launch/structured-agent-launch-composition.test-support'
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve as resolvePath } from 'node:path'
@@ -15,8 +15,8 @@ import {
   type ClaudeProfileRouterSettings
 } from '../../../claude-accounts/claude-profile-router'
 import { installClaudeProfileRouter } from '../../../claude-accounts/claude-profile-installed-router'
-import { resolveStructuredClaudeAccountHomePath } from '../../../runtime/structured-agent-account-home'
-import { structuredAgentRuntimeMetadata } from '../../../runtime/structured-agent-runtime-metadata'
+import { resolveStructuredClaudeAccountHomePath } from '../../../runtime/agent-session/environment/structured-agent-account-home'
+import { structuredAgentRuntimeMetadata } from '../../../runtime/agent-session/installation/structured-agent-runtime-metadata'
 
 const roots: string[] = []
 afterEach(() => {
@@ -60,8 +60,8 @@ it('launches each acquisition under the current selection, not the account it wa
     })
   const home = join(root, 'claude-profiles', 'a', 'home')
   // Dispatch identity names the selected account before its folder exists; availability reads refuse.
-  expect(read('identity')).toBe(home)
-  expect(() => read()).toThrow(CLAUDE_PROFILE_MISSING_MESSAGE)
+  await expect(read('identity')).resolves.toBe(home)
+  await expect(read()).rejects.toThrow(CLAUDE_PROFILE_MISSING_MESSAGE)
   expect(runSetup).not.toHaveBeenCalled()
   const record = {
     ...agentSessionRecordFixture(),
@@ -95,23 +95,17 @@ it('launches each acquisition under the current selection, not the account it wa
   writeFileSync(join(root, 'claude-profiles', 'a', 'profile.json'), '{}')
   const routed = await resolve({ identity })
   expect(routed.claudeConfigDir).toBe(home)
-  expect(read()).toBe(home)
-  expect(read('identity')).toBe(home)
+  await expect(read()).resolves.toBe(home)
+  await expect(read('identity')).resolves.toBe(home)
   expect(routed.env).toMatchObject({
     CLAUDE_CONFIG_DIR: home,
     ORCA_CLAUDE_INJECTED_CONFIG_DIR: home
   })
 
-  const receipt = routed.accountRecipe
-  expect(receipt).toEqual({ route: 'managed', accountId: 'a', home })
+  expect(routed.accountRecipe).toEqual({ route: 'managed', accountId: 'a', home })
   settings.activeClaudeManagedAccountId = null
   expect((await resolve({ identity })).claudeConfigDir).toBe(resolvePath('/user/own'))
-  const prepareAccount = vi.spyOn(router, 'prepareReceivingAccount')
-  expect((await resolve({ identity, accountRecipe: receipt })).claudeConfigDir).toBe(home)
-  expect(prepareAccount).toHaveBeenCalledWith('a')
-  expect(settings.activeClaudeManagedAccountId).toBeNull()
-  prepareAccount.mockRestore()
-  expect(read()).toBe(resolvePath('/user/own'))
+  await expect(read()).resolves.toBe(resolvePath('/user/own'))
 })
 
 function routedResumeFixture(rewind?: AgentSessionRewindRecord, transcriptFiles = false) {

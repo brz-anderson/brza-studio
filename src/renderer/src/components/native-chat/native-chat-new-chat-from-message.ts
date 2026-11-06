@@ -6,11 +6,11 @@ import { newAgentLaunchRequestId } from '@/lib/agent-launch-request-id'
 import { launchAgentInNewTab } from '@/lib/launch-agent-in-new-tab'
 import { executionHostIdForStructuredTarget } from '@/runtime/structured-agent-session-owner'
 import { captureNativeChatComposerFocusIntent } from './use-native-chat-composer-reveal-focus'
-import { isTuiAgent } from '../../../../shared/tui-agent-config'
-import type { AgentType } from '../../../../shared/agent-status-types'
+import { isTuiAgent } from '../../../../shared/agent-launch/catalog/tui-agent-config'
+import type { AgentType } from '../../../../shared/agent-status/contracts/agent-status-types'
 import type { ExecutionHostId } from '../../../../shared/execution-host'
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
-import type { TuiAgent } from '../../../../shared/tui-agent'
+import type { TuiAgent } from '../../../../shared/agent-launch/catalog/tui-agent'
 
 /** Opens a new chat whose composer holds the given agent message, unsent. */
 export type NativeChatNewChatFromMessage = (text: string) => void

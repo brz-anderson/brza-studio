@@ -56,14 +56,7 @@ function renderLimitRow(
     continueNow: vi.fn(),
     usageLimitTurnItemId: 'cut',
     continueUsageLimit,
-    usageLimitAutoResume: {
-      turnItemId: 'cut',
-      resumeAt: Date.UTC(2026, 10, 2, 15, 1),
-      plannedAt: Date.UTC(2026, 10, 2, 15, 1),
-      busy: false,
-      schedule: vi.fn(),
-      cancel
-    }
+    usageLimitAutoContinue: { kind: 'scheduled', resetsAt: Date.UTC(2026, 10, 2, 15, 1), cancel }
   }
   render(
     <TooltipProvider>
@@ -128,7 +121,7 @@ it('moves a pinned chat with its own switch, then cancels the schedule and conti
   const { continueUsageLimit, cancel } = renderLimitRow(accountSwitch(switchTo))
   expect(screen.queryByRole('button', { name: 'Global switcher' })).toBeNull()
   expect(screen.queryByRole('button', { name: 'Account b@example.com' })).toBeNull()
-  expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: "Don't continue" })).toBeInTheDocument()
   await chooseAccount('c@example.com')
   expect(switchTo).toHaveBeenCalledWith('c')
   expect(cancel).toHaveBeenCalledOnce()

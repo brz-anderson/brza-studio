@@ -3,13 +3,13 @@ import type { Components } from 'react-markdown'
 import { openOwnedHttpLink } from '@/lib/http-link-routing'
 import { useAppStore } from '@/store'
 import { NATIVE_CHAT_THEME_SURFACE_CLASS } from '@/lib/native-chat-theme-surface-style'
-import { MarkdownPreviewBody } from '@/components/editor/MarkdownPreviewBody'
+import { MarkdownPreviewBody } from '@/components/editor/markdown-preview/render-tree/MarkdownPreviewBody'
 import { MarkdownFrontMatterBlock } from '@/components/editor/MarkdownFrontMatterBlock'
 import {
   extractFrontMatter,
   markdownFrontMatterInner
-} from '@/components/editor/markdown-frontmatter'
-import { isMarkdownPreviewSystemBrowserModifier } from '@/components/editor/markdown-preview-links'
+} from '@/components/editor/markdown/source-scanning/markdown-frontmatter'
+import { isMarkdownPreviewSystemBrowserModifier } from '@/components/editor/markdown/link-routing/markdown-preview-links'
 import { useMarkdownSurfaceTheme } from '@/components/editor/use-markdown-surface-theme'
 import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
 import { resolveNativeChatHttpLinkSourceOwner } from '../native-chat-http-link-source-owner'

@@ -207,8 +207,6 @@ export function paramsFor(method: string): unknown {
       const fields = { accountId: 'account-1' }
       return { envelope: envelope({ method, fields, fence }), ...fields }
     }
-    case 'agentSession.usageLimitAutoResume':
-      return { sessionId: SESSION, turnItemId: 'legacy:codex:s:turn-1' }
     case 'agentSession.rename':
       return { sessionId: SESSION, name: 'Release notes' }
     case 'agentSession.hold':
@@ -224,6 +222,8 @@ export function paramsFor(method: string): unknown {
       return {}
     case 'agentSession.continueInterrupted':
       return { sessionId: SESSION, turnItemId: 'legacy:codex:s:turn-1' }
+    case 'agentSession.cancelUsageLimitContinue':
+      return { sessionId: SESSION, turnItemId: 'orca:limited-turn', resetsAt: NOW }
     default:
       return { sessionId: SESSION }
   }

@@ -27,7 +27,7 @@ import {
   projectQueuedMessageCards,
   queuedMessagesQueuePause,
   type QueuedMessageCard
-} from '../../../../shared/structured-agent-session-queued-cards'
+} from '../../../../shared/agent-session/view/structured-agent-session-queued-cards'
 import {
   pendingQueueSendsOnTheirWay,
   sendingQueuedMessageCards
@@ -198,17 +198,18 @@ export function useStructuredAgentSessionQueuedMessages(args: {
     promptOpen: hasPendingPrompt
   })
 
+  const editingMessageId = editing.editor?.messageId
   const steerHead = useCallback((): boolean => {
     if (!enabled || hasPendingPrompt) {
       return false
     }
-    const head = headSteerableQueuedMessageCard(cardsRef.current)
-    if (!head || inFlightRef.current.has(head.messageId)) {
+    const head = headSteerableQueuedMessageCard(reordered.cards)
+    if (!head || editingMessageId === head.messageId || inFlightRef.current.has(head.messageId)) {
       return false
     }
     void steer(head.messageId)
     return true
-  }, [enabled, hasPendingPrompt, steer])
+  }, [editingMessageId, enabled, hasPendingPrompt, reordered.cards, steer])
 
   const resume = useCallback(
     (): Promise<boolean> =>

@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
-import { cleanup, screen } from '@testing-library/react'
+import { cleanup, fireEvent, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { render } from '../native-chat-tooltip-test-harness'
 import { NativeChatAgentMessageCard } from '../NativeChatAgentMessageCard'
@@ -26,7 +26,6 @@ function peerCard(kind: BrzaClaudePeerKind, id: string, name: string, text: stri
       message={message}
       from={message.from!}
       runtimeContext={{ worktreeId: 'wt', worktreePath: null, target: { kind: 'local' } }}
-      allowFileUriLinks={false}
       onRefolded={() => {}}
     />
   )
@@ -41,6 +40,10 @@ describe('a Claude Code peer in the agent message card', () => {
       </>
     )
 
+    // The card is folded to its header line; the whole line is the toggle.
+    for (const toggle of screen.getAllByRole('button', { expanded: false })) {
+      fireEvent.click(toggle)
+    }
     expect(screen.getByText('Message from')).toBeInTheDocument()
     expect(screen.getByText('Hand-back from')).toBeInTheDocument()
     expect(screen.getByText('oi')).toBeInTheDocument()

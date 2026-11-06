@@ -1,12 +1,13 @@
 import {
   AGENT_SESSION_FOUNDING_FENCE,
   agentSessionNeverStarted
-} from '../../../../shared/agent-session-conversation-view'
-import { AGENT_CHAT_PERMISSION_MODE_OPTION_ID } from '../../../../shared/agent-chat-permission-mode'
+} from '../../../../shared/agent-session/lifecycle/agent-session-conversation-view'
+import { AGENT_CHAT_PERMISSION_MODE_OPTION_ID } from '../../../../shared/agent-launch/permissions/agent-chat-permission-mode'
 import {
   AGENT_SESSION_RECORD_SCHEMA_VERSION,
   type AgentSessionRecord
 } from '../../../../shared/agent-session/lifecycle/agent-session-record'
+import { normalizeAgentSessionConversationName } from '../../../../shared/agent-session/agent-session-conversation-name'
 
 export type AgentSessionRecordIdentity = Pick<
   AgentSessionRecord,
@@ -18,6 +19,7 @@ export type AgentSessionRecordIdentity = Pick<
   | 'launchArgs'
   | 'launchDirectory'
   | 'accountSwitch'
+  | 'conversationName'
 >
 
 export function agentSessionRecordIdentityFields(
@@ -27,6 +29,7 @@ export function agentSessionRecordIdentityFields(
   // Wire options carry permission mode; records store it separately.
   const { [AGENT_CHAT_PERMISSION_MODE_OPTION_ID]: permissionMode, ...options } =
     identity.options ?? {}
+  const conversationName = normalizeAgentSessionConversationName(identity.conversationName)
   return {
     schemaVersion: AGENT_SESSION_RECORD_SCHEMA_VERSION,
     sessionId: identity.sessionId,
@@ -40,6 +43,7 @@ export function agentSessionRecordIdentityFields(
     ...(identity.launchDirectory ? { launchDirectory: identity.launchDirectory } : {}),
     // A fork of a pinned chat is born on its account.
     ...(identity.accountSwitch ? { accountSwitch: identity.accountSwitch } : {}),
+    ...(conversationName ? { conversationName } : {}),
     createdAt: now,
     updatedAt: now
   }

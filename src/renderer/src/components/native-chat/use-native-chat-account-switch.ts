@@ -10,7 +10,7 @@ import {
 } from '@/components/status-bar/status-bar-claude-accounts'
 import { STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY } from '../../../../shared/agent-session/structured-agent-session-surface-capabilities'
 import type { AgentSessionAccountSwitchResult } from '../../../../shared/agent-session-account-switch'
-import type { AgentType } from '../../../../shared/agent-status-types'
+import type { AgentType } from '../../../../shared/agent-status/contracts/agent-status-types'
 import type { ClaudeRateLimitAccountsState } from '../../../../shared/managed-account-types'
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
 import { useStructuredAgentSessionAccountSwitch } from './structured-agent-session-status-hooks'

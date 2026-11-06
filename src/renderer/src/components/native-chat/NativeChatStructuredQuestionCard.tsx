@@ -22,7 +22,7 @@ export function NativeChatStructuredQuestionCard({
   onCollapse?: () => void
   isSubmitting?: boolean
   shouldFocus?: boolean
-  answerInputRef?: RefObject<HTMLInputElement | null>
+  answerInputRef?: RefObject<HTMLTextAreaElement | null>
 }): React.JSX.Element {
   const card = structuredQuestionCard(questions)
   return (

@@ -10,7 +10,7 @@ import type {
   CodexAppServerConnection,
   CodexAppServerConnectionHandlers
 } from '../../codex/app-server/codex-app-server-connection-types'
-import type { openCodexAppServerConnection } from '../../codex/codex-app-server-connection'
+import type { openCodexAppServerConnection } from '../../codex/app-server/codex-app-server-connection'
 import { computeAgentSessionPayloadFingerprint } from '../../../shared/agent-session/lifecycle/agent-session-mutation-envelope'
 import { DESKTOP_RENDERER_RUNTIME_CLIENT_CAPABILITIES } from '../../ipc/desktop-renderer-runtime-capabilities'
 import { AGENT_SESSION_CREATE_MESSAGE_RUNTIME_CAPABILITY } from '../../../shared/agent-session/agent-session-create-capabilities'
@@ -39,7 +39,7 @@ import {
 } from './structured-agent-session-runtime'
 import { createStructuredAgentSessionLogger } from '../../native-chat/agent-session-wire/structured-agent-session-logger'
 import { codexProviderHandle } from '../../../shared/agent-session/lifecycle/agent-session-provider-handle-encoding'
-import { scriptedCodexTransport } from '../scripted-codex-transport.test-fixture'
+import { scriptedCodexTransport } from '../orca-runtime-tests/scripted-codex-transport.test-fixture'
 
 const journals = createTrackedJournalOpener()
 

@@ -5,6 +5,11 @@ import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 let home = ''
+// Hoisted and applied to every import, so the stores read the temp home through the mocked homedir.
+vi.mock('node:os', async (importOriginal) => ({
+  ...(await importOriginal<typeof Os>()),
+  homedir: () => home
+}))
 const ORCA_DECOY = 'decoy-sealed-by-the-orca-app'
 
 function snapshotTree(root: string): Record<string, string> {
@@ -60,10 +65,6 @@ function seedOrcaFiles(): void {
 
 async function loadStores() {
   vi.resetModules()
-  vi.doMock('node:os', async () => {
-    const actual = await vi.importActual<typeof Os>('node:os')
-    return { ...actual, homedir: () => home }
-  })
   const { setSecretStore } = await import('../../shared/secret-store')
   setSecretStore({
     isEncryptionAvailable: () => true,
@@ -91,7 +92,6 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-  vi.doUnmock('node:os')
   vi.resetModules()
   rmSync(home, { recursive: true, force: true })
 })

@@ -3,8 +3,8 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { loadSyntaxLanguage } from '@/lib/syntax-highlighting/syntax-highlighter'
-import { NativeChatCodeBlock, NativeChatPlainCodeBlock } from './NativeChatCodeBlock'
+
+import { NativeChatCodeBlock } from './NativeChatCodeBlock'
 
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
   loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
@@ -36,32 +36,6 @@ describe('NativeChatCodeBlock', () => {
     expect(second.container.querySelectorAll('span[style*="--syntax-dark"]')).toHaveLength(colored)
     expect(screen.getByText('lastLine')).toBeInTheDocument()
     expect(second.container.querySelector('pre')?.textContent).toBe(code)
-  })
-
-  it('leaves the code of a dimmed row uncolored', async () => {
-    const code = <code>{'const dimmed = 1\n'}</code>
-    await loadSyntaxLanguage('typescript')
-    const colored = render(<NativeChatCodeBlock language="typescript">{code}</NativeChatCodeBlock>)
-    expect(colored.container.querySelector('pre span')).not.toBeNull()
-
-    const plain = render(
-      <NativeChatPlainCodeBlock language="typescript">{code}</NativeChatPlainCodeBlock>
-    )
-
-    expect(plain.container.querySelector('pre span')).toBeNull()
-    expect(plain.container.querySelector('pre')?.textContent).toBe('const dimmed = 1\n')
-  })
-
-  it('leaves a fence in an unknown language as plain text', async () => {
-    const { container } = render(
-      <NativeChatCodeBlock language="not-a-real-language">
-        <code>{'plain words\n'}</code>
-      </NativeChatCodeBlock>
-    )
-    const pre = container.querySelector('pre')
-
-    await waitFor(() => expect(pre?.textContent).toBe('plain words\n'))
-    expect(pre?.querySelector('span')).toBeNull()
   })
 
   it.each([

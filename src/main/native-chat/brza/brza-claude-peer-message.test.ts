@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { decodeClaudeTranscriptLine } from '../transcript-line-decoders-claude'
 import { legacyItemBody } from '../agent-session-journal/journal-legacy-import'
 import { createClaudeJournalTranslator } from '../../claude/structured/journal/claude-structured-journal-translation'
-import type { AgentJournalItemIdentity } from '../../../shared/agent-session-journal-identity'
+import type { AgentJournalItemIdentity } from '../../../shared/agent-session/journal/agent-session-journal-identity'
 import type { AgentJournalItemBody } from '../../../shared/agent-session/journal/agent-session-journal-types'
 import { brzaClaudePeerKind } from '../../../shared/native-chat/brza/brza-claude-peer-sender'
 
@@ -47,11 +47,11 @@ describe('Claude Code peer messages in the chat', () => {
   })
 
   it('names a cross-session sender by its session name and drops the harness note', () => {
-    const content = `${PREAMBLE}<cross-session-message from="uds:/tmp/cc-socks/81718.sock" from-name="fixfy-cc" from-mode="prompting">\nPedido de test1: responda.\n</cross-session-message>${PEER_NOTE}`
+    const content = `${PREAMBLE}<cross-session-message from="uds:/tmp/cc-socks/81718.sock" from-name="outro-cc" from-mode="prompting">\nPedido de test1: responda.\n</cross-session-message>${PEER_NOTE}`
     const expected = {
       role: 'user',
       blocks: [{ type: 'text', text: 'Pedido de test1: responda.' }],
-      name: 'fixfy-cc',
+      name: 'outro-cc',
       kind: 'message'
     }
 
@@ -61,7 +61,7 @@ describe('Claude Code peer messages in the chat', () => {
         metaLine(content, {
           kind: 'peer',
           from: 'uds:/tmp/cc-socks/81718.sock',
-          name: 'fixfy-cc',
+          name: 'outro-cc',
           body: 'Pedido de test1: responda.'
         })
       )

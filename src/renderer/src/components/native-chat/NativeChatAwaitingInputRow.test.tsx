@@ -57,9 +57,12 @@ describe('NativeChatAwaitingInputRow question text color', () => {
         disclosureKey="k"
       />
     )
-    const p = container.querySelector('p')
-    expect(p?.className).toContain('text-primary')
-    expect(p?.className).not.toContain('text-chat-foreground')
+    // The question renders as markdown: the accent sits on its wrapper and the paragraph inherits it.
+    const question = container.querySelector('.native-chat-markdown')
+    expect(question?.textContent).toBe('Qual caminho?')
+    expect(question?.className).toContain('text-primary')
+    expect(question?.className).not.toContain('text-chat-foreground')
+    expect(question?.querySelector('p')?.className).not.toMatch(/text-/)
   })
 
   it('highlights the question list and keeps the faint marker', () => {

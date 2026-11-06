@@ -1,6 +1,6 @@
 import { withRemoteRuntimeTailscaleHint } from '../../../shared/remote-runtime/remote-runtime-tailscale-hint'
-import { classifyRuntimeEnvironmentHost } from '../../../shared/runtime-environment-host-kind'
-import type { KnownRuntimeEnvironment } from '../../../shared/runtime-environments'
+import { classifyRuntimeEnvironmentHost } from '../../../shared/remote-runtime/host-catalog/runtime-environment-host-kind'
+import type { KnownRuntimeEnvironment } from '../../../shared/remote-runtime/host-catalog/runtime-environments'
 
 const UNREACHABLE_RE =
   /could not connect to the remote (?:orca|brza studio) runtime|remote (?:orca|brza studio) runtime closed the connection|timed out (?:waiting for|while connecting to) the remote (?:orca|brza studio) runtime/i

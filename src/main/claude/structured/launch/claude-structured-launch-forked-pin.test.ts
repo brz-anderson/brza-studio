@@ -1,4 +1,4 @@
-import { createClaudeStructuredLaunchResolver } from '../../../runtime/structured-agent-launch-composition.test-support'
+import { createClaudeStructuredLaunchResolver } from '../../../runtime/agent-session/launch/structured-agent-launch-composition.test-support'
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'

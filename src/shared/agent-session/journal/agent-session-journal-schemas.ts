@@ -10,6 +10,7 @@ import { AgentSessionContextUsageSchema } from '../agent-session-context-usage-s
 import { AgentJournalThreadGoalStateSchema } from './agent-session-journal-thread-goal-schema'
 import { AgentSessionFailureFactSchema } from '../failures/agent-session-failure-fact-schema'
 import { knownTags, openDiscriminatedUnion } from './agent-session-journal-open-union'
+import { AccountSwitch, ToolResultImage } from './brza/agent-session-journal-brza-schemas'
 import type {
   AgentJournalItemBody,
   AgentJournalMessageItem,
@@ -41,14 +42,6 @@ const ToolMetadata = {
 const ProviderCallId = z
   .string()
   .refine((value) => value.trim().length > 0, 'callId must contain a non-whitespace character')
-
-// Tool-result images keep `type` open, so a newer image kind adds no closed set (journal-closed-sets.test.ts).
-const ToolResultImage = z.object({
-  type: z.string(),
-  path: z.string().optional(),
-  url: z.string().optional(),
-  alt: z.string().optional()
-})
 
 /** Keep lifecycle strings open so newer states do not make persisted rows malformed. */
 const SubagentEntry = z.object({
@@ -158,6 +151,12 @@ const Resolution = z.object({
     )
     .optional(),
   resolvedBy: z.string().nullable(),
+  resolvedByDevice: z
+    .discriminatedUnion('kind', [
+      z.object({ kind: z.literal('current') }),
+      z.object({ kind: z.literal('named'), name: z.string() })
+    ])
+    .optional(),
   resolvedAt: z.number().nullable()
 })
 
@@ -181,7 +180,9 @@ const MessageBody = z.object({
   blocks: z.array(Block),
   // Open like roles: a send mode a newer build writes must not turn the row malformed.
   sentAs: z.string().min(1).optional(),
-  command: z.object({ name: z.string().min(1) }).optional(),
+  command: z
+    .object({ name: z.string().min(1), instructions: z.string().min(1).optional() })
+    .optional(),
   skills: z.array(z.object({ name: z.string().min(1), path: z.string().min(1) })).optional(),
   // Open like `sentAs`: a state a newer host writes reads as completed, never malformed.
   state: z.string().min(1).optional(),
@@ -260,12 +261,7 @@ const KnownItemBody = z.discriminatedUnion('kind', [
         clearedAt: z.number().int().nonnegative()
       })
       .optional(),
-    accountSwitch: z
-      .object({
-        accountId: z.string().min(1).max(512).nullable(),
-        account: z.string().min(1).max(1024)
-      })
-      .optional(),
+    accountSwitch: AccountSwitch.optional(),
     tone: z.string().optional(),
     turnLifecycle: z.object(TurnLifecycleFields).optional(),
     providerFrame: ProviderFrame.optional(),

@@ -1,4 +1,4 @@
-import type { AgentType } from '../../../../../shared/agent-status-types'
+import type { AgentType } from '../../../../../shared/agent-status/contracts/agent-status-types'
 import type { NativeChatStructuredComposerTransport } from '../native-chat-composer-types'
 
 /** What the composer field takes from the chat's agent and structured transport: the model picker's
