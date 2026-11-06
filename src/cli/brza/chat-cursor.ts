@@ -1,4 +1,4 @@
-import type { AgentJournalCursor } from '../../shared/agent-session-journal-identity'
+import type { AgentJournalCursor } from '../../shared/agent-session/journal/agent-session-journal-identity'
 import { RuntimeClientError } from '../runtime-client'
 
 export function formatChatCursor(cursor: AgentJournalCursor): string {

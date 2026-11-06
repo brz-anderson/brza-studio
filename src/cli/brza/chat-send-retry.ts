@@ -1,4 +1,4 @@
-import { quoteStartupArg } from '../../shared/tui-agent-startup-shell'
+import { quoteStartupArg } from '../../shared/agent-launch/startup/tui-agent-startup-shell'
 
 export function formatChatSendRetry(session: string, text: string, operation: string): string {
   const shell = process.platform === 'win32' ? 'powershell' : 'posix'
