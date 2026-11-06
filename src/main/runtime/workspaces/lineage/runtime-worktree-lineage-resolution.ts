@@ -7,6 +7,7 @@ import type {
   WorktreeLineageWarning
 } from '../../../../shared/worktree/lineage-types'
 import type { ResolvedWorktree } from '../catalog/runtime-worktree-path-identity'
+import { LINEAGE_WARNING_MESSAGES } from './brza/brza-lineage-warning-messages'
 import type { RuntimeManagedWorktreeCreateArgs } from '../creation/runtime-managed-worktree-create-types'
 
 export type WorktreeLineageInput = NonNullable<RuntimeManagedWorktreeCreateArgs['lineage']>
@@ -160,7 +161,7 @@ export async function resolveRuntimeWorktreeCreateLineage(
     } catch {
       warnings.push({
         code: 'LINEAGE_PARENT_CONTEXT_MISSING',
-        message: 'Worktree created, but BrzA Studio could not validate the env parent context.',
+        message: LINEAGE_WARNING_MESSAGES.envParentUnvalidated,
         details: { envParentWorkspace: input.envParentWorkspace }
       })
     }
@@ -204,8 +205,7 @@ export async function resolveRuntimeWorktreeCreateLineage(
     } catch {
       warnings.push({
         code: 'LINEAGE_PARENT_CONTEXT_MISSING',
-        message:
-          'Worktree created, but BrzA Studio could not validate the caller terminal as a parent context.',
+        message: LINEAGE_WARNING_MESSAGES.callerTerminalUnvalidated,
         details: { callerTerminalHandle: input.callerTerminalHandle }
       })
     }
@@ -219,8 +219,7 @@ export async function resolveRuntimeWorktreeCreateLineage(
     } catch {
       warnings.push({
         code: 'LINEAGE_PARENT_CONTEXT_MISSING',
-        message:
-          'Worktree created, but BrzA Studio could not validate the current directory as a parent context.',
+        message: LINEAGE_WARNING_MESSAGES.cwdParentUnvalidated,
         details: { cwdParentWorktree: input.cwdParentWorktree }
       })
     }
@@ -238,7 +237,7 @@ export async function resolveRuntimeWorktreeCreateLineage(
       warnings: [
         {
           code: 'LINEAGE_PARENT_CONTEXT_CONFLICT',
-          message: 'Worktree created, but BrzA Studio could not prove which parent caused it.',
+          message: LINEAGE_WARNING_MESSAGES.parentConflict,
           details: {
             terminalParentWorkspaceKey: candidates.find((c) => c.source === 'terminal-context')
               ?.parent.workspaceKey,

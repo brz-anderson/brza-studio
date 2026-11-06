@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import { isUpdaterEnabled } from '../../src/main/updater/updater-enabled'
-import { createLocalBuildVersion } from './build-mac-local.mjs'
+import { isUpdaterEnabled } from '../../../../src/main/updater/updater-enabled'
+import { createLocalBuildVersion } from '../macos/build-mac-local.mjs'
 import { createWinLocalBuildEnv, createWinLocalBuildSteps } from './build-win-local.mjs'
 
 const electronApp = vi.hoisted(() => ({ isPackaged: true, getVersion: () => '' }))
@@ -22,8 +22,8 @@ describe('createWinLocalBuildSteps', () => {
 
   it('builds the native executables packaging verifies, for x64, before electron-builder', () => {
     for (const script of [
-      'config/scripts/build-windows-cli-launcher.mjs',
-      'config/scripts/build-windows-agent-hook.mjs'
+      'config/scripts/native-build/windows/build-windows-cli-launcher.mjs',
+      'config/scripts/native-build/windows/build-windows-agent-hook.mjs'
     ]) {
       const step = steps[indexOf(script)]
       expect(step).toEqual(['node', [script, '--arch', 'x64']])

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/vitest'
 
 import { cleanup, fireEvent, screen } from '@testing-library/react'
 import { render } from '../native-chat-tooltip-test-harness'
-import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Why: these fixtures have neither inline visual owners nor sender navigation.
 const unusedChatLeaves = vi.hoisted(() => ({
@@ -57,6 +57,16 @@ beforeAll(() => {
 })
 afterAll(() => restoreViewport())
 afterEach(cleanup)
+
+// Fixed clock: elapsed times are derived from this instant, never from the wall clock.
+const NOW = 1_800_000_000_000
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ['Date'] })
+  vi.setSystemTime(NOW)
+})
+afterEach(() => {
+  vi.useRealTimers()
+})
 
 const session: NativeChatLiveSession = {
   messages: [
@@ -216,7 +226,7 @@ describe('NativeChatMessageList turn indicator', () => {
           ]
         }}
         isWorking
-        workingStartedAt={Date.now() - 5000}
+        workingStartedAt={NOW - 5000}
         awaitingInput="unshown"
         expandSignal={false}
       />
@@ -364,7 +374,7 @@ describe('NativeChatMessageList turn indicator', () => {
               id: 'user-thinking',
               role: 'user',
               blocks: [{ type: 'text', text: 'Start the task' }],
-              timestamp: Date.now(),
+              timestamp: NOW,
               source: 'transcript'
             }
           ]
@@ -401,7 +411,7 @@ describe('NativeChatMessageList turn indicator', () => {
               id: 'user-next',
               role: 'user',
               blocks: [{ type: 'text', text: 'Start the next task' }],
-              timestamp: Date.now(),
+              timestamp: NOW,
               source: 'transcript'
             }
           ]
@@ -430,7 +440,7 @@ describe('NativeChatMessageList turn indicator', () => {
               id: 'user-activity',
               role: 'user',
               blocks: [{ type: 'text', text: 'Start the task' }],
-              timestamp: Date.now(),
+              timestamp: NOW,
               source: 'transcript'
             }
           ]
@@ -521,7 +531,7 @@ describe('NativeChatMessageList turn indicator', () => {
           ]
         }}
         isWorking
-        workingStartedAt={Date.now() - 3000}
+        workingStartedAt={NOW - 3000}
         expandSignal={false}
       />
     )
@@ -530,7 +540,7 @@ describe('NativeChatMessageList turn indicator', () => {
   })
 
   it('keeps the completed duration below the user message', () => {
-    const startedAt = Date.now() - 3000
+    const startedAt = NOW - 3000
     const turnSession: NativeChatLiveSession = {
       ...session,
       status: 'working',
@@ -546,7 +556,7 @@ describe('NativeChatMessageList turn indicator', () => {
           id: 'assistant-complete',
           role: 'assistant',
           blocks: [{ type: 'text', text: 'Task complete.' }],
-          timestamp: Date.now(),
+          timestamp: NOW,
           source: 'transcript'
         }
       ]
@@ -593,13 +603,13 @@ describe('NativeChatMessageList turn indicator', () => {
               id: 'user-next',
               role: 'user',
               blocks: [{ type: 'text', text: 'Start another task' }],
-              timestamp: Date.now(),
+              timestamp: NOW,
               source: 'transcript'
             }
           ]
         }}
         isWorking
-        workingStartedAt={Date.now()}
+        workingStartedAt={NOW}
         expandSignal={false}
       />
     )
@@ -682,7 +692,7 @@ describe('NativeChatMessageList turn indicator', () => {
       // B was sent while A's turn runs: the host's record still names A as the running turn's opener.
       const { rerender } = render(
         list({
-          workingStartedAt: Date.now() - 5000,
+          workingStartedAt: NOW - 5000,
           settledTurns: new Map(),
           journalItems: journal('running')
         })
@@ -712,7 +722,7 @@ describe('NativeChatMessageList turn indicator', () => {
       // B's own turn opens: A settles in place and B counts from A's end.
       rerender(
         list({
-          workingStartedAt: Date.now() - 1000,
+          workingStartedAt: NOW - 1000,
           settledTurns: new Map([['user-a', { startedAt: 1, workedSeconds: 17 }]]),
           journalItems: journal('completed', 'running')
         })
@@ -746,7 +756,7 @@ describe('NativeChatMessageList turn indicator', () => {
   )
 
   it("uses the completed caret to expand that turn's tool details", () => {
-    const startedAt = Date.now() - 3000
+    const startedAt = NOW - 3000
     render(
       <NativeChatMessageList
         session={{
@@ -772,7 +782,7 @@ describe('NativeChatMessageList turn indicator', () => {
                 },
                 { type: 'tool-result', output: '/repo' }
               ],
-              timestamp: Date.now(),
+              timestamp: NOW,
               source: 'transcript'
             }
           ]

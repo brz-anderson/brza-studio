@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import { resolve } from 'node:path'
-import { getLocalBuildIdentity } from './build-mac-local.mjs'
-import { resolvePnpmCliInvocation } from './pnpm-cli-invocation.mjs'
+import { getLocalBuildIdentity } from '../macos/build-mac-local.mjs'
+import { resolvePnpmCliInvocation } from '../../tool-invocation/pnpm-cli-invocation.mjs'
 
 // Why the whole chain lives here: mobile/ is its own pnpm project the root install leaves empty,
 // and packaging verifies native executables that build:desktop does not compile.
@@ -9,8 +9,11 @@ export function createWinLocalBuildSteps() {
   return [
     ['pnpm', ['--dir', 'mobile', 'install', '--frozen-lockfile']],
     ['pnpm', ['run', 'build:desktop']],
-    ['node', ['config/scripts/build-windows-cli-launcher.mjs', '--arch', 'x64']],
-    ['node', ['config/scripts/build-windows-agent-hook.mjs', '--arch', 'x64']],
+    [
+      'node',
+      ['config/scripts/native-build/windows/build-windows-cli-launcher.mjs', '--arch', 'x64']
+    ],
+    ['node', ['config/scripts/native-build/windows/build-windows-agent-hook.mjs', '--arch', 'x64']],
     ['pnpm', ['run', 'ensure:electron-runtime']],
     [
       'pnpm',

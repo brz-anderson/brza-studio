@@ -14,6 +14,11 @@ import { agentSessionSendBodyFingerprint } from '../../../../shared/agent-sessio
 import type { AgentSessionJournal } from '../../../native-chat/agent-session-journal/journal-store'
 import recorded from './structured-agent-session-released-reader-record.test-fixture.json'
 
+// Why: the recorded hashes are of what released Orca readers got, so the one user-visible brand
+// word the fork changed in a recorded row is mapped back before hashing; nothing else is touched.
+const RECORDED_HOST_RESTARTED_REASON = 'Orca restarted before this message was sent.'
+const HOST_RESTARTED_REASON = 'BrzA Studio restarted before this message was sent.'
+
 export function createQueuedImageWireRecord(
   root: string,
   sessionId: string,
@@ -64,7 +69,7 @@ export function createQueuedImageWireRecord(
           result = result.replaceAll(id, token)
         }
       }
-      return paths(result)
+      return paths(result.replaceAll(HOST_RESTARTED_REASON, RECORDED_HOST_RESTARTED_REASON))
     }
     if (Array.isArray(value)) {
       return value.map((child) => normalize(child, key))

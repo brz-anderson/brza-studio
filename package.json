@@ -165,7 +165,7 @@
     "reclaim-space": "node config/scripts/worktree-storage/reclaim-worktree-space.mjs",
     "rebuild:node": "node config/scripts/native-build/node-addons/ensure-native-runtime.mjs --runtime=node --force",
     "build:unpack": "pnpm run build && pnpm run ensure:electron-runtime && electron-builder --config config/electron-builder.config.cjs --dir",
-    "build:win": "node config/scripts/build-win-local.mjs",
+    "build:win": "node config/scripts/desktop-distribution/windows/build-win-local.mjs",
     "build:icons": "bash resources/icon-source/generate.sh",
     "build:mac": "node config/scripts/desktop-distribution/macos/build-mac-local.mjs",
     "build:mac:release": "node config/scripts/desktop-distribution/macos/verify-macos-release-env.mjs && ORCA_MAC_RELEASE=1 pnpm run build:desktop && ORCA_MAC_RELEASE=1 pnpm run build:computer-macos && ORCA_MAC_RELEASE=1 pnpm run build:keyboard-layout-macos && ORCA_MAC_RELEASE=1 pnpm run build:process-footprint-macos && ORCA_MAC_RELEASE=1 pnpm run build:notification-status-macos && pnpm run ensure:electron-runtime && ORCA_MAC_RELEASE=1 electron-builder --config config/electron-builder.config.cjs --mac",

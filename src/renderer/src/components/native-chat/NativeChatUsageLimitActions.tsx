@@ -38,7 +38,7 @@ import { nativeChatMessageCopyText } from '../../../../shared/native-chat/transc
 
 type UsageLimitActions = {
   account: ReactNode
-  /** BrzA P79: beside Resume automatically, and in place of `account`. */
+  /** BrzA P79: beside Continue, and in place of `account`. */
   continueInOtherAccount: NativeChatAccountSwitchView | null
   handOff?: () => void
   disabled: boolean

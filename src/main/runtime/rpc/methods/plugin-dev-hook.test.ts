@@ -94,7 +94,7 @@ describe('plugins.devHook', () => {
     ).resolves.toMatchObject({ decision: { kind: 'continue', event: { ...SEND, text: 'ls' } } })
     await expect(
       devHook().handler({ path: root, event: 'terminal.write', payload: SEND }, context)
-    ).rejects.toThrow(/not an Orca plugin hook/)
+    ).rejects.toThrow(/not a BrzA Studio plugin hook/)
     await expect(
       devHook().handler({ path: root, event: 'agent.prompt.before', payload: {} }, context)
     ).rejects.toThrow(/does not list agent.prompt.before/)

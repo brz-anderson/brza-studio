@@ -247,7 +247,7 @@ describe('background creation owning-host boundary', () => {
         sessionOptions: {},
         legacy
       })
-    ).rejects.toThrow('Update Orca on this host')
+    ).rejects.toThrow('Update BrzA Studio on this host')
     expect(legacy).not.toHaveBeenCalled()
     expect(runtimeCall).not.toHaveBeenCalled()
   })

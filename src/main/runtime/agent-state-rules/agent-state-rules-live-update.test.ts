@@ -7,7 +7,6 @@ import {
   buildAgentStateRulesBundle
 } from '../../../../config/scripts/release/agent-state-rules/agent-state-rules-bundle.mjs'
 import { agentStateRulesTag } from '../../../../config/scripts/release/versioning/release-tag-patterns.mjs'
-import { MAIN_RELEASE_REPO } from '../../../shared/release-channel'
 import { getTerminalTailSentinelMatches } from '../terminal/output/tail/terminal-tail-sentinel-index'
 import {
   activateAgentStateRules,
@@ -131,13 +130,14 @@ describe('agent state rules channel and URL', () => {
     expect(agentStateRulesChannelForAppVersion(version)).toBe(channel)
   })
 
+  // Only upstream publishes these tags (see AGENT_STATE_RULES_REPO), so the fork's repo is not the host.
   // A 404 is silent, so a tag or asset drift from the publisher would never surface on its own.
   it.each(['next', 'stable'] as const)(
     "fetches exactly where the publisher uploads this build's %s rules",
     (channel) => {
       const { engineVersion } = JSON.parse(buildAgentStateRulesBundle())
       expect(agentStateRulesDownloadUrl(channel)).toBe(
-        `https://github.com/${MAIN_RELEASE_REPO}/releases/download/${agentStateRulesTag(engineVersion, channel)}/${AGENT_STATE_RULES_ASSET}`
+        `https://github.com/stablyai/orca/releases/download/${agentStateRulesTag(engineVersion, channel)}/${AGENT_STATE_RULES_ASSET}`
       )
     }
   )

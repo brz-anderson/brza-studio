@@ -21,6 +21,10 @@ export const BRAND_DEV_WS_PORT = 6869
 /** %LOCALAPPDATA% root for relocated Windows daemon hosts; upstream Orca owns `Orca`. */
 export const BRAND_LOCAL_HOST_ROOT_NAME = 'BrzA'
 
+/** Windows executable (`win.executableName`) and NSIS `Uninstall <productName>.exe`; upstream Orca owns `Orca.exe`. */
+export const BRAND_WINDOWS_EXECUTABLE_NAME = 'BrzA Studio.exe'
+export const BRAND_WINDOWS_UNINSTALLER_NAME = 'Uninstall BrzA Studio.exe'
+
 export function isBrandDevUserDataPath(userDataPath: string | undefined): boolean {
   return userDataPath?.includes(BRAND_DEV_USER_DATA_DIR_NAME) ?? false
 }

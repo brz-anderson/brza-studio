@@ -355,7 +355,7 @@ describe('CLI cwd resource frames, managed receipts and raw-path controls', () =
               code: 'LINEAGE_PARENT_AMBIGUOUS',
               message: formatAmbiguousCwdParentMessage('codex')
             })
-            expect(output.error.message).toHaveLength(637)
+            expect(output.error.message).toHaveLength(644)
             expect(host.publish.mock.calls.length).toBe(effectBefore[2])
           }
           const row = openTestJournalHostDatabase(stateDirectory)
