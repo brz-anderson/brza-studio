@@ -143,7 +143,7 @@ function BrowserPasswordEntryForm({
         <DialogDescription>
           {translate(
             'settings.browser.passwords.form.description',
-            'Orca fills it when you pick it under a sign-in field on this site.'
+            'BrzA Studio fills it when you pick it under a sign-in field on this site.'
           )}
         </DialogDescription>
       </DialogHeader>

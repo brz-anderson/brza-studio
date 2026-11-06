@@ -95,7 +95,7 @@ describe('desktop words for a write that did not happen', () => {
           { retryControl }
         )
       ).toBe(
-        "Orca couldn't confirm this message is still meant for this chat. Your message was not sent. Try again."
+        "BrzA Studio couldn't confirm this message is still meant for this chat. Your message was not sent. Try again."
       )
     }
     // Any other refused Send of a queued card keeps its existing words.

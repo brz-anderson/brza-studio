@@ -56,7 +56,7 @@ export function orchestrationMutationRecoveryError(
   const nextSteps = [
     ...(unsent
       ? [
-          `Once Orca responds, run ${retryCommand ? renderCommand(retryCommand) : `the same original command with --retry-request ${requestId}`} from this same terminal. --retry-request keeps the same operation identity, so the rerun cannot apply it twice.`
+          `Once BrzA Studio responds, run ${retryCommand ? renderCommand(retryCommand) : `the same original command with --retry-request ${requestId}`} from this same terminal. --retry-request keeps the same operation identity, so the rerun cannot apply it twice.`
         ]
       : [`Run ${renderCommand(queryCommand)} before retrying.`, retryStep]),
     ...(readsStdin ? ['Pipe the same input into the retry again; it reads stdin.'] : [])
@@ -64,7 +64,7 @@ export function orchestrationMutationRecoveryError(
   const message = [
     stripUnsafeRetryAdvice(error.message, requestId),
     unsent
-      ? 'Nothing was sent: Orca did not answer the check that runs before the orchestration mutation, so the mutation did not run.'
+      ? 'Nothing was sent: BrzA Studio did not answer the check that runs before the orchestration mutation, so the mutation did not run.'
       : 'The orchestration mutation may already have taken effect; do not assume it failed.',
     ...nextSteps,
     typeof data?.failedStage === 'string' ? `Failed stage: ${data.failedStage}.` : undefined,

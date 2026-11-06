@@ -188,7 +188,7 @@ describe('a managed orcad that keeps exiting unexpectedly', () => {
       }
 
       expect(await findStopped()).toMatchObject({
-        detail: expect.stringContaining('Orca stopped restarting its server on Box')
+        detail: expect.stringContaining('BrzA Studio stopped restarting its server on Box')
       })
       expect(launches).toBe(3)
     }
@@ -229,7 +229,7 @@ describe('a managed orcad that keeps exiting unexpectedly', () => {
 
     expect(await findStopped()).toEqual({
       state: 'unverifiable',
-      detail: 'This host’s Orca server process is live but is not answering.'
+      detail: 'This host’s BrzA Studio server process is live but is not answering.'
     })
   })
 

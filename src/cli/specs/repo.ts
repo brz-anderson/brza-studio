@@ -15,7 +15,7 @@ export const REPO_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'path', 'kind'],
     notes: [
       'Defaults to git. Use --kind folder for an ordinary directory, including a parent of separate Git repositories; folder workspaces have no Git worktrees or source control.',
-      'With --environment, --path must be an absolute path on that Orca server.'
+      'With --environment, --path must be an absolute path on that BrzA Studio server.'
     ],
     examples: ['orca repo add --path /abs/path/to/folder --kind folder --json']
   },

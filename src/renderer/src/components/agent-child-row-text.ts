@@ -53,6 +53,7 @@ export function agentChildRowTypeBeforeTool(row: AgentChildRowModel): string {
   return agentType === '' ||
     agentType === 'unknown' ||
     agentType === 'default' ||
+    agentType === row.name.trim() ||
     agentType === agentChildRowName(row).trim()
     ? ''
     : agentType

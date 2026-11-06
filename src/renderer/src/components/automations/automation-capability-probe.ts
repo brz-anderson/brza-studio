@@ -227,7 +227,7 @@ export async function prepareAutomationLaunchSetup<
   if (modern) {
     if (!status.capabilities?.includes(AUTOMATION_LAUNCH_SETUP_RUNTIME_CAPABILITY)) {
       throw new AutomationHostScopeUnsupportedError(
-        'Update Orca on the destination host to keep these agent launch settings, or choose another agent.'
+        'Update BrzA Studio on the destination host to keep these agent launch settings, or choose another agent.'
       )
     }
     return input

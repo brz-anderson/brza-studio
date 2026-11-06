@@ -7050,7 +7050,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "컴퓨터 사용 열기",
-          "79209b37b9": "쿠키 가져오기가 적합하지 않은 경우 컴퓨터 사용은 로컬 앱을 제어할 수 있으며 해당되는 경우 기존 로그인 브라우저 세션을 사용할 수 있습니다. Orca Computer Use 스킬을 설치하십시오. macOS에도 개인정보 보호 권한이 필요합니다.",
+          "79209b37b9": "쿠키 가져오기가 적합하지 않은 경우 컴퓨터 사용은 로컬 앱을 제어할 수 있으며 해당되는 경우 기존 로그인 브라우저 세션을 사용할 수 있습니다. BrzA Studio Computer Use 스킬을 설치하십시오. macOS에도 개인정보 보호 권한이 필요합니다.",
           "333984cf90": "기존 브라우저 세션 사용"
         },
         "BrowserUseEnableSwitch": {
@@ -7170,7 +7170,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "agents가 로컬 데스크톱 앱을 검사하고 작동할 수 있습니다.",
-          "93255aaf18": "Orca Computer Use 스킬",
+          "93255aaf18": "BrzA Studio Computer Use 스킬",
           "45f8e22c2e": "열기",
           "d95d1cfab8": "새로고침",
           "0c29da5805": "준비됨",
@@ -18413,8 +18413,8 @@
           "lightLooks": "라이트 룩",
           "moreThemes": "더 많은 테마",
           "next": "더 많은 룩",
-          "orcaDark": "Orca 다크",
-          "orcaLight": "Orca 라이트",
+          "orcaDark": "BrzA Studio 다크",
+          "orcaLight": "BrzA Studio 라이트",
           "pluginsHint": "더 많은 테마를 플러그인으로 사용할 수 있습니다.",
           "previous": "이전 룩",
           "showsWhenDark": "시스템이 다크 모드일 때 표시",
@@ -19070,7 +19070,7 @@
         "taskFromCoordinator": "코디네이터의 작업",
         "updateFromWorker": "워커의 업데이트",
         "senderReplaced": "{{name}}이(가) 더 이상 해당 터미널에서 실행되지 않습니다. 현재 다른 에이전트가 실행 중입니다. 필요하면 사이드바에서 해당 터미널을 여세요.",
-        "senderAmbiguous": "Orca가 {{name}}이(가) 실행 중인 터미널을 확인할 수 없습니다. 사이드바에서 여세요.",
+        "senderAmbiguous": "BrzA Studio가 {{name}}이(가) 실행 중인 터미널을 확인할 수 없습니다. 사이드바에서 여세요.",
         "senderNotRunning": "{{name}}이(가) 더 이상 실행되지 않습니다. 작업을 계속하려면 사이드바에서 새 에이전트를 시작하세요.",
         "unnamedSenderSubject": "에이전트"
       },
@@ -19170,12 +19170,6 @@
         "failed": "이 채팅을 계속할 수 없습니다. 다시 시도하거나 메시지를 보내세요.",
         "explanation": "계속하면 에이전트가 먼저 마지막 단계가 완료되었는지 확인합니다.",
         "usageLimitExplanation": "중단한 곳부터 계속하도록 에이전트에 요청합니다. 한도가 초기화된 후 사용하세요."
-      },
-      "usageLimitAutoResume": {
-        "resume": "자동으로 재개",
-        "explanation": "한도가 재설정되고 1분 뒤인 {{time}}에 이 창이 닫혀 있어도 이 채팅에 계속을 보냅니다.",
-        "scheduled": "{{time}}에 재개",
-        "cancel": "취소"
       },
       "continueInOtherAccount": {
         "continue": "다른 계정에서 계속"
@@ -19371,8 +19365,8 @@
       "usageLimitAutoContinue": {
         "cancelFailed": "자동 계속을 취소하지 못했습니다. 다시 시도하세요.",
         "openSetting": "한도가 재설정되면 자동으로 계속하기",
-        "cancelled": "Orca가 이 채팅을 자동으로 계속하지 않습니다.",
-        "scheduled": "Orca가 {{time}}에 이 채팅을 계속합니다.",
+        "cancelled": "BrzA Studio가 이 채팅을 자동으로 계속하지 않습니다.",
+        "scheduled": "BrzA Studio가 {{time}}에 이 채팅을 계속합니다.",
         "cancel": "계속하지 않기"
       },
       "settings": "채팅 설정",
@@ -19388,7 +19382,7 @@
         "incompleteReply": "첨부 파일이 변경되었거나 응답이 불완전합니다. 닫고 다시 시도하세요.",
         "notText": "이 파일은 텍스트로 미리 볼 수 없습니다. 저장한 후 다른 앱에서 여세요.",
         "openFailed": "첨부 파일을 열 수 없습니다. 다시 시도하세요.",
-        "hostUpdate": "이 호스트에서는 아직 텍스트 첨부 파일을 열 수 없습니다. 해당 호스트의 Orca를 업데이트한 후 다시 시도하세요.",
+        "hostUpdate": "이 호스트에서는 아직 텍스트 첨부 파일을 열 수 없습니다. 해당 호스트의 BrzA Studio를 업데이트한 후 다시 시도하세요.",
         "hostUnavailable": "첨부 파일 호스트를 사용할 수 없습니다. 다시 연결한 후 시도하세요.",
         "connectionChanged": "연결이 변경되었습니다. 이 첨부 파일을 닫고 다시 여세요.",
         "readFailed": "호스트에서 이 첨부 파일을 읽을 수 없습니다. 다시 연결하고 시도하세요. 파일이 삭제되었거나 변경되었을 수 있습니다."
@@ -19803,7 +19797,7 @@
         "shellEnvSearchPath": "PATH",
         "shellEnvSearchProxy": "프록시",
         "usageLimitContinueTitle": "사용 한도가 재설정되면 채팅을 자동으로 계속하기",
-        "usageLimitContinueCopy": "한도가 재설정되면 Orca가 \"Continue where you left off.\"를 보냅니다. 재설정 시간을 알 수 있는 모든 채팅에 적용됩니다.",
+        "usageLimitContinueCopy": "한도가 재설정되면 BrzA Studio가 \"Continue where you left off.\"를 보냅니다. 재설정 시간을 알 수 있는 모든 채팅에 적용됩니다.",
         "usageLimitContinueSearchLimit": "사용 한도",
         "usageLimitContinueSearchReset": "재설정",
         "usageLimitContinueToggleLabel": "사용 한도 재설정 시 채팅 계속하기 전환",

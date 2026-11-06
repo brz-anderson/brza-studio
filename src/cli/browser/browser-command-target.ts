@@ -40,7 +40,7 @@ async function getEnforceableExpectUrl(
   if (!status.result.capabilities?.includes(BROWSER_EXPECT_URL_RUNTIME_CAPABILITY)) {
     throw new RuntimeClientError(
       'incompatible_runtime',
-      'This Orca runtime cannot check --expect-url yet. Update Orca on it or drop the flag.'
+      'This BrzA Studio runtime cannot check --expect-url yet. Update BrzA Studio on it or drop the flag.'
     )
   }
   return expectUrl

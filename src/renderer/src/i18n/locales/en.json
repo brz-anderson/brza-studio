@@ -856,7 +856,7 @@
           "touchId": "touch id"
         },
         "authFailed": "Could not confirm it was you",
-        "copied": "Password copied. Orca clears it from the clipboard in 2 minutes.",
+        "copied": "Password copied. BrzA Studio clears it from the clipboard in 2 minutes.",
         "search": "Search {{count}} passwords",
         "add": "Add",
         "noMatches": "No saved passwords match.",
@@ -891,23 +891,23 @@
           "note": "Note",
           "cancel": "Cancel",
           "save": "Save",
-          "description": "Orca fills it when you pick it under a sign-in field on this site.",
+          "description": "BrzA Studio fills it when you pick it under a sign-in field on this site.",
           "usernamePlaceholder": "Email or username",
           "addNote": "Add a note"
         },
         "hide": "Hide password",
         "show": "Show password",
         "offerToSave": "Offer to save passwords",
-        "offerToSaveDescription": "After you sign in to a site in Orca’s browser, offer to save the login.",
+        "offerToSaveDescription": "After you sign in to a site in BrzA Studio’s browser, offer to save the login.",
         "fillReauth": "Ask for Touch ID before filling",
         "fillReauthDescription": "For a shared computer. Showing or copying a password already asks.",
         "noReauth": "This computer can’t confirm it’s you with Touch ID, so passwords show and fill without a check.",
-        "reauthUnavailable": "Touch ID can’t be used right now, so Orca won’t show, copy or fill a password that needs it.",
+        "reauthUnavailable": "Touch ID can’t be used right now, so BrzA Studio won’t show, copy or fill a password that needs it.",
         "import": "Import",
         "importCsv": "From a CSV file…",
         "deleteAllTitle": "Delete all password data",
         "deleteAllDescription": "Every saved password, note and never-save site in the {{profile}} profile.",
-        "empty": "Orca offers to save a login after you sign in. You can also bring them from another browser or a CSV file.",
+        "empty": "BrzA Studio offers to save a login after you sign in. You can also bring them from another browser or a CSV file.",
         "account": "{{username}} on {{site}}",
         "lastUsed": "Used {{when}}",
         "copyFor": "Copy password for {{account}}",
@@ -915,15 +915,15 @@
         "moreActions": "More actions for {{account}}",
         "accountCount": "{{count}} accounts",
         "deleteConfirmTitle": "Delete the {{site}} password for {{username}}?",
-        "deleteConfirmDescription": "Orca won’t fill it anymore. This can’t be undone.",
+        "deleteConfirmDescription": "BrzA Studio won’t fill it anymore. This can’t be undone.",
         "deleteConfirm": "Delete",
-        "profileDescription": "Saved logins for the {{profile}} profile. Orca fills one only when you pick it under a sign-in field.",
+        "profileDescription": "Saved logins for the {{profile}} profile. BrzA Studio fills one only when you pick it under a sign-in field.",
         "unavailableTitle": "Saved passwords are off on this computer",
         "emptyTitle": "No saved passwords yet",
         "searchLabel": "Search passwords",
         "deleteAllAction": "Delete…",
         "title": "Passwords",
-        "description": "Saved logins for Orca’s browser: add, import, edit and delete them.",
+        "description": "Saved logins for BrzA Studio’s browser: add, import, edit and delete them.",
         "httpSuffix": " · http"
       }
     },
@@ -1196,15 +1196,15 @@
     },
     "updateDelay": {
       "title": "Update Delay",
-      "description": "Wait this many days after a release is published before Orca offers it.",
+      "description": "Wait this many days after a release is published before BrzA Studio offers it.",
       "info": "About Update Delay",
       "none": "None",
       "availableSoon": "Available to you {{relative}}",
       "availableOn": "Available to you {{date}} ({{relative}})",
-      "clearedTitle": "Orca {{version}} is ready",
-      "heldTitle": "Orca {{version}} is on hold",
+      "clearedTitle": "BrzA Studio {{version}} is ready",
+      "heldTitle": "BrzA Studio {{version}} is on hold",
       "released": "Released {{released}}",
-      "progress": "Time until Orca {{version}} is available",
+      "progress": "Time until BrzA Studio {{version}} is available",
       "skipDelayOnceHint": "Check for this release now. Your delay setting stays the same.",
       "skipDelayOnce": "Skip Delay Once",
       "upToDateWithHeld": "You’re up to date. A newer release is on hold until {{date}}.",
@@ -2325,7 +2325,7 @@
       "GitHubItemDialog": {
         "refreshTask": "Refresh task",
         "refreshTaskFailed": "Unable to refresh this task. Try again.",
-        "refreshTaskUnsupported": "Update Orca on this server to refresh tasks here.",
+        "refreshTaskUnsupported": "Update BrzA Studio on this server to refresh tasks here.",
         "3cd5ae5b7b": "No files changed.",
         "filesUnavailable": "Couldn't load changed files.",
         "filesRetry": "Retry",
@@ -7990,7 +7990,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "Open Computer Use",
-          "79209b37b9": "If cookie import is not the right fit, Computer Use can control local apps and may use existing logged-in browser sessions where applicable. Install the Orca Computer Use skill; macOS also requires privacy permissions.",
+          "79209b37b9": "If cookie import is not the right fit, Computer Use can control local apps and may use existing logged-in browser sessions where applicable. Install the BrzA Studio Computer Use skill; macOS also requires privacy permissions.",
           "333984cf90": "Use an existing browser session"
         },
         "BrowserUseEnableSwitch": {
@@ -8110,7 +8110,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "Enables agents to inspect and operate local desktop apps.",
-          "93255aaf18": "Orca Computer Use skill",
+          "93255aaf18": "BrzA Studio Computer Use skill",
           "45f8e22c2e": "Open",
           "d95d1cfab8": "Refresh",
           "0c29da5805": "Ready",
@@ -12953,9 +12953,9 @@
           "unsupportedUnknown": "This host isn’t supported by this version of BrzA Studio. To keep using it, install an older version of BrzA Studio.",
           "tunnelUnsupported": "This host isn’t supported by this version of BrzA Studio: its SSH server doesn’t allow port forwarding, and BrzA Studio couldn’t reach its server through the SSH session either. To keep using it, install an older version of BrzA Studio.",
           "setupRetry": "BrzA Studio couldn’t start its server on this host. Try connecting again.",
-          "setupFreeHostSpace": "This host doesn’t have enough free disk space for Orca to keep a backup of its server data while starting it. Free up space on the host, then connect again.",
-          "setupStopUnmanagedRuntime": "An Orca server this app didn’t start still appears to be using this host’s Orca data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.",
-          "setupSeeDetails": "Orca couldn’t start its server on this host. The cause is in this host’s Details, in Settings > SSH Hosts.",
+          "setupFreeHostSpace": "This host doesn’t have enough free disk space for BrzA Studio to keep a backup of its server data while starting it. Free up space on the host, then connect again.",
+          "setupStopUnmanagedRuntime": "A BrzA Studio server this app didn’t start still appears to be using this host’s BrzA Studio data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.",
+          "setupSeeDetails": "BrzA Studio couldn’t start its server on this host. The cause is in this host’s Details, in Settings > SSH Hosts.",
           "moveHeld": "BrzA Studio paused moving this host’s projects to its BrzA Studio server because it couldn’t confirm the server’s copy. Nothing is lost: the host keeps its projects and stays locked until the move finishes. Connect again to resume. If the server can’t come back, stop or forget it in Settings > BrzA Studio on your SSH hosts.",
           "olderTerminalsBridged": "BrzA Studio isn’t set up on this host yet: terminals started by an older version of BrzA Studio are still running in this host’s projects. They keep working here. Close them or end them on the host, then reconnect.",
           "olderTerminalsUncounted": "Terminals started by an older version of BrzA Studio are still running on this host, and they don’t stop on their own. Close them in that version of BrzA Studio or end them on the host, then reconnect.",
@@ -13513,7 +13513,7 @@
           "allAccess": "See all access",
           "update": "Update",
           "review": "Review",
-          "replacesAction": "{{value0}} runs instead of Orca’s {{value1}}"
+          "replacesAction": "{{value0}} runs instead of BrzA Studio’s {{value1}}"
         },
         "PluginDetailInfo": {
           "previous": "Previous",
@@ -13555,7 +13555,7 @@
           "updatesKeepApproval": "Updates ask again only for new access",
           "fullAccessUpdates": "Updates can change its code without asking",
           "editsFileTypes": "Opens and edits {{value0}} files in BrzA Studio. It can read the files it opens.",
-          "replacesAction": "{{value0}} runs instead of Orca’s {{value1}}. You can switch it back in its plugin page."
+          "replacesAction": "{{value0}} runs instead of BrzA Studio’s {{value1}}. You can switch it back in its plugin page."
         },
         "PluginPageAction": {
           "failedTitle": "Couldn’t install {{value0}}",
@@ -17269,7 +17269,7 @@
         "PluginEditorNeedsDesktopNotice": {
           "browser": "{{value0}} runs only in an isolated frame, which browser clients cannot give it.",
           "isolationOff": "{{value0}} runs only in an isolated frame, and isolated plugin frames are turned off.",
-          "heading": "This editor needs the Orca desktop app",
+          "heading": "This editor needs the BrzA Studio desktop app",
           "openSource": "Open Source"
         },
         "MarkdownDefaultViewContextMenu": {
@@ -19358,10 +19358,10 @@
           }
         },
         "PluginCommandReplacementRow": {
-          "title": "{{value0}} runs instead of Orca’s {{value1}}",
+          "title": "{{value0}} runs instead of BrzA Studio’s {{value1}}",
           "conflict": "Not used: {{value0}}, installed first, replaces it",
-          "detail": "From its shortcut, the palette and menus. If the plugin fails, Orca’s own runs.",
-          "switch": "Use {{value0}} instead of Orca’s {{value1}}"
+          "detail": "From its shortcut, the palette and menus. If the plugin fails, BrzA Studio’s own runs.",
+          "switch": "Use {{value0}} instead of BrzA Studio’s {{value1}}"
         }
       }
     },
@@ -19512,7 +19512,7 @@
           "subtitle": "Pick a Chat UI agent. Agents without chat support open in a terminal instead."
         },
         "agentTerminal": {
-          "subtitle": "Orca works with every CLI agent. Choose the one you'll reach for most."
+          "subtitle": "BrzA Studio works with every CLI agent. Choose the one you'll reach for most."
         }
       },
       "skipConfirmation": {
@@ -19537,8 +19537,8 @@
           "lightLooks": "Light looks",
           "moreThemes": "More themes",
           "next": "More looks",
-          "orcaDark": "Orca Dark",
-          "orcaLight": "Orca Light",
+          "orcaDark": "BrzA Studio Dark",
+          "orcaLight": "BrzA Studio Light",
           "pluginsHint": "More themes are available as plugins.",
           "previous": "Previous looks",
           "showsWhenDark": "Shows when your system is dark",
@@ -19634,7 +19634,7 @@
         "incompleteReply": "Attachment changed or its reply was incomplete. Close it and try again.",
         "notText": "This file cannot be previewed as text. Save it to open it in another app.",
         "openFailed": "Unable to open attachment. Try again.",
-        "hostUpdate": "This host cannot open text attachments yet. Update Orca on that host, then retry.",
+        "hostUpdate": "This host cannot open text attachments yet. Update BrzA Studio on that host, then retry.",
         "hostUnavailable": "The attachment host is unavailable. Reconnect and retry.",
         "connectionChanged": "Connection changed. Close this attachment and reopen it.",
         "readFailed": "Unable to read this attachment on its host. Reconnect and try again. The file may have been removed or changed."
@@ -19822,7 +19822,7 @@
         "hostReconciling": "BrzA Studio is still checking on this chat after restarting.",
         "waitMoment": "Wait a moment.",
         "recordUnreadable": "BrzA Studio couldn't read this chat's saved state.",
-        "mailOwnerUnconfirmed": "Orca couldn't confirm this message is still meant for this chat.",
+        "mailOwnerUnconfirmed": "BrzA Studio couldn't confirm this message is still meant for this chat.",
         "chatNotFound": "BrzA Studio can't find this chat.",
         "startNewChat": "Start a new chat to continue.",
         "tryAgain": "Try again.",
@@ -20352,7 +20352,7 @@
         "taskFromCoordinator": "Task from coordinator",
         "updateFromWorker": "Update from worker",
         "senderReplaced": "{{name}} is no longer running in its terminal; another agent is running there now. Open that terminal from the sidebar if you need it.",
-        "senderAmbiguous": "Orca can't tell which terminal {{name}} is running in. Open it from the sidebar.",
+        "senderAmbiguous": "BrzA Studio can't tell which terminal {{name}} is running in. Open it from the sidebar.",
         "senderNotRunning": "{{name}} is no longer running. Start a new agent from the sidebar to continue its work.",
         "unnamedSenderSubject": "An agent"
       },
@@ -20471,12 +20471,6 @@
         "failed": "Couldn't continue this chat. Try again, or send a message.",
         "explanation": "Continue, and the agent first checks whether its last step finished.",
         "usageLimitExplanation": "Asks the agent to continue where it left off. Use it once the limit resets."
-      },
-      "usageLimitAutoResume": {
-        "resume": "Resume automatically",
-        "explanation": "Sends Continue in this chat at {{time}}, a minute after the limit resets, even with this window closed.",
-        "scheduled": "Resumes at {{time}}",
-        "cancel": "Cancel"
       },
       "continueInOtherAccount": {
         "continue": "Continue in another account"
@@ -20655,8 +20649,8 @@
       "usageLimitAutoContinue": {
         "cancelFailed": "Couldn't cancel automatic continuation. Try again.",
         "openSetting": "Continue automatically when limits reset",
-        "cancelled": "Orca won't continue this chat automatically.",
-        "scheduled": "Orca will continue this chat at {{time}}.",
+        "cancelled": "BrzA Studio won't continue this chat automatically.",
+        "scheduled": "BrzA Studio will continue this chat at {{time}}.",
         "cancel": "Don't continue"
       },
       "settings": "Chat settings",
@@ -21113,7 +21107,7 @@
         "linkPreviewsSearchUnfurl": "unfurl",
         "linkPreviewsSearchHover": "hover card",
         "usageLimitContinueTitle": "Continue chats automatically when a usage limit resets",
-        "usageLimitContinueCopy": "Orca sends \"Continue where you left off.\" when the limit resets. Applies to all chats with a known reset time.",
+        "usageLimitContinueCopy": "BrzA Studio sends \"Continue where you left off.\" when the limit resets. Applies to all chats with a known reset time.",
         "usageLimitContinueSearchLimit": "usage limit",
         "usageLimitContinueSearchReset": "reset",
         "usageLimitContinueToggleLabel": "Toggle continuing chats when a usage limit resets",
@@ -21522,13 +21516,6 @@
       "terminalSaveFailed": "Could not switch to terminal. Turn off Chat UI in Settings → Chat UI.",
       "switched": "Chat UI is now the default for new agents. You can switch back any time in Settings → Chat UI.",
       "dismiss": "Dismiss",
-      "liveSwitching": "Live switching available",
-      "liveSwitchingTitle": "Live switching 101",
-      "liveSwitchingDescription": "Right-click an agent tab to switch between Chat UI and the terminal.",
-      "liveSwitchingGotIt": "Got it",
-      "liveSwitchingTerminalTab": "Claude Code",
-      "liveSwitchingPolishTab": "Polish Bottom…",
-      "liveSwitchingCouncilTab": "Council Review",
       "demoTabTitle": "Explain login",
       "demoPrompt": "Map out how login works",
       "demoReply": "Login starts in {{file}}: the browser posts to /login, the server checks the password and creates a session, then redirects you to the app. Here’s the flow:",
@@ -24008,14 +23995,14 @@
     "rerunUnsuccessful": "Rerun unsuccessful"
   },
   "macosUpdateRequirement": {
-    "title": "Orca updates now need macOS {{macos}}",
-    "description": "Orca {{version}} requires macOS {{macos}} or later. This version keeps working, but it won’t get new updates on this Mac.",
+    "title": "BrzA Studio updates now need macOS {{macos}}",
+    "description": "BrzA Studio {{version}} requires macOS {{macos}} or later. This version keeps working, but it won’t get new updates on this Mac.",
     "checking": "Checking whether this Mac can upgrade…",
-    "upgradeDescription": "Your Mac can upgrade. Update macOS to get the latest Orca.",
+    "upgradeDescription": "Your Mac can upgrade. Update macOS to get the latest BrzA Studio.",
     "unsupportedDescription": "Apple doesn’t support macOS {{macos}} on this Mac.",
     "unknownDescription": "We couldn’t confirm an upgrade for this Mac. Apple’s compatibility guide can help.",
     "whyTitle": "Why is this changing?",
-    "whyIntro": "We updated Electron, the foundation Orca runs on, to bring:",
+    "whyIntro": "We updated Electron, the foundation BrzA Studio runs on, to bring:",
     "whySecurity": "Ongoing security fixes from Electron and Chromium.",
     "whyPerformance": "Faster startup and more efficient native API calls.",
     "whySystemApis": "Support for current macOS notification APIs and secure Keychain storage.",
@@ -24025,6 +24012,6 @@
     "updateAction": "How to update macOS",
     "discussionAction": "Join the discussion",
     "checkAction": "Check compatibility",
-    "settingsStatus": "Orca {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac."
+    "settingsStatus": "BrzA Studio {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac."
   }
 }

@@ -7519,7 +7519,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "開啟電腦使用",
-          "79209b37b9": "如果 cookie 匯入不合適，「電腦使用」可以控制本機應用程式，並可視情況使用瀏覽器現有的已登入工作階段。安裝 Orca Computer Use 技能； macOS 還需要隱私權限。",
+          "79209b37b9": "如果 cookie 匯入不合適，「電腦使用」可以控制本機應用程式，並可視情況使用瀏覽器現有的已登入工作階段。安裝 BrzA Studio Computer Use 技能； macOS 還需要隱私權限。",
           "333984cf90": "使用現有的瀏覽器工作階段"
         },
         "BrowserUseEnableSwitch": {
@@ -7639,7 +7639,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "使代理程式能夠檢查和操作本機桌面應用程式。",
-          "93255aaf18": "Orca Computer Use 技能",
+          "93255aaf18": "BrzA Studio Computer Use 技能",
           "45f8e22c2e": "開啟",
           "d95d1cfab8": "重新整理",
           "0c29da5805": "就緒",
@@ -18812,8 +18812,8 @@
           "lightLooks": "淺色外觀",
           "moreThemes": "更多主題",
           "next": "更多外觀",
-          "orcaDark": "Orca 深色",
-          "orcaLight": "Orca 淺色",
+          "orcaDark": "BrzA Studio 深色",
+          "orcaLight": "BrzA Studio 淺色",
           "pluginsHint": "更多主題以外掛程式形式提供。",
           "previous": "上一組外觀",
           "showsWhenDark": "系統為深色時顯示",
@@ -19489,7 +19489,7 @@
         "taskFromCoordinator": "來自協調者的任務",
         "updateFromWorker": "來自工作代理程式的更新",
         "senderReplaced": "{{name}} 已不在其終端機中執行；目前有另一個代理程式在該終端機中執行。如有需要，請從側邊欄開啟該終端機。",
-        "senderAmbiguous": "Orca 無法判斷 {{name}} 在哪個終端機中執行。請從側邊欄開啟終端機。",
+        "senderAmbiguous": "BrzA Studio 無法判斷 {{name}} 在哪個終端機中執行。請從側邊欄開啟終端機。",
         "senderNotRunning": "{{name}} 已停止執行。請從側邊欄啟動新的代理程式以繼續其工作。",
         "unnamedSenderSubject": "一個代理程式"
       },
@@ -19765,7 +19765,7 @@
         "incompleteReply": "附件已變更或回應不完整。請關閉後再試一次。",
         "notText": "無法以文字預覽此檔案。請儲存後在其他應用程式中開啟。",
         "openFailed": "無法開啟附件。請再試一次。",
-        "hostUpdate": "此主機目前無法開啟文字附件。請更新該主機上的 Orca，然後重試。",
+        "hostUpdate": "此主機目前無法開啟文字附件。請更新該主機上的 BrzA Studio，然後重試。",
         "hostUnavailable": "附件所在的主機無法使用。請重新連線後重試。",
         "connectionChanged": "連線已變更。請關閉並重新開啟此附件。",
         "readFailed": "無法在主機上讀取此附件。請重新連線後再試一次。檔案可能已被移除或變更。"
@@ -22124,7 +22124,7 @@
       "noneFound": "（找不到）",
       "sqlitePath": "SQLite 路徑：{{path}}",
       "sectionsDamaged": "此設定檔儲存的部分狀態已損毀：{{sections}}。其餘內容皆完好無損。",
-      "repairCommand": "停止 Orca，然後執行 `{{command}}`，僅修復損壞的部分並保留其他所有內容。Orca 會保留損壞檔案的副本。",
+      "repairCommand": "停止 BrzA Studio，然後執行 `{{command}}`，僅修復損壞的部分並保留其他所有內容。BrzA Studio 會保留損壞檔案的副本。",
       "restoreWholeBackup": "若要改為還原整份備份，請先執行 `{{exportsCommand}}`，再執行 `{{rollbackCommand}}`。",
       "sqliteUnreadable": "BrzA Studio 無法安全地開啟目前使用的設定檔，因為其 SQLite 狀態無法讀取。",
       "legacyJsonPath": "舊版 JSON 路徑：{{path}}",

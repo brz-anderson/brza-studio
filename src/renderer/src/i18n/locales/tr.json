@@ -7682,7 +7682,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "Computer Use'u Aç",
-          "79209b37b9": "Çerez içe aktarma uygun değilse Computer Use, yerel uygulamaları kontrol edebilir ve uygun olduğunda mevcut oturum açılmış tarayıcı oturumlarını kullanabilir. Orca Computer Use becerisini yükleyin; macOS ayrıca gizlilik izinleri gerektirir.",
+          "79209b37b9": "Çerez içe aktarma uygun değilse Computer Use, yerel uygulamaları kontrol edebilir ve uygun olduğunda mevcut oturum açılmış tarayıcı oturumlarını kullanabilir. BrzA Studio Computer Use becerisini yükleyin; macOS ayrıca gizlilik izinleri gerektirir.",
           "333984cf90": "Mevcut bir tarayıcı oturumunu kullan"
         },
         "BrowserUseEnableSwitch": {
@@ -7802,7 +7802,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "Ajanların yerel masaüstü uygulamalarını incelemesini ve çalıştırmasını sağlar.",
-          "93255aaf18": "Orca Computer Use becerisi",
+          "93255aaf18": "BrzA Studio Computer Use becerisi",
           "45f8e22c2e": "Aç",
           "d95d1cfab8": "Yenile",
           "0c29da5805": "Hazır",
@@ -19057,8 +19057,8 @@
           "lightLooks": "Açık görünümler",
           "moreThemes": "Daha fazla tema",
           "next": "Daha fazla görünüm",
-          "orcaDark": "Orca Koyu",
-          "orcaLight": "Orca Açık",
+          "orcaDark": "BrzA Studio Koyu",
+          "orcaLight": "BrzA Studio Açık",
           "pluginsHint": "Daha fazla tema eklenti olarak sunulur.",
           "previous": "Önceki görünümler",
           "showsWhenDark": "Sisteminiz koyu olduğunda gösterilir",
@@ -19780,7 +19780,7 @@
         "taskFromCoordinator": "Koordinatörden görev",
         "updateFromWorker": "Çalışandan güncelleme",
         "senderReplaced": "{{name}} artık kendi terminalinde çalışmıyor; orada şimdi başka bir ajan çalışıyor. Gerekirse terminali kenar çubuğundan açın.",
-        "senderAmbiguous": "Orca, {{name}} adlı ajanın hangi terminalde çalıştığını belirleyemiyor. Terminali kenar çubuğundan açın.",
+        "senderAmbiguous": "BrzA Studio, {{name}} adlı ajanın hangi terminalde çalıştığını belirleyemiyor. Terminali kenar çubuğundan açın.",
         "senderNotRunning": "{{name}} artık çalışmıyor. İşine devam etmek için kenar çubuğundan yeni bir ajan başlatın.",
         "unnamedSenderSubject": "Bir ajan"
       },
@@ -20056,7 +20056,7 @@
         "incompleteReply": "Ek değişti veya yanıtı eksik. Kapatıp tekrar deneyin.",
         "notText": "Bu dosya metin olarak önizlenemiyor. Başka bir uygulamada açmak için kaydedin.",
         "openFailed": "Ek açılamıyor. Tekrar deneyin.",
-        "hostUpdate": "Bu ana bilgisayar henüz metin eklerini açamıyor. O ana bilgisayarda Orca'yı güncelleyin ve tekrar deneyin.",
+        "hostUpdate": "Bu ana bilgisayar henüz metin eklerini açamıyor. O ana bilgisayarda BrzA Studio'yı güncelleyin ve tekrar deneyin.",
         "hostUnavailable": "Ekin ana bilgisayarı kullanılamıyor. Yeniden bağlanıp tekrar deneyin.",
         "connectionChanged": "Bağlantı değişti. Bu eki kapatıp yeniden açın.",
         "readFailed": "Bu ek ana bilgisayarında okunamıyor. Yeniden bağlanıp tekrar deneyin. Dosya silinmiş veya değiştirilmiş olabilir."
@@ -22439,7 +22439,7 @@
       "noneFound": "(bulunamadı)",
       "sqlitePath": "SQLite yolu: {{path}}",
       "sectionsDamaged": "Bu profilin kayıtlı durumunun bir bölümü hasarlı: {{sections}}. Diğer her şey sağlam.",
-      "repairCommand": "Orca’yı durdurun, ardından yalnızca hasarlı kısımları onarmak ve diğer her şeyi korumak için `{{command}}` komutunu çalıştırın. BrzA Studio hasarlı dosyanın bir kopyasını saklar.",
+      "repairCommand": "BrzA Studio’yı durdurun, ardından yalnızca hasarlı kısımları onarmak ve diğer her şeyi korumak için `{{command}}` komutunu çalıştırın. BrzA Studio hasarlı dosyanın bir kopyasını saklar.",
       "restoreWholeBackup": "Bunun yerine bir yedeği bütünüyle geri yüklemek için önce `{{exportsCommand}}`, ardından `{{rollbackCommand}}` komutunu çalıştırın.",
       "sqliteUnreadable": "SQLite durumu okunamadığı için etkin profil BrzA Studio'da güvenli bir şekilde açılamadı.",
       "legacyJsonPath": "Eski JSON yolu: {{path}}",

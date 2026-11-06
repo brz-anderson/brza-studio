@@ -92,7 +92,6 @@ export function useNativeChatInterruptedContinuation(input: {
     () => latestNativeChatUsageLimitCut(input.journalItems, input.submissions),
     [input.journalItems, input.submissions]
   )
-  // BRZA-SYNC: rodada — upstream's auto-continue replaces the fork's Resume automatically (P79).
   const usageLimitAutoContinue = useNativeChatUsageLimitAutoContinue(
     target,
     sessionId,

@@ -91,7 +91,6 @@ export function getDefaultMarkdownViewMode(
   if (target.language === 'markdown' && target.mode === 'diff') {
     return 'source'
   }
-  // BRZA-SYNC: rodada — BrzA opened Markdown in the read-only 'preview' first; the upstream setting wins until the round decides.
   // Why: Mermaid/SVG/CSV/notebook "rich" slots are viewers unrelated to how the user reads Markdown.
   if (target.language === 'markdown' && target.mode === 'edit') {
     return normalizeMarkdownDefaultViewMode(markdownDefaultViewMode)

@@ -157,7 +157,7 @@ export function selectEnclosingWorktreeSelectionOnHost(
           : '--worktree'
     throw new RuntimeClientError(
       'selector_ambiguous',
-      `${action}More than one Orca workspace matched the current directory. Choose an exact ${purpose === 'parent' ? 'parent workspace' : 'workspace'}.`,
+      `${action}More than one BrzA Studio workspace matched the current directory. Choose an exact ${purpose === 'parent' ? 'parent workspace' : 'workspace'}.`,
       {
         workspaces: owners.map((row, index) => ({
           id: row.id,
@@ -170,7 +170,7 @@ export function selectEnclosingWorktreeSelectionOnHost(
           purpose === 'orchestration-caller'
             ? [
                 'This command needs your own caller identity; selecting a target workspace cannot supply it.',
-                'Run the command in your own live Orca terminal with ORCA_TERMINAL_HANDLE preserved.'
+                'Run the command in your own live BrzA Studio terminal with ORCA_TERMINAL_HANDLE preserved.'
               ]
             : [
                 'Inspect a chosen workspace with `orca worktree show --worktree <selector> --json`.',
@@ -219,7 +219,7 @@ export function selectEnclosingRepoOnHost(
       .sort((left, right) => JSON.stringify(left).localeCompare(JSON.stringify(right)))
     throw new RuntimeClientError(
       'selector_ambiguous',
-      `More than one Orca project contains the current directory: ${currentPath}. Choose the project with --repo or --project.`,
+      `More than one BrzA Studio project contains the current directory: ${currentPath}. Choose the project with --repo or --project.`,
       {
         projects,
         nextSteps: [

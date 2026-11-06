@@ -68,7 +68,7 @@ export function UpdateCardStateContent({
           unsupported
             ? translate(
                 'macosUpdateRequirement.settingsStatus',
-                'Orca {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac.',
+                'BrzA Studio {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac.',
                 { version: unsupported.version, macos: unsupported.minimumMacosVersion }
               )
             : translate('auto.components.UpdateCard.ea2a41adbe', "You're on the latest version.")

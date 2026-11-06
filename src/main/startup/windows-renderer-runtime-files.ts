@@ -38,9 +38,9 @@ export function ensureWindowsRendererRuntimeFiles(isServeMode: boolean): boolean
     return true
   }
   const message =
-    `Orca's installation is incomplete: ${fileName} is missing, empty, or in use. ` +
-    'If Orca is updating, wait for the installer to finish, then open Orca again. ' +
-    'Otherwise, reinstall Orca.'
+    `BrzA Studio's installation is incomplete: ${fileName} is missing, empty, or in use. ` +
+    'If BrzA Studio is updating, wait for the installer to finish, then open BrzA Studio again. ' +
+    'Otherwise, reinstall BrzA Studio.'
   console.error(`[startup] ${message}`)
   handleMainProcessPreflightFailure(new Error(message))
   return false

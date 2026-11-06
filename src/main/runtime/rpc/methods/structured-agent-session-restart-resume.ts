@@ -14,7 +14,6 @@ import {
   RestartResumeParams
 } from './structured-agent-session-schemas'
 import { structuredAgentsReadBy } from './structured-agent-session-policy'
-import { STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_METHODS } from './structured-agent-session-usage-limit-auto-resume'
 
 export const STRUCTURED_AGENT_SESSION_RESTART_RESUME_METHODS = [
   defineMethod({
@@ -90,6 +89,5 @@ export const STRUCTURED_AGENT_SESSION_RESTART_RESUME_METHODS = [
       requireStructuredHost(ctx)
       return { results: [] }
     }
-  }),
-  ...STRUCTURED_AGENT_SESSION_USAGE_LIMIT_AUTO_RESUME_METHODS
+  })
 ]

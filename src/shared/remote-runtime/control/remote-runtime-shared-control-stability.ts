@@ -53,7 +53,7 @@ export class SharedControlReadinessTimer {
       this.timer = null
       this.args.retire(
         remoteRuntimeUnavailableError(
-          'Remote Orca runtime did not finish connecting; resetting the control connection.'
+          'Remote BrzA Studio runtime did not finish connecting; resetting the control connection.'
         ),
         generation,
         'ready_timeout'

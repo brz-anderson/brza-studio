@@ -7,22 +7,22 @@ export function sshHostSetupRemedyText(remedy: SshHostServerSetupRemedy): string
     case 'retry':
       return translate(
         'auto.components.settings.sshHostServer.setupRetry',
-        'Orca couldn’t start its server on this host. Try connecting again.'
+        'BrzA Studio couldn’t start its server on this host. Try connecting again.'
       )
     case 'free-host-space':
       return translate(
         'auto.components.settings.sshHostServer.setupFreeHostSpace',
-        'This host doesn’t have enough free disk space for Orca to keep a backup of its server data while starting it. Free up space on the host, then connect again.'
+        'This host doesn’t have enough free disk space for BrzA Studio to keep a backup of its server data while starting it. Free up space on the host, then connect again.'
       )
     case 'stop-unmanaged-runtime':
       return translate(
         'auto.components.settings.sshHostServer.setupStopUnmanagedRuntime',
-        'An Orca server this app didn’t start still appears to be using this host’s Orca data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.'
+        'A BrzA Studio server this app didn’t start still appears to be using this host’s BrzA Studio data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.'
       )
     case 'see-details':
       return translate(
         'auto.components.settings.sshHostServer.setupSeeDetails',
-        'Orca couldn’t start its server on this host. The cause is in this host’s Details, in Settings > SSH Hosts.'
+        'BrzA Studio couldn’t start its server on this host. The cause is in this host’s Details, in Settings > SSH Hosts.'
       )
   }
 }

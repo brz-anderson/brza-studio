@@ -30,7 +30,7 @@ describe('renamed skills on paired runtimes', () => {
     })
     expect(await autoUpdateBundledSkillsOnTarget(target, request.names)).toBeNull()
     await expect(executeBundledSkillsOnTarget(target, 'digest', request)).rejects.toThrow(
-      'Update Orca on the server'
+      'Update BrzA Studio on the server'
     )
     expect(mocks.rpc).not.toHaveBeenCalled()
   })

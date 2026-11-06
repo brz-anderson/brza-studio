@@ -83,7 +83,7 @@ export async function executeBundledSkillsOnTarget(
     })
   }
   if (!(await supportsSelectedNames(target.environmentId, request.names))) {
-    throw new Error('Update Orca on the server to install renamed Orca skills.')
+    throw new Error('Update BrzA Studio on the server to install renamed Orca skills.')
   }
   return callRuntimeRpc<BundledSkillInstallResult>(
     { kind: 'environment', environmentId: target.environmentId },

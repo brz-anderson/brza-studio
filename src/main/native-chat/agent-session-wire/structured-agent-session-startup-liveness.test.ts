@@ -191,7 +191,7 @@ describe("Orca's own refusal during a start", () => {
       const id = await accept('an agent whose sign-in line Orca cannot read')
       await eventually(async () => expect((await submission(id))?.dispatchState).toBe('rejected'))
       // The adapter's own final verdict carries Orca's original refusal, not a generic close.
-      expect(refusal?.message).toContain('sign-in link Orca cannot read')
+      expect(refusal?.message).toContain('sign-in link BrzA Studio cannot read')
       const verdict = findInErrorChain(acquireError, (cause) =>
         cause instanceof AgentSessionStartFailure ? cause : undefined
       )

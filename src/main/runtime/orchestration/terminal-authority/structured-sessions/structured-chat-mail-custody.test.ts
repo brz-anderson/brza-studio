@@ -291,7 +291,7 @@ describe('a queued mail card runs only while its chat still owes it', () => {
     const write = agentSessionWriteKindForMethod('agentSession.queuedMessageSend', fields)
     for (const retryControl of [false, true]) {
       expect(agentSessionRefusalNotice(sent.refusal, write, { retryControl })).toBe(
-        "Orca couldn't confirm this message is still meant for this chat. Your message was not sent. Try again."
+        "BrzA Studio couldn't confirm this message is still meant for this chat. Your message was not sent. Try again."
       )
     }
     expect(chat.turns).toHaveLength(1)

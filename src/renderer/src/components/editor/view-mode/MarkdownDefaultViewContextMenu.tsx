@@ -54,15 +54,17 @@ export function MarkdownDefaultViewContextMenu({
             onSelectView(mode)
           }}
         >
-          {(['source', 'rich'] as const satisfies readonly MarkdownDefaultViewMode[]).map(
-            (mode) => (
-              <ContextMenuRadioItem key={mode} value={mode}>
-                {mode === 'source'
+          {(
+            ['preview', 'rich', 'source'] as const satisfies readonly MarkdownDefaultViewMode[]
+          ).map((mode) => (
+            <ContextMenuRadioItem key={mode} value={mode}>
+              {mode === 'preview'
+                ? translate('auto.components.editor.EditorViewToggle.0d193dc03c', 'Preview')
+                : mode === 'source'
                   ? translate('auto.components.editor.EditorViewToggle.4d6ccb7ba6', 'Source')
                   : translate('auto.components.editor.EditorViewToggle.aff15f94f5', 'Rich Editor')}
-              </ContextMenuRadioItem>
-            )
-          )}
+            </ContextMenuRadioItem>
+          ))}
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>

@@ -97,7 +97,7 @@ describe('automation setup CLI contract', () => {
     expect(process.exitCode).toBe(1)
     expect(setupCalls()).toEqual(['status.get'])
     expect(JSON.parse(String(output.mock.calls.at(-1)?.[0])).error.message).toBe(
-      "This host's Orca is too old for --setup on automations. Update Orca on that host, or run the command without --setup."
+      "This host's BrzA Studio is too old for --setup on automations. Update BrzA Studio on that host, or run the command without --setup."
     )
   })
 

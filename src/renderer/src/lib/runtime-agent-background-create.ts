@@ -73,7 +73,7 @@ async function createPreparedRuntimeAgentBackgroundTerminal(
   const keyboardOptions = createAgentSessionKeyboardOptions(keyboardProtocol)
   const operation = createAgentSessionCreateOperation()
   if (!complete && args.sessionOptions !== undefined) {
-    throw new Error('Update Orca on this host to use agent launch settings.')
+    throw new Error('Update BrzA Studio on this host to use agent launch settings.')
   }
   if (!complete && hasExtraAgentArgs(args.extraAgentArgs) && args.agentArgs === undefined) {
     throw new Error("Extra arguments can't be applied to a paired server's workspace from here.")
@@ -128,7 +128,7 @@ async function createPreparedRuntimeAgentBackgroundTerminal(
     legacy: async ({ skipCompatibilityCheck }) => {
       if (args.sessionOptions !== undefined) {
         throw new Error(
-          'This host could not apply the agent launch settings. Update Orca on the host and try again.'
+          'This host could not apply the agent launch settings. Update BrzA Studio on the host and try again.'
         )
       }
       if (hasExtraAgentArgs(args.extraAgentArgs) && args.agentArgs === undefined) {

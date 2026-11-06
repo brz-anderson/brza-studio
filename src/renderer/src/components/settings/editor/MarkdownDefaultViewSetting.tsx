@@ -45,12 +45,16 @@ export function MarkdownDefaultViewSetting({
         onChange={(mode) => setMarkdownDefaultViewMode(mode)}
         options={[
           {
-            value: 'source',
-            label: translate('auto.components.editor.EditorViewToggle.4d6ccb7ba6', 'Source')
+            value: 'preview',
+            label: translate('auto.components.editor.EditorViewToggle.0d193dc03c', 'Preview')
           },
           {
             value: 'rich',
             label: translate('auto.components.editor.EditorViewToggle.aff15f94f5', 'Rich Editor')
+          },
+          {
+            value: 'source',
+            label: translate('auto.components.editor.EditorViewToggle.4d6ccb7ba6', 'Source')
           }
         ]}
       />

@@ -179,7 +179,7 @@ export class WebRuntimeConnectionTransport {
     this.requestRegistry.rejectAll('Remote BrzA Studio runtime connection interrupted.')
     this.subscriptionRegistry.handleInterrupted()
     if (this.lifecycle.crewAttempt && !this.intentionallyClosed) {
-      this.failSetup(new Error('Remote Orca runtime connection interrupted.'))
+      this.failSetup(new Error('Remote BrzA Studio runtime connection interrupted.'))
       return
     }
     if (this.intentionallyClosed || this.state === 'auth-failed') {

@@ -67,7 +67,7 @@ describe('stopWslHostServer', () => {
     await expect(stopWslHostServer(all)).resolves.toMatchObject({
       stopped: false,
       verdict: 'unverifiable',
-      reason: expect.stringContaining('another Orca on this computer')
+      reason: expect.stringContaining('another BrzA Studio on this computer')
     })
     expect(order).toEqual(['closeBridge'])
   })

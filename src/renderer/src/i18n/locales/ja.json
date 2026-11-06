@@ -7050,7 +7050,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "コンピュータ操作を開く",
-          "79209b37b9": "Cookie のインポートが適切でない場合、コンピュータ操作はローカルアプリを制御し、該当する場合は既存のログインブラウザセッションを使用することがあります。Orca Computer Use スキルをインストールします。 macOS ではプライバシー許可も必要です。",
+          "79209b37b9": "Cookie のインポートが適切でない場合、コンピュータ操作はローカルアプリを制御し、該当する場合は既存のログインブラウザセッションを使用することがあります。BrzA Studio Computer Use スキルをインストールします。 macOS ではプライバシー許可も必要です。",
           "333984cf90": "既存のブラウザセッションを使用する"
         },
         "BrowserUseEnableSwitch": {
@@ -7170,7 +7170,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "Agent がローカルデスクトップアプリを検査および操作できるようにします。",
-          "93255aaf18": "Orca Computer Use スキル",
+          "93255aaf18": "BrzA Studio Computer Use スキル",
           "45f8e22c2e": "オープン",
           "d95d1cfab8": "更新",
           "0c29da5805": "準備完了",
@@ -18413,8 +18413,8 @@
           "lightLooks": "ライトルック",
           "moreThemes": "その他のテーマ",
           "next": "その他のルック",
-          "orcaDark": "Orca ダーク",
-          "orcaLight": "Orca ライト",
+          "orcaDark": "BrzA Studio ダーク",
+          "orcaLight": "BrzA Studio ライト",
           "pluginsHint": "その他のテーマはプラグインとして入手できます。",
           "previous": "前のルック",
           "showsWhenDark": "システムがダークのときに表示",
@@ -19070,7 +19070,7 @@
         "taskFromCoordinator": "コーディネーターからのタスク",
         "updateFromWorker": "ワーカーからの更新",
         "senderReplaced": "{{name}} はターミナルで実行されていません。現在は別の Agent が実行されています。必要に応じてサイドバーからターミナルを開いてください。",
-        "senderAmbiguous": "Orca は {{name}} がどのターミナルで実行されているか判別できません。サイドバーから開いてください。",
+        "senderAmbiguous": "BrzA Studio は {{name}} がどのターミナルで実行されているか判別できません。サイドバーから開いてください。",
         "senderNotRunning": "{{name}} は実行されていません。作業を続けるにはサイドバーから新規 Agent を起動してください。",
         "unnamedSenderSubject": "Agent"
       },
@@ -19170,12 +19170,6 @@
         "failed": "このチャットを続行できませんでした。もう一度試すか、メッセージを送信してください。",
         "explanation": "続行すると、Agent はまず最後の手順が完了したかどうかを確認します。",
         "usageLimitExplanation": "中断したところから続けるよう Agent に依頼します。上限がリセットされてから使ってください。"
-      },
-      "usageLimitAutoResume": {
-        "resume": "自動で再開",
-        "explanation": "上限がリセットされた 1 分後の {{time}} に、このウィンドウを閉じていてもこのチャットに続行を送信します。",
-        "scheduled": "{{time}} に再開",
-        "cancel": "キャンセル"
       },
       "continueInOtherAccount": {
         "continue": "別のアカウントで続行"
@@ -19371,8 +19365,8 @@
       "usageLimitAutoContinue": {
         "cancelFailed": "自動続行をキャンセルできませんでした。もう一度お試しください。",
         "openSetting": "上限がリセットされたら自動的に続ける",
-        "cancelled": "Orca はこのチャットを自動的には続けません。",
-        "scheduled": "Orca は {{time}} にこのチャットを続けます。",
+        "cancelled": "BrzA Studio はこのチャットを自動的には続けません。",
+        "scheduled": "BrzA Studio は {{time}} にこのチャットを続けます。",
         "cancel": "続けない"
       },
       "settings": "チャット設定",
@@ -19388,7 +19382,7 @@
         "incompleteReply": "添付ファイルが変更されたか、応答が不完全です。閉じてからもう一度お試しください。",
         "notText": "このファイルはテキストとしてプレビューできません。保存して別のアプリで開いてください。",
         "openFailed": "添付ファイルを開けません。もう一度お試しください。",
-        "hostUpdate": "このホストではまだテキストの添付ファイルを開けません。ホストの Orca を更新してから再試行してください。",
+        "hostUpdate": "このホストではまだテキストの添付ファイルを開けません。ホストの BrzA Studio を更新してから再試行してください。",
         "hostUnavailable": "添付ファイルのホストを利用できません。再接続して再試行してください。",
         "connectionChanged": "接続が変更されました。添付ファイルを閉じてから開き直してください。",
         "readFailed": "ホスト上の添付ファイルを読み取れません。再接続してもう一度お試しください。ファイルが削除または変更された可能性があります。"
@@ -19803,7 +19797,7 @@
         "shellEnvSearchPath": "PATH",
         "shellEnvSearchProxy": "プロキシ",
         "usageLimitContinueTitle": "使用量の上限がリセットされたらチャットを自動的に続ける",
-        "usageLimitContinueCopy": "上限がリセットされると、Orca が「Continue where you left off.」を送信します。リセット時刻がわかっているすべてのチャットに適用されます。",
+        "usageLimitContinueCopy": "上限がリセットされると、BrzA Studio が「Continue where you left off.」を送信します。リセット時刻がわかっているすべてのチャットに適用されます。",
         "usageLimitContinueSearchLimit": "使用量の上限",
         "usageLimitContinueSearchReset": "リセット",
         "usageLimitContinueToggleLabel": "使用量の上限リセット時にチャットを続けるかを切り替える",
@@ -22130,7 +22124,7 @@
       "noneFound": "（見つかりません）",
       "sqlitePath": "SQLite パス: {{path}}",
       "sectionsDamaged": "このプロファイルの保存状態の一部が破損しています: {{sections}}。それ以外はすべて正常です。",
-      "repairCommand": "BrzA Studio を終了してから `{{command}}` を実行すると、破損した部分だけを修復し、他のデータを保持します。Orca は破損したファイルのコピーを保存します。",
+      "repairCommand": "BrzA Studio を終了してから `{{command}}` を実行すると、破損した部分だけを修復し、他のデータを保持します。BrzA Studio は破損したファイルのコピーを保存します。",
       "restoreWholeBackup": "代わりにバックアップ全体を復元するには、`{{exportsCommand}}`、次に `{{rollbackCommand}}` を実行してください。",
       "sqliteUnreadable": "SQLite の状態を読み取れないため、BrzA Studio はアクティブなプロファイルを安全に開けません。",
       "legacyJsonPath": "従来の JSON パス: {{path}}",

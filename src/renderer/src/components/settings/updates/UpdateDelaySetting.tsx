@@ -189,10 +189,10 @@ export function DelayedUpdatePanel({
         <div className="space-y-0.5">
           <p className="text-xs font-medium text-foreground">
             {cleared
-              ? translate('settings.updateDelay.clearedTitle', 'Orca {{version}} is ready', {
+              ? translate('settings.updateDelay.clearedTitle', 'BrzA Studio {{version}} is ready', {
                   version: delayedUpdate.version
                 })
-              : translate('settings.updateDelay.heldTitle', 'Orca {{version}} is on hold', {
+              : translate('settings.updateDelay.heldTitle', 'BrzA Studio {{version}} is on hold', {
                   version: delayedUpdate.version
                 })}
           </p>
@@ -208,7 +208,7 @@ export function DelayedUpdatePanel({
             className="h-1"
             aria-label={translate(
               'settings.updateDelay.progress',
-              'Time until Orca {{version}} is available',
+              'Time until BrzA Studio {{version}} is available',
               { version: delayedUpdate.version }
             )}
           />

@@ -4,7 +4,8 @@ import '@testing-library/jest-dom/vitest'
 
 import { act, cleanup, render, screen } from '@testing-library/react'
 import { Profiler } from 'react'
-import { afterEach, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import type { AgentChildWorkView } from '../../../../shared/agent-status/child-work/agent-status-child-work-view'
 
 import { NativeChatBackgroundTasksStatus } from './NativeChatBackgroundTasksStatus'
 
@@ -119,8 +120,9 @@ describe('the agent type on a running agent row', () => {
   })
 
   it('does not repeat a type that already names the row', () => {
+    // The row is named by its role, so the upstream id tail keeps same-role siblings apart.
     expect(rowText(child({ description: undefined, agentType: 'reviewer', operation: bash }))).toBe(
-      'reviewer · Bash'
+      'reviewer (child) · Bash'
     )
   })
 

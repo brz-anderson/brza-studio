@@ -14,7 +14,7 @@ export const getChatContrastEntriesByKey = createLocalizedCatalog(
           'Colors of the chat: the BrzA default, or any terminal theme.'
         ),
         keywords: [
-          translate('settings.appearance.chat.title', 'Chat'),
+          translate('settings.appearance.chat.title', 'Chat UI'),
           ...translateSearchKeyword('settings.appearance.chat.themeKeywordColors', 'colors'),
           ...translateSearchKeyword('settings.appearance.chat.themeKeywordDark', 'dark'),
           ...translateSearchKeyword('settings.appearance.chat.themeKeywordLight', 'light')

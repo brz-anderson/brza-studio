@@ -647,11 +647,6 @@ import {
   QueuedMessageUpdateParams
 } from './structured-agent-session-queued-edit-params'
 import { RenameParams } from './structured-agent-session-rename-params'
-import {
-  UsageLimitAutoResumeCancelParams,
-  UsageLimitAutoResumeListParams,
-  UsageLimitAutoResumeScheduleParams
-} from './structured-agent-session-usage-limit-auto-resume-params'
 import { TerminalDaemonRestartSeveredParams } from './terminal-daemon-params'
 import { TerminalLimitUpdateParams } from './terminal-limit-params'
 import { TerminalAdoptOrphans } from './terminal-orphan-params'
@@ -842,9 +837,6 @@ export const RPC_PARAMS_BY_METHOD = {
   'agentSession.switchAccount': SwitchAccountParams,
   'agentSession.threadGoal': ThreadGoalParams,
   'agentSession.unsubscribe': UnsubscribeParams,
-  'agentSession.usageLimitAutoResume': UsageLimitAutoResumeScheduleParams,
-  'agentSession.usageLimitAutoResumeCancel': UsageLimitAutoResumeCancelParams,
-  'agentSession.usageLimitAutoResumeList': UsageLimitAutoResumeListParams,
   'agentSessionAttachment.read': AttachmentReadParams,
   'agentSessionAttachment.readTextChunk': AttachmentTextReadParams,
   'agentSessionAttachment.uploadAbort': AttachmentUploadIdParams,

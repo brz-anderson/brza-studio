@@ -7566,7 +7566,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "Ouvrir Computer Use",
-          "79209b37b9": "Si l'import de cookies ne convient pas, Computer Use peut contrôler des apps locales et, le cas échéant, réutiliser des sessions de navigateur déjà connectées. Installez la skill Orca Computer Use ; macOS exige aussi des autorisations de confidentialité.",
+          "79209b37b9": "Si l'import de cookies ne convient pas, Computer Use peut contrôler des apps locales et, le cas échéant, réutiliser des sessions de navigateur déjà connectées. Installez la skill BrzA Studio Computer Use ; macOS exige aussi des autorisations de confidentialité.",
           "333984cf90": "Utiliser une session de navigateur existante"
         },
         "BrowserUseEnableSwitch": {
@@ -7686,7 +7686,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "Permet aux agents d'inspecter et de piloter des applications de bureau locales.",
-          "93255aaf18": "Compétence Orca Computer Use",
+          "93255aaf18": "Compétence BrzA Studio Computer Use",
           "45f8e22c2e": "Ouvert",
           "d95d1cfab8": "Actualiser",
           "0c29da5805": "Prêt",
@@ -19801,7 +19801,7 @@
         "taskFromCoordinator": "Tâche du coordinateur",
         "updateFromWorker": "Nouvelles du worker",
         "senderReplaced": "{{name}} ne s’exécute plus dans son terminal ; un autre agent s’y exécute maintenant. Ouvrez ce terminal depuis la barre latérale si nécessaire.",
-        "senderAmbiguous": "Orca ne peut pas déterminer dans quel terminal {{name}} s’exécute. Ouvrez-le depuis la barre latérale.",
+        "senderAmbiguous": "BrzA Studio ne peut pas déterminer dans quel terminal {{name}} s’exécute. Ouvrez-le depuis la barre latérale.",
         "senderNotRunning": "{{name}} ne s’exécute plus. Démarrez un nouvel agent depuis la barre latérale pour poursuivre son travail.",
         "unnamedSenderSubject": "Un agent"
       },
@@ -19902,12 +19902,6 @@
         "failed": "Impossible de poursuivre cette conversation. Réessayez ou envoyez un message.",
         "explanation": "Continuez, et l'agent vérifiera d'abord si sa dernière étape s'est terminée.",
         "usageLimitExplanation": "Demande à l’agent de reprendre là où il s’était arrêté. À utiliser une fois la limite réinitialisée."
-      },
-      "usageLimitAutoResume": {
-        "resume": "Reprendre automatiquement",
-        "explanation": "Envoie Continuer dans ce chat à {{time}}, une minute après la réinitialisation de la limite, même si cette fenêtre est fermée.",
-        "scheduled": "Reprise à {{time}}",
-        "cancel": "Annuler"
       },
       "continueInOtherAccount": {
         "continue": "Continuer dans un autre compte"
@@ -20099,8 +20093,8 @@
       "usageLimitAutoContinue": {
         "cancelFailed": "Impossible d’annuler la reprise automatique. Réessayez.",
         "openSetting": "Reprendre automatiquement à la réinitialisation des limites",
-        "cancelled": "Orca ne reprendra pas ce chat automatiquement.",
-        "scheduled": "Orca reprendra ce chat à {{time}}.",
+        "cancelled": "BrzA Studio ne reprendra pas ce chat automatiquement.",
+        "scheduled": "BrzA Studio reprendra ce chat à {{time}}.",
         "cancel": "Ne pas reprendre"
       },
       "settings": "Paramètres du chat",
@@ -20116,7 +20110,7 @@
         "incompleteReply": "La pièce jointe a changé ou sa réponse était incomplète. Fermez-la et réessayez.",
         "notText": "Ce fichier ne peut pas être prévisualisé comme texte. Enregistrez-le pour l’ouvrir dans une autre application.",
         "openFailed": "Impossible d’ouvrir la pièce jointe. Réessayez.",
-        "hostUpdate": "Cet hôte ne peut pas encore ouvrir les pièces jointes texte. Mettez Orca à jour sur cet hôte, puis réessayez.",
+        "hostUpdate": "Cet hôte ne peut pas encore ouvrir les pièces jointes texte. Mettez BrzA Studio à jour sur cet hôte, puis réessayez.",
         "hostUnavailable": "L’hôte de la pièce jointe est indisponible. Reconnectez-vous et réessayez.",
         "connectionChanged": "La connexion a changé. Fermez cette pièce jointe et rouvrez-la.",
         "readFailed": "Impossible de lire cette pièce jointe sur son hôte. Reconnectez-vous et réessayez. Le fichier a peut-être été supprimé ou modifié."
@@ -20515,8 +20509,8 @@
           "lightLooks": "Styles clairs",
           "moreThemes": "Plus de thèmes",
           "next": "Plus de styles",
-          "orcaDark": "Orca sombre",
-          "orcaLight": "Orca clair",
+          "orcaDark": "BrzA Studio sombre",
+          "orcaLight": "BrzA Studio clair",
           "pluginsHint": "D’autres thèmes sont disponibles sous forme de plugins.",
           "previous": "Styles précédents",
           "showsWhenDark": "Affiché quand votre système est en mode sombre",
@@ -20608,7 +20602,7 @@
         "shellEnvSearchPath": "PATH",
         "shellEnvSearchProxy": "proxy",
         "usageLimitContinueTitle": "Reprendre automatiquement les chats quand une limite d’utilisation est réinitialisée",
-        "usageLimitContinueCopy": "Orca envoie « Continue where you left off. » quand la limite est réinitialisée. S’applique à tous les chats dont l’heure de réinitialisation est connue.",
+        "usageLimitContinueCopy": "BrzA Studio envoie « Continue where you left off. » quand la limite est réinitialisée. S’applique à tous les chats dont l’heure de réinitialisation est connue.",
         "usageLimitContinueSearchLimit": "limite d’utilisation",
         "usageLimitContinueSearchReset": "réinitialisation",
         "usageLimitContinueToggleLabel": "Activer ou désactiver la reprise des chats à la réinitialisation d’une limite",
@@ -22808,7 +22802,7 @@
       "noneFound": "(aucun élément trouvé)",
       "sqlitePath": "Chemin SQLite : {{path}}",
       "sectionsDamaged": "Une partie de l'état enregistré de ce profil est endommagée : {{sections}}. Tout le reste est intact.",
-      "repairCommand": "Arrêtez Orca, puis exécutez `{{command}}` pour réparer uniquement les parties endommagées et conserver le reste. Orca garde une copie du fichier endommagé.",
+      "repairCommand": "Arrêtez BrzA Studio, puis exécutez `{{command}}` pour réparer uniquement les parties endommagées et conserver le reste. BrzA Studio garde une copie du fichier endommagé.",
       "restoreWholeBackup": "Pour restaurer plutôt une sauvegarde complète, exécutez `{{exportsCommand}}`, puis `{{rollbackCommand}}`.",
       "sqliteUnreadable": "BrzA Studio ne peut pas ouvrir le profil actif en toute sécurité, car son état SQLite est illisible.",
       "legacyJsonPath": "Chemin de l'ancien fichier JSON : {{path}}",

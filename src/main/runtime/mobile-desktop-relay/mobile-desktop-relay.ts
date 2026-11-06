@@ -240,9 +240,7 @@ export class MobileDesktopRelay {
     }
     const grants = await this.grants.get(host, phone.deviceId)
     if (grants.kind === 'update-needed') {
-      throw unavailable(
-        'The server needs a BrzA Studio update to open its workspaces from a phone.'
-      )
+      throw unavailable('The server needs a BrzA Studio update to open workspaces from a phone.')
     }
     // Sync can outlive phone departure or server retirement; never open a stale link.
     if (!this.isCurrent(link)) {

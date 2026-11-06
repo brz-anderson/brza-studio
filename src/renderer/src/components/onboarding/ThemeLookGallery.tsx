@@ -31,8 +31,8 @@ export function useThemeLooks(
       community: translate('components.onboarding.theme.looks.sourceCommunity', 'Terminal palette'),
       builtIn: (base: ThemeLookBase) =>
         base === 'dark'
-          ? translate('components.onboarding.theme.looks.orcaDark', 'Orca Dark')
-          : translate('components.onboarding.theme.looks.orcaLight', 'Orca Light')
+          ? translate('components.onboarding.theme.looks.orcaDark', 'BrzA Studio Dark')
+          : translate('components.onboarding.theme.looks.orcaLight', 'BrzA Studio Light')
     }
     const build = (base: ThemeLookBase): ThemeLook[] =>
       buildThemeLooks({ base, pluginThemes, pluginTerminalThemes, baseline, labels })

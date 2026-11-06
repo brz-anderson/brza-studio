@@ -192,33 +192,3 @@ it('moves subscribers and prompt reuse to the newest write when that write saved
   const prior = { ...material, fence: 1, items: [], dependencies: new Set<string>() }
   expect(reusePromptProjection(journal, prior, journal.cursor(), 1)).toBe(prior.items)
 })
-
-it('moves subscribers and prompt reuse to the newest write when that write saved nothing', async () => {
-  root = await mkdtemp(join(tmpdir(), 'orca-journal-outcomes-wire-'))
-  const database = openTestJournalHostDatabase(root)
-  seedOutcomeRows(database, [projectionEpochRow])
-  const journal = await journals.open({ identity, stateDirectory: root })
-  const subscribers = new AgentSessionSubscribers()
-  const frames: AgentSessionSubscribeEvent[] = []
-  subscribers.open({ id: 'phone', sessionId, journal, fence: 1, emit: (e) => frames.push(e) })
-  await journal.appendItem(
-    item('material'),
-    { kind: 'status', text: 'material' },
-    { fence: 1, turnScope: AGENT_JOURNAL_THREAD_SCOPE }
-  )
-  const material = journal.cursor()
-  await writeNoOp(journal)
-  expect(journal.cursor().sequence).toBe(material.sequence + 1)
-
-  subscribers.publish(sessionId, journal)
-  expect(frames.findLast((frame) => frame.type === 'batch')).toMatchObject({
-    batch: { cursor: journal.cursor(), items: [{ body: { text: 'material' } }] }
-  })
-  const reads = vi.spyOn(journal, 'readSince')
-  subscribers.publish(sessionId, journal)
-  expect(reads).not.toHaveBeenCalled()
-  reads.mockRestore()
-
-  const prior = { ...material, fence: 1, items: [], dependencies: new Set<string>() }
-  expect(reusePromptProjection(journal, prior, journal.cursor(), 1)).toBe(prior.items)
-})

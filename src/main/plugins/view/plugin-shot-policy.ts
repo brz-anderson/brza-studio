@@ -50,7 +50,7 @@ export function pluginShotActRefusal(
 }
 
 export const PLUGIN_SHOT_REPLAY_WINDOW_SHOWN_MESSAGE =
-  "shot --scenario draws its preview inside Orca's window, so it needs the window hidden or minimized"
+  "shot --scenario draws its preview inside BrzA Studio's window, so it needs the window hidden or minimized"
 
 /** The preview is drawn over the window's own content, so only while nobody can see it. */
 export function pluginShotReplayRefusal(
@@ -61,7 +61,7 @@ export function pluginShotReplayRefusal(
         reason: 'window_shown',
         message: PLUGIN_SHOT_REPLAY_WINDOW_SHOWN_MESSAGE,
         nextSteps: [
-          'Minimize or hide Orca, then run this again; `orca plugin check` renders the same scenarios as text.'
+          'Minimize or hide BrzA Studio, then run this again; `orca plugin check` renders the same scenarios as text.'
         ]
       }
     : null

@@ -215,7 +215,7 @@ export function GeneralUpdateSettingsSection(): React.JSX.Element {
             (updateStatus.unsupportedSystemUpdate
               ? translate(
                   'macosUpdateRequirement.settingsStatus',
-                  'Orca {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac.',
+                  'BrzA Studio {{version}} requires macOS {{macos}} or later. This is the latest version for this Mac.',
                   {
                     version: updateStatus.unsupportedSystemUpdate.version,
                     macos: updateStatus.unsupportedSystemUpdate.minimumMacosVersion

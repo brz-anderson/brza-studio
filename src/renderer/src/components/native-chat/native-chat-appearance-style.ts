@@ -67,7 +67,6 @@ export function nativeChatAppearanceStyle(
     measuredWidth ? measuredWidth : width === 'wide' ? 960 : 736,
     maxWidthPx
   )
-  // BRZA-SYNC: rodada — upstream's code font follows the editor font, no longer the terminal's.
   const codeFont = resolveEditorFontStack(settings)
   const style: NativeChatAppearanceStyle = {
     '--chat-font-size': `${fontSize}px`,

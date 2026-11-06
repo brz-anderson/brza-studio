@@ -160,7 +160,7 @@ function BrowserPasswordsProfile({
       toast.success(
         translate(
           'settings.browser.passwords.copied',
-          'Password copied. Orca clears it from the clipboard in 2 minutes.'
+          'Password copied. BrzA Studio clears it from the clipboard in 2 minutes.'
         )
       )
     } else if (result.reason === 'auth-failed') {
@@ -181,7 +181,7 @@ function BrowserPasswordsProfile({
       ),
       description: translate(
         'settings.browser.passwords.deleteConfirmDescription',
-        'Orca won’t fill it anymore. This can’t be undone.'
+        'BrzA Studio won’t fill it anymore. This can’t be undone.'
       ),
       confirmLabel: translate('settings.browser.passwords.deleteConfirm', 'Delete'),
       confirmVariant: 'destructive'
@@ -230,7 +230,7 @@ function BrowserPasswordsProfile({
           <p className="text-xs text-muted-foreground">
             {translate(
               'settings.browser.passwords.profileDescription',
-              'Saved logins for the {{profile}} profile. Orca fills one only when you pick it under a sign-in field.',
+              'Saved logins for the {{profile}} profile. BrzA Studio fills one only when you pick it under a sign-in field.',
               { profile: profileLabel }
             )}
           </p>
@@ -282,7 +282,7 @@ function BrowserPasswordsProfile({
             <p className="text-xs text-muted-foreground">
               {translate(
                 'settings.browser.passwords.empty',
-                'Orca offers to save a login after you sign in. You can also bring them from another browser or a CSV file.'
+                'BrzA Studio offers to save a login after you sign in. You can also bring them from another browser or a CSV file.'
               )}
             </p>
           </div>

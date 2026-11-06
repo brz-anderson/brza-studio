@@ -8,10 +8,8 @@ import type { FileLinkExists } from '../../../../shared/native-chat/native-chat-
 import { useAppStore } from '@/store'
 import { NativeChatLinkClickContext } from './native-chat-link-click-context'
 import { NativeChatMarkdown } from './NativeChatMarkdown'
-import {
-  NativeChatFileLinkExistenceContext,
-  type NativeChatFileLinkExistence
-} from './native-chat-file-link-existence'
+import { NativeChatFileLinkExistenceContext } from './native-chat-file-link-existence'
+import type { NativeChatFileLinkExistence } from '../../../../shared/native-chat/native-chat-file-link-existence'
 import { NativeChatMarkdownImageOwnerContext } from './native-chat-markdown-image-owner'
 import { repoFixture, worktreeFixture } from './native-chat-workspace-test-fixtures'
 

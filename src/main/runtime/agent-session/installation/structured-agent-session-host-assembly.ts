@@ -2,13 +2,14 @@
 
 import { bindAtRestCommandContexts } from '../../../native-chat/agent-session-wire/at-rest-command-context'
 import { StructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/structured-agent-session-host'
-import { StructuredAgentSessionAdapterRouter } from '../../../native-chat/agent-session-wire/structured-agent-session-adapter-router'
+import { BrzaStructuredAgentSessionAdapterRouter } from '../../../native-chat/brza/brza-structured-agent-session-adapter-router'
 import { StructuredAgentRegistry } from '../../../native-chat/agent-session-wire/structured-agent-registry'
 import {
   createStructuredAgentSessionProviderNaming,
   withProviderNaming
 } from '../../../native-chat/agent-session-wire/structured-agent-session-provider-naming'
 import { setStructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/structured-agent-session-registry'
+import { scheduleNativeChatVisualsSweep } from '../../../native-chat/native-chat-visuals-sweep'
 import type { InstalledRuntime } from '../structured-agent-session-runtime-teardown'
 import { AgentSessionRecoveryCapsule } from '../records/agent-session-recovery-capsule'
 import type { OpenedAgentSessionRecordStore } from '../records/agent-session-record-store-slot'
@@ -22,7 +23,6 @@ import { STRUCTURED_AGENT_RUNTIME_REGISTRATIONS } from './structured-agent-runti
 import { createStructuredAgentSessionLifecycleDelivery } from '../structured-agent-session-lifecycle-delivery'
 import { createStructuredAgentSessionDispatchFollowUps } from '../structured-agent-session-dispatch-followups'
 import type { CatalogOwner } from '../model-catalog/structured-agent-model-catalog-wiring'
-import { startStructuredAgentSessionStateSchedules } from '../../structured-agent-session-state-schedules'
 import type { StructuredAgentSessionRuntimeDeps } from './structured-agent-session-runtime-contract'
 import type { AgentSessionRecord } from '../../../../shared/agent-session/lifecycle/agent-session-record'
 
@@ -59,7 +59,7 @@ export async function installOnJournal(
     ({ definition, createAdapter }) => ({ definition, adapter: createAdapter(context) })
   )
   const agents = new StructuredAgentRegistry(registrations)
-  const adapter = new StructuredAgentSessionAdapterRouter(agents, async () => {
+  const adapter = new BrzaStructuredAgentSessionAdapterRouter(agents, async () => {
     await Promise.all(registrations.map((registration) => registration.adapter.closeAll()))
   })
   const providerNaming = createStructuredAgentSessionProviderNaming({
@@ -129,6 +129,13 @@ export async function installOnJournal(
     journalDatabase,
     logger: deps.logger
   })
+  const stopVisualsSweep = deps.nativeChatVisuals
+    ? scheduleNativeChatVisualsSweep({
+        stateDirectory: deps.stateDirectory,
+        listHeldSessionIds: () => (store.readOnly ? null : store.listHeldSessionIds()),
+        logger: deps.logger
+      })
+    : undefined
   const stopCommands = bindAtRestCommandContexts(
     registrations.map(({ adapter }) => adapter.atRestCommands)
   )
@@ -140,10 +147,10 @@ export async function installOnJournal(
   } catch (error) {
     detachCatalog?.()
     stopCommands()
+    stopVisualsSweep?.()
     await providerNaming.stop()
     throw error
   }
-  const stopSchedules = startStructuredAgentSessionStateSchedules({ host, store, deps })
   return {
     host,
     adapter,
@@ -153,7 +160,7 @@ export async function installOnJournal(
       const namingStopped = providerNaming.stop()
       detachCatalog?.()
       stopCommands()
-      stopSchedules()
+      stopVisualsSweep?.()
       return namingStopped
     }
   }

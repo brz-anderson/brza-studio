@@ -123,7 +123,7 @@ export function WorktreeCardTaskActions({
       {url && openInOrca ? (
         <DropdownMenuItem onClick={openInOrca}>
           <MonitorUp className="size-3.5" />
-          {translate('auto.components.sidebar.WorktreeCardMeta.2c67730e07', 'Open in Orca')}
+          {translate('auto.components.sidebar.WorktreeCardMeta.2c67730e07', 'Open in BrzA Studio')}
         </DropdownMenuItem>
       ) : null}
       {url && onOpenIssueInBrowser ? (
@@ -131,7 +131,7 @@ export function WorktreeCardTaskActions({
           <Globe className="size-3.5" />
           {translate(
             'auto.components.sidebar.WorktreeCardMeta.openInOrcaBrowser',
-            'Open in Orca browser'
+            'Open in BrzA Studio browser'
           )}
         </DropdownMenuItem>
       ) : null}

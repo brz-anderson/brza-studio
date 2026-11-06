@@ -26,7 +26,6 @@ function peerCard(kind: BrzaClaudePeerKind, id: string, name: string, text: stri
       message={message}
       from={message.from!}
       runtimeContext={{ worktreeId: 'wt', worktreePath: null, target: { kind: 'local' } }}
-      allowFileUriLinks={false}
       onRefolded={() => {}}
     />
   )

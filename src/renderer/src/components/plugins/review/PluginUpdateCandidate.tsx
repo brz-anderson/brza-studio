@@ -84,7 +84,7 @@ const contributionGrowthLabel = (point: PluginContributionPoint): string => {
 const replacementLine = (command: string, action: string): string =>
   translate(
     'auto.components.settings.PluginUpdateAllDialog.replacesAction',
-    '{{value0}} runs instead of Orca’s {{value1}}',
+    '{{value0}} runs instead of BrzA Studio’s {{value1}}',
     { value0: command, value1: builtInActionTitle(action) }
   )
 

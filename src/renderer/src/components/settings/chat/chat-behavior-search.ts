@@ -31,7 +31,7 @@ export const getChatBehaviorEntriesByKey = createLocalizedCatalog(() => ({
     ),
     description: translate(
       'components.settings.nativeChat.usageLimitContinueCopy',
-      'Orca sends "Continue where you left off." when the limit resets. Applies to all chats with a known reset time.'
+      'BrzA Studio sends "Continue where you left off." when the limit resets. Applies to all chats with a known reset time.'
     ),
     keywords: [
       translate('components.settings.nativeChat.usageLimitContinueSearchLimit', 'usage limit'),

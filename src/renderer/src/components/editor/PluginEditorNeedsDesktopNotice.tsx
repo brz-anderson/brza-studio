@@ -31,7 +31,7 @@ export function PluginEditorNeedsDesktopNotice({
 }): React.JSX.Element {
   const heading = translate(
     'auto.components.editor.PluginEditorNeedsDesktopNotice.heading',
-    'This editor needs the Orca desktop app'
+    'This editor needs the BrzA Studio desktop app'
   )
   if (inline) {
     return (

@@ -419,16 +419,16 @@ describe('consumed cwd parent at the production authority boundary', () => {
   })
   it('keeps the complete original refusal bounded for plain creation and every finite agent', () => {
     const codex = [
-      'Orca did not create the workspace or start codex because more than one workspace matched the current directory when this request was prepared.',
+      'BrzA Studio did not create the workspace or start codex because more than one workspace matched the current directory when this request was prepared.',
       'Run `orca worktree list --limit 10000 --json` with the same server and host selection. Match path and host; if truncated, repeat with a larger --limit using totalCount. Choose id:<id> (or identity:<identity.key> for a shared ID), then add --parent-worktree <selector> to your original invocation, or deliberately use --no-parent. Pass the selector as one argument quoted for your shell.',
       'To choose a parent, start a fresh request without --retry-launch; retrying the old ID returns this refusal.'
     ].join('\n')
     expect(formatAmbiguousCwdParentMessage('codex')).toBe(codex)
     expect(formatAmbiguousCwdParentMessage()).toBe(codex.replace(' or start codex', ''))
-    expect(formatAmbiguousCwdParentMessage()).toHaveLength(622)
+    expect(formatAmbiguousCwdParentMessage()).toHaveLength(629)
     expect(
       Math.max(...ALL_TUI_AGENTS.map((agent) => formatAmbiguousCwdParentMessage(agent).length))
-    ).toBe(650)
+    ).toBe(657)
     for (const agent of ALL_TUI_AGENTS) {
       expect(formatAmbiguousCwdParentMessage(agent)).toBe(
         codex.replace('or start codex', `or start ${agent}`)

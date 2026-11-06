@@ -24,7 +24,7 @@ export function BrowserPasswordPreferences({
         label={translate('settings.browser.passwords.offerToSave', 'Offer to save passwords')}
         description={translate(
           'settings.browser.passwords.offerToSaveDescription',
-          'After you sign in to a site in Orca’s browser, offer to save the login.'
+          'After you sign in to a site in BrzA Studio’s browser, offer to save the login.'
         )}
         checked={offerToSave}
         onChange={() => updateSettings({ browserPasswordsOfferToSave: !offerToSave })}
@@ -43,7 +43,7 @@ export function BrowserPasswordPreferences({
             : reauthMethod === 'touch-id-unavailable'
               ? translate(
                   'settings.browser.passwords.reauthUnavailable',
-                  'Touch ID can’t be used right now, so Orca won’t show, copy or fill a password that needs it.'
+                  'Touch ID can’t be used right now, so BrzA Studio won’t show, copy or fill a password that needs it.'
                 )
               : translate(
                   'settings.browser.passwords.noReauth',

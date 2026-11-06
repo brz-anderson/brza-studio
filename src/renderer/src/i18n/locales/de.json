@@ -7696,7 +7696,7 @@
         },
         "BrowserUseComputerUseNotice": {
           "15b5e680ba": "Computer Use öffnen",
-          "79209b37b9": "Falls der Cookie-Import nicht geeignet ist, kann Computer Use lokale Apps steuern und gegebenenfalls bestehende angemeldete Browser-Sitzungen nutzen. Den Orca Computer Use-Skill installieren; unter macOS sind zusätzlich Datenschutzberechtigungen erforderlich.",
+          "79209b37b9": "Falls der Cookie-Import nicht geeignet ist, kann Computer Use lokale Apps steuern und gegebenenfalls bestehende angemeldete Browser-Sitzungen nutzen. Den BrzA Studio Computer Use-Skill installieren; unter macOS sind zusätzlich Datenschutzberechtigungen erforderlich.",
           "333984cf90": "Bestehende Browser-Sitzung verwenden"
         },
         "BrowserUseEnableSwitch": {
@@ -7816,7 +7816,7 @@
         },
         "ComputerUsePane": {
           "1735461723": "Ermöglicht Agenten, lokale Desktop-Apps zu untersuchen und zu bedienen.",
-          "93255aaf18": "Orca Computer Use-Skill",
+          "93255aaf18": "BrzA Studio Computer Use-Skill",
           "45f8e22c2e": "Öffnen",
           "d95d1cfab8": "Aktualisieren",
           "0c29da5805": "Bereit",
@@ -19071,8 +19071,8 @@
           "lightLooks": "Helle Looks",
           "moreThemes": "Weitere Designs",
           "next": "Weitere Looks",
-          "orcaDark": "Orca Dunkel",
-          "orcaLight": "Orca Hell",
+          "orcaDark": "BrzA Studio Dunkel",
+          "orcaLight": "BrzA Studio Hell",
           "pluginsHint": "Weitere Designs gibt es als Plugins.",
           "previous": "Vorherige Looks",
           "showsWhenDark": "Wird angezeigt, wenn dein System dunkel ist",
@@ -19793,7 +19793,7 @@
         "taskFromCoordinator": "Aufgabe vom Koordinator",
         "updateFromWorker": "Aktualisierung vom Worker",
         "senderReplaced": "{{name}} läuft nicht mehr in seinem Terminal; dort läuft jetzt ein anderer Agent. Öffne das Terminal bei Bedarf über die Seitenleiste.",
-        "senderAmbiguous": "Orca kann nicht feststellen, in welchem Terminal {{name}} läuft. Öffne es über die Seitenleiste.",
+        "senderAmbiguous": "BrzA Studio kann nicht feststellen, in welchem Terminal {{name}} läuft. Öffne es über die Seitenleiste.",
         "senderNotRunning": "{{name}} läuft nicht mehr. Starte einen neuen Agenten über die Seitenleiste, um die Arbeit fortzusetzen.",
         "unnamedSenderSubject": "Ein Agent"
       },
@@ -20072,7 +20072,7 @@
         "incompleteReply": "Der Anhang wurde geändert oder die Antwort war unvollständig. Schließe ihn und versuche es erneut.",
         "notText": "Diese Datei kann nicht als Text angezeigt werden. Speichere sie, um sie in einer anderen App zu öffnen.",
         "openFailed": "Anhang konnte nicht geöffnet werden. Versuche es erneut.",
-        "hostUpdate": "Dieser Host kann Textanhänge noch nicht öffnen. Aktualisiere Orca auf diesem Host und versuche es erneut.",
+        "hostUpdate": "Dieser Host kann Textanhänge noch nicht öffnen. Aktualisiere BrzA Studio auf diesem Host und versuche es erneut.",
         "hostUnavailable": "Der Host des Anhangs ist nicht verfügbar. Stelle die Verbindung erneut her und versuche es erneut.",
         "connectionChanged": "Die Verbindung hat sich geändert. Schließe diesen Anhang und öffne ihn erneut.",
         "readFailed": "Dieser Anhang konnte auf seinem Host nicht gelesen werden. Stelle die Verbindung erneut her und versuche es erneut. Die Datei wurde möglicherweise entfernt oder geändert."
@@ -22613,7 +22613,7 @@
       "noneFound": "(keine gefunden)",
       "sqlitePath": "SQLite-Pfad: {{path}}",
       "sectionsDamaged": "Ein Teil des gespeicherten Zustands dieses Profils ist beschädigt: {{sections}}. Alles andere ist intakt.",
-      "repairCommand": "Beenden Sie Orca und führen Sie dann `{{command}}` aus, um nur die beschädigten Teile zu reparieren und alles andere beizubehalten. BrzA Studio bewahrt eine Kopie der beschädigten Datei auf.",
+      "repairCommand": "Beenden Sie BrzA Studio und führen Sie dann `{{command}}` aus, um nur die beschädigten Teile zu reparieren und alles andere beizubehalten. BrzA Studio bewahrt eine Kopie der beschädigten Datei auf.",
       "restoreWholeBackup": "Um stattdessen eine vollständige Sicherungskopie wiederherzustellen, zuerst `{{exportsCommand}}` und dann `{{rollbackCommand}}` ausführen.",
       "sqliteUnreadable": "BrzA Studio kann das aktive Profil nicht sicher öffnen, da sein SQLite-Zustand nicht lesbar ist.",
       "legacyJsonPath": "Pfad der alten JSON-Datei: {{path}}",

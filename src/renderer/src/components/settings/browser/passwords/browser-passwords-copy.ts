@@ -9,7 +9,7 @@ export function getBrowserPasswordsTitle(): string {
 export function getBrowserPasswordsDescription(): string {
   return translate(
     'settings.browser.passwords.description',
-    'Saved logins for Orca’s browser: add, import, edit and delete them.'
+    'Saved logins for BrzA Studio’s browser: add, import, edit and delete them.'
   )
 }
 

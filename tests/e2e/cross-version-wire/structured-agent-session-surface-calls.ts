@@ -208,14 +208,6 @@ export const STRUCTURED_CALLS: {
       value: { accountId: 'account-1', account: 'dev@example.com' }
     }
   },
-  // The stub host is built without an auto-resume schedule, so each answers its empty reply.
-  { method: 'agentSession.usageLimitAutoResume', hostMethod: null, result: { resume: null } },
-  {
-    method: 'agentSession.usageLimitAutoResumeCancel',
-    hostMethod: null,
-    result: { cancelled: true }
-  },
-  { method: 'agentSession.usageLimitAutoResumeList', hostMethod: null, result: { resumes: [] } },
   {
     method: 'agentSession.history',
     hostMethod: 'history',

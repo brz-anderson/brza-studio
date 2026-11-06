@@ -260,7 +260,7 @@ describe('cwd workspace owner election and reporting at N and 10N', () => {
             expect(output.error.data.validSelectorForms[0]).toBe('identity:local:owner-0')
             expect(output.error.data.nextSteps).toHaveLength(3)
             expect(callMock).toHaveBeenCalledTimes(1)
-            expect(printed.split('More than one Orca workspace')).toHaveLength(2)
+            expect(printed.split('More than one BrzA Studio workspace')).toHaveLength(2)
             if (!json) {
               expect(printed.split('Workspace choices (JSON data):')).toHaveLength(2)
             }

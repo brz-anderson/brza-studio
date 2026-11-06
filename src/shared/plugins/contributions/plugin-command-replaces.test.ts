@@ -78,7 +78,7 @@ describe('approving a replacing plugin from the CLI', () => {
       approveFlag: '--approve ap1-x',
       nextSteps: []
     })
-    expect(message).toContain(`- Runs "Task board" instead of Orca's own view.tasks`)
+    expect(message).toContain(`- Runs "Task board" instead of BrzA Studio's own view.tasks`)
   })
 })
 

@@ -192,7 +192,7 @@ export function formatPluginApprovalMessage(request: PluginApprovalRequest, stal
     ...request.grants.capabilities.map((capability) => `- ${capability.description}`),
     ...(request.grants.replacements ?? []).map(
       (replacement) =>
-        `- Runs "${replacement.command}" instead of Orca's own ${replacement.action} (switch it back on the plugin's page)`
+        `- Runs "${replacement.command}" instead of BrzA Studio's own ${replacement.action} (switch it back on the plugin's page)`
     )
   ]
   if (request.grants.contributions.length > 0) {

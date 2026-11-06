@@ -63,7 +63,7 @@ const copy = {
   'returned-unknown': () =>
     translate(
       'components.native-chat.rewind.outcomeUnknownReturned',
-      "BrzA Studio couldn't confirm whether the conversation went back to this message. Your message is back in the composer, and Orca checks the conversation before your next message is sent."
+      "BrzA Studio couldn't confirm whether the conversation went back to this message. Your message is back in the composer, and BrzA Studio checks the conversation before your next message is sent."
     ),
   timeout: () =>
     translate(

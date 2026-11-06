@@ -151,7 +151,7 @@ export function PluginInstallConsent({
               <span>
                 {translate(
                   'auto.components.settings.PluginInstallConsent.replacesAction',
-                  '{{value0}} runs instead of Orca’s {{value1}}. You can switch it back in its plugin page.',
+                  '{{value0}} runs instead of BrzA Studio’s {{value1}}. You can switch it back in its plugin page.',
                   { value0: replacement.command, value1: builtInActionTitle(replacement.action) }
                 )}
               </span>
