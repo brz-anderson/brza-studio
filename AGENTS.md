@@ -16,6 +16,7 @@ Use `gh run watch <run-id> --compact --exit-status` or `gh pr checks --watch` to
 # Repo Rules
 
 - Ensure main is always releasable
+- All code is English: file, module, function, method, class, variable and data-key names. Portuguese (pt-BR) only in docstrings and in text returned to the user (messages, command output).
 - Never break the CI. If it's broken borken, merge fixes.
 - **Do not add tests by default.** Low-value tests cost more than they catch. Add one only when it fails if your change is reverted, hardcodes its expected values (never computed by production code, locale files, or mocks), and runs at the single layer that owns the behavior. Never test copy/translations, CSS classes, constants, third-party libraries, private state, timing, or work counts. If you touch a test like that, delete it instead of updating it. See [anti-patterns](./docs/agents-md-refs/test-antipatterns.md).
 
