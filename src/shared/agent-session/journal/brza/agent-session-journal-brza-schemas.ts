@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 // Tool-result images keep `type` open, so a newer image kind adds no closed set (journal-closed-sets.test.ts).
 export const ToolResultImage = z.object({
