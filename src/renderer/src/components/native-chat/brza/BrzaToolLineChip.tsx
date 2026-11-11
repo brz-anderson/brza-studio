@@ -10,10 +10,10 @@ import {
   type BrzaToolLineChipTarget
 } from '../../../../../shared/native-chat/tools/brza/brza-tool-line-chip'
 import { useAppStore } from '@/store'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
-import { resolveNativeChatHttpLinkRouting } from '../native-chat-link-target-actions'
-import { openNativeChatWebLink } from '../native-chat-web-link-actions'
-import type { NativeChatFileLinkContext } from '../native-chat-file-link'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
+import { resolveNativeChatHttpLinkRouting } from '../links/actions/native-chat-link-target-actions'
+import { openNativeChatWebLink } from '../links/actions/native-chat-web-link-actions'
+import type { NativeChatFileLinkContext } from '../links/actions/native-chat-file-link-context'
 import { brzaAtlassianChipUrl } from '../../../../../shared/native-chat/tools/brza/brza-atlassian-tool'
 import { openCommitByHash } from './brza-open-commit-by-hash'
 

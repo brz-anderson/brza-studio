@@ -4,10 +4,16 @@ import type { GlobalSettings } from '../../../../../../shared/global-settings-ty
 import type { UseWarpThemeImportReturn } from './useWarpThemeImport'
 
 // Why: the section runs as a plain function, so every state hook reports the light target.
-vi.mock('@/store/plugin-themes', () => ({
+vi.mock('@/store/plugins/appearance/plugin-themes', () => ({
   usePluginTerminalThemes: () => [],
   usePluginTerminalThemeStore: { getState: () => ({ entries: [] }) }
 }))
+
+// Why: with no renderer, the context hook behind useTranslate has no dispatcher.
+vi.mock('@/i18n/use-translate', async () => {
+  const { translate } = await import('@/i18n/i18n')
+  return { useTranslate: () => translate }
+})
 
 vi.mock('react', async () => {
   const actual = await vi.importActual<typeof ReactModule>('react')
@@ -87,8 +93,6 @@ describe('TerminalThemeCatalogSection while the terminal follows the chat', () =
         terminalCustomThemes: []
       } as unknown as GlobalSettings,
       systemPrefersDark: true,
-      themeSearch: '',
-      setThemeSearch: () => {},
       updateSettings,
       previewFontFamily: null,
       importedHighlightSignal: 7,

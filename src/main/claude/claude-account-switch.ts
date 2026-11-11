@@ -13,7 +13,7 @@ import {
   CLAUDE_PROFILE_MISSING_MESSAGE,
   CLAUDE_PROFILE_SETUP_FAILED_MESSAGE
 } from '../../shared/claude-profile-routing'
-import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/structured-agent-session-adapter'
+import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
 import { copyClaudeTranscriptsToAccount } from './claude-account-switch-transcript'
 import { CLAUDE_STRUCTURED_AGENT } from './structured/claude-structured-agent-definition'
 

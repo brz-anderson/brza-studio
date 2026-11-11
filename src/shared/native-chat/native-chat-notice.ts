@@ -9,12 +9,14 @@ import {
 import { AGENT_SESSION_ORCA_STOP_PRESENTATION } from '../agent-session/lifecycle/agent-session-orca-stop'
 import { AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION } from '../agent-session-account-switch'
 import { NATIVE_CHAT_STOPPED_BEFORE_START_PRESENTATION } from './native-chat-stopped-before-start'
+import { AGENT_SESSION_FORKED_FROM_PRESENTATION } from '../agent-session/agent-session-fork'
 import type { NativeChatBlock, NativeChatTextBlock } from './native-chat-types'
 
 export const NATIVE_CHAT_NOTICE_COPY = {
   compaction: 'Context compacted',
   contextCleared: 'Context cleared',
   accountSwitched: 'Account switched - {{account}}',
+  forkedFrom: 'Forked from',
   plan: 'Plan'
 } as const
 
@@ -25,6 +27,8 @@ export type NativeChatNoticeLook =
   | { kind: 'divider'; label: 'compaction' | 'contextCleared' }
   /** The account a switch moved the chat to; the conversation above it goes on. */
   | { kind: 'divider'; label: 'accountSwitched'; account: string }
+  /** The rule after a fork's inherited history, naming the chat it came from. */
+  | { kind: 'forked-from'; sourceSessionId: string; sourceName: string }
   /** Laid out in columns, so drawn in monospace. */
   | { kind: 'command-output' }
   /** The host's line in the reader's words, drawn faint. */
@@ -35,9 +39,9 @@ export type NativeChatNoticeLook =
   | { kind: 'aside' }
   | {
       kind: 'settled-permission'
-      decision: 'safety-review' | 'denied'
+      decision: 'approved' | 'safety-review' | 'denied'
       agent: 'Codex' | 'Claude'
-      tone: 'warning' | 'error'
+      tone: NativeChatNoticeTone
     }
   /** A boxed line with its icon when it has a tone; plain text when it has none. */
   | { kind: 'line'; tone: NativeChatNoticeTone | null }
@@ -62,6 +66,13 @@ export function nativeChatNoticeLook(block: NativeChatTextBlock): NativeChatNoti
   }
   if (presentation === AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION && block.accountSwitch) {
     return { kind: 'divider', label: 'accountSwitched', account: block.accountSwitch.account }
+  }
+  if (presentation === AGENT_SESSION_FORKED_FROM_PRESENTATION && block.forkedFrom) {
+    return {
+      kind: 'forked-from',
+      sourceSessionId: block.forkedFrom.sessionId,
+      sourceName: forkedFromSourceName(block.text)
+    }
   }
   if (presentation === 'command-output') {
     return { kind: 'command-output' }
@@ -93,11 +104,13 @@ export function nativeChatNoticeLook(block: NativeChatTextBlock): NativeChatNoti
   if (presentation === undefined && !block.failure && !block.orcaStop) {
     const frame = block.providerFrame
     if (frame?.provider === 'codex' && frame.kind === 'notification:guardianWarning') {
+      // Codex also reports approvals here; its own TUI hides them by this prefix.
+      const approved = block.text.startsWith('Automatic approval review approved (')
       return {
         kind: 'settled-permission',
-        decision: 'safety-review',
+        decision: approved ? 'approved' : 'safety-review',
         agent: 'Codex',
-        tone: 'warning'
+        tone: approved ? 'notice' : 'warning'
       }
     }
     if (frame?.provider === 'claude' && frame.kind === 'message:system:permission_denied') {
@@ -109,4 +122,10 @@ export function nativeChatNoticeLook(block: NativeChatTextBlock): NativeChatNoti
     kind: 'line',
     tone: tone === 'warning' || tone === 'error' || tone === 'notice' ? tone : null
   }
+}
+
+/** The host writes "Forked from <name>"; the name is what links to the source. */
+function forkedFromSourceName(text: string): string {
+  const lead = `${NATIVE_CHAT_NOTICE_COPY.forkedFrom} `
+  return text.startsWith(lead) ? text.slice(lead.length) : text
 }

@@ -3,8 +3,8 @@
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { NativeChatAwaitingInputRow } from './NativeChatAwaitingInputRow'
-import { NativeChatDisclosureContext } from './native-chat-disclosure-store'
+import { NativeChatAwaitingInputRow } from './prompts/NativeChatAwaitingInputRow'
+import { NativeChatDisclosureContext } from './messages/disclosure/native-chat-disclosure-store'
 
 const OPEN_STORE = { read: () => true, write: () => {}, runScroll: new Map() }
 

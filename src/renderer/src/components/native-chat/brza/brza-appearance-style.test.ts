@@ -5,7 +5,7 @@ import { buildAppFontFamily } from '@/lib/app-font-family'
 import * as terminalThemeSelection from '../../../../../shared/terminal-themes/terminal-theme-selection'
 import { nativeChatContrastMix } from '../../../../../shared/native-chat-theme'
 import { TERMINAL_THEME_CATALOG } from '../../../../../shared/terminal-themes/terminal-theme-catalog'
-import { nativeChatAppearanceStyle } from '../native-chat-appearance-style'
+import { nativeChatAppearanceStyle } from '../appearance/native-chat-appearance-style'
 
 const makeSettings = createGlobalSettingsFixture
 const DARK_THEME = 'Ghostty Default Style Dark'

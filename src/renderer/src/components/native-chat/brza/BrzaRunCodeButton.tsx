@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Play } from 'lucide-react'
 import { translate } from '@/i18n/i18n'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 import {
   isRunnableShellLanguage,
   runCodeInNewTerminalTab,

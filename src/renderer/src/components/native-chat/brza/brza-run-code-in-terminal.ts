@@ -1,5 +1,5 @@
 import { useAppStore } from '@/store'
-import { persistAgentLaunchTabOrder } from '@/lib/launch-agent-tab-order'
+import { persistAgentLaunchTabOrder } from '@/lib/agent-session/launch/pane/launch-agent-tab-order'
 
 const RUNNABLE_SHELL_LANGUAGES = new Set(['sh', 'bash', 'zsh', 'shell', 'console'])
 

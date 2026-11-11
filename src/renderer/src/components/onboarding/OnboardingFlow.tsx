@@ -16,7 +16,7 @@ import { OnboardingFooter } from './OnboardingFooter'
 import { shouldRequestOnboardingSkipConfirmation } from './onboarding-dismiss-target'
 import logo from '../../../../../resources/logo.svg'
 import { BrzaWordmark } from '@/components/brza/BrzaWordmark'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { addAppKeyListener, removeAppKeyListener } from '@/lib/app-keyboard-router'
 import { useScrollEdgeFades } from '@/lib/use-scroll-edge-fades'
 import { AgentSurfaceStep } from './AgentSurfaceStep'
@@ -31,6 +31,7 @@ export default function OnboardingFlow({
   onboarding,
   onOnboardingChange
 }: OnboardingFlowProps): React.JSX.Element {
+  const t = useTranslate()
   const flow = useOnboardingFlow(onboarding, onOnboardingChange)
   const stepFades = useScrollEdgeFades<HTMLDivElement>()
   const continueShortcutModifierLabel = getScreenSubmitModifierLabel()
@@ -39,13 +40,13 @@ export default function OnboardingFlow({
     currentStep.id === 'agent' && flow.agentSurface === 'chat'
       ? stepCopy.agent_chat
       : stepCopy[currentStep.id]
-  const shouldShowSkipToProjectSetup = currentStep.id !== 'notifications'
+  const shouldShowSetUpLater = currentStep.id !== 'notifications'
   const shouldShowFooterBusy = Boolean(busyLabel)
   const footerPrimaryLabel =
     busyLabel ??
-    (currentStep.id === 'notifications'
-      ? translate('components.onboarding.flow.actions.addFirstProject', 'Add your first project')
-      : translate('components.onboarding.flow.actions.continue', 'Continue'))
+    (currentStep.id === 'notifications' && !flow.hasSelectedWorkspace
+      ? t('components.onboarding.flow.actions.addFirstProject', 'Add your first project')
+      : t('components.onboarding.flow.actions.continue', 'Continue'))
   const [languagePickerOpen, setLanguagePickerOpen] = useState(false)
   const [skipConfirmOpen, setSkipConfirmOpen] = useState(false)
   const skipConfirmAdvancedViaRef = useRef<'button' | 'keyboard'>('button')
@@ -102,7 +103,7 @@ export default function OnboardingFlow({
   }, [requestSkipConfirmation, skipConfirmOpen, languagePickerOpen])
 
   return (
-    <TooltipProvider delayDuration={0} skipDelayDuration={0}>
+    <TooltipProvider skipDelayDuration={0}>
       <div
         className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black/50 p-4 text-foreground"
         data-onboarding-overlay
@@ -121,7 +122,7 @@ export default function OnboardingFlow({
         <section
           ref={flow.setLifecycleRootRef}
           role="dialog"
-          aria-label={translate(
+          aria-label={t(
             'auto.components.onboarding.OnboardingFlow.277ba45540',
             'BrzA Studio onboarding'
           )}
@@ -163,7 +164,7 @@ export default function OnboardingFlow({
                               ? 'w-6 bg-muted-foreground/70 hover:bg-foreground/80'
                               : 'w-6 bg-muted-foreground/25 hover:bg-muted-foreground/45'
                         )}
-                        aria-label={translate(
+                        aria-label={t(
                           'auto.components.onboarding.OnboardingFlow.adaa0aa627',
                           'Go to onboarding step {{value0}}: {{value1}}',
                           { value0: progressIdx + 1, value1: stepTooltipLabel }
@@ -179,7 +180,7 @@ export default function OnboardingFlow({
                 )
               })}
               <span className="ml-3 text-xs font-medium text-muted-foreground">
-                {translate(
+                {t(
                   'auto.components.onboarding.OnboardingFlow.stepOfTotal',
                   '{{current}} of {{total}}',
                   { current: flow.progressStepIndex + 1, total: flow.progressSteps.length }
@@ -190,7 +191,7 @@ export default function OnboardingFlow({
             <div className="mt-8 shrink-0">
               {stepIndex === 0 && (
                 <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                  {translate(
+                  {t(
                     'auto.components.onboarding.OnboardingFlow.1b5e182e9f',
                     'Welcome to BrzA Studio'
                   )}
@@ -265,9 +266,9 @@ export default function OnboardingFlow({
             </div>
 
             <OnboardingFooter
-              shouldShowSkipToProjectSetup={shouldShowSkipToProjectSetup}
+              shouldShowSetUpLater={shouldShowSetUpLater}
               busyLabel={busyLabel}
-              onSkipToRepo={() => void flow.skipToRepo()}
+              onSetUpLater={() => void flow.setUpLater()}
               stepIndex={stepIndex}
               onBack={flow.back}
               showPrimary

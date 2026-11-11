@@ -6,10 +6,10 @@ import {
   type NativeChatThemePair
 } from '../../../../shared/native-chat-theme'
 import { getAvailableTerminalThemeOptions, type TerminalThemeOption } from '@/lib/terminal-theme'
-import { usePluginTerminalThemes } from '@/store/plugin-themes'
+import { usePluginTerminalThemes } from '@/store/plugins/appearance/plugin-themes'
 import { translate } from '@/i18n/i18n'
 import { cn } from '@/lib/utils'
-import { useSystemPrefersDark } from '../terminal-pane/use-system-prefers-dark'
+import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
 import {
   SettingsRow,
   SettingsSegmentedControl,
@@ -43,7 +43,6 @@ export function ChatThemePairPicker({
   const appMode =
     settings.theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : settings.theme
   const [target, setTarget] = useState<ThemeTarget>(appMode)
-  const [query, setQuery] = useState('')
   const isLightTarget = target === 'light'
   const showPicker = !isLightTarget || pair.useSeparateLightTheme
   const defaultPreview = resolveNativeChatThemePair(
@@ -123,8 +122,6 @@ export function ChatThemePairPicker({
           description={pickerDescription}
           selectedTheme={isLightTarget ? pair.themeLight : pair.themeDark}
           themeOptions={themeOptions}
-          query={query}
-          onQueryChange={setQuery}
           onSelectTheme={(theme) =>
             onChange(isLightTarget ? { themeLight: theme } : { themeDark: theme })
           }

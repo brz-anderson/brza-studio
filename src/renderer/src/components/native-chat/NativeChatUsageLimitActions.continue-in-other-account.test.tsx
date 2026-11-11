@@ -3,9 +3,9 @@ import '@testing-library/jest-dom/vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { NativeChatUsageLimitActionsProvider } from './NativeChatUsageLimitActions'
-import { NativeChatNoticeRow } from './NativeChatNoticeRow'
-import type { NativeChatOrcaStopView } from './native-chat-orca-stop-context'
+import { NativeChatUsageLimitActionsProvider } from './usage/NativeChatUsageLimitActions'
+import { NativeChatNoticeRow } from './messages/notices/NativeChatNoticeRow'
+import type { NativeChatOrcaStopView } from './messages/notices/native-chat-orca-stop-context'
 import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
 
@@ -14,16 +14,16 @@ const mocks = vi.hoisted(() => {
   const state: { pinned: Pinned } = { pinned: null }
   return Object.assign(state, { call: vi.fn(), select: vi.fn() })
 })
-vi.mock('./structured-agent-session-status-hooks', () => ({
+vi.mock('./session/status/structured-agent-session-status-hooks', () => ({
   useStructuredAgentSessionAccountSwitch: () => mocks.pinned
 }))
-vi.mock('@/runtime/structured-agent-session-client', () => ({
+vi.mock('@/runtime/native-chat/requests/structured-agent-session-call', () => ({
   callStructuredAgentSession: mocks.call
 }))
-vi.mock('@/runtime/runtime-provider-accounts-client', () => ({
+vi.mock('@/runtime/provider-accounts/observations/runtime-provider-accounts-client', () => ({
   selectClaudeProviderAccount: mocks.select
 }))
-vi.mock('@/runtime/structured-conversation-name', () => ({
+vi.mock('@/runtime/native-chat/naming/structured-conversation-name', () => ({
   useStructuredChatTabConversationName: () => 'My chat'
 }))
 vi.mock('@/components/status-bar/ClaudeSwitcherMenu', () => ({

@@ -1,5 +1,5 @@
-import { StructuredAgentSessionAdapterRouter } from '../agent-session-wire/structured-agent-session-adapter-router'
-import type { StructuredAgentSessionAdapter } from '../agent-session-wire/structured-agent-session-adapter'
+import { StructuredAgentSessionAdapterRouter } from '../agent-session-wire/providers/structured-agent-session-adapter-router'
+import type { StructuredAgentSessionAdapter } from '../agent-session-wire/providers/structured-agent-session-adapter'
 
 /** The router plus the BrzA methods: the mid-chat permission mode follows the live owner, and the
  *  account switch and the fork through a message follow the record's agent, so a chat at rest

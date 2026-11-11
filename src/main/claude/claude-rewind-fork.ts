@@ -1,5 +1,5 @@
 import { createReadStream } from 'node:fs'
-import { join } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 import { requireLegacyAgentSessionAccountHome } from '../../shared/agent-session/lifecycle/agent-session-account-home'
 import {
   agentSessionProviderHandleChainHead,
@@ -8,7 +8,7 @@ import {
 import type { AgentSessionRecord } from '../../shared/agent-session/lifecycle/agent-session-record'
 import type { AgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
 import { getClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
-import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/structured-agent-session-adapter'
+import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
 import { resolveSessionFilePath } from '../native-chat/session-file-resolver'
 import { splitTranscriptStreamLines } from '../native-chat/transcript-stream-lines'
 import { claudeSessionIdForRewind } from './structured/claude-structured-session-id'
@@ -64,7 +64,7 @@ export async function findClaudeTranscriptRow<Row>(
   return undefined
 }
 
-function isLocalCommandCaveatRow(row: TranscriptUserRow): boolean {
+export function isLocalCommandCaveatRow(row: Record<string, unknown>): boolean {
   return (
     row.isMeta === true &&
     typeof row.message === 'object' &&
@@ -125,6 +125,7 @@ export async function resolveClaudeRewindFork(input: {
   head: AgentSessionProviderHandle
   prompt: { sessionId: string; uuid: string }
   claudeConfigDirs: readonly string[]
+  destinationConfigDir?: string
 }): Promise<AgentSessionRewindFork | null> {
   for (const claudeConfigDir of new Set(input.claudeConfigDirs)) {
     const parent = await readClaudePromptParentUuid({
@@ -146,7 +147,13 @@ export async function resolveClaudeRewindFork(input: {
       if (!sourcePath) {
         return null
       }
-      return materializeClaudeRewindTranscript(sourcePath, fork)
+      return materializeClaudeRewindTranscript(
+        sourcePath,
+        fork,
+        input.destinationConfigDir
+          ? join(input.destinationConfigDir, 'projects', basename(dirname(sourcePath)))
+          : undefined
+      )
     }
   }
   return null
@@ -173,6 +180,7 @@ export const claudeForkForRewind: NonNullable<
     rewindOperationId,
     head,
     prompt: beforeMessage,
+    destinationConfigDir: requireLegacyAgentSessionAccountHome(record.accountHome).path,
     claudeConfigDirs: claudeConfigDirsForRecord(record)
   })
   return fork ? { ok: true, fork } : { ok: false, reason: 'invalid-target' }

@@ -3,9 +3,9 @@ import {
   agentSessionAccountSwitchedText,
   type AgentSessionAccountSwitchRow
 } from '../../../shared/agent-session-account-switch'
-import type { JournalReducerState } from './journal-reducer'
-import { journalItemRowBuilder } from './journal-row-builders'
-import type { JournalOperationReceipt, JournalRowWriter } from './journal-row-writer'
+import type { JournalReducerState } from './projection/journal-reducer'
+import { journalItemRowBuilder } from './writing/journal-row-builders'
+import type { JournalOperationReceipt, JournalRowWriter } from './writing/journal-row-writer'
 
 /** The "Account switched" divider, written with the record's move in one transaction. Unlike a
  *  clear it sets no floor: the conversation goes on, in the other account. */

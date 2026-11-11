@@ -13,7 +13,7 @@ export const DESKTOP_BROWSER_BRIDGE_SCOPE_CODE = 'desktop_browser_bridge_out_of_
 export const DESKTOP_BROWSER_BRIDGE_UNROUTED_CODE = 'desktop_browser_bridge_unrouted'
 
 export const DESKTOP_BROWSER_BRIDGE_SETTING_LABEL =
-  "Allow this host's orca CLI to control BrzA Studio"
+  'Allow this host to control BrzA Studio browser tabs in its workspaces'
 
 /** The desktop also withholds the bridge while this host's pages browse from the desktop's own network. */
 export const DESKTOP_BROWSER_BRIDGE_ROUTING_SETTING_LABEL = 'Settings › Browser › SSH workspaces'

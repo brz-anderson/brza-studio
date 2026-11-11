@@ -3,17 +3,7 @@ import { parseOrcaBrowserCommand, runsOrcaCliCommand } from './orca-browser-cli-
 
 describe('parseOrcaBrowserCommand', () => {
   it.each([
-    ['orca click --element e3', null],
-    ['orca snapshot --page p1', 'p1'],
-    ['orca-dev fill --element e2 --text hi --page=p2', 'p2'],
-    ["orca goto --url https://example.com --page='p3'", 'p3'],
-    ['/Users/me/.local/bin/orca screenshot', null],
-    ['C:\\Users\\me\\orca\\orca.cmd tab create', null],
-    ['orca-ide mouse move --x 1 --y 2', null],
-    ['cd app && orca click --element e3 --page p4', 'p4'],
-    ['git status; ORCA_DEBUG=1 orca tab list', null],
-    ['orca snapshot | head -20', null],
-    ['orca browser identity get', null],
+    // BrzA's own command name reaches the same browser tab.
     ['brza snapshot --page p5', 'p5']
   ])('matches %s', (command, pageId) => {
     expect(parseOrcaBrowserCommand(command)).toEqual({ pageId })

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
-import { useSystemPrefersDark } from '@/components/terminal-pane/use-system-prefers-dark'
+import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
 import { useMonacoDark } from '@/hooks/use-monaco-theme'
 import {
   markdownSurfaceTheme,

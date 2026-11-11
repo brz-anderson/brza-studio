@@ -1,5 +1,5 @@
 import type { Nodes, Paragraph, Parent, RootContent } from 'mdast'
-import { IMAGE_FILE_EXTENSIONS } from '../../../../../shared/image-file-extensions'
+import { IMAGE_FILE_EXTENSIONS } from '../../../../../shared/file-preview/image-mime-types'
 import { routeNativeChatHref } from '../../../../../shared/native-chat/native-chat-href-routing'
 
 /** Hast property of the thumbnail placeholder, carried through sanitize to the `div` renderer. */

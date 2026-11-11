@@ -1,4 +1,4 @@
-import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/structured-agent-session-adapter'
+import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
 import { parseClaudeSourceBlockId } from './claude-streamed-block-identity'
 import { claudeConfigDirsForRecord, findClaudeTranscriptRow } from './claude-rewind-fork'
 import { forkClaudeTranscript } from './claude-rewind-transcript'
@@ -52,7 +52,7 @@ export async function resolveClaudeMessageFork(input: {
     if (found) {
       const fork = await forkClaudeTranscript(found.path, input.message.sessionId, found.row.uuid)
       // A copy with no resume point wrote no transcript, so a chat resuming it would start blank.
-      if (!fork.resumeCursor) {
+      if (!fork) {
         throw new Error('claude fork is missing its resume point')
       }
       return fork.sessionId

@@ -4,8 +4,8 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
-import { NativeChatToolLine } from '../NativeChatToolLine'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { NativeChatToolLine } from '../tools/lines/NativeChatToolLine'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 import type {
   NativeChatImageRefBlock,
   NativeChatToolCallBlock,

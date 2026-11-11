@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { agentSessionRecordFixture } from '../agent-session-record-test-fixture'
-import type { StructuredAgentSessionAdapter } from '../agent-session-wire/structured-agent-session-adapter'
-import { claudeAndCodexAgents } from '../agent-session-wire/structured-agent-session-adapter-router-test-support'
+import type { StructuredAgentSessionAdapter } from '../agent-session-wire/providers/structured-agent-session-adapter'
+import { claudeAndCodexAgents } from '../agent-session-wire/providers/testing/structured-agent-session-adapter-router-test-support'
 import { BrzaStructuredAgentSessionAdapterRouter } from './brza-structured-agent-session-adapter-router'
 
 // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: the router calls only the methods a case sets; every other member stays unused.

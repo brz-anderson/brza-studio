@@ -8,15 +8,15 @@ import {
   NativeChatFileReference,
   NativeChatImageReference,
   NativeChatSkill
-} from './native-chat-prompt-document'
+} from './composer/editor/native-chat-prompt-document'
 import {
   initialPromptContent,
   promptModeCoordinates,
   promptModeExtensions,
   replacePromptDocument
 } from './native-chat-prompt-editor-mode'
-import { NativeChatAgentReference } from './native-chat-agent-reference'
-import { NativeChatUnkernedRunDecorations } from './native-chat-unkerned-run-decorations'
+import { NativeChatAgentReference } from './composer/editor/native-chat-agent-reference'
+import { NativeChatUnkernedRunDecorations } from './composer/editor/native-chat-unkerned-run-decorations'
 
 /** The mode, its codec and extensions, and the content a new editor starts with. */
 export function useNativeChatPromptMode(

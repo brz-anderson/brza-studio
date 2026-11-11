@@ -5,8 +5,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as nativeChatTheme from '../../../../../shared/native-chat-theme'
 import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
 import { useAppStore } from '../../../store'
-import { resetSystemPrefersDarkSubscriptionForTests } from '../../terminal-pane/use-system-prefers-dark'
-import { useNativeChatRowTypography } from '../use-native-chat-row-typography'
+import { resetSystemPrefersDarkSubscriptionForTests } from '../../../hooks/theme/use-system-prefers-dark'
+import { useNativeChatRowTypography } from '../viewport/virtualization/use-native-chat-row-typography'
 
 const originalSettings = useAppStore.getState().settings
 

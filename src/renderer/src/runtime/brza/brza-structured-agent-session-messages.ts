@@ -1,6 +1,6 @@
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
 import { AGENT_SESSION_REWIND_RUNTIME_CAPABILITY } from '../../../../shared/agent-session/agent-session-runtime-capabilities'
-import { runtimeEnvironmentSupportsCapability } from '../runtime-rpc-client'
+import { runtimeEnvironmentSupportsCapability } from '../rpc/compatibility/runtime-capability-proof'
 
 /** Upstream's text with the product name. */
 export const REWIND_NEEDS_NEWER_SERVER_MESSAGE =

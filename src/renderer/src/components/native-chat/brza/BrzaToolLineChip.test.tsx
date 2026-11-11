@@ -4,8 +4,8 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { NativeChatToolLine } from '../NativeChatToolLine'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { NativeChatToolLine } from '../tools/lines/NativeChatToolLine'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 import type {
   NativeChatToolCallBlock,
   NativeChatToolResultBlock
@@ -17,13 +17,13 @@ const mocks = vi.hoisted(() => ({
   openWebLink: vi.fn()
 }))
 
-vi.mock('../native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
+vi.mock('../links/actions/native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
 
-vi.mock('../native-chat-link-target-actions', () => ({
+vi.mock('../links/actions/native-chat-link-target-actions', () => ({
   resolveNativeChatHttpLinkRouting: () => ({ sourceOwner: { kind: 'local' } })
 }))
 
-vi.mock('@/runtime/runtime-git-diff-client', () => ({
+vi.mock('@/runtime/source-control/git/runtime-git-diff-client', () => ({
   getRuntimeGitCommitCompare: mocks.commitCompare
 }))
 
@@ -36,7 +36,7 @@ vi.mock('@/components/right-sidebar/source-control/sync/worktree-git-owner-targe
   requireGitOwnerTarget: (target: unknown) => target
 }))
 
-vi.mock('@/lib/connection-context', () => ({ getConnectionId: () => null }))
+vi.mock('@/lib/workspace/ownership/connection-context', () => ({ getConnectionId: () => null }))
 
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
   loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))

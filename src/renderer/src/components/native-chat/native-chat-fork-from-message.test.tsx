@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import type { AgentSessionMessageForkResult } from '../../../../shared/agent-session-message-fork'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { MessageRow } from './NativeChatMessageRow'
+import { MessageRow } from './messages/rows/NativeChatMessageRow'
 import { NativeChatForkContext, forkNativeChatFromMessage } from './native-chat-fork-from-message'
 
 const forkThroughMessage = vi.hoisted(() =>

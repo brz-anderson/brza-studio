@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { getDefaultSettings } from '../../../shared/constants'
 import type { GlobalSettings } from '../../../shared/global-settings-types'
 import { TERMINAL_THEME_CATALOG } from '../../../shared/terminal-themes/terminal-theme-catalog'
-import { contrastRatio, over, safePluginThemeTokens, type ColorProbe } from './plugin-theme-tokens'
+import { safePluginThemeTokens, type ColorProbe } from './plugin-theme-tokens'
+import { contrastRatio, over } from '../../../shared/color/rgba-contrast'
 import { resolvePaintedDark, synthesizeTerminalAppTheme } from './terminal-app-theme'
 
 // Parses #rrggbb and rgb(r g b), which is all the synthesized theme and its inputs use.

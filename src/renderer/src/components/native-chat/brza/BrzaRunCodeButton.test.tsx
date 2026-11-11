@@ -4,8 +4,8 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { NativeChatCodeBlock } from '../NativeChatCodeBlock'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { NativeChatCodeBlock } from '../markdown/code/NativeChatCodeBlock'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 
 const mocks = vi.hoisted(() => ({
   createTab: vi.fn(() => ({ id: 'tab-run' })),
@@ -25,7 +25,7 @@ vi.mock('@/store', () => ({
   }
 }))
 
-vi.mock('@/lib/launch-agent-tab-order', () => ({
+vi.mock('@/lib/agent-session/launch/pane/launch-agent-tab-order', () => ({
   persistAgentLaunchTabOrder: mocks.persistAgentLaunchTabOrder
 }))
 
