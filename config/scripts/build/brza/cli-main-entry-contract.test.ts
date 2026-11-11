@@ -6,7 +6,7 @@ import {
   BRAND_WINDOWS_EXECUTABLE_NAME,
   BRAND_WINDOWS_UNINSTALLER_NAME
 } from '../../../../src/shared/brand-identity'
-import { CLI_MAIN_ENTRY_NAMES } from '../../../build-plugins/plain-node-entry-guard'
+import { CLI_MAIN_ENTRY_NAMES } from '../../../build-plugins/cli-main-entry-names'
 import { MAIN_BUILD_ENTRY_POINTS } from '../../../build-plugins/main-build-entry-points'
 
 const require = createRequire(import.meta.url)
@@ -37,7 +37,7 @@ describe('CLI main entries', () => {
 
   it('every unpacked out/main file has a source file or a build entry', () => {
     const stale = builderConfig.asarUnpack
-      .filter((entry) => /^out\/main\/.+\.js$/.test(entry) && !entry.includes('*'))
+      .filter((entry) => /^out\/main\/.+\.js$/.test(entry) && !/[*{]/.test(entry))
       .map((entry) => entry.slice('out/main/'.length, -'.js'.length))
       .filter(
         (name) => !(name in MAIN_BUILD_ENTRY_POINTS) && !existsSync(resolve(`src/main/${name}.ts`))
