@@ -72,7 +72,7 @@ export function renderCodexAccountsSection(
                   )
                 : t(
                     'auto.components.settings.AccountsPane.340d6f7a85',
-                    'Each account keeps its own local sign-in context in Orca. Account auth stays on this device.'
+                    'Each account keeps its own local sign-in context in BrzA Studio. Account auth stays on this device.'
                   )}
             </span>
           </>
@@ -82,7 +82,7 @@ export function renderCodexAccountsSection(
           title={t('auto.components.settings.AccountsPane.bd16d363ed', 'Codex accounts')}
           description={t(
             'auto.components.settings.AccountsPane.d0d53b7eb0',
-            'Manage which Codex account Orca uses for live rate limit fetching.'
+            'Manage which Codex account BrzA Studio uses for live rate limit fetching.'
           )}
           // Index every nested Codex control here so searches cannot render a matching header with an empty body.
           keywords={getAccountsCodexSearchEntries().flatMap((entry) => [
@@ -123,7 +123,7 @@ export function renderCodexAccountsSection(
                 {codexConfigSyncWarning === 'managed-home-unavailable'
                   ? t(
                       'auto.components.settings.AccountsPane.codexConfigSyncManagedHomeUnavailable',
-                      'Orca could not read this account’s Codex files just now, so settings may not be syncing. This usually clears on its own — antivirus or a backup tool briefly locks them.'
+                      'BrzA Studio could not read this account’s Codex files just now, so settings may not be syncing. This usually clears on its own — antivirus or a backup tool briefly locks them.'
                     )
                   : codexConfigSyncWarning === 'missing-source'
                     ? t(

@@ -48,14 +48,14 @@ export function MobilePairedDevicesSection({
                   <LegacyEncryptionNotice
                     message={t(
                       'auto.components.settings.MobilePane.legacyEncryption',
-                      'Uses older encryption. Update the Orca app on this device.'
+                      'Uses older encryption. Update the BrzA Studio app on this device.'
                     )}
                   />
                 ) : device.olderPairingMethod ? (
                   <div className="text-muted-foreground text-xs">
                     {t(
                       'auto.components.settings.MobilePane.olderPairingMethod',
-                      'Uses an older pairing method. Update the Orca app on this phone.'
+                      'Uses an older pairing method. Update the BrzA Studio app on this phone.'
                     )}
                   </div>
                 ) : null}

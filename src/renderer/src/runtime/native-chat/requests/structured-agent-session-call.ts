@@ -30,7 +30,6 @@ export async function callStructuredAgentSession<TResult>(
       AGENT_SESSION_REWIND_RUNTIME_CAPABILITY
     ))
   ) {
-    // BRZA-SYNC: rodada
     throw new Error(
       'Rewinding requires a newer BrzA Studio server. Update the server and try again.'
     )

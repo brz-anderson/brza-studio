@@ -15,9 +15,6 @@ export const STRUCTURED_AGENT_SESSION_REVEAL_RUNTIME_CAPABILITY =
 // Offer Regenerate name only to hosts implementing agentSession.regenerateName.
 export const STRUCTURED_AGENT_SESSION_REGENERATE_NAME_RUNTIME_CAPABILITY =
   'agent-session.structured.regenerate-name.v1' as const
-// Offer Fork only on hosts with agentSession.forkThroughMessage; older hosts answer method-not-found after the click.
-export const STRUCTURED_AGENT_SESSION_MESSAGE_FORK_RUNTIME_CAPABILITY =
-  'agent-session.structured.message-fork.v1' as const
 // Save names only on rename-capable hosts; older hosts retain the local tab alias.
 export const STRUCTURED_AGENT_SESSION_RENAME_RUNTIME_CAPABILITY =
   'agent-session.structured.rename.v1' as const
@@ -80,6 +77,5 @@ export const STRUCTURED_AGENT_SESSION_SURFACE_RUNTIME_CAPABILITIES = [
   STRUCTURED_AGENT_SESSION_AVAILABILITY_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_REGENERATE_NAME_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY,
-  STRUCTURED_AGENT_SESSION_MESSAGE_FORK_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_RENAME_RUNTIME_CAPABILITY
 ] as const

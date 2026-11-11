@@ -57,7 +57,7 @@ export function SshManagedHostRemoveDialog({
           <Button onClick={openManagedServers}>
             {t(
               'auto.components.settings.sshManagedHostRemove.2ca95e9fd7',
-              'Open remote Orca servers'
+              'Open remote BrzA Studio servers'
             )}
           </Button>
         </DialogFooter>

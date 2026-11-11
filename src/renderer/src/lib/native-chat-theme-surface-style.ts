@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { NativeChatTheme } from '../../../shared/native-chat-theme'
 import { BRZA_DARK_THEME_NAME } from '../../../shared/terminal-themes/defaults'
+import { terminalChatSelectionMix } from './chat-selection-mix'
 
 /** Re-evaluates the chat color mixes (main.css) where this style supplies their source colors. */
 export const NATIVE_CHAT_THEME_SURFACE_CLASS = 'native-chat-theme-surface'
@@ -42,6 +43,18 @@ export function nativeChatThemeSurfaceStyle(theme: NativeChatTheme): NativeChatT
     '--ring': 'color-mix(in srgb, var(--chat-source-foreground) 44%, var(--chat-canvas))',
     // The chat theme owns the surface, so a plugin theme's message bubble yields too.
     '--chat-user-message': 'initial',
+    // The theme's own colors keep text and selection legible, so the plugin's yield too (#39432).
+    '--chat-bold-foreground': 'initial',
+    '--chat-muted-foreground': 'initial',
+    '--chat-inline-code': 'initial',
+    '--chat-inline-code-foreground': 'initial',
+    '--chat-code-block': 'initial',
+    '--chat-selection': 'initial',
+    '--chat-selection-foreground': 'initial',
+    '--chat-selection-mix': `${terminalChatSelectionMix(
+      { foreground: theme.foreground, background: theme.background },
+      light ? 'light' : 'dark'
+    )}%`,
     '--chat-source-background': theme.background,
     '--chat-source-foreground': theme.foreground,
     '--chat-source-muted-foreground':

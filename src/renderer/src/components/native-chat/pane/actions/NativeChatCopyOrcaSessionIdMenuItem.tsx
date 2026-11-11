@@ -19,7 +19,7 @@ export function NativeChatCopyOrcaSessionIdMenuItem({
       }
       await window.api.ui.writeClipboardText(orcaSessionId)
       toast.success(
-        t('components.native-chat.contextMenu.orcaSessionIdCopied', 'Orca session ID copied')
+        t('components.native-chat.contextMenu.orcaSessionIdCopied', 'BrzA Studio session ID copied')
       )
     } catch {
       toast.error(

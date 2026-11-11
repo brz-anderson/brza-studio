@@ -88,7 +88,7 @@ export function GeneralUpdateSettingsSection({
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="text-sm">
-            {t('settings.general.about.version', 'Orca {{version}}', {
+            {t('settings.general.about.version', 'BrzA Studio {{version}}', {
               version: appVersion ?? '…'
             })}
           </span>

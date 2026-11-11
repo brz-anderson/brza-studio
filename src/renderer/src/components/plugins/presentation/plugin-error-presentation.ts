@@ -49,7 +49,7 @@ export function pluginInstallErrorMessage(cause: unknown): string {
   if (detail.includes('reserved for official orca plugins')) {
     return translate(
       'auto.components.settings.pluginError.installReservedIdentity',
-      'This plugin uses a name reserved for official Orca plugins, which install only from Orca’s catalog. For your own copy or fork, change "id" in orca-plugin.json so it doesn’t start with "orca-", and set "publisher" to your own name.'
+      'This plugin uses a name reserved for official BrzA Studio plugins, which install only from BrzA Studio’s catalog. For your own copy or fork, change "id" in orca-plugin.json so it doesn’t start with "orca-", and set "publisher" to your own name.'
     )
   }
   if (/(git|repository|fetch|clone|checkout|remote)/.test(detail)) {

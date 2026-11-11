@@ -48,7 +48,7 @@ import {
 } from './journal/claude-structured-prompt-ownership'
 import { claudePromptCancelRoute } from './journal/claude-structured-prompt-replies'
 import { claudeForkForRewind } from '../claude-rewind-fork'
-import { claudeForkThroughMessage, claudePrepareAccountSwitch } from '../claude-brza-methods'
+import { claudePrepareAccountSwitch } from '../claude-brza-methods'
 import { copyClaudeConversation } from '../claude-conversation-copy'
 import { ClaudeConversationNaming } from '../claude-conversation-naming'
 import { captureClaudeConversationTitleOwner } from './claude-conversation-title-owner'
@@ -161,7 +161,6 @@ export class ClaudeStructuredSessionAdapter implements StructuredAgentSessionAda
 
   forkForRewind = claudeForkForRewind
   prepareAccountSwitch = claudePrepareAccountSwitch
-  forkThroughMessage = claudeForkThroughMessage
   copyConversation = copyClaudeConversation
   stopProviderNaming = (): void => this.naming?.stop()
   nameProviderConversation: StructuredAgentSessionAdapter['nameProviderConversation'] = (input) =>

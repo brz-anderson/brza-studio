@@ -43,7 +43,7 @@ export class BranchSwitchLandedWithWarningError extends Error {
 function filesLeftBehindMessage(branch: string, skippedPaths: readonly string[]): string {
   const files = skippedPaths.length === 1 ? '1 file' : `${skippedPaths.length} files`
   const pronoun = skippedPaths.length === 1 ? 'it' : 'them'
-  return `Switched to ${branch}, but ${files} kept the old branch's content because another program has ${pronoun} open (${skippedPaths[0]}). Close that program, then discard the changes Orca shows for ${pronoun} to finish the switch.`
+  return `Switched to ${branch}, but ${files} kept the old branch's content because another program has ${pronoun} open (${skippedPaths[0]}). Close that program, then discard the changes BrzA Studio shows for ${pronoun} to finish the switch.`
 }
 
 /** Git's own progress lines on stderr; never the reason a switch reported an error. */
@@ -174,7 +174,7 @@ async function readRefusal(
   const status = await deps.getStatus()
   if (status.readError !== undefined) {
     return {
-      refusal: `Orca couldn't read this checkout's changes, so it didn't switch branches. ${status.readError}`,
+      refusal: `BrzA Studio couldn't read this checkout's changes, so it didn't switch branches. ${status.readError}`,
       previousBranch: null,
       alreadyOnTarget: false
     }
@@ -208,7 +208,7 @@ async function readRefusal(
       }
     } catch (error) {
       return refuse(
-        `Orca couldn't read this checkout's changes, so it didn't switch branches. ${error instanceof Error ? error.message : String(error)}`
+        `BrzA Studio couldn't read this checkout's changes, so it didn't switch branches. ${error instanceof Error ? error.message : String(error)}`
       )
     }
   }
@@ -292,7 +292,7 @@ export async function switchBranchGuarded(
         if (commitTarget) {
           throw new Error(
             gitFailureLine(readGitCommandFailureStderr(error) ?? '') ??
-              "Orca couldn't check out this commit. Check this repository in a terminal, then try again."
+              "BrzA Studio couldn't check out this commit. Check this repository in a terminal, then try again."
           )
         }
         throw typeof target === 'string' ? error : branchSwitchFailure(error, branch)

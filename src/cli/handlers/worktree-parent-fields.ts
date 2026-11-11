@@ -122,12 +122,12 @@ async function inferCallerCrossStoreParent(
   // The budget is this machine's: time spent on the server's status doesn't count.
   const remainingMs = CALLER_PARENT_INFERENCE_BUDGET_MS - (Date.now() - startedAt)
   if (localTimedOut || remainingMs <= 0) {
-    return notNested("this machine's Orca didn't answer in time.")
+    return notNested("this machine's BrzA Studio didn't answer in time.")
   }
   try {
     const status = (await client.call<RuntimeStatus>('status.get')).result
     if (!supportsCrossStoreLineage(status.capabilities)) {
-      return notNested(`${serverLabel(client)} needs an Orca update to nest across machines.`)
+      return notNested(`${serverLabel(client)} needs a BrzA Studio update to nest across machines.`)
     }
     const resolved = (
       await local.call<

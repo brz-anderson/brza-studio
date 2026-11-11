@@ -154,16 +154,16 @@ export function CursorAccountsSection(): React.JSX.Element {
                     ? sourceLabel
                       ? t(
                           'auto.components.settings.CursorAccountsSection.signedInFrom',
-                          'Signed in. Orca reads the session stored in {{source}}.',
+                          'Signed in. BrzA Studio reads the session stored in {{source}}.',
                           { source: sourceLabel }
                         )
                       : t(
                           'auto.components.settings.CursorAccountsSection.signedInGeneric',
-                          'Signed in. Orca reads the Cursor session stored on this computer.'
+                          'Signed in. BrzA Studio reads the Cursor session stored on this computer.'
                         )
                     : t(
                         'auto.components.settings.CursorAccountsSection.expired',
-                        'Sign-in expired — run cursor-agent login on the computer running Orca, then click Refresh usage.'
+                        'Sign-in expired — run cursor-agent login on the computer running BrzA Studio, then click Refresh usage.'
                       )}
                 </p>
               </>

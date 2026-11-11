@@ -49,7 +49,7 @@ export async function sendRequest<TResult>(
       reject(
         new RuntimeClientError(
           'runtime_unavailable',
-          'Orca runtime socket directory is not private to this user.'
+          'BrzA Studio runtime socket directory is not private to this user.'
         )
       )
       return

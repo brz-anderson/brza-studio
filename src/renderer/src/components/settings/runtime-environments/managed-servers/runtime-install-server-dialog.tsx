@@ -67,7 +67,7 @@ export function RuntimeInstallServerDialog({
         toast.message(managedServerOutcomeLabel(result))
       } else {
         toast.success(
-          t('auto.components.settings.serverList.setUpDone', 'Orca is set up on {{name}}.', {
+          t('auto.components.settings.serverList.setUpDone', 'BrzA Studio is set up on {{name}}.', {
             name: result.environment.name
           })
         )

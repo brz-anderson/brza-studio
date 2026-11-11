@@ -3,7 +3,10 @@ import type { Translate } from '@/i18n/use-translate'
 
 export function skillInstallManagementCopy(t: Translate = translate) {
   return {
-    title: t('auto.components.skills.SkillInstallManagementDialog.44d118a8f7', 'Installed by Orca'),
+    title: t(
+      'auto.components.skills.SkillInstallManagementDialog.44d118a8f7',
+      'Installed by BrzA Studio'
+    ),
     description: t(
       'auto.components.skills.SkillInstallManagementDialog.3677ae58e7',
       'Skills BrzA Studio installed from a link. Reinstall, go back to an earlier version, or remove them.'

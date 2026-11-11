@@ -78,7 +78,7 @@ export async function resolveCurrentWorktreeSelection(
   if (!selection) {
     throw new RuntimeClientError(
       'selector_not_found',
-      `No Orca workspace contains the current directory: ${resolvePath(cwd)}`
+      `No BrzA Studio workspace contains the current directory: ${resolvePath(cwd)}`
     )
   }
   return selection

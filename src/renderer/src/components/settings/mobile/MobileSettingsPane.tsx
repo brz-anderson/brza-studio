@@ -74,11 +74,11 @@ export function MobileSettingsPane(): React.JSX.Element {
           <SettingsSwitchRow
             label={t(
               'auto.components.settings.MobileSettingsPane.49089c92b3',
-              'Show Orca Mobile button'
+              'Show BrzA Studio Mobile button'
             )}
             description={t(
               'auto.components.settings.MobileSettingsPane.d4f2b65f30',
-              'Show the Orca Mobile shortcut in the sidebar.'
+              'Show the BrzA Studio Mobile shortcut in the sidebar.'
             )}
             checked={showMobileButton}
             onChange={() => updateSettings({ showMobileButton: !showMobileButton })}

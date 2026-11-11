@@ -75,7 +75,7 @@ export async function callAntigravityChatAuthConfig(
     await assertRuntimeEnvironmentCapability(
       owner.environmentId,
       ANTIGRAVITY_CHAT_AUTH_CONFIG_RUNTIME_CAPABILITY,
-      'Update Orca on this host to configure Gemini Enterprise for Antigravity chats.'
+      'Update BrzA Studio on this host to configure Gemini Enterprise for Antigravity chats.'
     )
   }
   return callRuntimeRpc(

@@ -5,7 +5,6 @@ import {
   agentSessionProviderHandleChainHead,
   type AgentSessionProviderHandle
 } from '../../shared/agent-session/lifecycle/agent-session-provider-handle'
-import type { AgentSessionRecord } from '../../shared/agent-session/lifecycle/agent-session-record'
 import type { AgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
 import { getClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
 import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
@@ -33,35 +32,6 @@ function isUserRow(value: unknown): value is TranscriptUserRow {
     'uuid' in value &&
     typeof value.uuid === 'string'
   )
-}
-
-/** The first row of a session's transcript that `matches`; `needle` skips lines that cannot. */
-export async function findClaudeTranscriptRow<Row>(
-  input: { providerSessionId: string; claudeConfigDir: string },
-  needle: string,
-  matches: (value: unknown) => value is Row
-): Promise<{ path: string; row: Row } | undefined> {
-  const path = await resolveSessionFilePath('claude', input.providerSessionId, {
-    claudeProjectsDir: join(input.claudeConfigDir, 'projects')
-  })
-  if (!path) {
-    return undefined
-  }
-  for await (const { line } of splitTranscriptStreamLines(createReadStream(path))) {
-    if (!line.includes(needle)) {
-      continue
-    }
-    let row: unknown
-    try {
-      row = JSON.parse(line)
-    } catch {
-      continue
-    }
-    if (matches(row)) {
-      return { path, row }
-    }
-  }
-  return undefined
 }
 
 export function isLocalCommandCaveatRow(row: Record<string, unknown>): boolean {
@@ -159,15 +129,7 @@ export async function resolveClaudeRewindFork(input: {
   return null
 }
 
-/** All known account homes, the chat's first, because its account may have changed. */
-export function claudeConfigDirsForRecord(record: AgentSessionRecord): string[] {
-  const router = getClaudeProfileRouter()
-  return [
-    requireLegacyAgentSessionAccountHome(record.accountHome).path,
-    ...(router ? [...router.accountHomes(), router.systemDefaultHome()] : [])
-  ]
-}
-
+/** Search all known account homes because the chat's account may have changed. */
 export const claudeForkForRewind: NonNullable<
   StructuredAgentSessionAdapter['forkForRewind']
 > = async ({ record, beforeMessage, rewindOperationId }) => {
@@ -175,13 +137,17 @@ export const claudeForkForRewind: NonNullable<
   if (!head) {
     return { ok: false, reason: 'invalid-target' }
   }
+  const router = getClaudeProfileRouter()
   const fork = await resolveClaudeRewindFork({
     orcaSessionId: record.sessionId,
     rewindOperationId,
     head,
     prompt: beforeMessage,
     destinationConfigDir: requireLegacyAgentSessionAccountHome(record.accountHome).path,
-    claudeConfigDirs: claudeConfigDirsForRecord(record)
+    claudeConfigDirs: [
+      requireLegacyAgentSessionAccountHome(record.accountHome).path,
+      ...(router ? [...router.accountHomes(), router.systemDefaultHome()] : [])
+    ]
   })
   return fork ? { ok: true, fork } : { ok: false, reason: 'invalid-target' }
 }

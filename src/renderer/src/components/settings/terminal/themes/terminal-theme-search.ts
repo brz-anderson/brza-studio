@@ -183,7 +183,7 @@ export const getClaudeCodeThemeSyncSearchEntry = createLocalizedCatalog(() => [
     ),
     description: translate(
       'components.settings.terminal.claudeCodeThemeSync.description',
-      'Claude Code on this computer uses your terminal colors and follows theme changes live, including outside Orca. Turning this off restores your previous Claude Code theme. Picking a theme in Claude Code stops the sync.'
+      'Claude Code on this computer uses your terminal colors and follows theme changes live, including outside BrzA Studio. Turning this off restores your previous Claude Code theme. Picking a theme in Claude Code stops the sync.'
     ),
     keywords: [
       ...translateSearchKeyword('auto.components.settings.terminal.search.0ce176909a', 'theme'),

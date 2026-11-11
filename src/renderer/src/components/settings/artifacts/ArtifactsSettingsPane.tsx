@@ -118,14 +118,14 @@ export function ArtifactsSettingsPane({
               <p className="text-xs leading-relaxed text-muted-foreground">
                 {t(
                   'auto.components.settings.artifacts.signInDescription',
-                  'Use your Orca account to upload artifacts and manage their public links.'
+                  'Use your BrzA Studio account to upload artifacts and manage their public links.'
                 )}
               </p>
             </div>
             <OrcaSignInButton size="sm" disabled={authStatus?.configured !== true}>
               {authStatus?.state === 'reconnect-required'
                 ? t('auto.components.settings.artifacts.signInAgain', 'Sign in again')
-                : t('auto.components.settings.artifacts.signIn', 'Sign in to Orca')}
+                : t('auto.components.settings.artifacts.signIn', 'Sign in to BrzA Studio')}
             </OrcaSignInButton>
             <OrcaSignInWaitNotice className="basis-full" />
           </section>

@@ -93,12 +93,12 @@ export function runtimeHostBlockedCopy(
       ),
       summary: t(
         'auto.components.status.bar.RuntimeHostStatusRow.server_replaced_summary',
-        'This host now runs a different Orca server than the one this computer paired with'
+        'This host now runs a different BrzA Studio server than the one this computer paired with'
       ),
       // Why: SSH access alone can't re-pin another server key, so reconnecting can't fix this.
       explanation: t(
         'auto.components.status.bar.RuntimeHostStatusRow.server_replaced_explanation',
-        'Orca connects to the host as a different SSH user, or its server was reinstalled. In Settings › Remote Orca Servers, open the ⋯ menu on this server and choose Forget…, then connect the SSH host to pair with its current server.'
+        'BrzA Studio connects to the host as a different SSH user, or its server was reinstalled. In Settings › Remote BrzA Studio Servers, open the ⋯ menu on this server and choose Forget…, then connect the SSH host to pair with its current server.'
       )
     }
   }

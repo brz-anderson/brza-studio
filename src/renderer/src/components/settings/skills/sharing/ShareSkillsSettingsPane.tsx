@@ -70,7 +70,7 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
         <SettingsSwitchRow
           label={t(
             'auto.components.settings.shareSkills.allowAgentPublishing',
-            'Allow agents and the Orca CLI to publish skill links'
+            'Allow agents and the BrzA Studio CLI to publish skill links'
           )}
           description={
             isWebClient
@@ -110,11 +110,11 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
                 {isWebClient
                   ? t(
                       'auto.components.settings.shareSkills.signInWebDescription',
-                      'Publishing and link management are available in the Orca desktop app.'
+                      'Publishing and link management are available in the BrzA Studio desktop app.'
                     )
                   : t(
                       'auto.components.settings.shareSkills.signInDescription',
-                      'Use your Orca account to publish bundles and manage their links. Recipients do not need an account.'
+                      'Use your BrzA Studio account to publish bundles and manage their links. Recipients do not need an account.'
                     )}
               </p>
             </div>
@@ -122,7 +122,7 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
               <OrcaSignInButton size="sm" disabled={authStatus?.configured !== true}>
                 {authStatus?.state === 'reconnect-required'
                   ? t('auto.components.settings.shareSkills.signInAgain', 'Sign in again')
-                  : t('auto.components.settings.shareSkills.signIn', 'Sign in to Orca')}
+                  : t('auto.components.settings.shareSkills.signIn', 'Sign in to BrzA Studio')}
               </OrcaSignInButton>
             ) : null}
             {!isWebClient ? <OrcaSignInWaitNotice className="basis-full" /> : null}

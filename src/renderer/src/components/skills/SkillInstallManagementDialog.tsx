@@ -321,7 +321,10 @@ export function SkillInstallManagementDialog({
     } catch (cause) {
       console.warn('[skills] managed removal failed:', cause)
       setError(
-        t('auto.components.skills.install.removeFailed', 'Orca could not safely remove this skill.')
+        t(
+          'auto.components.skills.install.removeFailed',
+          'BrzA Studio could not safely remove this skill.'
+        )
       )
     } finally {
       setBusy(false)

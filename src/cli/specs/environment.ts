@@ -33,13 +33,13 @@ export const ENVIRONMENT_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['host', 'rm'],
     destructive: true,
-    summary: 'Remove one saved SSH target from this Orca host',
+    summary: 'Remove one saved SSH target from this BrzA Studio host',
     usage: 'orca host rm --host ssh:<target-id> [--json]',
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'host'],
     notes: [
       'Removes the target the same way Settings does: its connection closes, and the passive ~/.ssh/config import does not add the alias back. Restore removed hosts in Settings brings it back.',
-      'Takes only the --host ssh:<target-id> form that `orca host list` prints. This machine and paired Orca servers are refused; remove a paired server with `orca environment rm`.',
-      '--environment and --pairing-code are rejected rather than ignored: SSH targets are removed from this machine\u2019s own Orca runtime.'
+      'Takes only the --host ssh:<target-id> form that `orca host list` prints. This machine and paired BrzA Studio servers are refused; remove a paired server with `orca environment rm`.',
+      '--environment and --pairing-code are rejected rather than ignored: SSH targets are removed from this machine\u2019s own BrzA Studio runtime.'
     ],
     examples: [
       'orca host rm --host ssh:ssh-1783599077486-fyasux',

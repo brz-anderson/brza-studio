@@ -2,8 +2,8 @@
   "agentLaunch": {
     "connectSsh": "連線至此工作區的 SSH 主機，然後再試一次。",
     "sshUnavailable": "此 SSH 主機無法啟動終端工作階段。請在工作區中開啟終端，並在該處啟動代理程式。",
-    "reconnectServer": "重新連線至此工作區的 Orca 伺服器，然後再試一次。",
-    "updateServer": "更新此工作區伺服器上的 Orca，然後再試一次。",
+    "reconnectServer": "重新連線至此工作區的 BrzA Studio 伺服器，然後再試一次。",
+    "updateServer": "更新此工作區伺服器上的 BrzA Studio，然後再試一次。",
     "checkSettings": "檢查代理程式的啟動設定，然後再試一次。",
     "invalidArgs": "{{value0}} 的 CLI 引數中有未閉合的引號。請修正後再試一次。",
     "opencode": {
@@ -439,7 +439,7 @@
         "safariFullDiskAccess": "macOS 拒絕存取 Safari 的 Cookie。請在「系統設定」→「隱私權與安全性」→「完全磁碟存取權限」中授予 BrzA Studio 完全磁碟存取權限。",
         "connectionEnded": "匯入期間與此伺服器的連線已中斷。請重新連線後再試一次。",
         "serverRepaired": "此伺服器已在匯入期間重新配對。請再試一次。",
-        "macFullDiskAccess": "macOS 拒絕存取 {{browser}} Cookie。請在「系統設定」→「隱私權與安全性」→「完整磁碟存取權限」中授予 Orca 權限，然後重新啟動 Orca。"
+        "macFullDiskAccess": "macOS 拒絕存取 {{browser}} Cookie。請在「系統設定」→「隱私權與安全性」→「完整磁碟存取權限」中授予 BrzA Studio 權限，然後重新啟動 BrzA Studio。"
       },
       "notice": {
         "importedMore_other": "已為 {{domains}} 及其他 {{more}} 個網域匯入 {{count}} 個 Cookie。請重新載入頁面以使用這些 Cookie。",
@@ -1155,7 +1155,7 @@
         "insecureOrigin": "BrzA Studio 拒絕從此頁面配對：它是另一臺機器上的純 http 頁面，因此網路路徑上的任何人都可以替換它並取走配對碼。請透過 https、本機的 localhost 或 SSH 隧道開啟網頁用戶端。如仍要允許，伺服器操作員可以使用 ORCA_ALLOW_INSECURE_WEB_PAIRING=1 重新啟動 BrzA Studio。",
         "deviceDowngraded": "此 BrzA Studio 伺服器不再支援此瀏覽器的登入金鑰（可能已被降級）。請更新伺服器，或重新配對此瀏覽器。",
         "unauthorized": "未授權。請重新配對此網頁用戶端。",
-        "unauthorizedLinkUsedOrExpired": "未授權。此配對連結可能已過期或已被使用。請在 Orca 中建立新的配對連結並開啟。"
+        "unauthorizedLinkUsedOrExpired": "未授權。此配對連結可能已過期或已被使用。請在 BrzA Studio 中建立新的配對連結並開啟。"
       }
     },
     "store": {
@@ -4085,8 +4085,8 @@
             "connectionLostTitle": "正在重新連線至 {{server}}",
             "connectionLostBody": "與伺服器的連線已中斷。BrzA Studio 正在自動重試，連線恢復後終端機會繼續執行。",
             "reattachingBody": "BrzA Studio 正在自動將此終端機重新連接至 {{server}}。",
-            "serverReplacedTitle": "此主機執行的是另一個 Orca 伺服器",
-            "serverReplacedBody": "Orca 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝，因此重新連線無法還原此終端機。請在設定中忘記此伺服器，然後連線至 SSH 主機以配對目前的伺服器。",
+            "serverReplacedTitle": "此主機執行的是另一個 BrzA Studio 伺服器",
+            "serverReplacedBody": "BrzA Studio 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝，因此重新連線無法還原此終端機。請在設定中忘記此伺服器，然後連線至 SSH 主機以配對目前的伺服器。",
             "serverReplacedButton": "開啟伺服器設定"
           },
           "TerminalQuickCommandsSubmenu": {
@@ -4187,7 +4187,8 @@
             "startChat": "開始與 {{value0}} 聊天",
             "cliTag": "(CLI)",
             "agentsLoading": "正在載入代理程式",
-            "chatNotOnWindows": "Windows 尚不支援聊天"
+            "chatNotOnWindows": "Windows 尚不支援聊天",
+            "465e432ef1": "無法為 {{value0}} 建置啟動命令。"
           },
           "RecentTabSwitcher": {
             "329638ff6f": "切換分頁",
@@ -4828,8 +4829,8 @@
             "repair": "重新配對…",
             "open_settings": "開啟設定…",
             "server_replaced": "不同的伺服器",
-            "server_replaced_summary": "此主機目前執行的 Orca 伺服器與此電腦配對的伺服器不同",
-            "server_replaced_explanation": "Orca 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝。請在「設定」›「遠端 Orca 伺服器」中開啟此伺服器的 ⋯ 選單並選擇「忘記…」，然後連線至 SSH 主機以配對目前的伺服器。"
+            "server_replaced_summary": "此主機目前執行的 BrzA Studio 伺服器與此電腦配對的伺服器不同",
+            "server_replaced_explanation": "BrzA Studio 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝。請在「設定」›「遠端 BrzA Studio 伺服器」中開啟此伺服器的 ⋯ 選單並選擇「忘記…」，然後連線至 SSH 主機以配對目前的伺服器。"
           },
           "NativeChatResumeStatusSegment": {
             "tooltip": "開啟可恢復的中斷聊天",
@@ -5870,7 +5871,7 @@
           "removeWithChildrenFolder_other": "從 BrzA Studio 移除 <target/> 和 <descendants>{{count}} 個子工作區</descendants>。磁碟上的專案資料夾不會被刪除。",
           "removeWithChildrenMixed_other": "從 BrzA Studio 移除 <target/> 和 <descendants>{{count}} 個子工作區</descendants>。Git 工作樹也會從 git 和磁碟中移除；資料夾工作區只會移除 BrzA Studio 中的工作區項目。",
           "removeWithChildrenGit_other": "從 git 移除 <target/> 和 <descendants>{{count}} 個子工作區</descendants>，並刪除其工作區資料夾。",
-          "removeSingleFolderFromOrca": "將其從 Orca 中移除。磁碟上的資料夾會保留。",
+          "removeSingleFolderFromOrca": "將其從 BrzA Studio 中移除。磁碟上的資料夾會保留。",
           "deleteSingleWorktreeAndBranch": "刪除工作樹及其分支（未合併的分支會保留）。"
         },
         "DeleteWorktreeDirtyChangeHint": {
@@ -6037,7 +6038,7 @@
         },
         "SetupScriptReviewDialog": {
           "title": "檢查設定指令碼",
-          "description": "儲存後，Orca 每次為 {{repo}} 建立工作樹時都會執行此指令碼。",
+          "description": "儲存後，BrzA Studio 每次為 {{repo}} 建立工作樹時都會執行此指令碼。",
           "setupScript": "設定指令碼",
           "archiveScript": "封存指令碼",
           "save": "儲存本機設定"
@@ -7454,7 +7455,7 @@
           "3a5d06686d": "狀態列",
           "7be0027489": "顯示自動化按鈕",
           "8063dd3b6b": "標題列應用程式名稱",
-          "d2b4ddbea0": "顯示 Orca Mobile 按鈕",
+          "d2b4ddbea0": "顯示 BrzA Studio Mobile 按鈕",
           "657a7230a2": "IDE 字型",
           "95a5581f66": "關閉時最小化到系統匣",
           "e90c5d745a": "視窗和側邊欄"
@@ -8035,7 +8036,7 @@
           "c5886a31cc": "無法開啟外部編輯器。",
           "cdf794f46d": "鍵繫結檔案不可用。",
           "dd532a01ce": "無法在 BrzA Studio 中開啟鍵繫結。",
-          "ad58206841": "在 Orca 中編輯檔案",
+          "ad58206841": "在 BrzA Studio 中編輯檔案",
           "c322555264": "在檔案管理員中顯示",
           "5b639aea5c": "從磁碟重新載入",
           "4bfe7a2e43": "使用預設應用程式開啟"
@@ -8147,8 +8148,8 @@
           "diagnosticsCopyFailed": "無法複製診斷訊息",
           "5e2c7a1f84": "當您在手機上使用終端機時，BrzA Studio 會將其縮小以適合您的手機螢幕。當您關閉應用程式或切換離開時，此設定可控制終端機要保持手機尺寸（讓互動式 CLI 工具不會重新排版），還是調整回桌面尺寸。您隨時可以使用橫幅上的「還原」或「全部還原」來手動調整大小。",
           "codeRefreshesAutomatically": "配對碼會自動重新整理。複製的配對碼最多可使用 10 分鐘。",
-          "legacyEncryption": "使用舊版加密。請在此裝置上更新 Orca 應用程式。",
-          "olderPairingMethod": "使用較舊的配對方式。請更新這支手機上的 Orca App。",
+          "legacyEncryption": "使用舊版加密。請在此裝置上更新 BrzA Studio 應用程式。",
+          "olderPairingMethod": "使用較舊的配對方式。請更新這支手機上的 BrzA Studio App。",
           "5f539ff331": "配對裝置"
         },
         "MobileSettingsPane": {
@@ -8552,14 +8553,14 @@
           "6f6d5188ed": "撤銷 {{value0}}",
           "434e4a6af6": "目前連結",
           "df142657a5": "尚未使用",
-          "olderPairingMethod": "使用較舊的配對方式。請更新使用此連結之裝置上的 Orca。",
+          "olderPairingMethod": "使用較舊的配對方式。請更新使用此連結之裝置上的 BrzA Studio。",
           "b18d1764ef": "最後使用 {{value0}}",
           "linkName": "連結 · {{value0}}",
           "activeLinks": "有效連結",
           "noActiveLinks": "沒有有效連結。",
           "createdAt": "建立於 {{value0}}",
           "revoke": "撤銷",
-          "legacyEncryption": "上次使用的是舊版加密。請在使用此連結的裝置上更新 Orca。"
+          "legacyEncryption": "上次使用的是舊版加密。請在使用此連結的裝置上更新 BrzA Studio。"
         },
         "RuntimeEnvironmentsPane": {
           "af53761f31": "取消",
@@ -8611,7 +8612,7 @@
           "removeDefaultServerDescription": "此伺服器是新專案的預設主機。移除前，請在「新專案開啟位置」中選擇其他主機。現有主機工作階段不受影響。",
           "connectedNewProjectsHint": "已連線至 {{value0}}。若要預設在此建立新專案，請在「新專案開啟位置」中選擇此主機。",
           "removeDefaultServerBlocked": "此伺服器是新專案的預設主機。移除前，請在「新專案開啟位置」中選擇其他主機。",
-          "serverReplaced": "{{value0}} 不是此電腦配對的 Orca 伺服器：Orca 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝。請在此處開啟 ⋯ 選單並選擇「忘記…」，然後連線至 SSH 主機以配對目前的伺服器。",
+          "serverReplaced": "{{value0}} 不是此電腦配對的 BrzA Studio 伺服器：BrzA Studio 正以其他 SSH 使用者連線至主機，或其伺服器已重新安裝。請在此處開啟 ⋯ 選單並選擇「忘記…」，然後連線至 SSH 主機以配對目前的伺服器。",
           "6f303a89a3": "切換伺服器",
           "4ae8a4a381": "刪除伺服器"
         },
@@ -8728,7 +8729,7 @@
           "045db77e21": "SSH 遠端主機",
           "c0900fa64a": "任務來源",
           "129ae9859c": "手機模擬器",
-          "022effa46f": "遠端 Orca 伺服器",
+          "022effa46f": "遠端 BrzA Studio 伺服器",
           "d09b9d8f00": "Git 和原始碼控制",
           "3eac6fb97f": "開發工具",
           "4198aae333": "AI 供應商帳戶",
@@ -8933,8 +8934,8 @@
           "proxyConnectionReuseHelp": "透過速度較慢的 ProxyCommand 或 ProxyJump 主機連線時，可加快連線速度。僅在 ssh_config 不依賴各主機專用的 Match 或 %h 規則時啟用。",
           "reconnectOnLaunch": "啟動時重新連線",
           "reconnectOnLaunchHelp": "關閉時，BrzA Studio 啟動後不會連線至此主機或透過此主機存取的任何 BrzA Studio 伺服器，直到手動連線為止。",
-          "allowRemoteCliControl": "允許此主機控制其工作區中的 Orca 瀏覽器分頁",
-          "allowRemoteCliControlHelp": "新主機預設開啟。此主機上的代理程式和 orca 命令可以開啟、讀取和使用這臺電腦上的 Orca 瀏覽器分頁，僅限此主機的工作區，且僅在主機連線期間有效。它控制的分頁會顯示其名稱。此主機上由舊版 Orca 啟動的終端機也需要開啟此項，才能執行 orca 編排命令。它無法讀取你的檔案、剪貼簿或 Cookie。",
+          "allowRemoteCliControl": "允許此主機控制其工作區中的 BrzA Studio 瀏覽器分頁",
+          "allowRemoteCliControlHelp": "新主機預設開啟。此主機上的代理程式和 orca 命令可以開啟、讀取和使用這臺電腦上的 BrzA Studio 瀏覽器分頁，僅限此主機的工作區，且僅在主機連線期間有效。它控制的分頁會顯示其名稱。此主機上由舊版 BrzA Studio 啟動的終端機也需要開啟此項，才能執行 orca 編排命令。它無法讀取你的檔案、剪貼簿或 Cookie。",
           "editTitle": "編輯 SSH 主機",
           "addTitle": "新增 SSH 主機",
           "editDescription": "更新此機器的連線詳情。變更將在下次連線時生效。",
@@ -9625,7 +9626,7 @@
             "matchTerminal": "與終端機一致",
             "37e6b58b0e": "使用者介面縮放",
             "931c53cd16": "Claude 用量",
-            "1b404ee6ad": "顯示 Orca Mobile 按鈕",
+            "1b404ee6ad": "顯示 BrzA Studio Mobile 按鈕",
             "183e6b8ef9": "ZCode 用量",
             "d408ece868": "關閉時最小化到系統匣",
             "585be839e9": "Gemini 用量",
@@ -10391,7 +10392,7 @@
               "6cf5f54ce1": "按鈕",
               "648eeada79": "隱藏",
               "ac79fe4a04": "顯示",
-              "b305668a18": "顯示 Orca Mobile 按鈕"
+              "b305668a18": "顯示 BrzA Studio Mobile 按鈕"
             }
           }
         },
@@ -10685,7 +10686,7 @@
               "shareComputerKeyword": "共用這臺電腦",
               "accessLinkKeyword": "存取連結",
               "installKeyword": "安裝伺服器",
-              "24cc0a2244": "遠端 Orca 伺服器"
+              "24cc0a2244": "遠端 BrzA Studio 伺服器"
             }
           }
         },
@@ -11121,7 +11122,7 @@
         },
         "agent-workspace-trust-copy": {
           "title": "BrzA Studio 啟動代理程式時信任該資料夾",
-          "description": "Orca 啟動的代理程式可以略過「是否信任此資料夾？」的詢問，因此專案的代理程式鉤子和設定會立即執行。Orca 會在每個存放庫中首次啟動代理程式時詢問一次，你可以在該存放庫的設定中變更回答。關閉此項可讓代理程式一律自行詢問。在你沒有看著時執行的代理程式（例如編排工作行程、自動化以及從手機啟動的代理程式）若發出詢問，會一直等待，直到你在它的終端機中作答。已信任的資料夾仍保持信任。"
+          "description": "BrzA Studio 啟動的代理程式可以略過「是否信任此資料夾？」的詢問，因此專案的代理程式鉤子和設定會立即執行。BrzA Studio 會在每個存放庫中首次啟動代理程式時詢問一次，你可以在該存放庫的設定中變更回答。關閉此項可讓代理程式一律自行詢問。在你沒有看著時執行的代理程式（例如編排工作行程、自動化以及從手機啟動的代理程式）若發出詢問，會一直等待，直到你在它的終端機中作答。已信任的資料夾仍保持信任。"
         },
         "agent-generated-tab-title-copy": {
           "19ad21615a": "自動產生分頁標題",
@@ -11636,7 +11637,7 @@
           "description": "從此用戶端檢查和更新已配對的 BrzA Studio 伺服器。",
           "updating": "正在更新伺服器…",
           "serverCountOne": "1 台已配對的伺服器",
-          "fdd271abf0": "遠端 Orca 伺服器",
+          "fdd271abf0": "遠端 BrzA Studio 伺服器",
           "e4e5937469": "檢查伺服器更新"
         },
         "RemoteServerUpdateDialog": {
@@ -11655,7 +11656,7 @@
           "liveTabs": "{{value0}} 個使用中的分頁",
           "livePaneOne": "1 個使用中的窗格",
           "livePanes": "{{value0}} 個使用中的窗格",
-          "dca6780b3a": "更新遠端 Orca 伺服器"
+          "dca6780b3a": "更新遠端 BrzA Studio 伺服器"
         },
         "RemoteServerUpdateStatus": {
           "checking": "檢查中…",
@@ -11716,7 +11717,7 @@
             "terminalRun": "在你的終端機中執行命令，包括 SSH"
           },
           "decisionFailed": "無法儲存權限決定。請重試。",
-          "fullAccessWarning": "完整存取：以一般程式執行，可以讀取你的檔案、使用網路、執行其他程式，並控制 Orca（包括你的終端機和代理程式）。",
+          "fullAccessWarning": "完整存取：以一般程式執行，可以讀取你的檔案、使用網路、執行其他程式，並控制 BrzA Studio（包括你的終端機和代理程式）。",
           "uiWarning": "在 BrzA Studio 內執行發布者的程式碼來繪製其畫面。BrzA Studio 會顯示它能存取的內容，並在啟用前先詢問你。"
         },
         "PluginConsentProvenance": {
@@ -13207,7 +13208,7 @@
           "declaredByline": "宣告的發行者：{{publisher}}",
           "catalogClaim": "發行者由 {{catalog}} 列出。作者身分未經驗證。",
           "unnamedCatalogClaim": "發行者由目錄列出。作者身分未經驗證。",
-          "gitClaim": "發行者由 Orca 根據存放庫 URL 推斷。作者身分未經驗證。",
+          "gitClaim": "發行者由 BrzA Studio 根據存放庫 URL 推斷。作者身分未經驗證。",
           "unknownClaim": "發行者來源不明。作者身分未經驗證。",
           "manifestClaim": "發行者由外掛宣告。作者身分未經驗證。",
           "shownPluginCount_one": "顯示 {{count}} 個符合的外掛，包括此外掛",
@@ -16058,7 +16059,7 @@
           "kernelStartFailed": "核心啟動失敗。",
           "noPython": "在此電腦上未找到 Python。請從 [python.org](https://www.python.org/downloads/) 安裝，然後重新執行儲存格。",
           "kernelDied": "核心已停止。",
-          "outputTruncated": "輸出已截斷：Orca 保留了此儲存格輸出的開頭部分，並捨棄其餘內容。如需保留全部輸出，請改為寫入檔案。",
+          "outputTruncated": "輸出已截斷：BrzA Studio 保留了此儲存格輸出的開頭部分，並捨棄其餘內容。如需保留全部輸出，請改為寫入檔案。",
           "localOnly": "筆記本儲存格只能針對此電腦上的檔案執行。",
           "pythonOnly": "BrzA Studio 中只能執行 Python 筆記本。",
           "ownerUnresolved": "BrzA Studio 尚無法判斷此筆記本位於哪台電腦，因此無法執行其中的儲存格。",
@@ -18717,13 +18718,13 @@
       },
       "agent-workspace-trust-decision": {
         "prompt-title": "要為代理程式信任 {{repo}} 嗎？",
-        "prompt-description": "Claude Code 和 Codex 等代理程式在載入專案自帶的代理程式設定和鉤子（可以執行命令）之前，會詢問「是否信任此資料夾？」。Orca 可以在此存放庫的每個工作樹中替你回答「是」。",
-        "prompt-remembered": "Orca 會記住你對此存放庫的回答。你可以在存放庫設定中變更。",
+        "prompt-description": "Claude Code 和 Codex 等代理程式在載入專案自帶的代理程式設定和鉤子（可以執行命令）之前，會詢問「是否信任此資料夾？」。BrzA Studio 可以在此存放庫的每個工作樹中替你回答「是」。",
+        "prompt-remembered": "BrzA Studio 會記住你對此存放庫的回答。你可以在存放庫設定中變更。",
         "trust-repository": "信任存放庫",
         "let-agents-ask": "讓代理程式詢問",
         "setting-title": "代理程式資料夾信任",
-        "setting-description": "Orca 在此存放庫的工作樹中啟動的代理程式是否略過「是否信任此資料夾？」的詢問，並立即載入專案的代理程式設定和鉤子。",
-        "setting-undecided": "尚未決定。下次你在這裡啟動代理程式時，Orca 會詢問。",
+        "setting-description": "BrzA Studio 在此存放庫的工作樹中啟動的代理程式是否略過「是否信任此資料夾？」的詢問，並立即載入專案的代理程式設定和鉤子。",
+        "setting-undecided": "尚未決定。下次你在這裡啟動代理程式時，BrzA Studio 會詢問。",
         "setting-global-off": "已在代理程式設定中關閉資料夾信任，因此代理程式一律會詢問。",
         "keyword-trust": "信任",
         "keyword-hooks": "鉤子"
@@ -19149,7 +19150,7 @@
         "partial": "部分差異",
         "changedFiles_other": "{{count}} 個已變更的檔案",
         "hide": "隱藏",
-        "hidden": "Orca 將不再顯示各回合的差異"
+        "hidden": "BrzA Studio 將不再顯示各回合的差異"
       },
       "receipt": {
         "unavailable": "無法使用選取的答案",
@@ -19889,7 +19890,7 @@
         "unconfirmed": "{{agent}} 無法確認是否已建立分支",
         "unconfirmedDetail": "它可能已經開啟。請先檢查工作階段歷史記錄，再建立分支。",
         "failed": "{{agent}} 無法從此聊天建立分支",
-        "hostUnsupported": "此主機執行的是舊版 Orca。請更新主機上的 Orca 後再試一次。",
+        "hostUnsupported": "此主機執行的是舊版 BrzA Studio。請更新主機上的 BrzA Studio 後再試一次。",
         "failedDetail": "聊天未變更。請再試一次。"
       },
       "cardKindHidden": {
@@ -19900,7 +19901,7 @@
       "openedPullRequests": {
         "one": "已建立 {{name}}",
         "hide": "不要顯示已建立的 PR",
-        "hidden": "Orca 將不再顯示已建立的 PR",
+        "hidden": "BrzA Studio 將不再顯示已建立的 PR",
         "many_one": "已建立 {{count}} 個 PR",
         "many_other": "已建立 {{count}} 個 PR"
       },
@@ -20373,7 +20374,7 @@
           "savedMicrophone": "你的麥克風",
           "description": "在任何面板中用說話取代打字。語音在這台電腦上辨識，你的音訊不會離開這裡。",
           "setUp": "設定",
-          "asksForMicrophone": "Orca 會要求麥克風權限。"
+          "asksForMicrophone": "BrzA Studio 會要求麥克風權限。"
         },
         "quality": {
           "unsupported": "不支援你的語言",
@@ -20387,7 +20388,7 @@
           "wordErrorRate": "詞錯誤率 {{percent}}%",
           "librispeech": "測試：LibriSpeech（朗讀語音），{{clips}} 段音訊，測於 {{date}}。",
           "fleurs": "測試：FLEURS（朗讀語音），{{clips}} 段音訊，測於 {{date}}。",
-          "bench": "Orca 在 Apple 晶片 Mac 上的基準測試。",
+          "bench": "BrzA Studio 在 Apple 晶片 Mac 上的基準測試。",
           "label": "品質：{{word}}"
         },
         "models": {
@@ -20422,7 +20423,7 @@
           "add": "新增",
           "repoNameHint": "將儲存庫名稱用作提示",
           "repoNameHintDescription": "幫助辨識儲存庫名稱。",
-          "repoSaveFailed": "無法儲存儲存庫的術語。執行此儲存庫的主機可能需要更新 Orca。"
+          "repoSaveFailed": "無法儲存儲存庫的術語。執行此儲存庫的主機可能需要更新 BrzA Studio。"
         }
       },
       "repositoryHooks": {
@@ -21074,20 +21075,20 @@
       "open": "開啟工作區",
       "occupied": "已在 {{path}} 中簽出",
       "remote": "遠端",
-      "statusFailed": "Orca 無法讀取此簽出的變更。請先重新整理原始碼控制再切換。",
+      "statusFailed": "BrzA Studio 無法讀取此簽出的變更。請先重新整理原始碼控制再切換。",
       "statusUnknown": "切換前請先讀取此簽出的變更。",
       "conflict": "切換分支前，請完成或中止 {{operation}}。",
       "dirty_one": "切換分支前，請提交或捨棄 {{count}} 個已變更的檔案。",
       "dirty_other": "切換分支前，請提交或捨棄 {{count}} 個已變更的檔案。",
       "agentWorking": "有代理正在此工作區中工作。請在其完成後再切換分支；如果它已停止，請關閉其分頁。",
-      "listFailed": "Orca 無法列出本機分支。請嘗試重新開啟選擇器。",
-      "discoveryFailed": "Orca 找不到遠端分支。你仍然可以切換本機分支或建立分支。",
-      "switchFailed": "Orca 無法切換分支。請再試一次。",
+      "listFailed": "BrzA Studio 無法列出本機分支。請嘗試重新開啟選擇器。",
+      "discoveryFailed": "BrzA Studio 找不到遠端分支。你仍然可以切換本機分支或建立分支。",
+      "switchFailed": "BrzA Studio 無法切換分支。請再試一次。",
       "switchFailedTitle": "無法切換分支",
       "switchFailedIn": "無法在 {{workspace}} 中切換分支",
       "switchedIn": "在 {{workspace}} 中",
       "thisComputer": "這台電腦",
-      "updateHost": "請在 {{host}} 上更新 Orca，以便從這裡切換分支。"
+      "updateHost": "請在 {{host}} 上更新 BrzA Studio，以便從這裡切換分支。"
     }
   },
   "agentsSidebarIntro": {
@@ -21499,8 +21500,8 @@
       "gcpProject": "Google Cloud 專案",
       "gcpLocation": "Google Cloud 位置",
       "settingsIncomplete": "請選擇 Antigravity 帳戶類型並輸入其 Google Cloud 專案和位置。",
-      "settingsLoadFailed": "Orca 無法載入 Antigravity 登入設定。請再試一次。",
-      "settingsSaveFailed": "Orca 無法儲存 Antigravity 登入設定。請再試一次。",
+      "settingsLoadFailed": "BrzA Studio 無法載入 Antigravity 登入設定。請再試一次。",
+      "settingsSaveFailed": "BrzA Studio 無法儲存 Antigravity 登入設定。請再試一次。",
       "lastReading": "{{reading}} · 讀取於 {{time}}",
       "noReading": "用量未知：尚未讀取",
       "fd47b5a5dd": "Antigravity 帳戶"
@@ -23096,7 +23097,7 @@
       "missing": "儲存的裝置已不在此電腦上。請選擇其他裝置。",
       "unavailable": "儲存的裝置執行階段無法使用。請選擇其他裝置或安裝其執行階段。",
       "askPrompt": "選擇要開啟的裝置。",
-      "firstUse": "選擇第一部裝置。Orca 會記住在此電腦上成功選取的裝置。"
+      "firstUse": "選擇第一部裝置。BrzA Studio 會記住在此電腦上成功選取的裝置。"
     },
     "picker": {
       "choose": "選擇模擬器",
@@ -23226,22 +23227,22 @@
   },
   "remoteHostBrowserControl": {
     "title": "{{host}} 正在控制一個瀏覽器分頁",
-    "description": "此 SSH 主機上的代理程式可以開啟並使用其工作區中的 Orca 瀏覽器分頁。它控制的分頁會顯示其名稱。你可以在「設定 > SSH」中變更此項。",
+    "description": "此 SSH 主機上的代理程式可以開啟並使用其工作區中的 BrzA Studio 瀏覽器分頁。它控制的分頁會顯示其名稱。你可以在「設定 > SSH」中變更此項。",
     "stop": "停止",
     "disallow": "不允許",
-    "stopped": "在 Orca 重新啟動之前，{{host}} 將不再控制瀏覽器分頁。",
+    "stopped": "在 BrzA Studio 重新啟動之前，{{host}} 將不再控制瀏覽器分頁。",
     "disallowed": "{{host}} 已無法控制瀏覽器分頁。可在「設定 > SSH」中重新開啟。",
     "failed": "無法停止 {{host}}。請在「設定 > SSH」中關閉其瀏覽器控制。"
   },
   "macosUpdateRequirement": {
-    "title": "Orca 更新現在需要 macOS {{macos}}",
-    "description": "Orca {{version}} 需要 macOS {{macos}} 或以上版本。此版本仍可使用，但不會在此 Mac 上取得新更新。",
+    "title": "BrzA Studio 更新現在需要 macOS {{macos}}",
+    "description": "BrzA Studio {{version}} 需要 macOS {{macos}} 或以上版本。此版本仍可使用，但不會在此 Mac 上取得新更新。",
     "checking": "正在檢查此 Mac 是否可以升級…",
-    "upgradeDescription": "此 Mac 可以升級。請更新 macOS 以取得最新版 Orca。",
+    "upgradeDescription": "此 Mac 可以升級。請更新 macOS 以取得最新版 BrzA Studio。",
     "unsupportedDescription": "Apple 不支援在此 Mac 上執行 macOS {{macos}}。",
     "unknownDescription": "無法確認此 Mac 是否可以升級。請參考 Apple 的相容性指南。",
     "whyTitle": "為什麼要進行這項變更？",
-    "whyIntro": "我們更新了 Orca 賴以執行的 Electron，以提供：",
+    "whyIntro": "我們更新了 BrzA Studio 賴以執行的 Electron，以提供：",
     "whySecurity": "來自 Electron 和 Chromium 的持續安全性修正。",
     "whyPerformance": "更快的啟動速度和更有效率的原生 API 呼叫。",
     "whySystemApis": "支援目前的 macOS 通知 API 和安全的鑰匙圈儲存。",
@@ -23251,7 +23252,7 @@
     "updateAction": "如何更新 macOS",
     "discussionAction": "加入討論",
     "checkAction": "檢查相容性",
-    "settingsStatus": "Orca {{version}} 需要 macOS {{macos}} 或以上版本。這是適用於此 Mac 的最新版本。"
+    "settingsStatus": "BrzA Studio {{version}} 需要 macOS {{macos}} 或以上版本。這是適用於此 Mac 的最新版本。"
   },
   "gitGraph": {
     "copyHash": "複製提交雜湊",
@@ -23261,7 +23262,7 @@
     "allBranches": "所有分支",
     "chosenBranches": "選定分支",
     "searchRefs": "搜尋分支和標籤",
-    "oldServer": "此伺服器的 Orca 版本僅顯示目前分支",
+    "oldServer": "此伺服器的 BrzA Studio 版本僅顯示目前分支",
     "copyBranch": "複製分支名稱",
     "switchWorkspace": "切換至工作區",
     "workspaceClosed": "此分支已不再於其他工作區中開啟。",
@@ -23277,7 +23278,7 @@
     "noCommits": "尚無提交",
     "historyChanged": "歷史記錄再次變更。請重新整理 Git 圖後重試。",
     "loadFailed": "無法載入 Git 歷史記錄",
-    "updateHost": "請更新 {{host}} 上的 Orca 以開啟 Git 圖",
+    "updateHost": "請更新 {{host}} 上的 BrzA Studio 以開啟 Git 圖",
     "title": "Git 圖",
     "revertConflicts": "還原提交衝突",
     "revertInProgress": "正在還原提交",
@@ -23287,7 +23288,7 @@
     "recoveryFailed": "無法完成操作。請重新整理原始碼管理後再試。",
     "continueOperation": "繼續{{operation}}",
     "reverting": "正在還原提交",
-    "updateActionsHost": "請更新{{host}}上的 Orca 以操作提交",
+    "updateActionsHost": "請更新{{host}}上的 BrzA Studio 以操作提交",
     "thisHost": "此主機",
     "cannotApplyMerge": "無法在此處揀選或還原合併提交",
     "confirmCommitAction": "對{{commit}}執行{{action}}？",
@@ -23313,7 +23314,7 @@
     "branchCreated": "已在 {{commit}} 建立 {{branch}}",
     "branchName": "分支名稱",
     "invalidBranchName": "此分支名稱無效。請選擇其他名稱。",
-    "createBranchFailed": "Orca 無法建立分支。請在終端機中檢查此儲存庫，然後重試。"
+    "createBranchFailed": "BrzA Studio 無法建立分支。請在終端機中檢查此儲存庫，然後重試。"
   },
   "speechModelUpdate": {
     "downloadingTitle": "正在下載 {{model}}",

@@ -365,7 +365,7 @@ describe('account CLI handlers', () => {
 
       await expect(
         ACCOUNT_HANDLERS['account select'](selectionContext('claude', 'system'))
-      ).rejects.toThrow('Select the Claude system default for a WSL distro in Orca Settings')
+      ).rejects.toThrow('Select the Claude system default for a WSL distro in BrzA Studio Settings')
       expect(callMock).not.toHaveBeenCalled()
     })
   })

@@ -134,11 +134,7 @@ export async function reclaimStaleOrcadInstanceLock(
   } catch (error) {
     return result('refused', error instanceof Error ? error.message : String(error), evidence)
   }
-  return result(
-    'reclaimed',
-    `${found}\nReclaimed ${lockPath}. BrzA Studio can start now.`,
-    evidence
-  )
+  return result('reclaimed', `${found}\nReclaimed ${lockPath}. BrzA can start now.`, evidence)
 }
 
 async function checkStaleLock(

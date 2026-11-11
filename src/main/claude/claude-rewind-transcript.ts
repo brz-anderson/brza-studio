@@ -144,18 +144,3 @@ export function spawnClaudeConversationWorker(workerData: unknown) {
     : new URL('./claude-conversation-fork-worker-entry.ts', import.meta.url)
   return spawnWorkerThread(entry, { workerData })
 }
-
-/** Copy the conversation through one transcript entry into a new session beside the source; null
- *  when the copy holds only metadata, so nothing was written. */
-export async function forkClaudeTranscript(
-  sourcePath: string,
-  sourceSessionId: string,
-  throughEntryId: string
-): Promise<{ sessionId: string; resumeCursor: string } | null> {
-  const copy = await materializeClaudeConversationTranscript({
-    sourcePath,
-    sourceSessionId,
-    throughEntryId
-  })
-  return copy ? { sessionId: copy.sessionId, resumeCursor: copy.resumeCursor } : null
-}

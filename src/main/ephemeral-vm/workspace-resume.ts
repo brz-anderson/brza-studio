@@ -169,7 +169,7 @@ export async function resumeEphemeralVmWorkspace(
 }
 
 export const RECIPE_VM_UNREACHABLE_WITHOUT_RESUME_MESSAGE =
-  "Orca hasn't reached this workspace's VM for several minutes, and its recipe has no resume " +
+  "BrzA Studio hasn't reached this workspace's VM for several minutes, and its recipe has no resume " +
   'step to restart it. If the VM is gone, delete this workspace and create it again.'
 
 /** A paired VM server Orca could not reach for minutes, that is not ready now and that the user

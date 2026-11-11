@@ -17,51 +17,57 @@ function showClaudeThemeSyncOffer(): void {
   const { updateSettings, updateSettingsOrThrow } = useAppStore.getState()
   // Why settle before showing: shown means answered, so a dismiss, quit or reload never asks again.
   void updateSettings({ claudeCodeThemeSyncOffer: 'settled' })
-  toast(translate('terminal.claudeThemeSyncOffer.title', 'Match Claude Code to your Orca theme?'), {
-    // Why a stable id: a late settings sync can't stack a second offer.
-    id: OFFER_TOAST_ID,
-    description: translate(
-      'terminal.claudeThemeSyncOffer.description',
-      'Claude Code on this computer would use your terminal colors and follow theme changes, including outside Orca. You can change this in Settings.'
+  toast(
+    translate(
+      'terminal.claudeThemeSyncOffer.title',
+      'Match Claude Code to your BrzA Studio theme?'
     ),
-    duration: Infinity,
-    classNames: TRAILING_ACTIONS_CLASS_NAMES,
-    action: {
-      label: translate('terminal.claudeThemeSyncOffer.accept', 'Match theme'),
-      onClick: () => {
-        // Why confirm only after the write: a failed save must not claim the sync is on.
-        updateSettingsOrThrow({ claudeCodeThemeSync: true }).then(
-          () =>
-            toast.success(
-              translate('terminal.claudeThemeSyncOffer.accepted', 'Claude Code theme sync is on'),
-              {
-                description: translate(
-                  'terminal.claudeThemeSyncOffer.acceptedDescription',
-                  'New Claude Code sessions on this computer use your Orca theme.'
-                )
-              }
-            ),
-          () =>
-            toast.error(
-              translate(
-                'terminal.claudeThemeSyncOffer.failed',
-                'Could not turn on Claude Code theme sync'
+    {
+      // Why a stable id: a late settings sync can't stack a second offer.
+      id: OFFER_TOAST_ID,
+      description: translate(
+        'terminal.claudeThemeSyncOffer.description',
+        'Claude Code on this computer would use your terminal colors and follow theme changes, including outside BrzA Studio. You can change this in Settings.'
+      ),
+      duration: Infinity,
+      classNames: TRAILING_ACTIONS_CLASS_NAMES,
+      action: {
+        label: translate('terminal.claudeThemeSyncOffer.accept', 'Match theme'),
+        onClick: () => {
+          // Why confirm only after the write: a failed save must not claim the sync is on.
+          updateSettingsOrThrow({ claudeCodeThemeSync: true }).then(
+            () =>
+              toast.success(
+                translate('terminal.claudeThemeSyncOffer.accepted', 'Claude Code theme sync is on'),
+                {
+                  description: translate(
+                    'terminal.claudeThemeSyncOffer.acceptedDescription',
+                    'New Claude Code sessions on this computer use your BrzA Studio theme.'
+                  )
+                }
               ),
-              {
-                description: translate(
-                  'terminal.claudeThemeSyncOffer.failedDescription',
-                  'Turn it on in Settings.'
-                )
-              }
-            )
-        )
+            () =>
+              toast.error(
+                translate(
+                  'terminal.claudeThemeSyncOffer.failed',
+                  'Could not turn on Claude Code theme sync'
+                ),
+                {
+                  description: translate(
+                    'terminal.claudeThemeSyncOffer.failedDescription',
+                    'Turn it on in Settings.'
+                  )
+                }
+              )
+          )
+        }
+      },
+      cancel: {
+        label: translate('terminal.claudeThemeSyncOffer.decline', 'No thanks'),
+        onClick: () => {}
       }
-    },
-    cancel: {
-      label: translate('terminal.claudeThemeSyncOffer.decline', 'No thanks'),
-      onClick: () => {}
     }
-  })
+  )
 }
 
 /** Offers theme sync once, when Claude Code first runs in an Orca terminal. */

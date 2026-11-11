@@ -133,7 +133,7 @@ export async function main(
     ) {
       throw new RuntimeClientError(
         'invalid_argument',
-        '--on already names the server; drop --environment. Your own Orca reaches it.'
+        '--on already names the server; drop --environment. Your own BrzA Studio reaches it.'
       )
     }
     const ignoreRemoteSelection = onCallersOrca || ignoresRemoteSelection(parsed.commandPath)

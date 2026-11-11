@@ -504,7 +504,7 @@ it('Start work reports one truthful recovery before a remote agent has been sele
     )
     await act(async () => view.result.current.startWork(row))
     expect(mocks.toastError).toHaveBeenCalledExactlyOnceWith(
-      'Update Orca on this workspace’s server, then try again.'
+      'Update BrzA Studio on this workspace’s server, then try again.'
     )
     expect(mocks.createWorktree).not.toHaveBeenCalled()
     expect(hostMocks.callRuntimeRpc).not.toHaveBeenCalled()

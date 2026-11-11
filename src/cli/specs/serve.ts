@@ -67,13 +67,13 @@ export const SERVE_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['serve', 'reset-identity'],
-    summary: "Give this machine's Orca server a new pairing identity",
+    summary: "Give this machine's BrzA Studio server a new pairing identity",
     usage: 'orca serve reset-identity [--yes] [--json]',
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'yes'],
     notes: [
-      'Replaces the pairing key and installation id and removes every paired device, so clients must pair again. Use it on each copy of a machine image that was made after Orca had run, so the copies stop sharing one identity.',
-      'Asks for confirmation in a terminal; pass --yes to skip it. Stop Orca (the desktop app or `orca serve`) for this profile first; the command refuses while it runs.',
-      'To have each copy rotate on its own instead, start `orca serve` with ORCA_INSTANCE_ID set to a value unique to that instance (for example the cloud-init instance id). When the value differs from the one recorded with the current identity, Orca rotates it at startup. The first value seen is only recorded, and an unset variable never rotates anything.'
+      'Replaces the pairing key and installation id and removes every paired device, so clients must pair again. Use it on each copy of a machine image that was made after BrzA Studio had run, so the copies stop sharing one identity.',
+      'Asks for confirmation in a terminal; pass --yes to skip it. Stop BrzA Studio (the desktop app or `orca serve`) for this profile first; the command refuses while it runs.',
+      'To have each copy rotate on its own instead, start `orca serve` with ORCA_INSTANCE_ID set to a value unique to that instance (for example the cloud-init instance id). When the value differs from the one recorded with the current identity, BrzA Studio rotates it at startup. The first value seen is only recorded, and an unset variable never rotates anything.'
     ],
     examples: ['orca serve reset-identity', 'orca serve reset-identity --yes']
   },

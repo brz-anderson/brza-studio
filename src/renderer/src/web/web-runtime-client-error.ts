@@ -45,7 +45,7 @@ function webRuntimeAuthFailureMessage(reason: WebRuntimeAuthFailureReason): stri
     case 'unauthorized':
       return translate(
         'auto.web.runtimeAuth.unauthorizedLinkUsedOrExpired',
-        'Unauthorized. This pairing link may have expired or already been used. Create a new pairing link in Orca and open it.'
+        'Unauthorized. This pairing link may have expired or already been used. Create a new pairing link in BrzA Studio and open it.'
       )
   }
 }

@@ -75,7 +75,7 @@ export const MANAGED_SERVER_COMMAND_SPECS: CommandSpec[] = [
     notes: [
       'Removes the server from this machine without contacting its host, so the SSH host can then be removed. Use it when the host was deleted or can never be reached again. Requires --yes.',
       'Nothing on the host is stopped: if it comes back, orcad may still be running there.',
-      'The SSH host is left disconnected, since no Orca server serves it any more. Connecting it again (Connect in Orca) sets its server up again, relinking one still running there.',
+      'The SSH host is left disconnected, since no BrzA Studio server serves it any more. Connecting it again (Connect in BrzA Studio) sets its server up again, relinking one still running there.',
       SELECTOR_NOTE,
       DESKTOP_NOTE
     ],

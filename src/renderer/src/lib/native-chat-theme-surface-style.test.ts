@@ -25,4 +25,29 @@ describe('nativeChatThemeSurfaceStyle', () => {
     ).toBeUndefined()
     expect(nativeChatThemeSurfaceStyle(theme())['--chat-composer-resting-fill']).toBeUndefined()
   })
+
+  it('yields the plugin text tokens and sets a selection mix for a catalog theme', () => {
+    const style = nativeChatThemeSurfaceStyle(theme('Dracula'))
+
+    const yielded: `--${string}`[] = [
+      '--chat-bold-foreground',
+      '--chat-muted-foreground',
+      '--chat-inline-code',
+      '--chat-inline-code-foreground',
+      '--chat-code-block',
+      '--chat-selection',
+      '--chat-selection-foreground'
+    ]
+    for (const token of yielded) {
+      expect(style[token]).toBe('initial')
+    }
+    expect(style['--chat-selection-mix']).toMatch(/^\d+(\.\d+)?%$/)
+  })
+
+  it('leaves the BrzA default to the app tokens', () => {
+    const style = nativeChatThemeSurfaceStyle(theme())
+
+    expect(style['--chat-selection']).toBeUndefined()
+    expect(style['--chat-selection-mix']).toBeUndefined()
+  })
 })

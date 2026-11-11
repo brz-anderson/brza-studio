@@ -174,7 +174,10 @@ export function ForgetSshWorkspaceDialog(): React.JSX.Element | null {
           </Button>
           <Button size="sm" onClick={() => void handleForget()} disabled={busy}>
             {busy ? <Loader2 className="size-3.5 animate-spin" /> : null}
-            {t('auto.components.sidebar.ForgetSshWorkspaceDialog.forget', 'Remove from Orca')}
+            {t(
+              'auto.components.sidebar.ForgetSshWorkspaceDialog.forget',
+              'Remove from BrzA Studio'
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

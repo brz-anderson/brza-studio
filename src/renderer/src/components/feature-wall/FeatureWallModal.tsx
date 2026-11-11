@@ -37,7 +37,10 @@ export default function FeatureWallModal(): JSX.Element | null {
       >
         <DialogHeader className="gap-1 border-b border-border px-7 py-4">
           <DialogTitle className="text-lg">
-            {t('auto.components.feature.wall.FeatureWallModal.3567e147c8', 'Get to know Orca')}
+            {t(
+              'auto.components.feature.wall.FeatureWallModal.3567e147c8',
+              'Get to know BrzA Studio'
+            )}
           </DialogTitle>
           {/* Provide Radix’s accessible description without duplicating visible tour copy. */}
           <DialogDescription className="sr-only">

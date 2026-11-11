@@ -78,7 +78,7 @@ export function GeneralWorkspaceSettingsSection({
             )}
             description={t(
               'auto.components.settings.GeneralWorkspaceSettingsSection.externalWorktreesDescription',
-              'Choose which worktrees created outside Orca appear by default on this host.'
+              'Choose which worktrees created outside BrzA Studio appear by default on this host.'
             )}
             className="py-3"
             keywords={[

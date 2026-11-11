@@ -111,7 +111,6 @@ export function NativeChatAssistantMessageRow({
       {toolRun ? <NativeChatToolRun {...toolRun} /> : null}
       {showControls ? (
         <NativeChatAgentControls
-          messageId={message.id}
           markdown={words}
           timestamp={message.timestamp}
           onScrollToTop={scrollToTop}

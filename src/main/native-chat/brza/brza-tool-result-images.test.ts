@@ -12,7 +12,7 @@ import {
   readClaudeMessageEnvelope
 } from '../../claude/structured/journal/claude-structured-item-translation'
 import { claudeContentBlocks } from '../transcript-record-blocks'
-import { brzaToolResultImages } from './brza-tool-result-images'
+import { brzaToolResultImages, flushToolImageWrites } from './brza-tool-result-images'
 
 let temp = ''
 
@@ -42,14 +42,16 @@ beforeEach(() => {
   temp = mkdtempSync(join(tmpdir(), 'brza-tool-images-test-'))
 })
 
-afterEach(() => {
+afterEach(async () => {
+  await flushToolImageWrites()
   rmSync(temp, { recursive: true, force: true })
 })
 
 describe('brzaToolResultImages', () => {
-  it('writes a base64 image to a content-named temp file once', () => {
+  it('writes a base64 image to a content-named temp file once', async () => {
     const first = brzaToolResultImages([PNG])
     const second = brzaToolResultImages([PNG])
+    await flushToolImageWrites()
 
     expect(first).toEqual([{ type: 'image-ref', path: SHOT_PATH() }])
     expect(second).toEqual(first)
@@ -69,7 +71,7 @@ describe('brzaToolResultImages', () => {
 })
 
 describe('tool-result images in the decoders', () => {
-  it('reaches the live tool-call body beside the text output', () => {
+  it('reaches the live tool-call body beside the text output', async () => {
     const envelope = readClaudeMessageEnvelope({
       type: 'user',
       uuid: 'u-1',
@@ -79,6 +81,8 @@ describe('tool-result images in the decoders', () => {
     const [result] = envelope ? claudeToolResults(envelope) : []
     const body = claudeToolBody({ tool: { id: 'tool-1', name: 'Read', input: {} }, result })
 
+    await flushToolImageWrites()
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
     expect(body).toMatchObject({
       output: { head: 'see image' },
       images: [{ type: 'image-ref', path: SHOT_PATH() }]

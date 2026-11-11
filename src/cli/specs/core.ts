@@ -60,8 +60,8 @@ export const CORE_COMMAND_SPECS: CommandSpec[] = [
     usage: 'orca worktree activate --worktree <selector> [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'worktree'],
     notes: [
-      'With --environment naming a recipe VM that is asleep, Orca on this computer wakes the VM first and waits for it.',
-      'Folder workspaces cannot be activated from the CLI yet; open them from the Orca sidebar.'
+      'With --environment naming a recipe VM that is asleep, BrzA Studio on this computer wakes the VM first and waits for it.',
+      'Folder workspaces cannot be activated from the CLI yet; open them from the BrzA Studio sidebar.'
     ],
     examples: ['orca worktree activate --worktree branch:fix-login --environment sandbox']
   },

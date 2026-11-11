@@ -130,7 +130,7 @@ export function VoiceSetupCard({
               <span className="text-xs text-muted-foreground">
                 {t(
                   'components.settings.voice.setup.asksForMicrophone',
-                  'Orca will ask for microphone access.'
+                  'BrzA Studio will ask for microphone access.'
                 )}
               </span>
             )}

@@ -69,7 +69,7 @@ export class SharedControlReadinessTimer {
             onUnresponsive: (generation) =>
               args.retire(
                 remoteRuntimeUnavailableError(
-                  'Remote Orca runtime stopped answering requests; resetting the control connection.'
+                  'Remote BrzA Studio runtime stopped answering requests; resetting the control connection.'
                 ),
                 generation,
                 'runtime_unresponsive'

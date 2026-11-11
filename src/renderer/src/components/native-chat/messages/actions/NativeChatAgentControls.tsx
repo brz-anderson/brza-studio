@@ -7,15 +7,12 @@ import { NativeChatMessageTimestamp } from '../rows/NativeChatMessageTimestamp'
 import { withoutNativeChatVisualDirectiveLines } from '../../../../../../shared/native-chat/native-chat-visual-directive'
 
 export function NativeChatAgentControls({
-  messageId,
   markdown,
   timestamp,
   onScrollToTop,
   action,
   className
 }: {
-  /** The row's message, for the actions that act from this point of the conversation. */
-  messageId: string
   markdown: string
   timestamp: number | null
   onScrollToTop: () => void
@@ -29,7 +26,7 @@ export function NativeChatAgentControls({
   return (
     // Row chrome, not transcript: find skips it.
     <div data-native-chat-find-skip className={cn('flex items-center gap-1', className)}>
-      {/* A visual line means nothing pasted outside Orca, so the copy leaves it out. An image-only
+      {/* A visual line means nothing pasted outside BrzA Studio, so the copy leaves it out. An image-only
           response has nothing to copy, so it has no Copy. */}
       {markdown.length > 0 ? <NativeChatCopyButton text={text} /> : null}
       {action}
@@ -42,7 +39,7 @@ export function NativeChatAgentControls({
       >
         <ArrowUp className="size-3.5" />
       </button>
-      <BrzaAgentMessageActions messageId={messageId} text={text} />
+      <BrzaAgentMessageActions text={text} />
       <NativeChatMessageTimestamp timestamp={timestamp} />
     </div>
   )

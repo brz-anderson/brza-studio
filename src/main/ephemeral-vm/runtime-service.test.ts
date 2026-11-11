@@ -390,7 +390,7 @@ describe('ephemeral VM runtime service', () => {
         status: 'failed',
         cleanupStatus: 'not_started',
         cleanupLastError:
-          'Orca stopped while this VM was being created. Destroy it to release any provider resources.',
+          'BrzA Studio stopped while this VM was being created. Destroy it to release any provider resources.',
         cleanupLastErrorCode: 'provisionInterrupted',
         createdAt: 1_000,
         updatedAt: 5_000

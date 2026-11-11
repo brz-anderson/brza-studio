@@ -151,7 +151,7 @@ export function MobileEmulatorSettingsPane({
           )}
           description={t(
             'auto.components.settings.MobileEmulatorSettingsPane.bc39d0f115',
-            'Configure mobile emulator support for Orca and coding agents.'
+            'Configure mobile emulator support for BrzA Studio and coding agents.'
           )}
           keywords={getMobileEmulatorSearchEntries().flatMap((entry) => entry.keywords ?? [])}
           className="divide-y divide-border"

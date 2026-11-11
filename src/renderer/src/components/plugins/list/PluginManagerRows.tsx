@@ -238,7 +238,10 @@ export function installedPluginControls(
         ) : plugin.bundled ? (
           <DropdownMenuItem disabled>
             <Trash2 />
-            {t('auto.components.settings.PluginManagerRows.bundledWithOrca', 'Bundled with Orca')}
+            {t(
+              'auto.components.settings.PluginManagerRows.bundledWithOrca',
+              'Bundled with BrzA Studio'
+            )}
           </DropdownMenuItem>
         ) : null}
       </MoreButton>

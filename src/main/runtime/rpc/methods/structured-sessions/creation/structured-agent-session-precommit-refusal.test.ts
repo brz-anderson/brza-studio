@@ -161,7 +161,7 @@ describe('a create refused before it commits', () => {
     expect(refusalOf(response)).toMatchObject({
       code: 'agent_session_identity_required',
       details: { reason: 'transcriptUnreadable' },
-      message: 'Orca cannot open a structured agent chat for this workspace.',
+      message: 'BrzA Studio cannot open a structured agent chat for this workspace.',
       createAttemptRefusedBeforeCommit: true
     })
     expect(attach).not.toHaveBeenCalled()

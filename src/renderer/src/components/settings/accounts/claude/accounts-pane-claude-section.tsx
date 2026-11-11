@@ -249,7 +249,7 @@ export function renderClaudeAccountsSection(
                     )
                   : t(
                       'auto.components.settings.AccountsPane.3fe7862418',
-                      "No managed Claude accounts for {{value0}}. Orca will use that environment's system default Claude login until you add one here.",
+                      "No managed Claude accounts for {{value0}}. BrzA Studio will use that environment's system default Claude login until you add one here.",
                       { value0: accountRuntimeSentenceLabel }
                     )}
               </div>

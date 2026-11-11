@@ -114,7 +114,7 @@ export async function getFolderWorkspaceMissingRepoError(
   if (choices.length === 0) {
     return new RuntimeClientError(
       'invalid_argument',
-      `This folder workspace is not a Git repository, and Orca has no Git repositories registered under ${read.folderWorkspace.folderPath}. Add one with orca repo add --path <repository path>, then pass --repo.`,
+      `This folder workspace is not a Git repository, and BrzA Studio has no Git repositories registered under ${read.folderWorkspace.folderPath}. Add one with orca repo add --path <repository path>, then pass --repo.`,
       data
     )
   }

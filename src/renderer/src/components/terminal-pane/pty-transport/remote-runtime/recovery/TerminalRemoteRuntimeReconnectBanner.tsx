@@ -68,11 +68,11 @@ export function TerminalRemoteRuntimeReconnectBanner({
         data={{ 'data-terminal-remote-runtime-reconnect-banner': 'server-replaced' }}
         title={t(
           'auto.components.terminal.pane.TerminalRemoteRuntimeReconnectBanner.serverReplacedTitle',
-          'This host runs a different Orca server'
+          'This host runs a different BrzA Studio server'
         )}
         body={t(
           'auto.components.terminal.pane.TerminalRemoteRuntimeReconnectBanner.serverReplacedBody',
-          'Orca connects to the host as a different SSH user, or its server was reinstalled, so reconnecting can’t restore this terminal. Forget this server in Settings, then connect the SSH host to pair with its current server.'
+          'BrzA Studio connects to the host as a different SSH user, or its server was reinstalled, so reconnecting can’t restore this terminal. Forget this server in Settings, then connect the SSH host to pair with its current server.'
         )}
         action={{
           label: t(

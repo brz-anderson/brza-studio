@@ -2,8 +2,8 @@
   "agentLaunch": {
     "connectSsh": "Verbinde dich mit dem SSH-Host dieses Arbeitsbereichs und versuche es erneut.",
     "sshUnavailable": "Der Terminalstart ist auf diesem SSH-Host nicht verfügbar. Öffne ein Terminal im Arbeitsbereich und starte den Agenten dort.",
-    "reconnectServer": "Verbinde dich erneut mit dem Orca-Server dieses Arbeitsbereichs und versuche es erneut.",
-    "updateServer": "Aktualisiere Orca auf dem Server dieses Arbeitsbereichs und versuche es erneut.",
+    "reconnectServer": "Verbinde dich erneut mit dem BrzA-Studio-Server dieses Arbeitsbereichs und versuche es erneut.",
+    "updateServer": "Aktualisiere BrzA Studio auf dem Server dieses Arbeitsbereichs und versuche es erneut.",
     "checkSettings": "Prüfe die Starteinstellungen des Agenten und versuche es erneut.",
     "invalidArgs": "Die CLI-Argumente für {{value0}} enthalten ein nicht geschlossenes Anführungszeichen. Korrigiere sie und versuche es erneut.",
     "opencode": {
@@ -464,7 +464,7 @@
         "safariFullDiskAccess": "macOS hat den Zugriff auf Safari-Cookies verweigert. BrzA Studio unter System Settings → Privacy & Security → Full Disk Access Festplattenvollzugriff gewähren.",
         "connectionEnded": "Die Verbindung zu diesem Server wurde während des Imports beendet. Erneut verbinden und noch einmal versuchen.",
         "serverRepaired": "Dieser Server wurde während des Imports erneut gekoppelt. Erneut versuchen.",
-        "macFullDiskAccess": "macOS hat den Zugriff auf Cookies von {{browser}} verweigert. Gewähre Orca unter Systemeinstellungen → Datenschutz & Sicherheit → Festplattenvollzugriff Zugriff und starte Orca neu."
+        "macFullDiskAccess": "macOS hat den Zugriff auf Cookies von {{browser}} verweigert. Gewähre BrzA Studio unter Systemeinstellungen → Datenschutz & Sicherheit → Festplattenvollzugriff Zugriff und starte BrzA Studio neu."
       },
       "notice": {
         "importedMore_one": "{{count}} Cookie für {{domains}} +{{more}} weitere importiert. Zur Verwendung die Seite neu laden.",
@@ -1207,7 +1207,7 @@
         "insecureOrigin": "BrzA Studio hat die Kopplung von dieser Seite abgelehnt: Die Seite wird über unverschlüsseltes http auf einem anderen Computer bereitgestellt. Dadurch könnte jeder auf dem Netzwerkpfad die Seite ersetzen und den Kopplungscode abfangen. Den Web-Client über https, über localhost auf diesem Computer oder über einen SSH-Tunnel öffnen. Um dies dennoch zuzulassen, kann der Serverbetreiber BrzA Studio mit ORCA_ALLOW_INSECURE_WEB_PAIRING=1 neu starten.",
         "deviceDowngraded": "Dieser BrzA-Studio-Server unterstützt den Anmeldeschlüssel dieses Browsers nicht mehr (möglicherweise wurde eine ältere Serverversion installiert). Den Server aktualisieren oder diesen Browser erneut koppeln.",
         "unauthorized": "Nicht autorisiert. Diesen Web-Client erneut koppeln.",
-        "unauthorizedLinkUsedOrExpired": "Nicht autorisiert. Dieser Kopplungslink ist möglicherweise abgelaufen oder wurde bereits verwendet. Erstelle in Orca einen neuen Kopplungslink und öffne ihn."
+        "unauthorizedLinkUsedOrExpired": "Nicht autorisiert. Dieser Kopplungslink ist möglicherweise abgelaufen oder wurde bereits verwendet. Erstelle in BrzA Studio einen neuen Kopplungslink und öffne ihn."
       }
     },
     "store": {
@@ -4168,8 +4168,8 @@
             "connectionLostTitle": "Verbindung zu {{server}} wird wiederhergestellt",
             "connectionLostBody": "Die Verbindung zum Server wurde unterbrochen. BrzA Studio versucht automatisch, sie wiederherzustellen. Sobald die Verbindung wieder besteht, werden die Terminals fortgesetzt.",
             "reattachingBody": "BrzA Studio stellt die Verbindung dieses Terminals zu {{server}} automatisch wieder her.",
-            "serverReplacedTitle": "Auf diesem Host läuft ein anderer Orca-Server",
-            "serverReplacedBody": "Orca verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Daher kann dieses Terminal nicht durch erneutes Verbinden wiederhergestellt werden. Entferne diesen Server in den Einstellungen und verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln.",
+            "serverReplacedTitle": "Auf diesem Host läuft ein anderer BrzA-Studio-Server",
+            "serverReplacedBody": "BrzA Studio verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Daher kann dieses Terminal nicht durch erneutes Verbinden wiederhergestellt werden. Entferne diesen Server in den Einstellungen und verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln.",
             "serverReplacedButton": "Servereinstellungen öffnen"
           },
           "TerminalQuickCommandsSubmenu": {
@@ -4270,7 +4270,8 @@
             "startChat": "Chat mit {{value0}} starten",
             "cliTag": "(CLI)",
             "agentsLoading": "Agenten werden geladen",
-            "chatNotOnWindows": "Unter Windows noch kein Chat"
+            "chatNotOnWindows": "Unter Windows noch kein Chat",
+            "465e432ef1": "Startbefehl für {{value0}} konnte nicht erstellt werden."
           },
           "RecentTabSwitcher": {
             "329638ff6f": "Tab wechseln",
@@ -4925,8 +4926,8 @@
             "repair": "Erneut koppeln…",
             "open_settings": "Einstellungen öffnen…",
             "server_replaced": "Anderer Server",
-            "server_replaced_summary": "Auf diesem Host läuft jetzt ein anderer Orca-Server als der, mit dem dieser Computer gekoppelt wurde",
-            "server_replaced_explanation": "Orca verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Öffne unter Einstellungen › Entfernte Orca-Server das Menü ⋯ dieses Servers und wähle „Vergessen…“. Verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln."
+            "server_replaced_summary": "Auf diesem Host läuft jetzt ein anderer BrzA-Studio-Server als der, mit dem dieser Computer gekoppelt wurde",
+            "server_replaced_explanation": "BrzA Studio verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Öffne unter Einstellungen › Entfernte BrzA-Studio-Server das Menü ⋯ dieses Servers und wähle „Vergessen…“. Verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln."
           },
           "NativeChatResumeStatusSegment": {
             "tooltip": "Unterbrochene Chats öffnen, die fortgesetzt werden können",
@@ -6022,7 +6023,7 @@
           "removeWithChildrenMixed_other": "<target/> und <descendants>{{count}} untergeordnete Arbeitsbereiche</descendants> aus BrzA Studio entfernen. Git-Worktrees werden auch aus git und vom Datenträger entfernt; bei Ordner-Arbeitsbereichen wird nur der BrzA-Studio-Eintrag entfernt.",
           "removeWithChildrenGit_one": "<target/> und <descendants>{{count}} untergeordneten Arbeitsbereich</descendants> aus git entfernen und ihre Arbeitsbereichsordner löschen.",
           "removeWithChildrenGit_other": "<target/> und <descendants>{{count}} untergeordnete Arbeitsbereiche</descendants> aus git entfernen und ihre Arbeitsbereichsordner löschen.",
-          "removeSingleFolderFromOrca": "Entfernt ihn aus Orca. Der Ordner auf der Festplatte bleibt erhalten.",
+          "removeSingleFolderFromOrca": "Entfernt ihn aus BrzA Studio. Der Ordner auf der Festplatte bleibt erhalten.",
           "deleteSingleWorktreeAndBranch": "Löscht den Worktree und seinen Branch (bleibt erhalten, falls nicht gemergt)."
         },
         "DeleteWorktreeDirtyChangeHint": {
@@ -6196,7 +6197,7 @@
         },
         "SetupScriptReviewDialog": {
           "title": "Einrichtungsskript prüfen",
-          "description": "Nach dem Speichern wird dies bei jeder Worktree-Erstellung für {{repo}} durch Orca ausgeführt.",
+          "description": "Nach dem Speichern wird dies bei jeder Worktree-Erstellung für {{repo}} durch BrzA Studio ausgeführt.",
           "setupScript": "Einrichtungsskript",
           "archiveScript": "Archivierungsskript",
           "save": "Lokales Setup speichern"
@@ -7633,7 +7634,7 @@
           "3a5d06686d": "Statusleiste",
           "7be0027489": "Schaltfläche „Automatisierungen“ anzeigen",
           "8063dd3b6b": "App-Name in der Titelleiste",
-          "d2b4ddbea0": "Schaltfläche „Orca Mobile“ anzeigen",
+          "d2b4ddbea0": "Schaltfläche „BrzA Studio Mobile“ anzeigen",
           "657a7230a2": "IDE-Schriftart",
           "95a5581f66": "Beim Schließen in den Infobereich minimieren",
           "e90c5d745a": "Fenster und Seitenleiste"
@@ -8214,7 +8215,7 @@
           "c5886a31cc": "Externer Editor konnte nicht geöffnet werden.",
           "cdf794f46d": "Die Tastenbelegungsdatei ist nicht verfügbar.",
           "dd532a01ce": "Tastenbelegungen konnten in BrzA Studio nicht geöffnet werden.",
-          "ad58206841": "Datei in Orca bearbeiten",
+          "ad58206841": "Datei in BrzA Studio bearbeiten",
           "c322555264": "Im Dateimanager anzeigen",
           "5b639aea5c": "Vom Datenträger neu laden",
           "4bfe7a2e43": "Mit Standard-App öffnen"
@@ -8326,8 +8327,8 @@
           "diagnosticsCopyFailed": "Diagnosedaten konnten nicht kopiert werden",
           "5e2c7a1f84": "Während ein Terminal auf dem Smartphone verwendet wird, verkleinert BrzA Studio es auf die Bildschirmgröße des Smartphones. Diese Einstellung legt fest, ob es beim Schließen oder Verlassen der App in Smartphone-Größe bleibt (damit interaktive CLI-Tools ihr Layout beibehalten) oder wieder an den Desktop angepasst wird. Über „Wiederherstellen“ oder „Alle wiederherstellen“ im Banner lässt sich die Größe jederzeit manuell anpassen.",
           "codeRefreshesAutomatically": "Der Code wird automatisch erneuert. Ein kopierter Code funktioniert bis zu 10 Minuten.",
-          "legacyEncryption": "Verwendet ältere Verschlüsselung. Aktualisiere die Orca-App auf diesem Gerät.",
-          "olderPairingMethod": "Verwendet eine ältere Kopplungsmethode. Aktualisiere die Orca-App auf diesem Telefon.",
+          "legacyEncryption": "Verwendet ältere Verschlüsselung. Aktualisiere die BrzA-Studio-App auf diesem Gerät.",
+          "olderPairingMethod": "Verwendet eine ältere Kopplungsmethode. Aktualisiere die BrzA-Studio-App auf diesem Telefon.",
           "5f539ff331": "Gekoppelte Geräte"
         },
         "MobileSettingsPane": {
@@ -8339,7 +8340,7 @@
           "174f4a3c6d": "Terminals und Agenten vom Smartphone aus steuern.",
           "682293cadf": "Die BrzA Studio Mobile-Schaltfläche oben in der linken Seitenleiste anzeigen.",
           "d4f2b65f30": "Die BrzA Studio Mobile-Verknüpfung in der Seitenleiste anzeigen.",
-          "49089c92b3": "Schaltfläche „Orca Mobile“ anzeigen"
+          "49089c92b3": "Schaltfläche „BrzA Studio Mobile“ anzeigen"
         },
         "NotificationsPane": {
           "2772d2f257": "Benachrichtigungen überspringen, wenn der auslösende Worktree bereits sichtbar ist.",
@@ -8731,14 +8732,14 @@
           "6f6d5188ed": "Zugriff für {{value0}} widerrufen",
           "434e4a6af6": "Aktueller Link",
           "df142657a5": "Noch nicht verwendet",
-          "olderPairingMethod": "Verwendet eine ältere Kopplungsmethode. Aktualisiere Orca auf dem Gerät, das diesen Link verwendet.",
+          "olderPairingMethod": "Verwendet eine ältere Kopplungsmethode. Aktualisiere BrzA Studio auf dem Gerät, das diesen Link verwendet.",
           "b18d1764ef": "Zuletzt verwendet: {{value0}}",
           "linkName": "Link · {{value0}}",
           "activeLinks": "Aktive Links",
           "noActiveLinks": "Keine aktiven Links.",
           "createdAt": "Erstellt: {{value0}}",
           "revoke": "Widerrufen",
-          "legacyEncryption": "Zuletzt mit älterer Verschlüsselung verwendet. Aktualisiere Orca dort, wo dieser Link verwendet wird."
+          "legacyEncryption": "Zuletzt mit älterer Verschlüsselung verwendet. Aktualisiere BrzA Studio dort, wo dieser Link verwendet wird."
         },
         "RuntimeEnvironmentsPane": {
           "af53761f31": "Abbrechen",
@@ -8790,7 +8791,7 @@
           "removeDefaultServerDescription": "Dieser Server ist der Standard-Host für neue Projekte. Vor dem Entfernen unter „Neue Projekte öffnen auf“ einen anderen auswählen. Bestehende Host-Sitzungen bleiben unverändert.",
           "connectedNewProjectsHint": "Mit {{value0}} verbunden. Um dort standardmäßig neue Projekte zu erstellen, diesen Host unter „Neue Projekte öffnen auf“ auswählen.",
           "removeDefaultServerBlocked": "Dieser Server ist der Standard-Host für neue Projekte. Vor dem Entfernen unter „Neue Projekte öffnen auf“ einen anderen auswählen.",
-          "serverReplaced": "{{value0}} ist nicht der Orca-Server, mit dem dieser Computer gekoppelt wurde: Orca verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Öffne hier das Menü ⋯ und wähle „Vergessen…“. Verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln.",
+          "serverReplaced": "{{value0}} ist nicht der BrzA-Studio-Server, mit dem dieser Computer gekoppelt wurde: BrzA Studio verbindet sich als ein anderer SSH-Benutzer mit dem Host oder dessen Server wurde neu installiert. Öffne hier das Menü ⋯ und wähle „Vergessen…“. Verbinde dann den SSH-Host, um ihn mit seinem aktuellen Server zu koppeln.",
           "6f303a89a3": "Server wechseln",
           "4ae8a4a381": "Server entfernen"
         },
@@ -8907,7 +8908,7 @@
           "045db77e21": "SSH-Hosts",
           "c0900fa64a": "Aufgabenquellen",
           "129ae9859c": "Mobilgeräte-Emulator",
-          "022effa46f": "Entfernte Orca-Server",
+          "022effa46f": "Entfernte BrzA-Studio-Server",
           "d09b9d8f00": "Git & Quellcodeverwaltung",
           "3eac6fb97f": "Entwicklerwerkzeuge",
           "4198aae333": "Konten bei KI-Anbietern",
@@ -9112,8 +9113,8 @@
           "proxyConnectionReuseHelp": "Schnellere Verbindungen über langsame ProxyCommand- oder ProxyJump-Hosts. Nur aktivieren, wenn ssh_config keine hostspezifischen Match- oder %h-Regeln verwendet.",
           "reconnectOnLaunch": "Beim Start erneut verbinden",
           "reconnectOnLaunchHelp": "Wenn deaktiviert, bleiben dieser Host und alle darüber erreichbaren BrzA-Studio-Server beim Start getrennt, bis eine Verbindung hergestellt wird.",
-          "allowRemoteCliControl": "Diesem Host erlauben, Orca-Browser-Tabs in seinen Arbeitsbereichen zu steuern",
-          "allowRemoteCliControlHelp": "Für neue Hosts standardmäßig aktiviert. Agents und orca-Befehle auf diesem Host können Orca-Browser-Tabs auf diesem Desktop öffnen, lesen und verwenden – nur in den Arbeitsbereichen dieses Hosts und nur bei bestehender Verbindung. Tabs, die er steuert, zeigen seinen Namen. Terminals, die auf diesem Host von einer älteren BrzA-Studio-Version gestartet wurden, benötigen diese Option ebenfalls, um orca-Orchestrierungsbefehle auszuführen. Er kann weder Ihre Dateien noch Zwischenablage oder Cookies lesen.",
+          "allowRemoteCliControl": "Diesem Host erlauben, BrzA-Studio-Browser-Tabs in seinen Arbeitsbereichen zu steuern",
+          "allowRemoteCliControlHelp": "Für neue Hosts standardmäßig aktiviert. Agents und orca-Befehle auf diesem Host können BrzA-Studio-Browser-Tabs auf diesem Desktop öffnen, lesen und verwenden – nur in den Arbeitsbereichen dieses Hosts und nur bei bestehender Verbindung. Tabs, die er steuert, zeigen seinen Namen. Terminals, die auf diesem Host von einer älteren BrzA-Studio-Version gestartet wurden, benötigen diese Option ebenfalls, um orca-Orchestrierungsbefehle auszuführen. Er kann weder Ihre Dateien noch Zwischenablage oder Cookies lesen.",
           "editTitle": "SSH-Host bearbeiten",
           "addTitle": "SSH-Host hinzufügen",
           "editDescription": "Verbindungsdaten für diesen Rechner aktualisieren. Änderungen gelten ab der nächsten Verbindung.",
@@ -9804,7 +9805,7 @@
             "matchTerminal": "An Terminal anpassen",
             "37e6b58b0e": "Zoom der Benutzeroberfläche",
             "931c53cd16": "Claude-Nutzung",
-            "1b404ee6ad": "Schaltfläche „Orca Mobile“ anzeigen",
+            "1b404ee6ad": "Schaltfläche „BrzA Studio Mobile“ anzeigen",
             "183e6b8ef9": "ZCode-Nutzung",
             "d408ece868": "Beim Schließen in den Infobereich minimieren",
             "585be839e9": "Gemini-Nutzung",
@@ -10570,7 +10571,7 @@
               "6cf5f54ce1": "Schaltfläche",
               "648eeada79": "Ausblenden",
               "ac79fe4a04": "Anzeigen",
-              "b305668a18": "Schaltfläche „Orca Mobile“ anzeigen"
+              "b305668a18": "Schaltfläche „BrzA Studio Mobile“ anzeigen"
             }
           }
         },
@@ -10864,7 +10865,7 @@
               "shareComputerKeyword": "Diesen Computer freigeben",
               "accessLinkKeyword": "Zugriffslink",
               "installKeyword": "Server installieren",
-              "24cc0a2244": "Entfernte Orca-Server"
+              "24cc0a2244": "Entfernte BrzA-Studio-Server"
             }
           }
         },
@@ -11300,7 +11301,7 @@
         },
         "agent-workspace-trust-copy": {
           "title": "Dem Ordner vertrauen, wenn BrzA Studio einen Agenten startet",
-          "description": "Von BrzA Studio gestartete Agenten können die Abfrage „Do you trust this folder?“ überspringen, sodass die Agenten-Hooks und Einstellungen des Projekts sofort ausgeführt werden. Orca fragt einmal pro Repository beim ersten Agentenstart dort nach; die Antwort lässt sich in den Einstellungen dieses Repositorys ändern. Ausgeschaltet fragen Agenten immer selbst nach. Ein Agent, der unbeaufsichtigt läuft und nachfragt, etwa ein Orchestrierungs-Worker, eine Automatisierung oder ein vom Smartphone gestarteter Agent, wartet, bis die Frage in seinem Terminal beantwortet wird. Bereits als vertrauenswürdig eingestufte Ordner bleiben vertrauenswürdig."
+          "description": "Von BrzA Studio gestartete Agenten können die Abfrage „Do you trust this folder?“ überspringen, sodass die Agenten-Hooks und Einstellungen des Projekts sofort ausgeführt werden. BrzA Studio fragt einmal pro Repository beim ersten Agentenstart dort nach; die Antwort lässt sich in den Einstellungen dieses Repositorys ändern. Ausgeschaltet fragen Agenten immer selbst nach. Ein Agent, der unbeaufsichtigt läuft und nachfragt, etwa ein Orchestrierungs-Worker, eine Automatisierung oder ein vom Smartphone gestarteter Agent, wartet, bis die Frage in seinem Terminal beantwortet wird. Bereits als vertrauenswürdig eingestufte Ordner bleiben vertrauenswürdig."
         },
         "agent-generated-tab-title-copy": {
           "19ad21615a": "Tab-Titel automatisch generieren",
@@ -11815,7 +11816,7 @@
           "description": "Gekoppelte BrzA-Studio-Server über diesen Client prüfen und aktualisieren.",
           "updating": "Server werden aktualisiert…",
           "serverCountOne": "1 gekoppelter Server",
-          "fdd271abf0": "Entfernte Orca-Server",
+          "fdd271abf0": "Entfernte BrzA-Studio-Server",
           "e4e5937469": "Nach Server-Updates suchen"
         },
         "RemoteServerUpdateDialog": {
@@ -11834,7 +11835,7 @@
           "liveTabs": "{{value0}} aktive Tabs",
           "livePaneOne": "1 aktiver Bereich",
           "livePanes": "{{value0}} aktive Bereiche",
-          "dca6780b3a": "Entfernte Orca-Server aktualisieren"
+          "dca6780b3a": "Entfernte BrzA-Studio-Server aktualisieren"
         },
         "RemoteServerUpdateStatus": {
           "checking": "Wird geprüft…",
@@ -11895,7 +11896,7 @@
             "terminalRun": "Befehle in deinen Terminals ausführen, auch über SSH"
           },
           "decisionFailed": "Die Berechtigungsentscheidung konnte nicht gespeichert werden. Erneut versuchen.",
-          "fullAccessWarning": "Vollzugriff: läuft wie ein normales Programm und kann deine Dateien lesen, das Netzwerk nutzen, andere Programme ausführen und Orca steuern, einschließlich deiner Terminals und Agenten.",
+          "fullAccessWarning": "Vollzugriff: läuft wie ein normales Programm und kann deine Dateien lesen, das Netzwerk nutzen, andere Programme ausführen und BrzA Studio steuern, einschließlich deiner Terminals und Agenten.",
           "uiWarning": "Führt den Code des Herausgebers in BrzA Studio aus, um seine Ansicht darzustellen. BrzA Studio zeigt, worauf er zugreifen kann, und fragt vor der Aktivierung."
         },
         "PluginConsentProvenance": {
@@ -12494,7 +12495,7 @@
         },
         "sshManagedHostRemove": {
           "descriptionServerHost": "BrzA Studio läuft auf {{label}}. Unter „Entfernte BrzA-Studio-Server“ das Menü ⋯ von {{label}} öffnen und „Stoppen…“ wählen, um BrzA Studio vom Host zu entfernen, oder „Vergessen…“, wenn der Host nicht mehr vorhanden ist. Danach lässt sich dieser SSH-Host entfernen.",
-          "2ca95e9fd7": "Entfernte Orca-Server öffnen"
+          "2ca95e9fd7": "Entfernte BrzA-Studio-Server öffnen"
         },
         "managedServers": {
           "row": {
@@ -13386,7 +13387,7 @@
           "declaredByline": "Angegebener Herausgeber: {{publisher}}",
           "catalogClaim": "Herausgeber von {{catalog}} aufgeführt. Die Urheberschaft ist nicht verifiziert.",
           "unnamedCatalogClaim": "Herausgeber im Katalog aufgeführt. Die Urheberschaft ist nicht verifiziert.",
-          "gitClaim": "Herausgeber von Orca aus der Repository-URL abgeleitet. Die Urheberschaft ist nicht verifiziert.",
+          "gitClaim": "Herausgeber von BrzA Studio aus der Repository-URL abgeleitet. Die Urheberschaft ist nicht verifiziert.",
           "unknownClaim": "Die Quelle des Herausgebers ist unbekannt. Die Urheberschaft ist nicht verifiziert.",
           "manifestClaim": "Herausgeber vom Plugin angegeben. Die Urheberschaft ist nicht verifiziert.",
           "shownPluginCount_one": "{{count}} passendes Plugin angezeigt, einschließlich dieses Plugins",
@@ -16280,7 +16281,7 @@
           "kernelStartFailed": "Der Kernel konnte nicht gestartet werden.",
           "noPython": "Python wurde auf diesem Computer nicht gefunden. Python von [python.org](https://www.python.org/downloads/) installieren und die Zelle dann erneut ausführen.",
           "kernelDied": "Der Kernel ist abgestürzt.",
-          "outputTruncated": "Ausgabe gekürzt: Orca hat den Anfang der Ausgabe dieser Zelle behalten und den Rest verworfen. Um alles zu behalten, schreibe sie stattdessen in eine Datei.",
+          "outputTruncated": "Ausgabe gekürzt: BrzA Studio hat den Anfang der Ausgabe dieser Zelle behalten und den Rest verworfen. Um alles zu behalten, schreibe sie stattdessen in eine Datei.",
           "localOnly": "Notebook-Zellen können nur für Dateien auf diesem Computer ausgeführt werden.",
           "pythonOnly": "In BrzA Studio können nur Python-Notebooks ausgeführt werden.",
           "ownerUnresolved": "BrzA Studio kann noch nicht feststellen, auf welchem Computer sich dieses Notebook befindet. Daher können seine Zellen nicht ausgeführt werden.",
@@ -18978,13 +18979,13 @@
       },
       "agent-workspace-trust-decision": {
         "prompt-title": "{{repo}} für Agenten vertrauen?",
-        "prompt-description": "Agenten wie Claude Code und Codex fragen „Do you trust this folder?“, bevor sie die eigenen Agenten-Einstellungen und Hooks des Projekts laden, die Befehle ausführen können. Orca kann diese Frage in jedem Worktree dieses Repositorys automatisch mit Ja beantworten.",
-        "prompt-remembered": "Orca merkt sich die Antwort für dieses Repository. Sie lässt sich in den Einstellungen des Repositorys ändern.",
+        "prompt-description": "Agenten wie Claude Code und Codex fragen „Do you trust this folder?“, bevor sie die eigenen Agenten-Einstellungen und Hooks des Projekts laden, die Befehle ausführen können. BrzA Studio kann diese Frage in jedem Worktree dieses Repositorys automatisch mit Ja beantworten.",
+        "prompt-remembered": "BrzA Studio merkt sich die Antwort für dieses Repository. Sie lässt sich in den Einstellungen des Repositorys ändern.",
         "trust-repository": "Repository vertrauen",
         "let-agents-ask": "Agenten fragen lassen",
         "setting-title": "Ordnervertrauen für Agenten",
-        "setting-description": "Legt fest, ob von Orca gestartete Agenten in den Worktrees dieses Repositorys die Abfrage „Do you trust this folder?“ überspringen und die Agenten-Einstellungen und Hooks des Projekts sofort laden.",
-        "setting-undecided": "Noch nicht entschieden. Orca fragt beim nächsten Agentenstart hier nach.",
+        "setting-description": "Legt fest, ob von BrzA Studio gestartete Agenten in den Worktrees dieses Repositorys die Abfrage „Do you trust this folder?“ überspringen und die Agenten-Einstellungen und Hooks des Projekts sofort laden.",
+        "setting-undecided": "Noch nicht entschieden. BrzA Studio fragt beim nächsten Agentenstart hier nach.",
         "setting-global-off": "Das Ordnervertrauen ist in den Agenten-Einstellungen ausgeschaltet, daher fragen Agenten immer nach.",
         "keyword-trust": "vertrauen",
         "keyword-hooks": "Hooks"
@@ -19411,7 +19412,7 @@
         "changedFiles_one": "{{count}} geänderte Datei",
         "changedFiles_other": "{{count}} geänderte Dateien",
         "hide": "Ausblenden",
-        "hidden": "Orca zeigt keine Durchgangsänderungen mehr an"
+        "hidden": "BrzA Studio zeigt keine Durchgangsänderungen mehr an"
       },
       "receipt": {
         "unavailable": "Ausgewählte Antwort nicht verfügbar",
@@ -20199,7 +20200,7 @@
         "unconfirmed": "{{agent}} konnte das Abzweigen nicht bestätigen",
         "unconfirmedDetail": "Der Chat wurde möglicherweise dennoch geöffnet. Prüfe den Sitzungsverlauf, bevor du erneut abzweigst.",
         "failed": "{{agent}} konnte diesen Chat nicht abzweigen",
-        "hostUnsupported": "Auf diesem Host läuft eine ältere Orca-Version. Aktualisiere Orca auf dem Host und versuche es erneut.",
+        "hostUnsupported": "Auf diesem Host läuft eine ältere BrzA-Studio-Version. Aktualisiere BrzA Studio auf dem Host und versuche es erneut.",
         "failedDetail": "Dein Chat ist unverändert. Versuche es erneut."
       },
       "cardKindHidden": {
@@ -20210,7 +20211,7 @@
       "openedPullRequests": {
         "one": "Pull Request erstellt: {{name}}",
         "hide": "Erstellte Pull Requests nicht anzeigen",
-        "hidden": "Orca zeigt keine erstellten Pull Requests mehr an",
+        "hidden": "BrzA Studio zeigt keine erstellten Pull Requests mehr an",
         "many_one": "{{count}} Pull Request erstellt",
         "many_other": "{{count}} Pull Requests erstellt"
       },
@@ -20690,7 +20691,7 @@
           "savedMicrophone": "Dein Mikrofon",
           "description": "Sprechen statt tippen, in jedem Bereich. Die Sprache wird auf diesem Computer erkannt, deine Audiodaten bleiben also hier.",
           "setUp": "Einrichten",
-          "asksForMicrophone": "Orca fragt nach Zugriff auf das Mikrofon."
+          "asksForMicrophone": "BrzA Studio fragt nach Zugriff auf das Mikrofon."
         },
         "quality": {
           "unsupported": "Unterstützt deine Sprache nicht",
@@ -20739,7 +20740,7 @@
           "add": "Hinzufügen",
           "repoNameHint": "Repo-Namen als Hinweis verwenden",
           "repoNameHintDescription": "Hilft, den Namen des Repos zu erkennen.",
-          "repoSaveFailed": "Die Begriffe des Repos konnten nicht gespeichert werden. Auf dem Host dieses Repos ist eventuell ein Orca-Update nötig."
+          "repoSaveFailed": "Die Begriffe des Repos konnten nicht gespeichert werden. Auf dem Host dieses Repos ist eventuell ein BrzA-Studio-Update nötig."
         }
       },
       "repositoryHooks": {
@@ -21394,20 +21395,20 @@
       "open": "Arbeitsbereich öffnen",
       "occupied": "Ausgecheckt in {{path}}",
       "remote": "remote",
-      "statusFailed": "Orca konnte die Änderungen in diesem Checkout nicht lesen. Aktualisiere die Quellcodeverwaltung, bevor du wechselst.",
+      "statusFailed": "BrzA Studio konnte die Änderungen in diesem Checkout nicht lesen. Aktualisiere die Quellcodeverwaltung, bevor du wechselst.",
       "statusUnknown": "Lies die Änderungen in diesem Checkout, bevor du wechselst.",
       "conflict": "Schließe den {{operation}} ab oder brich ihn ab, bevor du den Branch wechselst.",
       "dirty_one": "Committe oder verwirf {{count}} geänderte Datei, bevor du den Branch wechselst.",
       "dirty_other": "Committe oder verwirf {{count}} geänderte Dateien, bevor du den Branch wechselst.",
       "agentWorking": "Ein Agent arbeitet in diesem Arbeitsbereich. Wechsle den Branch, wenn er fertig ist, oder schließe seinen Tab, falls er angehalten hat.",
-      "listFailed": "Orca konnte die lokalen Branches nicht auflisten. Öffne die Auswahl erneut.",
-      "discoveryFailed": "Orca konnte keine Remote-Branches finden. Du kannst trotzdem zu lokalen Branches wechseln oder einen Branch erstellen.",
-      "switchFailed": "Orca konnte den Branch nicht wechseln. Versuche es erneut.",
+      "listFailed": "BrzA Studio konnte die lokalen Branches nicht auflisten. Öffne die Auswahl erneut.",
+      "discoveryFailed": "BrzA Studio konnte keine Remote-Branches finden. Du kannst trotzdem zu lokalen Branches wechseln oder einen Branch erstellen.",
+      "switchFailed": "BrzA Studio konnte den Branch nicht wechseln. Versuche es erneut.",
       "switchFailedTitle": "Branch konnte nicht gewechselt werden",
       "switchFailedIn": "Branch in {{workspace}} konnte nicht gewechselt werden",
       "switchedIn": "In {{workspace}}",
       "thisComputer": "diesem Computer",
-      "updateHost": "Aktualisiere Orca auf {{host}}, um von hier aus Branches zu wechseln."
+      "updateHost": "Aktualisiere BrzA Studio auf {{host}}, um von hier aus Branches zu wechseln."
     }
   },
   "agentsSidebarIntro": {
@@ -21823,8 +21824,8 @@
       "gcpProject": "Google-Cloud-Projekt",
       "gcpLocation": "Google-Cloud-Standort",
       "settingsIncomplete": "Wähle einen Antigravity-Kontotyp und gib dessen Google-Cloud-Projekt und -Standort ein.",
-      "settingsLoadFailed": "Orca konnte deine Antigravity-Anmeldeeinstellungen nicht laden. Versuche es erneut.",
-      "settingsSaveFailed": "Orca konnte deine Antigravity-Anmeldeeinstellungen nicht speichern. Versuche es erneut.",
+      "settingsLoadFailed": "BrzA Studio konnte deine Antigravity-Anmeldeeinstellungen nicht laden. Versuche es erneut.",
+      "settingsSaveFailed": "BrzA Studio konnte deine Antigravity-Anmeldeeinstellungen nicht speichern. Versuche es erneut.",
       "lastReading": "{{reading}} · Ausgelesen {{time}}",
       "noReading": "Nutzung unbekannt: noch nicht ausgelesen",
       "fd47b5a5dd": "Antigravity-Konten"
@@ -23431,7 +23432,7 @@
       "missing": "Das gespeicherte Gerät befindet sich nicht mehr auf diesem Computer. Wähle ein anderes Gerät.",
       "unavailable": "Die Laufzeit des gespeicherten Geräts ist nicht verfügbar. Wähle ein anderes Gerät oder installiere dessen Laufzeit.",
       "askPrompt": "Wähle ein Gerät zum Öffnen.",
-      "firstUse": "Wähle dein erstes Gerät. Orca merkt sich erfolgreiche Auswahlen auf diesem Computer."
+      "firstUse": "Wähle dein erstes Gerät. BrzA Studio merkt sich erfolgreiche Auswahlen auf diesem Computer."
     },
     "picker": {
       "choose": "Emulator auswählen",
@@ -23561,22 +23562,22 @@
   },
   "remoteHostBrowserControl": {
     "title": "{{host}} steuert einen Browser-Tab",
-    "description": "Agents auf diesem SSH-Host können Orca-Browser-Tabs in seinen Arbeitsbereichen öffnen und verwenden. Tabs, die er steuert, zeigen seinen Namen. Sie können dies unter Einstellungen > SSH ändern.",
+    "description": "Agents auf diesem SSH-Host können BrzA-Studio-Browser-Tabs in seinen Arbeitsbereichen öffnen und verwenden. Tabs, die er steuert, zeigen seinen Namen. Sie können dies unter Einstellungen > SSH ändern.",
     "stop": "Stoppen",
     "disallow": "Nicht erlauben",
-    "stopped": "{{host}} steuert bis zum Neustart von Orca keine Browser-Tabs mehr.",
+    "stopped": "{{host}} steuert bis zum Neustart von BrzA Studio keine Browser-Tabs mehr.",
     "disallowed": "{{host}} kann keine Browser-Tabs mehr steuern. Sie können dies unter Einstellungen > SSH wieder aktivieren.",
     "failed": "{{host}} konnte nicht gestoppt werden. Deaktivieren Sie die Browsersteuerung unter Einstellungen > SSH."
   },
   "macosUpdateRequirement": {
-    "title": "Orca-Updates benötigen jetzt macOS {{macos}}",
-    "description": "Orca {{version}} benötigt macOS {{macos}} oder neuer. Diese Version funktioniert weiterhin, erhält aber auf diesem Mac keine neuen Updates.",
+    "title": "BrzA-Studio-Updates benötigen jetzt macOS {{macos}}",
+    "description": "BrzA Studio {{version}} benötigt macOS {{macos}} oder neuer. Diese Version funktioniert weiterhin, erhält aber auf diesem Mac keine neuen Updates.",
     "checking": "Es wird geprüft, ob dieser Mac aktualisiert werden kann…",
-    "upgradeDescription": "Dieser Mac kann aktualisiert werden. Aktualisiere macOS, um die neueste Orca-Version zu erhalten.",
+    "upgradeDescription": "Dieser Mac kann aktualisiert werden. Aktualisiere macOS, um die neueste BrzA-Studio-Version zu erhalten.",
     "unsupportedDescription": "Apple unterstützt macOS {{macos}} auf diesem Mac nicht.",
     "unknownDescription": "Wir konnten nicht bestätigen, ob dieser Mac aktualisiert werden kann. Die Kompatibilitätsübersicht von Apple kann helfen.",
     "whyTitle": "Warum ändert sich das?",
-    "whyIntro": "Wir haben Electron, die Grundlage von Orca, aktualisiert. Das bringt:",
+    "whyIntro": "Wir haben Electron, die Grundlage von BrzA Studio, aktualisiert. Das bringt:",
     "whySecurity": "Fortlaufende Sicherheitskorrekturen von Electron und Chromium.",
     "whyPerformance": "Schnelleren Start und effizientere Aufrufe nativer APIs.",
     "whySystemApis": "Unterstützung aktueller macOS-Benachrichtigungs-APIs und sicheren Schlüsselbundspeichers.",
@@ -23586,7 +23587,7 @@
     "updateAction": "So aktualisierst du macOS",
     "discussionAction": "An der Diskussion teilnehmen",
     "checkAction": "Kompatibilität prüfen",
-    "settingsStatus": "Orca {{version}} benötigt macOS {{macos}} oder neuer. Dies ist die neueste Version für diesen Mac."
+    "settingsStatus": "BrzA Studio {{version}} benötigt macOS {{macos}} oder neuer. Dies ist die neueste Version für diesen Mac."
   },
   "gitGraph": {
     "copyHash": "Commit-Hash kopieren",
@@ -23596,7 +23597,7 @@
     "allBranches": "Alle Branches",
     "chosenBranches": "Ausgewählte Branches",
     "searchRefs": "Branches und Tags suchen",
-    "oldServer": "Diese Orca-Version auf dem Server zeigt nur den aktuellen Branch",
+    "oldServer": "Diese BrzA-Studio-Version auf dem Server zeigt nur den aktuellen Branch",
     "copyBranch": "Branch-Namen kopieren",
     "switchWorkspace": "Zum Workspace wechseln",
     "workspaceClosed": "Dieser Branch ist nicht mehr in einem anderen Workspace geöffnet.",
@@ -23612,7 +23613,7 @@
     "noCommits": "Noch keine Commits",
     "historyChanged": "Der Verlauf hat sich erneut geändert. Aktualisiere den Git-Graphen, um es erneut zu versuchen.",
     "loadFailed": "Git-Verlauf konnte nicht geladen werden",
-    "updateHost": "Aktualisiere Orca auf {{host}}, um den Git-Graphen zu öffnen",
+    "updateHost": "Aktualisiere BrzA Studio auf {{host}}, um den Git-Graphen zu öffnen",
     "title": "Git-Graph",
     "revertConflicts": "Konflikte beim Rückgängigmachen",
     "revertInProgress": "Rückgängigmachen läuft",
@@ -23622,7 +23623,7 @@
     "recoveryFailed": "Der Vorgang konnte nicht abgeschlossen werden. Aktualisiere die Quellcodeverwaltung und versuche es erneut.",
     "continueOperation": "{{operation}} fortsetzen",
     "reverting": "Wird rückgängig gemacht",
-    "updateActionsHost": "Aktualisiere Orca auf {{host}}, um Commit-Aktionen auszuführen",
+    "updateActionsHost": "Aktualisiere BrzA Studio auf {{host}}, um Commit-Aktionen auszuführen",
     "thisHost": "diesem Host",
     "cannotApplyMerge": "Merge-Commits können hier nicht per Cherry-pick übernommen oder rückgängig gemacht werden",
     "confirmCommitAction": "{{action}} {{commit}}?",
@@ -23648,7 +23649,7 @@
     "branchCreated": "{{branch}} bei {{commit}} erstellt",
     "branchName": "Branch-Name",
     "invalidBranchName": "Dieser Branchname ist ungültig. Wähle einen anderen Namen.",
-    "createBranchFailed": "Orca konnte den Branch nicht erstellen. Prüfe dieses Repository im Terminal und versuche es erneut."
+    "createBranchFailed": "BrzA Studio konnte den Branch nicht erstellen. Prüfe dieses Repository im Terminal und versuche es erneut."
   },
   "checks": {
     "gitlabAllowedFailure": "Fehlschlag erlaubt"

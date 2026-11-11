@@ -103,7 +103,7 @@ export function useRuntimeServerRowState(
       : serverReplaced
         ? t(
             'auto.components.settings.RuntimeEnvironmentsPane.serverReplaced',
-            '{{value0}} is not the Orca server this computer paired with: Orca connects to the host as a different SSH user, or its server was reinstalled. Open the ⋯ menu here and choose Forget…, then connect the SSH host to pair with its current server.',
+            '{{value0}} is not the BrzA Studio server this computer paired with: BrzA Studio connects to the host as a different SSH user, or its server was reinstalled. Open the ⋯ menu here and choose Forget…, then connect the SSH host to pair with its current server.',
             { value0: environment.name }
           )
         : getHostDetailsDescription(effectiveDetails, t),

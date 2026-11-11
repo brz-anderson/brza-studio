@@ -3,6 +3,7 @@ import type { IToken } from 'shiki/textmate'
 import type { BundledLanguageInfo } from 'shiki/types'
 import { MARKDOWN_THEMABLE_SCOPES, MARKDOWN_TOKEN_PREFIX } from '../plugin-monaco-token-rules'
 import { COLD_GRAMMAR_LINE_ATTEMPTS } from '../syntax-highlighting/textmate-core'
+import { defineIslandsDarkMarkdownTheme } from './brza/markdown-islands-dark-theme'
 import { loadBuiltInMarkdownRules, matchesPrefix } from './markdown-monaco-theme-rules'
 import { createTokensProvider, loadEditorCore } from './textmate-token-provider'
 
@@ -73,6 +74,7 @@ export async function createMarkdownTokensProvider(
     colors: {}
   })
   monaco.editor.defineTheme('vs', { base: 'vs', inherit: true, rules: lightRules, colors: {} })
+  defineIslandsDarkMarkdownTheme(monaco.editor, darkRules)
   const mapScopes = createScopeMapper(
     new Set([
       ...[...darkRules, ...lightRules].map((rule) =>

@@ -112,7 +112,7 @@ export function openRemoteRuntimePassthroughSocket(
       liveness.noteActivity()
       const bytes = state === 'ready' ? handshake.channel.openBinary(frame) : null
       if (!bytes) {
-        end(protocolError('Remote Orca runtime returned an unreadable binary frame.'))
+        end(protocolError('Remote BrzA Studio runtime returned an unreadable binary frame.'))
         return
       }
       callbacks.onBinary(bytes)

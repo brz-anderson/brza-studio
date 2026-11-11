@@ -22,7 +22,7 @@ afterEach(closeProviderTimelineRigs)
 // A resumed chat whose server reports its mode option under the mode category.
 async function openModeRig(script: (agent: AcpScriptedAgent) => void) {
   let resumed = false
-  const { rig, host, fence, ready } = await openHostRig({
+  const { rig, host, fence } = await openHostRig({
     spec: ANTIGRAVITY,
     initialize: RESUMES,
     script: (agent) => {
@@ -50,7 +50,8 @@ async function openModeRig(script: (agent: AcpScriptedAgent) => void) {
     providerHandle: undefined
   })
   expect(await host.attach(CALLER, attach)).toMatchObject({ ok: true })
-  await ready()
+  await rig.frame('session/new')
+  await rig.settle()
   resumed = true
   const pick = (value: string) => {
     const fields = { key: 'permissionMode', value }

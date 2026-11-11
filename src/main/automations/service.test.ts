@@ -385,7 +385,7 @@ describe('AutomationService', () => {
       expect.objectContaining({
         id: retained.id,
         status: 'dispatch_failed',
-        error: 'Orca stopped before this run could launch.'
+        error: 'BrzA Studio stopped before this run could launch.'
       })
     ])
     expect(launch).not.toHaveBeenCalled()

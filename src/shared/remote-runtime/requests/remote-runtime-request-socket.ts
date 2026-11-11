@@ -175,7 +175,7 @@ export async function sendRemoteRuntimeRequestOnSocket<TResult>(
           if (request === null) {
             throw new RemoteRuntimeClientError(
               'remote_runtime_unavailable',
-              'Remote Orca runtime request was released before it could be sent.'
+              'Remote BrzA Studio runtime request was released before it could be sent.'
             )
           }
           const frame = handshake.channel.sealText(request)

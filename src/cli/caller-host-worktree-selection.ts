@@ -287,7 +287,7 @@ export function selectCallerTerminalWorkspace(
     if (!scoped) {
       throw new RuntimeClientError(
         'selector_not_found',
-        `This terminal's workspace ${worktreeId} is not listed by Orca on this host. Run the command from a workspace directory or pass --worktree <selector> (or all) where the command accepts it.`
+        `This terminal's workspace ${worktreeId} is not listed by BrzA Studio on this host. Run the command from a workspace directory or pass --worktree <selector> (or all) where the command accepts it.`
       )
     }
     return scoped

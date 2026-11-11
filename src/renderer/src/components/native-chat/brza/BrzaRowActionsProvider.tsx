@@ -13,13 +13,9 @@ import {
   NativeChatEditUserMessageContext,
   editNativeChatUserMessage
 } from '../native-chat-edit-user-message'
-import {
-  NativeChatForkContext,
-  useNativeChatForkFromMessage
-} from '../native-chat-fork-from-message'
 
-/** What the BrzA rows add to the pane's row actions: edit on the user's message, a new chat and a
- *  fork from the agent's. The upstream provider, nested inside, owns rewind and its own fork. */
+/** What the BrzA rows add to the pane's row actions: edit on the user's message, and a new chat
+ *  from the agent's. The upstream provider, nested inside, owns rewind and the fork. */
 export function BrzaRowActionsProvider({
   pane,
   chat: controller,
@@ -44,21 +40,12 @@ export function BrzaRowActionsProvider({
     () => (message: NativeChatMessage) => editNativeChatUserMessage({ sessionId, tabId }, message),
     [sessionId, tabId]
   )
-  const fork = useNativeChatForkFromMessage({
-    agent: chat.agent,
-    sessionId,
-    tabId,
-    worktreeId,
-    target: chat.target
-  })
   return (
     <NativeChatNewChatContext.Provider value={newChat}>
       <NativeChatEditUserMessageContext.Provider value={edit}>
-        <NativeChatForkContext.Provider value={fork}>
-          <NativeChatRowActionsProvider pane={pane} chat={controller} forks={forks}>
-            {children}
-          </NativeChatRowActionsProvider>
-        </NativeChatForkContext.Provider>
+        <NativeChatRowActionsProvider pane={pane} chat={controller} forks={forks}>
+          {children}
+        </NativeChatRowActionsProvider>
       </NativeChatEditUserMessageContext.Provider>
     </NativeChatNewChatContext.Provider>
   )

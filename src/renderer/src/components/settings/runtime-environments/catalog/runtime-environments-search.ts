@@ -8,7 +8,7 @@ export const getRuntimeEnvironmentsSearchEntry = createLocalizedCatalog(
   (): SettingsSearchEntry => ({
     title: translate(
       'auto.components.settings.runtime.environments.search.24cc0a2244',
-      'Remote Orca servers'
+      'Remote BrzA Studio servers'
     ),
     description: translate(
       'auto.components.settings.runtime.environments.search.addShareDefault',
@@ -104,7 +104,7 @@ export const getWebRuntimeEnvironmentsSearchEntry = createLocalizedCatalog(
   (): SettingsSearchEntry => ({
     title: translate(
       'auto.components.settings.runtime.environments.search.24cc0a2244',
-      'Remote Orca servers'
+      'Remote BrzA Studio servers'
     ),
     description: translate(
       'auto.components.settings.runtime.environments.search.baec27aa8f',

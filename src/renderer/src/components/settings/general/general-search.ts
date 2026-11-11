@@ -147,7 +147,7 @@ export const getGeneralCliSearchEntries = createLocalizedCatalog(() => [
       'Register or remove the BrzA Studio CLI command.'
     ),
     keywords: [
-      translate('auto.components.settings.general.search.327e3fa70d', 'Orca CLI'),
+      translate('auto.components.settings.general.search.327e3fa70d', 'BrzA Studio CLI'),
       ...translateSearchKeyword('settings.general.search.keywords.command_line', 'command line'),
       ...translateSearchKeyword('auto.components.settings.general.search.924a660a78', 'cli'),
       ...translateSearchKeyword('auto.components.settings.general.search.fb4f338a3d', 'path'),
@@ -169,7 +169,7 @@ export const getGeneralCliSearchEntries = createLocalizedCatalog(() => [
     targetSectionId: 'cli'
   },
   {
-    title: translate('settings.general.cli.skillTitle', 'Orca skill for agents'),
+    title: translate('settings.general.cli.skillTitle', 'BrzA Studio skill for agents'),
     description: translate(
       'auto.components.settings.general.search.244e3fb4c8',
       'Install the BrzA Studio skill so agents know to use the BrzA Studio CLI.'

@@ -157,7 +157,10 @@ export function buildSetupSettingsSections(
           ),
           keywords: [
             t('auto.hooks.useSettingsNavigationMetadata.ea0b1bc7b8', 'setup guide'),
-            t('auto.hooks.useSettingsNavigationMetadata.0505d0df29', 'get started with Orca'),
+            t(
+              'auto.hooks.useSettingsNavigationMetadata.0505d0df29',
+              'get started with BrzA Studio'
+            ),
             t('auto.hooks.useSettingsNavigationMetadata.724c440e72', 'getting started')
           ]
         }

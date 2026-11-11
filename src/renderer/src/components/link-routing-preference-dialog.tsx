@@ -224,8 +224,14 @@ export function LinkRoutingPreferenceDialogProvider({
             </Button>
             <Button autoFocus onClick={() => settleActiveRequest(true)}>
               {openLinksInAppDefault
-                ? t('auto.components.link.routing.preference.dialog.keep.orca.button', 'Keep Orca')
-                : t('auto.components.link.routing.preference.dialog.orca.button', 'Open in Orca')}
+                ? t(
+                    'auto.components.link.routing.preference.dialog.keep.orca.button',
+                    'Keep BrzA Studio'
+                  )
+                : t(
+                    'auto.components.link.routing.preference.dialog.orca.button',
+                    'Open in BrzA Studio'
+                  )}
             </Button>
           </DialogFooter>
         </DialogContent>

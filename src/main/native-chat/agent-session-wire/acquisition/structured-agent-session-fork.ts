@@ -15,6 +15,7 @@ import { acpAgentName } from '../../../acp/session/acp-structured-agent-definiti
 import { AGENT_CHAT_PERMISSION_MODE_OPTION_ID } from '../../../../shared/agent-launch/permissions/agent-chat-permission-mode'
 import { isAgentSessionRefusalError } from '../../../../shared/agent-session/failures/agent-session-wire-refusals'
 import { requireUnownedStructuredAgentSessionAdoption } from '../../../runtime/agent-session/structured-agent-session-create-adoption'
+import { brzaForkAccountPin } from '../../brza/brza-fork-account-pin'
 import type { AgentSessionAttachParams } from './structured-agent-session-attach'
 
 export async function prepareStructuredAgentSessionFork(
@@ -121,6 +122,7 @@ export async function prepareStructuredAgentSessionFork(
     provider: input.agent,
     agent: input.agent,
     accountHome: record.accountHome,
+    ...brzaForkAccountPin(record),
     runtimeKind: 'native',
     options: {
       ...record.options,

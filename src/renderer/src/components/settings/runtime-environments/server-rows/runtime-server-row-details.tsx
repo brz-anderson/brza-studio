@@ -54,7 +54,10 @@ export function RuntimeServerRowDetails({
   const rawError = [problem, updateError].filter(Boolean).join('\n')
   const kind = unreachable ? endpointKind(endpoint) : null
   const lead = unreachable
-    ? t('auto.components.settings.serverList.unreachableLead', 'Orca couldn’t reach this server.')
+    ? t(
+        'auto.components.settings.serverList.unreachableLead',
+        'BrzA Studio couldn’t reach this server.'
+      )
     : updateError
       ? t('auto.components.settings.serverList.updateFailedLead', 'The last update didn’t finish.')
       : null
