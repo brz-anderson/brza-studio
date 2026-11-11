@@ -1,4 +1,3 @@
-import type { AgentSessionAccountPin } from '../agent-session-account-switch'
 import type { StructuredAgentId } from './lifecycle/agent-session-provider-handle'
 import type { AgentSessionMutationEnvelope } from './agent-session-wire'
 import type { z } from 'zod'
@@ -15,8 +14,6 @@ export type StructuredAgentSessionResumeSource = {
   providerSessionId: string
   /** Host-owned pane evidence; send only with the CLI-source create capability. */
   cliSource?: { workspaceId: string; paneKey: string }
-  /** A fork of a chat pinned to an account opens pinned to it; absent follows the selection. */
-  accountSwitch?: AgentSessionAccountPin
 }
 
 /** The source chat and the response whose turn the fork copies through. */

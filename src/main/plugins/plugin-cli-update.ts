@@ -46,7 +46,10 @@ async function updateCandidate(
   const { source } = entry
   switch (source.kind) {
     case 'bundled':
-      return { status: 'pinned', reason: 'It is bundled with Orca and updates with Orca.' }
+      return {
+        status: 'pinned',
+        reason: 'It is bundled with BrzA Studio and updates with BrzA Studio.'
+      }
     case 'marketplace':
       return catalogUpdateCandidate(host, deps.catalogs, entry)
     case 'local-path':
@@ -97,7 +100,7 @@ export async function updatePluginFromCli(
   if (!entry) {
     throw new PluginCliError(
       PLUGIN_NOT_FOUND_CODE,
-      `${pluginKey} is not installed on this Orca host.`,
+      `${pluginKey} is not installed on this BrzA Studio host.`,
       {
         pluginKey,
         nextSteps: [

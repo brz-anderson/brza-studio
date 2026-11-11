@@ -20705,7 +20705,7 @@
           "wordErrorRate": "{{percent}} % Wortfehlerrate",
           "librispeech": "Test: LibriSpeech (vorgelesene Sprache), {{clips}} Clips, gemessen am {{date}}.",
           "fleurs": "Test: FLEURS (vorgelesene Sprache), {{clips}} Clips, gemessen am {{date}}.",
-          "bench": "Orcas Benchmark auf einem Mac mit Apple Silicon.",
+          "bench": "BrzA-Studio-Benchmark auf einem Mac mit Apple Silicon.",
           "label": "Qualität: {{word}}"
         },
         "models": {

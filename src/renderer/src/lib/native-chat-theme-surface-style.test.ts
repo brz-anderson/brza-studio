@@ -36,12 +36,14 @@ describe('nativeChatThemeSurfaceStyle', () => {
       '--chat-inline-code-foreground',
       '--chat-code-block',
       '--chat-selection',
-      '--chat-selection-foreground'
+      '--chat-selection-foreground',
+      '--text-link'
     ]
     for (const token of yielded) {
       expect(style[token]).toBe('initial')
     }
     expect(style['--chat-selection-mix']).toMatch(/^\d+(\.\d+)?%$/)
+    expect(String(style['--chat-link'])).toMatch(/^color-mix\(in srgb, #[0-9a-f]{6} 70%, /)
   })
 
   it('leaves the BrzA default to the app tokens', () => {

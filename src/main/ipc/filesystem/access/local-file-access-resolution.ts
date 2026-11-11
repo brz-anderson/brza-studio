@@ -9,6 +9,7 @@ import {
 } from './filesystem-auth'
 import { isDescendantOrEqual } from './filesystem-path-containment'
 import { filePreviewForPath } from '../../../../shared/file-preview/file-preview-kind'
+import { awaitToolImageWrite } from '../../../native-chat/brza/brza-tool-result-images'
 import { getFloatingWorkspaceFileRoots } from '../../floating-workspace-directory'
 import {
   isDeviceNamespacePath,
@@ -294,11 +295,12 @@ export async function resolveLocalRenamePaths(
   }
 }
 
-export function resolveLocalFileRequestPath(
+export async function resolveLocalFileRequestPath(
   targetPath: string,
   access: unknown,
   store: RuntimeStore
 ): Promise<string> {
+  await awaitToolImageWrite(targetPath) // BrzA: a tool-result image may still be landing on disk.
   return resolveLocalRequestPath(targetPath, access, store, 'read')
 }
 

@@ -30,7 +30,7 @@ export const BROWSER_COOKIE_IMPORT_FAILURE_COPY = {
   safariFullDiskAccess:
     'macOS denied access to Safari cookies. Grant Full Disk Access to BrzA Studio in System Settings → Privacy & Security → Full Disk Access.',
   macFullDiskAccess:
-    'macOS denied access to {{browser}} cookies. Grant Full Disk Access to BrzA Studio in System Settings → Privacy & Security → Full Disk Access, then restart Orca.',
+    'macOS denied access to {{browser}} cookies. Grant Full Disk Access to BrzA Studio in System Settings → Privacy & Security → Full Disk Access, then restart BrzA Studio.',
   connectionEnded:
     'The connection to this server ended during the import. Reconnect and try again.',
   serverRepaired: 'This server was re-paired during the import. Try again.'

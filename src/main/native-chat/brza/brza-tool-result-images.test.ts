@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs'
+import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -12,7 +12,11 @@ import {
   readClaudeMessageEnvelope
 } from '../../claude/structured/journal/claude-structured-item-translation'
 import { claudeContentBlocks } from '../transcript-record-blocks'
-import { brzaToolResultImages, flushToolImageWrites } from './brza-tool-result-images'
+import {
+  awaitToolImageWrite,
+  brzaToolResultImages,
+  flushToolImageWrites
+} from './brza-tool-result-images'
 
 let temp = ''
 
@@ -57,6 +61,27 @@ describe('brzaToolResultImages', () => {
     expect(second).toEqual(first)
     expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
     expect(readdirSync(join(temp, 'brza-tool-images'))).toHaveLength(1)
+  })
+
+  it('lets a read wait for the write the decode left running', async () => {
+    const [image] = brzaToolResultImages([PNG])
+
+    await awaitToolImageWrite(SHOT_PATH())
+    expect(image).toEqual({ type: 'image-ref', path: SHOT_PATH() })
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
+    await expect(awaitToolImageWrite(join(temp, 'other.png'))).resolves.toBeUndefined()
+  })
+
+  it('reports a failed write to the read, and clears the mark on the next successful decode', async () => {
+    writeFileSync(join(temp, 'brza-tool-images'), 'not a folder')
+    brzaToolResultImages([PNG])
+
+    await expect(awaitToolImageWrite(SHOT_PATH())).rejects.toThrow('tool_image_write_failed')
+
+    rmSync(join(temp, 'brza-tool-images'))
+    brzaToolResultImages([PNG])
+    await expect(awaitToolImageWrite(SHOT_PATH())).resolves.toBeUndefined()
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
   })
 
   it('keeps url images as urls and skips types the send path refuses', () => {

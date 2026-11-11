@@ -20,7 +20,6 @@ import {
   resolveHostStructuredAgentCreateSupport,
   resolveHostStructuredAgentLaunchEnvironment
 } from '../agent-session/launch/structured-agent-launch-support'
-import { resolveStructuredAdoptionAccountPin } from './structured-session-adoption-account-pin'
 import { structuredAgentRuntimeMetadata } from '../agent-session/installation/structured-agent-runtime-metadata'
 import { structuredAgentChatProgramNeedsInstall } from '../agent-session/launch/structured-agent-availability'
 import { structuredLaunchSeedOptions } from '../../../shared/native-chat/input/native-chat-session-option-defaults'
@@ -233,9 +232,6 @@ export abstract class OrcaRuntimeWithGetStructuredAgentSessionCreateSupport exte
             workspaceCwd: workspaceCwd
           })
         : null
-    const accountSwitch = adoption
-      ? await resolveStructuredAdoptionAccountPin(input.agent, resumeFrom)
-      : undefined
     return {
       envelope: {
         sessionId: input.envelope.sessionId,
@@ -247,7 +243,6 @@ export abstract class OrcaRuntimeWithGetStructuredAgentSessionCreateSupport exte
       provider: input.agent,
       agent: input.agent,
       accountHome: adoption ? adoption.accountHome : selectedAccountHome,
-      ...(accountSwitch ? { accountSwitch } : {}),
       ...(options ? { options } : {}),
       ...(input.resumeFrom && adoption
         ? {

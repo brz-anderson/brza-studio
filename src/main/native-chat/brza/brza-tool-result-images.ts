@@ -23,6 +23,8 @@ function toolImagesFolder(): string {
 
 // Writes still running, by path: the decoders are synchronous, so the file lands just after the path is returned.
 const pendingWrites = new Map<string, Promise<void>>()
+// Paths whose last write failed: the block already left with the path, so the read reports it instead of a silent miss.
+const failedWrites = new Set<string>()
 
 async function persistToolImage(filePath: string, bytes: Buffer): Promise<void> {
   try {
@@ -42,12 +44,21 @@ function writeToolImage(bytes: Buffer, extension: string): string {
   const digest = createHash('sha256').update(bytes).digest('hex').slice(0, 16)
   const filePath = join(toolImagesFolder(), `${digest}.${extension}`)
   if (!pendingWrites.has(filePath)) {
+    failedWrites.delete(filePath)
     const write = persistToolImage(filePath, bytes)
-      .catch(() => undefined)
+      .catch(() => void failedWrites.add(filePath))
       .finally(() => pendingWrites.delete(filePath))
     pendingWrites.set(filePath, write)
   }
   return filePath
+}
+
+/** For the `chat-image` read: waits for the pending write of `path` (immediate when none) and refuses with an explicit error when it failed. */
+export async function awaitToolImageWrite(path: string): Promise<void> {
+  await pendingWrites.get(path)
+  if (failedWrites.has(path)) {
+    throw new Error('tool_image_write_failed')
+  }
 }
 
 /** Resolves when every image file a decode started has landed; for tests and shutdown. */

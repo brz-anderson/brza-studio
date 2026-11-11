@@ -11,11 +11,6 @@ export const ResumeSource = z
         paneKey: Identifier('Invalid pane key')
       })
       .strict()
-      .optional(),
-    // BrzA: a fork of an account-pinned chat opens on the pin's account.
-    accountSwitch: z
-      .object({ accountId: Identifier('Invalid account id').nullable() })
-      .strict()
       .optional()
   })
   .strict()

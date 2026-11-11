@@ -15,9 +15,6 @@ export type AgentSessionAccountSwitchResult = {
   account: string
 }
 
-/** The account a new chat is to be pinned to, by id; the host resolves its folder and login. */
-export type AgentSessionAccountPin = Pick<AgentSessionAccountSwitchParams, 'accountId'>
-
 /** The record's pin: launches run on this account whatever the selection. */
 export type AgentSessionAccountSwitchRecord = AgentSessionAccountSwitchResult & {
   operationId: string

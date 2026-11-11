@@ -6,12 +6,6 @@ import {
   refuse,
   type AgentSessionWireRefusal
 } from '../../../../shared/agent-session/failures/agent-session-wire-refusals'
-import {
-  AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION,
-  agentSessionAccountSwitchedText,
-  type AgentSessionAccountSwitchResult
-} from '../../../../shared/agent-session-account-switch'
-import { AGENT_JOURNAL_THREAD_SCOPE } from '../../../../shared/agent-session/journal/agent-session-journal-types'
 import type { AgentSessionRecord } from '../../../../shared/agent-session/lifecycle/agent-session-record'
 import type { AgentSessionAttachParams, AttachedJournal } from './structured-agent-session-attach'
 import type { JournalReplacementItem } from '../../agent-session-journal/context-epochs/journal-epoch-replacement'
@@ -90,30 +84,7 @@ async function readAdoptedTranscript(
       reason: prepared.sourceEmpty ? 'transcriptNotFound' : 'transcriptUnreadable'
     })
   }
-  return params.accountSwitch
-    ? [...prepared.items, accountSwitchedDivider(params.accountSwitch, params.envelope)]
-    : prepared.items
-}
-
-/** The "Account switched" divider that closes the imported history of a fork born on a pinned account. */
-function accountSwitchedDivider(
-  accountSwitch: AgentSessionAccountSwitchResult,
-  envelope: AgentSessionAttachParams['envelope']
-): JournalReplacementItem {
-  return {
-    identity: {
-      provider: 'orca',
-      clientMessageId: `account-switch:${envelope.clientOperationId}`
-    },
-    body: {
-      kind: 'status',
-      text: agentSessionAccountSwitchedText(accountSwitch.account),
-      presentation: AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION,
-      accountSwitch: { accountId: accountSwitch.accountId, account: accountSwitch.account }
-    },
-    turnScope: AGENT_JOURNAL_THREAD_SCOPE,
-    ownerFence: 0
-  }
+  return prepared.items
 }
 
 // Import before publication so visible history agrees with resumed provider context.

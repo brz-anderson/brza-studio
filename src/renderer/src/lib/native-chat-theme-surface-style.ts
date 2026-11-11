@@ -51,6 +51,9 @@ export function nativeChatThemeSurfaceStyle(theme: NativeChatTheme): NativeChatT
     '--chat-code-block': 'initial',
     '--chat-selection': 'initial',
     '--chat-selection-foreground': 'initial',
+    // The plugin's link color yields too; the chat's own link mixes the default blue, never the zeroed value.
+    '--text-link': 'initial',
+    '--chat-link': `color-mix(in srgb, ${light ? '#0969da' : '#4493f8'} 70%, var(--chat-source-foreground))`,
     '--chat-selection-mix': `${terminalChatSelectionMix(
       { foreground: theme.foreground, background: theme.background },
       light ? 'light' : 'dark'
