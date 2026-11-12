@@ -58,9 +58,9 @@ async function importPairThenDeleteAlias(
 ): Promise<{ alpha: SeededSshConfigHost; bravo: SeededSshConfigHost }> {
   const hosts = await seedPairConfig(electronApp, prefix)
   const picker = await openSshConfigHostPicker(page)
-  await expect(picker.getByRole('button', { name: 'Add all 2 to Orca' })).toBeEnabled()
-  await picker.getByRole('button', { name: 'Add all 2 to Orca' }).click()
-  await expect(page.getByText('Added 2 hosts to Orca.')).toBeVisible({ timeout: 15_000 })
+  await expect(picker.getByRole('button', { name: 'Add all 2 to BrzA Studio' })).toBeEnabled()
+  await picker.getByRole('button', { name: 'Add all 2 to BrzA Studio' }).click()
+  await expect(page.getByText('Added 2 hosts to BrzA Studio.')).toBeVisible({ timeout: 15_000 })
   await expect(page.getByRole('dialog', { name: 'Choose from ~/.ssh/config' })).toBeHidden({
     timeout: 10_000
   })
@@ -89,10 +89,12 @@ test.describe('SSH config host import (bulk + settings re-adopt)', () => {
 
     await expect(configHostRow(picker, hosts.alpha)).toBeVisible()
     await expect(configHostRow(picker, hosts.bravo)).toBeVisible()
-    await expect(picker.getByRole('button', { name: 'Add all 2 to Orca' })).toBeEnabled()
+    await expect(picker.getByRole('button', { name: 'Add all 2 to BrzA Studio' })).toBeEnabled()
 
-    await picker.getByRole('button', { name: 'Add all 2 to Orca' }).click()
-    await expect(orcaPage.getByText('Added 2 hosts to Orca.')).toBeVisible({ timeout: 15_000 })
+    await picker.getByRole('button', { name: 'Add all 2 to BrzA Studio' }).click()
+    await expect(orcaPage.getByText('Added 2 hosts to BrzA Studio.')).toBeVisible({
+      timeout: 15_000
+    })
     await expect(orcaPage.getByRole('dialog', { name: 'Choose from ~/.ssh/config' })).toBeHidden({
       timeout: 10_000
     })
@@ -108,11 +110,11 @@ test.describe('SSH config host import (bulk + settings re-adopt)', () => {
     const reopened = await openSshConfigHostPicker(orcaPage)
     await expect(configHostRow(reopened, hosts.alpha)).toBeDisabled()
     await expect(
-      configHostRow(reopened, hosts.alpha).getByText('In Orca', { exact: true })
+      configHostRow(reopened, hosts.alpha).getByText('In BrzA Studio', { exact: true })
     ).toBeVisible()
     await expect(configHostRow(reopened, hosts.bravo)).toBeDisabled()
     await expect(
-      configHostRow(reopened, hosts.bravo).getByText('In Orca', { exact: true })
+      configHostRow(reopened, hosts.bravo).getByText('In BrzA Studio', { exact: true })
     ).toBeVisible()
     await expect(reopened.getByRole('button', { name: 'No new hosts to add' })).toBeDisabled()
   })

@@ -123,6 +123,14 @@ export async function openMarkdownFixture(
 }
 
 export async function waitForRichMarkdownEditor(page: Page): Promise<Locator> {
+  // Existing files open in the read-only preview. These tests drive the rich editor.
+  await page.evaluate(() => {
+    const store = window.__store
+    const fileId = store?.getState().activeFileId
+    if (fileId) {
+      store.getState().setMarkdownViewMode(fileId, 'rich')
+    }
+  })
   const editor = page.locator('.rich-markdown-editor')
   await expect(editor).toBeVisible({ timeout: MARKDOWN_HYDRATION_TIMEOUT_MS })
   return editor

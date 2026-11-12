@@ -16,6 +16,19 @@ import type { EditorFileOperationProvenance } from '@/lib/editor/file-operations
 import { findGroupForTab } from '../../tabs/tab-group-state'
 import type { EditorGet, EditorSet } from '../types/editor-set-get'
 import type { EditorSlice } from '../types/editor-slice'
+import type { OpenFileOptions } from '../types/editor-files-slice'
+
+function openCreatedMarkdownForEditing(
+  get: EditorGet,
+  fileInfo: UntitledMarkdownFileInfo,
+  options: OpenFileOptions
+): void {
+  const fileId = get().openFile(fileInfo, options)
+  // A file the user just created has to be editable. Opening an existing file stays on the preview default.
+  if (fileId) {
+    get().setMarkdownViewMode(fileId, 'rich')
+  }
+}
 
 export type UntitledFileCreationContext = {
   worktreePath: string
@@ -70,7 +83,11 @@ export async function createUntitledFileInActiveWorkspace(
     if (!fileInfo) {
       return false
     }
-    get().openFile(fileInfo, { preview: false, targetGroupId: groupId, focusEditor: true })
+    openCreatedMarkdownForEditing(get, fileInfo, {
+      preview: false,
+      targetGroupId: groupId,
+      focusEditor: true
+    })
     return true
   } catch (err) {
     toast.error(extractIpcErrorMessage(err, failureMessage))
@@ -104,7 +121,7 @@ async function openSeededUntitledFile(
         { kind: 'local' },
         { newFile: { extension, content: await readContent() } }
       )
-      get().openFile(fileInfo, {
+      openCreatedMarkdownForEditing(get, fileInfo, {
         preview: false,
         targetGroupId: emptyFloatingPanel ? undefined : groupId,
         focusEditor: true,

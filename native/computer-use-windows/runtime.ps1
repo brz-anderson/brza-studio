@@ -419,12 +419,30 @@ function Test-OrcaSensitiveElement($Element) {
     $haystack -match "(^|[^a-z0-9])pin([^a-z0-9]|$)"
 }
 
+function Get-OrcaTextPatternText($Element) {
+    try {
+        $pattern = $Element.GetCurrentPattern([Windows.Automation.TextPattern]::Pattern)
+        $rawText = $pattern.DocumentRange.GetText($TextLimit + 1)
+        if ($null -eq $rawText) { return "" }
+        [string]$rawText
+    } catch {
+        ""
+    }
+}
+
 function Get-OrcaValueText($Element) {
     try {
         if (Test-OrcaSensitiveElement $Element) { return "[redacted]" }
-        $pattern = $Element.GetCurrentPattern([Windows.Automation.ValuePattern]::Pattern)
-        $rawValue = $pattern.Current.Value
-        $text = if ($null -eq $rawValue) { "" } else { [string]$rawValue }
+        $text = ""
+        try {
+            $pattern = $Element.GetCurrentPattern([Windows.Automation.ValuePattern]::Pattern)
+            $rawValue = $pattern.Current.Value
+            $text = if ($null -eq $rawValue) { "" } else { [string]$rawValue }
+        } catch {}
+        # WinUI Notepad exposes the document through TextPattern, not ValuePattern.
+        if ([string]::IsNullOrEmpty($text)) {
+            $text = Get-OrcaTextPatternText $Element
+        }
         if ($text.Length -gt $TextLimit) { return $text.Substring(0, $TextLimit) + "..." }
         $text
     } catch {

@@ -329,6 +329,7 @@
           "hostPlatform",
           "incarnationId",
           "paneKey",
+          "processId",
           "ptyId",
           "surface",
           "tabId",

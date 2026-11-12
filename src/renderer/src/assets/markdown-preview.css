@@ -336,6 +336,21 @@
   column-gap: 32px;
 }
 
+/* A split table is several chunks. Shrinking one chunk for its notes misaligns the columns. */
+.markdown-annotation-block.has-annotation-panel:has(> table) {
+  grid-template-columns: minmax(0, 1fr) 0;
+  column-gap: 0;
+}
+
+.markdown-annotation-block.has-annotation-panel:has(> table) > .markdown-annotation-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: min(300px, 28cqw);
+  min-width: 220px;
+}
+
 .markdown-annotation-block > :not(.markdown-annotation-controls),
 .markdown-annotation-list-content {
   grid-column: 1;
