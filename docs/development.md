@@ -56,3 +56,4 @@ pnpm dev:fresh [--keep] [--seed-from[=<profile dir>]]   # temporary profile, rem
 - Renderer misbehaving in dev: set `ORCA_DEV_BUNDLED=0` to turn off bundled dev mode, and report it.
 - Test passes alone but fails after others: add `// @orca-isolated-worker` to the file; `ORCA_VITEST_ISOLATE_EVERY_FILE=1` isolates every file to confirm a leak.
 - Slow typechecks: where supported, `pnpm tc` keeps incremental caches in `.cache/typecheck/`; delete it to force a fresh check.
+- Machine hangs during tests: run only the touched files, by path, with `pnpm test <file> --maxWorkers=2`; the full suite runs on GitHub through `node-next-compat.yml` (`gh workflow run node-next-compat.yml --ref <branch>`).
