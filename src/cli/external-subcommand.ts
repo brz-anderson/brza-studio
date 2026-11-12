@@ -1,6 +1,6 @@
 import { constants as osConstants } from 'node:os'
 import { spawnProcess } from '@orca/process-host'
-import { resolveCommandOnLocalPath } from '../main/ipc/command-path/command-path-resolver'
+import { findCommandOnPath } from './brza/external-subcommand-path'
 import { stripElectronRunAsNode } from './runtime/orca-app-executable'
 
 export const EXTERNAL_SUBCOMMAND_PREFIX = 'brza-'
@@ -30,9 +30,7 @@ export async function findExternalSubcommand(
   ) {
     return null
   }
-  const executable = await resolveCommandOnLocalPath(`${EXTERNAL_SUBCOMMAND_PREFIX}${name}`, {
-    env
-  })
+  const executable = findCommandOnPath(`${EXTERNAL_SUBCOMMAND_PREFIX}${name}`, env)
   return executable ? { name, executable, args: argv.slice(1) } : null
 }
 
