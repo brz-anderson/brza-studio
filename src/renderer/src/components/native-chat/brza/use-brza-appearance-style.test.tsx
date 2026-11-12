@@ -4,8 +4,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { GlobalSettings } from '../../../../../shared/global-settings-types'
 import * as nativeChatTheme from '../../../../../shared/native-chat-theme'
 import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
-import { resetSystemPrefersDarkSubscriptionForTests } from '../../terminal-pane/use-system-prefers-dark'
-import { useNativeChatAppearanceStyle } from '../native-chat-appearance-style'
+import { resetSystemPrefersDarkSubscriptionForTests } from '../../../hooks/theme/use-system-prefers-dark'
+import { useNativeChatAppearanceStyle } from '../appearance/native-chat-appearance-style'
 
 afterEach(() => {
   cleanup()

@@ -2,7 +2,7 @@ import { useMemo, useState, type ComponentPropsWithoutRef } from 'react'
 import type { ExtraProps } from 'react-markdown'
 import type { CommentMarkdownExtension } from '@/components/sidebar/CommentMarkdown'
 import { cn } from '@/lib/utils'
-import { NativeChatMarkdownImage } from '../NativeChatMarkdownImage'
+import { NativeChatMarkdownImage } from '../media/images/NativeChatMarkdownImage'
 import { BRZA_IMAGE_MENTION_PROPERTY, remarkBrzaImageMentions } from './brza-image-mention-markdown'
 
 type DivProps = ComponentPropsWithoutRef<'div'> & ExtraProps

@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom/vitest'
 
 import { cleanup, fireEvent, screen } from '@testing-library/react'
-import { render } from '../native-chat-tooltip-test-harness'
+import { render } from '../messages/actions/native-chat-tooltip-test-harness'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Why: these fixtures have neither inline visual owners nor sender navigation.
@@ -15,7 +15,7 @@ const unusedChatLeaves = vi.hoisted(() => ({
     throw new Error('Unexpected sender navigation in transcript fixture')
   })
 }))
-vi.mock('../NativeChatInlineVisual', () => ({
+vi.mock('../media/visuals/NativeChatInlineVisual', () => ({
   NativeChatInlineVisual: unusedChatLeaves.inlineVisual
 }))
 vi.mock('@/lib/open-agent-message-sender', () => ({
@@ -25,9 +25,9 @@ afterEach(() => {
   expect(unusedChatLeaves.inlineVisual).not.toHaveBeenCalled()
   expect(unusedChatLeaves.openSender).not.toHaveBeenCalled()
 })
-import type { NativeChatLiveSession } from '../use-native-chat-live-session'
+import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 import { NativeChatMessageList } from '../NativeChatMessageList'
-import { installNativeChatMessageListTestViewport } from '../native-chat-message-list-test-viewport'
+import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list-test-viewport'
 import type {
   AgentJournalItemBody,
   AgentJournalRenderItem

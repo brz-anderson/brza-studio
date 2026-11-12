@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { translate } from '@/i18n/i18n'
 import type { NativeChatImageRefBlock } from '../../../../../shared/native-chat/native-chat-types'
-import { NativeChatMarkdownImage } from '../NativeChatMarkdownImage'
+import { NativeChatMarkdownImage } from '../media/images/NativeChatMarkdownImage'
 
 const CLOSED_LIMIT = 4
 

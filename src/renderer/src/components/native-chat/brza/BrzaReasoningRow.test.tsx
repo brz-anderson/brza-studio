@@ -5,14 +5,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { i18n, loadRendererUiLanguage } from '@/i18n/i18n'
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
 import { UI_LANGUAGE_ENGLISH, UI_LANGUAGE_PORTUGUESE } from '../../../../../shared/ui-language'
-import { NativeChatAwaitingInputRow } from '../NativeChatAwaitingInputRow'
-import { NativeChatReasoningRow } from '../NativeChatReasoningRow'
-import { MessageRow } from '../NativeChatMessageRow'
-import { NativeChatToolRunIcon } from '../NativeChatToolIcon'
+import { NativeChatAwaitingInputRow } from '../prompts/NativeChatAwaitingInputRow'
+import { NativeChatReasoningRow } from '../messages/reasoning/NativeChatReasoningRow'
+import { MessageRow } from '../messages/rows/NativeChatMessageRow'
+import { NativeChatToolRunIcon } from '../tools/lines/NativeChatToolIcon'
 import {
   NativeChatDisclosureContext,
   useNativeChatDisclosures
-} from '../native-chat-disclosure-store'
+} from '../messages/disclosure/native-chat-disclosure-store'
 
 vi.mock('@/components/sidebar/CommentMarkdown', () => ({
   default: ({ content }: { content: string }) => <div data-testid="markdown">{content}</div>

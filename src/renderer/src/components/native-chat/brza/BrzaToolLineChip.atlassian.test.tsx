@@ -4,8 +4,8 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { NativeChatToolLine } from '../NativeChatToolLine'
-import { NativeChatMarkdownImageOwnerContext } from '../native-chat-markdown-image-owner'
+import { NativeChatToolLine } from '../tools/lines/NativeChatToolLine'
+import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 import type {
   NativeChatToolCallBlock,
   NativeChatToolResultBlock
@@ -22,9 +22,9 @@ const mocks = vi.hoisted(() => ({
   }
 }))
 
-vi.mock('../native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
+vi.mock('../links/actions/native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
 
-vi.mock('../native-chat-link-target-actions', () => ({
+vi.mock('../links/actions/native-chat-link-target-actions', () => ({
   resolveNativeChatHttpLinkRouting: () => ({ sourceOwner: { kind: 'local' } })
 }))
 

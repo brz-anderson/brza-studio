@@ -1,14 +1,14 @@
 import { useState, type RefObject } from 'react'
 import { agentSessionPromptQuestions } from '../../../../shared/agent-session/agent-session-question-answer'
 import { chatApprovalFromJournal } from '../../../../shared/native-chat/input/native-chat-interactive-prompt'
-import { NativeChatApprovalCard } from './NativeChatApprovalCard'
-import { NativeChatPromptStrip } from './NativeChatPromptCollapse'
-import { NativeChatStructuredQuestionCard } from './NativeChatStructuredQuestionCard'
+import { NativeChatApprovalCard } from './prompts/NativeChatApprovalCard'
+import { NativeChatPromptStrip } from './prompts/NativeChatPromptCollapse'
+import { NativeChatStructuredQuestionCard } from './prompts/NativeChatStructuredQuestionCard'
 import {
   structuredPromptKey,
   type StructuredPromptItem,
   type useStructuredPromptResponseHold
-} from './use-structured-prompt-response-hold'
+} from './prompts/use-structured-prompt-response-hold'
 
 export type StructuredPromptCollapse = {
   collapsed: boolean

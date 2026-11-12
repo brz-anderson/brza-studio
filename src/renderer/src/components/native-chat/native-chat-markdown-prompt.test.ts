@@ -12,7 +12,7 @@ import {
   NativeChatFileReference,
   NativeChatImageReference,
   NativeChatSkill
-} from './native-chat-prompt-document'
+} from './composer/editor/native-chat-prompt-document'
 
 const codec = createRichMarkdownEditorCodec()
 const editors: Editor[] = []

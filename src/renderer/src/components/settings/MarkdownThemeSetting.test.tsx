@@ -22,7 +22,7 @@ describe('MarkdownThemeSetting', () => {
     const { rerender } = render(
       <MarkdownThemeSetting settings={following} updateSettings={updateSettings} />
     )
-    const picker = screen.getByPlaceholderText('Search terminal themes')
+    const picker = screen.getByRole('combobox', { name: 'Dark theme' })
     expect(picker.closest('[aria-disabled="true"]')).not.toBeNull()
     fireEvent.click(screen.getByRole('switch', { name: 'Markdown Follows the Chat' }))
     expect(updateSettings).toHaveBeenLastCalledWith({ markdownTheme: { followChat: false } })
@@ -30,12 +30,13 @@ describe('MarkdownThemeSetting', () => {
     const own = createGlobalSettingsFixture({ theme: 'dark', markdownTheme: { followChat: false } })
     rerender(<MarkdownThemeSetting settings={own} updateSettings={updateSettings} />)
     expect(
-      screen.getByPlaceholderText('Search terminal themes').closest('[aria-disabled="true"]')
+      screen.getByRole('combobox', { name: 'Dark theme' }).closest('[aria-disabled="true"]')
     ).toBeNull()
+    fireEvent.click(screen.getByRole('combobox', { name: 'Dark theme' }))
     fireEvent.change(screen.getByPlaceholderText('Search terminal themes'), {
       target: { value: 'Tango Dark' }
     })
-    fireEvent.click(screen.getByRole('button', { name: 'Tango Dark' }))
+    fireEvent.click(screen.getByRole('option', { name: 'Tango Dark' }))
     expect(updateSettings).toHaveBeenLastCalledWith({
       markdownTheme: { followChat: false, themeDark: 'Tango Dark' }
     })

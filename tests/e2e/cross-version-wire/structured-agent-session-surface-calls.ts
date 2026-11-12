@@ -193,12 +193,6 @@ export const STRUCTURED_CALLS: {
     result: { name: 'Release notes', applied: true }
   },
   { method: 'agentSession.release', hostMethod: null, result: { released: true } },
-  // The stub has no record, so the fork answers its typed refusal; an older host answers `method_not_found`.
-  {
-    method: 'agentSession.forkThroughMessage',
-    hostMethod: null,
-    result: { ok: false, reason: 'unsupported' }
-  },
   {
     method: 'agentSession.switchAccount',
     hostMethod: 'switchAccount',

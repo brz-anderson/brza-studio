@@ -6,16 +6,16 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { resetLocalImageCacheState as resetLocalImageSrcStateForTests } from '@/components/editor/document-images/local-image-src-cache'
 import type { FileLinkExists } from '../../../../shared/native-chat/native-chat-file-link-tree'
 import { useAppStore } from '@/store'
-import { NativeChatLinkClickContext } from './native-chat-link-click-context'
-import { NativeChatMarkdown } from './NativeChatMarkdown'
-import { NativeChatFileLinkExistenceContext } from './native-chat-file-link-existence'
+import { NativeChatLinkClickContext } from './links/actions/native-chat-link-click-context'
+import { NativeChatMarkdown } from './markdown/NativeChatMarkdown'
+import { NativeChatFileLinkExistenceContext } from './links/actions/native-chat-file-link-existence'
 import type { NativeChatFileLinkExistence } from '../../../../shared/native-chat/native-chat-file-link-existence'
-import { NativeChatMarkdownImageOwnerContext } from './native-chat-markdown-image-owner'
-import { repoFixture, worktreeFixture } from './native-chat-workspace-test-fixtures'
+import { NativeChatMarkdownImageOwnerContext } from './media/images/native-chat-markdown-image-owner'
+import { repoFixture, worktreeFixture } from './surfaces/integration/native-chat-workspace-test-fixtures'
 
 const mocks = vi.hoisted(() => ({ readRuntimeFilePreview: vi.fn() }))
 
-vi.mock('@/runtime/runtime-file-read-client', () => ({
+vi.mock('@/runtime/files/reads/runtime-file-read-client', () => ({
   readRuntimeFilePreview: mocks.readRuntimeFilePreview
 }))
 

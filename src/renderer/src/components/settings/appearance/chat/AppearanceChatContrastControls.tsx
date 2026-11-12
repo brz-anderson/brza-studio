@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { NativeChatAppearanceSettings } from '../../../../../../shared/native-chat/native-chat-appearance-settings'
 import { getChatContrastEntriesByKey } from './chat-appearance-search'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { Slider } from '../../../ui/slider'
 import { ChatThemePairPicker, type ChatThemePairPickerProps } from '../../ChatThemePairPicker'
 import { SearchableSetting } from '../../section-layout/SearchableSetting'
@@ -58,6 +58,7 @@ function ChatContrastSlider({
 }: Pick<ChatContrastControlsProps, 'onChange'> & {
   contrast: number
 }): React.JSX.Element {
+  const t = useTranslate()
   const [draft, setDraft] = useState({ savedContrast: contrast, value: contrast })
   // Keep the thumb mounted so committed keyboard changes retain focus.
   if (draft.savedContrast !== contrast) {
@@ -66,7 +67,7 @@ function ChatContrastSlider({
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs text-muted-foreground">
-        {translate('settings.appearance.chat.softer', 'Softer')}
+        {t('settings.appearance.chat.softer', 'Softer')}
       </span>
       <div className="w-40">
         <Slider
@@ -74,13 +75,13 @@ function ChatContrastSlider({
           max={150}
           step={1}
           value={[draft.value]}
-          thumbLabels={[translate('settings.appearance.chat.contrast', 'Contrast')]}
+          thumbLabels={[t('settings.appearance.chat.contrast', 'Contrast')]}
           onValueChange={([value]) => setDraft({ savedContrast: contrast, value })}
           onValueCommit={([value]) => onChange({ contrast: value })}
         />
       </div>
       <span className="text-xs text-muted-foreground">
-        {translate('settings.appearance.chat.sharper', 'Sharper')}
+        {t('settings.appearance.chat.sharper', 'Sharper')}
       </span>
       <span className="w-8 text-right text-xs text-muted-foreground tabular-nums">
         {draft.value}

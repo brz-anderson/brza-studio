@@ -2,11 +2,11 @@
 import { createRef } from 'react'
 import { act, cleanup, fireEvent, render, waitFor, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { NativeChatPromptEditor } from './NativeChatPromptEditor'
-import type { NativeChatComposerInput } from './native-chat-composer-input'
-import { clearNativeChatComposerDraftsForTests } from './native-chat-composer-draft-store'
-import { readNativeChatDraftCache } from './native-chat-draft-cache'
-import { promptEditor } from './native-chat-prompt-editor.test-support'
+import { NativeChatPromptEditor } from './composer/editor/NativeChatPromptEditor'
+import type { NativeChatComposerInput } from './composer/editor/native-chat-composer-input'
+import { clearNativeChatComposerDraftsForTests } from './drafts/native-chat-draft-reset'
+import { readNativeChatDraftCache } from './drafts/native-chat-draft-views'
+import { promptEditor } from './composer/editor/native-chat-prompt-editor.test-support'
 
 const settings = vi.hoisted(() => ({ nativeChatMarkdownComposer: true }))
 vi.mock('@/store', () => ({

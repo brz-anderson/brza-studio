@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { decodeClaudeTranscriptLine } from '../transcript-line-decoders-claude'
-import { legacyItemBody } from '../agent-session-journal/journal-legacy-import'
+import { legacyItemBody } from '../agent-session-journal/history-import/journal-legacy-import'
 import { createClaudeJournalTranslator } from '../../claude/structured/journal/claude-structured-journal-translation'
 import type { AgentJournalItemIdentity } from '../../../shared/agent-session/journal/agent-session-journal-identity'
 import type { AgentJournalItemBody } from '../../../shared/agent-session/journal/agent-session-journal-types'

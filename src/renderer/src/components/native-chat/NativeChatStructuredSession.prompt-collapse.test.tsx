@@ -4,23 +4,26 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { AgentJournalRenderItem } from '../../../../shared/agent-session/journal/agent-session-journal-types'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { claudeGroupedQuestionPromptItems } from './native-chat-structured-question-test-fixtures'
+import { claudeGroupedQuestionPromptItems } from './prompts/native-chat-structured-question-test-fixtures'
 
 const { mocks, moduleFactories, resetStructuredSessionMocks } = await vi.hoisted(async () =>
-  (await import('./NativeChatStructuredSession.test-harness')).createStructuredSessionMocks()
+  (await import('./surfaces/integration/NativeChatStructuredSession.test-harness')).createStructuredSessionMocks()
 )
 
 // The cards stay real: a collapse must keep their half-given answer.
-vi.mock('@/runtime/structured-agent-session-client', () =>
-  moduleFactories.structuredAgentSessionClient()
+vi.mock('@/runtime/native-chat/requests/structured-agent-session-call', () =>
+  moduleFactories.structuredAgentSessionCall()
 )
-vi.mock('./use-structured-agent-session', () => moduleFactories.useStructuredAgentSession())
-vi.mock('./use-native-chat-font-size', () => moduleFactories.useNativeChatFontSize())
-vi.mock('./use-native-chat-file-link-context', () => moduleFactories.useNativeChatFileLinkContext())
-vi.mock('./use-native-chat-tab-owner', () => moduleFactories.useNativeChatTabOwner())
+vi.mock('@/runtime/native-chat/requests/structured-agent-session-subscriptions', () =>
+  moduleFactories.structuredAgentSessionSubscriptions()
+)
+vi.mock('./session/structured/use-structured-agent-session', () => moduleFactories.useStructuredAgentSession())
+vi.mock('./appearance/use-native-chat-font-size', () => moduleFactories.useNativeChatFontSize())
+vi.mock('./links/actions/use-native-chat-file-link-context', () => moduleFactories.useNativeChatFileLinkContext())
+vi.mock('./pane/ownership/use-native-chat-tab-owner', () => moduleFactories.useNativeChatTabOwner())
 vi.mock('./NativeChatMessageList', () => moduleFactories.nativeChatMessageList())
-vi.mock('./NativeChatComposer', () => moduleFactories.nativeChatComposer())
-vi.mock('./NativeChatEmptyState', () => moduleFactories.nativeChatEmptyState())
+vi.mock('./composer/NativeChatComposer', () => moduleFactories.nativeChatComposer())
+vi.mock('./host-access/NativeChatEmptyState', () => moduleFactories.nativeChatEmptyState())
 
 import { NativeChatStructuredSession } from './NativeChatStructuredSession'
 

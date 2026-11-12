@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { readInjectedAgentSessionId } from '../../shared/agent-session/lifecycle/agent-session-caller-env'
-import { readOrchestrationCompatibilityEvidence } from '../../shared/orchestration-compatibility-evidence'
+import { readOrchestrationCompatibilityEvidence } from '../../shared/orchestration/orchestration-compatibility-evidence'
 import type { RuntimeOrchestrationEnvelope } from '../../shared/runtime-rpc-envelope'
 
 export function createOrchestrationCompatibilityEnvelope(
@@ -25,4 +25,47 @@ export function createAgentLaunchCallerEvidence(
     return undefined
   }
   return { agentSessionId }
+}
+
+// The host records the launched agent in the caller's chat, and a chat-to-chat send as that chat's
+// task; older hosts ignore the evidence.
+const CALLER_CHAT_METHODS: ReadonlySet<string> = new Set([
+  'agent.launch',
+  'agent.launchReplay',
+  'agentSession.send'
+])
+
+/** The caller evidence one request carries, read from this process's environment once. */
+export class OrchestrationRequestEvidence {
+  private readonly orchestration: RuntimeOrchestrationEnvelope
+  // A chat's session id means nothing on another server, so reads there go like a shell's.
+  private readonly remoteRead: RuntimeOrchestrationEnvelope
+  private readonly agentLaunchCaller: RuntimeOrchestrationEnvelope['orchestrationCompatibilityEvidence']
+
+  constructor(env: NodeJS.ProcessEnv) {
+    this.orchestration = createOrchestrationCompatibilityEnvelope(env)
+    const { agentSessionId: _session, ...shell } =
+      this.orchestration.orchestrationCompatibilityEvidence ?? {}
+    this.remoteRead = {
+      ...this.orchestration,
+      orchestrationCompatibilityEvidence: Object.keys(shell).length > 0 ? shell : undefined
+    }
+    this.agentLaunchCaller = createAgentLaunchCallerEvidence(env)
+  }
+
+  envelopeFor(
+    method: string,
+    request: { remote: boolean; mutation: boolean; requestId: string | undefined }
+  ): RuntimeOrchestrationEnvelope {
+    if (method.startsWith('orchestration.')) {
+      const base = request.remote && !request.mutation ? this.remoteRead : this.orchestration
+      return {
+        ...base,
+        compatibilityInvocationId: request.requestId ?? base.compatibilityInvocationId
+      }
+    }
+    return CALLER_CHAT_METHODS.has(method) && !request.remote && this.agentLaunchCaller
+      ? { orchestrationCompatibilityEvidence: this.agentLaunchCaller }
+      : {}
+  }
 }

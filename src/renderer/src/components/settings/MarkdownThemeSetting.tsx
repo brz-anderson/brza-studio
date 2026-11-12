@@ -8,6 +8,7 @@ import { ChatThemePairPicker } from './ChatThemePairPicker'
 import { SearchableSetting } from './section-layout/SearchableSetting'
 import { SettingsSwitchRow } from './form-controls/SettingsFormControls'
 import { markdownThemeSearchEntry } from './editor/general-editor-search'
+import { GENERAL_SETTING_ANCHORS } from './general/general-setting-anchors'
 
 type MarkdownThemeSettingProps = {
   settings: GlobalSettings
@@ -25,7 +26,7 @@ export function MarkdownThemeSetting({
     updateSettings({ markdownTheme: { ...settings.markdownTheme, ...updates } })
 
   return (
-    <SearchableSetting {...entry}>
+    <SearchableSetting id={GENERAL_SETTING_ANCHORS.markdownTheme} {...entry}>
       <SettingsSwitchRow
         label={entry.title}
         description={entry.description}

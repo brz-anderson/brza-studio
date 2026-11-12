@@ -6,7 +6,7 @@ import type {
   BrowserTabListResult,
   BrowserTabShowResult,
   BrowserTabSwitchResult
-} from '../../shared/runtime-types'
+} from '../../shared/browser/runtime/runtime-browser-contracts'
 import { browserUnavailableError } from '../runtime/browser/installation/runtime-browser-commands-factory'
 import { browserTabCreateClientPageStartsActive } from '../runtime/browser/tabs/browser-tab-create-publication'
 import {
@@ -15,6 +15,7 @@ import {
   retireRuntimeBrowserClientPage
 } from '../runtime/browser/client-pages/browser-client-page-close'
 import {
+  canPlacePairedPage,
   createBrowserClientPage,
   createBrowserPageOnPairedHost,
   DEFAULT_BROWSER_PROFILE_ID,
@@ -106,7 +107,7 @@ function createTab(
     !params?.placement &&
     !caller?.pairedDeviceId &&
     !engineAvailable() &&
-    hasPairedPageHost(host)
+    canPlacePairedPage(host)
   ) {
     return createBrowserPageOnPairedHost(
       host,

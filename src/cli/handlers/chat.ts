@@ -35,6 +35,7 @@ import { formatChatSendRetry } from '../brza/chat-send-retry'
 import { chatQueueHold } from '../brza/chat-queue-hold'
 import { chatSendOutcome } from '../brza/chat-send-outcome'
 import { parseChatOperationId } from '../brza/chat-operation-id'
+import { CHAT_RENAME_HANDLERS } from './chat-rename'
 
 const DEFAULT_READ_LIMIT = 20
 const MAX_READ_LIMIT = 100
@@ -50,6 +51,7 @@ function readSession(flags: Map<string, string | boolean>): string {
 }
 
 export const CHAT_HANDLERS: Record<string, CommandHandler> = {
+  ...CHAT_RENAME_HANDLERS,
   'chat list': async ({ flags, client, json }) => {
     const result = await client.call<RuntimeWorktreePsResult>('worktree.ps', {})
     const worktree = getOptionalStringFlag(flags, 'worktree')

@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { useAppStore } from '@/store'
-import { makeUnifiedTab } from '@/store/slices/store-test-helpers'
-import { findAgentMessageSenderChatTab } from './native-chat-agent-message-sender-label'
+import { makeUnifiedTab } from '@/store/slices/tabs/tab-group.test-fixture'
+import { findAgentMessageSenderChatTab } from './messages/agent-senders/native-chat-agent-message-sender-label'
 
 const initial = useAppStore.getState()
 beforeEach(() => {

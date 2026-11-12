@@ -2,6 +2,7 @@ import type { PairedE2EEClientHandshake } from '../e2ee/paired-e2ee-client-hands
 import type WebSocket from 'ws'
 import { RemoteRuntimeClientError } from '../remote-runtime-client-error'
 import { serializeRemoteRuntimePayload } from '../remote-runtime-memory-limits'
+import { openSealedText, type RemoteRuntimeSealedFrame } from '../remote-runtime-sealed-frame'
 import {
   invalidRemoteRuntimeResponseError,
   parseRemoteRuntimeRpcFrame
@@ -12,7 +13,7 @@ import type {
 } from './remote-runtime-shared-control-types'
 
 export function parseSharedControlFrame(
-  frame: string,
+  frame: RemoteRuntimeSealedFrame,
   handshake: PairedE2EEClientHandshake | null,
   state: SharedControlConnectionState
 ):
@@ -30,13 +31,11 @@ export function parseSharedControlFrame(
       )
     }
   }
-  const plaintext = handshake.channel.openText(frame)
-  if (plaintext === null) {
-    return {
-      type: 'error',
-      error: invalidRemoteRuntimeResponseError('Remote runtime returned an undecryptable frame.')
-    }
+  const opened = openSealedText(handshake, frame)
+  if (opened.kind === 'failed') {
+    return { type: 'error', error: invalidRemoteRuntimeResponseError(opened.message) }
   }
+  const plaintext = opened.text
   if (state === 'awaiting_authenticated') {
     return { type: 'auth', plaintext }
   }

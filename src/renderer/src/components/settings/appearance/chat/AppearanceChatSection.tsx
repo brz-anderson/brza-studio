@@ -1,5 +1,4 @@
 import {
-  nativeChatShowsTurnDiffSummary,
   normalizeNativeChatAppearanceSettings,
   resetNativeChatAppearanceSettings,
   resolveNativeChatAppearanceSettings,
@@ -7,7 +6,7 @@ import {
 } from '../../../../../../shared/native-chat/native-chat-appearance-settings'
 import { useAppStore } from '../../../../store/index'
 import { formatPrimaryShortcutLabel } from '@/hooks/useShortcutLabel'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { AppearanceChatContrastControls } from './AppearanceChatContrastControls'
 import { ChatFontFamilySetting } from './ChatFontFamilySetting'
 import { Button } from '../../../ui/button'
@@ -15,11 +14,10 @@ import { SearchableSetting } from '../../section-layout/SearchableSetting'
 import {
   NumberField,
   SettingsRow,
-  SettingsSegmentedControl,
-  SettingsSwitchRow
+  SettingsSegmentedControl
 } from '../../form-controls/SettingsFormControls'
 import { getChatAppearanceEntriesByKey, getChatWidthOptions } from './chat-appearance-search'
-import { writeNativeChatAppearance } from '../../../native-chat/native-chat-appearance-write'
+import { writeNativeChatAppearance } from '../../../native-chat/appearance/native-chat-appearance-write'
 import type { GlobalSettings } from '../../../../../../shared/global-settings-types'
 
 export type AppearanceChatSectionProps = {
@@ -37,12 +35,12 @@ export function AppearanceChatSection({
   onRequestFontSuggestions,
   forceVisiblePrimary = false
 }: AppearanceChatSectionProps): React.JSX.Element {
+  const t = useTranslate()
   const appearance = resolveNativeChatAppearanceSettings(settings.nativeChatAppearance)
   const keybindings = useAppStore((state) => state.keybindings)
   const increase = formatPrimaryShortcutLabel('zoom.in', keybindings)
   const decrease = formatPrimaryShortcutLabel('zoom.out', keybindings)
-  const entries = getChatAppearanceEntriesByKey({ increase, decrease })
-  const changedFilesSummary = nativeChatShowsTurnDiffSummary(settings)
+  const entries = getChatAppearanceEntriesByKey({ increase, decrease }, t)
   const update = (updates: NativeChatAppearanceSettings): void => {
     void writeNativeChatAppearance(
       (current) => normalizeNativeChatAppearanceSettings({ ...current, ...updates }),
@@ -77,7 +75,7 @@ export function AppearanceChatSection({
           min={12}
           max={20}
           integer
-          suffix={translate('settings.appearance.chat.pixels', 'px')}
+          suffix={t('settings.appearance.chat.pixels', 'px')}
           onChange={(fontSize) => update({ fontSize })}
         />
       </SearchableSetting>
@@ -94,7 +92,7 @@ export function AppearanceChatSection({
           min={10}
           max={18}
           integer
-          suffix={translate('settings.appearance.chat.pixels', 'px')}
+          suffix={t('settings.appearance.chat.pixels', 'px')}
           onChange={(codeFontSize) => update({ codeFontSize })}
         />
       </SearchableSetting>
@@ -110,23 +108,10 @@ export function AppearanceChatSection({
             <SettingsSegmentedControl
               value={appearance.width}
               onChange={(width) => update({ width })}
-              options={getChatWidthOptions()}
+              options={getChatWidthOptions(t)}
               ariaLabel={entries.width.title}
             />
           }
-        />
-      </SearchableSetting>
-      <SearchableSetting
-        id={entries.changedFilesSummary.targetSectionId}
-        {...entries.changedFilesSummary}
-        forceVisible={forceVisiblePrimary}
-      >
-        <SettingsSwitchRow
-          label={entries.changedFilesSummary.title}
-          description={entries.changedFilesSummary.description}
-          checked={changedFilesSummary}
-          ariaLabel={entries.changedFilesSummary.title}
-          onChange={() => updateSettings({ nativeChatTurnDiffSummary: !changedFilesSummary })}
         />
       </SearchableSetting>
       <SearchableSetting
@@ -141,15 +126,11 @@ export function AppearanceChatSection({
             <Button
               variant="outline"
               size="sm"
-              onClick={() => {
+              onClick={() =>
                 void writeNativeChatAppearance(resetNativeChatAppearanceSettings, updateSettings)
-                // The changed files card is a separate key, but Reset restores every row above it.
-                if (!changedFilesSummary) {
-                  updateSettings({ nativeChatTurnDiffSummary: true })
-                }
-              }}
+              }
             >
-              {translate('settings.appearance.chat.reset', 'Reset')}
+              {t('settings.appearance.chat.reset', 'Reset')}
             </Button>
           }
         />

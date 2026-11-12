@@ -1,24 +1,22 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, screen } from '@testing-library/react'
-import { render } from './native-chat-tooltip-test-harness'
+import { render } from './messages/actions/native-chat-tooltip-test-harness'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
-import { MessageRow } from './NativeChatMessageRow'
-import {
-  clearNativeChatComposerDraftsForTests,
-  readNativeChatComposerDraft,
-  structuredAgentSessionDraftScopeKey
-} from './native-chat-composer-draft-store'
-import { writeNativeChatDraftCache } from './native-chat-draft-cache'
+import { MessageRow } from './messages/rows/NativeChatMessageRow'
+import { readNativeChatComposerDraft } from './drafts/native-chat-composer-draft-store'
+import { clearNativeChatComposerDraftsForTests } from './drafts/native-chat-draft-reset'
+import { structuredAgentSessionDraftScopeKey } from './drafts/native-chat-draft-scope'
+import { writeNativeChatDraftCache } from './drafts/native-chat-draft-views'
 import {
   NativeChatEditUserMessageContext,
   editNativeChatUserMessage
 } from './native-chat-edit-user-message'
-import type * as RevealFocusModule from './use-native-chat-composer-reveal-focus'
+import type * as RevealFocusModule from './composer/focus/native-chat-composer-focus-intent'
 
 const requestNativeChatComposerFocus = vi.hoisted(() => vi.fn())
-vi.mock('./use-native-chat-composer-reveal-focus', async (importOriginal) => ({
+vi.mock('./composer/focus/native-chat-composer-focus-intent', async (importOriginal) => ({
   ...(await importOriginal<typeof RevealFocusModule>()),
   requestNativeChatComposerFocus
 }))

@@ -97,7 +97,11 @@ async function run(
   return json ? JSON.parse(logs.join('\n')).result : logs.join('\n')
 }
 
-afterEach(() => vi.restoreAllMocks())
+afterEach(() => {
+  vi.restoreAllMocks()
+  // Why: a leaked 0 breaks the neighbour tests in this worker that expect it unset.
+  process.exitCode = undefined
+})
 
 describe('parseChatSessionSelector', () => {
   it('accepts a session id, a handle, or a pane key', () => {

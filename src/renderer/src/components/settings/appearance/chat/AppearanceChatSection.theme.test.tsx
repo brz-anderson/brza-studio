@@ -30,10 +30,11 @@ describe('chat theme setting', () => {
       mock.state.settings = { ...mock.state.settings!, ...updates }
     })
     render(<AppearanceChatSection settings={settings} updateSettings={updateSettings} />)
+    fireEvent.click(screen.getByRole('combobox', { name: 'Dark theme' }))
     fireEvent.change(screen.getByPlaceholderText('Search terminal themes'), {
       target: { value: 'Tango Dark' }
     })
-    fireEvent.click(screen.getByRole('button', { name: 'Tango Dark' }))
+    fireEvent.click(screen.getByRole('option', { name: 'Tango Dark' }))
     await waitFor(() =>
       expect(updateSettings).toHaveBeenCalledWith({
         nativeChatAppearance: { themeDark: 'Tango Dark' }

@@ -14,7 +14,7 @@ import {
 import { installClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
 import { createClaudeProfileReport } from '../claude-accounts/claude-profile-report'
 import { AgentSessionJournal } from '../native-chat/agent-session-journal/journal-store'
-import { openTestJournalHostDatabase } from '../native-chat/agent-session-journal/journal-host-database-test-support'
+import { openTestJournalHostDatabase } from '../native-chat/agent-session-journal/store-lifecycle/journal-host-database-test-support'
 import { openTestAgentSessionRecordStore } from '../runtime/agent-session/records/agent-session-record-store-test-harness'
 import { claudePrepareAccountSwitch } from './claude-account-switch'
 

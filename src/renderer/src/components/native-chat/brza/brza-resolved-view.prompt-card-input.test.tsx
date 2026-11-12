@@ -6,16 +6,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { AgentStatusPayload } from '../../../../../shared/agent-status/contracts/agent-status-types'
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
-import type { NativeChatLiveSession } from '../use-native-chat-live-session'
+import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 
 // The composer is a marker that counts its mounts, so the test sees whether the view remounted it.
 const retained = vi.hoisted((): { session: NativeChatLiveSession | null } => ({ session: null }))
 const composer = vi.hoisted(() => ({ mounts: 0 }))
 const ptyInput = vi.hoisted(() => ({ verified: vi.fn<() => Promise<boolean>>() }))
-vi.mock('../use-native-chat-retained-session', () => ({
+vi.mock('../session/terminal/read/use-native-chat-retained-session', () => ({
   useNativeChatRetainedSession: () => retained.session
 }))
-vi.mock('../NativeChatComposer', async () => {
+vi.mock('../composer/NativeChatComposer', async () => {
   const { useEffect } = await import('react')
   return {
     NativeChatComposer: () => {
@@ -26,16 +26,16 @@ vi.mock('../NativeChatComposer', async () => {
     }
   }
 })
-vi.mock('@/runtime/runtime-terminal-verified-input', () => ({
+vi.mock('@/runtime/hosted-terminals/input/runtime-terminal-verified-input', () => ({
   sendRuntimePtyInputVerified: ptyInput.verified
 }))
 
 const { NativeChatResolvedView } = await import('../NativeChatResolvedView')
 const { TooltipProvider } = await import('@/components/ui/tooltip')
-const { nativeChatPromptDismissals } = await import('../native-chat-prompt-dismissals')
+const { nativeChatPromptDismissals } = await import('../prompts/native-chat-prompt-dismissals')
 const { useAppStore } = await import('../../../store')
 const { installNativeChatMessageListTestViewport } =
-  await import('../native-chat-message-list-test-viewport')
+  await import('../viewport/virtualization/native-chat-message-list-test-viewport')
 
 const paneKey = 'tab-card:leaf-card'
 let restoreViewport = (): void => {}

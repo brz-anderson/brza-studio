@@ -1,13 +1,13 @@
 import { toast } from 'sonner'
 import { translate } from '@/i18n/i18n'
 import { useAppStore } from '@/store'
-import { getRuntimeGitCommitCompare } from '@/runtime/runtime-git-diff-client'
-import { getConnectionId } from '@/lib/connection-context'
+import { getRuntimeGitCommitCompare } from '@/runtime/source-control/git/runtime-git-diff-client'
+import { getConnectionId } from '@/lib/workspace/ownership/connection-context'
 import {
   getWorktreeGitOwnerTarget,
   requireGitOwnerTarget
 } from '@/components/right-sidebar/source-control/sync/worktree-git-owner-target'
-import type { NativeChatFileLinkContext } from '../native-chat-file-link'
+import type { NativeChatFileLinkContext } from '../links/actions/native-chat-file-link-context'
 
 /** Opens a commit's combined diff in the chat's worktree, as the history panel's row does (R38.1). */
 export async function openCommitByHash(

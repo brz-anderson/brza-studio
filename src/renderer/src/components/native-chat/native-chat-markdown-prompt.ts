@@ -8,7 +8,7 @@ import { createRichMarkdownExtensions } from '../editor/rich-markdown/schema/ric
 import { serializeRichMarkdownDocument } from '../editor/rich-markdown/document/rich-markdown-literal-serialization'
 import type { RichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import { getRichMarkdownSerializationDocument } from '../editor/rich-markdown/schema/rich-markdown-trailing-paragraph'
-import type { NativeChatPromptCoordinates } from './native-chat-prompt-document'
+import type { NativeChatPromptCoordinates } from './composer/editor/native-chat-prompt-document'
 
 // Stands in for the caret while a document is serialized: a private-use character no prompt holds.
 const CARET = String.fromCharCode(0xe000)

@@ -1,8 +1,8 @@
 import { createContext } from 'react'
 import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
-import { structuredAgentSessionDraftScopeKey } from './native-chat-composer-draft-store'
-import { returnMessageToComposer } from './structured-agent-session-message-hand-back'
-import { requestNativeChatComposerFocus } from './use-native-chat-composer-reveal-focus'
+import { structuredAgentSessionDraftScopeKey } from './drafts/native-chat-draft-scope'
+import { returnMessageToComposer } from './session/structured/delivery/structured-agent-session-message-hand-back'
+import { requestNativeChatComposerFocus } from './composer/focus/native-chat-composer-focus-intent'
 
 /** Puts a sent message in the chat's composer, after whatever is typed there, and focuses it. */
 export type NativeChatEditUserMessage = (message: NativeChatMessage) => void

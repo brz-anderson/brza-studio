@@ -2,8 +2,8 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { translate } from '@/i18n/i18n'
 import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
-import { fetchProviderAccountsSnapshot } from '@/runtime/runtime-provider-accounts-client'
-import { useStructuredAgentSessionHostCapabilityState } from '@/runtime/structured-agent-session-host-capability'
+import { fetchProviderAccountsSnapshot } from '@/runtime/provider-accounts/observations/runtime-provider-accounts-client'
+import { useStructuredAgentSessionHostCapabilityState } from '@/runtime/native-chat/host-capabilities/structured-agent-session-host-capability'
 import {
   getClaudeStatusActiveId,
   resolveClaudeStatusAccountState
@@ -13,8 +13,8 @@ import type { AgentSessionAccountSwitchResult } from '../../../../shared/agent-s
 import type { AgentType } from '../../../../shared/agent-status/contracts/agent-status-types'
 import type { ClaudeRateLimitAccountsState } from '../../../../shared/managed-account-types'
 import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
-import { useStructuredAgentSessionAccountSwitch } from './structured-agent-session-status-hooks'
-import type { StructuredAgentSessionWrite } from './use-structured-agent-session-mutate'
+import { useStructuredAgentSessionAccountSwitch } from './session/status/structured-agent-session-status-hooks'
+import type { StructuredAgentSessionWrite } from './session/structured/writes/use-structured-agent-session-mutate'
 
 /** `id` null is System default; `detail` is the login it holds, when the host knows it. */
 export type NativeChatAccountChoice = {

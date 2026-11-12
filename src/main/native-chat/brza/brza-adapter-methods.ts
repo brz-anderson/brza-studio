@@ -1,5 +1,4 @@
 import type { AgentChatPermissionChoice } from '../../../shared/agent-launch/permissions/agent-chat-permission-mode'
-import type { AgentSessionMessageForkResult } from '../../../shared/agent-session-message-fork'
 import type { AgentSessionAccountHome } from '../../../shared/agent-session/lifecycle/agent-session-account-home'
 import type { AgentSessionRecord } from '../../../shared/agent-session/lifecycle/agent-session-record'
 
@@ -21,10 +20,4 @@ export type BrzaStructuredAgentSessionAdapterMethods = {
     | { ok: true; accountHome: AgentSessionAccountHome; account: string }
     | { ok: false; reason: 'unknown-account' | 'setup-failed' }
   >
-  /** Copy the conversation through one of its messages into a new provider session; the chat
-   *  and its conversation do not change. */
-  forkThroughMessage?(input: {
-    record: AgentSessionRecord
-    message: { sessionId: string; uuid: string }
-  }): Promise<AgentSessionMessageForkResult>
 }

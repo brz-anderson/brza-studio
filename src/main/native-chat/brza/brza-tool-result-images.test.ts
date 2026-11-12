@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs'
+import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -12,7 +12,11 @@ import {
   readClaudeMessageEnvelope
 } from '../../claude/structured/journal/claude-structured-item-translation'
 import { claudeContentBlocks } from '../transcript-record-blocks'
-import { brzaToolResultImages } from './brza-tool-result-images'
+import {
+  awaitToolImageWrite,
+  brzaToolResultImages,
+  flushToolImageWrites
+} from './brza-tool-result-images'
 
 let temp = ''
 
@@ -42,19 +46,42 @@ beforeEach(() => {
   temp = mkdtempSync(join(tmpdir(), 'brza-tool-images-test-'))
 })
 
-afterEach(() => {
+afterEach(async () => {
+  await flushToolImageWrites()
   rmSync(temp, { recursive: true, force: true })
 })
 
 describe('brzaToolResultImages', () => {
-  it('writes a base64 image to a content-named temp file once', () => {
+  it('writes a base64 image to a content-named temp file once', async () => {
     const first = brzaToolResultImages([PNG])
     const second = brzaToolResultImages([PNG])
+    await flushToolImageWrites()
 
     expect(first).toEqual([{ type: 'image-ref', path: SHOT_PATH() }])
     expect(second).toEqual(first)
     expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
     expect(readdirSync(join(temp, 'brza-tool-images'))).toHaveLength(1)
+  })
+
+  it('lets a read wait for the write the decode left running', async () => {
+    const [image] = brzaToolResultImages([PNG])
+
+    await awaitToolImageWrite(SHOT_PATH())
+    expect(image).toEqual({ type: 'image-ref', path: SHOT_PATH() })
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
+    await expect(awaitToolImageWrite(join(temp, 'other.png'))).resolves.toBeUndefined()
+  })
+
+  it('reports a failed write to the read, and clears the mark on the next successful decode', async () => {
+    writeFileSync(join(temp, 'brza-tool-images'), 'not a folder')
+    brzaToolResultImages([PNG])
+
+    await expect(awaitToolImageWrite(SHOT_PATH())).rejects.toThrow('tool_image_write_failed')
+
+    rmSync(join(temp, 'brza-tool-images'))
+    brzaToolResultImages([PNG])
+    await expect(awaitToolImageWrite(SHOT_PATH())).resolves.toBeUndefined()
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
   })
 
   it('keeps url images as urls and skips types the send path refuses', () => {
@@ -69,7 +96,7 @@ describe('brzaToolResultImages', () => {
 })
 
 describe('tool-result images in the decoders', () => {
-  it('reaches the live tool-call body beside the text output', () => {
+  it('reaches the live tool-call body beside the text output', async () => {
     const envelope = readClaudeMessageEnvelope({
       type: 'user',
       uuid: 'u-1',
@@ -79,6 +106,8 @@ describe('tool-result images in the decoders', () => {
     const [result] = envelope ? claudeToolResults(envelope) : []
     const body = claudeToolBody({ tool: { id: 'tool-1', name: 'Read', input: {} }, result })
 
+    await flushToolImageWrites()
+    expect(readFileSync(SHOT_PATH())).toEqual(BYTES)
     expect(body).toMatchObject({
       output: { head: 'see image' },
       images: [{ type: 'image-ref', path: SHOT_PATH() }]

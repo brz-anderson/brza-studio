@@ -1,6 +1,6 @@
-import { usePluginTerminalThemes } from '@/store/plugin-themes'
+import { usePluginTerminalThemes } from '@/store/plugins/appearance/plugin-themes'
 import { withTerminalPluginPalettes } from '@/lib/terminal-plugin-palettes'
-import { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
+import { useState, type ReactNode } from 'react'
 import { toast } from 'sonner'
 import { useAppStore } from '@/store/index'
 import type { GlobalSettings } from '../../../../../../shared/global-settings-types'
@@ -35,7 +35,7 @@ import {
   type TerminalThemeOption
 } from '@/lib/terminal-theme'
 import { terminalFollowsChatTheme } from '../../../../../../shared/terminal-chat-theme'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { cn } from '@/lib/utils'
 
 let lastEditedTerminalThemeTarget: TerminalThemeSlot | null = null
@@ -90,8 +90,6 @@ function getInitialTerminalThemeTarget(
 type TerminalThemeCatalogSectionProps = {
   settings: GlobalSettings
   systemPrefersDark: boolean
-  themeSearch: string
-  setThemeSearch: Dispatch<SetStateAction<string>>
   updateSettings: (updates: Partial<GlobalSettings>) => void
   previewFontFamily: string | null
   importedHighlightSignal: number
@@ -104,8 +102,6 @@ type TerminalThemeCatalogSectionProps = {
 export function TerminalThemeCatalogSection({
   settings,
   systemPrefersDark,
-  themeSearch,
-  setThemeSearch,
   updateSettings,
   previewFontFamily,
   importedHighlightSignal,
@@ -114,6 +110,7 @@ export function TerminalThemeCatalogSection({
   preferredTarget,
   renderAdvancedContent
 }: TerminalThemeCatalogSectionProps): React.JSX.Element {
+  const t = useTranslate()
   const [target, setTargetState] = useState<TerminalThemeSlot>(() =>
     getInitialTerminalThemeTarget(settings, systemPrefersDark, preferredTarget)
   )
@@ -122,12 +119,12 @@ export function TerminalThemeCatalogSection({
     setTargetState(nextTarget)
   }
   const pluginTerminalThemes = usePluginTerminalThemes()
-  const themeOptions = getAvailableTerminalThemeOptions(settings, pluginTerminalThemes)
+  const themeOptions = getAvailableTerminalThemeOptions(settings, pluginTerminalThemes, t)
   const isLightTarget = target === 'light'
   const matchDarkMode = !settings.terminalUseSeparateLightTheme
-  const followsChat = terminalFollowsChatTheme(settings)
   const lightModeMatchesDark = isLightTarget && matchDarkMode
   const showCustomControls = !lightModeMatchesDark
+  const followsChat = terminalFollowsChatTheme(settings)
   // Light mode that matches dark paints the dark slot, so its overrides are the ones the preview shows.
   const advancedContent = renderAdvancedContent?.(lightModeMatchesDark ? 'dark' : target)
   const selectedTheme = isLightTarget ? settings.terminalThemeLight : settings.terminalThemeDark
@@ -142,14 +139,14 @@ export function TerminalThemeCatalogSection({
       return removal.updates
     })
     toast(
-      translate(
+      t(
         'auto.components.settings.TerminalThemeSections.deleted_imported_theme',
         'Deleted "{{value0}}"',
         { value0: theme.label }
       ),
       {
         action: {
-          label: translate('auto.components.settings.TerminalThemeSections.undo', 'Undo'),
+          label: t('auto.components.settings.TerminalThemeSections.undo', 'Undo'),
           onClick: () => queueCustomThemeWrite((current) => removal?.undo(current) ?? {})
         }
       }
@@ -157,26 +154,26 @@ export function TerminalThemeCatalogSection({
   }
 
   const pickerTitle = isLightTarget
-    ? translate('auto.components.settings.TerminalThemeSections.8273bc75d7', 'Light Theme')
-    : translate('auto.components.settings.TerminalThemeSections.9499ad1dc4', 'Dark Theme')
+    ? t('auto.components.settings.TerminalThemeSections.3d91303d0d', 'Light theme')
+    : t('auto.components.settings.TerminalThemeSections.44a006ab99', 'Dark theme')
   const pickerDescription = isLightTarget
-    ? translate(
+    ? t(
         'auto.components.settings.TerminalThemeSections.d56af60e6f',
         'Choose the theme used when BrzA Studio is in light mode.'
       )
-    : translate(
+    : t(
         'auto.components.settings.TerminalThemeSections.7add204bd5',
         'Choose the terminal theme used in dark mode.'
       )
   const dividerTitle = isLightTarget
-    ? translate('auto.components.settings.TerminalThemeSections.ec2e33ad80', 'Light Divider Color')
-    : translate('auto.components.settings.TerminalThemeSections.b739d2abfe', 'Dark Divider Color')
+    ? t('auto.components.settings.TerminalThemeSections.43afde3df7', 'Light divider color')
+    : t('auto.components.settings.TerminalThemeSections.3a05b51211', 'Dark divider color')
   const dividerDescription = isLightTarget
-    ? translate(
+    ? t(
         'auto.components.settings.TerminalThemeSections.5e0c24b5c8',
         'Controls the split divider line between panes in light mode.'
       )
-    : translate(
+    : t(
         'auto.components.settings.TerminalThemeSections.cbe56a0f79',
         'Controls the split divider line between panes in dark mode.'
       )
@@ -185,10 +182,7 @@ export function TerminalThemeCatalogSection({
     <section className="space-y-5">
       <SettingsSubsectionHeader
         className="items-center"
-        title={translate(
-          'auto.components.settings.TerminalThemeSections.catalog_title',
-          'Terminal Themes'
-        )}
+        title={t('auto.components.settings.TerminalThemeSections.a39d64fe4a', 'Terminal themes')}
         action={
           showThemeImport ? (
             <div className="flex flex-wrap items-center justify-end gap-2">
@@ -203,7 +197,7 @@ export function TerminalThemeCatalogSection({
         <div className={advancedContent ? 'border-b border-border/40' : undefined}>
           <div className="space-y-3">
             <SearchableSetting
-              title={translate(
+              title={t(
                 'auto.components.settings.TerminalThemeSections.follow_chat',
                 'Follow chat theme'
               )}
@@ -211,11 +205,11 @@ export function TerminalThemeCatalogSection({
               forceVisible
             >
               <SettingsSwitchRow
-                label={translate(
+                label={t(
                   'auto.components.settings.TerminalThemeSections.follow_chat',
                   'Follow chat theme'
                 )}
-                description={translate(
+                description={t(
                   'auto.components.settings.TerminalThemeSections.follow_chat_description',
                   "Use the chat's background and colors, keeping the terminal font. Turn off to pick a terminal theme."
                 )}
@@ -225,24 +219,18 @@ export function TerminalThemeCatalogSection({
             </SearchableSetting>
 
             <SearchableSetting
-              title={translate(
-                'auto.components.settings.TerminalThemeSections.target_title',
-                'Theme Mode'
-              )}
+              title={t('auto.components.settings.TerminalThemeSections.2318e07c68', 'Theme mode')}
               keywords={['terminal', 'theme', 'dark', 'light']}
               forceVisible
             >
               <div className="space-y-2">
                 <p className="text-xs font-medium text-muted-foreground">
-                  {translate(
-                    'auto.components.settings.TerminalThemeSections.target_title',
-                    'Theme Mode'
-                  )}
+                  {t('auto.components.settings.TerminalThemeSections.2318e07c68', 'Theme mode')}
                 </p>
                 <SettingsSegmentedControl
                   value={target}
                   onChange={setTarget}
-                  ariaLabel={translate(
+                  ariaLabel={t(
                     'auto.components.settings.TerminalThemeSections.target_aria',
                     'Terminal theme mode'
                   )}
@@ -250,14 +238,11 @@ export function TerminalThemeCatalogSection({
                   options={[
                     {
                       value: 'dark',
-                      label: translate(
-                        'auto.components.settings.TerminalThemeSections.target_dark',
-                        'Dark'
-                      )
+                      label: t('auto.components.settings.TerminalThemeSections.target_dark', 'Dark')
                     },
                     {
                       value: 'light',
-                      label: translate(
+                      label: t(
                         'auto.components.settings.TerminalThemeSections.target_light',
                         'Light'
                       )
@@ -269,7 +254,7 @@ export function TerminalThemeCatalogSection({
 
             {isLightTarget ? (
               <SearchableSetting
-                title={translate(
+                title={t(
                   'auto.components.settings.TerminalThemeSections.match_dark_mode',
                   'Match dark mode'
                 )}
@@ -277,11 +262,11 @@ export function TerminalThemeCatalogSection({
                 forceVisible
               >
                 <SettingsSwitchRow
-                  label={translate(
+                  label={t(
                     'auto.components.settings.TerminalThemeSections.match_dark_mode',
                     'Match dark mode'
                   )}
-                  description={translate(
+                  description={t(
                     'auto.components.settings.TerminalThemeSections.match_dark_mode_description',
                     'Share the dark terminal theme and divider color in light mode.'
                   )}
@@ -326,8 +311,6 @@ export function TerminalThemeCatalogSection({
                     description={pickerDescription}
                     selectedTheme={selectedTheme}
                     themeOptions={themeOptions}
-                    query={themeSearch}
-                    onQueryChange={setThemeSearch}
                     onSelectTheme={(theme) => {
                       rememberTerminalThemeTarget(target)
                       // A selected theme must replace its slot's overrides or they mask the picker.
@@ -345,7 +328,9 @@ export function TerminalThemeCatalogSection({
                       )
                     }}
                     onDeleteImportedTheme={deleteImportedTheme}
-                    importedHighlightSignal={importedHighlightSignal}
+                    importedHighlightSignal={
+                      showCustomControls ? importedHighlightSignal : undefined
+                    }
                   />
                 </div>
               </SearchableSetting>
@@ -383,22 +368,16 @@ export function TerminalThemeCatalogSection({
         <TerminalSettingsPreview
           title={
             isLightTarget
-              ? translate(
-                  'auto.components.settings.TerminalThemeSections.db210115c5',
-                  'Light Mode Preview'
-                )
-              : translate(
-                  'auto.components.settings.TerminalThemeSections.bc8e8a251a',
-                  'Dark Mode Preview'
-                )
+              ? t('auto.components.settings.TerminalThemeSections.2a11e028ff', 'Light mode preview')
+              : t('auto.components.settings.TerminalThemeSections.3ebb499929', 'Dark mode preview')
           }
           description={
             isLightTarget
-              ? translate(
+              ? t(
                   'auto.components.settings.TerminalThemeSections.light_preview_description',
                   'Shows the effective light terminal appearance.'
                 )
-              : translate(
+              : t(
                   'auto.components.settings.TerminalThemeSections.dark_preview_description',
                   'Shows the effective dark terminal appearance.'
                 )

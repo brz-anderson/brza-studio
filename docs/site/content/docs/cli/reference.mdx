@@ -67,15 +67,24 @@ The result includes this machine, its registered [SSH targets](/docs/ssh), and p
 
 `--host` also takes the bare name shown in the `name` column, on either axis — `--host trader-local` reaches the same machine as `--host ssh:ssh-1783599077486-fyasux`. Names resolve only when they are unique: a name held by two SSH targets, by two paired servers, or by one of each is refused, and the error hands back the id form for each candidate — `--host ssh:<target-id>` for an SSH target and `--host runtime:<environment-id>` for a paired server. Use those to settle it, since `--environment <server-name>` cannot separate two servers sharing a name.
 
+Remove a saved SSH target with the id `orca host list` prints:
+
+```bash
+orca host rm --host ssh:<target-id> --json
+```
+
+It removes the target the same way Settings does, so the passive `~/.ssh/config` import does not add the alias back on the next launch. It takes only the `ssh:<target-id>` form, not the bare name, because it deletes data. It refuses `--host local`, paired servers (use `orca environment rm`), and an id this Orca host does not have.
+
 ## Runtime commands
 
 ```bash
 orca open --json
 orca status --json
-orca serve --port 6768 --pairing-address 100.64.1.20 --json
+orca serve --port 6768 --bind 100.64.1.20 --pairing-address 100.64.1.20 --json
 ```
 
-`orca serve` starts a runtime server in the foreground without opening the desktop window. Use it for [Remote Orca Servers](/docs/remote-servers) or headless environments, and stop it with `Ctrl-C`.
+`orca serve` starts a runtime server in the foreground without opening the desktop window. Use it for [Remote Orca Servers](/docs/remote-servers) or headless environments, and stop it with `Ctrl-C`. It accepts clients from localhost, LAN and Tailscale addresses; add `--allow-public` to accept public internet addresses too.
+Use `--bind <literal-ip>` to choose the listening interface; `--pairing-address` changes the address advertised to clients.
 
 ## Repos
 
@@ -224,6 +233,7 @@ orca chat list --json
 orca chat list --state working --json
 orca chat read --session <session> --limit 10 --json
 orca chat send --session <session> --text "Run the tests, then summarize failures" --json
+orca chat rename --session <session> --name "Release notes" --json
 ```
 
 `chat read` returns the newest messages, tool calls, approvals and questions; an approval or question waiting for an answer has `pending: true`. `chat send` sends the text as your message. While the agent is working, hosts with a message queue hold it until the turn ends and report `delivery: "queued"`. A queued result includes its position, next queued message id and `held_by` (`question`, `working` or `null`); a stopped queue also reports `queuePaused: true`. Exit code 0 means accepted or queued, 1 means refused or rejected, and 3 means pending or unknown. On 3, do not resend; retry with the same `--operation` or read the chat. A chat that restarted since it was read refuses the send.
@@ -233,6 +243,8 @@ orca chat send --session <session> --text "Run the tests, then summarize failure
 Transport failures while polling a pending send are retried within the original 30-second wait. At the deadline, an unresolved send remains `submitted/pending` with exit 3 and its `operation`; if transport is still unavailable, `submission.reason` contains the last transport error. A queued receipt keeps its state, exit code and queue position if the extra history read fails in transport; `queueMetadataUnavailable: true` replaces the unobserved `held_by`, `nextQueuedMessageId` and `queuePaused` fields. No message is resent automatically.
 
 Use `chat read --cursor <nextCursor>` to read only changes since a previous read, including new revisions of older entries. Keep the returned `nextCursor` and read again while `hasNewer` is true. The command reads one page of up to 200 journal rows and returns `removedItemIds`; `--cursor` cannot be combined with `--limit`. A `cursor_reset` returns the newest entries and a new cursor with exit code 2; if the same chat resets again, read without `--cursor` and start over.
+
+`chat rename` renames a chat tab, the same as renaming it by hand. `--session` takes the `sessionId` that `orca agent launch` prints. Run inside a chat, it defaults to that chat; with `--environment` it is required.
 
 ## Files
 
@@ -398,6 +410,18 @@ orca account add --agent codex
 ```
 
 `account add` runs `claude login` / `codex login` in **this** terminal on the host, then registers the captured credentials with the local runtime. Codex uses device authorization so the browser can finish on another machine. Run these on the machine that owns the accounts — not through a client-only remote session.
+
+Switch which saved account new agents launch with, for any provider with saved accounts (Claude, Codex, OpenCode, Devin, Antigravity):
+
+```bash
+orca account list                                               # ids, emails/labels, and the active one
+orca account select --agent claude --account you@example.com    # id, email or label
+orca worktree create --name task --agent claude --prompt "..."
+orca account select --agent claude --account system             # back to your own sign-in
+orca account rm --agent codex --account old@example.com         # forget a saved account
+```
+
+A selection applies to every agent of that provider launched on the host after it — the same switch as the status-bar account menu — not to a single workspace. An email shared by several accounts (one sign-in in two organizations) is refused; pass the id instead. Antigravity has no `system` default, and `account rm` never removes system credentials.
 
 ## Artifacts
 

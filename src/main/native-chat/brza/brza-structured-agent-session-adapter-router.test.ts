@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { agentSessionRecordFixture } from '../agent-session-record-test-fixture'
-import type { StructuredAgentSessionAdapter } from '../agent-session-wire/structured-agent-session-adapter'
-import { claudeAndCodexAgents } from '../agent-session-wire/structured-agent-session-adapter-router-test-support'
+import type { StructuredAgentSessionAdapter } from '../agent-session-wire/providers/structured-agent-session-adapter'
+import { claudeAndCodexAgents } from '../agent-session-wire/providers/testing/structured-agent-session-adapter-router-test-support'
 import { BrzaStructuredAgentSessionAdapterRouter } from './brza-structured-agent-session-adapter-router'
 
 // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: the router calls only the methods a case sets; every other member stays unused.
@@ -14,9 +14,6 @@ type Fake = {
   >
   prepareAccountSwitch: ReturnType<
     typeof vi.fn<NonNullable<StructuredAgentSessionAdapter['prepareAccountSwitch']>>
-  >
-  forkThroughMessage: ReturnType<
-    typeof vi.fn<NonNullable<StructuredAgentSessionAdapter['forkThroughMessage']>>
   >
 }
 
@@ -31,9 +28,6 @@ function fakeAdapter(label: string): Fake {
     accountHome: { variable: 'CLAUDE_CONFIG_DIR', path: `/homes/${label}` },
     account: label
   }))
-  const forkThroughMessage = vi.fn<
-    NonNullable<StructuredAgentSessionAdapter['forkThroughMessage']>
-  >(async () => ({ ok: true, providerSessionId: `fork-${label}` }))
   const adapter: StructuredAgentSessionAdapter = {
     ...NO_METHODS,
     acquire: async (input) => ({
@@ -46,10 +40,9 @@ function fakeAdapter(label: string): Fake {
       acquisitionGeneration: `generation-${label}`
     }),
     applyPermissionMode,
-    prepareAccountSwitch,
-    forkThroughMessage
+    prepareAccountSwitch
   }
-  return { adapter, applyPermissionMode, prepareAccountSwitch, forkThroughMessage }
+  return { adapter, applyPermissionMode, prepareAccountSwitch }
 }
 
 function setup() {
@@ -103,7 +96,7 @@ describe('BrzaStructuredAgentSessionAdapterRouter', () => {
     expect(codex.prepareAccountSwitch).not.toHaveBeenCalled()
   })
 
-  it('refuses an account switch and a fork for an agent the registry does not know', async () => {
+  it('refuses an account switch for an agent the registry does not know', async () => {
     const { claude, codex, router } = setup()
     const record = agentSessionRecordFixture({ sessionId: 'chat-3', provider: 'unknown-agent' })
 
@@ -111,25 +104,8 @@ describe('BrzaStructuredAgentSessionAdapterRouter', () => {
       ok: false,
       reason: 'unknown-account'
     })
-    expect(
-      await router.forkThroughMessage({ record, message: { sessionId: 'p', uuid: 'u' } })
-    ).toEqual({ ok: false, reason: 'unsupported' })
     for (const fake of [claude, codex]) {
       expect(fake.prepareAccountSwitch).not.toHaveBeenCalled()
-      expect(fake.forkThroughMessage).not.toHaveBeenCalled()
     }
-  })
-
-  it('routes the fork through a message by the record agent', async () => {
-    const { claude, codex, router } = setup()
-    const record = agentSessionRecordFixture({ sessionId: 'chat-4', provider: 'codex' })
-    const message = { sessionId: 'provider-session', uuid: 'message-uuid' }
-
-    expect(await router.forkThroughMessage({ record, message })).toEqual({
-      ok: true,
-      providerSessionId: 'fork-codex'
-    })
-    expect(codex.forkThroughMessage).toHaveBeenCalledExactlyOnceWith({ record, message })
-    expect(claude.forkThroughMessage).not.toHaveBeenCalled()
   })
 })

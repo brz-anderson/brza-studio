@@ -4,7 +4,7 @@ import type { Schema } from '@tiptap/pm/model'
 import StarterKit from '@tiptap/starter-kit'
 import { encodeRawMarkdownHtmlForRichEditor } from '../editor/rich-markdown/raw-source/raw-markdown-html'
 import type { RichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
-import { readNativeChatDraftDocument } from './native-chat-draft-cache'
+import { readNativeChatDraftDocument } from './drafts/native-chat-draft-views'
 import {
   createNativeChatMarkdownPromptExtensions,
   markdownPromptCoordinates
@@ -13,7 +13,7 @@ import {
   PLAIN_PROMPT_COORDINATES,
   promptTextContent,
   type NativeChatPromptCoordinates
-} from './native-chat-prompt-document'
+} from './composer/editor/native-chat-prompt-document'
 
 const PLAIN_TEXT_EXTENSIONS = StarterKit.configure({
   blockquote: false,

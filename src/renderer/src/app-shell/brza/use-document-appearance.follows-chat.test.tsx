@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { getDefaultSettings } from '../../../../shared/constants'
 import { useAppStore } from '../../store'
-import { resetSystemPrefersDarkSubscriptionForTests } from '@/components/terminal-pane/use-system-prefers-dark'
+import { resetSystemPrefersDarkSubscriptionForTests } from '@/hooks/theme/use-system-prefers-dark'
 
 const mocks = vi.hoisted(() => ({
   applyDocumentTheme: vi.fn(),
@@ -20,6 +20,9 @@ vi.mock('../../lib/document-theme', () => ({
 vi.mock('@/lib/app-font-family', () => ({
   buildAppFontFamily: mocks.buildAppFontFamily
 }))
+
+// Why: the hook reads window.api.ui for the plugin video theme, which this test has no preload for.
+vi.mock('../../hooks/use-window-active', () => ({ useWindowActive: () => true }))
 
 vi.mock('../../runtime/sync-runtime-graph', () => ({
   scheduleRuntimeGraphSync: vi.fn()

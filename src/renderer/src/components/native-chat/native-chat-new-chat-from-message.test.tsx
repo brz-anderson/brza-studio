@@ -1,11 +1,11 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, screen } from '@testing-library/react'
-import { render } from './native-chat-tooltip-test-harness'
+import { render } from './messages/actions/native-chat-tooltip-test-harness'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import { canMirrorLaunchDraftToNativeChat } from '../../../../shared/native-chat/input/native-chat-launch-draft-mirrorability'
-import { MessageRow } from './NativeChatMessageRow'
+import { MessageRow } from './messages/rows/NativeChatMessageRow'
 import {
   NativeChatNewChatContext,
   openNativeChatNewChatFromMessage
@@ -14,7 +14,7 @@ import {
 const launchAgentInNewTab = vi.hoisted(() =>
   vi.fn(() => ({ surface: { kind: 'local-chat', tabId: 'chat-2' } }))
 )
-vi.mock('@/lib/launch-agent-in-new-tab', () => ({ launchAgentInNewTab }))
+vi.mock('@/lib/agent-session/launch/new-tab/launch-agent-in-new-tab', () => ({ launchAgentInNewTab }))
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
   loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
     .loadNodeOniguruma

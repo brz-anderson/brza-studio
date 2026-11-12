@@ -1,14 +1,14 @@
 import { defineFixture } from '../../component-fixtures/component-fixture'
 import { useAppStore } from '@/store'
-import { makeFolderWorkspace } from '@/store/slices/worktrees-slice-test-fixtures'
-import { NativeChatComposerActions } from './NativeChatComposerActions'
-import { NativeChatContextUsageRing } from './NativeChatContextUsageRing'
-import { NativeChatEmptyState } from './NativeChatEmptyState'
-import { NativeChatPaneHeader } from './NativeChatPaneHeader'
-import { NativeChatTurnActivityLine } from './NativeChatTurnActivityLine'
+import { makeFolderWorkspace } from '@/components/quick-open-file-list-test-harness'
+import { NativeChatComposerActions } from './composer/controls/NativeChatComposerActions'
+import { NativeChatContextUsageRing } from './usage/NativeChatContextUsageRing'
+import { NativeChatEmptyState } from './host-access/NativeChatEmptyState'
+import { NativeChatPaneHeader } from './pane/actions/NativeChatPaneHeader'
+import { NativeChatTurnActivityLine } from './messages/reasoning/NativeChatTurnActivityLine'
 import { nativeChatThemeSurfaceStyle } from '@/lib/native-chat-theme-surface-style'
 import type { NativeChatTheme } from '../../../../shared/native-chat-theme'
-import { nativeChatAppearanceStyle } from './native-chat-appearance-style'
+import { nativeChatAppearanceStyle } from './appearance/native-chat-appearance-style'
 
 function Frame({ children, tall = false }: { children: React.ReactNode; tall?: boolean }) {
   return (

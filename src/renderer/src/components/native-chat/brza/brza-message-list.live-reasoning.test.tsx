@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom/vitest'
 
 import { cleanup, fireEvent, screen, within } from '@testing-library/react'
-import { render } from '../native-chat-tooltip-test-harness'
+import { render } from '../messages/actions/native-chat-tooltip-test-harness'
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import type {
   AgentJournalRenderItem,
@@ -12,10 +12,10 @@ import type {
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
 import { projectStructuredItemToNativeChat } from '../../../../../shared/agent-session/view/structured-agent-session-projection'
 import { NativeChatMessageList } from '../NativeChatMessageList'
-import { installNativeChatMessageListTestViewport } from '../native-chat-message-list-test-viewport'
+import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list-test-viewport'
 import { projectNativeChatTaskListFrames } from '../../../../../shared/native-chat/input/native-chat-task-list-frames'
-import { openToolRunMembers } from '../native-chat-tool-run-members-test-support'
-import type { NativeChatLiveSession } from '../use-native-chat-live-session'
+import { openToolRunMembers } from '../tools/runs/native-chat-tool-run-members-test-support'
+import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 
 {
   const STARTED = 1_000

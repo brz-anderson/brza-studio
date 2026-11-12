@@ -9,12 +9,12 @@ import type {
   AgentJournalSubmission
 } from '../../../../../shared/agent-session/journal/agent-session-journal-types'
 import type { AgentSessionQueuedMessage } from '../../../../../shared/agent-session/requests/agent-session-queued-message-wire'
-import type { StructuredAgentSessionPendingSend } from '../structured-agent-session-pending-sends'
-import type * as RewindModule from '../use-structured-agent-session-rewind'
+import type { StructuredAgentSessionPendingSend } from '../session/structured/delivery/structured-agent-session-pending-sends'
+import type * as RewindModule from '../messages/actions/use-structured-agent-session-rewind'
 import {
   structuredAgentSessionSendQueues,
   type StructuredAgentSessionQueueDelivery
-} from '../structured-agent-session-queue-request'
+} from '../queue/structured-agent-session-queue-request'
 
 const mocks = vi.hoisted(() => ({
   call: vi.fn(),
@@ -28,13 +28,13 @@ let submissions: AgentJournalSubmission[] = []
 let nextQueuedMessageId: string | null = null
 let pendingSends: StructuredAgentSessionPendingSend[] = []
 
-vi.mock('@/runtime/structured-agent-session-client', () => ({
+vi.mock('@/runtime/native-chat/requests/structured-agent-session-call', () => ({
   subscribeStructuredAgentSessionStatus: vi.fn(async () => ({ unsubscribe: vi.fn() })),
   callStructuredAgentSession: mocks.call,
   supportsStructuredAgentSessionPromptCancel: vi.fn(async () => false)
 }))
 
-vi.mock('../use-structured-agent-session-read', () => ({
+vi.mock('../session/structured/read/use-structured-agent-session-read', () => ({
   useStructuredAgentSessionRead: () => ({
     state: {
       fence: 3,
@@ -51,7 +51,7 @@ vi.mock('../use-structured-agent-session-read', () => ({
 }))
 
 // The real rewind hook, with only its in-flight latch forced when a test says so.
-vi.mock('../use-structured-agent-session-rewind', async (importOriginal) => {
+vi.mock('../messages/actions/use-structured-agent-session-rewind', async (importOriginal) => {
   const actual = await importOriginal<typeof RewindModule>()
   return {
     ...actual,
@@ -64,7 +64,7 @@ vi.mock('../use-structured-agent-session-rewind', async (importOriginal) => {
   }
 })
 
-vi.mock('../use-structured-agent-session-sends', () => ({
+vi.mock('../session/structured/delivery/use-structured-agent-session-sends', () => ({
   useStructuredAgentSessionSends: (args: { queue?: StructuredAgentSessionQueueDelivery }) => {
     mocks.sendArgs.push(args)
     return {
@@ -78,10 +78,10 @@ vi.mock('../use-structured-agent-session-sends', () => ({
 
 import { AGENT_SESSION_CONVERSATION_STOP_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/lifecycle/agent-session-stop-capabilities'
 import { AGENT_SESSION_QUEUED_MESSAGES_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/agent-session-runtime-capabilities'
-import { setLocalRuntimeCapabilitiesForTests } from '@/runtime/local-runtime-capabilities'
-import { clearNativeChatDraftCacheForTests } from '../native-chat-draft-cache'
-import { useStructuredAgentSession } from '../use-structured-agent-session'
-import { legacySingleQuestionPromptItems } from '../native-chat-structured-question-test-fixtures'
+import { setLocalRuntimeCapabilitiesForTests } from '@/runtime/hosts/capabilities/local-runtime-capabilities'
+import { clearNativeChatComposerDraftsForTests as clearNativeChatDraftCacheForTests } from '../drafts/native-chat-draft-reset'
+import { useStructuredAgentSession } from '../session/structured/use-structured-agent-session'
+import { legacySingleQuestionPromptItems } from '../prompts/native-chat-structured-question-test-fixtures'
 
 const RUNNING_TURN: AgentJournalRenderItem = {
   itemId: 'turn-1',
@@ -166,7 +166,7 @@ describe('against a capable host', () => {
     const { result } = render()
     expect(lastQueue()).toEqual({ capability: 'supported', enabled: true })
     expect(result.current.queuedMessages.steerHeld).toBe(true)
-    expect(result.current.queuedMessages.steerHead()).toBe(false)
+    expect(result.current.queuedMessages.steerHead?.()).toBe(false)
     expect(
       mocks.call.mock.calls.filter(([, method]) => method === 'agentSession.queuedMessageSend')
     ).toHaveLength(0)

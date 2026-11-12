@@ -8,10 +8,10 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { translate } from '@/i18n/i18n'
-import { useNativeChatOrcaStopView } from '../native-chat-orca-stop-context'
-import { useNativeChatUsageLimitContinueInOtherAccount } from '../NativeChatUsageLimitActions'
+import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
+import { useNativeChatUsageLimitContinueInOtherAccount } from '../usage/NativeChatUsageLimitActions'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
-import type { NativeChatUsageLimitAutoContinueState } from '../NativeChatUsageLimitAutoContinue'
+import type { NativeChatUsageLimitAutoContinueState } from '../usage/NativeChatUsageLimitAutoContinue'
 
 /** Beside Continue on a usage-limit row (P40, P79): moves the chat to the chosen account and
  *  continues now, which drops the scheduled automatic continue. */

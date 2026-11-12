@@ -1,14 +1,13 @@
 import { createReadStream } from 'node:fs'
-import { join } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 import { requireLegacyAgentSessionAccountHome } from '../../shared/agent-session/lifecycle/agent-session-account-home'
 import {
   agentSessionProviderHandleChainHead,
   type AgentSessionProviderHandle
 } from '../../shared/agent-session/lifecycle/agent-session-provider-handle'
-import type { AgentSessionRecord } from '../../shared/agent-session/lifecycle/agent-session-record'
 import type { AgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
 import { getClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
-import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/structured-agent-session-adapter'
+import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
 import { resolveSessionFilePath } from '../native-chat/session-file-resolver'
 import { splitTranscriptStreamLines } from '../native-chat/transcript-stream-lines'
 import { claudeSessionIdForRewind } from './structured/claude-structured-session-id'
@@ -35,36 +34,7 @@ function isUserRow(value: unknown): value is TranscriptUserRow {
   )
 }
 
-/** The first row of a session's transcript that `matches`; `needle` skips lines that cannot. */
-export async function findClaudeTranscriptRow<Row>(
-  input: { providerSessionId: string; claudeConfigDir: string },
-  needle: string,
-  matches: (value: unknown) => value is Row
-): Promise<{ path: string; row: Row } | undefined> {
-  const path = await resolveSessionFilePath('claude', input.providerSessionId, {
-    claudeProjectsDir: join(input.claudeConfigDir, 'projects')
-  })
-  if (!path) {
-    return undefined
-  }
-  for await (const { line } of splitTranscriptStreamLines(createReadStream(path))) {
-    if (!line.includes(needle)) {
-      continue
-    }
-    let row: unknown
-    try {
-      row = JSON.parse(line)
-    } catch {
-      continue
-    }
-    if (matches(row)) {
-      return { path, row }
-    }
-  }
-  return undefined
-}
-
-function isLocalCommandCaveatRow(row: TranscriptUserRow): boolean {
+export function isLocalCommandCaveatRow(row: Record<string, unknown>): boolean {
   return (
     row.isMeta === true &&
     typeof row.message === 'object' &&
@@ -125,6 +95,7 @@ export async function resolveClaudeRewindFork(input: {
   head: AgentSessionProviderHandle
   prompt: { sessionId: string; uuid: string }
   claudeConfigDirs: readonly string[]
+  destinationConfigDir?: string
 }): Promise<AgentSessionRewindFork | null> {
   for (const claudeConfigDir of new Set(input.claudeConfigDirs)) {
     const parent = await readClaudePromptParentUuid({
@@ -146,21 +117,19 @@ export async function resolveClaudeRewindFork(input: {
       if (!sourcePath) {
         return null
       }
-      return materializeClaudeRewindTranscript(sourcePath, fork)
+      return materializeClaudeRewindTranscript(
+        sourcePath,
+        fork,
+        input.destinationConfigDir
+          ? join(input.destinationConfigDir, 'projects', basename(dirname(sourcePath)))
+          : undefined
+      )
     }
   }
   return null
 }
 
-/** All known account homes, the chat's first, because its account may have changed. */
-export function claudeConfigDirsForRecord(record: AgentSessionRecord): string[] {
-  const router = getClaudeProfileRouter()
-  return [
-    requireLegacyAgentSessionAccountHome(record.accountHome).path,
-    ...(router ? [...router.accountHomes(), router.systemDefaultHome()] : [])
-  ]
-}
-
+/** Search all known account homes because the chat's account may have changed. */
 export const claudeForkForRewind: NonNullable<
   StructuredAgentSessionAdapter['forkForRewind']
 > = async ({ record, beforeMessage, rewindOperationId }) => {
@@ -168,12 +137,17 @@ export const claudeForkForRewind: NonNullable<
   if (!head) {
     return { ok: false, reason: 'invalid-target' }
   }
+  const router = getClaudeProfileRouter()
   const fork = await resolveClaudeRewindFork({
     orcaSessionId: record.sessionId,
     rewindOperationId,
     head,
     prompt: beforeMessage,
-    claudeConfigDirs: claudeConfigDirsForRecord(record)
+    destinationConfigDir: requireLegacyAgentSessionAccountHome(record.accountHome).path,
+    claudeConfigDirs: [
+      requireLegacyAgentSessionAccountHome(record.accountHome).path,
+      ...(router ? [...router.accountHomes(), router.systemDefaultHome()] : [])
+    ]
   })
   return fork ? { ok: true, fork } : { ok: false, reason: 'invalid-target' }
 }

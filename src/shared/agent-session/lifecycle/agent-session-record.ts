@@ -2,10 +2,8 @@ import { isOptionalUsageLimitContinueCancel } from './agent-session-usage-limit-
 import type { AgentSessionDeathEvidence } from './agent-session-death-evidence'
 import { isAgentSessionRewindRecord, type AgentSessionRewindRecord } from './agent-session-rewind'
 import { isAgentSessionLaunchArgs } from './agent-session-launch-args'
-import {
-  isValidAccountSwitchField,
-  type AccountSwitchField
-} from '../../agent-session-account-switch'
+import { isValidAccountSwitchField } from '../../agent-session-account-switch'
+import type { AccountSwitchField } from '../../agent-session-account-switch'
 import { isAgentSessionConversationName } from '../agent-session-conversation-name'
 import {
   isPersistedAgentSessionHandoffStage,
@@ -106,6 +104,14 @@ export type AgentSessionLease = {
   deathEvidence: AgentSessionDeathEvidence | null
 }
 
+export type AgentSessionForkedFrom = {
+  sessionId: string
+  /** The source response whose turn the fork copied through. */
+  itemId: string
+  /** Where the inherited history ends in this chat's own journal. */
+  childBoundary: { kind: 'item'; itemId: string } | { kind: 'start' }
+}
+
 export type AgentSessionRecord = AccountSwitchField & {
   schemaVersion: typeof AGENT_SESSION_RECORD_SCHEMA_VERSION
   sessionId: string
@@ -138,6 +144,8 @@ export type AgentSessionRecord = AccountSwitchField & {
   /** Latest turn edge for lists that must not open conversation history. */
   lastTurn?: AgentSessionLastTurn
   launchArgs?: AgentSessionLaunchArgs
+  /** The chat this one was forked from; the marker after its inherited history derives from it. */
+  forkedFrom?: AgentSessionForkedFrom
   lease: AgentSessionLease
   createdAt: number
   updatedAt: number

@@ -2,8 +2,8 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
-import { render } from '../native-chat-tooltip-test-harness'
-import { NativeChatAgentMessageCard } from '../NativeChatAgentMessageCard'
+import { render } from '../messages/actions/native-chat-tooltip-test-harness'
+import { NativeChatAgentMessageCard } from '../messages/rows/NativeChatAgentMessageCard'
 import {
   brzaClaudePeerSource,
   type BrzaClaudePeerKind

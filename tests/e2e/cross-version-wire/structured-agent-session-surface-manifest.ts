@@ -3,7 +3,7 @@
 import {
   attachFingerprintFields,
   type AgentSessionAttachParams
-} from '../../../src/main/native-chat/agent-session-wire/structured-agent-session-attach'
+} from '../../../src/main/native-chat/agent-session-wire/acquisition/structured-agent-session-attach'
 import { computeAgentSessionPayloadFingerprint } from '../../../src/shared/agent-session/lifecycle/agent-session-mutation-envelope'
 import {
   structuredAgentSessionMessageSendMutation,
@@ -201,8 +201,6 @@ export function paramsFor(method: string): unknown {
       return { agent: 'codex', sessionId: SESSION }
     case 'agentSession.readVisual':
       return { sessionId: SESSION, file: 'usage-chart.html' }
-    case 'agentSession.forkThroughMessage':
-      return { sessionId: SESSION, itemId: 'item-1' }
     case 'agentSession.switchAccount': {
       const fields = { accountId: 'account-1' }
       return { envelope: envelope({ method, fields, fence }), ...fields }

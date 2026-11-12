@@ -1,15 +1,16 @@
 import { dirname, isAbsolute, resolve } from 'node:path'
 import { stat } from 'node:fs/promises'
-import type { RuntimeStore } from '../../../runtime/runtime-store-contract'
-import type { LocalFileAccess } from '../../../../shared/local-file-access'
+import type { RuntimeStore } from '../../../runtime/construction/runtime-store-contract'
+import type { LocalFileAccess } from '../../../../shared/file-access/local-file-access'
 import {
   PATH_ACCESS_DENIED_MESSAGE,
   resolveAuthorizedPath,
   type ResolveAuthorizedPathOptions
 } from './filesystem-auth'
 import { isDescendantOrEqual } from './filesystem-path-containment'
-import { filePreviewForPath } from '../../../../shared/file-preview-kind'
-import { getDefaultFloatingWorkspacePath } from '../../floating-workspace-directory'
+import { filePreviewForPath } from '../../../../shared/file-preview/file-preview-kind'
+import { awaitToolImageWrite } from '../../../native-chat/brza/brza-tool-result-images'
+import { getFloatingWorkspaceFileRoots } from '../../floating-workspace-directory'
 import {
   isDeviceNamespacePath,
   isNetworkSharePath,
@@ -35,7 +36,7 @@ export async function resolveDesktopAuthorizedPath(
 ): Promise<string> {
   return resolveAuthorizedPath(targetPath, store, {
     ...options,
-    extraRoots: [getDefaultFloatingWorkspacePath()]
+    ...getFloatingWorkspaceFileRoots(store)
   })
 }
 
@@ -294,11 +295,12 @@ export async function resolveLocalRenamePaths(
   }
 }
 
-export function resolveLocalFileRequestPath(
+export async function resolveLocalFileRequestPath(
   targetPath: string,
   access: unknown,
   store: RuntimeStore
 ): Promise<string> {
+  await awaitToolImageWrite(targetPath) // BrzA: a tool-result image may still be landing on disk.
   return resolveLocalRequestPath(targetPath, access, store, 'read')
 }
 
