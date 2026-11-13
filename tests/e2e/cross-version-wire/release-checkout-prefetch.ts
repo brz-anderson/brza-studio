@@ -29,34 +29,50 @@ export async function prepareReleaseSnapshotSource(
       .filter((line) => line.startsWith('?'))
       .map((line) => line.slice(1))
   try {
-    const missing = await missingObjects()
+    let missing = await missingObjects()
     if (missing.length !== 0) {
       const remotes = await git(['config', '--get-regexp', '^remote[.].*[.]promisor$'])
-      const remote = /^remote\.(.+)\.promisor (?:true|1)$/m.exec(remotes)?.[1]
-      if (!remote) {
+      const names = [...remotes.matchAll(/^remote\.(.+)\.promisor (?:true|1)$/gm)]
+        .map((match) => match[1])
+        .filter((name): name is string => name !== undefined)
+      if (names.length === 0) {
         throw new Error('Missing snapshot objects without a promisor remote')
       }
-      await git(
-        [
-          '-c',
-          'fetch.negotiationAlgorithm=noop',
-          '-c',
-          'maintenance.auto=false',
-          '-c',
-          'gc.auto=0',
-          'fetch',
-          '--quiet',
-          '--no-tags',
-          '--no-write-fetch-head',
-          '--recurse-submodules=no',
-          '--filter=blob:none',
-          remote,
-          '--stdin'
-        ],
-        `${missing.join('\n')}\n`
-      )
-      if ((await missingObjects()).length !== 0) {
-        throw new Error('Requested snapshot objects remain unavailable')
+      // Origin is this fork. Release snapshots live on the upstream promisor when the tag is not here.
+      let lastError: unknown
+      for (const remote of names) {
+        if (missing.length === 0) {
+          break
+        }
+        try {
+          await git(
+            [
+              '-c',
+              'fetch.negotiationAlgorithm=noop',
+              '-c',
+              'maintenance.auto=false',
+              '-c',
+              'gc.auto=0',
+              'fetch',
+              '--quiet',
+              '--no-tags',
+              '--no-write-fetch-head',
+              '--recurse-submodules=no',
+              '--filter=blob:none',
+              remote,
+              '--stdin'
+            ],
+            `${missing.join('\n')}\n`
+          )
+        } catch (error) {
+          lastError = error
+        }
+        missing = await missingObjects()
+      }
+      if (missing.length !== 0) {
+        throw lastError instanceof Error
+          ? lastError
+          : new Error('Requested snapshot objects remain unavailable')
       }
     }
   } catch (error) {

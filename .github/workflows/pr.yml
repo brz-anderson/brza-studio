@@ -990,6 +990,14 @@ jobs:
           filter: blob:none
           persist-credentials: false
 
+      # This fork does not carry upstream release tags. The historical clients live on stablyai/orca.
+      - name: Fetch upstream release tags
+        run: |
+          git remote add upstream https://github.com/stablyai/orca.git
+          git config remote.upstream.promisor true
+          git config remote.upstream.partialclonefilter blob:none
+          git fetch --filter=blob:none --no-tags upstream '+refs/tags/v*:refs/tags/v*'
+
       - uses: ./.github/actions/install-node-dependencies
         with:
           native-runtime: node
