@@ -990,14 +990,6 @@ jobs:
           filter: blob:none
           persist-credentials: false
 
-      # This fork does not carry upstream release tags. The historical clients live on stablyai/orca.
-      - name: Fetch upstream release tags
-        run: |
-          git remote add upstream https://github.com/stablyai/orca.git
-          git config remote.upstream.promisor true
-          git config remote.upstream.partialclonefilter blob:none
-          git fetch --filter=blob:none --no-tags upstream '+refs/tags/v*:refs/tags/v*'
-
       - uses: ./.github/actions/install-node-dependencies
         with:
           native-runtime: node
@@ -1015,6 +1007,15 @@ jobs:
         run: |
           DIFF_BASE="$(node config/scripts/git/pr-diff-base/git-pull-request-diff-base.mjs "$BASE_SHA")"
           pnpm run check:runtime-launcher-protocol-ratchet -- --base "$DIFF_BASE"
+
+      # This fork does not carry upstream release tags. Fetch them after the daemon-protocol
+      # check, which must keep judging this repo's own newest tag, not upstream's.
+      - name: Fetch upstream release tags
+        run: |
+          git remote add upstream https://github.com/stablyai/orca.git
+          git config remote.upstream.promisor true
+          git config remote.upstream.partialclonefilter blob:none
+          git fetch --filter=blob:none --no-tags upstream '+refs/tags/v*:refs/tags/v*'
 
       # Run the entire directory; zero matches fail so new contracts cannot be omitted silently.
       - name: Old/new client and server compatibility journeys
