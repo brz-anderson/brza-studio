@@ -7,10 +7,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
 import { useNativeChatUsageLimitContinueInOtherAccount } from '../usage/NativeChatUsageLimitActions'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+
+async function continueInChosenAccount(
+  view: NativeChatAccountSwitchView,
+  accountId: string | null,
+  onContinue: () => void,
+  setPending: (pending: boolean) => void
+): Promise<void> {
+  setPending(true)
+  try {
+    if (await view.switchTo(accountId)) {
+      onContinue()
+    }
+  } finally {
+    setPending(false)
+  }
+}
 import type { NativeChatUsageLimitAutoContinueState } from '../usage/NativeChatUsageLimitAutoContinue'
 
 /** Beside Continue on a usage-limit row (P40, P79): moves the chat to the chosen account and
@@ -48,27 +64,21 @@ export function BrzaContinueInOtherAccount({
   disabled?: boolean
   onContinue: () => void
 }): React.JSX.Element | null {
+  const t = useTranslate()
   const [pending, setPending] = useState(false)
   const otherAccounts = view.choices.filter((choice) => choice.id !== view.current.id)
   if (!otherAccounts.some((choice) => choice.id !== null)) {
     return null
   }
-  const label = translate(
+  const label = t(
     'components.native-chat.continueInOtherAccount.continue',
     'Continue in another account'
   )
-  const choose = async (accountId: string | null): Promise<void> => {
+  const choose = (accountId: string | null): void => {
     if (pending || view.switching) {
       return
     }
-    setPending(true)
-    try {
-      if (await view.switchTo(accountId)) {
-        onContinue()
-      }
-    } finally {
-      setPending(false)
-    }
+    void continueInChosenAccount(view, accountId, onContinue, setPending)
   }
   return (
     <DropdownMenu onOpenChange={(open) => open && view.refresh()}>

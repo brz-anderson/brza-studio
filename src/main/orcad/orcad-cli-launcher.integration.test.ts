@@ -127,7 +127,8 @@ it.skipIf(skip)(
         timeoutMs: 15_000
       })
       expect(skill.code, skill.stderr).toBe(0)
-      expect(skill.stdout).toContain('## When BrzA Studio wakes you')
+      // Agent-facing skill guides keep "Orca" on purpose; the rebrand does not rewrite them.
+      expect(skill.stdout).toContain('## When Orca wakes you')
       const version = await runProcess({
         program: childEnv.ORCA_CLI_COMMAND!,
         args: ['--version'],

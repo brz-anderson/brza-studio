@@ -179,7 +179,7 @@ test('a managed SSH terminal link opens in the Orca Browser through the SSH host
     const popover = page.locator('[data-terminal-link-action-popover]')
     await expect(popover).toBeVisible()
     await expect(popover.getByRole('button').filter({ hasText: 'System Browser' })).toBeVisible()
-    const orcaBrowser = popover.getByRole('button').filter({ hasText: 'Orca Browser' })
+    const orcaBrowser = popover.getByRole('button').filter({ hasText: 'BrzA Studio Browser' })
     await expect(orcaBrowser).toBeVisible()
     await page.screenshot({ path: testInfo.outputPath('managed-terminal-link-popover.png') })
     await orcaBrowser.click()

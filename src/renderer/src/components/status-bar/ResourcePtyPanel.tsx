@@ -103,10 +103,14 @@ export function ResourcePtyPanel({
         <div className="text-xs text-muted-foreground">
           {inventory.observedAt === null
             ? t('resourceManager.pty.thisComputer', 'This computer')
-            : t('resourceManager.pty.localOwnedCount', '{{count}} BrzA Studio PTYs on this computer', {
-                count: sessions.length,
-                defaultValue_one: '{{count}} BrzA Studio PTY on this computer'
-              })}
+            : t(
+                'resourceManager.pty.localOwnedCount',
+                '{{count}} BrzA Studio PTYs on this computer',
+                {
+                  count: sessions.length,
+                  defaultValue_one: '{{count}} BrzA Studio PTY on this computer'
+                }
+              )}
           {inventory.observedAt !== null && unbound > 0 && (
             <span>
               {' · '}

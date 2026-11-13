@@ -19,6 +19,13 @@ describe('static AppImage package contract', () => {
     await withFixture('orca-linux.AppImage', Buffer.concat([createRuntime(), payload]), (path) => {
       expect(() => verifyStaticAppImagePackage(path, 1)).not.toThrow()
     })
+    await withFixture(
+      'brza-studio-linux.AppImage',
+      Buffer.concat([createRuntime(), payload]),
+      (path) => {
+        expect(() => verifyStaticAppImagePackage(path, 1)).not.toThrow()
+      }
+    )
 
     const unidentifiedRuntime = createRuntime()
     unidentifiedRuntime.fill(0, 192, 192 + RUNTIME_SOURCE.length)

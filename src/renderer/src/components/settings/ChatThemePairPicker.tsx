@@ -7,7 +7,7 @@ import {
 } from '../../../../shared/native-chat-theme'
 import { getAvailableTerminalThemeOptions, type TerminalThemeOption } from '@/lib/terminal-theme'
 import { usePluginTerminalThemes } from '@/store/plugins/appearance/plugin-themes'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { cn } from '@/lib/utils'
 import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
 import {
@@ -38,6 +38,7 @@ export function ChatThemePairPicker({
   onChange,
   disabled = false
 }: ChatThemePairPickerProps): React.JSX.Element {
+  const t = useTranslate()
   const systemPrefersDark = useSystemPrefersDark()
   const pluginTerminalThemes = usePluginTerminalThemes()
   const appMode =
@@ -53,21 +54,21 @@ export function ChatThemePairPicker({
   const themeOptions: TerminalThemeOption[] = [
     {
       value: NATIVE_CHAT_THEME_BRZA_DEFAULT,
-      label: translate('settings.appearance.chat.themeDefault', 'BrzA default'),
+      label: t('settings.appearance.chat.themeDefault', 'BrzA default'),
       group: 'built-in',
       previewTheme: { ...defaultPreview.palette, background: defaultPreview.canvas }
     },
     ...getAvailableTerminalThemeOptions(settings, pluginTerminalThemes)
   ]
   const pickerTitle = isLightTarget
-    ? translate('settings.appearance.chat.themeLight', 'Light theme')
-    : translate('settings.appearance.chat.themeDark', 'Dark theme')
+    ? t('settings.appearance.chat.themeLight', 'Light theme')
+    : t('settings.appearance.chat.themeDark', 'Dark theme')
   const pickerDescription = isLightTarget
-    ? translate(
+    ? t(
         'settings.appearance.chat.themeLightDescription',
         'Used while BrzA Studio is in light mode.'
       )
-    : translate(
+    : t(
         'settings.appearance.chat.themeDarkDescription',
         'Used in dark mode, and in light mode without a separate light theme.'
       )
@@ -89,17 +90,11 @@ export function ChatThemePairPicker({
             options={[
               {
                 value: 'dark',
-                label: translate(
-                  'auto.components.settings.TerminalThemeSections.target_dark',
-                  'Dark'
-                )
+                label: t('auto.components.settings.TerminalThemeSections.target_dark', 'Dark')
               },
               {
                 value: 'light',
-                label: translate(
-                  'auto.components.settings.TerminalThemeSections.target_light',
-                  'Light'
-                )
+                label: t('auto.components.settings.TerminalThemeSections.target_light', 'Light')
               }
             ]}
           />
@@ -107,8 +102,8 @@ export function ChatThemePairPicker({
       />
       {isLightTarget ? (
         <SettingsSwitchRow
-          label={translate('settings.appearance.chat.separateLightTheme', 'Separate light theme')}
-          description={translate(
+          label={t('settings.appearance.chat.separateLightTheme', 'Separate light theme')}
+          description={t(
             'settings.appearance.chat.separateLightThemeDescription',
             'Off uses the dark theme in light mode too.'
           )}

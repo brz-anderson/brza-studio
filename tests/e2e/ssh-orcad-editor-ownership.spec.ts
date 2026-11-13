@@ -8,6 +8,7 @@ import {
   skipUnlessManagedDockerHost,
   withManagedHost
 } from './helpers/orcad-managed-workspace'
+import { waitForRichMarkdownEditor } from './helpers/markdown-editor-fixture'
 
 skipUnlessManagedDockerHost()
 
@@ -54,6 +55,7 @@ test('converted editor has one file record per document', async (// oxlint-disab
     const { page, seeded, environmentId } = await launchManagedWorkspace(fixture, {
       onLaunch: (page, seeded) => reportEditorRecords(page, seeded.worktreeId)
     })
+    await waitForRichMarkdownEditor(page)
     await expect(page.locator('.rich-markdown-editor')).toContainText(marker, { timeout: 30_000 })
     console.log(
       '[host-tabs]',
@@ -82,6 +84,7 @@ test('converted editor has one file record per document', async (// oxlint-disab
     console.log('[saved-on-host]', host.exec!(`cat '${seeded.sessionFilePath}'`))
     const restarted = await relaunchManagedApp(fixture)
     await activateManagedWorkspace(restarted, seeded.worktreeId, environmentId)
+    await waitForRichMarkdownEditor(restarted)
     await expect(restarted.locator('.rich-markdown-editor')).toContainText(savedMarker, {
       timeout: 30_000
     })

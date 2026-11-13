@@ -1008,6 +1008,15 @@ jobs:
           DIFF_BASE="$(node config/scripts/git/pr-diff-base/git-pull-request-diff-base.mjs "$BASE_SHA")"
           pnpm run check:runtime-launcher-protocol-ratchet -- --base "$DIFF_BASE"
 
+      # This fork does not carry upstream release tags. Fetch them after the daemon-protocol
+      # check, which must keep judging this repo's own newest tag, not upstream's.
+      - name: Fetch upstream release tags
+        run: |
+          git remote add upstream https://github.com/stablyai/orca.git
+          git config remote.upstream.promisor true
+          git config remote.upstream.partialclonefilter blob:none
+          git fetch --filter=blob:none --no-tags upstream '+refs/tags/v*:refs/tags/v*'
+
       # Run the entire directory; zero matches fail so new contracts cannot be omitted silently.
       - name: Old/new client and server compatibility journeys
         run: pnpm exec vitest run --config config/vitest.config.ts tests/e2e/cross-version-wire/
@@ -1222,8 +1231,13 @@ jobs:
           rpm="dist/orca-ide-${version}.x86_64.rpm"
           test -s "$deb"
           test -s "$rpm"
-          deb_marker="$(dpkg-deb --fsys-tarfile "$deb" | tar -xOf - ./opt/Orca/resources/package-type)"
-          rpm_marker="$(rpm2cpio "$rpm" | cpio --quiet --extract --to-stdout ./opt/Orca/resources/package-type)"
+          # electron-builder installs under /opt/<sanitized product name>, which is no longer Orca.
+          deb_marker_path="$(dpkg-deb --fsys-tarfile "$deb" | tar -t | grep -E '(^|/)resources/package-type$' | head -1)"
+          rpm_marker_path="$(rpm2cpio "$rpm" | cpio --quiet -t | grep -E '(^|/)resources/package-type$' | head -1)"
+          test -n "$deb_marker_path"
+          test -n "$rpm_marker_path"
+          deb_marker="$(dpkg-deb --fsys-tarfile "$deb" | tar -xOf - "$deb_marker_path")"
+          rpm_marker="$(rpm2cpio "$rpm" | cpio --quiet --extract --to-stdout "$rpm_marker_path")"
           [[ "$deb_marker" == deb ]] || { echo "Expected deb marker, got: $deb_marker"; exit 1; }
           [[ "$rpm_marker" == rpm ]] || { echo "Expected rpm marker, got: $rpm_marker"; exit 1; }
           # Only the AppImage carries the pinned Node (config/scripts/desktop-distribution/linux/appimage-node-runtime.cjs).
@@ -1234,17 +1248,17 @@ jobs:
             echo "The rpm must not carry the AppImage's Node"; exit 1
           fi
           appimage_root="$(mktemp -d)"
-          (cd "$appimage_root" && "$GITHUB_WORKSPACE/dist/orca-linux.AppImage" --appimage-extract 'resources/node-runtime/bin/node' >/dev/null)
+          (cd "$appimage_root" && "$GITHUB_WORKSPACE/dist/brza-studio-linux.AppImage" --appimage-extract 'resources/node-runtime/bin/node' >/dev/null)
           test -x "$appimage_root/squashfs-root/resources/node-runtime/bin/node"
           "$appimage_root/squashfs-root/resources/node-runtime/bin/node" --version
           rm -rf "$appimage_root"
-          ls -l dist/orca-linux.AppImage "$deb" "$rpm"
+          ls -l dist/brza-studio-linux.AppImage "$deb" "$rpm"
 
       # Kept briefly so a reviewer can run this exact AppImage on a real Linux desktop.
       - uses: actions/upload-artifact@v7
         with:
           name: orca-linux-appimage-${{ github.event.pull_request.head.sha }}
-          path: dist/orca-linux.AppImage
+          path: dist/brza-studio-linux.AppImage
           retention-days: 3
           compression-level: 0
 
@@ -1255,7 +1269,7 @@ jobs:
           ORCA_SHUTDOWN_FIXTURE_CACHE_IMAGE: ${{ steps.shutdown-fixture-cache.outputs.image }}
         run: >-
           node config/scripts/runtime-verification/daemon-lifecycle/run-headless-serve-shutdown-docker.mjs
-          --appimage dist/orca-linux.AppImage --all-entrypoints
+          --appimage dist/brza-studio-linux.AppImage --all-entrypoints
 
       # A default container reproduces the hostile AppImage launch environment.
       - wait: cli-fixture-cache
@@ -1263,7 +1277,7 @@ jobs:
       - name: Verify Linux CLI launch contract
         env:
           ORCA_CLI_FIXTURE_CACHE_IMAGE: ${{ steps.cli-fixture-cache.outputs.image }}
-        run: node config/scripts/runtime-verification/desktop-transport/run-linux-cli-launch-contract-docker.mjs --appimage dist/orca-linux.AppImage
+        run: node config/scripts/runtime-verification/desktop-transport/run-linux-cli-launch-contract-docker.mjs --appimage dist/brza-studio-linux.AppImage
 
       - name: Smoke packaged CLI
         run: node config/scripts/desktop-distribution/runtime-verification/smoke-packaged-cli.mjs --app-dir=dist/linux-unpacked
@@ -1405,7 +1419,7 @@ jobs:
         run: pnpm exec electron-builder --config config/electron-builder.config.cjs --dir
 
       - name: Smoke packaged Windows PTY native capability
-        run: pnpm run smoke:windows-pty-native-capability -- --exe=dist/win-unpacked/Orca.exe
+        run: pnpm run smoke:windows-pty-native-capability -- "--exe=dist/win-unpacked/BrzA Studio.exe"
 
       - name: Smoke packaged CLI
         run: node config/scripts/desktop-distribution/runtime-verification/smoke-packaged-cli.mjs --app-dir=dist/win-unpacked

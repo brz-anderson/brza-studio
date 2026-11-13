@@ -25,7 +25,6 @@ export function useTerminalPaneChatProjection({
   isChatEligibleForLeaf,
   isChatViewMode,
   toggleNativeChatForLeaf,
-  paneTransportsRef,
   resolveTitleAgentForLeaf,
   tabId,
   tabAgentTypeByLeaf,
@@ -47,7 +46,6 @@ export function useTerminalPaneChatProjection({
   | 'isChatEligibleForLeaf'
   | 'isChatViewMode'
   | 'toggleNativeChatForLeaf'
-  | 'paneTransportsRef'
   | 'resolveTitleAgentForLeaf'
   | 'tabId'
   | 'tabAgentTypeByLeaf'
@@ -89,9 +87,12 @@ export function useTerminalPaneChatProjection({
     isChatViewMode && chatLeafId
       ? (managedPanes.find((pane) => pane.leafId === chatLeafId) ?? null)
       : null
-  const chatPanePtyId = chatPane
-    ? (paneTransportsRef.current.get(chatPane.id)?.getPtyId() ?? null)
-    : null
+  // Layout publish is the render signal; the transport ref does not notify on bind.
+  const chatPanePtyId = useAppStore((state) =>
+    chatPane
+      ? (state.terminalLayoutsByTabId[tabId]?.ptyIdsByLeafId?.[chatPane.leafId] ?? null)
+      : null
+  )
   const chatPaneResolvedAgent = chatPane ? resolveTitleAgentForLeaf(chatPane.leafId) : null
   const chatPaneLaunchAgent = nativeChatLaunchAgentForLeaf({
     launchAgent: terminalTab?.launchAgent,

@@ -16,6 +16,7 @@ import {
 } from './helpers/orcad-managed-workspace'
 import { reconnect } from './helpers/orcad-convert-flow'
 import { readPersistedProfileState } from './helpers/persisted-profile-state'
+import { showActiveMarkdownAs } from './helpers/markdown-editor-fixture'
 
 skipUnlessManagedDockerHost()
 
@@ -166,6 +167,7 @@ for (const { label, bytes } of [
         )
         .toBe('present')
         .catch(() => {})
+      await showActiveMarkdownAs(page, label === 'large' ? 'source' : 'rich')
       await expect(page.locator(VISIBLE_EDITOR).first()).toContainText(`${marker} unsaved line 0`, {
         timeout: 60_000
       })
@@ -184,6 +186,7 @@ for (const { label, bytes } of [
         )
         .toBe('present')
         .catch(() => {})
+      await showActiveMarkdownAs(restarted, label === 'large' ? 'source' : 'rich')
       await expect(restarted.locator(VISIBLE_EDITOR).first()).toContainText(
         `${marker} unsaved line 0`,
         { timeout: 60_000 }

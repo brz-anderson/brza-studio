@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import type { NativeChatImageRefBlock } from '../../../../../shared/native-chat/native-chat-types'
 import { NativeChatMarkdownImage } from '../media/images/NativeChatMarkdownImage'
 
@@ -15,6 +15,7 @@ export function BrzaToolImageStrip({
   expanded: boolean
   onExpand: () => void
 }): React.JSX.Element | null {
+  const t = useTranslate()
   // The same image twice in one result is one temp file; show it once.
   const bySource = new Map<string, NativeChatImageRefBlock>()
   for (const image of images ?? []) {
@@ -43,7 +44,7 @@ export function BrzaToolImageStrip({
         <button
           type="button"
           onClick={onExpand}
-          aria-label={translate('brza.native-chat.showAllImages', 'Show all {{total}} images', {
+          aria-label={t('brza.native-chat.showAllImages', 'Show all {{total}} images', {
             total: sources.length
           })}
           className="flex size-24 shrink-0 items-center justify-center rounded-md border border-border bg-chat-canvas text-sm text-chat-foreground-faint transition-colors hover:border-ring hover:text-chat-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

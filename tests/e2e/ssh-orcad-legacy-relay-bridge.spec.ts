@@ -226,7 +226,7 @@ async function verifyRunningRelayUpgrade(
       })
       await move.click()
       const dialog = page.getByRole('dialog')
-      await expect(dialog).toContainText('saved terminal history Orca could not read')
+      await expect(dialog).toContainText('saved terminal history BrzA Studio could not read')
       await page.screenshot({
         path: testInfo.outputPath('unreadable-history-recovery-confirm.png'),
         animations: 'disabled'

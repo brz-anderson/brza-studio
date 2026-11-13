@@ -14,6 +14,21 @@ test('Explorer-opened Markdown accepts the find shortcut without a document clic
   await expect(readmeRow).toBeVisible({ timeout: 10_000 })
   await readmeRow.focus()
   await readmeRow.click()
+  await expect
+    .poll(() =>
+      orcaPage.evaluate(() => {
+        const state = window.__store?.getState()
+        const file = state?.openFiles.find((entry) => entry.id === state.activeFileId)
+        return file?.filePath.endsWith('README.md') ?? false
+      })
+    )
+    .toBe(true)
+  await orcaPage.evaluate(() => {
+    const state = window.__store?.getState()
+    if (state?.activeFileId) {
+      state.setMarkdownViewMode(state.activeFileId, 'rich')
+    }
+  })
 
   await expect(orcaPage.locator('.rich-markdown-editor')).toBeVisible({ timeout: 25_000 })
   await pressShortcut(orcaPage, 'f')

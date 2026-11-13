@@ -122,7 +122,30 @@ export async function openMarkdownFixture(
   return activeFile
 }
 
+export async function showActiveMarkdownAs(
+  page: Page,
+  mode: 'source' | 'rich' | 'preview'
+): Promise<void> {
+  // Existing files open in the read-only preview. These tests drive another mode.
+  await expect
+    .poll(
+      () =>
+        page.evaluate((nextMode) => {
+          const store = window.__store
+          const fileId = store?.getState().activeFileId
+          if (!fileId) {
+            return false
+          }
+          store.getState().setMarkdownViewMode(fileId, nextMode)
+          return true
+        }, mode),
+      { timeout: MARKDOWN_HYDRATION_TIMEOUT_MS }
+    )
+    .toBe(true)
+}
+
 export async function waitForRichMarkdownEditor(page: Page): Promise<Locator> {
+  await showActiveMarkdownAs(page, 'rich')
   const editor = page.locator('.rich-markdown-editor')
   await expect(editor).toBeVisible({ timeout: MARKDOWN_HYDRATION_TIMEOUT_MS })
   return editor

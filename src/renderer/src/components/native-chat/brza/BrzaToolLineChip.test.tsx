@@ -17,7 +17,9 @@ const mocks = vi.hoisted(() => ({
   openWebLink: vi.fn()
 }))
 
-vi.mock('../links/actions/native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
+vi.mock('../links/actions/native-chat-web-link-actions', () => ({
+  openNativeChatWebLink: mocks.openWebLink
+}))
 
 vi.mock('../links/actions/native-chat-link-target-actions', () => ({
   resolveNativeChatHttpLinkRouting: () => ({ sourceOwner: { kind: 'local' } })

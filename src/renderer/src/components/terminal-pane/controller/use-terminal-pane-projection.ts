@@ -106,7 +106,6 @@ export function useTerminalPaneProjection(controller: TerminalPaneMobileControll
     isChatEligibleForLeaf,
     isChatViewMode,
     toggleNativeChatForLeaf,
-    paneTransportsRef,
     resolveTitleAgentForLeaf,
     tabId,
     tabAgentTypeByLeaf,

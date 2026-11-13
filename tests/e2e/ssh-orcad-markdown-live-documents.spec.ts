@@ -8,6 +8,7 @@ import {
   skipUnlessManagedDockerHost,
   withManagedHost
 } from './helpers/orcad-managed-workspace'
+import { waitForRichMarkdownEditor } from './helpers/markdown-editor-fixture'
 
 skipUnlessManagedDockerHost()
 
@@ -39,6 +40,7 @@ test('open remote Markdown previews discover host-created documents', async (// 
       captureRendererMessages(page, '[renderer-event]')
     )
     await activateManagedWorkspace(page, seeded.worktreeId, environmentId)
+    await waitForRichMarkdownEditor(page)
     await expect(page.locator('.rich-markdown-editor')).toContainText(marker, { timeout: 30_000 })
     await page.evaluate(
       ({ filePath, worktreeId, environmentId }) => {

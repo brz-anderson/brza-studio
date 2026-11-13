@@ -14,7 +14,9 @@ import {
 const launchAgentInNewTab = vi.hoisted(() =>
   vi.fn(() => ({ surface: { kind: 'local-chat', tabId: 'chat-2' } }))
 )
-vi.mock('@/lib/agent-session/launch/new-tab/launch-agent-in-new-tab', () => ({ launchAgentInNewTab }))
+vi.mock('@/lib/agent-session/launch/new-tab/launch-agent-in-new-tab', () => ({
+  launchAgentInNewTab
+}))
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
   loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
     .loadNodeOniguruma

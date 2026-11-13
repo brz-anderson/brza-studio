@@ -75,5 +75,23 @@ These stay on GitHub-hosted runners even where the policy above picks Blacksmith
 The shared dependency installer preserves temporary login-shell homes on
 Blacksmith Linux hosts. Container jobs skip this host-image adjustment.
 
+## Runner capacity this fork cannot clear in code
+
+These scheduled workflows fail because the runner never starts. Do not retarget
+them onto a different image to hide the failure.
+
+- `performance-contracts.yml` on `macos-15` and `computer-macos-native.yml`
+  report `The job was not acquired by Runner of type hosted even after multiple
+  attempts`, with GitHub's notice that macOS arm64 runners are capacity
+  constrained. Ubuntu and Windows contract jobs on the same workflow pass.
+  The macOS jobs succeed on days when a runner is free (for example 2026-11-08
+  and 2026-11-11).
+- `ci-cache-warmup.yml` Blacksmith legs (`blacksmith-4vcpu-ubuntu-2404`,
+  `blacksmith-8vcpu-ubuntu-2404`, `blacksmith-4vcpu-ubuntu-2404-arm`) sit in
+  the queue until GitHub cancels them after 24 hours (`exceeded the maximum
+  execution time while awaiting a runner`). The GitHub-hosted warm legs of the
+  same workflow succeed. This repository does not have Blacksmith runners
+  connected, so those labels never pick up a job.
+
 Runner availability: <https://docs.blacksmith.sh/blacksmith-runners/overview>.
 Signing requirements: <https://docs.signpath.io/trusted-build-systems/github>.

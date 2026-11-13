@@ -57,8 +57,14 @@ export function getUpdateInstallBlockGuidance(
   return {
     title: t('updates.installBlock.readyTitle', 'Your update is ready'),
     summary: onlyServers
-      ? t('updates.installBlock.serverSummary', 'A background BrzA Studio server is still using this app.')
-      : t('updates.installBlock.instanceSummary', 'Another BrzA Studio instance is still using this app.'),
+      ? t(
+          'updates.installBlock.serverSummary',
+          'A background BrzA Studio server is still using this app.'
+        )
+      : t(
+          'updates.installBlock.instanceSummary',
+          'Another BrzA Studio instance is still using this app.'
+        ),
     explainer: onlyServers
       ? t(
           'updates.installBlock.serverGuidance',

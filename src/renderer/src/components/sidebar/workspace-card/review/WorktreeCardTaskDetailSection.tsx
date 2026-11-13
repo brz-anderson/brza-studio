@@ -126,7 +126,10 @@ export function WorktreeCardTaskActions({
       {url && onOpenIssueInBrowser ? (
         <DropdownMenuItem onClick={() => onOpenIssueInBrowser(url)}>
           <Globe className="size-3.5" />
-          {t('auto.components.sidebar.WorktreeCardMeta.openInOrcaBrowser', 'Open in BrzA Studio browser')}
+          {t(
+            'auto.components.sidebar.WorktreeCardMeta.openInOrcaBrowser',
+            'Open in BrzA Studio browser'
+          )}
         </DropdownMenuItem>
       ) : null}
       {onEdit ? (
