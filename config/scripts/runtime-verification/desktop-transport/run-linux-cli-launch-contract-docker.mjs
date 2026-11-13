@@ -27,7 +27,7 @@ const CASES = [
   {
     name: 'nofuse-userns-bundled-help',
     expectStatus: 0,
-    expectOutput: 'Usage: orca <command>',
+    expectOutput: 'Usage: brza <command>',
     why: 'The bundled launcher must run with no FUSE, no display, and userns restricted (#11609, #12530).'
   },
   {
@@ -47,19 +47,19 @@ const CASES = [
     name: 'nofuse-userns-bundled-skills',
     expectStatus: 0,
     // Why: the rendered help header, not a bare 'skills' — the case name contains that word.
-    expectOutput: 'Usage: orca skills',
+    expectOutput: 'Usage: brza skills',
     why: 'skills is a pure-text command that must never need Chromium (#14229).'
   },
   {
     name: 'nofuse-userns-bundled-worktree',
     expectStatus: 1,
-    expectOutput: "Orca is not running. Run 'orca open' first.",
+    expectOutput: "BrzA Studio is not running. Run 'orca open' first.",
     why: 'A runtime-dependent command must report the missing runtime, not abort.'
   },
   {
     name: 'nofuse-nosandbox-direct-binary-skills',
     expectStatus: 0,
-    expectOutput: 'Usage: orca skills',
+    expectOutput: 'Usage: brza skills',
     why: 'A direct binary launch that reaches JavaScript must run the command, not boot a GUI (#14229).'
   },
   {

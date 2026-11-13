@@ -1,5 +1,5 @@
 // The composer editor's mode state: plain text or Markdown shown formatted (the chat settings switch).
-import { useLayoutEffect, useMemo, useRef, type MutableRefObject } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import type { Editor } from '@tiptap/core'
 import { useAppStore } from '@/store'
 import { createRichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
@@ -40,13 +40,20 @@ export function useNativeChatPromptMode(
     ],
     [codec, markdown, placeholderRef]
   )
+  // Seed once per mode and scope. Rebuilding on each draft change drops pills and skills.
+  const documentKey = `${markdown ? 'md' : 'text'}\0${scopeKey ?? ''}`
+  const [seed, setSeed] = useState(() => ({ documentKey, value: initialValue }))
+  if (seed.documentKey !== documentKey) {
+    setSeed({ documentKey, value: initialValue })
+  }
+  const seededValue = seed.documentKey === documentKey ? seed.value : initialValue
   const initial = useMemo(
-    () => initialPromptContent(extensions, markdown, codec, scopeKey, initialValue),
-    [codec, extensions, initialValue, markdown, scopeKey]
+    () => initialPromptContent(extensions, markdown, codec, scopeKey, seededValue),
+    [codec, extensions, markdown, scopeKey, seededValue]
   )
   useLayoutEffect(() => {
     initialValueRef.current = initialValue
-  }, [initialValue, initialValueRef])
+  }, [initialValue])
   return { markdown, codec, extensions, initial, initialValueRef }
 }
 
