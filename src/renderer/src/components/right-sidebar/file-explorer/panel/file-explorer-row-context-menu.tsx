@@ -215,7 +215,10 @@ export function FileExplorerRowContextMenu({
       {!node.isDirectory && activeWorktreeId && canOpenInOrcaBrowser && (
         <ContextMenuItem onSelect={handleOpenInOrcaBrowser}>
           <Globe />
-          {t('auto.components.right.sidebar.FileExplorerRow.dd112c81d2', 'Open in BrzA Studio Browser')}
+          {t(
+            'auto.components.right.sidebar.FileExplorerRow.dd112c81d2',
+            'Open in BrzA Studio Browser'
+          )}
         </ContextMenuItem>
       )}
       {!node.isDirectory && activeWorktreeId && detectLanguage(node.path) === 'markdown' && (

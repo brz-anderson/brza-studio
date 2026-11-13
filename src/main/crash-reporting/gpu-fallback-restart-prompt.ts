@@ -12,7 +12,10 @@ export function gpuFallbackRestartOptions(): MessageBoxOptions {
     ],
     defaultId: 0,
     cancelId: 1,
-    title: translateMain('gpuFallback.restartPrompt.title', 'Restart BrzA Studio in Safe Graphics Mode?'),
+    title: translateMain(
+      'gpuFallback.restartPrompt.title',
+      'Restart BrzA Studio in Safe Graphics Mode?'
+    ),
     message: translateMain(
       'gpuFallback.restartPrompt.message',
       "BrzA Studio's graphics process has crashed repeatedly."

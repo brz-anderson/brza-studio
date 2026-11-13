@@ -1,6 +1,10 @@
 import { cp, mkdir, readFile, rm, stat } from 'node:fs/promises'
 import { dirname, isAbsolute, join, relative } from 'node:path'
-import { durableWriteTempPath, renameDurable, writeTempFileDurable } from '../filesystem/durable-file-write'
+import {
+  durableWriteTempPath,
+  renameDurable,
+  writeTempFileDurable
+} from '../filesystem/durable-file-write'
 import { resolveSessionFilePath } from '../native-chat/session-file-resolver'
 
 function claudeTranscriptIn(home: string, providerSessionId: string): Promise<string | null> {

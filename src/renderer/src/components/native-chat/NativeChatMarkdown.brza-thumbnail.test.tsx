@@ -11,7 +11,10 @@ import { NativeChatMarkdown } from './markdown/NativeChatMarkdown'
 import { NativeChatFileLinkExistenceContext } from './links/actions/native-chat-file-link-existence'
 import type { NativeChatFileLinkExistence } from '../../../../shared/native-chat/native-chat-file-link-existence'
 import { NativeChatMarkdownImageOwnerContext } from './media/images/native-chat-markdown-image-owner'
-import { repoFixture, worktreeFixture } from './surfaces/integration/native-chat-workspace-test-fixtures'
+import {
+  repoFixture,
+  worktreeFixture
+} from './surfaces/integration/native-chat-workspace-test-fixtures'
 
 const mocks = vi.hoisted(() => ({ readRuntimeFilePreview: vi.fn() }))
 

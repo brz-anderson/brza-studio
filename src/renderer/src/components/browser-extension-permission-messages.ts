@@ -129,7 +129,11 @@ export function describeUnsupportedBrowserExtensionFeatures(
   if (features.length === 0) {
     return null
   }
-  return t('browserExtensions.unsupported.line', 'Not available in BrzA Studio yet: {{features}}.', {
-    features: features.map(featureLabel).join(', ')
-  })
+  return t(
+    'browserExtensions.unsupported.line',
+    'Not available in BrzA Studio yet: {{features}}.',
+    {
+      features: features.map(featureLabel).join(', ')
+    }
+  )
 }

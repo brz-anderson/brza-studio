@@ -1234,17 +1234,17 @@ jobs:
             echo "The rpm must not carry the AppImage's Node"; exit 1
           fi
           appimage_root="$(mktemp -d)"
-          (cd "$appimage_root" && "$GITHUB_WORKSPACE/dist/orca-linux.AppImage" --appimage-extract 'resources/node-runtime/bin/node' >/dev/null)
+          (cd "$appimage_root" && "$GITHUB_WORKSPACE/dist/brza-studio-linux.AppImage" --appimage-extract 'resources/node-runtime/bin/node' >/dev/null)
           test -x "$appimage_root/squashfs-root/resources/node-runtime/bin/node"
           "$appimage_root/squashfs-root/resources/node-runtime/bin/node" --version
           rm -rf "$appimage_root"
-          ls -l dist/orca-linux.AppImage "$deb" "$rpm"
+          ls -l dist/brza-studio-linux.AppImage "$deb" "$rpm"
 
       # Kept briefly so a reviewer can run this exact AppImage on a real Linux desktop.
       - uses: actions/upload-artifact@v7
         with:
           name: orca-linux-appimage-${{ github.event.pull_request.head.sha }}
-          path: dist/orca-linux.AppImage
+          path: dist/brza-studio-linux.AppImage
           retention-days: 3
           compression-level: 0
 
@@ -1255,7 +1255,7 @@ jobs:
           ORCA_SHUTDOWN_FIXTURE_CACHE_IMAGE: ${{ steps.shutdown-fixture-cache.outputs.image }}
         run: >-
           node config/scripts/runtime-verification/daemon-lifecycle/run-headless-serve-shutdown-docker.mjs
-          --appimage dist/orca-linux.AppImage --all-entrypoints
+          --appimage dist/brza-studio-linux.AppImage --all-entrypoints
 
       # A default container reproduces the hostile AppImage launch environment.
       - wait: cli-fixture-cache
@@ -1263,7 +1263,7 @@ jobs:
       - name: Verify Linux CLI launch contract
         env:
           ORCA_CLI_FIXTURE_CACHE_IMAGE: ${{ steps.cli-fixture-cache.outputs.image }}
-        run: node config/scripts/runtime-verification/desktop-transport/run-linux-cli-launch-contract-docker.mjs --appimage dist/orca-linux.AppImage
+        run: node config/scripts/runtime-verification/desktop-transport/run-linux-cli-launch-contract-docker.mjs --appimage dist/brza-studio-linux.AppImage
 
       - name: Smoke packaged CLI
         run: node config/scripts/desktop-distribution/runtime-verification/smoke-packaged-cli.mjs --app-dir=dist/linux-unpacked
@@ -1405,7 +1405,7 @@ jobs:
         run: pnpm exec electron-builder --config config/electron-builder.config.cjs --dir
 
       - name: Smoke packaged Windows PTY native capability
-        run: pnpm run smoke:windows-pty-native-capability -- --exe=dist/win-unpacked/Orca.exe
+        run: pnpm run smoke:windows-pty-native-capability -- "--exe=dist/win-unpacked/BrzA Studio.exe"
 
       - name: Smoke packaged CLI
         run: node config/scripts/desktop-distribution/runtime-verification/smoke-packaged-cli.mjs --app-dir=dist/win-unpacked
