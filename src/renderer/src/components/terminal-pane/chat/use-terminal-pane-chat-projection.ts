@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useSyncExternalStore } from 'react'
+import { useCallback, useEffect } from 'react'
 import {
   nativeChatLaunchAgentForLeaf,
   nativeChatLeafOwnsTabWideEvidence,
@@ -11,34 +11,6 @@ import { useAppStore } from '@/store'
 import { makePaneKey } from '../../../../../shared/workspace-layout/stable-pane-id'
 import { resolvePaneAgentSessionId } from '../../../lib/agent-session/identity/pane-agent-session-id'
 import { canPaneOfferResumeInNewChat } from '../../tab-bar/tab-session-history-switch'
-
-function useChatPanePtyId(
-  paneId: number | null,
-  paneTransportsRef: TerminalPaneMobileController['paneTransportsRef']
-): string | null {
-  const subscribe = useCallback(
-    (onStoreChange: () => void) => {
-      if (paneId === null) {
-        return () => {}
-      }
-      let last = paneTransportsRef.current.get(paneId)?.getPtyId() ?? null
-      const timer = window.setInterval(() => {
-        const next = paneTransportsRef.current.get(paneId)?.getPtyId() ?? null
-        if (next !== last) {
-          last = next
-          onStoreChange()
-        }
-      }, 200)
-      return () => window.clearInterval(timer)
-    },
-    [paneId, paneTransportsRef]
-  )
-  const getSnapshot = useCallback(
-    () => (paneId === null ? null : (paneTransportsRef.current.get(paneId)?.getPtyId() ?? null)),
-    [paneId, paneTransportsRef]
-  )
-  return useSyncExternalStore(subscribe, getSnapshot, () => null)
-}
 
 export function useTerminalPaneChatProjection({
   applyNativeChatLeafRoute,
@@ -53,7 +25,6 @@ export function useTerminalPaneChatProjection({
   isChatEligibleForLeaf,
   isChatViewMode,
   toggleNativeChatForLeaf,
-  paneTransportsRef,
   resolveTitleAgentForLeaf,
   tabId,
   tabAgentTypeByLeaf,
@@ -75,7 +46,6 @@ export function useTerminalPaneChatProjection({
   | 'isChatEligibleForLeaf'
   | 'isChatViewMode'
   | 'toggleNativeChatForLeaf'
-  | 'paneTransportsRef'
   | 'resolveTitleAgentForLeaf'
   | 'tabId'
   | 'tabAgentTypeByLeaf'
@@ -117,15 +87,12 @@ export function useTerminalPaneChatProjection({
     isChatViewMode && chatLeafId
       ? (managedPanes.find((pane) => pane.leafId === chatLeafId) ?? null)
       : null
-  const layoutPtyId = useAppStore((state) =>
+  // Layout publish is the render signal; the transport ref does not notify on bind.
+  const chatPanePtyId = useAppStore((state) =>
     chatPane
       ? (state.terminalLayoutsByTabId[tabId]?.ptyIdsByLeafId?.[chatPane.leafId] ?? null)
       : null
   )
-  // The live id sits on the transport ref. Binding it does not render, so the chat would
-  // stay on "no live terminal" after the PTY connects.
-  const transportPtyId = useChatPanePtyId(chatPane?.id ?? null, paneTransportsRef)
-  const chatPanePtyId = transportPtyId ?? layoutPtyId
   const chatPaneResolvedAgent = chatPane ? resolveTitleAgentForLeaf(chatPane.leafId) : null
   const chatPaneLaunchAgent = nativeChatLaunchAgentForLeaf({
     launchAgent: terminalTab?.launchAgent,
