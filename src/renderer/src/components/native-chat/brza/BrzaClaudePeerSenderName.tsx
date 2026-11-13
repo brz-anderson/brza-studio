@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { useAppStore } from '@/store'
 import { activateAiVaultStructuredSession } from '@/lib/activate-ai-vault-structured-session'
 import type { Tab } from '../../../../../shared/tab-types'
@@ -37,6 +37,7 @@ export function BrzaClaudePeerSenderName({
   label: string
   queued: boolean
 }): React.JSX.Element {
+  const t = useTranslate()
   const tab = useAppStore((state) => findBrzaClaudePeerChatTab(state.unifiedTabsByWorktree, sender))
   if (!tab) {
     return (
@@ -50,9 +51,7 @@ export function BrzaClaudePeerSenderName({
       type="button"
       variant={queued ? 'link' : 'ghost'}
       size={queued ? 'xs' : 'sm'}
-      title={
-        queued ? label : translate('components.native-chat.agentMessage.goToAgent', 'Go to agent')
-      }
+      title={queued ? label : t('components.native-chat.agentMessage.goToAgent', 'Go to agent')}
       onClick={() =>
         void activateAiVaultStructuredSession({
           structuredSession: { workspaceId: tab.worktreeId, sessionId: tab.entityId }

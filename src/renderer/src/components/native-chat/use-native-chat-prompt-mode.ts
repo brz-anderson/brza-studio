@@ -1,7 +1,6 @@
 // The composer editor's mode state: plain text or Markdown shown formatted (the chat settings switch).
 import { useLayoutEffect, useMemo, useRef, type MutableRefObject } from 'react'
 import type { Editor } from '@tiptap/core'
-import Placeholder from '@tiptap/extension-placeholder'
 import { useAppStore } from '@/store'
 import { createRichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import {
@@ -13,6 +12,7 @@ import {
   initialPromptContent,
   promptModeCoordinates,
   promptModeExtensions,
+  promptPlaceholderExtension,
   replacePromptDocument
 } from './native-chat-prompt-editor-mode'
 import { NativeChatAgentReference } from './composer/editor/native-chat-agent-reference'
@@ -25,7 +25,6 @@ export function useNativeChatPromptMode(
   placeholderRef: MutableRefObject<string>
 ) {
   const initialValueRef = useRef(initialValue)
-  initialValueRef.current = initialValue
   const markdown = useAppStore((state) => state.settings?.nativeChatMarkdownComposer === true)
   const codec = useMemo(() => createRichMarkdownEditorCodec(), [])
   const extensions = useMemo(
@@ -37,17 +36,17 @@ export function useNativeChatPromptMode(
       NativeChatAgentReference,
       NativeChatUnkernedRunDecorations,
       // A disabled box still says why it is disabled, as the plain text box's placeholder does.
-      Placeholder.configure({
-        placeholder: () => placeholderRef.current,
-        showOnlyWhenEditable: false
-      })
+      promptPlaceholderExtension(placeholderRef)
     ],
     [codec, markdown, placeholderRef]
   )
   const initial = useMemo(
-    () => initialPromptContent(extensions, markdown, codec, scopeKey, initialValueRef.current),
-    [codec, extensions, markdown, scopeKey]
+    () => initialPromptContent(extensions, markdown, codec, scopeKey, initialValue),
+    [codec, extensions, initialValue, markdown, scopeKey]
   )
+  useLayoutEffect(() => {
+    initialValueRef.current = initialValue
+  }, [initialValue, initialValueRef])
   return { markdown, codec, extensions, initial, initialValueRef }
 }
 

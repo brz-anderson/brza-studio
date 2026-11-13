@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Copy, Maximize2, WrapText, X } from 'lucide-react'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import EditorViewToggle from '@/components/editor/view-mode/EditorViewToggle'
 import { nativeChatCodeCopyText } from '../native-chat-code-copy-text'
 import { BrzaMarkdownExpandPreview } from './BrzaMarkdownExpandPreview'
@@ -48,6 +48,7 @@ function brzaExpandButtonPosition(element: HTMLElement): { top: number; left: nu
 
 /** One ⤢ for every block in the chat, delegated from the root so no Orca row changes. */
 export function BrzaExpandLayer(): React.JSX.Element {
+  const t = useTranslate()
   const anchorRef = useRef<HTMLSpanElement>(null)
   const [hover, setHover] = useState<Hover | null>(null)
   const [expanded, setExpanded] = useState<HTMLElement | null>(null)
@@ -103,8 +104,8 @@ export function BrzaExpandLayer(): React.JSX.Element {
             <button
               type="button"
               data-brza-expand-button=""
-              aria-label={translate('brza.native-chat.expandBlock', 'Expand block')}
-              title={translate('brza.native-chat.expandBlockHint', 'Expand in chat (Esc closes)')}
+              aria-label={t('brza.native-chat.expandBlock', 'Expand block')}
+              title={t('brza.native-chat.expandBlockHint', 'Expand in chat (Esc closes)')}
               onClick={() => {
                 setExpanded(hover.element)
                 setHover(null)
@@ -134,6 +135,7 @@ function BrzaExpandOverlay(props: {
   root: Element
   onClose: () => void
 }): React.JSX.Element {
+  const t = useTranslate()
   const { source, root, onClose } = props
   const bodyRef = useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState(() => root.getBoundingClientRect())
@@ -194,13 +196,13 @@ function BrzaExpandOverlay(props: {
     <div
       data-brza-expand-overlay=""
       role="dialog"
-      aria-label={translate('brza.native-chat.expandedBlock', 'Expanded block')}
+      aria-label={t('brza.native-chat.expandedBlock', 'Expanded block')}
       style={{ top: rect.top, left: rect.left, width: rect.width, height: rect.height }}
       className="fixed z-50 flex flex-col bg-chat-canvas shadow-[0_0_0_1px_var(--border)]"
     >
       <div className="flex shrink-0 items-center gap-1 border-b border-border px-2.5 py-1.5 text-xs text-muted-foreground">
         <span className="mr-auto">
-          {translate('brza.native-chat.expandedLines', '{{count}} lines', {
+          {t('brza.native-chat.expandedLines', '{{count}} lines', {
             count: lines,
             defaultValue_one: '{{count}} line'
           })}
@@ -214,7 +216,7 @@ function BrzaExpandOverlay(props: {
         ) : null}
         {mode === 'source' ? (
           <OverlayButton
-            label={translate('components.native-chat.wrapLines', 'Wrap lines')}
+            label={t('components.native-chat.wrapLines', 'Wrap lines')}
             pressed={wrapped}
             onClick={() => setWrapped(!wrapped)}
           >
@@ -224,17 +226,14 @@ function BrzaExpandOverlay(props: {
         <OverlayButton
           label={
             copied
-              ? translate('components.native-chat.copyMessage.copied', 'Copied')
-              : translate('components.native-chat.copyCode', 'Copy code')
+              ? t('components.native-chat.copyMessage.copied', 'Copied')
+              : t('components.native-chat.copyCode', 'Copy code')
           }
           onClick={copy}
         >
           <Copy className="size-3.5" />
         </OverlayButton>
-        <OverlayButton
-          label={translate('brza.native-chat.closeExpanded', 'Close (Esc)')}
-          onClick={onClose}
-        >
+        <OverlayButton label={t('brza.native-chat.closeExpanded', 'Close (Esc)')} onClick={onClose}>
           <X className="size-3.5" />
         </OverlayButton>
       </div>

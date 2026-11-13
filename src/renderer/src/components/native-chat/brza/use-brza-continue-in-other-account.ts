@@ -15,6 +15,56 @@ import type { NativeChatAccountSwitchView } from '../use-native-chat-account-swi
  *  that follows the selection moves the selection, as the upstream's switcher on that row does,
  *  since a pinned chat ignores the selection (sync v1.4.246, R2). Null with no other account, or
  *  while the host has not said a chat that follows the selection may move. */
+async function switchUsageLimitAccount(args: {
+  target: RuntimeClientTarget
+  sessionId: string
+  accountId: string | null
+  fetchSettings: () => Promise<unknown>
+  inFlight: { current: boolean }
+  setSwitching: (switching: boolean) => void
+}): Promise<boolean> {
+  if (args.inFlight.current) {
+    return false
+  }
+  args.inFlight.current = true
+  args.setSwitching(true)
+  try {
+    const options = await callStructuredAgentSession<AgentSessionOptionsResult>(
+      args.target,
+      'agentSession.options',
+      { sessionId: args.sessionId }
+    ).catch(() => null)
+    if (options?.canSwitchAccount !== true) {
+      toast.error(
+        translate(
+          'components.native-chat.usageLimitActions.accountUnavailable',
+          'This chat cannot move to another account. Hand it off to another agent instead.'
+        )
+      )
+      return false
+    }
+    await selectClaudeProviderAccount(args.target, {
+      accountId: args.accountId,
+      runtime: 'host',
+      wslDistro: null
+    })
+    // Why: remote selections live on the server; only a local one changes GlobalSettings.
+    if (runtimeTargetEnvironmentId(args.target) === null) {
+      await args.fetchSettings()
+    }
+    return true
+  } catch (error) {
+    console.error('Failed to switch Claude account from a usage-limit row:', error)
+    toast.error(
+      translate('auto.components.settings.AccountsPane.2743cdc0af', 'Claude account update failed.')
+    )
+    return false
+  } finally {
+    args.inFlight.current = false
+    args.setSwitching(false)
+  }
+}
+
 export function useBrzaContinueInOtherAccount(
   pane: { sessionId: string; target: RuntimeClientTarget },
   chatAccountSwitch: NativeChatAccountSwitchView | null | undefined,
@@ -26,47 +76,15 @@ export function useBrzaContinueInOtherAccount(
   const [switching, setSwitching] = useState(false)
   const inFlight = useRef(false)
   const switchSelection = useCallback(
-    async (accountId: string | null): Promise<boolean> => {
-      if (inFlight.current) {
-        return false
-      }
-      inFlight.current = true
-      setSwitching(true)
-      try {
-        const options = await callStructuredAgentSession<AgentSessionOptionsResult>(
-          target,
-          'agentSession.options',
-          { sessionId }
-        ).catch(() => null)
-        if (options?.canSwitchAccount !== true) {
-          toast.error(
-            translate(
-              'components.native-chat.usageLimitActions.accountUnavailable',
-              'This chat cannot move to another account. Hand it off to another agent instead.'
-            )
-          )
-          return false
-        }
-        await selectClaudeProviderAccount(target, { accountId, runtime: 'host', wslDistro: null })
-        // Why: remote selections live on the server; only a local one changes GlobalSettings.
-        if (runtimeTargetEnvironmentId(target) === null) {
-          await fetchSettings()
-        }
-        return true
-      } catch (error) {
-        console.error('Failed to switch Claude account from a usage-limit row:', error)
-        toast.error(
-          translate(
-            'auto.components.settings.AccountsPane.2743cdc0af',
-            'Claude account update failed.'
-          )
-        )
-        return false
-      } finally {
-        inFlight.current = false
-        setSwitching(false)
-      }
-    },
+    (accountId: string | null) =>
+      switchUsageLimitAccount({
+        target,
+        sessionId,
+        accountId,
+        fetchSettings,
+        inFlight,
+        setSwitching
+      }),
     [fetchSettings, sessionId, target]
   )
   return useMemo(() => {

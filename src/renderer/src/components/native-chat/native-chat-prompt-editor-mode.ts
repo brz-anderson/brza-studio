@@ -1,5 +1,7 @@
 // The composer's two modes: plain text, or Markdown shown formatted (the chat settings switch).
 import { getSchema, type AnyExtension, type Editor, type JSONContent } from '@tiptap/core'
+import Placeholder from '@tiptap/extension-placeholder'
+import type { MutableRefObject } from 'react'
 import type { Schema } from '@tiptap/pm/model'
 import StarterKit from '@tiptap/starter-kit'
 import { encodeRawMarkdownHtmlForRichEditor } from '../editor/rich-markdown/raw-source/raw-markdown-html'
@@ -95,6 +97,13 @@ export function storedPromptDocument(
     coordinates.text(editor.schema.nodeFromJSON(stored)) === value
     ? stored
     : undefined
+}
+
+export function promptPlaceholderExtension(placeholderRef: MutableRefObject<string>): AnyExtension {
+  return Placeholder.configure({
+    placeholder: () => placeholderRef.current,
+    showOnlyWhenEditable: false
+  })
 }
 
 /** The whole document replaced as no edit of the user's: no undo step, no change event. */
