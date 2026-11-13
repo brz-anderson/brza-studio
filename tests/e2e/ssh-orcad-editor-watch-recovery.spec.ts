@@ -8,6 +8,7 @@ import {
   skipUnlessManagedDockerHost,
   withManagedHost
 } from './helpers/orcad-managed-workspace'
+import { waitForRichMarkdownEditor } from './helpers/markdown-editor-fixture'
 
 skipUnlessManagedDockerHost()
 
@@ -44,6 +45,7 @@ for (const recovery of ['conversion', 'server restart'] as const) {
           ? await relaunchManagedApp(fixture, captureRendererMessages)
           : converted.page
       await activateManagedWorkspace(page, seeded.worktreeId, environmentId)
+      await waitForRichMarkdownEditor(page)
       await expect(page.locator('.rich-markdown-editor')).toContainText(marker, { timeout: 30_000 })
       await page.evaluate(() => {
         window.addEventListener('orca:worktree-file-change', (event) => {
@@ -105,6 +107,7 @@ for (const recovery of ['conversion', 'server restart'] as const) {
       console.log('[host-updated-content]', content)
       expect(content).toContain(updatedMarker)
       await page.screenshot({ path: testInfo.outputPath('remote-editor-observed.png') })
+      await waitForRichMarkdownEditor(page)
       await expect(page.locator('.rich-markdown-editor')).toContainText(updatedMarker, {
         timeout: 15_000
       })

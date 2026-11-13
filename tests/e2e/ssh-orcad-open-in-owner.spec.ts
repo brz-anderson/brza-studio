@@ -17,6 +17,7 @@ import {
   withManagedHost
 } from './helpers/orcad-managed-workspace'
 import { dismissTransientAnnouncement } from './helpers/ssh-config-host-picker'
+import { waitForRichMarkdownEditor } from './helpers/markdown-editor-fixture'
 import { toRuntimeExecutionHostId } from '../../src/shared/execution-host'
 import { folderWorkspaceKey } from '../../src/shared/workspace-scope'
 import { quotePosixShell } from '../../src/shared/shell/launch/shell-argument-quoting'
@@ -131,6 +132,7 @@ for (const surface of [
       ).toBeNull()
       await dismissTransientAnnouncement(page)
       if (surface !== 'folder-menu') {
+        await waitForRichMarkdownEditor(page)
         await expect(page.locator('.rich-markdown-editor')).toContainText(remoteMarker, {
           timeout: 30_000
         })

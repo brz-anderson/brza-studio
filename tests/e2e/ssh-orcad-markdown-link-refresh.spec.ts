@@ -5,6 +5,7 @@ import {
   skipUnlessManagedDockerHost,
   withManagedHost
 } from './helpers/orcad-managed-workspace'
+import { waitForRichMarkdownEditor } from './helpers/markdown-editor-fixture'
 
 skipUnlessManagedDockerHost()
 
@@ -27,6 +28,7 @@ test('retained rich Markdown links refresh after remote document metadata arrive
         })
       }
     })
+    await waitForRichMarkdownEditor(page)
     await expect(page.locator('.rich-markdown-editor')).toContainText(marker, { timeout: 30_000 })
     const documents = await serverCall(page, environmentId, 'files.listMarkdownDocuments', {
       worktree: `id:${seeded.worktreeId}`
