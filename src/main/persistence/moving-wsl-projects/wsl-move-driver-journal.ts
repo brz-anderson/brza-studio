@@ -61,7 +61,7 @@ export async function journalSleptWslMove(
     }
     console.warn('[wsl-move] Could not prepare the move:', error)
     return refusal('wsl_move_export_incomplete', {
-      reasons: [`BrzA Studio could not prepare these projects' saved state (${message}).`]
+      reasons: [`Orca could not prepare these projects' saved state (${message}).`]
     })
   }
 }

@@ -131,11 +131,11 @@ function DialogHeadline({
         {unsupported === 'connect-host'
           ? t(
               'auto.components.skills.SkillFreshnessUpdateDialog.connectHost',
-              'Connect to this SSH host to check its BrzA Studio skills.'
+              'Connect to this SSH host to check its Orca skills.'
             )
           : t(
               'auto.components.skills.SkillFreshnessUpdateDialog.updateServer',
-              'Update BrzA Studio on the server to update its BrzA Studio skills.'
+              'Update Orca on the server to update its Orca skills.'
             )}
       </p>
     )

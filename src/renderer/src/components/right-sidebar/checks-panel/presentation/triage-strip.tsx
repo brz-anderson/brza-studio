@@ -190,7 +190,7 @@ export function PRTriageStrip({
             <div className="truncate text-[10px] text-muted-foreground">
               {t(
                 'auto.components.right.sidebar.checks.panel.content.5856874b59',
-                'BrzA Studio will refresh checks while this panel stays open.'
+                'Orca will refresh checks while this panel stays open.'
               )}
             </div>
           </div>

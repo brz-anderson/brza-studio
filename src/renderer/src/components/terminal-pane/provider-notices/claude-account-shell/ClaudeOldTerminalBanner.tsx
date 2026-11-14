@@ -94,7 +94,7 @@ export function ClaudeOldTerminalBanner({
         <PaneTopWarningBanner
           title={t(
             'terminal.claudeOldTerminalBanner.title',
-            "This terminal was opened before BrzA Studio's Claude account update, so claude here uses System default's login."
+            "This terminal was opened before Orca's Claude account update, so claude here uses System default's login."
           )}
           body={
             <PaneBannerLearnMore
@@ -128,7 +128,7 @@ export function ClaudeOldTerminalBanner({
         )}
         description={t(
           'terminal.claudeOldTerminalBanner.dialogDescription',
-          'BrzA Studio now keeps each Claude account in its own folder, and claude in a new terminal follows the account you select.'
+          'Orca now keeps each Claude account in its own folder, and claude in a new terminal follows the account you select.'
         )}
         cause={t(
           'terminal.claudeOldTerminalBanner.dialogCause',

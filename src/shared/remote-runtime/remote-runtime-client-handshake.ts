@@ -36,8 +36,8 @@ export function formatRemoteRuntimeCloseMessage(code: number, reason: Buffer): s
     suffixParts.push(reasonText)
   }
   return suffixParts.length > 0
-    ? `Remote BrzA Studio runtime closed the connection (${suffixParts.join(': ')}).`
-    : 'Remote BrzA Studio runtime closed the connection.'
+    ? `Remote Orca runtime closed the connection (${suffixParts.join(': ')}).`
+    : 'Remote Orca runtime closed the connection.'
 }
 
 export function ignoreSettledRemoteRuntimeSocketError(): void {}

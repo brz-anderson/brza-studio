@@ -12,7 +12,7 @@ export function SummaryHeadline({ plan }: { plan: BundledSkillPlan | null }): Re
         <Loader2 className="size-4 animate-spin" />
         {t(
           'auto.components.skills.SkillFreshnessUpdateDialog.checking',
-          'Checking installed BrzA Studio skills…'
+          'Checking installed Orca skills…'
         )}
       </div>
     )
@@ -22,7 +22,7 @@ export function SummaryHeadline({ plan }: { plan: BundledSkillPlan | null }): Re
       <p className="text-xs text-muted-foreground">
         {t(
           'auto.components.skills.SkillFreshnessUpdateDialog.none',
-          'No installed BrzA Studio skills found.'
+          'No installed Orca skills found.'
         )}
       </p>
     )
@@ -73,7 +73,7 @@ export function SummaryHeadline({ plan }: { plan: BundledSkillPlan | null }): Re
       <CheckCircle2 className="size-4 text-emerald-600 dark:text-emerald-400" />
       {t(
         'auto.components.skills.SkillFreshnessUpdateDialog.success',
-        'All installed BrzA Studio skills are up to date.'
+        'All installed Orca skills are up to date.'
       )}
     </div>
   )

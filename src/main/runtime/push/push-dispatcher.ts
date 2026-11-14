@@ -101,7 +101,7 @@ export class PushDispatcher {
           notificationEpoch: target.notificationEpoch,
           source: 'agent-task-complete',
           agentState: null,
-          title: 'BrzA Studio',
+          title: 'Orca',
           body: '',
           sound: false
         }

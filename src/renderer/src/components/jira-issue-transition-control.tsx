@@ -142,7 +142,7 @@ export function JiraIssueTransitionControl({
               <p className="text-xs text-muted-foreground">
                 {t(
                   'jira.transitions.unsupported',
-                  'Jira requires fields BrzA Studio cannot collect yet: {{fields}}.',
+                  'Jira requires fields Orca cannot collect yet: {{fields}}.',
                   { fields: requirement.fields.map((field) => field.name).join(', ') }
                 )}
               </p>

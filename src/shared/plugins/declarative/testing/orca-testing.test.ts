@@ -63,7 +63,7 @@ describe('orca/testing', () => {
     expect(panel.tree()).toEqual({ type: 'Text', children: ['migrated v1'] })
   })
 
-  it("reports a render BrzA Studio would refuse and the plugin's own errors", async () => {
+  it("reports a render Orca would refuse and the plugin's own errors", async () => {
     panel = await mount(() => h('List', null, h('Text', null, 'not an item')))
     expect(panel.errors).toEqual([
       expect.objectContaining({ kind: 'refused', message: expect.stringContaining('ListItem') })

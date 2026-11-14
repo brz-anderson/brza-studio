@@ -79,15 +79,15 @@ function runDesktopRecovery(argv: readonly string[]): void {
         buttons: [translateMain('profileState.recoveryNotApplied.quitButton', 'Quit')],
         title: translateMain(
           'profileState.recoveryNotApplied.title',
-          'BrzA Studio could not finish recovering this profile'
+          'Orca could not finish recovering this profile'
         ),
         message: translateMain(
           'profileState.recoveryNotApplied.message',
-          'BrzA Studio could not apply the selected profile state.'
+          'Orca could not apply the selected profile state.'
         ),
         detail: `${response.message}\n\n${translateMain(
           'profileState.recoveryNotApplied.reopenDetail',
-          'Reopen BrzA Studio to choose again.'
+          'Reopen Orca to choose again.'
         )}`
       })
     )
@@ -119,7 +119,7 @@ function runRecoveryRequest(payload: string | undefined): ProfileStateRecoveryRe
       if (!acquireSingleInstanceLock(app, () => {})) {
         throw new ProfileStateRecoveryCommandError(
           'runtime_error',
-          'Stop BrzA Studio before profile-state rollback so no process can write the SQLite database.'
+          'Stop Orca before profile-state rollback so no process can write the SQLite database.'
         )
       }
       return {

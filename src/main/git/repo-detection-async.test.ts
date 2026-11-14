@@ -58,7 +58,7 @@ describe('asynchronous repository detection with real Git', () => {
       await git(repo, ['init', '--quiet'])
       await git(repo, [
         '-c',
-        'user.name=BrzA Studio Test',
+        'user.name=Orca Test',
         '-c',
         'user.email=orca@example.invalid',
         'commit',

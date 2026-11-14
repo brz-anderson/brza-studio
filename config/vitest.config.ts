@@ -17,6 +17,7 @@ import { readRunFilters } from './scripts/test-runtime/execution-policy/vitest-r
 import { createWorkspaceSourceResolver } from './scripts/workspace/source-exports/workspace-source-exports.mjs'
 import { moduleCacheResolutionKey } from './scripts/test-runtime/module-cache/vitest-module-cache-resolution-key'
 import { vitestReactCompiler } from './build-plugins/vitest-react-compiler'
+import { brandOverlayPlugin } from './build-plugins/brand-overlay'
 
 const nodeRuntimeInclude = process.versions.bun
   ? getNodeRuntimeInclude({ filters: readRunFilters() })
@@ -29,6 +30,7 @@ const transforms = {
   tsconfig: resolve(import.meta.dirname, 'tsconfig.vitest-transform.json'),
   oxc: { exclude: [/\.js$/, phoneContractPattern] },
   plugins: [
+    brandOverlayPlugin(),
     {
       // These plain TS consumers need no Expo app configuration in root-only installs.
       name: 'phone-contract-oxc',

@@ -53,7 +53,7 @@ export function describeRuntimeCompatBlock(
   if (verdict.reason === 'client-too-old') {
     return t(
       'runtime.compat.clientTooOld',
-      'This BrzA Studio client is too old for the selected server. Update BrzA Studio on this machine. Client protocol {{clientProtocol}}, server requires client protocol {{requiredProtocol}}.',
+      'This Orca client is too old for the selected server. Update Orca on this machine. Client protocol {{clientProtocol}}, server requires client protocol {{requiredProtocol}}.',
       {
         clientProtocol: verdict.clientProtocolVersion,
         requiredProtocol: verdict.requiredClientProtocolVersion
@@ -62,7 +62,7 @@ export function describeRuntimeCompatBlock(
   }
   return t(
     'runtime.compat.serverTooOld',
-    'The selected BrzA Studio server is too old for this client. Update BrzA Studio on the server. Server protocol {{serverProtocol}}, client requires server protocol {{requiredProtocol}}.',
+    'The selected Orca server is too old for this client. Update Orca on the server. Server protocol {{serverProtocol}}, client requires server protocol {{requiredProtocol}}.',
     {
       serverProtocol: verdict.serverProtocolVersion,
       requiredProtocol: verdict.requiredServerProtocolVersion

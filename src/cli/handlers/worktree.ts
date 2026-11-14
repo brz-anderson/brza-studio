@@ -244,7 +244,7 @@ export const WORKTREE_HANDLERS: Record<string, CommandHandler> = {
       pending,
       parentSelector
         ? [
-            `BrzA Studio could not find the worktree selector "${worktree}" or the parent selector "${parentSelector}". The server did not identify which selector failed.`,
+            `Orca could not find the worktree selector "${worktree}" or the parent selector "${parentSelector}". The server did not identify which selector failed.`,
             'Check both selectors with orca worktree show --worktree <selector> --json.'
           ]
         : []
@@ -270,7 +270,7 @@ export const WORKTREE_HANDLERS: Record<string, CommandHandler> = {
     if (!hostId) {
       throw new RuntimeClientError(
         'worktree_host_unresolved',
-        'BrzA Studio cannot tell which host owns this workspace. Refresh projects and try again.'
+        'Orca cannot tell which host owns this workspace. Refresh projects and try again.'
       )
     }
     if (flags.get('allow-failed-archive-hook') === true && flags.get('run-hooks') !== true) {
@@ -293,7 +293,7 @@ export const WORKTREE_HANDLERS: Record<string, CommandHandler> = {
     printResult(result, json, (value) =>
       // Hosts that predate waiting answer on acceptance.
       value.removing
-        ? 'removed: false\nBrzA Studio is still deleting the checkout in the background.'
+        ? 'removed: false\nOrca is still deleting the checkout in the background.'
         : value.removed === true
           ? 'removed: true'
           : 'Removal is not confirmed.'

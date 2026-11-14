@@ -17,7 +17,7 @@ vi.mock('../../native-chat/agent-session-wire/host/structured-agent-session-regi
   getStructuredAgentSessionHost: () => hostRef.current
 }))
 
-describe('orchestration.callerShow: a session learns its BrzA Studio session ID from the host', () => {
+describe('orchestration.callerShow: a session learns its Orca session ID from the host', () => {
   let h: SessionCallerHarness
 
   beforeEach(() => {
@@ -33,7 +33,7 @@ describe('orchestration.callerShow: a session learns its BrzA Studio session ID 
     return orchestrationRequest('orchestration.callerShow', {}, options)
   }
 
-  it('gives the menu the BrzA Studio session ID each session of a cleared chat acts as', async () => {
+  it('gives the menu the Orca session ID each session of a cleared chat acts as', async () => {
     const cleared = sessionRecord(SESSION_X)
     h.records.set(SESSION_X, {
       ...cleared,

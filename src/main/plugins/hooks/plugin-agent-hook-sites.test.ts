@@ -107,7 +107,7 @@ describe('agent.launch.before at the spawn', () => {
     )
   })
 
-  it('keeps BrzA Studio’s own variables out of a plugin’s reach', async () => {
+  it('keeps Orca’s own variables out of a plugin’s reach', async () => {
     const outcome = await runPluginHookChain({
       event: 'agent.launch.before',
       payload: {

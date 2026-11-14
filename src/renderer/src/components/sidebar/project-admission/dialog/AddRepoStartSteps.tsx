@@ -160,7 +160,7 @@ export function AddRepoLocalStartStep({
           <DialogDescription>
             {t(
               'auto.components.sidebar.AddRepoStartSteps.acf895cb42',
-              'Add a project to get started with BrzA Studio.'
+              'Add a project to get started with Orca.'
             )}
           </DialogDescription>
         ) : null}

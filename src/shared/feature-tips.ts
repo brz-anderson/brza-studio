@@ -80,7 +80,7 @@ export const FEATURE_TIPS = [
     id: 'orca-cli',
     priority: 'new',
     eyebrow: 'Tip',
-    title: 'Let agents drive BrzA Studio with the BrzA Studio CLI',
+    title: 'Let agents drive Orca with the Orca CLI',
     description: 'Enable agents to coordinate child worktrees and communicate between worktrees.',
     action: 'setup-cli',
     ctaLabel: 'Install CLI & Skills',

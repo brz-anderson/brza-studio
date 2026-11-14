@@ -95,7 +95,7 @@ export function AutomationDestinationField({
             // Replacer fn: a literal replacement would expand `$` patterns in host labels.
             t(
               'auto.components.automations.createDestination.updateRequired',
-              'Update the BrzA Studio server on {hosts} to store automations there.'
+              'Update the Orca server on {hosts} to store automations there.'
             ).replace('{hosts}', () => updateRequiredAuthorities.join(', '))
           }
         </p>

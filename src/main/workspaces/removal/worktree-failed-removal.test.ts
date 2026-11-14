@@ -221,7 +221,7 @@ describe('a delete that fails after Git dropped the registration', () => {
       publish: () => {}
     }))
 
-    const message = `A different checkout is now at ${checkout}; BrzA Studio left it in place. Delete it again to remove it.`
+    const message = `A different checkout is now at ${checkout}; Orca left it in place. Delete it again to remove it.`
     await expect(retried).rejects.toThrow(message)
     await _settlePendingWorktreeRemovalsForTests()
     expect(run).not.toHaveBeenCalled()
@@ -230,7 +230,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     ])
   })
 
-  it('ends at the next listing once the checkout is deleted outside BrzA Studio', async () => {
+  it('ends at the next listing once the checkout is deleted outside Orca', async () => {
     await failRemoval()
     await rm(checkout, { recursive: true })
 
@@ -240,7 +240,7 @@ describe('a delete that fails after Git dropped the registration', () => {
     )
   })
 
-  it('ends at startup once its repo is removed from BrzA Studio, leaving the files', async () => {
+  it('ends at startup once its repo is removed from Orca, leaving the files', async () => {
     await failRemoval()
     _resetPendingWorktreeRemovalsForTests()
 

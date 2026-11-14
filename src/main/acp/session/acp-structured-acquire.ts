@@ -217,7 +217,7 @@ export async function acquireAcpStructuredSession(input: {
       onFailed: (reason) =>
         input.forceClose(
           sessionId,
-          `BrzA Studio stopped ${agentName} after its chat journal refused a write (${reason})`
+          `Orca stopped ${agentName} after its chat journal refused a write (${reason})`
         )
     })
     slot.lane = lane

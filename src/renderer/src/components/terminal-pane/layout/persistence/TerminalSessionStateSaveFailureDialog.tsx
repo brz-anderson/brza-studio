@@ -51,7 +51,7 @@ export function TerminalSessionStateSaveFailureDialog({
                 )
               : t(
                   'terminal.sessionSaveFailure.unknown',
-                  'BrzA Studio could not save the terminal state. Try again. If this continues, share the BrzA Studio logs with support so we can identify the cause.'
+                  'Orca could not save the terminal state. Try again. If this continues, share the Orca logs with support so we can identify the cause.'
                 )}
           </DialogDescription>
         </DialogHeader>

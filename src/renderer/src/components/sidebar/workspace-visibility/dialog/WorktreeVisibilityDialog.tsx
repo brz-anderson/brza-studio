@@ -346,7 +346,7 @@ export default function WorktreeVisibilityDialog(): React.JSX.Element | null {
             <DialogTitle>
               {t(
                 'auto.components.sidebar.WorktreeVisibilityDialog.83a5ba8dd1',
-                'Non-BrzA Studio worktrees'
+                'Non-Orca worktrees'
               )}
             </DialogTitle>
             <WorktreeVisibilityHelpPopover />

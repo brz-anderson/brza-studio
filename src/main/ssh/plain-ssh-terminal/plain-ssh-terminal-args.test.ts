@@ -14,7 +14,7 @@ const manual: SshTarget = {
 }
 
 describe('plain SSH terminal argv', () => {
-  it('logs in interactively: no -T, BatchMode or BrzA Studio multiplexing', () => {
+  it('logs in interactively: no -T, BatchMode or Orca multiplexing', () => {
     const args = buildPlainSshTerminalArgs(manual)
     expect(args).not.toContain('-T')
     expect(args.join(' ')).not.toMatch(/BatchMode|ControlMaster|ControlPath|ControlPersist|-S/)

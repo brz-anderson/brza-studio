@@ -226,7 +226,7 @@ export function ChecksPanelEmptyContent({
       reviewState.autoRetryAt !== undefined && reviewState.autoRetryAt > now
         ? t(
             'auto.components.right.sidebar.ChecksPanel.review.auto_retry',
-            'BrzA Studio will retry at {{time}}.',
+            'Orca will retry at {{time}}.',
             { time: new Date(reviewState.autoRetryAt).toLocaleTimeString(intlLocale) }
           )
         : null

@@ -16,7 +16,7 @@ function fixtureRepo(): Repo {
   return {
     id: FIXTURE_REPO_ID,
     path: '/dev/orca-sample',
-    displayName: 'BrzA Studio Sample App',
+    displayName: 'Orca Sample App',
     badgeColor: '#8b5cf6',
     addedAt: Date.now(),
     kind: 'git',

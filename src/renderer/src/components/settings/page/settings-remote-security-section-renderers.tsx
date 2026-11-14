@@ -20,16 +20,16 @@ export function renderServersSettingsSection(
     <RuntimeServersPageProvider>
       <SettingsSection
         id="servers"
-        title={t('auto.components.settings.Settings.022effa46f', 'Remote BrzA Studio servers')}
+        title={t('auto.components.settings.Settings.022effa46f', 'Remote Orca servers')}
         description={
           model.isWebClient
             ? t(
                 'auto.components.settings.Settings.7686cb5c36',
-                'Connect this browser to a saved BrzA Studio server.'
+                'Connect this browser to a saved Orca server.'
               )
             : t(
                 'auto.components.settings.Settings.remoteServersDescription',
-                'Run BrzA Studio on another machine and work on it from here.'
+                'Run Orca on another machine and work on it from here.'
               )
         }
         searchEntries={navigation.getSectionSearchEntries('servers')}

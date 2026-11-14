@@ -80,7 +80,7 @@ export function AutoRenameFailedDialog({
           i18n={i18n}
           defaults={t(
             'auto.components.sidebar.AutoRenameFailedDialog.couldNotGenerateBranchName',
-            "BrzA Studio couldn't generate a branch name for <name>{{name}}</name> from the first agent message."
+            "Orca couldn't generate a branch name for <name>{{name}}</name> from the first agent message."
           )}
           values={{ name: worktreeName }}
           components={{ name: <span className="font-medium text-foreground" /> }}

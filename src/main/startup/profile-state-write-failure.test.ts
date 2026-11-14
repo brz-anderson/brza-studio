@@ -84,9 +84,9 @@ it('attaches the alert to the visible main window and explains an unconfirmed wr
   expect(fixture.show).toHaveBeenCalledWith(window, {
     type: 'error',
     title: 'Saving stopped',
-    message: 'BrzA Studio has stopped saving this profile.',
+    message: 'Orca has stopped saving this profile.',
     detail:
-      'BrzA Studio could not confirm whether your most recent change was saved. New changes will not be saved until you restart BrzA Studio.',
+      'Orca could not confirm whether your most recent change was saved. New changes will not be saved until you restart Orca.',
     buttons: ['OK']
   })
   expect(recordProfileStateWriteFailureReport).toHaveBeenCalledWith(workerExit, 'dialog')

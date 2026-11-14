@@ -83,10 +83,10 @@ export function installMainWindowCloseLifecycle(args: {
     if (store.getUI().trayMinimizeNoticeShown !== true) {
       try {
         new Notification({
-          title: 'BrzA Studio',
+          title: 'Orca',
           body: translateMain(
             'tray.minimizeNotice.body',
-            'BrzA Studio is still running in the system tray'
+            'Orca is still running in the system tray'
           )
         }).show()
       } catch {

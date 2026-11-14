@@ -25,7 +25,7 @@ export type CliErrorContext = {
 type ContextRecovery = { nextSteps: readonly string[] } & Record<string, unknown>
 
 const STALE_HANDLE_SERVER_HINT =
-  'Terminal handles belong to the BrzA Studio server that issued them. If this handle came from a paired server (for example `orca terminal list --environment <server>`), pass the same --environment <server> to this command.'
+  'Terminal handles belong to the Orca server that issued them. If this handle came from a paired server (for example `orca terminal list --environment <server>`), pass the same --environment <server> to this command.'
 
 function contextRecovery(error: unknown, context: CliErrorContext): ContextRecovery | undefined {
   const code = cliErrorCode(error)
@@ -144,7 +144,7 @@ function formatRuntimeUnavailableError(message: string, data: unknown): string {
   if (nextSteps.length > 0) {
     return formatMessageWithNextSteps(message, nextSteps)
   }
-  return `${message}\nBrzA Studio is not running. Run 'orca open' first.`
+  return `${message}\nOrca is not running. Run 'orca open' first.`
 }
 
 // Streaming commands print one JSON object per line with --json, so their failure is one line too.

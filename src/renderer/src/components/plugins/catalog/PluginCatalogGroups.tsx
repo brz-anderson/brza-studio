@@ -112,7 +112,7 @@ export function CatalogCard({
             ? {
                 text: t(
                   'auto.components.settings.PluginMarketplaceListingRow.blocked',
-                  "Blocked by BrzA Studio's safety list: {{value0}}",
+                  "Blocked by Orca's safety list: {{value0}}",
                   { value0: listing.blockedByKillList.reason }
                 ),
                 tone: 'destructive'

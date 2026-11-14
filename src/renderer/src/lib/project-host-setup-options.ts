@@ -224,7 +224,7 @@ export function getHostSetupUnavailableDetail(
   if (host.health === 'blocked') {
     return t(
       'auto.components.settings.RepositoryPane.hostSetupBlockedVersion',
-      'BrzA Studio server version is incompatible'
+      'Orca server version is incompatible'
     )
   }
   if (host.kind !== 'runtime') {
@@ -242,7 +242,7 @@ export function getHostSetupUnavailableDetail(
   ) {
     return t(
       'auto.components.settings.RepositoryPane.hostSetupMissingCapability',
-      'Update BrzA Studio on this host to set up projects'
+      'Update Orca on this host to set up projects'
     )
   }
   return null

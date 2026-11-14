@@ -75,7 +75,7 @@ function panelProps(
 ): ComponentProps<typeof AgentSkillSetupPanel> {
   return {
     title: 'CLI skill',
-    description: 'Enables agents to use BrzA Studio workflows.',
+    description: 'Enables agents to use Orca workflows.',
     skillNames: ['orca-cli'],
     installed: false,
     loading: false,

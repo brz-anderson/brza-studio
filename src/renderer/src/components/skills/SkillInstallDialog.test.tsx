@@ -75,7 +75,7 @@ function installApi(previewInstall: ReturnType<typeof vi.fn>) {
 }
 
 async function inspectSkill(expectedDescription = 'A private skill'): Promise<void> {
-  fireEvent.change(screen.getByLabelText('BrzA Studio skill link'), {
+  fireEvent.change(screen.getByLabelText('Orca skill link'), {
     target: { value: 'https://app.orca.dev/skills/share/share_1' }
   })
   fireEvent.click(screen.getByRole('button', { name: 'Inspect skill' }))
@@ -131,7 +131,7 @@ describe('SkillInstallDialog', () => {
   it('surfaces capability loss after preview selection without attempting installation', async () => {
     const previewInstall = vi.fn().mockResolvedValue({
       status: 'unsupported',
-      message: 'Update the selected BrzA Studio host to install shared skills.'
+      message: 'Update the selected Orca host to install shared skills.'
     })
     const skills = installApi(previewInstall)
     Object.defineProperty(window, 'api', { configurable: true, value: { skills } })
@@ -141,7 +141,7 @@ describe('SkillInstallDialog', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Install skill' }))
 
     expect((await screen.findByRole('alert')).textContent).toContain(
-      'Update the selected BrzA Studio host'
+      'Update the selected Orca host'
     )
     expect(skills.installShare).not.toHaveBeenCalled()
   })

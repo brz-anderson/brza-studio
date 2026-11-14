@@ -55,7 +55,7 @@ it('reads only the fenced path, off the main thread and without the login shell'
 it('refuses a home whose check failed in the distro', async () => {
   runWslProcess.mockImplementation(async (spec) => answer(spec, '', 35))
   await expect(new CodexManagedHomePath().assert(UNC_HOME, 'acct')).rejects.toThrow(
-    'Managed WSL Codex home is outside BrzA Studio account storage.'
+    'Managed WSL Codex home is outside Orca account storage.'
   )
 })
 
@@ -68,6 +68,6 @@ it('refuses a home whose check printed no fence', async () => {
     timedOut: false
   })
   await expect(new CodexManagedHomePath().assert(UNC_HOME, 'acct')).rejects.toThrow(
-    'Managed WSL Codex home is outside BrzA Studio account storage.'
+    'Managed WSL Codex home is outside Orca account storage.'
   )
 })

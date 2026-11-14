@@ -44,8 +44,8 @@ export function dashboardHostTooltipLabel(
       : t('dashboardPopout.host.ssh', 'SSH host')
   }
   return label
-    ? t('dashboardPopout.host.remoteNamed', 'Remote BrzA Studio host · {{host}}', { host: label })
-    : t('dashboardPopout.host.remote', 'Remote BrzA Studio host')
+    ? t('dashboardPopout.host.remoteNamed', 'Remote Orca host · {{host}}', { host: label })
+    : t('dashboardPopout.host.remote', 'Remote Orca host')
 }
 
 export function DashboardHostBadge({

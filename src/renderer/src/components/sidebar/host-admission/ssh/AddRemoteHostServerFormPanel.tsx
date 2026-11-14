@@ -39,7 +39,7 @@ export function AddRemoteHostServerFormPanel({
         <DialogDescription>
           {t(
             'auto.components.sidebar.AddRemoteHostDialog.serverDescription',
-            'Pair with BrzA Studio running on another computer.'
+            'Pair with Orca running on another computer.'
           )}
         </DialogDescription>
       </DialogHeader>

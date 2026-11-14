@@ -66,7 +66,7 @@ export function VoiceSpeechModelQuality({
         )
   const bench = t(
     'components.settings.voice.quality.bench',
-    'BrzA Studio’s benchmark on a Mac with Apple silicon.'
+    'Orca’s benchmark on a Mac with Apple silicon.'
   )
 
   return (

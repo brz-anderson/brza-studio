@@ -79,7 +79,7 @@ afterEach(() => {
 })
 
 describe('removeRealHomeCodexHookForOptOut', () => {
-  it("keeps a malformed hooks.json's bytes, BrzA Studio's trust and its ledger", async () => {
+  it("keeps a malformed hooks.json's bytes, Orca's trust and its ledger", async () => {
     mkdirSync(join(home, '.codex'))
     const entry: CodexTrustEntry = { ...orcaStopAt(hooksJsonPath()), timeoutSec: 10 }
     writeFileSync(configTomlPath(), upsertHookTrustEntriesInContent('', [entry]), 'utf-8')
@@ -93,7 +93,7 @@ describe('removeRealHomeCodexHookForOptOut', () => {
     expect(readCodexTrustGrantLedgerHome(join(home, '.codex'))).not.toBeNull()
   })
 
-  it('removes only hash-proven BrzA Studio trust from a mixed hook group', async () => {
+  it('removes only hash-proven Orca trust from a mixed hook group', async () => {
     mkdirSync(join(home, '.codex'))
     const userCommand = 'my-user-hook.sh'
     writeFileSync(
@@ -129,7 +129,7 @@ describe('removeRealHomeCodexHookForOptOut', () => {
     expect(trust.has(computeTrustKey(entries[1]!))).toBe(false)
   })
 
-  it("moves the approval of a user hook that sat after BrzA Studio's, so it stays approved", async () => {
+  it("moves the approval of a user hook that sat after Orca's, so it stays approved", async () => {
     mkdirSync(join(home, '.codex'))
     const before = { type: 'command', command: 'before.sh' }
     const after = { type: 'command', command: 'after.sh' }

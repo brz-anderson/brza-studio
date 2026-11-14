@@ -39,7 +39,7 @@ export async function sendRequest<TResult>(
       reject(
         new RuntimeClientError(
           'runtime_unavailable',
-          'No compatible transport found in BrzA Studio runtime metadata.'
+          'No compatible transport found in Orca runtime metadata.'
         )
       )
       return
@@ -49,7 +49,7 @@ export async function sendRequest<TResult>(
       reject(
         new RuntimeClientError(
           'runtime_unavailable',
-          'BrzA Studio runtime socket directory is not private to this user.'
+          'Orca runtime socket directory is not private to this user.'
         )
       )
       return
@@ -72,7 +72,7 @@ export async function sendRequest<TResult>(
       reject(
         new RuntimeClientError(
           'runtime_timeout',
-          'Timed out waiting for the BrzA Studio runtime to respond.'
+          'Timed out waiting for the Orca runtime to respond.'
         )
       )
     }, timeoutMs)
@@ -103,8 +103,8 @@ export async function sendRequest<TResult>(
           classifySocketError(error) ??
           new RuntimeClientError(
             'runtime_unavailable',
-            'This terminal could not connect to BrzA Studio.',
-            { nextSteps: ['Check that BrzA Studio is open and that this terminal can access it.'] }
+            'This terminal could not connect to Orca.',
+            { nextSteps: ['Check that Orca is open and that this terminal can access it.'] }
           )
       })
     })
@@ -114,8 +114,8 @@ export async function sendRequest<TResult>(
         ok: false,
         error: new RuntimeClientError(
           'runtime_unavailable',
-          'BrzA Studio closed the connection before responding.',
-          { nextSteps: ['Check that BrzA Studio is open and that this terminal can access it.'] }
+          'Orca closed the connection before responding.',
+          { nextSteps: ['Check that Orca is open and that this terminal can access it.'] }
         )
       })
     })
@@ -147,7 +147,7 @@ export async function sendRequest<TResult>(
             ok: false,
             error: new RuntimeClientError(
               'invalid_runtime_response',
-              'The BrzA Studio runtime returned an invalid response frame.'
+              'The Orca runtime returned an invalid response frame.'
             )
           })
           return
@@ -166,7 +166,7 @@ export async function sendRequest<TResult>(
             ok: false,
             error: new RuntimeClientError(
               'invalid_runtime_response',
-              'The BrzA Studio runtime returned an invalid response frame.'
+              'The Orca runtime returned an invalid response frame.'
             )
           })
           return
@@ -184,7 +184,7 @@ export async function sendRequest<TResult>(
             ok: false,
             error: new RuntimeClientError(
               'invalid_runtime_response',
-              'The BrzA Studio runtime returned a mismatched response id.'
+              'The Orca runtime returned a mismatched response id.'
             )
           })
           return
@@ -194,7 +194,7 @@ export async function sendRequest<TResult>(
             ok: false,
             error: new RuntimeClientError(
               'runtime_unavailable',
-              'The BrzA Studio runtime changed while the request was in flight.',
+              'The Orca runtime changed while the request was in flight.',
               { nextSteps: ['Retry the command.'] }
             )
           })

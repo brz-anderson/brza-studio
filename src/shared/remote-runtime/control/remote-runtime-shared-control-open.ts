@@ -107,7 +107,7 @@ export function openSharedControlSocket(
       }
       callbacks.onSocketClosed(
         remoteRuntimeUnavailableError(
-          'Remote BrzA Studio runtime stopped responding; resetting the control connection.'
+          'Remote Orca runtime stopped responding; resetting the control connection.'
         ),
         cause
       )

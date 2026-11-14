@@ -41,7 +41,7 @@ describe.runIf(process.platform === 'win32' && Boolean(distro))(
       const linkedPath = join(fixtureRoot, 'linked')
 
       hostGit(['init', mainPath], fixtureRoot)
-      hostGit(['config', 'user.name', 'BrzA Studio Test'], mainPath)
+      hostGit(['config', 'user.name', 'Orca Test'], mainPath)
       hostGit(['config', 'user.email', 'test@invalid'], mainPath)
       await writeFile(join(mainPath, 'tracked.txt'), 'tracked\n')
       hostGit(['add', 'tracked.txt'], mainPath)

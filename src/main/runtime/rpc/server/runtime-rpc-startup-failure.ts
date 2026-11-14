@@ -70,24 +70,24 @@ const GUIDANCE_BY_ERROR_CLASS: Readonly<
   permission_denied: {
     key: 'runtimeRpc.startupFailure.guidance.permissionDenied',
     fallback:
-      "BrzA Studio couldn't write its runtime file. Check permissions on BrzA Studio's data folder, then restart."
+      "Orca couldn't write its runtime file. Check permissions on Orca's data folder, then restart."
   },
   storage_unavailable: {
     key: 'runtimeRpc.startupFailure.guidance.storageUnavailable',
-    fallback: 'Your disk may be full or read-only. Free up space, then restart BrzA Studio.'
+    fallback: 'Your disk may be full or read-only. Free up space, then restart Orca.'
   },
   invalid_path: {
     key: 'runtimeRpc.startupFailure.guidance.invalidPath',
     fallback:
-      "BrzA Studio's data folder may be missing, moved, or at a path that is too long. Restore it or use a shorter path, then restart BrzA Studio."
+      "Orca's data folder may be missing, moved, or at a path that is too long. Restore it or use a shorter path, then restart Orca."
   },
   address_in_use: {
     key: 'runtimeRpc.startupFailure.guidance.addressInUse',
-    fallback: 'Another process may be holding the port. Restart BrzA Studio to try again.'
+    fallback: 'Another process may be holding the port. Restart Orca to try again.'
   },
   unknown: {
     key: 'runtimeRpc.startupFailure.guidance.unknown',
-    fallback: 'Restart BrzA Studio to try again.'
+    fallback: 'Restart Orca to try again.'
   }
 }
 
@@ -100,14 +100,14 @@ function createRuntimeRpcStartupFailureDialogOptions(error: unknown): MessageBox
     defaultId: 0,
     cancelId: 0,
     noLink: true,
-    title: translateMain('runtimeRpc.startupFailure.title', 'BrzA Studio CLI unavailable'),
+    title: translateMain('runtimeRpc.startupFailure.title', 'Orca CLI unavailable'),
     message: translateMain(
       'runtimeRpc.startupFailure.message',
-      "BrzA Studio couldn't start its local command transport."
+      "Orca couldn't start its local command transport."
     ),
     detail: translateMain(
       'runtimeRpc.startupFailure.detail',
-      'BrzA Studio will continue to work, but commands such as orca status, orca terminal, and orchestration are unavailable for this session.\n\n{{guidance}}\n\nCause: {{cause}}',
+      'Orca will continue to work, but commands such as orca status, orca terminal, and orchestration are unavailable for this session.\n\n{{guidance}}\n\nCause: {{cause}}',
       { cause, guidance: translateMain(key, fallback) }
     )
   }
