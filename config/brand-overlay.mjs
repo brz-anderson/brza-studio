@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 // Why: a global replace would rewrite the thousands of intentional "Orca" mentions
@@ -8,10 +8,19 @@ import { join } from 'node:path'
 const UPSTREAM_PRODUCT_NAME = 'Orca'
 const PRODUCT_NAME = 'BrzA Studio'
 
-const overlayDir = import.meta.dirname
+// Vite inlines this module into electron.vite.config.ts, so import.meta.dirname
+// becomes that bundle's folder. Fall back to the repo config directory.
+function overlayFile(name) {
+  const candidates = [join(import.meta.dirname, name), join(process.cwd(), 'config', name)]
+  const found = candidates.find((path) => existsSync(path))
+  if (!found) {
+    throw new Error(`brand overlay file not found: ${name}`)
+  }
+  return found
+}
 
 export const productNameFiles = new Set(
-  JSON.parse(readFileSync(join(overlayDir, 'brand-overlay-files.json'), 'utf8'))
+  JSON.parse(readFileSync(overlayFile('brand-overlay-files.json'), 'utf8'))
 )
 
 export function replaceProductName(source) {
