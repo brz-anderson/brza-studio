@@ -14,7 +14,7 @@ Contra a `v1.4.256` o fork tem 2.325 arquivos e 58.983 linhas de diff (39.077 in
 
 Fundir a `v1.4.259` na `master` produz 277 arquivos em conflito (169 de conteúdo, 103 modify/delete, 5 add/add). Onze catálogos de locale conflitam mesmo num merge só das duas tags upstream.
 
-Uma PoC devolveu ao blob da `v1.4.256` os 433 módulos cujo único desvio é `Orca` → `BrzA Studio`, que não são fallback de `en.json`, e que o Vite ou o Vitest carrega. O CLI (`tsc`) e o guest WSL (esbuild) leem o fonte, então `src/cli`, `src/shared` e `src/wsl-guest` de produção ficaram no texto do fork. O diff contra a `v1.4.256` cai para 1.899 arquivos e 58.456 linhas. Os conflitos caem para 199 arquivos. Os hunks de conteúdo quase não caem (861 → 831). Reverter os catálogos, numa árvore anterior que não entrou na PoC, tirou um arquivo.
+Uma PoC devolveu ao blob da `v1.4.256` os 433 módulos cujo único desvio é `Orca` → `BrzA Studio`, que não são fallback de `en.json`, e que o Vite ou o Vitest carrega. O CLI (`tsc`) e o guest WSL (esbuild) leem o fonte, então `src/cli`, `src/shared` e `src/wsl-guest` de produção ficaram no texto do fork. O diff contra a `v1.4.256` cai para 1.899 arquivos e 58.458 linhas. Os conflitos caem para 199 arquivos. Os hunks de conteúdo quase não caem (861 → 831). Reverter os catálogos, numa árvore anterior que não entrou na PoC, tirou um arquivo.
 
 ## Decisão
 
@@ -43,7 +43,7 @@ Regras que passam a valer se esta proposta for confirmada:
 
 ## Alternativas consideradas
 
-**Troca no transform do Vite, com allowlist.** É a PoC, em `config/brand-overlay.mjs` e `config/build-plugins/brand-overlay.ts`. Ganha 426 arquivos e 527 linhas no diff contra a tag já integrada, e 78 arquivos de conflito neste sync. Não cobre o que o `tsc` do CLI ou o esbuild do guest emite, nem o volume de locale, e os catálogos conflitam entre as tags upstream mesmo sem o fork. Custa um fonte que mente até o bundle. Recusada como arquitetura por esse custo, neste tamanho de ganho.
+**Troca no transform do Vite, com allowlist.** É a PoC, em `config/brand-overlay.mjs` e `config/build-plugins/brand-overlay.ts`. Ganha 426 arquivos e 525 linhas no diff contra a tag já integrada, e 78 arquivos de conflito neste sync. Não cobre o que o `tsc` do CLI ou o esbuild do guest emite, nem o volume de locale, e os catálogos conflitam entre as tags upstream mesmo sem o fork. Custa um fonte que mente até o bundle. Recusada como arquitetura por esse custo, neste tamanho de ganho.
 
 **Overlay de arquivo inteiro.** O build copia a versão marcada por cima do arquivo upstream. O diff cresce (o arquivo inteiro vira adição) e a cópia envelhece sem conflito quando o upstream muda o texto. Recusada.
 
