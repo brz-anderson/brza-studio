@@ -111,11 +111,11 @@ A PoC implementa a abordagem 1, na fatia em que a troca reproduz o fork byte a b
 
 ## O que a PoC faz
 
-`config/brand-overlay.mjs` lê `config/brand-overlay-files.json` (894 caminhos `src/**/*.ts` e `src/**/*.tsx`). `config/build-plugins/brand-overlay.ts` aplica `Orca` → `BrzA Studio` no Electron Vite (main, preload, renderer) e no Vitest.
+`config/brand-overlay.mjs` lê `config/brand-overlay-files.json` (561 caminhos `src/**/*.ts` e `src/**/*.tsx`). `config/build-plugins/brand-overlay.ts` aplica `Orca` → `BrzA Studio` no Electron Vite (main, preload, renderer) e no Vitest.
 
-Entraram na lista só os arquivos em que `conteúdo_da_v1.4.256.replace("Orca", "BrzA Studio")` é igual ao `HEAD` da master, e que não contêm `translate(`. Esse filtro existe porque o extrator de locale compara o fallback no fonte com `en.json` em disco. Reverter um fallback sem reverter o catálogo, ou o contrário, quebra essa checagem. Ficaram de fora 143 arquivos puros que chamam `translate(`, os cinco arquivos puros que não são TypeScript (goldens `.txt`, um `.cjs` e dois `.mjs` lidos fora do Vite) e todos os catálogos.
+Entrou na lista o módulo em que o blob da `v1.4.256` com `Orca` trocado por `BrzA Studio` é igual à `master`, e em que nenhum literal, depois dessa troca, é um valor de `en.json`. O extrator (`pnpm verify:localization-extraction`) compara o fallback no disco com o catálogo. Uma peneira por `translate(` deixou passar outro nome de chamada e string com apóstrofo. A lista final é a que deixa esse comando em zero divergências, 0 de 19.467 chaves. Ficaram de fora 333 arquivos puros que são fallback de catálogo, cinco arquivos puros que não são TypeScript (goldens `.txt`, um `.cjs` e dois `.mjs` lidos fora do Vite) e os catálogos.
 
-Os 894 arquivos voltaram ao blob da `v1.4.256`. Conferência depois do commit: zero deles ainda difere dessa tag. `src/shared/brand-identity.ts` não mudou: `brza-studio`, `brza-dev`, `BrzA Studio`, `.brza`, `brza`, `brza-studio` como scheme, portas 6868 e 6869, `BrzA` no host Windows.
+Os 561 arquivos voltaram ao blob da `v1.4.256`. Nenhum deles difere dessa tag, e a troca reproduz o texto da `master`. `src/shared/brand-identity.ts` não mudou: `brza-studio`, `brza-dev`, `BrzA Studio`, `.brza`, `brza`, scheme `brza-studio`, portas 6868 e 6869, `BrzA` no host Windows.
 
 ## Resultado
 
@@ -123,49 +123,49 @@ Os 894 arquivos voltaram ao blob da `v1.4.256`. Conferência depois do commit: z
 
 |                  | master × v1.4.256 | PoC × v1.4.256 |
 | :--------------- | ----------------: | -------------: |
-| Arquivos         |             2.325 |          1.436 |
-| Inserções        |            39.077 |         38.429 |
-| Remoções         |            19.906 |         18.317 |
-| Linhas (ins+del) |            58.983 |         56.746 |
+| Arquivos         |             2.325 |          1.771 |
+| Inserções        |            39.077 |         38.990 |
+| Remoções         |            19.906 |         18.982 |
+| Linhas (ins+del) |            58.983 |         57.972 |
 
-Menos 889 arquivos (−38%) e menos 2.237 linhas (−3,8%). A linha cai pouco porque a lista JSON da allowlist entra como adição e porque o volume grande está nos catálogos, que a PoC não mexe.
+Menos 554 arquivos (−24%) e menos 1.011 linhas (−1,7%). A linha cai pouco porque a lista JSON entra como adição e porque o volume grande está nos catálogos, que a PoC não mexe.
 
-Contra a v1.4.259 a queda é de 20.945 para 20.535 arquivos. O milhão de remoções continua sendo movimento do upstream.
+Contra a v1.4.259 a queda é de 20.945 para 20.685 arquivos (+300.376 / −1.287.149 no lugar de +301.286 / −1.287.222). O milhão de remoções continua sendo movimento do upstream.
 
 ### Conflitos do sync para a v1.4.259
 
 |                                     | master | PoC |
 | :---------------------------------- | -----: | --: |
-| Arquivos                            |    277 | 180 |
-| Conteúdo                            |    169 | 123 |
-| modify/delete                       |    103 |  52 |
+| Arquivos                            |    277 | 197 |
+| Conteúdo                            |    169 | 131 |
+| modify/delete                       |    103 |  61 |
 | add/add                             |      5 |   5 |
-| Hunks de conteúdo nos dois lados    |    861 | 820 |
+| Hunks de conteúdo nos dois lados    |    861 | 829 |
 | Conteúdo com blob faltando num lado |     36 |  28 |
 
-Menos 97 arquivos (−35%). Nenhum conflito novo. Os hunks de conteúdo quase não se mexem (861 → 820): o que saiu eram arquivos de conflito pequeno, de uma troca de nome. Os conflitos grandes continuam.
+Menos 80 arquivos (−29%). Nenhum conflito novo. Os hunks de conteúdo quase não se mexem (861 → 829): o que saiu eram arquivos de conflito pequeno, de uma troca de nome. Os conflitos grandes continuam.
 
-Teto, medido e **não** entregue: um commit só com os blobs upstream dos onze catálogos, de `mobile/src/i18n/locales/en.json` e de `en-runtime-required.json`, por cima da PoC, ainda deixa **179** arquivos em conflito (122 de conteúdo). Um a menos que a PoC. Reverter o locale não desarma este sync. Esses arquivos já conflitam entre as duas tags upstream.
+Teto, medido e **não** entregue: por cima dessa PoC, trocar os onze catálogos, `mobile/src/i18n/locales/en.json` e `en-runtime-required.json` pelos blobs da `v1.4.256` ainda deixa **196** arquivos em conflito. Um a menos. Reverter o locale não desarma este sync. Esses arquivos já conflitam entre as duas tags upstream.
 
 ### Build
 
-Trocar o token nos 894 arquivos, em Node, levou **10,3 ms** (5,6 MB de saída). É o custo do plugin por build completo desses módulos, fora o overhead do Vite de achar o caminho. Não rodei `pnpm build` de ponta a ponta: o pacote desktop puxa nativo e assinatura, e 10 ms não muda esse tempo.
+Trocar o token nos 561 arquivos, em Node, levou **6,8 ms**. É o custo do plugin por build completo desses módulos, fora o overhead do Vite de achar o caminho. Não rodei `pnpm build` de ponta a ponta: o pacote desktop puxa nativo e assinatura, e 7 ms não mudam esse tempo.
 
-O Vitest carregou o plugin. `src/cli/runtime/transport.test.ts` e `src/shared/claude-shell-function.test.ts`: 2 arquivos, 28 testes, passando. Prova de que a troca acontece no loader e não só no disco: com `transport.ts` ainda dizendo `Orca closed the connection before responding.` no git, o teste esperou `BrzA Studio closed the connection before responding.` e passou. A asserção foi devolvida ao blob upstream antes do commit; a conferência de round-trip dos 894 ficou em zero divergência.
+O Vitest carregou o plugin. `src/cli/runtime/transport.test.ts` e `src/shared/claude-shell-function.test.ts`: 2 arquivos, 28 testes, passando. Prova de que a troca acontece no loader e não só no disco: com `transport.ts` ainda dizendo `Orca closed the connection before responding.` no git, o teste esperou `BrzA Studio closed the connection before responding.` e passou. A asserção foi devolvida ao blob upstream; `transport.ts` continua na lista. A conferência dos 561 ficou em zero divergência contra a tag e contra a troca que reconstrói a `master`.
 
 ## Recomendação
 
 Não adotar o overlay como estratégia de sync.
 
-O mecanismo funciona na fatia em que o diff é só `Orca` → `BrzA Studio`: o git cola de novo no upstream e o teste vê o nome do fork. Essa fatia é 894 arquivos e cerca de 3,8% das linhas divergentes. Ela tira 97 dos 277 conflitos deste sync. O resto é funcional (conta no Native Chat, mensagens entre chats, `brza X` no PATH, atualizador de build ad hoc, tema) ou é catálogo de locale, que além de gramática já conflita entre as tags upstream.
+O mecanismo funciona na fatia em que o diff é só `Orca` → `BrzA Studio` e o literal não é fallback de catálogo: o git cola de novo no upstream e o teste vê o nome do fork. Essa fatia é 561 arquivos e cerca de 1,7% das linhas divergentes. Ela tira 80 dos 277 conflitos deste sync. O resto é funcional (conta no Native Chat, mensagens entre chats, `brza X` no PATH, atualizador de build ad hoc, tema) ou é catálogo de locale, que além de gramática já conflita entre as tags upstream.
 
-O custo de deixar 894 módulos com o nome do upstream no fonte, mais uma allowlist que alguém tem de manter, não se paga neste sync. A identidade que precisa ficar estável ao lado do Orca continua em `brand-identity.ts`.
+O custo de deixar 561 módulos com o nome do upstream no fonte, mais uma allowlist que alguém tem de manter, não se paga neste sync. A identidade que precisa ficar estável ao lado do Orca continua em `brand-identity.ts`.
 
 ## Limitações
 
 - A classificação trata como funcional o que não é troca dos tokens listados. Gramática de locale e asset novo de marca ficam desse lado. A fração de 57,6% é piso do rebrand, não teto.
 - A allowlist não acompanha sozinha um arquivo novo do upstream.
-- Código carregado fora do Vite e do Vitest (um `node` direto num `.ts` da lista) veria `Orca`. Os 894 caminhos estão sob `src/` e o app e o teste passam pelo bundler. Um leitor de disco não passa.
+- Código carregado fora do Vite e do Vitest (um `node` direto num `.ts` da lista) veria `Orca`. Os 561 caminhos estão sob `src/` e o app e o teste passam pelo bundler. Um leitor de disco não passa.
 - O plugin não emite source map. Depurar um módulo da lista desalinha coluna.
 - O teto dos catálogos joga fora texto funcional do fork. Serviu para contar conflito, não para proposta de implementação.
 - Não medi um `pnpm build` completo, nem o extrator de locale numa árvore com fallback revertido. Por isso a lista exclui `translate(`.

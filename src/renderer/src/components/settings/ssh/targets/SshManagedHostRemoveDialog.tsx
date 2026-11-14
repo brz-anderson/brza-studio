@@ -45,7 +45,7 @@ export function SshManagedHostRemoveDialog({
           <DialogDescription>
             {t(
               'auto.components.settings.sshManagedHostRemove.descriptionServerHost',
-              'Orca runs on {{label}}. In Remote Orca Servers, open the ⋯ menu on {{label}} and choose Stop… to remove Orca from the host, or Forget… if the host is gone. Then you can remove this SSH host.',
+              'BrzA Studio runs on {{label}}. In Remote BrzA Studio Servers, open the ⋯ menu on {{label}} and choose Stop… to remove BrzA Studio from the host, or Forget… if the host is gone. Then you can remove this SSH host.',
               { label: label ?? '' }
             )}
           </DialogDescription>
@@ -57,7 +57,7 @@ export function SshManagedHostRemoveDialog({
           <Button onClick={openManagedServers}>
             {t(
               'auto.components.settings.sshManagedHostRemove.2ca95e9fd7',
-              'Open remote Orca servers'
+              'Open remote BrzA Studio servers'
             )}
           </Button>
         </DialogFooter>

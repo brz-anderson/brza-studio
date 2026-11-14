@@ -125,7 +125,7 @@ export function WorktreeVisibilitySourceAddForm({
         {inputError ??
           t(
             'auto.components.sidebar.WorktreeVisibilitySourceList.rootHelp',
-            'Orca will recognize worktrees beneath this folder.'
+            'BrzA Studio will recognize worktrees beneath this folder.'
           )}
       </p>
     </form>

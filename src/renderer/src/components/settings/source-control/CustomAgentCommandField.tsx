@@ -33,7 +33,7 @@ export function CustomAgentCommandField({
               </code>{' '}
               {t(
                 'auto.components.settings.CommitMessageAiPane.3f1b26cc91',
-                'to pass the command input as an argument; otherwise Orca pipes it on stdin.'
+                'to pass the command input as an argument; otherwise BrzA Studio pipes it on stdin.'
               )}
             </>
           )}

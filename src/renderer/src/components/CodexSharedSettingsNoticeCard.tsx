@@ -18,7 +18,10 @@ export function CodexSharedSettingsNoticeCard(): React.JSX.Element | null {
           <div className="flex items-center gap-2">
             <Info className="size-4 text-muted-foreground" />
             <CardTitle id="codex-shared-settings-notice-heading">
-              {t('terminal.codexSharedSettingsNotice.title', 'Codex in Orca now uses ~/.codex')}
+              {t(
+                'terminal.codexSharedSettingsNotice.title',
+                'Codex in BrzA Studio now uses ~/.codex'
+              )}
             </CardTitle>
           </div>
           <Button
@@ -35,7 +38,7 @@ export function CodexSharedSettingsNoticeCard(): React.JSX.Element | null {
         <CardDescription>
           {t(
             'terminal.codexSharedSettingsNotice.description',
-            'Codex may ask again to trust folders or approve commands. Re-add any MCP servers you added only in Orca.'
+            'Codex may ask again to trust folders or approve commands. Re-add any MCP servers you added only in BrzA Studio.'
           )}
         </CardDescription>
       </CardContent>

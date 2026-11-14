@@ -6,14 +6,14 @@ import { BROWSER_WAIT_DEFAULT_TIMEOUT_MS } from '../../shared/browser-wait-timeo
 export const BROWSER_BASIC_COMMAND_SPECS: CommandSpec[] = withBrowserPageTarget([
   {
     path: ['browser', 'identity', 'get'],
-    summary: 'Show the browser identity configured on this Orca host',
+    summary: 'Show the browser identity configured on this BrzA Studio host',
     usage: 'orca browser identity get [--json]',
     aliases: [['browser', 'identity', 'show']],
     allowedFlags: [...GLOBAL_FLAGS]
   },
   {
     path: ['browser', 'identity', 'set'],
-    summary: 'Choose the browser identity for every page on this Orca host',
+    summary: 'Choose the browser identity for every page on this BrzA Studio host',
     usage: 'orca browser identity set --mode <clean|native> [--reset] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'mode', 'reset']
   },
@@ -51,7 +51,7 @@ export const BROWSER_BASIC_COMMAND_SPECS: CommandSpec[] = withBrowserPageTarget(
       'orca screenshot [--format <png|jpeg>] [--if-changed] [--annotate] [--worktree <selector>] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'format', 'if-changed', 'annotate', 'worktree'],
     notes: [
-      "In Orca's desktop browser the image is in CSS pixels, so its x/y match page coordinates for `orca mouse`."
+      "In BrzA Studio's desktop browser the image is in CSS pixels, so its x/y match page coordinates for `orca mouse`."
     ]
   },
   {

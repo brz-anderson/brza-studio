@@ -19,7 +19,7 @@ export function MobileEmulatorAgentSetupGuideSteps({
       <p className="text-sm font-medium">
         {t(
           'auto.components.emulator.pane.MobileEmulatorAgentSetupGuideSteps.21f5687c07',
-          'Orca CLI skill'
+          'BrzA Studio CLI skill'
         )}
       </p>
       <AgentSkillSetupPanel
@@ -28,7 +28,7 @@ export function MobileEmulatorAgentSetupGuideSteps({
         className="min-w-0"
         title={t(
           'auto.components.emulator.pane.MobileEmulatorAgentSetupGuideSteps.21f5687c07',
-          'Orca CLI skill'
+          'BrzA Studio CLI skill'
         )}
         description={t(
           'auto.components.emulator.pane.MobileEmulatorAgentSetupGuideSteps.64fb057667',

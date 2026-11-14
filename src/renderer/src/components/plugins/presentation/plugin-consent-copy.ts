@@ -29,7 +29,7 @@ export function pluginTrustWarnings(trust: PluginTrust, t: Translate = translate
     warnings.push(
       t(
         'auto.components.settings.PluginConsentDialog.fullAccessWarning',
-        'Full access: runs as a normal program and can read your files, use the network, run other programs and control Orca, including your terminals and agents.'
+        'Full access: runs as a normal program and can read your files, use the network, run other programs and control BrzA Studio, including your terminals and agents.'
       )
     )
   }
@@ -45,7 +45,7 @@ export function pluginTrustWarnings(trust: PluginTrust, t: Translate = translate
     warnings.push(
       t(
         'auto.components.settings.PluginConsentDialog.uiWarning',
-        "Runs the publisher's code inside Orca to draw its view. Orca shows what it can access and asks before enabling it."
+        "Runs the publisher's code inside BrzA Studio to draw its view. BrzA Studio shows what it can access and asks before enabling it."
       )
     )
   }

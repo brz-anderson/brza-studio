@@ -137,7 +137,7 @@ it.each([
       expect(mocks.toast).toHaveBeenCalledExactlyOnceWith(
         feedback === 'retry'
           ? 'The structured agent session is not available yet. Retry in a moment.'
-          : "This chat can't be reopened until Orca is updated."
+          : "This chat can't be reopened until BrzA Studio is updated."
       )
     } else {
       expect(mocks.toast).not.toHaveBeenCalled()
