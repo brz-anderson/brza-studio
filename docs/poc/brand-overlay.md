@@ -124,11 +124,11 @@ Os 561 arquivos voltaram ao blob da `v1.4.256`. Nenhum deles difere dessa tag, e
 |                  | master × v1.4.256 | PoC × v1.4.256 |
 | :--------------- | ----------------: | -------------: |
 | Arquivos         |             2.325 |          1.771 |
-| Inserções        |            39.077 |         38.990 |
+| Inserções        |            39.077 |         39.019 |
 | Remoções         |            19.906 |         18.982 |
-| Linhas (ins+del) |            58.983 |         57.972 |
+| Linhas (ins+del) |            58.983 |         58.001 |
 
-Menos 554 arquivos (−24%) e menos 1.011 linhas (−1,7%). A linha cai pouco porque a lista JSON entra como adição e porque o volume grande está nos catálogos, que a PoC não mexe.
+Menos 554 arquivos (−24%) e menos 982 linhas (−1,7%). A linha cai pouco porque a lista JSON entra como adição e porque o volume grande está nos catálogos, que a PoC não mexe.
 
 Contra a v1.4.259 a queda é de 20.945 para 20.685 arquivos (+300.376 / −1.287.149 no lugar de +301.286 / −1.287.222). O milhão de remoções continua sendo movimento do upstream.
 
@@ -157,7 +157,7 @@ O Vitest carregou o plugin. `src/cli/runtime/transport.test.ts` e `src/shared/cl
 
 Não adotar o overlay como estratégia de sync.
 
-O mecanismo funciona na fatia em que o diff é só `Orca` → `BrzA Studio` e o literal não é fallback de catálogo: o git cola de novo no upstream e o teste vê o nome do fork. Essa fatia é 561 arquivos e cerca de 1,7% das linhas divergentes. Ela tira 80 dos 277 conflitos deste sync. O resto é funcional (conta no Native Chat, mensagens entre chats, `brza X` no PATH, atualizador de build ad hoc, tema) ou é catálogo de locale, que além de gramática já conflita entre as tags upstream.
+O mecanismo funciona na fatia em que o diff é só `Orca` → `BrzA Studio` e o literal não é fallback de catálogo: o git cola de novo no upstream e o teste vê o nome do fork. Essa fatia é 561 arquivos e cerca de 1,7% das linhas divergentes (982 linhas a menos no `git diff --shortstat` contra a tag). Ela tira 80 dos 277 conflitos deste sync. O resto é funcional (conta no Native Chat, mensagens entre chats, `brza X` no PATH, atualizador de build ad hoc, tema) ou é catálogo de locale, que além de gramática já conflita entre as tags upstream.
 
 O custo de deixar 561 módulos com o nome do upstream no fonte, mais uma allowlist que alguém tem de manter, não se paga neste sync. A identidade que precisa ficar estável ao lado do Orca continua em `brand-identity.ts`.
 

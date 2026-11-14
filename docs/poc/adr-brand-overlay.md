@@ -14,7 +14,7 @@ Contra a `v1.4.256` o fork tem 2.325 arquivos e 58.983 linhas de diff (39.077 in
 
 Fundir a `v1.4.259` na `master` produz 277 arquivos em conflito (169 de conteúdo, 103 modify/delete, 5 add/add). Onze catálogos de locale conflitam mesmo num merge só das duas tags upstream.
 
-Uma PoC devolveu ao blob da `v1.4.256` os 561 módulos cujo único desvio é `Orca` → `BrzA Studio` e que não são fallback de `en.json`. Um plugin do Electron Vite e do Vitest reescreve o token na carga. O diff contra a `v1.4.256` cai para 1.771 arquivos e 57.972 linhas. Os conflitos caem para 197 arquivos. Os hunks de conteúdo quase não caem (861 → 829). Reverter os catálogos para o blob upstream, numa árvore que não entrou na PoC, tira mais um arquivo (196).
+Uma PoC devolveu ao blob da `v1.4.256` os 561 módulos cujo único desvio é `Orca` → `BrzA Studio` e que não são fallback de `en.json`. Um plugin do Electron Vite e do Vitest reescreve o token na carga. O diff contra a `v1.4.256` cai para 1.771 arquivos e 58.001 linhas. Os conflitos caem para 197 arquivos. Os hunks de conteúdo quase não caem (861 → 829). Reverter os catálogos para o blob upstream, numa árvore que não entrou na PoC, tira mais um arquivo (196).
 
 ## Decisão
 
@@ -43,7 +43,7 @@ Regras que passam a valer se esta proposta for confirmada:
 
 ## Alternativas consideradas
 
-**Troca no transform do Vite, com allowlist.** É a PoC, em `config/brand-overlay.mjs` e `config/build-plugins/brand-overlay.ts`. Ganha 554 arquivos e 1.011 linhas no diff contra a tag já integrada, e 80 arquivos de conflito neste sync. Não mexe no volume de locale, e os catálogos conflitam entre as tags upstream mesmo sem o fork. Custa um fonte que mente até o bundle. Recusada como arquitetura por esse custo, neste tamanho de ganho.
+**Troca no transform do Vite, com allowlist.** É a PoC, em `config/brand-overlay.mjs` e `config/build-plugins/brand-overlay.ts`. Ganha 554 arquivos e 982 linhas no diff contra a tag já integrada, e 80 arquivos de conflito neste sync. Não mexe no volume de locale, e os catálogos conflitam entre as tags upstream mesmo sem o fork. Custa um fonte que mente até o bundle. Recusada como arquitetura por esse custo, neste tamanho de ganho.
 
 **Overlay de arquivo inteiro.** O build copia a versão marcada por cima do arquivo upstream. O diff cresce (o arquivo inteiro vira adição) e a cópia envelhece sem conflito quando o upstream muda o texto. Recusada.
 
