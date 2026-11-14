@@ -4,18 +4,18 @@ import { GLOBAL_FLAGS } from '../args'
 export const REPO_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['repo', 'list'],
-    summary: 'List repos registered in Orca',
+    summary: 'List repos registered in BrzA Studio',
     usage: 'orca repo list [--json]',
     allowedFlags: [...GLOBAL_FLAGS]
   },
   {
     path: ['repo', 'add'],
-    summary: 'Add a project to Orca by filesystem path',
+    summary: 'Add a project to BrzA Studio by filesystem path',
     usage: 'orca repo add --path <path> [--kind git|folder] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'path', 'kind'],
     notes: [
       'Defaults to git. Use --kind folder for an ordinary directory, including a parent of separate Git repositories; worktrees attached to a folder workspace appear in its Source Control panel, one section each.',
-      'With --environment, --path must be an absolute path on that Orca server.'
+      'With --environment, --path must be an absolute path on that BrzA Studio server.'
     ],
     examples: ['orca repo add --path /abs/path/to/folder --kind folder --json']
   },
@@ -27,12 +27,12 @@ export const REPO_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['repo', 'set'],
-    summary: 'Set whether non-Orca worktrees are shown for a repo',
+    summary: 'Set whether non-BrzA Studio worktrees are shown for a repo',
     usage:
       'orca repo set --repo <selector> --external-worktree-visibility show|hide|inherit [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'repo', 'external-worktree-visibility'],
     notes: [
-      'show and hide override the global non-Orca worktree visibility default for this repo; inherit clears the override.',
+      'show and hide override the global non-BrzA Studio worktree visibility default for this repo; inherit clears the override.',
       'Per-worktree visibility rules still apply.'
     ],
     examples: ['orca repo set --repo path:/path/to/repo --external-worktree-visibility show --json']
