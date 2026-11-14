@@ -44,7 +44,7 @@ describe('orca plugin create templates', () => {
 })
 
 describe('orca plugin validate', () => {
-  it('reports artifact errors BrzA Studio would otherwise skip silently', async () => {
+  it('reports artifact errors Orca would otherwise skip silently', async () => {
     const dir = join(await tempRoot(), 'broken')
     await createPluginFromTemplate({ dir, template: 'theme', publisher: 'acme' })
     await writeFile(

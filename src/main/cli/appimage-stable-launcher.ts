@@ -239,7 +239,7 @@ while (( SECONDS <= deadline )); do
   fi
   sleep 0.1
 done
-printf 'BrzA Studio CLI is not ready; reopen BrzA Studio or register the CLI again.\\n' >&2
+printf 'Orca CLI is not ready; reopen Orca or register the CLI again.\\n' >&2
 exit 1
 `
 }

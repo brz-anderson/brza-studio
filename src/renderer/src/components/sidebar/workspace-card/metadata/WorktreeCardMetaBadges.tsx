@@ -124,7 +124,10 @@ export const WorktreeCardMetaBadges = React.forwardRef<
       )}
       {cliProvenance && (
         <MetaIconBadge
-          label={t('auto.components.sidebar.WorktreeCardMeta.cliCreated', 'Created by BrzA Studio CLI')}
+          label={t(
+            'auto.components.sidebar.WorktreeCardMeta.cliCreated',
+            'Created by BrzA Studio CLI'
+          )}
         >
           <SquareTerminal className="text-muted-foreground" />
         </MetaIconBadge>

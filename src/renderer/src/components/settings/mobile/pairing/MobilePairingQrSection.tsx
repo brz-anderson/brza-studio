@@ -182,7 +182,10 @@ export function MobilePairingQrSection({
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
               <DialogTitle>
-                {t('auto.components.settings.MobilePane.dd3cd78d04', 'Scan with BrzA Studio Mobile')}
+                {t(
+                  'auto.components.settings.MobilePane.dd3cd78d04',
+                  'Scan with BrzA Studio Mobile'
+                )}
               </DialogTitle>
             </DialogHeader>
             <div className="flex flex-col items-center gap-3">

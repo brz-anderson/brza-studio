@@ -20,6 +20,7 @@ import { createPlainNodeEntryGuardPlugin } from './config/build-plugins/plain-no
 import { createDevServeConfig } from './config/build-plugins/dev-serve-config'
 import { reactPluginOptions } from './config/build-plugins/react-compiler'
 import { resolveBuildSourceCommit } from './config/scripts/build-identity/build-source-commit.mjs'
+import { brandOverlayPlugin } from './config/build-plugins/brand-overlay'
 
 const BUNDLED_MAIN_DEPENDENCIES = new Set([
   'stream-json',
@@ -209,7 +210,7 @@ const MAIN_MINIFY: 'oxc' | false = process.env.ORCA_UNMINIFIED_MAIN === '1' ? fa
 export const electronViteConfig: UserConfig = {
   main: {
     // A Vite `pre` plugin: Rollup-level plugins only see ids Vite's resolver leaves unresolved.
-    plugins: [createSucraseUnusedTransformersPlugin()],
+    plugins: [brandOverlayPlugin(), createSucraseUnusedTransformersPlugin()],
     build: {
       // Use Rolldown’s in-process oxc minifier; esbuild mode depends on an undeclared hoisted package.
       minify: MAIN_MINIFY,
@@ -265,6 +266,7 @@ export const electronViteConfig: UserConfig = {
     }
   },
   preload: {
+    plugins: [brandOverlayPlugin()],
     build: {
       externalizeDeps: false,
       rollupOptions: { output: ONE_BYTE_UNMINIFIED_OUTPUT }
@@ -285,6 +287,7 @@ export const electronViteConfig: UserConfig = {
       }
     },
     plugins: [
+      brandOverlayPlugin(),
       react(reactPluginOptions()),
       tailwindcss(),
       createPdfjsViewerAssetsPlugin(),

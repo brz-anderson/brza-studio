@@ -154,7 +154,7 @@ describe('store installs', () => {
     expect(existsSync(root())).toBe(false)
   })
 
-  it('refuses a package that ships a file where BrzA Studio writes its backup manifest', async () => {
+  it('refuses a package that ships a file where Orca writes its backup manifest', async () => {
     const shown = { name: 'Vault', version: '1.0', manifest_version: 3, permissions: [] }
     const hidden = { ...shown, permissions: ['tabs'], host_permissions: ['<all_urls>'] }
     await expect(
@@ -168,7 +168,7 @@ describe('store installs', () => {
           })
         )
       })
-    ).rejects.toThrow('uses a name BrzA Studio reserves')
+    ).rejects.toThrow('uses a name Orca reserves')
     expect(readdirSync(root())).toEqual([])
   })
 })

@@ -445,7 +445,7 @@ describe('createSettingsSlice runtime switching', () => {
 
   it('keeps the current environment when the selected remote server is unreachable', async () => {
     runtimeEnvironmentGetStatus.mockRejectedValueOnce(
-      new Error('Remote BrzA Studio runtime closed the connection.')
+      new Error('Remote Orca runtime closed the connection.')
     )
     const store = createTestStore()
     store.setState({
@@ -472,7 +472,7 @@ describe('createSettingsSlice runtime switching', () => {
     expect(store.getState().repos.map((repo) => repo.id)).toEqual(['repo-env-1'])
     expect(store.getState().ptyIdsByTabId).toEqual({ tab1: ['remote:env-1@@terminal-a'] })
     expect(toast.error).toHaveBeenCalledWith('Failed to switch servers', {
-      description: 'Remote BrzA Studio runtime closed the connection.'
+      description: 'Remote Orca runtime closed the connection.'
     })
   })
 

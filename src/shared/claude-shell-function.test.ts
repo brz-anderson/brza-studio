@@ -121,7 +121,7 @@ describe.each(SHELLS)('the claude function in %s', (shell) => {
     }
   })
 
-  it('restores the user’s own value BrzA Studio replaced when switched back to System default', () => {
+  it('restores the user’s own value Orca replaced when switched back to System default', () => {
     const f = fixture()
     const own = ['ORCA_CLAUDE_USER_CONFIG_DIR=/user/own']
     writeFileSync(f.pointer, f.a)

@@ -78,7 +78,7 @@ describe('CodexStructuredSessionAdapter prompts', () => {
         id: 11,
         code: -32001,
         message:
-          'BrzA Studio could not durably record item/commandExecution/requestApproval prompt (closed)'
+          'Orca could not durably record item/commandExecution/requestApproval prompt (closed)'
       }
     ])
     await expect(

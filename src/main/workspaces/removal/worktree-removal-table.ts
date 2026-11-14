@@ -67,7 +67,7 @@ export function assertNoPendingWorktreeRemovalConflict(
   const removal = findPendingWorktreeRemovalConflict(repoPath, target)
   if (removal) {
     throw new Error(
-      `BrzA Studio is still deleting the workspace at ${removal.worktreePath}. Cleanup is pending; try again shortly.`
+      `Orca is still deleting the workspace at ${removal.worktreePath}. Cleanup is pending; try again shortly.`
     )
   }
 }

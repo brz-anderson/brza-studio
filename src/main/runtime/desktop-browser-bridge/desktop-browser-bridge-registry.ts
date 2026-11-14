@@ -172,7 +172,7 @@ export class DesktopBrowserBridgeRegistry {
         pending.reject(
           new BrowserError(
             DESKTOP_BROWSER_BRIDGE_UNAVAILABLE_CODE,
-            'The BrzA Studio desktop stopped sharing its browser before it answered.'
+            'The Orca desktop stopped sharing its browser before it answered.'
           )
         )
       }

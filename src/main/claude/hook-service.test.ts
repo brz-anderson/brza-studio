@@ -236,7 +236,7 @@ describe('ClaudeHookService.install', () => {
     }
   })
 
-  it('keeps newer BrzA Studio events and reports installed when a later probe cannot resolve the version', () => {
+  it('keeps newer Orca events and reports installed when a later probe cannot resolve the version', () => {
     const tmpHome = mkdtempSync(join(tmpdir(), 'orca-claude-unknown-version-'))
     vi.stubEnv('HOME', tmpHome)
     vi.stubEnv('USERPROFILE', tmpHome)

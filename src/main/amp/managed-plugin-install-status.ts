@@ -78,7 +78,7 @@ export function statusFromState(
         state: 'partial',
         configPath: pluginPath,
         managedHooksPresent: false,
-        detail: 'Amp BrzA Studio status plugin exists but is not BrzA Studio-managed'
+        detail: 'Amp Orca status plugin exists but is not Orca-managed'
       }
     case 'error':
       return {

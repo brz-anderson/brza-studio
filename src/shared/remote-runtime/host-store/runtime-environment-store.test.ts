@@ -55,7 +55,7 @@ describe('runtime environment store', () => {
     )
   }
 
-  it('refuses a pairing code that this same BrzA Studio profile issued', () => {
+  it('refuses a pairing code that this same Orca profile issued', () => {
     const userDataPath = mkdtempSync(join(tmpdir(), 'orca-runtime-env-store-'))
     tempDirs.push(userDataPath)
     writeProfileKeypair(userDataPath, 1)
@@ -65,7 +65,7 @@ describe('runtime environment store', () => {
         name: 'myself',
         pairingCode: pairingCode('ws://192.0.2.10:6768')
       })
-    ).toThrow(/this BrzA Studio itself/)
+    ).toThrow(/this Orca itself/)
     expect(listEnvironments(userDataPath)).toEqual([])
   })
 

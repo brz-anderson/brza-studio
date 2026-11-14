@@ -99,7 +99,7 @@ export function installChromeWebStoreApis(
               last(result.value)
             }
           }),
-        () => withLastError('BrzA Studio could not handle this request', () => last())
+        () => withLastError('Orca could not handle this request', () => last())
       )
       return undefined
     }

@@ -104,6 +104,8 @@ docs/**
 !docs/styleguide/**
 !docs/agents-md-refs/
 !docs/agents-md-refs/**
+!docs/poc/
+!docs/poc/**
 !docs/agent-skill-sharing-implementation-checklist.md
 !docs/mobile-terminal-shortcut-bar.md
 

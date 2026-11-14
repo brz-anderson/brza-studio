@@ -50,7 +50,7 @@ describe('buildAgentContext', () => {
 })
 
 describe('agent-context over the live registry', () => {
-  it('marks raw passthrough commands without synthesizing BrzA Studio flags', () => {
+  it('marks raw passthrough commands without synthesizing Orca flags', () => {
     const schema = buildAgentContext(COMMAND_SPECS)
     const claudeTeams = schema.commands.find((command) => command.command === 'claude-teams')
     expect(claudeTeams?.argumentMode).toBe('passthrough')

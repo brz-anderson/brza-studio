@@ -67,7 +67,7 @@ it('skips a cross-volume rollout for a hardlink-only target, creating nothing', 
   expect(existsSync(join(root, 'codex', 'sessions'))).toBe(false)
 })
 
-it('still falls back to a symlink between BrzA Studio-managed homes', async () => {
+it('still falls back to a symlink between Orca-managed homes', async () => {
   const summary = await bridgeCodexSessionsIntoAccountHome({
     targetCodexHomePath: join(root, 'codex'),
     sourceCodexHomePaths: [join(root, 'account')]
