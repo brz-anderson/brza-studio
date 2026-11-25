@@ -1,5 +1,5 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/class-names'
 import { translate } from '@/i18n/i18n'
 import { useTranslate, type Translate } from '@/i18n/use-translate'
 import type { NativeChatMessage } from '../../../../../../shared/native-chat/native-chat-types'
@@ -8,7 +8,7 @@ import {
   nativeChatReasoningHeadline,
   nativeChatReasoningPreview,
   type NativeChatReasoningHeadline
-} from '../../../../../../shared/native-chat/transcript/native-chat-reasoning-row'
+} from '../../../../../../shared/native-chat/transcript/row-content/native-chat-reasoning-row'
 import {
   NativeChatReasoningBody,
   NativeChatReasoningChevron

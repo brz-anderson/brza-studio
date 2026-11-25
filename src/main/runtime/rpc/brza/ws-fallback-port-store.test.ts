@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { wsFallbackPortLadder } from '../ws-fallback-port-store'
+import { wsFallbackPortLadder } from '../transports/websocket/ws-fallback-port-store'
 
 // Coexistence with upstream Orca: its 6768-6799 ladder belongs to Orca, so ours starts at 6868.
 describe('ws-fallback-port-store ladder of BrzA Studio', () => {

@@ -9,7 +9,7 @@ import { NativeChatAgentMessageSenders } from '../messages/agent-senders/NativeC
 import { brzaClaudePeerSource } from '../../../../../shared/native-chat/brza/brza-claude-peer-sender'
 
 const activate = vi.hoisted(() => vi.fn(async () => true))
-vi.mock('@/lib/activate-ai-vault-structured-session', () => ({
+vi.mock('@/lib/agent-session/open/activate-ai-vault-structured-session', () => ({
   activateAiVaultStructuredSession: activate
 }))
 

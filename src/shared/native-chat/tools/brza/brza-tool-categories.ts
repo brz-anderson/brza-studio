@@ -4,7 +4,7 @@ import { mcpToolIdentity, type NativeChatMcpIdentity } from '../native-chat-tool
 import { isCommandToolName } from '../native-chat-tool-activity'
 import { nativeChatFullCommand } from '../native-chat-tool-input-text'
 import type { NativeChatToolCategoryCall } from '../native-chat-tool-icon'
-import { parseOrcaBrowserCommand } from '../../../orca-browser-cli-commands'
+import { parseOrcaBrowserCommand } from '../../../browser/automation/orca-browser-cli-commands'
 import { BRZA_FIGMA_CATEGORY } from './brza-figma-tool'
 import { BRZA_SHELL_CATEGORIES } from './brza-shell-categories'
 import { brzaShellSegments, type BrzaShellSegment } from './brza-shell-segments'

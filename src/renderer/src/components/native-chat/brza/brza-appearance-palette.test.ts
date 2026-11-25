@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
+import { createGlobalSettingsFixture } from '../../../../../shared/settings/global-settings-test-fixture'
 import * as terminalThemeSelection from '../../../../../shared/terminal-themes/terminal-theme-selection'
 import { nativeChatAppearanceStyle } from '../appearance/native-chat-appearance-style'
 

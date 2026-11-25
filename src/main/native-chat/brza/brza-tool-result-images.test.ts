@@ -11,7 +11,7 @@ import {
   claudeToolResults,
   readClaudeMessageEnvelope
 } from '../../claude/structured/journal/claude-structured-item-translation'
-import { claudeContentBlocks } from '../transcript-record-blocks'
+import { claudeContentBlocks } from '../transcript-decoding/transcript-record-blocks'
 import {
   awaitToolImageWrite,
   brzaToolResultImages,
@@ -20,7 +20,7 @@ import {
 
 let temp = ''
 
-vi.mock('../../../shared/app-environment', () => ({
+vi.mock('../../../shared/app-lifecycle/app-environment', () => ({
   hasAppEnvironment: () => true,
   getAppEnvironment: () => ({ getPath: () => temp })
 }))

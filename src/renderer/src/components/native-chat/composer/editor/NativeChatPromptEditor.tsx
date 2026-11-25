@@ -3,7 +3,6 @@ import {
   nativeChatDraftPositions,
   hasUnsavedNativeChatComposerDraftChange
 } from '../../drafts/native-chat-composer-draft-memory'
-import { createNativeChatPastedTextHistory } from './native-chat-pasted-text-history'
 import { resolveNativeChatPastedText } from '../../paste/native-chat-composer-pasted-text-references'
 import { NativeChatPastedTextScopeProvider } from './native-chat-pasted-text-state'
 import {
@@ -17,7 +16,8 @@ import { Slice } from '@tiptap/pm/model'
 import { TextSelection } from '@tiptap/pm/state'
 import { memo, useCallback, useImperativeHandle, useLayoutEffect, useMemo, useRef } from 'react'
 import { shallow } from 'zustand/shallow'
-import { EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent } from '@tiptap/react'
+import { useNativeChatComposerEditor } from './native-chat-composer-editor-owner'
 import {
   fileReferenceContent,
   NativeChatFileReference,
@@ -39,6 +39,7 @@ import {
 import { focusMountedNativeChatEditor, mountedEditorView } from './native-chat-mounted-editor-view'
 
 import { useNativeChatComposerMount } from '../focus/native-chat-composer-mount'
+import { useAppStore } from '@/store'
 
 const NO_IMAGES: readonly string[] = []
 const NOT_COMPOSING = (): boolean => false
@@ -64,22 +65,19 @@ function NativePromptEditor({
   className,
   ...events
 }: NativeChatPromptEditorProps): React.JSX.Element {
-  const historyPaths = useMemo(() => createNativeChatPastedTextHistory(scopeKey ?? ''), [scopeKey])
   const adopted = useRef(readNativeChatDraftSnapshot(scopeKey, initialValue))
-  const userOwned = useRef(false)
-  const appliedPosition = useRef<unknown>(undefined)
+  const spellcheck = useAppStore((s) => s.settings?.nativeChatComposerSpellcheck !== false)
   const claimSelection = () => {
-    userOwned.current = true
+    selection.claim()
     const position = adopted.current && nativeChatDraftPositions.get(adopted.current)
     if (position && position.at !== 'start' && position.target === positionTarget) {
       position.pending = false
     }
   }
-  const placeholderRef = useRef(placeholder)
-  placeholderRef.current = placeholder
-  const mode = useNativeChatPromptMode(scopeKey, initialValue, placeholderRef)
+  const mode = useNativeChatPromptMode(scopeKey, initialValue)
   const { markdown, codec, extensions, initial } = mode
-  const editor = useEditor(
+  const { editor, historyPaths, selection } = useNativeChatComposerEditor(
+    scopeKey ?? '',
     {
       extensions,
       content: initial.content,
@@ -91,7 +89,10 @@ function NativePromptEditor({
           role: 'textbox',
           'aria-multiline': 'true',
           'aria-label': placeholder,
-          class: `${className ?? ''} ${markdown ? 'rich-markdown-editor native-chat-markdown-composer-editor' : ''} whitespace-pre-wrap break-words [&_p]:m-0 [&_p.is-editor-empty:first-child]:before:content-[attr(data-placeholder)] [&_p.is-editor-empty:first-child]:before:text-chat-foreground-faint [&_p.is-editor-empty:first-child]:before:float-left [&_p.is-editor-empty:first-child]:before:h-0 [&_p.is-editor-empty:first-child]:before:pointer-events-none`,
+          spellcheck: spellcheck ? 'true' : 'false',
+          // Chromium on macOS still applies system text replacements under spellcheck=false; autocorrect=off stops them.
+          ...(spellcheck ? {} : { autocorrect: 'off', autocapitalize: 'off' }),
+          class: `${className ?? ''} ${markdown ? 'rich-markdown-editor native-chat-markdown-composer-editor' : ''} whitespace-pre-wrap break-words [&_p]:m-0 [&_p.is-editor-empty:only-child]:before:content-[attr(data-placeholder)] [&_p.is-editor-empty:only-child]:before:text-chat-foreground-faint [&_p.is-editor-empty:only-child]:before:float-left [&_p.is-editor-empty:only-child]:before:h-0 [&_p.is-editor-empty:only-child]:before:pointer-events-none`,
           ...Object.fromEntries(Object.entries(events).filter(([key]) => key.startsWith('aria-')))
         },
         // Clipboard input is text, read as Markdown in that mode; only the picker and attachments
@@ -124,7 +125,7 @@ function NativePromptEditor({
             true
           )
       },
-      onTransaction: ({ editor: current, transaction }) => {
+      onTransaction: ({ editor: current, transaction }, history) => {
         if (
           !transaction.getMeta('preventUpdate') &&
           (transaction.docChanged || transaction.selectionSet)
@@ -132,7 +133,7 @@ function NativePromptEditor({
           claimSelection()
         }
         const pastedTextFiles = transaction.docChanged
-          ? historyPaths(current.state.doc, transaction.docs)
+          ? history(current.state.doc, transaction.docs)
           : undefined
         // Remote/late draft adoption is already saved; only this window’s edits should persist their document and skill chips.
         if (
@@ -160,7 +161,7 @@ function NativePromptEditor({
         }
       }
     },
-    [markdown]
+    markdown ? 'markdown' : ''
   )
 
   const coordinates = useNativeChatPromptCoordinates(editor, mode)
@@ -171,12 +172,12 @@ function NativePromptEditor({
       if (
         !editor ||
         !position?.pending ||
-        appliedPosition.current === position ||
+        selection.hasApplied(position) ||
         (position.at !== 'start' && position.target !== positionTarget)
       ) {
         return
       }
-      if (userOwned.current) {
+      if (selection.isUserOwned()) {
         if (position.at !== 'start') {
           position.pending = false
         } else if (previousRange) {
@@ -187,7 +188,7 @@ function NativePromptEditor({
         }
         return
       }
-      appliedPosition.current = position
+      selection.markApplied(position)
       editor.view.dispatch(
         editor.state.tr
           .setSelection(
@@ -207,7 +208,7 @@ function NativePromptEditor({
         position.pending = false
       }
     },
-    [coordinates, editor, positionTarget]
+    [coordinates, editor, positionTarget, selection]
   )
   useLayoutEffect(() => applyPosition(), [applyPosition])
 

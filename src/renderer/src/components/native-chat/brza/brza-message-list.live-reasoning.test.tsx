@@ -13,7 +13,7 @@ import type { NativeChatMessage } from '../../../../../shared/native-chat/native
 import { projectStructuredItemToNativeChat } from '../../../../../shared/agent-session/view/structured-agent-session-projection'
 import { NativeChatMessageList } from '../NativeChatMessageList'
 import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list-test-viewport'
-import { projectNativeChatTaskListFrames } from '../../../../../shared/native-chat/input/native-chat-task-list-frames'
+import { projectNativeChatTaskListFrames } from '../../../../../shared/native-chat/input/task-lists/native-chat-task-list-frames'
 import { openToolRunMembers } from '../tools/runs/native-chat-tool-run-members-test-support'
 import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 

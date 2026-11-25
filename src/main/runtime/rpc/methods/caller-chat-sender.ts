@@ -1,18 +1,17 @@
-import type { AgentMessageSender } from '../../../../shared/agent-session/agent-session-message-source'
+import type { AgentMessageSender } from '../../../../shared/agent-session/journal/agent-session-message-source'
 import {
   isOrcaSessionId,
-  ORCA_SESSION_ADDRESS_PREFIX,
   type OrcaSessionId
-} from '../../../../shared/orca-session-address'
+} from '../../../../shared/agent-session/identity/orca-session-address'
+import { ORCA_SESSION_ADDRESS_PREFIX } from '../../../../shared/agent-session/identity/orca-session-address-prefix'
 import type { RpcContext } from '../core'
-import { isAgentRpcCaller } from '../rpc-caller-identity'
 
-/** The chat an `orca` CLI call came from; windows, phones and remote CLIs act for a person. */
+/** The chat an `orca` CLI call on this host came from; windows, phones and remote CLIs act for a person. */
 export function callerChatSessionId(
   context: Pick<RpcContext, 'caller' | 'orchestrationCompatibilityEvidence'>
 ): OrcaSessionId | undefined {
   const claimed = context.orchestrationCompatibilityEvidence?.agentSessionId
-  return isAgentRpcCaller(context.caller) && claimed !== undefined && isOrcaSessionId(claimed)
+  return context.caller?.kind === 'local-cli' && claimed !== undefined && isOrcaSessionId(claimed)
     ? claimed
     : undefined
 }

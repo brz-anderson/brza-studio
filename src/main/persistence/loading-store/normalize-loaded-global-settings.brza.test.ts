@@ -1,11 +1,11 @@
 // BrzA: the chat's match-terminal-interface migration (P58-P60), kept apart from the upstream test.
 import { homedir } from 'node:os'
 import { describe, expect, it } from 'vitest'
-import { getDefaultPersistedState } from '../../../shared/constants'
-import type { PersistedState } from '../../../shared/persisted-state-types'
-import { normalizeLoadedGlobalSettings } from './normalize-loaded-global-settings'
-import { prepareLoadedTerminalSettings } from './prepare-loaded-terminal-settings'
-import { prepareLoadedProfileSettings } from './prepare-loaded-profile-settings'
+import { getDefaultPersistedState } from '../../../shared/orca-profiles/constants'
+import type { PersistedState } from '../../../shared/orca-profiles/persisted-state-types'
+import { normalizeLoadedGlobalSettings } from './profile-loading/normalize-loaded-global-settings'
+import { prepareLoadedTerminalSettings } from './profile-loading/prepare-loaded-terminal-settings'
+import { prepareLoadedProfileSettings } from './profile-loading/prepare-loaded-profile-settings'
 
 function normalizeLegacyProfile(overrides: Record<string, unknown>): PersistedState['settings'] {
   const defaults = getDefaultPersistedState(homedir())

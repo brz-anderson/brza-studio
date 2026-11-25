@@ -3,7 +3,8 @@ import {
   DEFAULT_TERMINAL_THEME_DARK,
   DEFAULT_TERMINAL_THEME_LIGHT
 } from '../../../shared/terminal-themes/terminal-theme-selection'
-import { getBuiltinTheme, resolveEffectiveTerminalAppearance } from './terminal-theme'
+import { resolveEffectiveTerminalAppearance } from './terminal/appearance/terminal-theme'
+import { getTheme as getBuiltinTheme } from './terminal/appearance/terminal-themes-data'
 
 describe('resolveEffectiveTerminalAppearance while the terminal follows the chat', () => {
   const settings = {

@@ -1,11 +1,11 @@
-import type { GlobalSettings } from '../../../../shared/global-settings-types'
-import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat/native-chat-appearance-settings'
+import type { GlobalSettings } from '../../../../shared/settings/global-settings-types'
+import { resolveNativeChatAppearanceSettings } from '../../../../shared/native-chat/settings/native-chat-appearance-settings'
 import {
   resolveMarkdownTheme,
   resolveMarkdownThemeSettings
 } from '../../../../shared/markdown-theme-settings'
-import { buildAppFontFamily } from '@/lib/app-font-family'
-import { buildFontFamily } from '@/lib/monospace-font-family'
+import { buildAppFontFamily } from '@/app-shell/appearance/app-font-family'
+import { buildFontFamily } from '../../../../shared/styles/monospace-font-family'
 import {
   nativeChatThemeSurfaceStyle,
   type NativeChatThemeSurfaceStyle

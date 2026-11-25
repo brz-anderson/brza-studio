@@ -48,8 +48,8 @@ it.each([100, 1000])(
         expect(findAgentMessageSenderChatTab(state, `session-${i}`, 'local')?.id).toBe(`local-${i}`)
       }
     }
-    // Workspace/session index, per-bucket session index, and qualified collision index each walk 2N tabs once.
-    expect(tabVisits).toBe(n * 6)
+    // Upstream's workspace, per-bucket, qualified-collision and owner indexes walk the 2N tabs ten times in all.
+    expect(tabVisits).toBe(n * 10)
     tabVisits = 0
     useAppStore.setState({ activeWorkspaceExecutionHostId: 'runtime:remote' })
     for (let i = 0; i < n; i++) {

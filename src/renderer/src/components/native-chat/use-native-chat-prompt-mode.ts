@@ -1,5 +1,5 @@
 // The composer editor's mode state: plain text or Markdown shown formatted (the chat settings switch).
-import { useLayoutEffect, useMemo, useRef, type MutableRefObject } from 'react'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import type { Editor } from '@tiptap/core'
 import Placeholder from '@tiptap/extension-placeholder'
 import { useAppStore } from '@/store'
@@ -17,13 +17,10 @@ import {
 } from './native-chat-prompt-editor-mode'
 import { NativeChatAgentReference } from './composer/editor/native-chat-agent-reference'
 import { NativeChatUnkernedRunDecorations } from './composer/editor/native-chat-unkerned-run-decorations'
+import { NativeChatHardBreakParagraphs } from './composer/editor/native-chat-hard-break-paragraphs'
 
 /** The mode, its codec and extensions, and the content a new editor starts with. */
-export function useNativeChatPromptMode(
-  scopeKey: string | undefined,
-  initialValue: string,
-  placeholderRef: MutableRefObject<string>
-) {
+export function useNativeChatPromptMode(scopeKey: string | undefined, initialValue: string) {
   const initialValueRef = useRef(initialValue)
   initialValueRef.current = initialValue
   const markdown = useAppStore((state) => state.settings?.nativeChatMarkdownComposer === true)
@@ -36,13 +33,19 @@ export function useNativeChatPromptMode(
       NativeChatImageReference,
       NativeChatAgentReference,
       NativeChatUnkernedRunDecorations,
+      // Plain text keeps one paragraph per line; Markdown reads a hard break as its own syntax.
+      ...(markdown ? [] : [NativeChatHardBreakParagraphs]),
       // A disabled box still says why it is disabled, as the plain text box's placeholder does.
+      // The composer's editor outlives its component, so the label comes from the live editor props.
       Placeholder.configure({
-        placeholder: () => placeholderRef.current,
+        placeholder: ({ editor }) => {
+          const attributes = editor.options.editorProps?.attributes
+          return typeof attributes === 'object' ? (attributes['aria-label'] ?? '') : ''
+        },
         showOnlyWhenEditable: false
       })
     ],
-    [codec, markdown, placeholderRef]
+    [codec, markdown]
   )
   const initial = useMemo(
     () => initialPromptContent(extensions, markdown, codec, scopeKey, initialValueRef.current),

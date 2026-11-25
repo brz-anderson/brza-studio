@@ -169,6 +169,7 @@ export const getGeneralCliSearchEntries = createLocalizedCatalog(() => [
     targetSectionId: 'cli'
   },
   {
+    targetSectionId: GENERAL_SETTING_ANCHORS.cliSkill,
     title: translate('settings.general.cli.skillTitle', 'BrzA Studio skill for agents'),
     description: translate(
       'auto.components.settings.general.search.244e3fb4c8',

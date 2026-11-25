@@ -1,5 +1,5 @@
 import { agentSessionRefusalError } from '../../shared/agent-session/failures/agent-session-wire-refusals'
-import type { AgentSessionAccountHome } from '../../shared/agent-session/lifecycle/agent-session-account-home'
+import type { AgentSessionAccountHome } from '../../shared/agent-session/lifecycle/accounts/agent-session-account-home'
 import type { AgentSessionAccountSwitchRecord } from '../../shared/agent-session-account-switch'
 import type { AgentSessionStoreState } from './agent-session/records/agent-session-store-state'
 

@@ -65,7 +65,7 @@ function seedOrcaFiles(): void {
 
 async function loadStores() {
   vi.resetModules()
-  const { setSecretStore } = await import('../../shared/secret-store')
+  const { setSecretStore } = await import('../../shared/secure-storage/secret-store')
   setSecretStore({
     isEncryptionAvailable: () => true,
     encryptString: (value) => Buffer.from(value),
@@ -74,14 +74,14 @@ async function loadStores() {
   })
   return {
     jira: await import('../jira/site-credential-store'),
-    linearPaths: await import('../linear/linear-credential-paths'),
-    linearTokens: await import('../linear/linear-token-store'),
-    linearRegistry: await import('../linear/linear-workspace-registry'),
+    linearPaths: await import('../linear/accounts/linear-credential-paths'),
+    linearTokens: await import('../linear/accounts/linear-token-store'),
+    linearRegistry: await import('../linear/accounts/linear-workspace-registry'),
     bitbucket: await import('../bitbucket/credential-store'),
     speech: await import('../speech/openai-api-key-store'),
     minimaxCookie: await import('../minimax/minimax-cookie-store'),
     minimaxKey: await import('../minimax/minimax-api-key-store'),
-    openCodeGo: await import('../opencode/opencode-go-api-key-store'),
+    openCodeGo: await import('../opencode/accounts/opencode-go-api-key-store'),
     zcode: await import('../zcode/zcode-plan-api-key-store')
   }
 }

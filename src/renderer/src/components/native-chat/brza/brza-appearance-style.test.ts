@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
-import { buildFontFamily } from '@/lib/monospace-font-family'
-import { buildAppFontFamily } from '@/lib/app-font-family'
+import { createGlobalSettingsFixture } from '../../../../../shared/settings/global-settings-test-fixture'
+import { buildFontFamily } from '../../../../../shared/styles/monospace-font-family'
+import { buildAppFontFamily } from '@/app-shell/appearance/app-font-family'
 import * as terminalThemeSelection from '../../../../../shared/terminal-themes/terminal-theme-selection'
 import { nativeChatContrastMix } from '../../../../../shared/native-chat-theme'
 import { TERMINAL_THEME_CATALOG } from '../../../../../shared/terminal-themes/terminal-theme-catalog'
@@ -54,7 +54,7 @@ describe('nativeChatAppearanceStyle chat theme', () => {
   it('follows the terminal code font while keeping default body font and colors', () => {
     const style = nativeChatAppearanceStyle(makeSettings({ terminalFontFamily: 'Menlo' }))
     expect(style['--chat-code-font-family']).toBe(buildFontFamily('Menlo'))
-    expect(style['--chat-font-family']).toBeUndefined()
+    expect(style['--chat-font-family']).toContain('system-ui')
     expect(style['--chat-source-foreground']).toBeUndefined()
     expect(style['--chat-source-background']).toBeUndefined()
     expect(style['--chat-foreground-mix']).toBe('78%')
@@ -137,7 +137,7 @@ describe('nativeChatAppearanceStyle chat theme', () => {
       makeSettings({ theme: 'light', nativeChatAppearance: { contrast: 50 } })
     )
     expect(style['--chat-foreground-mix']).toBe('64%')
-    expect(style['--chat-font-family']).toBeUndefined()
+    expect(style['--chat-font-family']).toContain('system-ui')
     expect(style['--chat-canvas-mix']).toBeUndefined()
   })
 

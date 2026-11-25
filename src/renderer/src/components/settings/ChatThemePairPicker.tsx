@@ -1,14 +1,17 @@
 import { useState } from 'react'
-import type { GlobalSettings } from '../../../../shared/global-settings-types'
-import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from '../../../../shared/native-chat/native-chat-appearance-settings'
+import type { GlobalSettings } from '../../../../shared/settings/global-settings-types'
+import { NATIVE_CHAT_THEME_BRZA_DEFAULT } from '../../../../shared/native-chat/settings/native-chat-appearance-settings'
 import {
   resolveNativeChatThemePair,
   type NativeChatThemePair
 } from '../../../../shared/native-chat-theme'
-import { getAvailableTerminalThemeOptions, type TerminalThemeOption } from '@/lib/terminal-theme'
+import {
+  getAvailableTerminalThemeOptions,
+  type TerminalThemeOption
+} from '@/lib/terminal/appearance/terminal-theme'
 import { usePluginTerminalThemes } from '@/store/plugins/appearance/plugin-themes'
 import { translate } from '@/i18n/i18n'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/class-names'
 import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
 import {
   SettingsRow,

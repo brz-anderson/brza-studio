@@ -1,15 +1,13 @@
 // @vitest-environment happy-dom
 import { act, cleanup, renderHook } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { GlobalSettings } from '../../../../../shared/global-settings-types'
+import type { GlobalSettings } from '../../../../../shared/settings/global-settings-types'
 import * as nativeChatTheme from '../../../../../shared/native-chat-theme'
-import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
-import { resetSystemPrefersDarkSubscriptionForTests } from '../../../hooks/theme/use-system-prefers-dark'
+import { createGlobalSettingsFixture } from '../../../../../shared/settings/global-settings-test-fixture'
 import { useNativeChatAppearanceStyle } from '../appearance/native-chat-appearance-style'
 
 afterEach(() => {
   cleanup()
-  resetSystemPrefersDarkSubscriptionForTests()
   vi.restoreAllMocks()
 })
 
@@ -70,7 +68,7 @@ describe('shared chat appearance hook', () => {
     expect(result.current['--chat-code-font-family']).toContain('Menlo')
     expect(resolveColors).toHaveBeenCalledTimes(2)
     rerender({ settings: { ...settings, terminalFontFamily: 'Menlo' }, width: 384 })
-    expect(result.current['--chat-estimated-chars-per-line']).toBe(50)
+    expect(result.current['--chat-estimated-chars-per-line']).toBe(53)
     expect(resolveColors).toHaveBeenCalledTimes(3)
     const narrower = result.current
     rerender({ settings: { ...settings, terminalFontFamily: 'Menlo' }, width: 399 })

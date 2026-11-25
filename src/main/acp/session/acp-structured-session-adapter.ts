@@ -23,13 +23,13 @@ import {
   type AcpStructuredSessionAdapterDeps
 } from './acp-structured-session-adapter-deps'
 import { readAcpLiveOptions } from '../options/acp-live-options'
+import {
+  acpPermissionWritesSettled,
+  acpRunningPermission,
+  applyAcpLivePermissionMode
+} from '../options/acp-live-permission-mode'
 import { acpControlsSettled, writeAcpSessionOption } from '../options/acp-session-option-write'
 import { acpOptionWriteBound, withAcpModelFallback } from '../turns/acp-model-command'
-import {
-  acpModeNeedsRestart,
-  applyAcpMode,
-  type AcpModeInput
-} from '../brza/acp-live-permission-mode'
 import {
   acpChildStopCapabilities,
   closeAcpChildSessions,
@@ -135,6 +135,8 @@ export class AcpStructuredSessionAdapter implements SessionAdapter {
         return rejectedAcpDispatch(session)
       }
       await acpControlsSettled(session, signal)
+      // A mode picked before this send must reach the agent before the prompt does.
+      await acpPermissionWritesSettled(session)
       input.signal?.throwIfAborted()
       await input.beforeDispatch?.()
       input.signal?.throwIfAborted()
@@ -160,7 +162,7 @@ export class AcpStructuredSessionAdapter implements SessionAdapter {
   cancelTurn: SessionAdapter['cancelTurn'] = async (input) => {
     const session = this.live(input.sessionId)
     // Refuse a stale named turn; a handover with no journal turn can stop the in-flight prompt.
-    const liveTurnId = input.resolveLiveTurnId?.() ?? session.lane.openTurnId
+    const liveTurnId = (await input.resolveLiveTurnId?.()) ?? session.lane.openTurnId
     if (input.turnId !== undefined && liveTurnId !== null && input.turnId !== liveTurnId) {
       return { cancelled: false, refusal: { turnNotRunning: true } }
     }
@@ -183,6 +185,29 @@ export class AcpStructuredSessionAdapter implements SessionAdapter {
 
   settlePermissionTransition = stop.acpPermissionTransition((id) => this.live(id), this.graceMs)
 
+  permissionModeRequiresAcquisition: NonNullable<
+    SessionAdapter['permissionModeRequiresAcquisition']
+  > = (sessionId, mode) => {
+    const session = this.children.sessions.get(sessionId)
+    return childState.isAcpReadySession(session)
+      ? acpRunningPermission(session) !== mode
+      : undefined
+  }
+
+  runningPermissionMode: NonNullable<SessionAdapter['runningPermissionMode']> = (sessionId) => {
+    const session = this.children.sessions.get(sessionId)
+    return childState.isAcpReadySession(session)
+      ? (acpRunningPermission(session) ?? undefined)
+      : undefined
+  }
+
+  applyPermissionMode: NonNullable<SessionAdapter['applyPermissionMode']> = async (input) => {
+    const session = this.live(input.sessionId)
+    if (session.fence === input.fence) {
+      await applyAcpLivePermissionMode(session, input.mode, this.writeBound(session))
+    }
+  }
+
   answerPrompt: SessionAdapter['answerPrompt'] = (input) =>
     this.live(input.sessionId).prompts.answer(input)
 
@@ -200,12 +225,6 @@ export class AcpStructuredSessionAdapter implements SessionAdapter {
     await writeAcpSessionOption(session.connection, session.options, write, bound)
     return session.options.reported()
   }
-
-  permissionModeRequiresAcquisition = (sessionId: string, mode: AcpModeInput['mode']) =>
-    acpModeNeedsRestart(this.children.sessions.get(sessionId), mode)
-
-  applyPermissionMode = (input: AcpModeInput) =>
-    applyAcpMode(this.children.sessions.get(input.sessionId), input, this.deps)
 
   private writeBound = (session: AcpStructuredSession, signal?: AbortSignal) =>
     acpOptionWriteBound(this.deps, session, signal, (e) => this.children.connectionLost(session, e))
@@ -231,6 +250,14 @@ export class AcpStructuredSessionAdapter implements SessionAdapter {
   holdsDispatch = (sessionId: string): boolean => {
     const session = this.children.sessions.get(sessionId)
     return session ? childState.isAcpReadySession(session) && session.turns.running : false
+  }
+
+  confirmIdle: NonNullable<SessionAdapter['confirmIdle']> = (sessionId) => {
+    const session = this.children.sessions.get(sessionId)
+    // OMP cannot prove that a finished parent has no background work or pending results.
+    return session?.spec.agent === 'omp' && !session.connection.exited
+      ? Promise.resolve('unknown')
+      : undefined
   }
 
   holdsLiveProviderProcess = (sessionId: string, generation: string): boolean => {

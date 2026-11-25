@@ -7,21 +7,21 @@ import {
   resolveAuthorizedPath,
   type ResolveAuthorizedPathOptions
 } from './filesystem-auth'
-import { isDescendantOrEqual } from './filesystem-path-containment'
-import { filePreviewForPath } from '../../../../shared/file-preview/file-preview-kind'
+import { isDescendantOrEqual } from '../../../filesystem/local-file-io/filesystem-path-containment'
 import { awaitToolImageWrite } from '../../../native-chat/brza/brza-tool-result-images'
-import { getFloatingWorkspaceFileRoots } from '../../floating-workspace-directory'
+import { getFloatingWorkspaceFileRoots } from '../../worktrees/floating-workspace-directory'
 import {
   isDeviceNamespacePath,
   isNetworkSharePath,
   isWindowsReservedDeviceName
-} from '../../automatic-load-path-text'
-import { NOT_A_REGULAR_FILE_MESSAGE } from '../local-regular-file-read'
+} from './automatic-load-path-text'
+import { NOT_A_REGULAR_FILE_MESSAGE } from '../../../filesystem/local-file-io/local-regular-file-read'
+import { isChatImageTarget } from './chat-image-target'
 import {
   realpathAcrossWslDriveMount,
   windowsFsPath
 } from '../../../wsl/filesystem/wsl-unc-drive-fs-path'
-import { resolveProjectFolderLinkPath } from '../../project-folder-link-path'
+import { resolveProjectFolderLinkPath } from '../../shell/project-folder-link-path'
 
 const USER_FILE_NEEDS_ABSOLUTE_PATH_MESSAGE =
   'Access denied: a file opened by name needs an absolute path.'
@@ -59,11 +59,6 @@ export async function resolveUserNamedRegularFile(
     throw new Error(NOT_A_REGULAR_FILE_MESSAGE)
   }
   return filePath
-}
-
-// Chat uses img rendering; PDF previews need a different surface.
-function isChatImage(filePath: string): boolean {
-  return filePreviewForPath(filePath)?.kind === 'image'
 }
 
 // Resolve path text first because devices can hide behind dot and parent segments.
@@ -125,7 +120,7 @@ async function resolveChatImagePath(targetPath: string, store: RuntimeStore): Pr
     await resolveDesktopAuthorizedPath(realTarget, store)
   }
   // A .png symlink to a secret is not an image.
-  if (!isChatImage(realTarget)) {
+  if (!(await isChatImageTarget(realTarget))) {
     throw new Error(CHAT_IMAGE_TYPE_MESSAGE)
   }
   return realTarget

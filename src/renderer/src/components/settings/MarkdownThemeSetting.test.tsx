@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
-import type { GlobalSettings } from '../../../../shared/global-settings-types'
+import type { GlobalSettings } from '../../../../shared/settings/global-settings-types'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createGlobalSettingsFixture } from '../../../../shared/global-settings-test-fixture'
+import { createGlobalSettingsFixture } from '../../../../shared/settings/global-settings-test-fixture'
 import { MarkdownThemeSetting } from './MarkdownThemeSetting'
 
 const mock = vi.hoisted(() => ({ state: { settingsSearchQuery: '' } }))

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { TERMINAL_THEME_CATALOG } from '../../../../shared/terminal-themes/terminal-theme-catalog'
-import { buildAppFontFamily } from '@/lib/app-font-family'
-import { buildFontFamily } from '@/lib/monospace-font-family'
+import { buildAppFontFamily } from '@/app-shell/appearance/app-font-family'
+import { buildFontFamily } from '../../../../shared/styles/monospace-font-family'
 import { markdownSurfaceTheme } from './markdown-surface-theme'
 
 const tangoLight = TERMINAL_THEME_CATALOG['Builtin Tango Light'].background

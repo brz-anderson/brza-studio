@@ -3,7 +3,7 @@ import type { PluginTerminalThemeRegistration } from '../../../shared/plugins/ar
 import {
   refreshedTerminalPluginPalettes,
   withTerminalPluginPalettes
-} from './terminal-plugin-palettes'
+} from './terminal/themes/terminal-plugin-palettes'
 
 const dawn: PluginTerminalThemeRegistration = {
   id: 'plugin:samples.dawn/dawn',

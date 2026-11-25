@@ -1,4 +1,4 @@
-import { runsOrcaCliCommand } from '../../../orca-browser-cli-commands'
+import { runsOrcaCliCommand } from '../../../browser/automation/orca-browser-cli-commands'
 import type { BrzaToolCategoryDefinition } from './brza-tool-categories'
 import { isGitCommitSegment } from './brza-git-command'
 import { isGhReferenceSegment } from './brza-gh-command'

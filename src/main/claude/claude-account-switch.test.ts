@@ -3,19 +3,26 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, expect, it, vi } from 'vitest'
-import type { AgentSessionOwnerProbe } from '../../shared/agent-session/lifecycle/agent-session-lease-adjudication'
-import { agentSessionRecordFixture } from '../../shared/agent-session/lifecycle/agent-session-record.test-fixture'
-import { claudeProviderHandle } from '../../shared/agent-session/lifecycle/agent-session-provider-handle-encoding'
-import type { ClaudeManagedAccount } from '../../shared/managed-account-types'
+import type { AgentSessionOwnerProbe } from '../../shared/agent-session/lifecycle/leases/agent-session-lease-adjudication'
+import { agentSessionRecordFixture } from '../../shared/agent-session/lifecycle/records/agent-session-record.test-fixture'
+import { claudeProviderHandle } from '../../shared/agent-session/lifecycle/provider-handles/agent-session-provider-handle-encoding'
+import type { ClaudeManagedAccount } from '../../shared/agent-accounts/managed-account-types'
 import {
   ClaudeProfileRouter,
   type ClaudeProfileRouterSettings
-} from '../claude-accounts/claude-profile-router'
-import { installClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
-import { createClaudeProfileReport } from '../claude-accounts/claude-profile-report'
-import { AgentSessionJournal } from '../native-chat/agent-session-journal/journal-store'
-import { openTestJournalHostDatabase } from '../native-chat/agent-session-journal/store-lifecycle/journal-host-database-test-support'
-import { openTestAgentSessionRecordStore } from '../runtime/agent-session/records/agent-session-record-store-test-harness'
+} from '../claude-accounts/profiles/routing/claude-profile-router'
+import { installClaudeProfileRouter } from '../claude-accounts/profiles/routing/claude-profile-installed-router'
+import { createClaudeProfileReport } from '../claude-accounts/profiles/claude-profile-report'
+import { SqlAgentSessionJournal } from '../native-chat/agent-session-journal/journal-sql-store'
+import { readTestJournalItems } from '../native-chat/agent-session-journal/journal-observation.test-support'
+import {
+  openTestAgentSessionDatabase,
+  openTestAgentSessionRecordStore
+} from '../runtime/agent-session/records/agent-session-record-store-test-harness'
+import {
+  AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION,
+  agentSessionAccountSwitchedText
+} from '../../shared/agent-session-account-switch'
 import { claudePrepareAccountSwitch } from './claude-account-switch'
 
 const NOW = 1_800_000_000_000
@@ -154,8 +161,8 @@ it('switches a chat to another account by copying its transcript there and resum
     return
   }
 
-  const journal = new AgentSessionJournal({
-    database: openTestJournalHostDatabase(root),
+  const journal = await SqlAgentSessionJournal.open({
+    database: await openTestAgentSessionDatabase(root),
     identity: {
       sessionId: SESSION,
       workspaceId: 'workspace-1',
@@ -165,7 +172,6 @@ it('switches a chat to another account by copying its transcript there and resum
     },
     now: () => NOW + 5
   })
-  await journal.open()
   const operation = { callerKey: 'client-1', operationId: `${NOW}-${'2'.repeat(32)}` }
   await store.admitOperation({ ...operation, fingerprint: 'switch', now: NOW })
   const fence = before.lease.runtimeFence
@@ -175,9 +181,18 @@ it('switches a chat to another account by copying its transcript there and resum
     ...operation,
     switchedAt: NOW + 5
   }
-  await journal.context.switchAccount(
-    { accountId: 'b', account: prepared.account },
-    { operationId: operation.operationId, fence },
+  await journal.write({
+    kind: 'item',
+    identity: { provider: 'orca', clientMessageId: `account-switch:${operation.operationId}` },
+    body: {
+      kind: 'status',
+      text: agentSessionAccountSwitchedText(prepared.account),
+      presentation: AGENT_SESSION_ACCOUNT_SWITCHED_PRESENTATION,
+      accountSwitch: { accountId: 'b', account: prepared.account }
+    },
+    options: { fence, turnScope: { kind: 'thread' } }
+  })
+  await store.commitOperationReceipt(
     store.conversationReceipts.accountSwitch(
       () => ({ sessionId: SESSION, fence, accountHome: prepared.accountHome, accountSwitch }),
       operation
@@ -189,7 +204,9 @@ it('switches a chat to another account by copying its transcript there and resum
     accountSwitch,
     providerHandleChain: before.providerHandleChain
   })
-  expect(journal.snapshot().items.find((item) => item.body.kind === 'status')?.body).toMatchObject({
+  expect(
+    (await readTestJournalItems(journal)).find((item) => item.body.kind === 'status')?.body
+  ).toMatchObject({
     text: 'Account switched - b@example.com',
     presentation: 'account-switched',
     accountSwitch: { accountId: 'b', account: 'b@example.com' }

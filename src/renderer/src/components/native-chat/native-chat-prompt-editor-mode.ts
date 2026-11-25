@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import { encodeRawMarkdownHtmlForRichEditor } from '../editor/rich-markdown/raw-source/raw-markdown-html'
 import type { RichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import { readNativeChatDraftDocument } from './drafts/native-chat-draft-views'
+import { promptParagraphLines } from './composer/editor/native-chat-prompt-document-text'
 import {
   createNativeChatMarkdownPromptExtensions,
   markdownPromptCoordinates
@@ -71,7 +72,8 @@ export function initialPromptContent(
 ): { content: JSONContent | string; contentType?: 'markdown'; stored: boolean } {
   const stored = scopeKey ? readNativeChatDraftDocument(scopeKey, value) : undefined
   if (stored && fitsSchema(getSchema(extensions), stored)) {
-    return { content: stored, stored: true }
+    // Drafts saved before Shift+Enter split paragraphs hold hard breaks; plain text reads one line each.
+    return { content: markdown ? stored : promptParagraphLines(stored), stored: true }
   }
   return markdown
     ? {

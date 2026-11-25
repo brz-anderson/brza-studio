@@ -7,9 +7,9 @@ import {
   writeCredentialFileAtomic,
   writeEncryptedCredential
 } from '../credentials/integration-credential-file'
-import type { BitbucketAuthMode } from '../../shared/bitbucket-credentials'
+import type { BitbucketAuthMode } from '../../shared/bitbucket/bitbucket-credentials'
 import { readCredentialFileProtection } from '../credentials/credential-file-protection'
-import type { SecretAtRestProtection } from '../../shared/secret-at-rest-protection'
+import type { SecretAtRestProtection } from '../../shared/secure-storage/secret-at-rest-protection'
 import { getIntegrationCredentialsDir } from '../credentials/integration-credentials-dir'
 
 // Plaintext display metadata lets status reads avoid keychain prompts.

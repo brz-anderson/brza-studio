@@ -7,7 +7,7 @@ import { NativeChatUsageLimitActionsProvider } from './usage/NativeChatUsageLimi
 import { NativeChatNoticeRow } from './messages/notices/NativeChatNoticeRow'
 import type { NativeChatOrcaStopView } from './messages/notices/native-chat-orca-stop-context'
 import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
-import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
+import type { RuntimeClientTarget } from '../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 
 type Pinned = { accountId: string; account: string } | null
 const mocks = vi.hoisted(() => {
@@ -26,7 +26,7 @@ vi.mock('@/runtime/provider-accounts/observations/runtime-provider-accounts-clie
 vi.mock('@/runtime/native-chat/naming/structured-conversation-name', () => ({
   useStructuredChatTabConversationName: () => 'My chat'
 }))
-vi.mock('@/components/status-bar/ClaudeSwitcherMenu', () => ({
+vi.mock('@/components/status-bar/accounts/ClaudeSwitcherMenu', () => ({
   ClaudeSwitcherMenu: () => <button type="button">Global switcher</button>
 }))
 vi.mock('@/components/agent-session-continuation/AgentSessionContinuationDialog', () => ({
@@ -38,6 +38,9 @@ afterEach(() => {
   mocks.call.mockReset()
   mocks.select.mockReset()
 })
+
+// A reset an hour away keeps the row waiting, where the scheduled continue shows as a pressed clock.
+const LIMIT_RESETS_AT = Date.now() + 60 * 60_000
 
 // BrzA P40/P79 (pedido 41): on a usage-limit row, Continue in another account takes the place of
 // the account switch beside Hand Off. A pinned chat moves with its own switch (P36); a chat that
@@ -56,7 +59,7 @@ function renderLimitRow(
     continueNow: vi.fn(),
     usageLimitTurnItemId: 'cut',
     continueUsageLimit,
-    usageLimitAutoContinue: { kind: 'scheduled', resetsAt: Date.UTC(2026, 10, 2, 15, 1), cancel }
+    usageLimitAutoContinue: { kind: 'scheduled', resetsAt: LIMIT_RESETS_AT, cancel }
   }
   render(
     <TooltipProvider>
@@ -81,7 +84,7 @@ function renderLimitRow(
             type: 'text',
             text: 'Limited',
             tone: 'warning',
-            failure: { kind: 'usageLimitReached' },
+            failure: { kind: 'usageLimitReached', usageLimit: { resetsAt: LIMIT_RESETS_AT } },
             usageLimitTurnItemId: 'cut'
           }}
         />
@@ -121,7 +124,7 @@ it('moves a pinned chat with its own switch, then cancels the schedule and conti
   const { continueUsageLimit, cancel } = renderLimitRow(accountSwitch(switchTo))
   expect(screen.queryByRole('button', { name: 'Global switcher' })).toBeNull()
   expect(screen.queryByRole('button', { name: 'Account b@example.com' })).toBeNull()
-  expect(screen.getByRole('button', { name: "Don't continue" })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /^Don't continue at / })).toBeInTheDocument()
   await chooseAccount('c@example.com')
   expect(switchTo).toHaveBeenCalledWith('c')
   expect(cancel).toHaveBeenCalledOnce()

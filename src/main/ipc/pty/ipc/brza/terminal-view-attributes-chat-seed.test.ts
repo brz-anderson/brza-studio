@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { getDefaultSettings } from '../../../../../shared/constants'
+import { getDefaultSettings } from '../../../../../shared/orca-profiles/constants'
 import type { TerminalOscColorQueryReplyColors } from '../../../../../shared/terminal/protocol/queries/terminal-osc-color-reply'
 import { LocalPtyProvider } from '../../../../providers/local-pty/local-pty-provider'
 import { _resetTerminalViewAttributesForTest } from '../../../../runtime/terminal/view/terminal-view-attribute-store'

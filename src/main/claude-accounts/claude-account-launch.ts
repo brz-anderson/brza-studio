@@ -1,11 +1,11 @@
 import {
   CLAUDE_INJECTED_CONFIG_DIR_ENV,
   CLAUDE_PROFILE_POINTER_ENV
-} from '../../shared/claude-profile-routing'
-import type { ClaudeManagedAccount } from '../../shared/managed-account-types'
-import { isDirectory } from './claude-profile-homes'
-import { claudeProfileMissing } from './claude-profile-launch-errors'
-import type { ClaudeProfileRouter } from './claude-profile-router'
+} from '../../shared/agent-accounts/claude/claude-profile-routing'
+import type { ClaudeManagedAccount } from '../../shared/agent-accounts/managed-account-types'
+import { isDirectory } from './profiles/claude-profile-homes'
+import { claudeProfileMissing } from './profiles/routing/claude-profile-launch-errors'
+import type { ClaudeProfileRouter } from './profiles/routing/claude-profile-router'
 import type { ClaudeRuntimeAuthPreparation } from './runtime-auth/runtime-auth-types'
 
 /** The saved account when it is this host's own; undefined for any other id. */

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { registerOrcaProtocolClient } from '../orca-protocol-registration'
+import { registerOrcaProtocolClient } from '../open-routing/orca-protocol-registration'
 
 // Coexistence with upstream Orca: the OS handler BrzA Studio claims is brza-studio://, never orca://.
 describe('registerOrcaProtocolClient of BrzA Studio beside upstream Orca', () => {

@@ -1,5 +1,5 @@
 import type { ITheme } from '@xterm/xterm'
-import type { GlobalSettings } from './global-settings-types'
+import type { GlobalSettings } from './settings/global-settings-types'
 import { resolveNativeChatTheme, type NativeChatThemeContext } from './native-chat-theme'
 import {
   terminalColorOverridesForSlot,

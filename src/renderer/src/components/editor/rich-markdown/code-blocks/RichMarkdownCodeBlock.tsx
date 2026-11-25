@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
 import type { NodeViewProps } from '@tiptap/react'
 import { Copy, Check } from 'lucide-react'
-import MermaidBlock from '../../MermaidBlock'
+import MermaidBlock from '../../diagrams/MermaidBlock'
 import { useMarkdownSurfaceTheme } from '../../use-markdown-surface-theme'
-import { useMermaidDiagramExpand } from '../../use-mermaid-diagram-expand'
+import { useMermaidDiagramExpand } from '../../diagrams/use-mermaid-diagram-expand'
 import { useTranslate } from '@/i18n/use-translate'
 import {
   getCodeBlockLanguageLabel,

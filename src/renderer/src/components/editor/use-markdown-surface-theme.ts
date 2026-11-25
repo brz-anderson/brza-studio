@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
 import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
-import { useMonacoDark } from '@/hooks/use-monaco-theme'
+import { useMonacoDark } from '@/lib/editor/appearance/use-monaco-theme'
 import {
   markdownSurfaceTheme,
   selectMarkdownSurfaceThemeSettings,

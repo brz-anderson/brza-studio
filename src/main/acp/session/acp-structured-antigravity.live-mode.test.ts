@@ -2,19 +2,19 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, expect, it } from 'vitest'
 import { z } from 'zod'
-import { computeAgentSessionPayloadFingerprint } from '../../../shared/agent-session/lifecycle/agent-session-mutation-envelope'
+import { computeAgentSessionPayloadFingerprint } from '../../../shared/agent-session/lifecycle/operations/agent-session-mutation-envelope'
 import { closeProviderTimelineRigs } from '../../native-chat/agent-session-timeline/provider-timeline-assembler-test-support'
-import { CALLER } from '../../native-chat/agent-session-wire/host/testing/structured-agent-session-host-test-harness'
 import {
   HOST_TEST_SESSION,
   hostTestAttachParams,
   hostTestOperationId
-} from '../../native-chat/agent-session-wire/host/testing/structured-agent-session-host-test-data'
+} from '../../native-chat/agent-session-wire/host/testing/structured-agent-session-host-test-data.test-fixture'
 import { acpLaunchSpecFor } from '../launch/acp-launch-registry'
 import type { AcpScriptedAgent } from '../process/testing/acp-scripted-agent.test-support'
 import { PROVIDER_SESSION, waitFor } from './testing/acp-structured-adapter.test-support'
 import { framesOf, launch, openHostRig, send } from './testing/acp-structured-host.test-support'
 
+const CALLER = { callerKey: 'client-1' }
 const ANTIGRAVITY = acpLaunchSpecFor('antigravity')!
 const RESUMES = { agentCapabilities: { loadSession: true, sessionCapabilities: { resume: {} } } }
 afterEach(closeProviderTimelineRigs)

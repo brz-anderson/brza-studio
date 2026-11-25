@@ -1,6 +1,6 @@
 import { isMacInstallRequested } from '../mac-install/updater-mac-install'
-import type { UpdateCheckOptions } from '../../../shared/update-status-types'
-import type { ReleaseChannel } from '../../../shared/release-channel'
+import type { UpdateCheckOptions } from '../../../shared/updater/update-status-types'
+import type { ReleaseChannel } from '../../../shared/updater/release-channel'
 import { UpdaterScheduling } from './updater-scheduling'
 import { isUpdaterEnabled } from '../updater-enabled'
 
