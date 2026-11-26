@@ -80,7 +80,7 @@ async function fetchReleaseFeedTags(): Promise<ReleaseFeedTag[] | null> {
 export async function fetchLatestStableReleaseTag(): Promise<string | null> {
   try {
     // Resolve only the release-page redirect; installer redirects continue on to signed storage URLs.
-    const latestUrl = 'https://github.com/brz-anderson/orca/releases/latest'
+    const latestUrl = 'https://github.com/brz-anderson/brza-studio/releases/latest'
     const response = await requestReleaseHead(latestUrl)
     if (!response?.redirectUrl || response.statusCode < 300 || response.statusCode >= 400) {
       return null

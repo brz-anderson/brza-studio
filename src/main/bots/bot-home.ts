@@ -2,6 +2,12 @@
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { basename, dirname, join } from 'node:path'
+import {
+  BRAND_BOTS_DIR_NAME,
+  BRAND_CREDENTIALS_DIR_NAME,
+  BRAND_DEV_USER_DATA_DIR_NAME,
+  BRAND_USER_DATA_DIR_NAME
+} from '../../shared/brand-identity'
 import { getAppEnvironment } from '../../shared/app-lifecycle/app-environment'
 import { BOT_MEMORY_SEED_INTRO } from '../../shared/bot-memory-lines'
 import type { Bot } from '../../shared/bot-types'
@@ -106,6 +112,13 @@ export function botsRootFolder(paths: BotsRootPaths = currentBotsRootPaths()): s
     join(paths.home, '.orca'),
     ...(paths.xdgDataHome ? [join(paths.xdgDataHome, 'Orca')] : [])
   ].map(comparable)
+  // Why: BrzA's packaged and shared dev profiles keep bots under `~/.brza`, away from the Orca app's.
+  const brandProfiles = [BRAND_USER_DATA_DIR_NAME, BRAND_DEV_USER_DATA_DIR_NAME]
+    .map((name) => join(paths.appData, name))
+    .map(comparable)
+  if (brandProfiles.includes(userData)) {
+    return join(paths.home, BRAND_CREDENTIALS_DIR_NAME, BRAND_BOTS_DIR_NAME)
+  }
   const machineDataRoot =
     comparable(dirname(paths.userData)) === comparable(paths.home) &&
     MACHINE_DATA_ROOT.test(basename(userData))

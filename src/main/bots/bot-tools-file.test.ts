@@ -206,7 +206,7 @@ describe('an edited tool', () => {
         transport: 'http',
         headers: [{ key: 'x-extra', value: 'one' }]
       })
-    ).rejects.toThrow('Orca signs in to this tool')
+    ).rejects.toThrow('BrzA Studio signs in to this tool')
 
     const [after] = await readBotToolServers(folder)
     expect(after && 'credential' in after ? after.credential : null).toBe(id)

@@ -179,20 +179,25 @@ export function formatCliUserFacingDetail(raw: string | null | undefined): strin
     return ''
   }
   const normalized = stripElectronInvokePrefix(raw.trim())
-  const registerCopy = formatRegisterCliDetail(normalized)
+  // Why: the main process emits "BrzA Studio" ("a BrzA Studio symlink") while the known-detail table
+  // keeps the upstream "Orca" spelling ("an Orca symlink"); match on the Orca form so both resolve.
+  const matchable = normalized
+    .replace(/\ban? BrzA Studio\b/g, 'an Orca')
+    .replace(/BrzA Studio/g, 'Orca')
+  const registerCopy = formatRegisterCliDetail(matchable)
   if (registerCopy) {
     return registerCopy
   }
   for (const known of KNOWN_CLI_DETAILS) {
     if (typeof known.test === 'string') {
-      if (normalized === known.test || normalized.includes(known.test)) {
+      if (matchable === known.test || matchable.includes(known.test)) {
         return translate(known.key, known.fallback)
       }
       continue
     }
-    const match = normalized.match(known.test)
+    const match = matchable.match(known.test)
     if (match) {
-      return translate(known.key, known.fallback, known.vars?.(match, normalized))
+      return translate(known.key, known.fallback, known.vars?.(match, matchable))
     }
   }
   return normalized

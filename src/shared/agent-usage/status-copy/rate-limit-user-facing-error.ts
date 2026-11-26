@@ -9,22 +9,24 @@ export function formatRateLimitUserFacingError(
     return ''
   }
   const message = raw.trim()
+  // Why: the Grok fetcher emits "BrzA Studio"; the catalog keeps the upstream "Orca" spelling.
+  const comparable = message.replace(/BrzA Studio/g, 'Orca')
   const invalidWorkspace = message.match(/^Invalid workspace ID format:(.*)$/i)
   if (invalidWorkspace) {
     return `${t('auto.lib.rateLimits.errors.opencodeInvalidWorkspaceId', 'Invalid workspace ID format')}:${invalidWorkspace[1]}`
   }
   for (const known of KNOWN_RATE_LIMIT_ERRORS) {
     if (typeof known.test === 'string') {
-      if (message === known.test) {
+      if (comparable === known.test) {
         return t(known.key, known.fallback)
       }
       // Why: macOS Tailscale DNS hint appends after the base English error.
-      if (message.startsWith(`${known.test} `)) {
-        return `${t(known.key, known.fallback)}${message.slice(known.test.length)}`
+      if (comparable.startsWith(`${known.test} `)) {
+        return `${t(known.key, known.fallback)}${comparable.slice(known.test.length)}`
       }
       continue
     }
-    const match = message.match(known.test)
+    const match = comparable.match(known.test)
     if (match) {
       return t(known.key, known.fallback, known.vars?.(match))
     }

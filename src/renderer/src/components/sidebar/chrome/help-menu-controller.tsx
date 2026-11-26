@@ -39,7 +39,7 @@ const SidebarFeedbackDialog = lazyWithRetry(
 
 const DOCS_URL = 'https://orca.dev/docs'
 const CHANGELOG_URL = 'https://orca.dev/changelog'
-const GITHUB_URL = 'https://github.com/brz-anderson/orca'
+const GITHUB_URL = 'https://github.com/brz-anderson/brza-studio'
 const DISCORD_URL = 'https://discord.gg/fzjDKHxv8Q'
 const X_URL = 'https://x.com/orca_build'
 const NO_UPDATE_CHECK_MODIFIERS = {
@@ -92,12 +92,7 @@ export function MilestonesMenuItem({
         useAppStore.getState().openModal('setup-guide', { telemetrySource: 'help_menu' })
       }
     >
-      <img
-        src={logo}
-        alt=""
-        aria-hidden="true"
-        className="size-3.5 object-contain"
-      />
+      <img src={logo} alt="" aria-hidden="true" className="size-3.5 object-contain" />
       {t('auto.components.sidebar.SidebarSettingsHelpMenu.f8a2c91d4e', 'Milestones')}
       {progress === 'badge' ? (
         <span className="ml-auto rounded-full bg-muted px-1.5 text-[10px] leading-4 text-muted-foreground tabular-nums">
@@ -169,12 +164,17 @@ export function useHelpMenuController(
       return
     }
     setIsRestartingOrca(true)
-    toast.info(t('auto.components.sidebar.SidebarSettingsHelpMenu.5161eef55d', 'Restarting BrzA Studio…'))
+    toast.info(
+      t('auto.components.sidebar.SidebarSettingsHelpMenu.5161eef55d', 'Restarting BrzA Studio…')
+    )
     void window.api.app.restart().catch((error) => {
       if (mountedRef.current) {
         setIsRestartingOrca(false)
         toast.error(
-          t('auto.components.sidebar.SidebarSettingsHelpMenu.4e8f5710d3', "Couldn't restart BrzA Studio."),
+          t(
+            'auto.components.sidebar.SidebarSettingsHelpMenu.4e8f5710d3',
+            "Couldn't restart BrzA Studio."
+          ),
           {
             description: error instanceof Error ? error.message : undefined
           }
