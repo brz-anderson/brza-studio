@@ -1,4 +1,5 @@
-import { existsSync, mkdirSync } from 'node:fs'
+import { credentialFileExists } from '../../credentials/credential-file-io'
+import { mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { getIntegrationCredentialsDir } from '../../credentials/integration-credentials-dir'
 
@@ -27,16 +28,21 @@ export function getWorkspaceTokenPath(workspaceId: string): string {
   return join(getWorkspaceTokenDir(), `${Buffer.from(workspaceId).toString('base64url')}.enc`)
 }
 
-export function ensureCredentialsDir(): void {
+// The login Connect Linear hands this Mac, next to the workspace's API key.
+export function getWorkspaceLoginPath(workspaceId: string): string {
+  return join(getWorkspaceTokenDir(), `${Buffer.from(workspaceId).toString('base64url')}.login.enc`)
+}
+
+export async function ensureCredentialsDir(): Promise<void> {
   const dir = getIntegrationCredentialsDir()
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true })
+  if (!(await credentialFileExists(dir))) {
+    await mkdir(dir, { recursive: true })
   }
 }
 
-export function ensureWorkspaceTokenDir(): void {
+export async function ensureWorkspaceTokenDir(): Promise<void> {
   const dir = getWorkspaceTokenDir()
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true })
+  if (!(await credentialFileExists(dir))) {
+    await mkdir(dir, { recursive: true })
   }
 }

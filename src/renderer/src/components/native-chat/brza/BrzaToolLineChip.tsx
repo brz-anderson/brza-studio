@@ -42,7 +42,8 @@ function openUrl(url: string, context: NativeChatFileLinkContext): void {
   // Read at click time, as chat links do: ownership must not re-render the transcript.
   const { sourceOwner } = resolveNativeChatHttpLinkRouting(
     useAppStore.getState(),
-    context.worktreeId
+    context.worktreeId,
+    url
   )
   openNativeChatWebLink(
     url,

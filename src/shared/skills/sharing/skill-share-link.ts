@@ -5,7 +5,8 @@ const PRODUCTION_HOSTS = new Set(['app.orca.dev', 'share.orca.dev', 'share.onorc
 // The OS routes our own scheme here; `orca:` stays accepted for links typed or pasted from upstream.
 const SHARE_LINK_PROTOCOLS = new Set(['orca:', `${BRAND_PROTOCOL_SCHEME}:`])
 
-export function parseSkillShareId(value: string): string | null {
+/** A link's share id: a bare id, `orca://<kind>/share/<id>`, or an Orca share page's https URL. */
+function parseShareId(value: string, kind: 'skills' | 'bots'): string | null {
   const trimmed = value.trim()
   if (SHARE_ID_PATTERN.test(trimmed)) {
     return trimmed
@@ -16,9 +17,9 @@ export function parseSkillShareId(value: string): string | null {
   } catch {
     return null
   }
+  const path = new RegExp(`^/?${kind}/share/([A-Za-z0-9_-]{1,128})/?$`)
   if (SHARE_LINK_PROTOCOLS.has(url.protocol)) {
-    const match = `${url.host}${url.pathname}`.match(/^skills\/share\/([A-Za-z0-9_-]{1,128})\/?$/)
-    return match?.[1] ?? null
+    return `${url.host}${url.pathname}`.match(path)?.[1] ?? null
   }
   const developmentHost = url.hostname === 'localhost' || url.hostname === '127.0.0.1'
   if (url.protocol !== 'https:' && !(developmentHost && url.protocol === 'http:')) {
@@ -27,16 +28,20 @@ export function parseSkillShareId(value: string): string | null {
   if (!PRODUCTION_HOSTS.has(url.hostname) && !developmentHost) {
     return null
   }
-  const match = url.pathname.match(/^\/skills\/share\/([A-Za-z0-9_-]{1,128})\/?$/)
-  return match?.[1] ?? null
+  return url.pathname.match(path)?.[1] ?? null
 }
 
-export function skillShareIdFromArguments(argv: readonly string[]): string | null {
+export const parseSkillShareId = (value: string): string | null => parseShareId(value, 'skills')
+
+export const parseBotShareId = (value: string): string | null => parseShareId(value, 'bots')
+
+/** The share id of a launch argument that is a link, never a bare id. */
+function shareIdFromArguments(argv: readonly string[], kind: 'skills' | 'bots'): string | null {
   for (const value of argv) {
-    const id = parseSkillShareId(value)
+    const id = parseShareId(value, kind)
     if (
       id &&
-      (value.includes('/skills/share/') ||
+      (value.includes(`/${kind}/share/`) ||
         [...SHARE_LINK_PROTOCOLS].some((protocol) => value.startsWith(protocol)))
     ) {
       return id
@@ -44,3 +49,9 @@ export function skillShareIdFromArguments(argv: readonly string[]): string | nul
   }
   return null
 }
+
+export const skillShareIdFromArguments = (argv: readonly string[]): string | null =>
+  shareIdFromArguments(argv, 'skills')
+
+export const botShareIdFromArguments = (argv: readonly string[]): string | null =>
+  shareIdFromArguments(argv, 'bots')

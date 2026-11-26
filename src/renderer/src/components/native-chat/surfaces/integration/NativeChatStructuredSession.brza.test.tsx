@@ -6,7 +6,7 @@ import { act, cleanup, render } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { useAppStore } from '../../../../store/index'
 
-const { mocks, moduleFactories, resetStructuredSessionMocks } = await vi.hoisted(async () =>
+const { moduleFactories, resetStructuredSessionMocks } = await vi.hoisted(async () =>
   (await import('./NativeChatStructuredSession.test-harness')).createStructuredSessionMocks()
 )
 

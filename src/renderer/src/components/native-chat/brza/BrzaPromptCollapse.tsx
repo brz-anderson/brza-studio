@@ -1,9 +1,10 @@
 import { useState, type RefObject } from 'react'
+import { useBotLinkPrompt } from '@/lib/agent-session/open/bot-link-item-target'
 import { pendingPromptsAllUnanswerableHere } from '../../../../../shared/agent-session/requests/prompts/agent-session-approval-subject'
 import { agentSessionPromptQuestions } from '../../../../../shared/agent-session/requests/prompts/agent-session-question-answer'
 import { chatApprovalFromJournal } from '../../../../../shared/native-chat/input/native-chat-interactive-prompt'
 import { NativeChatApprovalCard } from '../prompts/NativeChatApprovalCard'
-import { NativeChatPromptStrip } from '../prompts/NativeChatPromptCollapse'
+import { BrzaPromptStrip } from './BrzaPromptStrip'
 import { NativeChatStructuredQuestionCard } from '../prompts/NativeChatStructuredQuestionCard'
 import {
   structuredPromptKey,
@@ -38,11 +39,12 @@ export type BrzaPromptSlot = {
   open: boolean
 }
 
-/** The chat's first pending prompt and how it shares the slot with the composer. */
+/** The prompt the chat shows (the first one, or the one a bot link names) and how it shares the slot with the composer. */
 export function useBrzaPromptSlot(
+  sessionId: string,
   prompts: readonly StructuredPromptItem[]
 ): [StructuredPromptItem | null, BrzaPromptSlot] {
-  const prompt = prompts[0] ?? null
+  const prompt = useBotLinkPrompt(sessionId, prompts)
   const collapse = useStructuredPromptCollapse(prompt)
   const unanswerable = pendingPromptsAllUnanswerableHere(prompts)
   return [
@@ -106,7 +108,7 @@ export function BrzaPromptCard({
         ) : null}
       </div>
       {collapse.collapsed ? (
-        <NativeChatPromptStrip
+        <BrzaPromptStrip
           kind={approval ? 'approval' : 'question'}
           title={title}
           onExpand={collapse.expand}

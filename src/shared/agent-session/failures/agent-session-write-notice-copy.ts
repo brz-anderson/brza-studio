@@ -42,6 +42,8 @@ export const AGENT_SESSION_WRITE_NOTICE_COPY = {
   historyUnreadable: "BrzA Studio couldn't read this chat's saved history.",
   historyUnusable: 'Unable to load this chat.',
   historyUnavailable: "BrzA Studio couldn't open this chat's history right now.",
+  diskFull: 'The disk on the computer running this chat is full.',
+  freeDiskSpace: 'Free up space on that disk, then try again.',
   savedInOtherFolder: 'This conversation was saved in another folder.',
   savedByNewerOrca: 'Chats were saved by a newer BrzA Studio.',
   updateOrcaToKeepUsing: 'Update BrzA Studio to keep using them.',

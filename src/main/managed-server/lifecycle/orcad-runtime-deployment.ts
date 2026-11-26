@@ -200,7 +200,7 @@ async function deployOwnOrcad(
       code: deployResult.code,
       reason: deployResult.reason,
       forceable:
-        isForceableOrcadDeferral(deployResult.code) ||
+        isForceableOrcadDeferral(deployResult) ||
         deployResult.code === ORCAD_ACTIVATION_POLICY_REFUSED_CODE
     }
   }

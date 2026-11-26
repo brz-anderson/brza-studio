@@ -3,6 +3,7 @@ import { cloneElement, isValidElement, useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 import { Check, Copy, Plus } from 'lucide-react'
 import { translate } from '@/i18n/i18n'
+import { cn } from '@/lib/class-names'
 import {
   formatMarkdownReviewCardQuote,
   getMarkdownReviewCardQuote,
@@ -233,22 +234,6 @@ export function useMarkdownPreviewAnnotationRenderers({
     ]
   )
 
-  // Only a block with notes or an open composer reserves the notes column; the rest take the full width.
-  const annotationBlockClassName = useCallback(
-    (baseClassName: string, range: MarkdownPreviewBlockRange, blockKey: string): string => {
-      const hasReviewNotes = getMarkdownCommentsForRange(range).length > 0
-      const hasPanel = hasReviewNotes || activeAnnotationBlockKey === blockKey
-      return [
-        baseClassName,
-        hasReviewNotes ? 'has-review-notes' : '',
-        hasPanel ? 'has-annotation-panel' : ''
-      ]
-        .filter(Boolean)
-        .join(' ')
-    },
-    [activeAnnotationBlockKey, getMarkdownCommentsForRange]
-  )
-
   const wrapAnnotatedBlock = useCallback(
     (
       tagName: string,
@@ -277,7 +262,11 @@ export function useMarkdownPreviewAnnotationRenderers({
       }
       return (
         <div
-          className={annotationBlockClassName('markdown-annotation-block', range, blockKey)}
+          className={cn(
+            'markdown-annotation-block',
+            getMarkdownCommentsForRange(range).length > 0 && 'has-review-notes',
+            activeAnnotationBlockKey === blockKey && 'is-adding-note'
+          )}
           data-source-line={range.startLine}
           data-source-end-line={range.endLine}
           data-annotation-block-key={blockKey}
@@ -288,19 +277,24 @@ export function useMarkdownPreviewAnnotationRenderers({
         </div>
       )
     },
-    [annotationBlockClassName, handleAnnotatedMarkdownBlockClick, renderAnnotationControls]
+    [
+      activeAnnotationBlockKey,
+      getMarkdownCommentsForRange,
+      handleAnnotatedMarkdownBlockClick,
+      renderAnnotationControls
+    ]
   )
 
   return useMemo(
     () => ({
-      annotationBlockClassName,
+      activeAnnotationBlockKey,
       renderAnnotationControls,
       wrapAnnotatedBlock,
       getMarkdownCommentsForRange,
       handleAnnotatedMarkdownBlockClick
     }),
     [
-      annotationBlockClassName,
+      activeAnnotationBlockKey,
       getMarkdownCommentsForRange,
       handleAnnotatedMarkdownBlockClick,
       renderAnnotationControls,

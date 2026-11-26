@@ -40,6 +40,9 @@ class EditorSelection {
   }
 }
 
+// Tiptap reports an unmounted editor as destroyed too; only these may never mount a view again.
+const disposedEditors = new WeakSet<Editor>()
+
 class ComposerEditors {
   private editors = new Map<string, OwnedEditor>()
   private generation = 0
@@ -62,15 +65,18 @@ class ComposerEditors {
 
   get(scope: string, options: Options, variant: string): OwnedEditor {
     const existing = this.editors.get(scope)
-    if (existing?.variant === variant) {
+    if (existing && existing.variant === variant && !disposedEditors.has(existing.editor)) {
       existing.options = options
       return existing
     }
     if (existing) {
-      // BRZA: the composer's mode (plain or Markdown) swaps the extensions, so it builds a new editor.
+      // Something outside the owner destroyed it, or (BRZA) the composer's mode (plain or Markdown)
+      // swaps the extensions: either way a composer that reappears gets a new, live editor.
       this.editors.delete(scope)
       existing.release()
-      existing.editor.destroy()
+      if (!disposedEditors.has(existing.editor)) {
+        existing.editor.destroy()
+      }
     }
     const entry: OwnedEditor = {
       options,
@@ -80,11 +86,14 @@ class ComposerEditors {
       selection: new EditorSelection(),
       editor: new Editor({
         ...options,
+        // A view exists only while its composer is shown; see NativeChatComposerEditorView.
+        element: null,
         onTransaction: (event) => entry.options.onTransaction?.(event, entry.historyPaths),
         onUpdate: (...args) => entry.options.onUpdate?.(...args),
         onSelectionUpdate: (...args) => entry.options.onSelectionUpdate?.(...args)
       })
     }
+    entry.editor.on('destroy', () => disposedEditors.add(entry.editor))
     this.editors.set(scope, entry)
     if (isNativeChatEditDraft(scope)) {
       entry.release = subscribeToNativeChatComposerDraft(scope, () => {
@@ -101,7 +110,26 @@ class ComposerEditors {
 
 const ComposerEditorOwner = createContext<ComposerEditors | null>(null)
 
-/** The tab owns editors; a hidden or temporarily replaced composer only lends their view DOM. */
+/** Gives the owned editor a view while shown; hidden, it keeps its state but no view or document listeners.
+ *  Render before EditorContent so the view exists when EditorContent adopts it. */
+export function NativeChatComposerEditorView({ editor }: { editor: Editor }): null {
+  useLayoutEffect(() => {
+    // One view per editor: Tiptap would replace a live view without destroying it.
+    if (disposedEditors.has(editor) || !editor.isDestroyed) {
+      return
+    }
+    editor.mount(document.createElement('div'))
+    return () => {
+      // Without its stylesheet handle, unmount skips a whole-page `.tiptap` query and leaves the
+      // shared stylesheet in place; removing and re-adding it would restyle the page each switch.
+      Reflect.set(editor, 'css', null)
+      editor.unmount()
+    }
+  }, [editor])
+  return null
+}
+
+/** The tab owns editors and their state; only a shown composer gives one a view. */
 export function NativeChatComposerEditorOwner({ children }: { children: React.ReactNode }) {
   const [owner] = useState(() => new ComposerEditors())
   useEffect(() => owner.retain(), [owner])

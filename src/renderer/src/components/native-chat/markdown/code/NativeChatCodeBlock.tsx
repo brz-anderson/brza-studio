@@ -40,6 +40,7 @@ export function NativeChatCodeBlock({
       <NativeChatCodeWrapButton wrapped={wrapped} onToggle={() => setWrapped(!wrapped)} />
       <BrzaRunCodeButton code={copyText} language={language} />
       <NativeChatCopyButton
+        platformLineEndings
         text={copyText}
         label={t('components.native-chat.copyCode', 'Copy code')}
       />

@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
+import { useMemo, type ComponentProps } from 'react'
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
 import type { NativeChatStructuredViewProps } from '../native-chat-view-types'
 import { NativeChatRowActionsProvider } from '../messages/actions/NativeChatRowActionsProvider'
 import type { NativeChatPaneForks } from '../messages/actions/use-native-chat-fork'
-import type { NativeChatRewindSurface } from '../messages/actions/use-native-chat-rewind-host'
 import {
   NativeChatNewChatContext,
   useNativeChatNewChatFromMessage
@@ -23,7 +22,7 @@ export function BrzaRowActionsProvider({
   children
 }: {
   pane: Pick<NativeChatStructuredViewProps, 'sessionId' | 'tabId' | 'agent' | 'groupId' | 'target'>
-  chat: { rewind: { surface: NativeChatRewindSurface | undefined } }
+  chat: ComponentProps<typeof NativeChatRowActionsProvider>['chat']
   forks: NativeChatPaneForks
   children: React.ReactNode
 }): React.JSX.Element {

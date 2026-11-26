@@ -3,6 +3,7 @@ import type { AgentSessionAccountSwitchRecord } from '../../../../shared/agent-s
 import type { ClaudeProfileRouter } from '../../../claude-accounts/profiles/routing/claude-profile-router'
 import { prepareClaudeAccountLaunch } from '../../../claude-accounts/claude-account-launch'
 import { applyClaudeEnvPatch } from '../../../claude-accounts/runtime-auth/environment'
+import { claudeConfigDirEnvPatch } from './claude-config-dir-pin'
 import { resolveStructuredClaudeAccountHomePath } from '../../../runtime/agent-session/environment/structured-agent-account-home'
 
 /** The account a launch runs under is the current selection, or the account the chat was switched to;
@@ -35,4 +36,22 @@ export async function prepareClaudeLaunchAccount(
   return preparation.provenance.startsWith('profile:')
     ? { route: 'managed', accountId: preparation.provenance.slice('profile:'.length), home }
     : { route: 'system', home, configDir: env.CLAUDE_CONFIG_DIR ?? null }
+}
+
+/** Pins the account a launch would run under now, without preparing its folder: managed settings
+ *  can refuse flags per account, so flag checks must ask as that account. */
+export async function withClaudeLaunchAccountPin(
+  router: ClaudeProfileRouter | undefined,
+  env: Record<string, string>,
+  recordHome: string
+): Promise<Record<string, string>> {
+  const home = router
+    ? await resolveStructuredClaudeAccountHomePath({
+        launchEnv: env,
+        wslDistro: null,
+        purpose: 'identity',
+        getClaudeConfigDirectory: () => router.systemDefaultHome()
+      })
+    : recordHome
+  return { ...env, ...claudeConfigDirEnvPatch(home, { env }) }
 }

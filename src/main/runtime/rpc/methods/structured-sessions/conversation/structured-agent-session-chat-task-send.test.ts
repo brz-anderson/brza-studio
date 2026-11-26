@@ -131,12 +131,20 @@ it('holds a send to a busy chat as the same task, not as a person’s draft', as
 })
 
 it.each([
-  ['a chat sending to itself', LOCAL_CLI_RPC_CALLER, SESSION],
-  ['a CLI outside a chat', LOCAL_CLI_RPC_CALLER, undefined],
-  ['a window', DESKTOP_RPC_CALLER, COORDINATOR_CHAT],
-  ['a paired device', { kind: 'paired-device', deviceId: 'device-1' } as const, COORDINATOR_CHAT]
-])('leaves a send from %s as a person’s message', async (_label, caller, agentSessionId) => {
-  const id = await send(rpcContext(caller, agentSessionId))
+  ['a chat sending to itself', LOCAL_CLI_RPC_CALLER, SESSION, { by: 'agent' }],
+  ['a CLI outside a chat', LOCAL_CLI_RPC_CALLER, undefined, { by: 'agent' }],
+  ['a window', DESKTOP_RPC_CALLER, COORDINATOR_CHAT, { by: 'host' }],
+  [
+    'a paired device',
+    { kind: 'paired-device', deviceId: 'device-1' } as const,
+    COORDINATOR_CHAT,
+    { by: 'device', deviceId: 'device-1' }
+  ]
+])(
+  'leaves a send from %s as a person’s message, stamped with where it was typed',
+  async (_label, caller, agentSessionId, typedBy) => {
+    const id = await send(rpcContext(caller, agentSessionId))
 
-  expect(await sentBody(id)).toEqual(hostTestMessage(TASK))
-})
+    expect(await sentBody(id)).toEqual({ ...hostTestMessage(TASK), typedBy })
+  }
+)

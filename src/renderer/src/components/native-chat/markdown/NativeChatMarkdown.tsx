@@ -23,29 +23,38 @@ import { NativeChatMarkdownImageLinkContext } from '../media/images/NativeChatMa
 import { NativeChatDeferredMarkdownImage } from '../media/images/NativeChatDeferredMarkdownImage'
 import { useBrzaImageMentionExtension } from '../brza/BrzaImageMention'
 import { remarkNativeChatFileDestinations } from './native-chat-markdown-file-destinations'
+import { remarkNativeChatListItemNumbers } from './native-chat-markdown-list-item-numbers'
 import { NativeChatLinkPeek } from '../links/previews/NativeChatLinkPeek'
+import {
+  createNativeChatMentionExtension,
+  NativeChatMentionEveryoneContext,
+  NativeChatMentionNamesContext,
+  NativeChatSlackPeopleContext,
+  withBoundBotMentions
+} from '../native-chat-markdown-mentions'
+import type { SlackPeople } from '../../../../../shared/connectors/slack-message-markup'
 import { NativeChatLinkPeekContext } from '../links/previews/native-chat-link-peek-context'
 import { useNativeChatLinkClick } from '../links/actions/native-chat-link-click-context'
 import './native-chat-markdown.css'
 import '../brza-chat-link.css'
 
 /** Existing words stay opaque when a reply first starts growing. */
-function useWordFadeArmed(fadeWords: boolean): boolean {
+function useWordFadeArmed(fading: boolean): boolean {
   const [armed, setArmed] = useState(false)
   useEffect(() => {
-    if (!fadeWords) {
+    if (!fading) {
       setArmed(false)
       return
     }
     const frame = requestAnimationFrame(() => setArmed(true))
     return () => cancelAnimationFrame(frame)
-  }, [fadeWords])
-  return armed && fadeWords
+  }, [fading])
+  return armed && fading
 }
 
 type NativeChatMarkdownProps = Omit<
   ComponentProps<typeof CommentMarkdown>,
-  'fileLinkExists' | 'onLinkClick' | 'allowFileUriLinks'
+  'fileLinkExists' | 'onLinkClick' | 'allowFileUriLinks' | 'singleTildeStrikethrough'
 > & {
   /** Underline file paths in the text that exist in the chat's workspace, when the chat can open them. */
   linkifyFilePaths?: boolean
@@ -54,19 +63,45 @@ type NativeChatMarkdownProps = Omit<
   streaming?: boolean
   /** The transcript row's identity, so reader choices inside the text outlive the row's mount. */
   rowKey?: string
+  /** The content is a Slack message's drawn form: its mention links draw as mentions. */
+  slackMentions?: boolean
+  /** False keeps the fade's word elements (a held selection's) but animates nothing. */
+  fadeAnimates?: boolean
 }
+
+const NO_NAMES: readonly string[] = []
 
 /** Every chat surface rewrites `file:` destinations before sanitize can drop them. */
 function withFileDestinations(
-  visualExtension: CommentMarkdownExtension | undefined
+  visualExtension: CommentMarkdownExtension | undefined,
+  mentionNames: readonly string[] | null,
+  everyone = true,
+  slackMentions = false,
+  slackPeople: SlackPeople | null = null
 ): CommentMarkdownExtension {
+  const names = mentionNames ?? (slackMentions || slackPeople ? NO_NAMES : null)
+  const mentions = names
+    ? createNativeChatMentionExtension(
+        names,
+        everyone && names.length > 0,
+        slackMentions,
+        slackPeople
+      )
+    : null
   return {
-    remarkPlugins: [...(visualExtension?.remarkPlugins ?? []), remarkNativeChatFileDestinations],
+    remarkPlugins: [
+      ...(visualExtension?.remarkPlugins ?? []),
+      remarkNativeChatFileDestinations,
+      ...(mentions?.remarkPlugins ?? [])
+    ],
     extraFlowSyntaxMarkers: visualExtension?.remarkPlugins.length
       ? visualExtension.extraFlowSyntaxMarkers
       : [],
-    sanitizeAttributes: visualExtension?.sanitizeAttributes ?? {},
-    components: visualExtension?.components ?? {}
+    sanitizeAttributes: {
+      ...visualExtension?.sanitizeAttributes,
+      ...mentions?.sanitizeAttributes
+    },
+    components: { ...visualExtension?.components, ...mentions?.components }
   }
 }
 
@@ -90,17 +125,33 @@ const NATIVE_CHAT_TEXT_BLOCK_COMPONENTS: CommentMarkdownExtension['components'] 
       {children}
     </ol>
   ),
-  li: ({ children }) => <li className="[&>input]:pointer-events-none">{children}</li>
+  li: ({ children, value }) => (
+    <li value={value} className="[&>input]:pointer-events-none">
+      {children}
+    </li>
+  )
 }
 
 function createNativeChatImageExtension(
   visualExtension: CommentMarkdownExtension | undefined,
-  onLinkClick: CommentMarkdownLinkClickHandler | undefined
+  onLinkClick: CommentMarkdownLinkClickHandler | undefined,
+  mentionNames: readonly string[] | null,
+  everyone: boolean,
+  slackMentions: boolean,
+  slackPeople: SlackPeople | null
 ): CommentMarkdownExtension {
   const Anchor = createDocumentCommentMarkdownComponents(onLinkClick).a
-  const base = withFileDestinations(visualExtension)
+  const base = withFileDestinations(
+    visualExtension,
+    mentionNames,
+    everyone,
+    slackMentions,
+    slackPeople
+  )
   return {
     ...base,
+    remarkPlugins: [...base.remarkPlugins, remarkNativeChatListItemNumbers],
+    sanitizeAttributes: { ...base.sanitizeAttributes, li: ['value'] },
     components: {
       ...NATIVE_CHAT_TEXT_BLOCK_COMPONENTS,
       ...base.components,
@@ -139,24 +190,38 @@ function createNativeChatImageExtension(
 export function NativeChatMarkdown({
   className,
   linkifyFilePaths = false,
-  fadeWords = false,
+  fadeFrom,
   visualMessageId,
   streaming = false,
   growing = false,
   rowKey,
   content,
   variant,
+  slackMentions = false,
+  fadeAnimates = true,
   ...props
 }: NativeChatMarkdownProps): React.JSX.Element {
   const onLinkClick = useNativeChatLinkClick()
-  const wordFadeArmed = useWordFadeArmed(fadeWords)
+  const wordFadeArmed = useWordFadeArmed(fadeFrom !== undefined && fadeAnimates)
   const visualExtension = useNativeChatVisualMarkdownExtension(visualMessageId)
+  const mentionNames = withBoundBotMentions(useContext(NativeChatMentionNamesContext), content)
+  const everyone = useContext(NativeChatMentionEveryoneContext)
+  // A Slack message's drawn form has its tokens drawn already.
+  const chatSlackPeople = useContext(NativeChatSlackPeopleContext)
+  const slackPeople = slackMentions ? null : chatSlackPeople
   const baseExtension = useMemo(
     () =>
       variant === 'document'
-        ? createNativeChatImageExtension(visualExtension, onLinkClick)
-        : withFileDestinations(visualExtension),
-    [onLinkClick, variant, visualExtension]
+        ? createNativeChatImageExtension(
+            visualExtension,
+            onLinkClick,
+            mentionNames,
+            everyone,
+            slackMentions,
+            slackPeople
+          )
+        : withFileDestinations(visualExtension, mentionNames, everyone, slackMentions, slackPeople),
+    [everyone, mentionNames, onLinkClick, slackMentions, slackPeople, variant, visualExtension]
   )
   const extension =
     useBrzaImageMentionExtension(variant === 'document' ? baseExtension : undefined, {
@@ -186,10 +251,11 @@ export function NativeChatMarkdown({
         math
         extension={extension}
         fileLinkExists={fileLinkExists}
-        fadeWords={fadeWords}
+        fadeFrom={fadeFrom}
         renderMermaid={!streaming}
         keepMermaidSourceWhilePending
         unknownHtmlAsText
+        singleTildeStrikethrough={false}
         data-word-fade={wordFadeArmed ? '' : undefined}
         data-block-fade={wordFadeArmed && streaming ? '' : undefined}
         className={cn('native-chat-markdown', className)}

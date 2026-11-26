@@ -136,7 +136,9 @@ export function useNativeChatAccountSwitch(
     ],
     [state.accounts, state.systemDefaultEmail]
   )
-  const currentId = switched ? switched.accountId : getClaudeStatusActiveId(state, HOST_TARGET)
+  const currentId = switched
+    ? switched.accountId
+    : (getClaudeStatusActiveId(state, HOST_TARGET) ?? null)
   const currentLabel =
     choices.find((choice) => choice.id === currentId)?.label ?? switched?.account ?? ''
   // Without a saved account there is nowhere to move the chat, unless it was moved before.

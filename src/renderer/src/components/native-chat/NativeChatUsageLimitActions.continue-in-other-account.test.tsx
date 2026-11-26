@@ -20,7 +20,7 @@ vi.mock('./session/status/structured-agent-session-status-hooks', () => ({
 vi.mock('@/runtime/native-chat/requests/structured-agent-session-call', () => ({
   callStructuredAgentSession: mocks.call
 }))
-vi.mock('@/runtime/provider-accounts/observations/runtime-provider-accounts-client', () => ({
+vi.mock('@/runtime/provider-accounts/observations/runtime-provider-account-selection', () => ({
   selectClaudeProviderAccount: mocks.select
 }))
 vi.mock('@/runtime/native-chat/naming/structured-conversation-name', () => ({

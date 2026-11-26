@@ -2,6 +2,7 @@
 
 import '@testing-library/jest-dom/vitest'
 
+import { acceptedAgentStatuses } from '@/store/slices/agent-status/status-ownership/accepted-agent-statuses'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { AgentStatusPayload } from '../../../../../shared/agent-status/contracts/agent-status-types'
@@ -123,14 +124,20 @@ beforeEach(() => {
   composer.mounts = 0
   nativeChatPromptDismissals.clearForTests()
   ptyInput.verified.mockReset()
-  useAppStore.setState({ agentStatusByPaneKey: {}, nativeChatLaunchPromptByTabId: {} })
+  useAppStore.setState({
+    agentStatusByPaneKey: acceptedAgentStatuses(),
+    nativeChatLaunchPromptByTabId: {}
+  })
   retained.session = transcript()
 })
 
 afterEach(() => {
   cleanup()
   restoreViewport()
-  useAppStore.setState({ agentStatusByPaneKey: {}, nativeChatLaunchPromptByTabId: {} })
+  useAppStore.setState({
+    agentStatusByPaneKey: acceptedAgentStatuses(),
+    nativeChatLaunchPromptByTabId: {}
+  })
 })
 
 // Prompt cards own terminal input because composer sends would otherwise answer the agent’s active selector.

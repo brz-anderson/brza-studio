@@ -60,3 +60,11 @@ export function resolveWindowsUpdateInstallDirectory(
   }
   return installDirectory
 }
+
+/** NsisUpdater reads installDirectory, which the cross-platform AppUpdater type omits. */
+export function pinWindowsUpdateInstallDirectory(autoUpdater: object): void {
+  const installDirectory = resolveWindowsUpdateInstallDirectory(process.platform, process.execPath)
+  if (installDirectory) {
+    Object.assign(autoUpdater, { installDirectory })
+  }
+}

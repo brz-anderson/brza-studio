@@ -15,11 +15,6 @@ export function skillInstallManagementCopy(t: Translate = translate) {
       'auto.components.skills.SkillInstallManagementDialog.6cb1fbe039',
       'This computer'
     ),
-    ssh: t('auto.components.skills.SkillInstallManagementDialog.176fef9516', '· SSH'),
-    disconnected: t(
-      'auto.components.skills.SkillInstallManagementDialog.0900db719a',
-      '— disconnected'
-    ),
     noInstalls: t(
       'auto.components.skills.SkillInstallManagementDialog.64c71cf7b9',
       'BrzA Studio has not installed any skills on this machine yet.'

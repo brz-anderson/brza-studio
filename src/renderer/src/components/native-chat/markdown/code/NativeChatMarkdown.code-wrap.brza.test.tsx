@@ -55,7 +55,7 @@ function Transcript({
           renderCodeBlock={NativeChatCodeBlock}
           streaming={growing}
           growing={growing}
-          fadeWords={growing}
+          fadeFrom={growing ? 0 : undefined}
         />
       ) : null}
     </NativeChatDisclosureContext.Provider>

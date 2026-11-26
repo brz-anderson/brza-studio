@@ -10,7 +10,7 @@ import { translate } from '@/i18n/i18n'
 import { useTranslate, type Translate } from '@/i18n/use-translate'
 import { projectHostCountLabel } from '../../host-picker/project-host-count-label'
 import type { Repo } from '../../../../../shared/repository/repo-types'
-import type { TaskProjectPickerGroup } from '../task-page-default-repo-selection'
+import type { TaskProjectPickerGroup } from '../../../../../shared/work-items/task-repo-selection'
 import {
   getSelectedTaskProjectSource,
   hasMultipleTaskProjectHosts,
@@ -62,7 +62,7 @@ function renderTriggerLabel(
         <RepoBadgeLabel
           name={first.repo.displayName}
           color={first.repo.badgeColor}
-          badgeClassName="size-1.5"
+          repo={first.repo}
         />
       ) : null}
       {second ? <span className="text-muted-foreground">, {second.repo.displayName}</span> : null}
@@ -318,6 +318,7 @@ export default function TaskProjectSourceCombobox({
                         <RepoBadgeLabel
                           name={group.repo.displayName}
                           color={group.repo.badgeColor}
+                          repo={group.repo}
                           className="max-w-full"
                         />
                       </span>

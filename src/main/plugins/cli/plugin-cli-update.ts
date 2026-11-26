@@ -17,7 +17,8 @@ import { catalogUpdateCandidate } from './plugin-cli-catalog-candidates'
 import {
   gitInstallCandidate,
   localInstallCandidate,
-  type PluginCliInstallCandidate
+  type PluginCliInstallCandidate,
+  type PluginCliSettledCandidate
 } from './plugin-cli-install-candidates'
 import {
   candidateHost,
@@ -39,12 +40,11 @@ export type PluginCliUpdateOutcome =
       approval?: string
     }
 
-type Settled = { status: 'up-to-date' | 'pinned'; reason: string }
-
 async function updateCandidate(
   deps: PluginCliInstallDeps,
-  entry: PluginLockEntry
-): Promise<PluginCliInstallCandidate | Settled> {
+  entry: PluginLockEntry,
+  settleDroppedCatalog: boolean
+): Promise<PluginCliInstallCandidate | PluginCliSettledCandidate> {
   const host = candidateHost(deps)
   const { source } = entry
   switch (source.kind) {
@@ -54,7 +54,7 @@ async function updateCandidate(
         reason: 'It is bundled with BrzA Studio and updates with BrzA Studio.'
       }
     case 'marketplace':
-      return catalogUpdateCandidate(host, deps.catalogs, entry)
+      return catalogUpdateCandidate(host, deps.catalogs, entry, settleDroppedCatalog)
     case 'local-path':
       return localInstallCandidate(host, source.path)
     case 'git': {
@@ -66,7 +66,7 @@ async function updateCandidate(
       }
       // Why: an install from a version tag follows the newest version tag, like a fresh install.
       const followsTags = isValidAppVersion(source.ref)
-      const stopped: { settled: Settled | null } = { settled: null }
+      const stopped: { settled: PluginCliSettledCandidate | null } = { settled: null }
       const candidate = await gitInstallCandidate(
         host,
         { url: source.url, ref: followsTags ? '' : source.ref },
@@ -88,7 +88,7 @@ async function updateCandidate(
 }
 
 function isCandidate(
-  value: PluginCliInstallCandidate | Settled
+  value: PluginCliInstallCandidate | PluginCliSettledCandidate
 ): value is PluginCliInstallCandidate {
   return 'install' in value
 }
@@ -96,7 +96,8 @@ function isCandidate(
 export async function updatePluginFromCli(
   deps: PluginCliInstallDeps,
   pluginKey: string,
-  approvalFingerprint: string | undefined
+  approvalFingerprint: string | undefined,
+  options: { settleDroppedCatalog?: boolean } = {}
 ): Promise<PluginCliUpdateOutcome> {
   assertPluginSystemEnabled(deps.service)
   const entry = (await deps.catalogs.installer.readInstallLockfile()).plugins[pluginKey]
@@ -112,7 +113,7 @@ export async function updatePluginFromCli(
       }
     )
   }
-  const next = await updateCandidate(deps, entry)
+  const next = await updateCandidate(deps, entry, options.settleDroppedCatalog === true)
   if (isCandidate(next) && next.contentHash !== entry.contentHash) {
     try {
       return {
@@ -162,7 +163,9 @@ export async function updateAllPluginsFromCli(
       continue
     }
     try {
-      result.updates.push(await updatePluginFromCli(deps, entry.pluginKey, undefined))
+      result.updates.push(
+        await updatePluginFromCli(deps, entry.pluginKey, undefined, { settleDroppedCatalog: true })
+      )
     } catch (error) {
       if (error instanceof PluginApprovalRequiredError) {
         result.approvals.push(error.data)

@@ -86,7 +86,8 @@ const getChatAppearanceCatalog = createLocalizedCatalog(
         description: translate(
           'settings.appearance.chat.resetDescription',
           'Restore the defaults above.'
-        )
+        ),
+        keywords: translateSearchKeyword('settings.appearance.chat.resetKeyword', 'reset')
       }
     }) satisfies Record<string, SettingsSearchEntry>
 )

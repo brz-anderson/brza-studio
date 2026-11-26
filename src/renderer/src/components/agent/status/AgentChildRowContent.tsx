@@ -1,6 +1,7 @@
 import React from 'react'
 import type { AgentChildRowModel } from '../../../../../shared/agent-status/presentation/agent-child-row-model'
 import { AgentStateDot } from '@/components/agent/status/AgentStateDot'
+import { cn } from '@/lib/class-names'
 import type { StateIndicatorTooltipSide } from '@/components/agent/status/StateIndicatorTooltip'
 import { agentChildRowText, agentChildRowTypeBeforeTool } from './agent-child-row-text'
 
@@ -11,6 +12,7 @@ type AgentChildRowContentProps = {
   leadClassName: string
   trailClassName: string
   separator: string
+  lineClassName?: string
   /** Overrides the dot's hover label; null suppresses it for an existing tooltip. */
   dotTitle?: string | null
   tooltipSide?: StateIndicatorTooltipSide
@@ -18,6 +20,10 @@ type AgentChildRowContentProps = {
   lineTitle?: boolean
   /** Put the agent type between the name and the tool (the chat strip); other surfaces keep name · tool. */
   agentTypeBeforeTool?: boolean
+  /** After the state dot, where rows of several kinds mix and each shows its kind's icon there. */
+  icon?: React.ReactNode
+  /** A kind label after the name, such as "Subagent" where rows of several kinds mix. */
+  badge?: React.ReactNode
 }
 
 /** Keep sidebar-child and chat-strip state/name/detail rendering consistent. */
@@ -27,10 +33,13 @@ export const AgentChildRowContent = React.memo(function AgentChildRowContent({
   leadClassName,
   trailClassName,
   separator,
+  lineClassName,
   dotTitle,
   tooltipSide,
   lineTitle = false,
-  agentTypeBeforeTool = false
+  agentTypeBeforeTool = false,
+  icon,
+  badge
 }: AgentChildRowContentProps): React.JSX.Element {
   const { lead, trail: tool } = agentChildRowText(row, now)
   const agentType = agentTypeBeforeTool && tool ? agentChildRowTypeBeforeTool(row) : ''
@@ -43,11 +52,13 @@ export const AgentChildRowContent = React.memo(function AgentChildRowContent({
         title={dotTitle}
         tooltipSide={tooltipSide}
       />
+      {icon}
       <span
-        className="min-w-0 flex-1 truncate"
+        className={cn('min-w-0 flex-1 truncate', lineClassName)}
         title={lineTitle ? `${lead}${trail ? `${separator}${trail}` : ''}` : undefined}
       >
         <span className={leadClassName}>{lead}</span>
+        {badge}
         {trail ? (
           <span className={trailClassName}>
             {separator}
