@@ -1,4 +1,4 @@
-import { RuntimeClientError, RuntimeRpcFailureError } from '../runtime-client'
+import { RuntimeClientError, RuntimeRpcFailureError } from '../runtime/connection/types'
 
 export function isChatHistoryTransportError(error: unknown): error is RuntimeClientError {
   return (

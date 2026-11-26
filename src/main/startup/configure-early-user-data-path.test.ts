@@ -11,7 +11,7 @@ vi.mock('electron', () => ({
   }
 }))
 
-vi.mock('./windows-app-data-path', () => ({ ensureWindowsAppDataPath: vi.fn() }))
+vi.mock('./windows-startup/windows-app-data-path', () => ({ ensureWindowsAppDataPath: vi.fn() }))
 
 describe('configureEarlyUserDataPath', () => {
   beforeEach(() => {

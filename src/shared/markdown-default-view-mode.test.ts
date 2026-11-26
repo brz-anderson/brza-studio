@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { getDefaultSettings } from './constants'
+import { getDefaultSettings } from './orca-profiles/constants'
 import {
   DEFAULT_MARKDOWN_DEFAULT_VIEW_MODE,
   normalizeMarkdownDefaultViewMode
-} from './markdown-default-view-mode'
+} from './editor/markdown/markdown-default-view-mode'
 
 describe('markdown default view mode in BrzA Studio', () => {
   it('opens Markdown in the read-only preview by default', () => {

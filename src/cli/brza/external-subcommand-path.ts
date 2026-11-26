@@ -1,6 +1,6 @@
 import { delimiter, isAbsolute, join } from 'node:path'
-import { isRunnableCommand } from '../../shared/cli-fs-reads'
-import { getExecutableNames } from '../../shared/node-cli-command-resolution'
+import { isRunnableCommand } from '../../shared/shell/command-resolution/cli-fs-reads'
+import { getExecutableNames } from '../../shared/shell/command-resolution/node-cli-command-resolution'
 
 function pathEnvOf(env: NodeJS.ProcessEnv): string {
   const key = Object.keys(env).find((name) => name.toUpperCase() === 'PATH')

@@ -3,9 +3,8 @@ import { useMemo, useRef } from 'react'
 import { act, cleanup, renderHook } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as nativeChatTheme from '../../../../../shared/native-chat-theme'
-import { createGlobalSettingsFixture } from '../../../../../shared/global-settings-test-fixture'
+import { createGlobalSettingsFixture } from '../../../../../shared/settings/global-settings-test-fixture'
 import { useAppStore } from '../../../store'
-import { resetSystemPrefersDarkSubscriptionForTests } from '../../../hooks/theme/use-system-prefers-dark'
 import { useNativeChatRowTypography } from '../viewport/virtualization/use-native-chat-row-typography'
 
 const originalSettings = useAppStore.getState().settings
@@ -13,7 +12,6 @@ const originalSettings = useAppStore.getState().settings
 afterEach(() => {
   cleanup()
   useAppStore.setState({ settings: originalSettings })
-  resetSystemPrefersDarkSubscriptionForTests()
   vi.restoreAllMocks()
 })
 
@@ -65,7 +63,7 @@ describe('memoized transcript row typography', () => {
         settings: { ...settings, nativeChatAppearance: { themeDark: 'Tango Dark', fontSize: 15 } }
       })
     )
-    expect(result.current.typography.lineHeightPx).toBe((22 * 15) / 14)
+    expect(result.current.typography.lineHeightPx).toBe((22 * 15) / 13)
     expect(resolveTheme).toHaveBeenCalledTimes(2)
     const node = document.createElement('div')
     vi.spyOn(node, 'getBoundingClientRect').mockReturnValue(DOMRect.fromRect({ width: 384 }))

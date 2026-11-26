@@ -1,5 +1,5 @@
 import type { AgentJournalCursor } from '../../shared/agent-session/journal/agent-session-journal-identity'
-import { RuntimeClientError } from '../runtime-client'
+import { RuntimeClientError } from '../runtime/connection/types'
 
 export function formatChatCursor(cursor: AgentJournalCursor): string {
   return `${cursor.epoch}:${cursor.sequence}`

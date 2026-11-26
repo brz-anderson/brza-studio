@@ -2,7 +2,7 @@ import {
   agentMessageSenderName,
   type AgentMessageSender,
   type AgentMessageSource
-} from '../../agent-session/agent-session-message-source'
+} from '../../agent-session/journal/agent-session-message-source'
 
 export type BrzaClaudePeerKind = 'message' | 'hand-back'
 

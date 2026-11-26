@@ -3,16 +3,18 @@
 import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { TooltipProvider } from '@/components/ui/tooltip'
-import { useAppStore } from '@/store'
-import { getDefaultSettings, getDefaultVoiceSettings } from '../../../../shared/constants'
-import type { SpeechModelManifest, SpeechModelState } from '../../../../shared/speech-types'
-import { DictationController } from './DictationController'
-import { resetSpeechModelUpdateCheckForTests } from './speech-model-update-check'
+import {
+  getDefaultSettings,
+  getDefaultVoiceSettings
+} from '../../../../shared/orca-profiles/constants'
+import type { TooltipProvider as TooltipProviderComponent } from '@/components/ui/tooltip'
+import type { useAppStore as useAppStoreHook } from '@/store'
+import type { SpeechModelManifest, SpeechModelState } from '../../../../shared/speech/speech-types'
+import type { DictationController as DictationControllerComponent } from './DictationController'
 
 const startCapture = vi.fn(async () => ({}))
 
-vi.mock('@/hooks/use-audio-capture', () => ({
+vi.mock('@/components/dictation/use-audio-capture', () => ({
   useAudioCapture: () => ({
     start: startCapture,
     stop: vi.fn(),
@@ -38,6 +40,10 @@ const parakeet: SpeechModelManifest = {
   sizeBytes: 740_000_000
 }
 
+// The update check keeps module state, so each test loads a fresh module graph instead of resetting it.
+let TooltipProvider: typeof TooltipProviderComponent
+let DictationController: typeof DictationControllerComponent
+let useAppStore: typeof useAppStoreHook
 let root: Root
 let container: HTMLDivElement
 let pressShortcut: () => void
@@ -45,8 +51,11 @@ let modelStates: SpeechModelState[]
 const getModelStates = vi.fn(async () => modelStates)
 const startDictation = vi.fn(async () => {})
 
-beforeEach(() => {
-  resetSpeechModelUpdateCheckForTests()
+beforeEach(async () => {
+  vi.resetModules()
+  ;({ TooltipProvider } = await import('@/components/ui/tooltip'))
+  ;({ DictationController } = await import('./DictationController'))
+  ;({ useAppStore } = await import('@/store'))
   startCapture.mockClear()
   getModelStates.mockClear()
   startDictation.mockClear()

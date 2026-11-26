@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { NativeChatAppearanceSettings } from '../../../../../../shared/native-chat/native-chat-appearance-settings'
+import type { NativeChatAppearanceSettings } from '../../../../../../shared/native-chat/settings/native-chat-appearance-settings'
 import { getChatContrastEntriesByKey } from './chat-appearance-search'
 import { useTranslate } from '@/i18n/use-translate'
 import { Slider } from '../../../ui/slider'

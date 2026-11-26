@@ -10,7 +10,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { AgentLaunchPickerMenu } from './AgentLaunchPickerMenu'
 import type { AgentPickerEntry } from '../../../../shared/agent-launch/picker/agent-launch-picker'
 
-vi.mock('@/hooks/useShortcutLabel', () => ({ useOptionalShortcutLabel: () => null }))
+vi.mock('@/lib/keyboard/useShortcutLabel', () => ({ useOptionalShortcutLabel: () => null }))
 afterEach(cleanup)
 
 const entry = (

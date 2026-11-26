@@ -2,7 +2,7 @@ import { expect, it } from 'vitest'
 import {
   agentSessionLeaseFixture,
   agentSessionRecordFixture
-} from '../../shared/agent-session/lifecycle/agent-session-record.test-fixture'
+} from '../../shared/agent-session/lifecycle/records/agent-session-record.test-fixture'
 import { commitAccountSwitchRecord } from './agent-session-account-switch-record'
 import type { AgentSessionStoreState } from './agent-session/records/agent-session-store-state'
 

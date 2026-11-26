@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/class-names'
 import { translate } from '@/i18n/i18n'
 import type { NativeChatImageRefBlock } from '../../../../../shared/native-chat/native-chat-types'
 import { NativeChatMarkdownImage } from '../media/images/NativeChatMarkdownImage'

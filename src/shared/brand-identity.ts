@@ -11,6 +11,8 @@ export const BRAND_DEV_WORKTREE_USER_DATA_DIR_NAME = 'brza-dev-wt'
 export const BRAND_APP_NAME = 'BrzA Studio'
 /** Home folder for BrzA's integration credentials; Orca's `~/.orca` seals them with another app's key. */
 export const BRAND_CREDENTIALS_DIR_NAME = '.brza'
+/** Bots' folder under `~/.brza`, for BrzA's own and dev profiles; Orca's bots stay in `~/.orca/bots`. */
+export const BRAND_BOTS_DIR_NAME = 'bots'
 /** Packaged terminal command; upstream Orca owns `orca`. */
 export const BRAND_CLI_COMMAND_NAME = 'brza'
 /** OS-registered URL scheme. Pairing keeps `orca://pair`: the Orca mobile app only accepts that. */

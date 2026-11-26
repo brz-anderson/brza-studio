@@ -6,6 +6,7 @@ import { createLocalizedCatalog } from '@/i18n/localized-catalog'
 import { getVisibleEditorTypographySearchDescriptors } from './editor-typography-search'
 import { getFormatOnSaveSearchEntry } from './EditorFormatOnSaveSetting'
 import { getInsertFinalNewlineSearchEntry } from './EditorInsertFinalNewlineSetting'
+import { getEndOfLineSearchEntry } from './EditorEndOfLineSetting'
 
 export const markdownThemeSearchEntry = createLocalizedCatalog(() => ({
   title: translate('settings.editor.markdownTheme.followChat', 'Markdown Follows the Chat'),
@@ -25,6 +26,7 @@ export const getGeneralEditorSearchDescriptors = createLocalizedCatalog(() => [
   generalSetting(GENERAL_SETTING_ANCHORS.markdownTheme, markdownThemeSearchEntry()),
   generalSetting(GENERAL_SETTING_ANCHORS.formatOnSave, getFormatOnSaveSearchEntry()),
   generalSetting(GENERAL_SETTING_ANCHORS.finalNewline, getInsertFinalNewlineSearchEntry()),
+  generalSetting(GENERAL_SETTING_ANCHORS.endOfLine, getEndOfLineSearchEntry()),
   generalSetting(GENERAL_SETTING_ANCHORS.autoSave, getAutoSaveSearchEntry()),
   generalSetting(GENERAL_SETTING_ANCHORS.autoSaveDelay, {
     title: translate('auto.components.settings.general.search.d9168badd2', 'Auto save delay'),
@@ -137,6 +139,19 @@ export const getGeneralEditorSearchDescriptors = createLocalizedCatalog(() => [
       ...translateSearchKeyword('auto.components.settings.general.search.a0014961ae', 'scroll')
     ]
   }),
+  generalSetting(GENERAL_SETTING_ANCHORS.inlineBlame, {
+    title: translate('settings.general.inlineBlameTitle', 'Inline git blame'),
+    description: translate(
+      'settings.general.inlineBlameDescription',
+      'Show who last changed the cursor line, and when, at the end of the line.'
+    ),
+    keywords: [
+      ...translateSearchKeyword('settings.general.inlineBlameKeywordBlame', 'blame'),
+      ...translateSearchKeyword('settings.general.inlineBlameKeywordGit', 'git'),
+      ...translateSearchKeyword('settings.general.inlineBlameKeywordAuthor', 'author'),
+      ...translateSearchKeyword('settings.general.inlineBlameKeywordAnnotation', 'annotation')
+    ]
+  }),
   generalSetting(GENERAL_SETTING_ANCHORS.markdownView, {
     title: translate('auto.components.settings.general.search.0f9304f821', 'Default Markdown view'),
     description: translate(
@@ -206,7 +221,11 @@ export const getGeneralEditorSearchDescriptors = createLocalizedCatalog(() => [
       ...translateSearchKeyword('settings.general.search.keywords.diff', 'diff'),
       ...translateSearchKeyword('settings.general.search.keywords.whitespace', 'whitespace'),
       ...translateSearchKeyword('settings.general.search.keywords.spaces', 'spaces'),
-      ...translateSearchKeyword('settings.general.search.keywords.tabs', 'tabs'),
+      ...translateSearchKeyword(
+        'settings.general.search.keywords.tab_characters',
+        'tab characters',
+        { aliases: ['tabs'] }
+      ),
       ...translateSearchKeyword('settings.general.search.keywords.trim', 'trim'),
       ...translateSearchKeyword('settings.general.search.keywords.indentation', 'indentation')
     ]

@@ -1,9 +1,9 @@
 import {
   COMMAND_TOKEN_SCAN_MAX_CHARS,
   getCommandTokenPathBasename
-} from '../../../command-token-scanner'
+} from '../../../shell/command-resolution/command-token-scanner'
 import { tokenizeCommandLine } from '../../../agent-status/process/agent-command-line-entrypoint'
-import { splitUnquotedSegments } from '../../../orca-browser-cli-commands'
+import { splitUnquotedSegments } from '../../../browser/automation/orca-browser-cli-commands'
 
 /** One command of a shell line: its text, and its words without leading `VAR=x`, the program
  * reduced to its lowercased name (`/usr/bin/git.exe` → `git`). */

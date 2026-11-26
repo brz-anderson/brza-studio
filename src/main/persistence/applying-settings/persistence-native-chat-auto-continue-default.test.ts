@@ -50,9 +50,20 @@ describe('usage-limit auto-continue default', () => {
     expect(store.getSettings().nativeChatAutoContinueAfterUsageLimit).toBe(true)
   })
 
-  it('keeps an explicit off', async () => {
+  it('keeps an explicit off once the default has flipped', async () => {
+    writeSettings({
+      nativeChatAutoContinueAfterUsageLimit: false,
+      nativeChatAutoContinueAfterUsageLimitDefaultedOn: true
+    })
+    const store = await createStore()
+    expect(store.getSettings().nativeChatAutoContinueAfterUsageLimit).toBe(false)
+  })
+
+  it('flips an off saved before the default changed, once', async () => {
     writeSettings({ nativeChatAutoContinueAfterUsageLimit: false })
     const store = await createStore()
+    expect(store.getSettings().nativeChatAutoContinueAfterUsageLimit).toBe(true)
+    store.updateSettings({ nativeChatAutoContinueAfterUsageLimit: false })
     expect(store.getSettings().nativeChatAutoContinueAfterUsageLimit).toBe(false)
   })
 })

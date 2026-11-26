@@ -2,19 +2,20 @@ import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { computeAgentSessionPayloadFingerprint } from '../../../../../shared/agent-session/lifecycle/agent-session-mutation-envelope'
-import { codexProviderHandle } from '../../../../../shared/agent-session/lifecycle/agent-session-provider-handle-encoding'
+import { computeAgentSessionPayloadFingerprint } from '../../../../../shared/agent-session/lifecycle/operations/agent-session-mutation-envelope'
+import { codexProviderHandle } from '../../../../../shared/agent-session/lifecycle/provider-handles/agent-session-provider-handle-encoding'
 import type { AgentSessionRecordStore } from '../../../../runtime/agent-session/records/agent-session-record-store'
-import { openTestAgentSessionRecordStore } from '../../../../runtime/agent-session/records/agent-session-record-store-test-harness'
 import {
-  closeTestJournalHostDatabases,
-  openTestJournalHostDatabase
-} from '../../../agent-session-journal/store-lifecycle/journal-host-database-test-support'
+  openTestAgentSessionDatabase,
+  openTestAgentSessionRecordStore
+} from '../../../../runtime/agent-session/records/agent-session-record-store-test-harness'
+import { closeTestJournalHostDatabase } from '../../../agent-session-journal/store-lifecycle/journal-host-database-test-support'
+import { readTestHostJournal } from '../../../agent-session-journal/journal-observation.test-support'
 import type {
   AgentSessionDispatchOutcome,
   StructuredAgentSessionAdapter
 } from '../../providers/structured-agent-session-adapter'
-import { claudeAndCodexDeclared } from '../../providers/testing/structured-agent-session-adapter-router-test-support'
+import { claudeAndCodexDeclared } from '../../providers/testing/structured-agent-session-adapter-router.test-fixture'
 import { StructuredAgentSessionHost } from '../../host/structured-agent-session-host'
 import {
   HOST_TEST_NOW,
@@ -24,8 +25,8 @@ import {
   hostTestMessage,
   hostTestOperationId,
   resetHostTestOperationIds
-} from '../../host/testing/structured-agent-session-host-test-data'
-import { startsWhenPublished } from '../../host/testing/structured-agent-session-instant-start.test-support'
+} from '../../host/testing/structured-agent-session-host-test-data.test-fixture'
+import { startsWhenPublished } from '../../host/testing/structured-agent-session-instant-start.test-fixture'
 import { createStructuredAgentSessionLogger } from '../../host/structured-agent-session-logger'
 
 const caller = { callerKey: 'desktop' }
@@ -39,7 +40,7 @@ const prepareAccountSwitch =
   vi.fn<NonNullable<StructuredAgentSessionAdapter['prepareAccountSwitch']>>()
 const dispatch = vi.fn<StructuredAgentSessionAdapter['dispatch']>()
 
-function openHost(): StructuredAgentSessionHost {
+async function openHost(): Promise<StructuredAgentSessionHost> {
   return new StructuredAgentSessionHost({
     agents: claudeAndCodexDeclared(),
     logger: createStructuredAgentSessionLogger(),
@@ -77,7 +78,7 @@ function openHost(): StructuredAgentSessionHost {
       },
       () => host
     ),
-    journalDatabase: openTestJournalHostDatabase(directory),
+    journalDatabase: await openTestAgentSessionDatabase(directory),
     claimKeyId: 'key',
     now: () => HOST_TEST_NOW,
     probeOwner: async () => ({ outcome: 'exit-observed' }),
@@ -104,12 +105,12 @@ beforeEach(async () => {
   }))
   directory = await mkdtemp(join(tmpdir(), 'orca-account-switch-'))
   store = await openTestAgentSessionRecordStore(directory)
-  host = openHost()
+  host = await openHost()
 })
 
 afterEach(async () => {
   await host.flushAllStreamedEvents()
-  await closeTestJournalHostDatabases()
+  await closeTestJournalHostDatabase(directory)
   await rm(directory, { recursive: true, force: true })
 })
 
@@ -136,7 +137,7 @@ function send(text: string) {
 }
 
 async function dividers() {
-  return (await host.journalSnapshot(SESSION)).items.flatMap((item) =>
+  return (await readTestHostJournal(host, SESSION)).items.flatMap((item) =>
     item.body.kind === 'status' && item.body.presentation === 'account-switched'
       ? [item.body.text]
       : []

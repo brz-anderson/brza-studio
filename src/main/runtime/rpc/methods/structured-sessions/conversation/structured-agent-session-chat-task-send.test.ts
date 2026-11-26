@@ -10,12 +10,12 @@ import {
   HOST_TEST_SESSION as SESSION,
   hostTestMessage,
   hostTestOperationId
-} from '../../../../../native-chat/agent-session-wire/host/testing/structured-agent-session-host-test-data'
+} from '../../../../../native-chat/agent-session-wire/host/testing/structured-agent-session-host-test-data.test-fixture'
 import { setStructuredAgentSessionHost } from '../../../../../native-chat/agent-session-wire/host/structured-agent-session-registry'
 import {
   AGENT_SESSION_ACCEPTED_SEND_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_RUNTIME_CAPABILITY
-} from '../../../../../../shared/agent-session/agent-session-runtime-capabilities'
+} from '../../../../../../shared/agent-session/capabilities/agent-session-runtime-capabilities'
 import { agentJournalSubmissionKey } from '../../../../../../shared/agent-session/journal/agent-session-journal-item-key'
 import { agentSessionMessagePayload } from '../../../../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import type { RpcContext } from '../../../core'
@@ -23,7 +23,7 @@ import {
   DESKTOP_RPC_CALLER,
   LOCAL_CLI_RPC_CALLER,
   type RpcCallerIdentity
-} from '../../../rpc-caller-identity'
+} from '../../../callers/rpc-caller-identity'
 import { sendStructuredAgentSessionForClient } from './structured-agent-session-send-compatibility'
 
 const COORDINATOR_CHAT = 'claude_6cba3e14_b1a0_4b36_8f25_96c0dfa39fbb'
@@ -89,8 +89,8 @@ function journal() {
   return stored
 }
 
-function sentBody(id: string) {
-  const body = journal().itemBody(agentJournalSubmissionKey(id))
+async function sentBody(id: string) {
+  const body = await journal().reads.itemBody(agentJournalSubmissionKey(id))
   if (body?.kind !== 'message') {
     throw new Error('expected the sent message')
   }
@@ -100,7 +100,7 @@ function sentBody(id: string) {
 it('shows a send from another chat as that chat’s task, with its text untouched', async () => {
   const id = await send(rpcContext(LOCAL_CLI_RPC_CALLER, COORDINATOR_CHAT))
 
-  expect(sentBody(id)).toEqual({
+  expect(await sentBody(id)).toEqual({
     ...hostTestMessage(TASK),
     from: {
       kind: 'agent',
@@ -125,18 +125,26 @@ it('holds a send to a busy chat as the same task, not as a person’s draft', as
 
   const id = await send(rpcContext(LOCAL_CLI_RPC_CALLER, COORDINATOR_CHAT), 'queue-if-active')
 
-  const [card] = journal().queuedMessages.list()
+  const [card] = await journal().queuedMessages.list()
   expect(card.messageId).toBe(id)
   expect(card.body.from).toMatchObject({ orchestration: { message: 'task', runId: id } })
 })
 
 it.each([
-  ['a chat sending to itself', LOCAL_CLI_RPC_CALLER, SESSION],
-  ['a CLI outside a chat', LOCAL_CLI_RPC_CALLER, undefined],
-  ['a window', DESKTOP_RPC_CALLER, COORDINATOR_CHAT],
-  ['a paired device', { kind: 'paired-device', deviceId: 'device-1' } as const, COORDINATOR_CHAT]
-])('leaves a send from %s as a person’s message', async (_label, caller, agentSessionId) => {
-  const id = await send(rpcContext(caller, agentSessionId))
+  ['a chat sending to itself', LOCAL_CLI_RPC_CALLER, SESSION, { by: 'agent' }],
+  ['a CLI outside a chat', LOCAL_CLI_RPC_CALLER, undefined, { by: 'agent' }],
+  ['a window', DESKTOP_RPC_CALLER, COORDINATOR_CHAT, { by: 'host' }],
+  [
+    'a paired device',
+    { kind: 'paired-device', deviceId: 'device-1' } as const,
+    COORDINATOR_CHAT,
+    { by: 'device', deviceId: 'device-1' }
+  ]
+])(
+  'leaves a send from %s as a person’s message, stamped with where it was typed',
+  async (_label, caller, agentSessionId, typedBy) => {
+    const id = await send(rpcContext(caller, agentSessionId))
 
-  expect(sentBody(id)).toEqual(hostTestMessage(TASK))
-})
+    expect(await sentBody(id)).toEqual({ ...hostTestMessage(TASK), typedBy })
+  }
+)

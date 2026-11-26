@@ -1,7 +1,7 @@
 import type * as Monaco from 'monaco-editor'
 import { expect, it, vi } from 'vitest'
 import { ISLANDS_DARK_MONACO_THEME, ISLANDS_DARK_THEME_NAME } from '../../islands-dark-theme'
-import { MARKDOWN_TOKEN_PREFIX } from '../../plugin-monaco-token-rules'
+import { MARKDOWN_TOKEN_PREFIX } from '../../editor/appearance/plugin-monaco-token-rules'
 import { createMarkdownTokensProvider } from '../markdown-textmate-tokens'
 
 // The wasm tokenizer needs a browser; only the theme definitions matter here.

@@ -1,7 +1,7 @@
 import type {
   AgentMessageSender,
   AgentMessageSource
-} from '../../../shared/agent-session/agent-session-message-source'
+} from '../../../shared/agent-session/journal/agent-session-message-source'
 
 /** A chat's task for another chat with no Dispatch behind it: the three ids only give the message the
  *  shape of a task, and name no record. */

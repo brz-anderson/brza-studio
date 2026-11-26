@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { COMMAND_SPECS } from '../specs'
-import { formatCommandHelp, printHelp } from '../help'
+import { formatCommandHelp, printHelp } from '../discovery/help'
 import { withBrzaCommandName } from './cli-display-name'
 
 // Also catches a line that is just `orca` (the root header), which `(^|\s)orca\s` misses line by line.

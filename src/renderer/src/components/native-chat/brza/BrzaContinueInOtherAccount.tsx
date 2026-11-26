@@ -11,7 +11,7 @@ import { translate } from '@/i18n/i18n'
 import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
 import { useNativeChatUsageLimitContinueInOtherAccount } from '../usage/NativeChatUsageLimitActions'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
-import type { NativeChatUsageLimitAutoContinueState } from '../usage/NativeChatUsageLimitAutoContinue'
+import type { NativeChatUsageLimitAutoContinueState } from '../usage/native-chat-usage-limit-auto-continue-setting'
 
 /** Beside Continue on a usage-limit row (P40, P79): moves the chat to the chosen account and
  *  continues now, which drops the scheduled automatic continue. */

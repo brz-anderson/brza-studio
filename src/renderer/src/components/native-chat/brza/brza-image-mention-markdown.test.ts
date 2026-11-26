@@ -6,8 +6,8 @@ import { describe, expect, it } from 'vitest'
 import {
   linkNativeChatFilePaths,
   type FileLinkExists
-} from '../../../../../shared/native-chat/native-chat-file-link-tree'
-import { routeNativeChatHref } from '../../../../../shared/native-chat/native-chat-href-routing'
+} from '../../../../../shared/native-chat/file-access/native-chat-file-link-tree'
+import { routeNativeChatHref } from '../../../../../shared/native-chat/file-access/native-chat-href-routing'
 import { BRZA_IMAGE_MENTION_PROPERTY, remarkBrzaImageMentions } from './brza-image-mention-markdown'
 
 const existing = new Set(['/abs/shot.png'])

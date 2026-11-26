@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { WrapText } from 'lucide-react'
 import { useTranslate } from '@/i18n/use-translate'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/class-names'
 import { getCodeFenceLanguageLabel } from './code-fence-language-label'
 import { NativeChatCopyButton } from '../../messages/actions/NativeChatCopyButton'
 import { nativeChatCodeCopyText } from '../../native-chat-code-copy-text'
@@ -40,6 +40,7 @@ export function NativeChatCodeBlock({
       <NativeChatCodeWrapButton wrapped={wrapped} onToggle={() => setWrapped(!wrapped)} />
       <BrzaRunCodeButton code={copyText} language={language} />
       <NativeChatCopyButton
+        platformLineEndings
         text={copyText}
         label={t('components.native-chat.copyCode', 'Copy code')}
       />

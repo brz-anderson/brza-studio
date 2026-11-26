@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { describe, expect, it } from 'vitest'
-import { createStructuredAgentSessionOperationId } from '../../shared/agent-session/lifecycle/structured-agent-session-mutation'
+import { createStructuredAgentSessionOperationId } from '../../shared/agent-session/lifecycle/operations/structured-agent-session-mutation'
 import { CHAT_OPERATION_ID_PATTERN, parseChatOperationId } from './chat-operation-id'
 
 const OPERATION = '1793750400000-3f2a9c0e8b7d4a1f9e6c5b4a3d2e1f00'

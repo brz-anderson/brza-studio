@@ -76,8 +76,8 @@ vi.mock('../session/structured/delivery/use-structured-agent-session-sends', () 
   }
 }))
 
-import { AGENT_SESSION_CONVERSATION_STOP_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/lifecycle/agent-session-stop-capabilities'
-import { AGENT_SESSION_QUEUED_MESSAGES_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/agent-session-runtime-capabilities'
+import { AGENT_SESSION_CONVERSATION_STOP_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/lifecycle/stopping/agent-session-stop-capabilities'
+import { AGENT_SESSION_QUEUED_MESSAGES_RUNTIME_CAPABILITY } from '../../../../../shared/agent-session/capabilities/agent-session-runtime-capabilities'
 import { setLocalRuntimeCapabilitiesForTests } from '@/runtime/hosts/capabilities/local-runtime-capabilities'
 import { clearNativeChatComposerDraftsForTests as clearNativeChatDraftCacheForTests } from '../drafts/native-chat-draft-reset'
 import { useStructuredAgentSession } from '../session/structured/use-structured-agent-session'

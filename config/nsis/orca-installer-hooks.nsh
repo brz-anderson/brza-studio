@@ -77,7 +77,7 @@
     ; WSL host sees nothing here. These are the folders Electron's userData (app.getName()) can be, as the
     ; deleteAppData step lists them; a custom --user-data-dir can't be known here.
     ; Sync the flags with WSL_HOLDER_UNINSTALL_FLAG and WSL_SERVER_UNINSTALL_FLAG in
-    ; src/main/startup/wsl-holder-uninstall-preflight.ts.
+    ; src/main/startup/uninstall/wsl-holder-uninstall-preflight.ts.
     ${if} $installMode == "all"
       SetShellVarContext current
     ${endIf}

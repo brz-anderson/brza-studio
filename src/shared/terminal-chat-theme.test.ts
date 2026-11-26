@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getDefaultSettings } from './constants'
+import { getDefaultSettings } from './orca-profiles/constants'
 import { resolveSavedTerminalColors } from './terminal-chat-theme'
 import { TERMINAL_THEME_CATALOG } from './terminal-themes/terminal-theme-catalog'
 

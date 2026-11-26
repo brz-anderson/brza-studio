@@ -1,11 +1,11 @@
 import {
   CLAUDE_INJECTED_CONFIG_DIR_ENV,
   CLAUDE_PROFILE_POINTER_ENV
-} from '../../shared/claude-profile-routing'
-import type { ClaudeManagedAccount } from '../../shared/managed-account-types'
-import { isDirectory } from './claude-profile-homes'
-import { claudeProfileMissing } from './claude-profile-launch-errors'
-import type { ClaudeProfileRouter } from './claude-profile-router'
+} from '../../shared/agent-accounts/claude/claude-profile-routing'
+import type { ClaudeManagedAccount } from '../../shared/agent-accounts/managed-account-types'
+import { isDirectoryAsync } from './profiles/claude-profile-homes'
+import { claudeProfileMissing } from './profiles/routing/claude-profile-launch-errors'
+import type { ClaudeProfileRouter } from './profiles/routing/claude-profile-router'
 import type { ClaudeRuntimeAuthPreparation } from './runtime-auth/runtime-auth-types'
 
 /** The saved account when it is this host's own; undefined for any other id. */
@@ -38,7 +38,7 @@ export async function prepareClaudeAccountLaunch(
   await router.readyForLaunch(launchId)
   const home = launchId === null ? null : router.accountHome(launchId)
   // Never fall back from a missing folder: that would run the wrong account.
-  if (home !== null && !isDirectory(home)) {
+  if (home !== null && !(await isDirectoryAsync(home))) {
     throw claudeProfileMissing()
   }
   return {
@@ -58,12 +58,12 @@ export async function prepareClaudeAccountLaunch(
 /** The home a chat switched to `accountId` launches under, read without setting anything up; the
  *  same answer `prepareClaudeAccountLaunch` gives. undefined when no router decides it, so the
  *  caller falls back to the selection. `identity` names it before its folder exists. */
-export function pinnedClaudeAccountHome(
+export async function pinnedClaudeAccountHome(
   router: ClaudeProfileRouter | null | undefined,
   pin: { accountId: string | null },
   launchEnv: Record<string, string | undefined>,
   purpose: 'read' | 'identity'
-): { variable: 'CLAUDE_CONFIG_DIR'; path: string } | undefined {
+): Promise<{ variable: 'CLAUDE_CONFIG_DIR'; path: string } | undefined> {
   if (!router) {
     return undefined
   }
@@ -81,7 +81,7 @@ export function pinnedClaudeAccountHome(
     }
   }
   const path = router.accountHome(launchId)
-  if (purpose === 'read' && !isDirectory(path)) {
+  if (purpose === 'read' && !(await isDirectoryAsync(path))) {
     throw claudeProfileMissing()
   }
   return { variable: 'CLAUDE_CONFIG_DIR', path }

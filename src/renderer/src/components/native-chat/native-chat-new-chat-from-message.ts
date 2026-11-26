@@ -2,14 +2,14 @@ import { createContext, useMemo } from 'react'
 import { toast } from 'sonner'
 import { translate } from '@/i18n/i18n'
 import { getAgentLabel } from '@/lib/agent-catalog/agent-catalog'
-import { newAgentLaunchRequestId } from '@/lib/agent-session/launch/routing/agent-launch-request-id'
-import { launchAgentInNewTab } from '@/lib/agent-session/launch/new-tab/launch-agent-in-new-tab'
+import { createNonSecureContextUuid } from '../../../../shared/identifiers/non-secure-context-uuid'
+import { launchAgentInNewTabWithOutcome } from '@/lib/agent-session/launch/new-tab/launch-agent-in-new-tab'
 import { executionHostIdForStructuredTarget } from '@/runtime/native-chat/session-ownership/structured-agent-session-owner'
 import { captureNativeChatComposerFocusIntent } from './composer/focus/native-chat-composer-focus-intent'
 import { isTuiAgent } from '../../../../shared/agent-launch/catalog/tui-agent-config'
 import type { AgentType } from '../../../../shared/agent-status/contracts/agent-status-types'
-import type { ExecutionHostId } from '../../../../shared/execution-host'
-import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
+import type { ExecutionHostId } from '../../../../shared/execution-host/execution-host'
+import type { RuntimeClientTarget } from '../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 import type { TuiAgent } from '../../../../shared/agent-launch/catalog/tui-agent'
 
 /** Opens a new chat whose composer holds the given agent message, unsent. */
@@ -31,8 +31,8 @@ export function openNativeChatNewChatFromMessage(
   source: NativeChatNewChatSource,
   text: string
 ): void {
-  const result = launchAgentInNewTab({
-    requestId: newAgentLaunchRequestId(),
+  const result = launchAgentInNewTabWithOutcome({
+    requestId: createNonSecureContextUuid(),
     focusIntent: captureNativeChatComposerFocusIntent(),
     requestedSurface: 'chat',
     selectedExecutionHostId: source.executionHostId,

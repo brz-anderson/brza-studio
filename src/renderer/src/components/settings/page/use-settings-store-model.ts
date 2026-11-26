@@ -1,15 +1,17 @@
+import { useSupportedGroupHookSettings } from '@/components/settings/repository/hooks/use-supported-group-hook-settings'
 import type { GeneralSubPage } from '../general/general-sub-pages'
+import type { McpServerSubPage } from '../mcp-servers/mcp-server-sub-page'
 import { useCallback, useMemo, useState } from 'react'
-import type { OrcaHooks } from '../../../../../shared/orca-yaml-hook-types'
-import type { ProjectHostSetup } from '../../../../../shared/project-types'
-import { DEFAULT_APP_FONT_FAMILY } from '../../../../../shared/constants'
+import type { OrcaHooks } from '../../../../../shared/workspace-setup/orca-yaml-hook-types'
+import type { ProjectHostSetup } from '../../../../../shared/project/project-types'
+import { DEFAULT_APP_FONT_FAMILY } from '../../../../../shared/app-lifecycle/appearance/app-font-family'
 import { useAppStore } from '../../../store/index'
 import { useProjectHostSetupProjection } from '@/store/projects/use-project-host-setup-projection'
 import { usePluginFontFamilies } from '@/store/plugins/appearance/plugin-fonts'
 import { useSystemPrefersDark } from '@/hooks/theme/use-system-prefers-dark'
-import { isMacUserAgent, isWindowsUserAgent } from '@/lib/user-agent-platform'
-import { useConfirmationDialog } from '@/components/confirmation-dialog-context'
-import { isWebClientLocation } from '@/lib/web-client-location'
+import { isMacUserAgent, isWindowsUserAgent } from '@/app-shell/platform/user-agent-platform'
+import { useConfirmationDialog } from '@/components/dismiss/confirmation/confirmation-dialog-context'
+import { isWebClientLocation } from '@/app-shell/platform/web-client-location'
 import {
   COMPUTER_USE_SKILL_NAME,
   LINEAR_AGENT_SKILL_NAMES,
@@ -19,10 +21,10 @@ import {
   GLOBAL_AGENT_SKILL_SOURCE_KINDS,
   useInstalledAgentSkill,
   useInstalledAgentSkillNames
-} from '@/hooks/useInstalledAgentSkills'
-import { useActiveProjectSkillRuntime } from '@/hooks/useActiveProjectSkillRuntime'
-import { useLinearProviderConnected } from '@/hooks/useLinearProviderConnected'
-import { useSkillFreshness } from '@/hooks/useSkillFreshness'
+} from '@/hooks/skills/discovery/useInstalledAgentSkills'
+import { useActiveProjectSkillRuntime } from '@/hooks/skills/runtime/useActiveProjectSkillRuntime'
+import { useLinearProviderConnected } from '@/lib/work-items/linear/useLinearProviderConnected'
+import { useSkillFreshness } from '@/hooks/skills/freshness/useSkillFreshness'
 import {
   getFallbackTerminalFonts,
   mergeFontSuggestions,
@@ -46,6 +48,7 @@ import {
 } from '@/components/sidebar/workspace-actions/deletion/removal-unsaved-files'
 
 export function useSettingsStoreModel() {
+  const hookSettingsGroups = useSupportedGroupHookSettings()
   const settings = useAppStore((s) => s.settings)
   const keybindings = useAppStore((s) => s.keybindings)
   const updateSettings = useAppStore((s) => s.updateSettings)
@@ -157,6 +160,7 @@ export function useSettingsStoreModel() {
   )
   const [activeSectionId, setActiveSectionId] = useState('general')
   const [generalSubPage, setGeneralSubPage] = useState<GeneralSubPage | null>(null)
+  const [mcpServerSubPage, setMcpServerSubPage] = useState<McpServerSubPage | null>(null)
   const [mountedSectionIds, setMountedSectionIds] = useState<Set<string>>(
     getInitialMountedSectionIds
   )
@@ -205,8 +209,11 @@ export function useSettingsStoreModel() {
   )
 
   return {
+    hookSettingsGroups,
     generalSubPage,
     setGeneralSubPage,
+    mcpServerSubPage,
+    setMcpServerSubPage,
     settings,
     keybindings,
     updateSettings,

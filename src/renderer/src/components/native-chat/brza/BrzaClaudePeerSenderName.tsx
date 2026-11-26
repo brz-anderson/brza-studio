@@ -2,9 +2,9 @@ import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { translate } from '@/i18n/i18n'
 import { useAppStore } from '@/store'
-import { activateAiVaultStructuredSession } from '@/lib/activate-ai-vault-structured-session'
-import type { Tab } from '../../../../../shared/tab-types'
-import type { AgentMessageSender } from '../../../../../shared/agent-session/agent-session-message-source'
+import { activateAiVaultStructuredSession } from '@/lib/agent-session/open/activate-ai-vault-structured-session'
+import type { Tab } from '../../../../../shared/workspace-layout/tab-groups/tab-types'
+import type { AgentMessageSender } from '../../../../../shared/agent-session/journal/agent-session-message-source'
 import { brzaClaudePeerKind } from '../../../../../shared/native-chat/brza/brza-claude-peer-sender'
 
 /** The one open chat tab named like the peer session: its own label or the host's chat title. */

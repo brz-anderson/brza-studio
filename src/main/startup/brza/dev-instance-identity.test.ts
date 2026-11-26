@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { getDevInstanceIdentity, shouldApplyPreReadyAppName } from '../dev-instance-identity'
+import {
+  getDevInstanceIdentity,
+  shouldApplyPreReadyAppName
+} from '../profile-startup/dev-instance-identity'
 
 // Coexistence with upstream Orca: nothing here may fall back to Orca's name, Keychain item or AppUserModelID.
 describe('dev-instance-identity of BrzA Studio beside upstream Orca', () => {

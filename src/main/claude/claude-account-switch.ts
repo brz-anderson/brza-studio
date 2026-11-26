@@ -1,10 +1,10 @@
 import {
   requireLegacyAgentSessionAccountHome,
   type AgentSessionAccountHome
-} from '../../shared/agent-session/lifecycle/agent-session-account-home'
-import { agentSessionProviderHandleChainHead } from '../../shared/agent-session/lifecycle/agent-session-provider-handle'
-import { pendingAgentSessionRewindFork } from '../../shared/agent-session/lifecycle/agent-session-rewind'
-import { getClaudeProfileRouter } from '../claude-accounts/claude-profile-installed-router'
+} from '../../shared/agent-session/lifecycle/accounts/agent-session-account-home'
+import { agentSessionProviderHandleChainHead } from '../../shared/agent-session/lifecycle/provider-handles/agent-session-provider-handle'
+import { pendingAgentSessionRewindFork } from '../../shared/agent-session/lifecycle/rewind/agent-session-rewind'
+import { getClaudeProfileRouter } from '../claude-accounts/profiles/routing/claude-profile-installed-router'
 import {
   claudeLaunchAccountId,
   claudeSavedHostAccount
@@ -12,7 +12,7 @@ import {
 import {
   CLAUDE_PROFILE_MISSING_MESSAGE,
   CLAUDE_PROFILE_SETUP_FAILED_MESSAGE
-} from '../../shared/claude-profile-routing'
+} from '../../shared/agent-accounts/claude/claude-profile-routing'
 import type { StructuredAgentSessionAdapter } from '../native-chat/agent-session-wire/providers/structured-agent-session-adapter'
 import { copyClaudeTranscriptsToAccount } from './claude-account-switch-transcript'
 import { CLAUDE_STRUCTURED_AGENT } from './structured/claude-structured-agent-definition'

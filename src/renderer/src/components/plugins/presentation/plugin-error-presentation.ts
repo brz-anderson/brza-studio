@@ -1,8 +1,13 @@
 import { translate } from '@/i18n/i18n'
 import type { Translate } from '@/i18n/use-translate'
 
+// Why: the main process emits "BrzA Studio" while the matchers below keep the upstream "orca" spelling.
+function normalizeBrand(text: string): string {
+  return text.toLowerCase().replace(/brza studio/g, 'orca')
+}
+
 function errorText(cause: unknown): string {
-  return (cause instanceof Error ? cause.message : String(cause)).toLowerCase()
+  return normalizeBrand(cause instanceof Error ? cause.message : String(cause))
 }
 
 export function pluginInstallErrorMessage(cause: unknown): string {
@@ -70,7 +75,7 @@ export function invalidPluginErrorMessage(
   installed = false,
   t: Translate = translate
 ): string {
-  const detail = detailValue.toLowerCase()
+  const detail = normalizeBrand(detailValue)
   // Why everything but a version gap: the user of an installed copy can't fix its files.
   if (installed && !detail.includes('requires orca')) {
     return t(

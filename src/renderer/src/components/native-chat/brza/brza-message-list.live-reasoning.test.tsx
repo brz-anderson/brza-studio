@@ -2,8 +2,8 @@
 
 import '@testing-library/jest-dom/vitest'
 
-import { cleanup, fireEvent, screen, within } from '@testing-library/react'
-import { render } from '../messages/actions/native-chat-tooltip-test-harness'
+import { cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react'
+import { render } from '../messages/actions/native-chat-tooltip.brza.test-harness'
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import type {
   AgentJournalRenderItem,
@@ -12,9 +12,9 @@ import type {
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
 import { projectStructuredItemToNativeChat } from '../../../../../shared/agent-session/view/structured-agent-session-projection'
 import { NativeChatMessageList } from '../NativeChatMessageList'
-import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list-test-viewport'
-import { projectNativeChatTaskListFrames } from '../../../../../shared/native-chat/input/native-chat-task-list-frames'
-import { openToolRunMembers } from '../tools/runs/native-chat-tool-run-members-test-support'
+import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list.brza.test-viewport'
+import { projectNativeChatTaskListFrames } from '../../../../../shared/native-chat/input/task-lists/native-chat-task-list-frames'
+import { openToolRunMembers } from '../tools/runs/native-chat-tool-run-members.brza.test-support'
 import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 
 {
@@ -127,16 +127,32 @@ import type { NativeChatLiveSession } from '../session/terminal/read/native-chat
       expect(screen.queryByText('Weighing two approaches')).toBeNull()
     })
 
-    it('opens to the live text, which follows the block as it grows', () => {
-      const { rerender } = render(list([reasoning('r-1', 'Weighing two approaches', 'running')]))
+    it('opens to the live text, which follows the block as it grows', async () => {
+      const { rerender } = render(
+        list([reasoning('r-1', 'Weighing two approaches', 'running', { journalRevision: 1 })])
+      )
       fireEvent.click(screen.getByRole('button', { name: 'Thinking' }))
       expect(screen.getByRole('button', { name: 'Thinking' })).toHaveAttribute(
         'aria-expanded',
         'true'
       )
       expect(screen.getByText('Weighing two approaches')).toBeInTheDocument()
-      rerender(list([reasoning('r-1', 'Weighing two approaches, then the cheaper one', 'running')]))
-      expect(screen.getByText('Weighing two approaches, then the cheaper one')).toBeInTheDocument()
+      // The block follows its saves: a new journal revision brings the grown text, paced in by the reveal.
+      rerender(
+        list([
+          reasoning('r-1', 'Weighing two approaches, then the cheaper one', 'running', {
+            journalRevision: 2
+          })
+        ])
+      )
+      // While the words fade in they sit in their own elements, so read the text, not one node.
+      await waitFor(
+        () =>
+          expect(document.body.textContent).toContain(
+            'Weighing two approaches, then the cheaper one'
+          ),
+        { timeout: 2000 }
+      )
     })
 
     it('keeps the body out of the live region, which announces the label only', () => {

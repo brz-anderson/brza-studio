@@ -2,9 +2,9 @@ import { createHash } from 'node:crypto'
 import { access, mkdir, rename, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
-import { getAppEnvironment, hasAppEnvironment } from '../../../shared/app-environment'
+import { getAppEnvironment, hasAppEnvironment } from '../../../shared/app-lifecycle/app-environment'
 import type { NativeChatImageRefBlock } from '../../../shared/native-chat/native-chat-types'
-import { asRecord } from '../../ai-vault/session-scanner-values'
+import { asRecord } from '../../ai-vault/parsing/session-record-fields'
 
 // The image types the Claude send path accepts (claude-structured-dispatch-content.ts).
 const EXTENSION_BY_MEDIA_TYPE: Record<string, string> = {

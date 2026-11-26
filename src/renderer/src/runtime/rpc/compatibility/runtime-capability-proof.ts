@@ -1,11 +1,11 @@
-import type { RuntimeCapability } from '../../../../../shared/protocol-version'
+import type { RuntimeCapability } from '../../../../../shared/remote-runtime/protocol/protocol-version'
 import {
   captureRuntimeEnvironmentRequestRevision,
   getRuntimeEnvironmentRevision,
   resolveContinuedRuntimeEnvironmentRevision
 } from '../environment-revisions/runtime-environment-revision'
 import { runtimeEnvironmentPairingChangedError } from '../environment-revisions/runtime-environment-pairing-refresh'
-import type { RuntimeStatus } from '../../../../../shared/runtime-session-contracts'
+import type { RuntimeStatus } from '../../../../../shared/remote-runtime/session-graph/runtime-session-contracts'
 import {
   runtimeCompatibilityChecks,
   RUNTIME_CAPABILITY_STATUS_TTL_MS
@@ -28,10 +28,14 @@ export async function runtimeEnvironmentSupportsCapability(
 export async function runtimeEnvironmentSupportsCapabilities(
   environmentId: string,
   capabilities: readonly RuntimeCapability[],
-  timeoutMs?: number
+  timeoutMs?: number,
+  /** Capabilities whose absence keeps the cached status, so an older host isn't asked again each
+   *  read; an upgrade still shows once that status expires. */
+  optional: readonly RuntimeCapability[] = []
 ): Promise<boolean[]> {
-  return (await resolveRuntimeEnvironmentCapabilities(environmentId, capabilities, timeoutMs))
-    .supported
+  return (
+    await resolveRuntimeEnvironmentCapabilities(environmentId, capabilities, timeoutMs, optional)
+  ).supported
 }
 
 export type RuntimeCapabilityProof = {
@@ -66,8 +70,11 @@ export async function runtimeEnvironmentCapabilityProof(
 async function resolveRuntimeEnvironmentCapabilities(
   environmentId: string,
   capabilities: readonly RuntimeCapability[],
-  timeoutMs?: number
+  timeoutMs?: number,
+  optional: readonly RuntimeCapability[] = []
 ): Promise<{ supported: boolean[]; status: RuntimeStatus }> {
+  const missesRequired = (supported: readonly boolean[]): boolean =>
+    supported.some((ok, index) => !ok && !optional.includes(capabilities[index]!))
   const trimmed = environmentId.trim()
   const cached = runtimeCompatibilityChecks.get(trimmed)
   // Capability reads must discard rejected probes like ordinary RPCs or a recovered host stays blocked until failure TTL.
@@ -84,7 +91,7 @@ async function resolveRuntimeEnvironmentCapabilities(
         const supported = capabilities.map(
           (capability) => status.capabilities?.includes(capability) === true
         )
-        if (supported.includes(false)) {
+        if (missesRequired(supported)) {
           // Keep protocol proof for this legacy call; next capability decision must observe in-place upgrades.
           cached.statusCheckedAt = null
         }
@@ -100,7 +107,7 @@ async function resolveRuntimeEnvironmentCapabilities(
   )
   const resolved = runtimeCompatibilityChecks.get(trimmed)
   // Why runtimeId: a status publication may have replaced the entry with its own copy.
-  if (supported.includes(false) && resolved?.status?.runtimeId === status.runtimeId) {
+  if (missesRequired(supported) && resolved?.status?.runtimeId === status.runtimeId) {
     resolved.statusCheckedAt = null
   }
   return { supported, status }

@@ -2,6 +2,7 @@
 
 import '@testing-library/jest-dom/vitest'
 
+import { acceptedAgentStatuses } from '@/store/slices/agent-status/status-ownership/accepted-agent-statuses'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import type { AgentStatusPayload } from '../../../../../shared/agent-status/contracts/agent-status-types'
@@ -35,7 +36,7 @@ const { TooltipProvider } = await import('@/components/ui/tooltip')
 const { nativeChatPromptDismissals } = await import('../prompts/native-chat-prompt-dismissals')
 const { useAppStore } = await import('../../../store')
 const { installNativeChatMessageListTestViewport } =
-  await import('../viewport/virtualization/native-chat-message-list-test-viewport')
+  await import('../viewport/virtualization/native-chat-message-list.brza.test-viewport')
 
 const paneKey = 'tab-card:leaf-card'
 let restoreViewport = (): void => {}
@@ -123,14 +124,20 @@ beforeEach(() => {
   composer.mounts = 0
   nativeChatPromptDismissals.clearForTests()
   ptyInput.verified.mockReset()
-  useAppStore.setState({ agentStatusByPaneKey: {}, nativeChatLaunchPromptByTabId: {} })
+  useAppStore.setState({
+    agentStatusByPaneKey: acceptedAgentStatuses(),
+    nativeChatLaunchPromptByTabId: {}
+  })
   retained.session = transcript()
 })
 
 afterEach(() => {
   cleanup()
   restoreViewport()
-  useAppStore.setState({ agentStatusByPaneKey: {}, nativeChatLaunchPromptByTabId: {} })
+  useAppStore.setState({
+    agentStatusByPaneKey: acceptedAgentStatuses(),
+    nativeChatLaunchPromptByTabId: {}
+  })
 })
 
 // Prompt cards own terminal input because composer sends would otherwise answer the agent’s active selector.
@@ -155,8 +162,8 @@ describe('NativeChatResolvedView prompt cards own the input region', () => {
     const card = document.querySelector('[data-native-chat-approval-card="true"]')
     expect(card).not.toBeNull()
     expect(screen.getByTestId('native-chat-composer').closest('[hidden]')).not.toBeNull()
-    // No text field is visible, so keyboard focus lands on the card's choices.
-    expect(document.activeElement).toBe(card)
+    // No text field is visible, so keyboard focus lands inside the card, on its choices.
+    expect(card?.contains(document.activeElement)).toBe(true)
 
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Allow' }))
@@ -239,9 +246,11 @@ describe('NativeChatResolvedView prompt cards own the input region', () => {
     expect(screen.queryAllByText(/Awaiting user input/)).toHaveLength(0)
     expect(screen.getByTestId('native-chat-composer').closest('[hidden]')).toBeNull()
     fireEvent.click(screen.getByRole('button', { name: 'Review' }))
-    expect(document.activeElement).toBe(
-      document.querySelector('[data-native-chat-approval-card="true"]')
-    )
+    expect(
+      document
+        .querySelector('[data-native-chat-approval-card="true"]')
+        ?.contains(document.activeElement)
+    ).toBe(true)
     expect(screen.getByTestId('native-chat-composer').closest('[hidden]')).not.toBeNull()
     expect(ptyInput.verified).not.toHaveBeenCalled()
   })
@@ -294,7 +303,7 @@ describe('NativeChatResolvedView prompt cards own the input region', () => {
     )
     renderPane()
     fireEvent.click(screen.getByRole('button', { name: /dist/ }))
-    fireEvent.click(screen.getByRole('button', { name: /Next/ }))
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
     const other = screen.getByPlaceholderText('Type your answer')
     fireEvent.change(other, { target: { value: 'turbo' } })
     fireEvent.keyDown(other, { key: 'Escape' })

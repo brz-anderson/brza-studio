@@ -1,6 +1,6 @@
 import type * as ReactModule from 'react'
 import { describe, expect, it, vi } from 'vitest'
-import type { GlobalSettings } from '../../../../../../shared/global-settings-types'
+import type { GlobalSettings } from '../../../../../../shared/settings/global-settings-types'
 import type { UseWarpThemeImportReturn } from './useWarpThemeImport'
 
 // Why: the section runs as a plain function, so every state hook reports the light target.

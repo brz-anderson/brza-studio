@@ -2,10 +2,10 @@ import { mkdirSync, mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, expect, it, vi } from 'vitest'
-import { ClaudeProfileRouter } from '../../claude-accounts/claude-profile-router'
-import { installClaudeProfileRouter } from '../../claude-accounts/claude-profile-installed-router'
-import { agentSessionRecordFixture } from '../../../shared/agent-session/lifecycle/agent-session-record.test-fixture'
-import { OrcaRuntimeWithStructuredSessionAccountHome } from './structured-session-account-home'
+import { ClaudeProfileRouter } from '../../claude-accounts/profiles/routing/claude-profile-router'
+import { installClaudeProfileRouter } from '../../claude-accounts/profiles/routing/claude-profile-installed-router'
+import { agentSessionRecordFixture } from '../../../shared/agent-session/lifecycle/records/agent-session-record.test-fixture'
+import { OrcaRuntimeWithStructuredSessionAccountHome } from './chat/structured-session-account-home'
 
 vi.mock('./structured-session-cli-writer-host', () => ({
   OrcaRuntimeWithStructuredSessionCliWriterHost: class {}

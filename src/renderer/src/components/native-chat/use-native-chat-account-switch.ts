@@ -7,12 +7,12 @@ import { useStructuredAgentSessionHostCapabilityState } from '@/runtime/native-c
 import {
   getClaudeStatusActiveId,
   resolveClaudeStatusAccountState
-} from '@/components/status-bar/status-bar-claude-accounts'
-import { STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY } from '../../../../shared/agent-session/structured-agent-session-surface-capabilities'
+} from '@/components/status-bar/accounts/status-bar-claude-accounts'
+import { STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY } from '../../../../shared/agent-session/capabilities/structured-agent-session-surface-capabilities'
 import type { AgentSessionAccountSwitchResult } from '../../../../shared/agent-session-account-switch'
 import type { AgentType } from '../../../../shared/agent-status/contracts/agent-status-types'
-import type { ClaudeRateLimitAccountsState } from '../../../../shared/managed-account-types'
-import type { RuntimeClientTarget } from '../../../../shared/runtime-client-target'
+import type { ClaudeRateLimitAccountsState } from '../../../../shared/agent-accounts/managed-account-types'
+import type { RuntimeClientTarget } from '../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 import { useStructuredAgentSessionAccountSwitch } from './session/status/structured-agent-session-status-hooks'
 import type { StructuredAgentSessionWrite } from './session/structured/writes/use-structured-agent-session-mutate'
 
@@ -136,7 +136,9 @@ export function useNativeChatAccountSwitch(
     ],
     [state.accounts, state.systemDefaultEmail]
   )
-  const currentId = switched ? switched.accountId : getClaudeStatusActiveId(state, HOST_TARGET)
+  const currentId = switched
+    ? switched.accountId
+    : (getClaudeStatusActiveId(state, HOST_TARGET) ?? null)
   const currentLabel =
     choices.find((choice) => choice.id === currentId)?.label ?? switched?.account ?? ''
   // Without a saved account there is nowhere to move the chat, unless it was moved before.

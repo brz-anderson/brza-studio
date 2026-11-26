@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Editor } from '@tiptap/react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/class-names'
 import { commitRow } from './rich-markdown-commands'
 import type { DocLinkMenuRow, DocLinkMenuState } from './rich-markdown-commands'
 import { useTranslate } from '@/i18n/use-translate'
@@ -85,7 +85,7 @@ export function RichMarkdownDocLinkMenu({
       <div className="rich-markdown-doc-link-hint">
         {t(
           'auto.components.editor.RichMarkdownDocLinkMenu.e17b987473',
-          '↑↓ navigate&nbsp;&nbsp;↵ select&nbsp;&nbsp;esc dismiss'
+          '↑↓ navigate\u00a0\u00a0↵ select\u00a0\u00a0esc dismiss'
         )}
       </div>
     </RichMarkdownCompletionPopover>

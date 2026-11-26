@@ -1,10 +1,10 @@
 import type { ITheme } from '@xterm/xterm'
-import type { GlobalSettings } from './global-settings-types'
+import type { GlobalSettings } from './settings/global-settings-types'
 import {
   NATIVE_CHAT_THEME_BRZA_DEFAULT,
   resolveNativeChatAppearanceSettings,
   type NativeChatAppearanceSettings
-} from './native-chat/native-chat-appearance-settings'
+} from './native-chat/settings/native-chat-appearance-settings'
 import {
   DEFAULT_TERMINAL_THEME_DARK,
   DEFAULT_TERMINAL_THEME_LIGHT,

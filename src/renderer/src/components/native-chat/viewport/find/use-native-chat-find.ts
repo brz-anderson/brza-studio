@@ -1,3 +1,4 @@
+import { NATIVE_CHAT_SUBAGENT_SHEET_ATTRIBUTE } from '../../subagents/native-chat-open-subagent'
 import {
   useCallback,
   useEffect,
@@ -7,14 +8,14 @@ import {
   type RefObject
 } from 'react'
 import { keybindingMatchesAction } from '../../../../../../shared/keybindings/matching'
-import { getShortcutPlatform } from '@/lib/shortcut-platform'
-import { isEditableTarget } from '@/lib/editable-target'
-import { isWebClientLocation } from '@/lib/web-client-location'
+import { getShortcutPlatform } from '@/lib/keyboard/shortcut-platform'
+import { isEditableTarget } from '@/lib/text-input/focus/editable-target'
+import { isWebClientLocation } from '@/app-shell/platform/web-client-location'
 import { useAppStore } from '../../../../store/index'
 import type { NativeChatComposerHandle } from '../../composer/native-chat-composer-types'
 import type { NativeChatMessageListHandle } from '../../messages/actions/use-native-chat-reveal-latest'
 import { focusNativeChatPromptCard } from '../../prompts/use-native-chat-prompt-card-focus'
-import { addAppKeyListener, removeAppKeyListener } from '@/lib/app-keyboard-router'
+import { addAppKeyListener, removeAppKeyListener } from '@/lib/keyboard/app-keyboard-router'
 
 // Keep open state/query with the retained chat so reopen preserves its last search.
 export type NativeChatFind = {
@@ -116,7 +117,8 @@ export function useNativeChatFind(
       }
       e.preventDefault()
       e.stopPropagation()
-      if (!e.repeat) {
+      // A subagent sheet covers the conversation this would search.
+      if (!e.repeat && !root.querySelector(`[${NATIVE_CHAT_SUBAGENT_SHEET_ATTRIBUTE}]`)) {
         open()
       }
     }
@@ -129,6 +131,8 @@ export function useNativeChatFind(
     (event: ReactKeyboardEvent) => {
       if (
         !isOpen ||
+        // Under a subagent sheet the bar is out of reach; Esc belongs to the sheet.
+        rootRef.current?.querySelector(`[${NATIVE_CHAT_SUBAGENT_SHEET_ATTRIBUTE}]`) ||
         event.key !== 'Escape' ||
         event.defaultPrevented ||
         event.nativeEvent.isComposing ||
@@ -141,7 +145,7 @@ export function useNativeChatFind(
       event.stopPropagation()
       close()
     },
-    [close, isOpen]
+    [close, isOpen, rootRef]
   )
 
   const revealMatch = useCallback(

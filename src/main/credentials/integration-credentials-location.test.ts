@@ -65,7 +65,7 @@ function seedOrcaFiles(): void {
 
 async function loadStores() {
   vi.resetModules()
-  const { setSecretStore } = await import('../../shared/secret-store')
+  const { setSecretStore } = await import('../../shared/secure-storage/secret-store')
   setSecretStore({
     isEncryptionAvailable: () => true,
     encryptString: (value) => Buffer.from(value),
@@ -74,14 +74,14 @@ async function loadStores() {
   })
   return {
     jira: await import('../jira/site-credential-store'),
-    linearPaths: await import('../linear/linear-credential-paths'),
-    linearTokens: await import('../linear/linear-token-store'),
-    linearRegistry: await import('../linear/linear-workspace-registry'),
+    linearPaths: await import('../linear/accounts/linear-credential-paths'),
+    linearTokens: await import('../linear/accounts/linear-token-store'),
+    linearRegistry: await import('../linear/accounts/linear-workspace-registry'),
     bitbucket: await import('../bitbucket/credential-store'),
     speech: await import('../speech/openai-api-key-store'),
     minimaxCookie: await import('../minimax/minimax-cookie-store'),
     minimaxKey: await import('../minimax/minimax-api-key-store'),
-    openCodeGo: await import('../opencode/opencode-go-api-key-store'),
+    openCodeGo: await import('../opencode/accounts/opencode-go-api-key-store'),
     zcode: await import('../zcode/zcode-plan-api-key-store')
   }
 }
@@ -99,23 +99,23 @@ afterEach(() => {
 describe('integration credentials live in the BrzA folder, apart from Orca', () => {
   it('reads nothing from the files Orca left in ~/.orca', async () => {
     const stores = await loadStores()
-    expect(stores.jira.getSiteFile().sites).toEqual([])
-    expect(stores.jira.hasStoredToken('site')).toBe(false)
-    expect(stores.linearRegistry.hasStoredToken()).toBe(false)
-    expect(stores.bitbucket.hasStoredBitbucketCredential()).toBe(false)
-    expect(stores.speech.hasOpenAiSpeechApiKey()).toBe(false)
-    expect(stores.minimaxCookie.hasMiniMaxSessionCookie()).toBe(false)
-    expect(stores.minimaxKey.hasMiniMaxApiKey()).toBe(false)
-    expect(stores.openCodeGo.hasOpenCodeGoApiKey()).toBe(false)
-    expect(stores.zcode.hasZcodePlanApiKey()).toBe(false)
+    expect((await stores.jira.getSiteFile()).sites).toEqual([])
+    expect(await stores.jira.hasStoredToken('site')).toBe(false)
+    expect(await stores.linearRegistry.hasStoredToken()).toBe(false)
+    expect(await stores.bitbucket.hasStoredBitbucketCredential()).toBe(false)
+    expect(await stores.speech.hasOpenAiSpeechApiKey()).toBe(false)
+    expect(await stores.minimaxCookie.hasMiniMaxSessionCookie()).toBe(false)
+    expect(await stores.minimaxKey.hasMiniMaxApiKey()).toBe(false)
+    expect(await stores.openCodeGo.hasOpenCodeGoApiKey()).toBe(false)
+    expect(await stores.zcode.hasZcodePlanApiKey()).toBe(false)
   })
 
   it('saves and clears every store under ~/.brza and leaves ~/.orca byte for byte', async () => {
     const before = snapshotTree(join(home, '.orca'))
     const stores = await loadStores()
 
-    stores.jira.saveToken('mine', 'jira-token')
-    stores.jira.writeSiteFile({
+    await stores.jira.saveToken('mine', 'jira-token')
+    await stores.jira.writeSiteFile({
       version: 1,
       activeSiteId: 'mine',
       selectedSiteId: 'mine',
@@ -130,8 +130,8 @@ describe('integration credentials live in the BrzA folder, apart from Orca', () 
         }
       ]
     })
-    stores.linearTokens.saveWorkspaceToken('mine', 'linear-key')
-    stores.bitbucket.saveBitbucketCredential({
+    await stores.linearTokens.saveWorkspaceToken('mine', 'linear-key')
+    await stores.bitbucket.saveBitbucketCredential({
       authMode: 'token',
       email: 'brza@example.com',
       baseUrl: null,
@@ -139,15 +139,15 @@ describe('integration credentials live in the BrzA folder, apart from Orca', () 
       accessToken: null,
       apiToken: 'bitbucket-token'
     })
-    stores.speech.saveOpenAiSpeechApiKey('sk-speech')
-    stores.minimaxCookie.saveMiniMaxSessionCookie('cookie')
-    stores.minimaxKey.saveMiniMaxApiKey('minimax-key')
-    stores.openCodeGo.saveOpenCodeGoApiKey('go-key')
-    stores.zcode.saveZcodePlanApiKey('zcode-key')
+    await stores.speech.saveOpenAiSpeechApiKey('sk-speech')
+    await stores.minimaxCookie.saveMiniMaxSessionCookie('cookie')
+    await stores.minimaxKey.saveMiniMaxApiKey('minimax-key')
+    await stores.openCodeGo.saveOpenCodeGoApiKey('go-key')
+    await stores.zcode.saveZcodePlanApiKey('zcode-key')
 
-    expect(stores.jira.readToken('mine')).toBe('jira-token')
-    expect(stores.speech.readOpenAiSpeechApiKey()).toBe('sk-speech')
-    expect(stores.zcode.readZcodePlanApiKey()).toBe('zcode-key')
+    expect(await stores.jira.readToken('mine')).toBe('jira-token')
+    expect(await stores.speech.readOpenAiSpeechApiKey()).toBe('sk-speech')
+    expect(await stores.zcode.readZcodePlanApiKey()).toBe('zcode-key')
     expect(Object.keys(snapshotTree(join(home, '.brza'))).sort()).toEqual(
       [
         `/jira-sites.json`,
@@ -163,14 +163,14 @@ describe('integration credentials live in the BrzA folder, apart from Orca', () 
       ].sort()
     )
 
-    stores.jira.deleteToken('mine')
-    stores.linearTokens.clearToken('mine')
-    stores.bitbucket.clearStoredBitbucketCredential()
-    stores.speech.clearOpenAiSpeechApiKey()
-    stores.minimaxCookie.clearMiniMaxSessionCookie()
-    stores.minimaxKey.clearMiniMaxApiKey()
-    stores.openCodeGo.clearOpenCodeGoApiKey()
-    stores.zcode.clearZcodePlanApiKey()
+    await stores.jira.deleteToken('mine')
+    await stores.linearTokens.clearToken('mine')
+    await stores.bitbucket.clearStoredBitbucketCredential()
+    await stores.speech.clearOpenAiSpeechApiKey()
+    await stores.minimaxCookie.clearMiniMaxSessionCookie()
+    await stores.minimaxKey.clearMiniMaxApiKey()
+    await stores.openCodeGo.clearOpenCodeGoApiKey()
+    await stores.zcode.clearZcodePlanApiKey()
 
     expect(snapshotTree(join(home, '.orca'))).toEqual(before)
   })

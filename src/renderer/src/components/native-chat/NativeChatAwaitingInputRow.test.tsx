@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { NativeChatAwaitingInputRow } from './prompts/NativeChatAwaitingInputRow'
 import { NativeChatDisclosureContext } from './messages/disclosure/native-chat-disclosure-store'
 
-const OPEN_STORE = { read: () => true, write: () => {}, runScroll: new Map() }
+const OPEN_STORE = { read: () => true, write: () => {}, toolRunMeasurements: new Map() }
 
 let container: HTMLDivElement
 let root: ReturnType<typeof createRoot>

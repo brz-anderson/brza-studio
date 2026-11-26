@@ -1,6 +1,6 @@
 import { defineFixture } from '../../component-fixtures/component-fixture'
 import { useAppStore } from '@/store'
-import { makeFolderWorkspace } from '@/components/quick-open-file-list-test-harness'
+import { makeFolderWorkspace } from '@/components/file-actions/quick-open/quick-open-file-list-test-harness'
 import { NativeChatComposerActions } from './composer/controls/NativeChatComposerActions'
 import { NativeChatContextUsageRing } from './usage/NativeChatContextUsageRing'
 import { NativeChatEmptyState } from './host-access/NativeChatEmptyState'

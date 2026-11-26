@@ -1,6 +1,6 @@
 import type { AgentLaunchResult } from '../../../../../shared/agent-launch/contracts/agent-launch-intent'
-import { ORCA_SESSION_ADDRESS_PREFIX } from '../../../../../shared/orca-session-address-prefix'
-import type { AgentLaunchParams } from '../../../../../shared/rpc-contract/agent-launch-params'
+import { ORCA_SESSION_ADDRESS_PREFIX } from '../../../../../shared/agent-session/identity/orca-session-address-prefix'
+import type { AgentLaunchParams } from '../../../../../shared/rpc-contract/agent-launch/agent-launch-params'
 import { isLocalCommandPrompt } from '../../../../agent-launch/agent-launch-local-command-prompt'
 import {
   prepareAgentCreationCard,
@@ -26,7 +26,7 @@ function prepareHandoffRecord(
   params: AgentLaunchParams & { operationId: string },
   context: RpcContext
 ): (result: AgentLaunchResult) => void {
-  // Only the orca CLI on this host names its chat; windows, phones and remote CLIs launch for a person.
+  // Only the orca CLI on this host names a chat here; windows and phones launch for a person, and a remote CLI's chat is on its own host.
   const callerSessionId = callerChatSessionId(context)
   if (callerSessionId === undefined) {
     return () => {}

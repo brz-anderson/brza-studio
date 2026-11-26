@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { OrchestrationRequestEvidence } from '../runtime/orchestration-compatibility-envelope'
+import { OrchestrationRequestEvidence } from '../orchestration/identity/orchestration-compatibility-envelope'
 
 const SESSION = '11111111-1111-4111-8111-111111111111'
 const LOCAL = { remote: false, mutation: false, requestId: undefined }

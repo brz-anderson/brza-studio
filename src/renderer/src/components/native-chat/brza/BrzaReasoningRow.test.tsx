@@ -1,10 +1,10 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { i18n, loadRendererUiLanguage } from '@/i18n/i18n'
 import type { NativeChatMessage } from '../../../../../shared/native-chat/native-chat-types'
-import { UI_LANGUAGE_ENGLISH, UI_LANGUAGE_PORTUGUESE } from '../../../../../shared/ui-language'
+import { UI_LANGUAGE_ENGLISH, UI_LANGUAGE_PORTUGUESE } from '../../../../../shared/i18n/ui-language'
 import { NativeChatAwaitingInputRow } from '../prompts/NativeChatAwaitingInputRow'
 import { NativeChatReasoningRow } from '../messages/reasoning/NativeChatReasoningRow'
 import { MessageRow } from '../messages/rows/NativeChatMessageRow'
@@ -14,7 +14,7 @@ import {
   useNativeChatDisclosures
 } from '../messages/disclosure/native-chat-disclosure-store'
 
-vi.mock('@/components/sidebar/CommentMarkdown', () => ({
+vi.mock('@/components/comment-markdown/CommentMarkdown', () => ({
   default: ({ content }: { content: string }) => <div data-testid="markdown">{content}</div>
 }))
 
@@ -81,12 +81,13 @@ describe('reasoning disclosure', () => {
     )
   })
 
-  it('expands through a native button and keeps disclosure state through revisions', () => {
+  it('expands through a native button and keeps disclosure state through revisions', async () => {
     const message = {
       id: 'r-1',
       role: 'reasoning' as const,
       timestamp: STARTED,
-      state: 'completed' as const
+      state: 'completed' as const,
+      journalRevision: 1
     }
     const { rerender } = render(<NativeChatReasoningRow message={message} markdown="Inspecting" />)
     const trigger = screen.getByRole('button')
@@ -94,12 +95,21 @@ describe('reasoning disclosure', () => {
     fireEvent.click(trigger)
     expect(trigger).toHaveAttribute('aria-expanded', 'true')
     expect(screen.getByTestId('markdown')).toHaveTextContent('Inspecting')
-    rerender(<NativeChatReasoningRow message={message} markdown={'Inspecting\nMore'} />)
+    // The body follows the saved text: a new journal revision brings the added line in with the reveal.
+    const revised = { ...message, journalRevision: 2 }
+    rerender(<NativeChatReasoningRow message={revised} markdown={'Inspecting\nMore'} />)
     expect(screen.getByRole('button')).toBe(trigger)
     expect(trigger).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByTestId('markdown')).toHaveTextContent('More')
+    await waitFor(() => expect(screen.getByTestId('markdown')).toHaveTextContent('More'), {
+      timeout: 2000
+    })
     fireEvent.click(trigger)
-    rerender(<NativeChatReasoningRow message={message} markdown={'Inspecting\nFinal'} />)
+    rerender(
+      <NativeChatReasoningRow
+        message={{ ...message, journalRevision: 3 }}
+        markdown={'Inspecting\nFinal'}
+      />
+    )
     expect(trigger).toHaveAttribute('aria-expanded', 'false')
     expect(screen.queryByTestId('markdown')).not.toBeInTheDocument()
   })

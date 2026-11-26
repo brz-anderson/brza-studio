@@ -83,7 +83,7 @@ describe('a structured prompt card collapses to a strip above the usable compose
     mocks.turnId = 'turn-question'
     mocks.promptItems = claudeGroupedQuestionPromptItems
     render(view())
-    const card = screen.getByRole('group', { name: 'Which targets?' })
+    const card = screen.getByRole('group', { name: /Which targets\?/ })
     expect(screen.queryByTestId('structured-composer')).toBeNull()
     fireEvent.click(within(card).getByRole('button', { name: /Web/ }))
 
@@ -100,7 +100,7 @@ describe('a structured prompt card collapses to a strip above the usable compose
     expect(mocks.respond).not.toHaveBeenCalled()
 
     act(() => fireEvent.click(within(strip()!).getByRole('button', { name: 'Answer' })))
-    const reopened = screen.getByRole('group', { name: 'Which targets?' })
+    const reopened = screen.getByRole('group', { name: /Which targets\?/ })
     expect(reopened).toBe(card)
     expect(reopened.closest('[hidden]')).toBeNull()
     expect(within(reopened).getByRole('button', { name: /Web/ }).getAttribute('aria-pressed')).toBe(

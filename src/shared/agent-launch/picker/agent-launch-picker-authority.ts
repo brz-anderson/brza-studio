@@ -1,5 +1,20 @@
 import type { AgentPickerEntry, AgentPickerDraft } from './agent-launch-picker'
 
+export function agentPickerCatalogAuthoritative(
+  entry: AgentPickerEntry
+): entry is AgentPickerEntry & {
+  catalog: Exclude<AgentPickerEntry['catalog'], { origin: 'unknown' }>
+} {
+  const { unavailable } = entry.catalog
+  return (
+    (entry.catalogRead === undefined || entry.catalogRead === 'settled') &&
+    entry.catalog.origin !== 'unknown' &&
+    !entry.catalog.listingInProgress &&
+    // A refused Command does not make the account's listed models any less current.
+    (unavailable === undefined || unavailable.reason === 'agentCommandNotRunnable')
+  )
+}
+
 export function agentPickerArgumentsKnown(
   entry: AgentPickerEntry,
   draft: AgentPickerDraft

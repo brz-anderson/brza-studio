@@ -1,4 +1,4 @@
-import { getAppEnvironment, hasAppEnvironment } from '../../shared/app-environment'
+import { getAppEnvironment, hasAppEnvironment } from '../../shared/app-lifecycle/app-environment'
 import { homedir, platform } from 'node:os'
 import { join } from 'node:path'
 import { BRAND_USER_DATA_DIR_NAME } from '../../shared/brand-identity'

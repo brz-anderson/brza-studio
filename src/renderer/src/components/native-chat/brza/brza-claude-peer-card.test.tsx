@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
-import { cleanup, fireEvent, screen } from '@testing-library/react'
+import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
-import { render } from '../messages/actions/native-chat-tooltip-test-harness'
+import { render } from '../messages/actions/native-chat-tooltip.brza.test-harness'
 import { NativeChatAgentMessageCard } from '../messages/rows/NativeChatAgentMessageCard'
 import {
   brzaClaudePeerSource,
@@ -40,10 +40,6 @@ describe('a Claude Code peer in the agent message card', () => {
       </>
     )
 
-    // The card is folded to its header line; the whole line is the toggle.
-    for (const toggle of screen.getAllByRole('button', { expanded: false })) {
-      fireEvent.click(toggle)
-    }
     expect(screen.getByText('Message from')).toBeInTheDocument()
     expect(screen.getByText('Hand-back from')).toBeInTheDocument()
     expect(screen.getByText('oi')).toBeInTheDocument()

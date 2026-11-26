@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { forkTestSource } from './structured-agent-session-fork.test-fixture'
+import { forkTestSource } from './structured-agent-session-fork.brza.test-fixture'
 import {
   createRestTestRig,
   type RestTestRig
-} from '../../host/testing/structured-agent-session-rest-test-rig'
+} from '../../host/testing/structured-agent-session-rest-test-rig.test-fixture'
 import { reserveRequestFor } from '../structured-agent-session-attach'
 import { setStructuredAgentSessionHost } from '../../host/structured-agent-session-registry'
 

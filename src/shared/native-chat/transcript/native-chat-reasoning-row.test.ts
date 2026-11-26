@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { nativeChatReasoningPreview } from './native-chat-reasoning-row'
+import { nativeChatReasoningPreview } from './row-content/native-chat-reasoning-row'
 
 describe('the reasoning preview on the closed line', () => {
   it('reads the reasoning as running text, without its markup and with line breaks as spaces', () => {

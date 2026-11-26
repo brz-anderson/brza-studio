@@ -1,4 +1,4 @@
-import { RuntimeClientError } from '../runtime-client'
+import { RuntimeClientError } from '../runtime/connection/types'
 
 export const CHAT_OPERATION_ID_PATTERN = /^\d{13}-[0-9a-f]{32}$/
 

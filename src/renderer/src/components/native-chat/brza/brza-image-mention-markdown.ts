@@ -1,6 +1,6 @@
 import type { Nodes, Paragraph, Parent, RootContent } from 'mdast'
 import { IMAGE_FILE_EXTENSIONS } from '../../../../../shared/file-preview/image-mime-types'
-import { routeNativeChatHref } from '../../../../../shared/native-chat/native-chat-href-routing'
+import { routeNativeChatHref } from '../../../../../shared/native-chat/file-access/native-chat-href-routing'
 
 /** Hast property of the thumbnail placeholder, carried through sanitize to the `div` renderer. */
 export const BRZA_IMAGE_MENTION_PROPERTY = 'dataBrzaImageMention'

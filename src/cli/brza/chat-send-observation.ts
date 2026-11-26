@@ -3,7 +3,7 @@ import type {
   AgentSessionMutationResult,
   AgentSessionSendResult
 } from '../../shared/agent-session/agent-session-wire'
-import type { RuntimeClient } from '../runtime-client'
+import type { RuntimeClient } from '../runtime/client'
 import { isChatHistoryTransportError } from './chat-history-transport'
 
 export async function observePendingChatSend(

@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
 import type { NodeViewProps } from '@tiptap/react'
 import { Copy, Check } from 'lucide-react'
-import MermaidBlock from '../../MermaidBlock'
+import MermaidBlock from '../../diagrams/MermaidBlock'
 import { useMarkdownSurfaceTheme } from '../../use-markdown-surface-theme'
-import { useMermaidDiagramExpand } from '../../use-mermaid-diagram-expand'
+import { useMermaidDiagramExpand } from '../../diagrams/use-mermaid-diagram-expand'
 import { useTranslate } from '@/i18n/use-translate'
+import { toCodeClipboardText } from '@/lib/clipboard/clipboard-line-endings'
 import {
   getCodeBlockLanguageLabel,
   getCodeBlockLanguages,
@@ -67,9 +68,8 @@ export function RichMarkdownCodeBlock({
   const handleCopy = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation()
-      const text = node.textContent
       void window.api.ui
-        .writeClipboardText(text)
+        .writeClipboardText(toCodeClipboardText(node.textContent))
         .then(() => {
           if (!isMountedRef.current) {
             return

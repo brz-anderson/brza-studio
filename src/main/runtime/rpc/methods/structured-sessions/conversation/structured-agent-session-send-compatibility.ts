@@ -1,7 +1,7 @@
 import {
   AGENT_SESSION_ACCEPTED_SEND_RUNTIME_CAPABILITY,
   AGENT_SESSION_PENDING_SEND_RESULT_RUNTIME_CAPABILITY
-} from '../../../../../../shared/agent-session/agent-session-runtime-capabilities'
+} from '../../../../../../shared/agent-session/capabilities/agent-session-runtime-capabilities'
 import { agentSessionSendSubmission } from '../../../../../../shared/agent-session/agent-session-wire'
 import type { StructuredAgentSessionHost } from '../../../../../native-chat/agent-session-wire/host/structured-agent-session-host'
 import { STRUCTURED_AGENT_SESSION_START_WAIT_MS } from '../../../../../native-chat/agent-session-wire/delivery/structured-agent-session-send-settlement'
@@ -14,6 +14,7 @@ import {
 } from '../creation/structured-agent-session-gate'
 import { readsQueuedImageCards } from '../attachments/structured-agent-session-queued-image-capability'
 import { recordMobileChatSend } from '../../../../../telemetry/mobile-client-telemetry'
+import { typedByOf } from '../../../callers/rpc-caller-typed-by'
 
 /** Older clients wait past acceptance until handoff/rejection because they cannot show later failure.
  * Command-queued replies avoid request timeout; clients predating pending replies still wait for provider response. */
@@ -21,6 +22,9 @@ export async function sendStructuredAgentSessionForClient(
   params: Parameters<StructuredAgentSessionHost['send']>[1],
   context: RpcContext
 ) {
+  if (params.envelope.sessionId.startsWith('bot-group-')) {
+    throw new Error('Send through the group conversation to preserve its audience and provenance.')
+  }
   const host = requireStructuredSessionHost(context, params.envelope.sessionId)
   // A chat's agent messaging another chat is that chat's task; a chat's own send stays a person's.
   const coordinator =
@@ -31,9 +35,12 @@ export async function sendStructuredAgentSessionForClient(
     ? chatTaskSource(coordinator, params.envelope.clientOperationId)
     : undefined
   // Person provenance lets undelivered text recover as an ordinary queued card.
+  const typedBy = typedByOf(context)
   const result = await host.send(structuredCallerFor(context), {
     ...params,
-    ...(task ? { body: { ...params.body, from: task } } : { userSend: true as const }),
+    ...(task
+      ? { body: { ...params.body, from: task } }
+      : { body: { ...params.body, ...(typedBy ? { typedBy } : {}) }, userSend: true as const }),
     queuedImageCards: readsQueuedImageCards(context)
   })
   recordMobileChatSend(context.clientKind, host.sessionAgent(params.envelope.sessionId), result)

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { nativeChatNoticeLook } from '../native-chat-notice'
+import { nativeChatNoticeLook } from '../transcript/notices/native-chat-notice'
 
 // BrzA P36: the divider a per-chat account switch writes, carried over from the fork's
 // native-chat-notice test that the upstream moved and rewrote.

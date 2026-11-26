@@ -17,7 +17,9 @@ const mocks = vi.hoisted(() => ({
   openWebLink: vi.fn()
 }))
 
-vi.mock('../links/actions/native-chat-web-link-actions', () => ({ openNativeChatWebLink: mocks.openWebLink }))
+vi.mock('../links/actions/native-chat-web-link-actions', () => ({
+  openNativeChatWebLink: mocks.openWebLink
+}))
 
 vi.mock('../links/actions/native-chat-link-target-actions', () => ({
   resolveNativeChatHttpLinkRouting: () => ({ sourceOwner: { kind: 'local' } })
@@ -39,7 +41,7 @@ vi.mock('@/components/right-sidebar/source-control/sync/worktree-git-owner-targe
 vi.mock('@/lib/workspace/ownership/connection-context', () => ({ getConnectionId: () => null }))
 
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
-  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
+  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma.brza.test-harness'))
     .loadNodeOniguruma
 }))
 

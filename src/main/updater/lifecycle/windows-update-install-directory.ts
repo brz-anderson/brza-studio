@@ -1,5 +1,6 @@
 import { readdirSync } from 'node:fs'
 import { win32 } from 'node:path'
+import type { AppUpdater } from 'electron-updater'
 import {
   BRAND_WINDOWS_EXECUTABLE_NAME,
   BRAND_WINDOWS_UNINSTALLER_NAME
@@ -59,4 +60,12 @@ export function resolveWindowsUpdateInstallDirectory(
     return undefined
   }
   return installDirectory
+}
+
+/** NsisUpdater reads installDirectory, which the cross-platform AppUpdater type omits. */
+export function pinWindowsUpdateInstallDirectory(autoUpdater: AppUpdater): void {
+  const installDirectory = resolveWindowsUpdateInstallDirectory(process.platform, process.execPath)
+  if (installDirectory) {
+    Object.assign(autoUpdater, { installDirectory })
+  }
 }

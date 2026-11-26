@@ -2,15 +2,16 @@ import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { useAppStore } from '@/store/index'
 import { translate } from '@/i18n/i18n'
-import { tabHasLivePty } from '../../../../../../shared/tab-has-live-pty'
+import { isTerminalActivationSpawnSettled } from '../retention/settled-activation-spawn'
 import {
   MANUAL_TERMINAL_WORKTREE_PARK_EVENT,
   takeAllPendingManualTerminalWorktreeParks,
   takePendingManualTerminalWorktreePark,
   type ManualTerminalWorktreeParkDetail
-} from '@/lib/manual-terminal-worktree-parking'
+} from '@/components/terminal-pane/parking/lifecycle/manual-terminal-worktree-parking'
 import { canManuallyParkTerminalWorktreeRenderers } from '../retention/manual-terminal-worktree-park-eligibility'
-import { canWatcherCoverParkedTerminalTab } from '../output-watchers/terminal-parked-tab-watchers'
+import '../output-watchers/terminal-parked-tab-watchers'
+import { canWatcherCoverParkedTerminalTab } from '../output-watchers/parked-terminal-tab-coverage'
 
 function addWorktreeId(current: ReadonlySet<string>, worktreeId: string): ReadonlySet<string> {
   if (current.has(worktreeId)) {
@@ -55,7 +56,7 @@ export function useManualTerminalWorktreeParking(args: {
         terminalTabs,
         pendingStartupByTabId: state.pendingStartupByTabId,
         parkingEnabled: state.settings?.terminalHiddenViewParking !== false,
-        hasLivePty: (tabId) => tabHasLivePty(state.ptyIdsByTabId, tabId)
+        isActivationSpawnSettled: (tabId) => isTerminalActivationSpawnSettled(state, tabId)
       }) && terminalTabs.every((tab) => canWatcherCoverParkedTerminalTab(worktreeId, tab))
     if (!canPark) {
       toast.warning(

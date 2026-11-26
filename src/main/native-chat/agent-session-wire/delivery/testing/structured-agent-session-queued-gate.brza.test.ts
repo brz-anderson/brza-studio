@@ -5,7 +5,9 @@ import {
   createQueuedMessageTestRig,
   type QueuedMessageTestRig
 } from '../../host/testing/structured-agent-session-queued-message-rig.test-fixture'
-import { HOST_TEST_SESSION as SESSION } from '../../host/testing/structured-agent-session-host-test-data'
+import { HOST_TEST_SESSION as SESSION } from '../../host/testing/structured-agent-session-host-test-data.test-fixture'
+import { readHostStructuredAgentSessionWork } from '../../observations/structured-agent-session-read-work'
+import { readTestJournalItems } from '../../../agent-session-journal/journal-observation.test-support'
 import { StructuredAgentSessionCurrentWork } from '../../observations/structured-agent-session-current-work'
 
 let rig: QueuedMessageTestRig
@@ -21,24 +23,32 @@ it('a queue-if-active send behind a pending question waits as a card and leaves 
   const { host, store } = rig
   await rig.workingSend()
   const journal = host.collaboratorsForTests().sessions.get(SESSION)!.journal
-  await journal.appendItem(
-    { provider: 'orca', clientMessageId: 'question-1' },
-    {
+  await journal.write({
+    kind: 'item',
+    identity: { provider: 'orca', clientMessageId: 'question-1' },
+    body: {
       kind: 'question',
       question: 'Pick a library',
       options: [{ id: 'q1:react', label: 'React' }],
       resolution: { state: 'pending', selectedOptionId: null, resolvedBy: null, resolvedAt: null }
     },
-    { fence: 1, turnScope: AGENT_JOURNAL_THREAD_SCOPE }
+    options: { fence: 1, turnScope: AGENT_JOURNAL_THREAD_SCOPE }
+  })
+  const { state } = await readHostStructuredAgentSessionWork(
+    { store, sessions: host.collaboratorsForTests().sessions },
+    SESSION,
+    { kind: 'state' }
   )
   const queued = await rig.send('while the question waits', 'queue-if-active').result
   expect(queued).toMatchObject({ ok: true, value: { queued: { state: 'waiting' } } })
   expect(
     structuredQueueHold({
       record: store.getRecord(SESSION),
-      work: new StructuredAgentSessionCurrentWork(journal, 1)
+      work: new StructuredAgentSessionCurrentWork(journal, state, journal.cursor())
     })
   ).toBe('prompt')
-  const question = journal.snapshot().items.find((item) => item.body.kind === 'question')
+  const question = (await readTestJournalItems(journal)).find(
+    (item) => item.body.kind === 'question'
+  )
   expect(question?.body).toMatchObject({ resolution: { state: 'pending' } })
 })

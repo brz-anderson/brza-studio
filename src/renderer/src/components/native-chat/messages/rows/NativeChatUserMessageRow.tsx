@@ -1,12 +1,15 @@
 import { useContext } from 'react'
 import { Goal, Pencil } from 'lucide-react'
 import { NativeChatSetupButton } from '../../host-access/NativeChatSetupButton'
+import { NativeChatTranscriptSignInNotice } from '../../host-access/NativeChatSignInRow'
+import { NativeChatUserBubble } from './NativeChatUserBubble'
 import { NativeChatTextAttachments } from '../../media/text/NativeChatTextAttachments'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import { useTranslate } from '@/i18n/use-translate'
+import { cn } from '@/lib/class-names'
+import { AUTOMATION_RESULT_NOTE_COPY } from '../../../../../../shared/bots/bot-automation-result-note'
 import type { RuntimeFileOperationArgs } from '@/runtime/files/runtime-file-client-types'
 import type { NativeChatMessage } from '../../../../../../shared/native-chat/native-chat-types'
+import { useTranslate } from '@/i18n/use-translate'
 import type { NativeChatDeliveryNotice } from './NativeChatMessageRow'
 import { NativeChatRewindAction } from '../actions/NativeChatRewindAction'
 import type { NativeChatRewindSurface } from '../actions/use-native-chat-rewind-host'
@@ -15,11 +18,20 @@ import { NativeChatUserMessageFold } from './NativeChatUserMessageFold'
 import { NativeChatCodeBlock } from '../../markdown/code/NativeChatCodeBlock'
 import { NativeChatCopyButton } from '../actions/NativeChatCopyButton'
 import { NativeChatMessageTimestamp } from './NativeChatMessageTimestamp'
+import { useFoldedIntoBotRequest } from '../../bot-request-folded-mail'
 import { NativeChatAgentMessageCard } from './NativeChatAgentMessageCard'
+import { NativeChatConnectorAskerTag } from '../../NativeChatConnectorAskerTag'
+import { NativeChatTypedByTag } from '../../NativeChatTypedByTag'
+import {
+  NativeChatSlackMirrorPostLine,
+  NativeChatSlackMirrorTag,
+  useNativeChatSlackMirrorPost
+} from '../../slack-mirror/NativeChatSlackMirrorPost'
+import { NativeChatConnectorNoAccessNote } from '../../NativeChatConnectorNoAccessNote'
 import { NativeChatDetailsDisclosure } from '../diagnostics/NativeChatProviderDetails'
 import { NativeChatImageAttachments } from '../../media/images/NativeChatImageAttachments'
 import { NativeChatEditUserMessageContext } from '../../native-chat-edit-user-message'
-import type { deriveNativeChatRowContent } from '../../../../../../shared/native-chat/transcript/native-chat-row-content'
+import type { deriveNativeChatRowContent } from '../../../../../../shared/native-chat/transcript/row-content/native-chat-row-content'
 
 const USER_META_REVEAL =
   'transition-opacity can-hover:pointer-events-none can-hover:opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 [.group:has(:focus-visible)_&]:pointer-events-auto [.group:has(:focus-visible)_&]:opacity-100'
@@ -112,14 +124,35 @@ export function NativeChatUserMessageRow({
   const editable =
     !from &&
     (markdown !== '' || message.blocks.some((block) => block.type === 'image-ref' && block.path))
+  const slackPost = useNativeChatSlackMirrorPost(message.id)
+  // A bot request's answer shows on its card, not as a mailbox pointer.
+  const folded = useFoldedIntoBotRequest(from)
+  // A Slack message draws its markup; copy keeps `markdown`, its readable form.
+  const drawn = message.drawnMarkdown
+  if (folded) {
+    return <div ref={rowRef} hidden />
+  }
   return (
     <div
       ref={rowRef}
       // Read by the context menu: only rows showing the hover copy or rewind offer them there.
       data-native-chat-message-id={markdown ? message.id : undefined}
       data-native-chat-rewind-item={rewind && !sending ? message.id : undefined}
+      data-native-chat-slack-posted={slackPost?.state === 'posted' ? message.id : undefined}
       className={cn('group relative flex flex-col gap-0.5', from ? 'items-start' : 'items-end')}
     >
+      {!from && message.asker ? <NativeChatConnectorAskerTag asker={message.asker} /> : null}
+      {!from && !message.asker && (message.typedByOther || slackPost?.state === 'posted') ? (
+        <div className="flex min-w-0 max-w-full justify-end gap-1.5">
+          {message.typedByOther ? <NativeChatTypedByTag typist={message.typedByOther} /> : null}
+          {slackPost?.state === 'posted' ? (
+            <NativeChatSlackMirrorTag nameless={message.typedByOther !== undefined} />
+          ) : null}
+        </div>
+      ) : null}
+      {message.asker?.noAccess ? (
+        <NativeChatConnectorNoAccessNote messageId={message.id} asker={message.asker} />
+      ) : null}
       {from ? (
         <NativeChatAgentMessageCard
           message={message}
@@ -129,7 +162,7 @@ export function NativeChatUserMessageRow({
           onRefolded={onRefolded}
         />
       ) : (
-        <div className="max-w-[80%] rounded-xl border border-chat-user-border bg-chat-user-surface px-3.5 py-2.5 text-sm text-chat-foreground-strong">
+        <NativeChatUserBubble>
           {markdown ? (
             <>
               <NativeChatImageAttachments
@@ -145,7 +178,7 @@ export function NativeChatUserMessageRow({
                 className="-mx-3.5 px-3.5"
               >
                 <NativeChatTextAttachments
-                  content={markdown}
+                  content={drawn ?? markdown}
                   structured={structuredAttachments}
                   runtimeContext={runtimeContext}
                   renderText={(text) => (
@@ -153,6 +186,7 @@ export function NativeChatUserMessageRow({
                       rowKey={message.id}
                       content={text}
                       variant="document"
+                      slackMentions={drawn !== undefined}
                       className="text-sm"
                       renderCodeBlock={NativeChatCodeBlock}
                     />
@@ -167,13 +201,27 @@ export function NativeChatUserMessageRow({
               enablePreview={runtimeContext !== undefined}
             />
           )}
-        </div>
+        </NativeChatUserBubble>
       )}
       {message.sentAs === 'goal' ? (
         <div className="flex items-center gap-1 text-xs text-chat-foreground-faint">
           <Goal className="size-3" aria-hidden />
           <span>{t('components.native-chat.goal.sentAsGoal', 'Sent as goal')}</span>
         </div>
+      ) : null}
+      {message.automationResultsCarried ? (
+        <p className="text-2xs text-chat-foreground-faint">
+          {message.automationResultsCarried === 1
+            ? t(
+                'components.native-chat.automationResult.sentWithOne',
+                AUTOMATION_RESULT_NOTE_COPY.sentWithOne
+              )
+            : t(
+                'components.native-chat.automationResult.sentWithMany',
+                AUTOMATION_RESULT_NOTE_COPY.sentWithMany,
+                { count: message.automationResultsCarried }
+              )}
+        </p>
       ) : null}
       {!from ? (
         <UserMessageMeta
@@ -184,26 +232,18 @@ export function NativeChatUserMessageRow({
           {...(edit && editable ? { onEdit: () => edit(message) } : {})}
         />
       ) : null}
-      {deliveryNotice?.text !== undefined ? (
-        <div className="flex max-w-[85%] flex-wrap items-center gap-2 text-2xs text-destructive/80">
-          <span className="min-w-0 break-words">{deliveryNotice.text}</span>
-          <NativeChatSetupButton failureKind={deliveryNotice.failureKind} />
-          {deliveryNotice.onSend ? (
-            <Button type="button" variant="ghost" size="xs" onClick={deliveryNotice.onSend}>
-              {t('components.native-chat.queuedMessages.send', 'Send')}
-            </Button>
-          ) : null}
-          {deliveryNotice.onEdit ? (
-            <Button type="button" variant="ghost" size="xs" onClick={deliveryNotice.onEdit}>
-              {t('components.native-chat.editDeliveryNotice', 'Edit')}
-            </Button>
-          ) : null}
-          {deliveryNotice.onDismiss ? (
-            <Button type="button" variant="ghost" size="xs" onClick={deliveryNotice.onDismiss}>
-              {t('components.native-chat.dismissDeliveryNotice', 'Dismiss')}
-            </Button>
-          ) : null}
-        </div>
+      {from ? null : <NativeChatSlackMirrorPostLine itemId={message.id} post={slackPost} />}
+      {deliveryNotice?.text !== undefined && deliveryNotice.signIn ? (
+        <NativeChatTranscriptSignInNotice
+          agentName={deliveryNotice.signIn.agentName}
+          account={deliveryNotice.signIn.account}
+          rowId={message.id}
+          sent
+          className="max-w-[85%]"
+          fallback={() => <NativeChatDeliveryLine notice={deliveryNotice} rowId={message.id} />}
+        />
+      ) : deliveryNotice?.text !== undefined ? (
+        <NativeChatDeliveryLine notice={deliveryNotice} rowId={message.id} />
       ) : null}
       {deliveryNotice?.detail ? (
         <div className="max-w-[85%]">
@@ -213,6 +253,38 @@ export function NativeChatUserMessageRow({
             {deliveryNotice.detail}
           </NativeChatDetailsDisclosure>
         </div>
+      ) : null}
+    </div>
+  )
+}
+
+/** A refused send's words, under its message. */
+function NativeChatDeliveryLine({
+  notice,
+  rowId
+}: {
+  notice: Extract<NativeChatDeliveryNotice, { text: string }>
+  rowId: string
+}): React.JSX.Element {
+  const t = useTranslate()
+  return (
+    <div className="flex max-w-[85%] flex-wrap items-center gap-2 text-2xs text-destructive/80">
+      <span className="min-w-0 break-words">{notice.text}</span>
+      <NativeChatSetupButton failureKind={notice.failureKind} rowId={rowId} />
+      {notice.onSend ? (
+        <Button type="button" variant="ghost" size="xs" onClick={notice.onSend}>
+          {t('components.native-chat.queuedMessages.send', 'Send')}
+        </Button>
+      ) : null}
+      {notice.onEdit ? (
+        <Button type="button" variant="ghost" size="xs" onClick={notice.onEdit}>
+          {t('components.native-chat.editDeliveryNotice', 'Edit')}
+        </Button>
+      ) : null}
+      {notice.onDismiss ? (
+        <Button type="button" variant="ghost" size="xs" onClick={notice.onDismiss}>
+          {t('components.native-chat.dismissDeliveryNotice', 'Dismiss')}
+        </Button>
       ) : null}
     </div>
   )

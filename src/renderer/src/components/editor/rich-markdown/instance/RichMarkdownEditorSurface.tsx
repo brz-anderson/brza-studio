@@ -23,7 +23,7 @@ import type { NotesSendMenuScope } from '../../review-note-delivery/NotesSendMen
 import type { MarkdownReviewNote } from '@/lib/editor/markdown/review-notes/markdown-review-notes'
 import type { RichMarkdownAnnotationTarget } from '../review/rich-markdown-review-annotations'
 import type { RichMarkdownReviewNotePosition } from '../review/rich-markdown-review-note-layout'
-import type { DiffComment } from '../../../../../../shared/diff-comment-types'
+import type { DiffComment } from '../../../../../../shared/file-review/diff-comment-types'
 import { focusRichMarkdownEditorFromSearch } from '../search/rich-markdown-search-focus'
 import { useMarkdownSurfaceTheme } from '../../use-markdown-surface-theme'
 import { NATIVE_CHAT_THEME_SURFACE_CLASS } from '@/lib/native-chat-theme-surface-style'
@@ -110,8 +110,9 @@ type RichMarkdownEditorSurfaceProps = {
     handleLinkSave: (href: string) => void
     handleLinkRemove: () => void
     handleLinkEditCancel: () => void
-    handleLinkOpen: () => void
     handleLinkCopy: () => void
+    onBubblePointerEnter: React.PointerEventHandler<HTMLDivElement>
+    onBubblePointerLeave: React.PointerEventHandler<HTMLDivElement>
     setIsEditingLink: (editing: boolean) => void
   }
   onToggleLink: () => void
@@ -294,8 +295,9 @@ export function RichMarkdownEditorSurface({
             onRemove={linkBubbleActions.handleLinkRemove}
             onEditStart={() => linkBubbleActions.setIsEditingLink(true)}
             onEditCancel={linkBubbleActions.handleLinkEditCancel}
-            onOpen={linkBubbleActions.handleLinkOpen}
             onCopy={linkBubbleActions.handleLinkCopy}
+            onPointerEnter={linkBubbleActions.onBubblePointerEnter}
+            onPointerLeave={linkBubbleActions.onBubblePointerLeave}
             ownerId={linkBubbleOwnerId}
           />
         ) : null}

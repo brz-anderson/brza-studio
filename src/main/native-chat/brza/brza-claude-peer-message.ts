@@ -4,7 +4,8 @@ import {
   brzaClaudePeerSource,
   type BrzaClaudePeerKind
 } from '../../../shared/native-chat/brza/brza-claude-peer-sender'
-import { asRecord, extractString } from '../../ai-vault/session-scanner-values'
+import { asRecord } from '../../ai-vault/parsing/session-record-fields'
+import { extractString } from '../../../shared/text/trimmed-string'
 
 type BrzaClaudePeerMessage = Readonly<{
   kind: BrzaClaudePeerKind

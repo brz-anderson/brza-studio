@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isRoutedOrcaDeepLink } from '../../../../main/startup/orca-deep-link-url'
+import { isRoutedOrcaDeepLink } from '../../../../main/startup/open-routing/orca-deep-link-url'
 import {
   isPluginInstallLinkArgument,
   parsePluginInstallLink,

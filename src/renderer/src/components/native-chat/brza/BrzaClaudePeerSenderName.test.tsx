@@ -4,12 +4,12 @@ import { cleanup, fireEvent, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAppStore } from '@/store'
 import { makeUnifiedTab } from '@/store/slices/tabs/tab-group.test-fixture'
-import { render } from '../messages/actions/native-chat-tooltip-test-harness'
+import { render } from '../messages/actions/native-chat-tooltip.brza.test-harness'
 import { NativeChatAgentMessageSenders } from '../messages/agent-senders/NativeChatAgentMessageSenders'
 import { brzaClaudePeerSource } from '../../../../../shared/native-chat/brza/brza-claude-peer-sender'
 
 const activate = vi.hoisted(() => vi.fn(async () => true))
-vi.mock('@/lib/activate-ai-vault-structured-session', () => ({
+vi.mock('@/lib/agent-session/open/activate-ai-vault-structured-session', () => ({
   activateAiVaultStructuredSession: activate
 }))
 
