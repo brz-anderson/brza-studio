@@ -2,6 +2,11 @@ import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { agentSessionFailureFact } from '../../../../../shared/agent-session/failures/agent-session-failure'
+import { agentSessionFailureWords } from '../../../../../shared/agent-session/failures/agent-session-failure-words'
+import { agentJournalItemKey } from '../../../../../shared/agent-session/journal/agent-session-journal-item-key'
+import { AGENT_JOURNAL_THREAD_SCOPE } from '../../../../../shared/agent-session/journal/agent-session-journal-types'
+import { structuredAgentSessionMessageSendMutation } from '../../../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import { computeAgentSessionPayloadFingerprint } from '../../../../../shared/agent-session/lifecycle/operations/agent-session-mutation-envelope'
 import { codexProviderHandle } from '../../../../../shared/agent-session/lifecycle/provider-handles/agent-session-provider-handle-encoding'
 import type { AgentSessionRecordStore } from '../../../../runtime/agent-session/records/agent-session-record-store'
@@ -206,5 +211,59 @@ describe('switching a chat to another account', () => {
     })
     expect(prepareAccountSwitch).not.toHaveBeenCalled()
     expect(store.getRecord(SESSION)?.lease.ownerProcess).toEqual(running)
+  })
+
+  it('continues a usage-limit turn on the new account, with the fence read before the move', async () => {
+    expect(await host.attach(caller, hostTestAttachParams(null))).toMatchObject({ ok: true })
+    const journal = (await host.conversation(SESSION)).journal
+    const fence = store.getRecord(SESSION)!.lease.runtimeFence
+    const turn = { provider: 'orca' as const, clientMessageId: 'usage-limited' }
+    const turnItemId = agentJournalItemKey(turn)
+    await journal.appendItem(
+      turn,
+      {
+        kind: 'turn',
+        turnId: 'usage-limited',
+        providerTurnId: 'usage-limited',
+        state: 'completed',
+        outcome: 'failure',
+        startedAt: HOST_TEST_NOW,
+        completedAt: HOST_TEST_NOW
+      },
+      { fence, turnScope: AGENT_JOURNAL_THREAD_SCOPE }
+    )
+    await journal.appendItem(
+      { provider: 'orca', clientMessageId: 'limit' },
+      {
+        kind: 'status',
+        ...agentSessionFailureWords(
+          agentSessionFailureFact('usageLimitReached', {
+            usageLimit: { resetsAt: HOST_TEST_NOW + 3_600_000 }
+          }),
+          { surface: 'row' }
+        )
+      },
+      { fence, turnScope: { kind: 'turn', turnItemId } }
+    )
+    expect(
+      await host.conversationCommands.switchAccount(caller, switchParams('adm'))
+    ).toMatchObject({ ok: true })
+    expect(store.getRecord(SESSION)!.lease.runtimeFence).toBeGreaterThan(fence)
+
+    // What Continue in another account sends right after the move: the divider sets no floor.
+    const sent = await host.send(
+      caller,
+      structuredAgentSessionMessageSendMutation({
+        sessionId: SESSION,
+        clientOperationId: hostTestOperationId(),
+        expectedRuntimeFence: fence,
+        body: hostTestMessage('Continue where you left off.'),
+        usageLimitContinuationOfTurnItemId: turnItemId
+      })
+    )
+    expect(sent).toMatchObject({ ok: true })
+    const before = acquires
+    await vi.waitFor(() => expect(acquires - before).toBe(1))
+    await vi.waitFor(() => expect(dispatch).toHaveBeenCalledOnce())
   })
 })
