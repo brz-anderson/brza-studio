@@ -174,11 +174,11 @@
         "serviceUnconfirmed": "WSL hizmeti dağıtımın çalışıp çalışmadığını doğrulamadı.",
         "peerCheckFailed": "BrzA Studio tarafından WSL ana makinesine bu bilgisayardaki başka bir BrzA Studio'nın onu hâlâ kullanıp kullanmadığı sorulamadı: {{detail}}",
         "removalUnrecorded": "Bu kaldırma işleminden sonra nelerin çalışmaya devam ettiği BrzA Studio tarafından kaydedilemedi: {{detail}}",
-        "installLockWait_one": "Bu dağıtımdaki başka bir Orca kurulumunun bitmesi bekleniyor. Bitmezse Orca yaklaşık {{count}} dakika içinde devralır.",
-        "installLockWait_other": "Bu dağıtımdaki başka bir Orca kurulumunun bitmesi bekleniyor. Bitmezse Orca yaklaşık {{count}} dakika içinde devralır.",
-        "installLockWaitGivesUp_one": "Bu dağıtımdaki başka bir Orca kurulumunun bitmesi bekleniyor. Bitmezse Orca yaklaşık {{count}} dakika içinde beklemeyi bırakır.",
-        "installLockWaitGivesUp_other": "Bu dağıtımdaki başka bir Orca kurulumunun bitmesi bekleniyor. Bitmezse Orca yaklaşık {{count}} dakika içinde beklemeyi bırakır.",
-        "installLockWaitHolderGone": "Bu dağıtımdaki diğer Orca kurulumu durdu. Orca birkaç saniye içinde devralır."
+        "installLockWait_one": "Bu dağıtımdaki başka bir BrzA Studio kurulumunun bitmesi bekleniyor. Bitmezse BrzA Studio yaklaşık {{count}} dakika içinde devralır.",
+        "installLockWait_other": "Bu dağıtımdaki başka bir BrzA Studio kurulumunun bitmesi bekleniyor. Bitmezse BrzA Studio yaklaşık {{count}} dakika içinde devralır.",
+        "installLockWaitGivesUp_one": "Bu dağıtımdaki başka bir BrzA Studio kurulumunun bitmesi bekleniyor. Bitmezse BrzA Studio yaklaşık {{count}} dakika içinde beklemeyi bırakır.",
+        "installLockWaitGivesUp_other": "Bu dağıtımdaki başka bir BrzA Studio kurulumunun bitmesi bekleniyor. Bitmezse BrzA Studio yaklaşık {{count}} dakika içinde beklemeyi bırakır.",
+        "installLockWaitHolderGone": "Bu dağıtımdaki diğer BrzA Studio kurulumu durdu. BrzA Studio birkaç saniye içinde devralır."
       }
     },
     "agentSummary": {
@@ -268,13 +268,13 @@
       "hidden": "{{name}} gizlendi",
       "hiddenDescription": "Terminalleri ve ajanları çalışmaya devam eder. Listenin altındaki Gizli projeler bölümünden projeyi yeniden gösterebilirsiniz.",
       "undo": "Geri al",
-      "hideFailed": "{{name}} gizlenemedi. Sunucusunda Orca'nın güncellenmesi gerekebilir.",
+      "hideFailed": "{{name}} gizlenemedi. Sunucusunda BrzA Studio'nın güncellenmesi gerekebilir.",
       "showFailed": "{{name}} yeniden gösterilemedi.",
       "listLabel": "Gizli projeler",
       "show": "Göster",
       "showAriaLabel": "{{name}} projesini kenar çubuğunda göster",
       "settingsTitle": "Kenar çubuğunda gizle",
-      "settingsDescription": "Projenin bu sunucudaki kopyasını kenar çubuğunda, proje seçicilerinde ve çalışma alanı değiştiricisinde gizler. Terminalleri, ajanları ve otomasyonları çalışmaya devam eder. Eşleştirilmiş bir Orca sunucusunda bu işlem, projeyi o sunucuya bağlı herkes için gizler.",
+      "settingsDescription": "Projenin bu sunucudaki kopyasını kenar çubuğunda, proje seçicilerinde ve çalışma alanı değiştiricisinde gizler. Terminalleri, ajanları ve otomasyonları çalışmaya devam eder. Eşleştirilmiş bir BrzA Studio sunucusunda bu işlem, projeyi o sunucuya bağlı herkes için gizler.",
       "settingsToggleLabel": "{{name}} projesini kenar çubuğunda gizle",
       "keywordHide": "gizle",
       "keywordHidden": "gizli",
@@ -282,7 +282,7 @@
       "hideFromSidebar": "Kenar Çubuğunda Gizle",
       "sectionTitle": "Gizli projeler ({{count}})",
       "allHidden": "Tüm projeler gizli. Aşağıdaki Gizli projeler bölümünden birini gösterin.",
-      "undoGone": "{{name}} Orca'dan kaldırıldı.",
+      "undoGone": "{{name}} BrzA Studio'dan kaldırıldı.",
       "settingsGroup": "Kenar Çubuğu",
       "showOnHostAriaLabel": "{{host}} sunucusundaki {{name}} projesini kenar çubuğunda göster",
       "keywordShow": "göster",
@@ -337,10 +337,10 @@
     "googleCookieClear": {
       "signInKeyword": "oturum açma",
       "unavailable": "Seçili ana bilgisayarda bu profil kullanılamıyor.",
-      "explanation": "Google oturum açma bilgilerini, girişin yapıldığı tarayıcıya bağlar; bu nedenle Orca diğer tarayıcılardan Google çerezlerini içe aktarmaz. Google yanlış hesapta takılı kalıyorsa veya sizi sürekli oturumdan çıkarıyorsa, etkin profilden Google çerezlerini temizleyin ve ardından Orca’da Google’a yeniden giriş yapın. Diğer siteler oturum açmış durumda kalır.",
+      "explanation": "Google oturum açma bilgilerini, girişin yapıldığı tarayıcıya bağlar; bu nedenle BrzA Studio diğer tarayıcılardan Google çerezlerini içe aktarmaz. Google yanlış hesapta takılı kalıyorsa veya sizi sürekli oturumdan çıkarıyorsa, etkin profilden Google çerezlerini temizleyin ve ardından BrzA Studio’da Google’a yeniden giriş yapın. Diğer siteler oturum açmış durumda kalır.",
       "action": "Google çerezlerini temizle…",
       "confirmTitle": "{{profile}} profilinden Google çerezleri temizlensin mi?",
-      "confirmDescription": "Bu profilde Orca tarayıcısında Google oturumunuz kapatılacak. Diğer siteler oturum açmış durumda kalır.",
+      "confirmDescription": "Bu profilde BrzA Studio tarayıcısında Google oturumunuz kapatılacak. Diğer siteler oturum açmış durumda kalır.",
       "clear": "Temizle",
       "cancel": "İptal",
       "cleared": "{{profile}} profilinden Google çerezleri temizlendi.",
@@ -688,7 +688,7 @@
     },
     "diffTooLarge": {
       "title": "Dosya, diff için çok büyük",
-      "detail": "Dosyanın sürümlerinden biri 10 MB’tan büyük; bu nedenle Orca dosyayı metin diff’i için yüklemiyor.",
+      "detail": "Dosyanın sürümlerinden biri 10 MB’tan büyük; bu nedenle BrzA Studio dosyayı metin diff’i için yüklemiyor.",
       "connectionDetail": "Bu diff, uzak bağlantı üzerinden açılamayacak kadar büyük."
     },
     "gitBlame": {
@@ -782,9 +782,9 @@
         "restartingAdministrator": "Yeniden başlatılıyor…",
         "administratorSearchDescription": "BrzA Studio'nın Windows izinlerini görüntüleyin veya yönetici onayıyla yeniden başlatın.",
         "10aafff216": "Oturumları Yönet'i aç",
-        "confirmOrcaAdministratorRestart": "Orca yönetici olarak yeniden başlatılsın mı?",
+        "confirmOrcaAdministratorRestart": "BrzA Studio yönetici olarak yeniden başlatılsın mı?",
         "administratorRestartSummary": "Yerel terminaller ve ajanlar kapanır. Windows onayınızı ister.",
-        "orcaCouldNotRestart": "Orca yeniden başlatılamadı.",
+        "orcaCouldNotRestart": "BrzA Studio yeniden başlatılamadı.",
         "manualAdministratorSteps": "Elle yapılacak adımlar",
         "restartOrca": "Yeniden başlat"
       },
@@ -796,7 +796,7 @@
         "shared": "Bu kapasite diğer terminal uygulamalarıyla paylaşılır. Boş yer sayısını değil, toplam kapasiteyi gösterir.",
         "disconnected": "Bu cihazın bağlantısı kesildi. Terminal sınırını görmek veya değiştirmek için yeniden bağlanın.",
         "unsupported": "Bu cihazdaki terminal hizmeti henüz bu sınırın değiştirilmesini desteklemiyor.",
-        "environment": "Bu Orca örneğinin terminal sınırı ortam ayarlarından geliyor. Burada düzenlemek için cihazdaki ortam ayarını kaldırın.",
+        "environment": "Bu BrzA Studio örneğinin terminal sınırı ortam ayarlarından geliyor. Burada düzenlemek için cihazdaki ortam ayarını kaldırın.",
         "savedUnreadable": "Bu cihazda kayıtlı terminal sınırı okunamadı. Şimdilik {{value}} kullanılıyor. Değiştirmek için bir değer yazıp Enter’a basın.",
         "failed": "Terminal sınırı doğrulanamadı. Yeniden deneyin.",
         "retry": "Yeniden dene",
@@ -1060,7 +1060,7 @@
           "touchId": "touch id"
         },
         "authFailed": "Kimliğiniz doğrulanamadı",
-        "copied": "Parola kopyalandı. Orca parolayı 2 dakika sonra panodan temizler.",
+        "copied": "Parola kopyalandı. BrzA Studio parolayı 2 dakika sonra panodan temizler.",
         "search": "{{count}} parola içinde ara",
         "add": "Ekle",
         "noMatches": "Aramanızla eşleşen kayıtlı parola yok.",
@@ -1093,38 +1093,38 @@
           "note": "Not",
           "cancel": "İptal",
           "save": "Kaydet",
-          "description": "Sitedeki oturum açma alanının altından parolayı seçtiğinizde Orca alanı doldurur.",
+          "description": "Sitedeki oturum açma alanının altından parolayı seçtiğinizde BrzA Studio alanı doldurur.",
           "usernamePlaceholder": "E-posta veya kullanıcı adı",
           "addNote": "Not ekle"
         },
         "hide": "Parolayı gizle",
         "show": "Parolayı göster",
         "offerToSave": "Parolaları kaydetmeyi öner",
-        "offerToSaveDescription": "Orca’nın tarayıcısında bir sitede oturum açtığınızda giriş bilgilerini kaydetmeyi önerir.",
+        "offerToSaveDescription": "BrzA Studio’nın tarayıcısında bir sitede oturum açtığınızda giriş bilgilerini kaydetmeyi önerir.",
         "fillReauth": "Parolayı doldurmadan önce Touch ID ile doğrula",
         "fillReauthDescription": "Paylaşılan bilgisayarlar için kullanın. Parolayı gösterme veya kopyalama sırasında zaten doğrulama istenir.",
         "noReauth": "Bu bilgisayar kimliğinizi Touch ID ile doğrulayamıyor. Parolalar doğrulama yapılmadan gösterilir ve doldurulur.",
-        "reauthUnavailable": "Touch ID şu anda kullanılamıyor. Orca, Touch ID gerektiren parolaları göstermez, kopyalamaz veya doldurmaz.",
+        "reauthUnavailable": "Touch ID şu anda kullanılamıyor. BrzA Studio, Touch ID gerektiren parolaları göstermez, kopyalamaz veya doldurmaz.",
         "import": "İçe aktar",
         "importCsv": "CSV dosyasından…",
         "deleteAllTitle": "Tüm parola verilerini sil",
         "deleteAllDescription": "{{profile}} profilindeki tüm kayıtlı parolalar, notlar ve parolası hiç kaydedilmeyecek siteler silinir.",
-        "empty": "Bir sitede oturum açtığınızda Orca giriş bilgilerinizi kaydetmeyi önerir. Başka bir tarayıcıdan veya CSV dosyasından da içe aktarabilirsiniz.",
+        "empty": "Bir sitede oturum açtığınızda BrzA Studio giriş bilgilerinizi kaydetmeyi önerir. Başka bir tarayıcıdan veya CSV dosyasından da içe aktarabilirsiniz.",
         "account": "{{site}} sitesinde {{username}}",
         "lastUsed": "Kullanım zamanı: {{when}}",
         "copyFor": "{{account}} hesabının parolasını kopyala",
         "editFor": "{{account}} hesabını düzenle",
         "moreActions": "{{account}} hesabı için diğer işlemler",
         "accountCount": "{{count}} hesap",
-        "deleteConfirmDescription": "Orca artık bu parolayı doldurmayacak. Bu işlem geri alınamaz.",
+        "deleteConfirmDescription": "BrzA Studio artık bu parolayı doldurmayacak. Bu işlem geri alınamaz.",
         "deleteConfirm": "Sil",
-        "profileDescription": "{{profile}} profiline kaydedilen giriş bilgileri. Orca, yalnızca oturum açma alanının altından seçtiğiniz bilgileri doldurur.",
+        "profileDescription": "{{profile}} profiline kaydedilen giriş bilgileri. BrzA Studio, yalnızca oturum açma alanının altından seçtiğiniz bilgileri doldurur.",
         "unavailableTitle": "Bu bilgisayarda parola kaydetme kapalı",
         "emptyTitle": "Henüz kayıtlı parola yok",
         "searchLabel": "Parolalarda ara",
         "deleteAllAction": "Sil…",
         "title": "Parolalar",
-        "description": "Orca tarayıcısına kaydedilen giriş bilgilerini ekleyin, içe aktarın, düzenleyin veya silin.",
+        "description": "BrzA Studio tarayıcısına kaydedilen giriş bilgilerini ekleyin, içe aktarın, düzenleyin veya silin.",
         "httpSuffix": " · http"
       },
       "memorySaver": {
@@ -1237,7 +1237,7 @@
       "defaultSurfaceKeptChat_other": "{{agents}} ayarladığınız gibi sohbet olarak kalıyor.",
       "defaultSurfaceSetAllChat": "Tümünü Sohbet yap",
       "defaultSurfaceSetAllTerminal": "Tümünü Terminal yap",
-      "modelListFallback": "Yerleşik liste. Orca bu ana makineden model listesi alamadı.",
+      "modelListFallback": "Yerleşik liste. BrzA Studio bu ana makineden model listesi alamadı.",
       "chatUnavailableOnWindows": "{{value0}} Chat henüz Windows'ta kullanılamıyor, bu nedenle {{value0}} bu ana makinede bir terminalde açılır. macOS veya Linux ana makinesindeki sohbetler çalışmaya devam eder.",
       "undetectedCommandHint": "{{agent}} CLI, PATH dışında kuruluysa bu ana makinedeki yürütülebilir dosyanın tam yolunu girin.",
       "permissionModeSurfaceDifference": "Terminaller {{terminal}} modunu, yeni sohbetler {{mode}} modunu kullanır.",
@@ -1431,14 +1431,14 @@
       "example": "Örnek: Her repoda bir worktree oluştur (yalnızca bu bilgisayarda)",
       "useExample": "Bu örneği kullan",
       "description": "Bir çalışma alanı oluşturulduğunda bu klasörde çalışan betikler. Tüm çalışma alanları aynı klasörü kullanır. Yerel betikler bu bilgisayarda saklanır; `orca.yaml` içindeki betikler ekibinizle paylaşılır.",
-      "invalidSetup": "Dosya mevcut, ancak Orca geçerli bir kurulum betiği bulamadı.",
+      "invalidSetup": "Dosya mevcut, ancak BrzA Studio geçerli bir kurulum betiği bulamadı.",
       "supportedKeys": "Yalnızca desteklenen anahtarları tanımlayın: `scripts` ve `setup`.",
       "supportedArchiveKeys": "Yalnızca desteklenen anahtarları tanımlayın: `scripts`, `setup` ve `archive`.",
-      "invalidArchive": "Dosya mevcut, ancak Orca geçerli bir kurulum veya arşivleme betiği bulamadı."
+      "invalidArchive": "Dosya mevcut, ancak BrzA Studio geçerli bir kurulum veya arşivleme betiği bulamadı."
     },
     "uninstall": {
       "groupTitle": "Kaldır",
-      "title": "Orca’yı kaldır",
+      "title": "BrzA Studio’yı kaldır",
       "searchDescription": "Ajan kancalarını, orca komutunu, orca serve sunucusunu ve SSH cihazlarındaki kancaları kaldırır.",
       "keywords": {
         "uninstall": "kaldırma",
@@ -1448,20 +1448,20 @@
         "hooks": "kancalar"
       },
       "copyCommand": "Komutu kopyala",
-      "quit": "Orca’dan çık",
+      "quit": "BrzA Studio’dan çık",
       "next": {
-        "unknown": "Orca’dan çıkın, ardından uygulamayı silin.",
-        "macApp": "Orca’dan çıkın, ardından uygulamayı Uygulamalar klasöründen Çöp Sepeti’ne sürükleyin.",
-        "homebrew": "Orca, Homebrew ile kuruldu. Uygulamayı kaldırmak için şu komutu çalıştırın:",
+        "unknown": "BrzA Studio’dan çıkın, ardından uygulamayı silin.",
+        "macApp": "BrzA Studio’dan çıkın, ardından uygulamayı Uygulamalar klasöründen Çöp Sepeti’ne sürükleyin.",
+        "homebrew": "BrzA Studio, Homebrew ile kuruldu. Uygulamayı kaldırmak için şu komutu çalıştırın:",
         "linuxPackage": "Paketi kaldırmak için şu komutu çalıştırın:",
-        "windows": "İşlemi Windows kaldırma programında tamamlayın. Program açıldığında Orca kapanır.",
-        "appImage": "Orca’dan çıkın, ardından <path>{{path}}</path> dosyasını silin."
+        "windows": "İşlemi Windows kaldırma programında tamamlayın. Program açıldığında BrzA Studio kapanır.",
+        "appImage": "BrzA Studio’dan çıkın, ardından <path>{{path}}</path> dosyasını silin."
       },
       "openUninstaller": "Kaldırma programını aç",
-      "agentStatusOff": "Ajan durumu kapalı. Ayarlar → Ajanlar bölümünden açmadığınız sürece Orca kancaları yeniden eklemez.",
-      "loadFailed": "Orca kendi kurduğu bileşenleri denetleyemedi.",
+      "agentStatusOff": "Ajan durumu kapalı. Ayarlar → Ajanlar bölümünden açmadığınız sürece BrzA Studio kancaları yeniden eklemez.",
+      "loadFailed": "BrzA Studio kendi kurduğu bileşenleri denetleyemedi.",
       "tryAgain": "Yeniden deneyin",
-      "keeps": "Projeler, worktree'ler ve Orca ayarları korunur.",
+      "keeps": "Projeler, worktree'ler ve BrzA Studio ayarları korunur.",
       "keepsShared": "{{name}} da kurulu olduğu için paylaştığı kancalar korunur.",
       "closesTerminals": "Açık terminaller kapanacak.",
       "removing": "Kaldırılıyor…",
@@ -1482,8 +1482,8 @@
         "sshHosts_other": "{{count}} SSH cihazı"
       },
       "path": {
-        "codexAccount": "Orca’nın yönettiği Codex hesabı",
-        "appData": "Orca uygulama verileri"
+        "codexAccount": "BrzA Studio’nın yönettiği Codex hesabı",
+        "appData": "BrzA Studio uygulama verileri"
       },
       "host": {
         "ssh": "SSH",
@@ -1498,11 +1498,11 @@
         "terminalDaemon": "terminal arka plan işlemi",
         "hookScripts": "kanca betikleri",
         "nothing": "Uygulama dışında kaldırılacak bir şey yok.",
-        "loading": "Orca’nın kurduğu bileşenler denetleniyor…",
+        "loading": "BrzA Studio’nın kurduğu bileşenler denetleniyor…",
         "done": "Kaldırıldı. Bitirmek için uygulamayı silin.",
         "problems_one": "Uygulamayı silmeden önce 1 öğeyle ilgilenmeniz gerekiyor.",
         "problems_other": "Uygulamayı silmeden önce {{count}} öğeyle ilgilenmeniz gerekiyor.",
-        "stillInUse": "Bazı Orca dosyaları hâlâ kullanılıyor. Bu dosyalar şimdilik yerinde kalacak."
+        "stillInUse": "Bazı BrzA Studio dosyaları hâlâ kullanılıyor. Bu dosyalar şimdilik yerinde kalacak."
       },
       "status": {
         "running": "Kaldırılıyor",
@@ -1510,8 +1510,8 @@
         "problem": "Dikkat gerekiyor",
         "kept": "Korundu"
       },
-      "stepFailed": "Orca bu adımı tamamlayamadı.",
-      "finishFailed": "Orca bu işlemi yapamadı."
+      "stepFailed": "BrzA Studio bu adımı tamamlayamadı.",
+      "finishFailed": "BrzA Studio bu işlemi yapamadı."
     },
     "notifications": {
       "perfNotices": {
@@ -1542,7 +1542,7 @@
       "signInFailedDetail": "Tarayıcınız konsolu yine de açtı. Devam etmek için orada oturum açın."
     },
     "mobile": {
-      "teamDisabledRelay": "Orca Relay ekibiniz tarafından kapatıldı. LAN kullanın."
+      "teamDisabledRelay": "BrzA Studio Relay ekibiniz tarafından kapatıldı. LAN kullanın."
     },
     "computerUse": {
       "teamDisabled": "Computer Use ekibiniz tarafından kapatıldı."
@@ -1653,12 +1653,12 @@
       "cli": {
         "otherTerminals": "Diğer terminallerde {{command}}",
         "title": "Komut satırı",
-        "description": "Orca'nın kendi terminallerinde zaten kullanılabilir.",
-        "skillTitle": "Ajanlar için Orca becerisi"
+        "description": "BrzA Studio'nın kendi terminallerinde zaten kullanılabilir.",
+        "skillTitle": "Ajanlar için BrzA Studio becerisi"
       },
       "about": {
         "title": "Hakkında",
-        "version": "Orca {{version}}"
+        "version": "BrzA Studio {{version}}"
       },
       "inlineBlameTitle": "Satır içinde Git blame",
       "inlineBlameDescription": "İmlecin bulunduğu satırı en son kimin, ne zaman değiştirdiğini satır sonunda göster.",
@@ -1677,15 +1677,15 @@
       "ab7e864374": "Güncelleme gecikmesi hakkında",
       "availableSoon": "{{relative}} kullanımınıza sunulacak",
       "availableOn": "{{date}} tarihinde ({{relative}}) kullanımınıza sunulacak",
-      "clearedTitle": "Orca {{version}} hazır",
-      "heldTitle": "Orca {{version}} bekletiliyor",
+      "clearedTitle": "BrzA Studio {{version}} hazır",
+      "heldTitle": "BrzA Studio {{version}} bekletiliyor",
       "released": "Yayınlanma: {{released}}",
-      "progress": "Orca {{version}} sürümünün kullanımınıza sunulmasına kalan süre",
+      "progress": "BrzA Studio {{version}} sürümünün kullanımınıza sunulmasına kalan süre",
       "skipDelayOnceHint": "Bu sürümü şimdi kontrol edin. Gecikme ayarınız değişmez.",
       "ee1d96f74a": "Gecikmeyi bir kez atla",
       "teamManaged": "Ekibiniz tarafından ayarlandı",
       "1b4d825e0e": "Güncelleme gecikmesi",
-      "description": "Orca bir sürümü sunmadan önce yayınlanmasının üzerinden bu kadar gün geçmesini bekler."
+      "description": "BrzA Studio bir sürümü sunmadan önce yayınlanmasının üzerinden bu kadar gün geçmesini bekler."
     },
     "bots": {
       "tidyUp": {
@@ -1723,7 +1723,7 @@
         "changes": "{{count}} değişiklik",
         "review": "İncele",
         "never": "Henüz yapılmadı. İlk temizlik, yeni sohbetlerin olduğu bir gecenin ardından yapılır.",
-        "whileRunning": "Orca bu bilgisayarda çalışıyor olmalı.",
+        "whileRunning": "BrzA Studio bu bilgisayarda çalışıyor olmalı.",
         "tidying": "Hafıza düzenleniyor…",
         "now": "Şimdi temizle",
         "undoStale": "Arada daha yeni bir temizlik yapıldı. Geri almadan önce onu inceleyin."
@@ -1742,7 +1742,7 @@
         "focusPlaceholder": "Beni bekleyen PR’lar, #eng kanalındaki sorular, bu hafta son tarihi dolacak kayıtlar",
         "focusDescription": "İsteğe bağlı. Sizi bekleyen her şeyi aramak için boş bırakın.",
         "lastLooked": "Son inceleme",
-        "whileRunning": "Orca bu bilgisayarda çalışıyor olmalı.",
+        "whileRunning": "BrzA Studio bu bilgisayarda çalışıyor olmalı.",
         "looking": "Bakılıyor…"
       },
       "skills": {
@@ -1758,7 +1758,7 @@
         "remove": "Kaldır",
         "reading": "Beceriler okunuyor…",
         "remote": "Beceriler başka bir cihazda. {{bot}} bu bilgisayarda çalıştığı için onları henüz yükleyemiyor.",
-        "missing": "Bu proje artık Orca’da yok.",
+        "missing": "Bu proje artık BrzA Studio’da yok.",
         "notYet": "Henüz kullanılamıyor",
         "none": "Bu projede henüz beceri yok. Becerileri eklemek için proje kurulumunu çalıştırın; beceriler {{bot}} ile bir sonraki sohbette yüklenir.",
         "openFolder": "Klasörü aç",
@@ -1800,7 +1800,7 @@
         "chat": "“{{title}}” sohbeti",
         "aChat": "Bir sohbet",
         "chatFrom": "{{chat}} · Kaynak: {{source}}",
-        "kept": "Orca · {{chat}} üzerine yazdı",
+        "kept": "BrzA Studio · {{chat}} üzerine yazdı",
         "owner": "Siz, Ayarlar üzerinden",
         "bot": "Unutma işlemi · {{chat}} sohbetinden",
         "undo": "Geri al",
@@ -1849,14 +1849,14 @@
         "checking": "Kontrol ediliyor",
         "unknown": "Kontrol edilemiyor",
         "unlinked": "Bağlı değil",
-        "notInstalled": "Orca kurulu değil"
+        "notInstalled": "BrzA Studio kurulu değil"
       },
       "noLinearBots": "Linear’da henüz bot yok",
       "githubStatus": {
         "checking": "Kontrol ediliyor",
         "unknown": "Kontrol edilemiyor",
         "unlinked": "Bağlı değil",
-        "notInstalled": "Orca kurulu değil"
+        "notInstalled": "BrzA Studio kurulu değil"
       },
       "noGitHubBots": "GitHub’da henüz bot yok",
       "connectorPeopleCount": "{{count}} kişinin erişimi var",
@@ -1942,12 +1942,12 @@
       "askNewHomeChatDescription": "Yeni ana sohbet, botun sürdürdüğü konuşmanın yerini almadan önce onay iste.",
       "notifyCouldNotFinishOnHostDescription": "Bir otomasyon çalıştırması veya çalışan başarısız olduğunda yalnızca {{host}} ile eşleştirilmiş telefonlara bildirim gönderir.",
       "group": {
-        "noAccount": "Orca hesabı",
+        "noAccount": "BrzA Studio hesabı",
         "notSignedIn": "Oturum açılmadı · {{computers}}",
         "yourAccount": "hesabınız · {{computers}}",
-        "signedOut": "Orca oturumu kapatıldı",
-        "signInChanged": "Orca oturumu değişti",
-        "updateNeeded": "Botları buradan yönetmek için {{host}} üzerindeki Orca’yı güncelleyin",
+        "signedOut": "BrzA Studio oturumu kapatıldı",
+        "signInChanged": "BrzA Studio oturumu değişti",
+        "updateNeeded": "Botları buradan yönetmek için {{host}} üzerindeki BrzA Studio’yı güncelleyin",
         "offline": "{{host}} adresine ulaşılamıyor"
       },
       "connectorsOnHost": "İnsanların {{host}} üzerindeki botlara ulaşabileceği yerler.",
@@ -1973,13 +1973,13 @@
     },
     "automaticUpdates": {
       "title": "Otomatik güncellemeler",
-      "description": "Desteklenen masaüstü kurulumlarında Orca, düzenli denetimler sırasında uygun güncellemeleri indirir ve bunları yüklemek için otomatik olarak yeniden başlatılır.",
+      "description": "Desteklenen masaüstü kurulumlarında BrzA Studio, düzenli denetimler sırasında uygun güncellemeleri indirir ve bunları yüklemek için otomatik olarak yeniden başlatılır.",
       "info": "Otomatik güncellemeler hakkında",
       "saveFailed": "Otomatik güncelleme ayarı kaydedilemedi."
     },
     "accounts": {
-      "codexRemoveHome": "Orca, bu hesaba ait Codex klasörünü {{host}} üzerinden siler. Kayıtlı oturum açma bilgileri ve MCP oturumları da silinir. Bu işlem geri alınamaz. Bu hesap seçiliyse bir sonraki Codex oturumu sistem varsayılanıyla açılır.",
-      "claudeRemoveProfile": "Orca, bu hesaba ait Claude klasörünü ve klasörde saklanan oturum açma bilgilerini {{host}} üzerinden siler. Sistem varsayılanı oturumu ve onunla paylaşılan sohbet geçmişi korunur. Bu hesap seçiliyse bir sonraki Claude oturumu sistem varsayılanıyla açılır."
+      "codexRemoveHome": "BrzA Studio, bu hesaba ait Codex klasörünü {{host}} üzerinden siler. Kayıtlı oturum açma bilgileri ve MCP oturumları da silinir. Bu işlem geri alınamaz. Bu hesap seçiliyse bir sonraki Codex oturumu sistem varsayılanıyla açılır.",
+      "claudeRemoveProfile": "BrzA Studio, bu hesaba ait Claude klasörünü ve klasörde saklanan oturum açma bilgilerini {{host}} üzerinden siler. Sistem varsayılanı oturumu ve onunla paylaşılan sohbet geçmişi korunur. Bu hesap seçiliyse bir sonraki Claude oturumu sistem varsayılanıyla açılır."
     },
     "openInApp": {
       "preset": {
@@ -1996,7 +1996,7 @@
       "reducedEffects": "Görsel efektleri azaltma veya sistemdeki saydamlığı azaltma ayarı açıkken devre dışıdır.",
       "needsOpacity": "Masaüstünü terminalin arkasında görmek için Arka plan opaklığı değerini 1’in altına indirin.",
       "linuxCompositor": "Bulanıklığı pencere birleştiriciniz belirler. Yeniden başlatma gerekir.",
-      "restartDescription": "Pencere malzemesi değişikliğini uygulamak için Orca’yı yeniden başlatın.",
+      "restartDescription": "Pencere malzemesi değişikliğini uygulamak için BrzA Studio’yı yeniden başlatın.",
       "keywords": {
         "acrylic": "akrilik"
       },
@@ -2070,9 +2070,9 @@
     "selectAll": "Tümünü Seç",
     "quitAndStopAllSessions": "Tamamen çık…",
     "quitAndStopAllSessionsTooltip": "Çalışan ajanlar da dahil olmak üzere tüm terminal oturumlarını da durdurur. Çık komutu bunları çalışır durumda tutar; böylece BrzA Studio bir sonraki açılışta yeniden bağlanır.",
-    "about": "Orca hakkında",
+    "about": "BrzA Studio hakkında",
     "cut": "Kes",
-    "hide": "Orca’yı gizle",
+    "hide": "BrzA Studio’yı gizle",
     "hideOthers": "Diğerlerini gizle",
     "minimize": "Simge durumuna küçült",
     "redo": "Yinele",
@@ -2398,7 +2398,7 @@
             "33290e88ed": "Profil bağlanamadı",
             "9fcb07a796": "Profil bağlandı",
             "2f6c78a039": "Profil kimlik doğrulaması yenilenemedi",
-            "a37b5e6d37": "Orca oturumu kapatıldı",
+            "a37b5e6d37": "BrzA Studio oturumu kapatıldı",
             "83600521e7": "Çıkış yapılamadı",
             "76deec8f58": "Organizasyon değiştirilemedi",
             "7d4bc516ee": "Profil değiştirilemedi",
@@ -2544,7 +2544,7 @@
             }
           },
           "availability": {
-            "web": "Kayan çalışma alanı kendi bilgisayarınızda çalışır ve yalnızca Orca masaüstü uygulamasında kullanılabilir."
+            "web": "Kayan çalışma alanı kendi bilgisayarınızda çalışır ve yalnızca BrzA Studio masaüstü uygulamasında kullanılabilir."
           }
         }
       },
@@ -2726,7 +2726,7 @@
         },
         "ports": {
           "serverPortForward": {
-            "updateServer": "{{host}} üzerindeki {{port}} portu yönlendirilemedi. {{host}} üzerindeki Orca'yı güncelleyip yeniden deneyin.",
+            "updateServer": "{{host}} üzerindeki {{port}} portu yönlendirilemedi. {{host}} üzerindeki BrzA Studio'yı güncelleyip yeniden deneyin.",
             "failed": "{{host}} üzerindeki {{port}} portu yönlendirilemedi. Bağlantıyı kontrol edip yeniden deneyin.",
             "forwarded": "{{host}} üzerindeki {{port}} portu yönlendirildi",
             "opened": "{{address}} varsayılan tarayıcınızda açıldı.",
@@ -2879,10 +2879,10 @@
         "gone": "Bu sohbet artık bu sunucuda değil, bu yüzden burada yeniden açılamıyor.",
         "hostCannotOpen": "BrzA Studio güncellenene kadar bu sohbet yeniden açılamaz.",
         "worktreeDeleted": "Çalışma ağacı silindi.",
-        "projectRemoved": "Proje Orca’dan kaldırıldı.",
+        "projectRemoved": "Proje BrzA Studio’dan kaldırıldı.",
         "folderWorkspaceRemoved": "Klasör çalışma alanı kaldırıldı.",
-        "notLocatedNamed": "Orca, {{agent}} ajanının nerede çalıştığını bulamadığı için ajanı açamıyor.",
-        "notLocated": "Orca, bu ajanın nerede çalıştığını bulamadığı için ajanı açamıyor.",
+        "notLocatedNamed": "BrzA Studio, {{agent}} ajanının nerede çalıştığını bulamadığı için ajanı açamıyor.",
+        "notLocated": "BrzA Studio, bu ajanın nerede çalıştığını bulamadığı için ajanı açamıyor.",
         "chatStillStarting": "Sohbet hâlâ başlatılıyor. Birazdan tekrar deneyin.",
         "chatOpenFailed": "Bu sohbet açılamadı",
         "chatOpenDismiss": "Kaldır",
@@ -2994,29 +2994,29 @@
       },
       "cli": {
         "detail": {
-          "registerForWsl": "Orca’yı WSL’den kullanmak için {{path}} kaydedin.",
-          "registerForTerminal": "Orca’yı terminalden kullanmak için {{path}} kaydedin.",
-          "registerForWindowsShell": "Orca’yı Komut İstemi veya PowerShell’den kullanmak için {{path}} kaydedin.",
+          "registerForWsl": "BrzA Studio’yı WSL’den kullanmak için {{path}} kaydedin.",
+          "registerForTerminal": "BrzA Studio’yı terminalden kullanmak için {{path}} kaydedin.",
+          "registerForWindowsShell": "BrzA Studio’yı Komut İstemi veya PowerShell’den kullanmak için {{path}} kaydedin.",
           "devLauncherOnly": "Geliştirme modu yalnızca doğrulama için oluşturulmuş bir başlatıcı kullanır.",
           "differentLauncher": "{{path}} farklı bir başlatıcıyı gösteriyor.",
-          "launcherMissing": "Bu Orca derlemesinde paketlenmiş CLI başlatıcısı eksik.",
+          "launcherMissing": "Bu BrzA Studio derlemesinde paketlenmiş CLI başlatıcısı eksik.",
           "noWslDistro": "Kullanılabilir WSL dağıtımı yok.",
-          "notOrcaLauncherScript": "{{path}} mevcut ancak bir Orca başlatıcı betiği değil.",
-          "notOrcaSymlink": "{{path}} mevcut ancak bir Orca sembolik bağlantısı değil.",
-          "olderLauncher": "{{path}} eski bir Orca başlatıcısı içeriyor.",
+          "notOrcaLauncherScript": "{{path}} mevcut ancak bir BrzA Studio başlatıcı betiği değil.",
+          "notOrcaSymlink": "{{path}} mevcut ancak bir BrzA Studio sembolik bağlantısı değil.",
+          "olderLauncher": "{{path}} eski bir BrzA Studio başlatıcısı içeriyor.",
           "platformUnsupported": "CLI kaydı bu platformda uygulanmamış.",
-          "readlinkPermissionDenied": "Orca’nın {{path}} öğesini denetleme izni yok. Yolun ve üst dizininin izinlerini kontrol edip yeniden deneyin.",
+          "readlinkPermissionDenied": "BrzA Studio’nın {{path}} öğesini denetleme izni yok. Yolun ve üst dizininin izinlerini kontrol edip yeniden deneyin.",
           "registeredAt": "{{path}} konumuna kaydedildi.",
           "registeredInDistroAt": "{{distro}} içinde {{path}} konumuna kaydedildi.",
           "registrationUnavailable": "CLI kaydı bu derlemede kullanılamıyor.",
           "unreadableSymlink": "{{path}} okunamıyor. Onarmak için yeniden kaydedin.",
-          "windowsLauncherMissing": "Windows Orca CLI başlatıcısı eksik.",
-          "windowsPathCheckFailed": "Orca başlatıcısı mevcut ancak Orca Windows kullanıcı PATH’inizi denetleyemedi.",
+          "windowsLauncherMissing": "Windows BrzA Studio CLI başlatıcısı eksik.",
+          "windowsPathCheckFailed": "BrzA Studio başlatıcısı mevcut ancak BrzA Studio Windows kullanıcı PATH’inizi denetleyemedi.",
           "windowsPathTimedOut": "Windows PATH komutu {{ms}} ms sonra zaman aşımına uğradı.",
           "wslCommandTimedOut": "WSL komutu {{ms}} ms sonra zaman aşımına uğradı.",
           "wslDistroUnreachable": "WSL dağıtımına ulaşılamadı. Yeniden deneyin.",
           "wslHomeUnresolved": "WSL ana dizini çözümlenemedi.",
-          "wslInteropUnavailable": "WSL Windows birlikte çalışabilirliği kullanılamıyor; Orca, Windows CLI’yi WSL’den başlatamıyor.",
+          "wslInteropUnavailable": "WSL Windows birlikte çalışabilirliği kullanılamıyor; BrzA Studio, Windows CLI’yi WSL’den başlatamıyor.",
           "wslRegistrationUnavailable": "WSL CLI kaydı kullanılamıyor.",
           "wslWindowsOnly": "WSL CLI kaydı yalnızca Windows’ta kullanılabilir."
         }
@@ -3057,13 +3057,13 @@
         "unreachable": "Ortam denetimleri tamamlanamadı: {{error}}"
       },
       "ephemeralVm": {
-        "provisionedRootNeedsUpdate": "Bu sanal makinedeki Orca sunucusu, önceden hazırlanmış kök dizini kullanamıyor. Sanal makinedeki Orca’yı güncelleyin."
+        "provisionedRootNeedsUpdate": "Bu sanal makinedeki BrzA Studio sunucusu, önceden hazırlanmış kök dizini kullanamıyor. Sanal makinedeki BrzA Studio’yı güncelleyin."
       },
       "executionHostFacts": {
         "sshPlatformWithheld": "SSH cihazı işletim sistemini henüz bildirmedi. Cihaza bağlanıp yeniden deneyin.",
-        "runtimePlatformWithheld": "Orca sunucusu işletim sistemini henüz bildirmedi. Yeniden bağlanıp tekrar deneyin.",
-        "runtimePlatformUpdate": "Bu Orca sunucusu işletim sistemini bildirmiyor. Sunucuda ajan başlatmak için Orca’yı güncelleyin.",
-        "hostUnresolvedWithheld": "Orca, bu çalışma alanının hangi cihazda olduğunu henüz belirleyemedi."
+        "runtimePlatformWithheld": "BrzA Studio sunucusu işletim sistemini henüz bildirmedi. Yeniden bağlanıp tekrar deneyin.",
+        "runtimePlatformUpdate": "Bu BrzA Studio sunucusu işletim sistemini bildirmiyor. Sunucuda ajan başlatmak için BrzA Studio’yı güncelleyin.",
+        "hostUnresolvedWithheld": "BrzA Studio, bu çalışma alanının hangi cihazda olduğunu henüz belirleyemedi."
       },
       "fileOwnerRuntimeTarget": {
         "unresolved": "Bu dosyanın hangi sunucuya ait olduğu doğrulanamadı. Dosyayı yeniden açıp tekrar deneyin."
@@ -3113,7 +3113,7 @@
           "grokBillingConfigMissing": "Grok faturalandırma yanıtında yapılandırma bilgisi yok",
           "grokBillingUsageMissing": "Grok faturalandırma yanıtında kredi kullanımı bilgisi yok",
           "grokNotSignedIn": "Grok’ta oturum açılmamış. grok login komutunu çalıştırın.",
-          "grokSignInExpired": "Grok oturumunun süresi doldu. Orca’nın çalıştığı bilgisayarda grok komutunu çalıştırın ve istenirse oturum açın. Sohbet mesajı göndermeniz gerekmez.",
+          "grokSignInExpired": "Grok oturumunun süresi doldu. BrzA Studio’nın çalıştığı bilgisayarda grok komutunu çalıştırın ve istenirse oturum açın. Sohbet mesajı göndermeniz gerekmez.",
           "grokUsageFailedHttp": "Grok kullanım isteği başarısız oldu (HTTP {{status}})",
           "grokUsageRequestFailed": "Grok kullanım isteği başarısız oldu",
           "grokUsageUnauthorizedHttp": "Grok kullanım isteği için yetki yok (HTTP {{status}})",
@@ -3549,7 +3549,7 @@
         "resolvedCommentBy": "{{author}} tarafından yazılan çözülmüş yorum",
         "refreshTask": "Görevi yenile",
         "refreshTaskFailed": "Bu görev yenilenemedi. Yeniden deneyin.",
-        "refreshTaskUnsupported": "Görevleri burada yenileyebilmek için bu sunucudaki Orca’yı güncelleyin."
+        "refreshTaskUnsupported": "Görevleri burada yenileyebilmek için bu sunucudaki BrzA Studio’yı güncelleyin."
       },
       "GitLabItemDialog": {
         "65e784c1f1": "Yeniden aç",
@@ -5462,7 +5462,7 @@
             "fitHere": "Buraya sığdır"
           },
           "legacyRelayBridge": {
-            "unreachable": "Bu terminal, cihazda eski bir Orca sürümü altında çalışmaya devam ediyor. Yeniden bağlanılıyor…"
+            "unreachable": "Bu terminal, cihazda eski bir BrzA Studio sürümü altında çalışmaya devam ediyor. Yeniden bağlanılıyor…"
           }
         }
       },
@@ -6637,7 +6637,7 @@
         "StatsHostScope": {
           "remoteCaption": "İstatistikler ve kullanım verileri {{value0}} üzerinde kaydedilir. Etkinleştir ve Yenile işlemleri {{value0}} üzerinde çalışır.",
           "tooOldTitle": "{{value0}} henüz kullanım bilgisi bildiremiyor",
-          "tooOldBody": "Bu cihazda eski bir Orca sürümü çalışıyor. Token kullanımını burada görmek için {{value0}} üzerindeki Orca’yı güncelleyin."
+          "tooOldBody": "Bu cihazda eski bir BrzA Studio sürümü çalışıyor. Token kullanımını burada görmek için {{value0}} üzerindeki BrzA Studio’yı güncelleyin."
         }
       },
       "sparse": {
@@ -7106,9 +7106,9 @@
           "updateAvailable": "Güncelleme mevcut",
           "repairAvailable": "Onarılabilir",
           "installAvailable": "Yüklenebilir",
-          "otherBuild": "Orca'nın başka bir sürümü tarafından yüklendi",
-          "otherBuildKept": "Korundu: Orca'nın başka bir sürümü tarafından yazıldı",
-          "differsFromOrca": "Bu kopya Orca'nın kopyasından farklı",
+          "otherBuild": "BrzA Studio'nın başka bir sürümü tarafından yüklendi",
+          "otherBuildKept": "Korundu: BrzA Studio'nın başka bir sürümü tarafından yazıldı",
+          "differsFromOrca": "Bu kopya BrzA Studio'nın kopyasından farklı",
           "replaceMovesFolder": "Değiştirme işlemi, ek dosyalar dahil tüm klasörü {{folder}} konumuna taşır.",
           "replaceMovesFolderOnHost": "Değiştirme işlemi, ek dosyalar dahil tüm klasörü {{host}} üzerindeki {{folder}} konumuna taşır.",
           "replaceMovesLink": "Değiştirme işlemi bu bağlantıyı {{folder}} konumuna taşır.",
@@ -7133,12 +7133,12 @@
           "removedPreserved_one": "{{removed}} kaldırıldı · değiştirilmiş {{count}} beceri korundu."
         },
         "skillFreshnessAutoUpdate": {
-          "strandedTitle": "Orca, {{value0}} üzerindeki düzenlemelerinizi yedekleyemedi",
+          "strandedTitle": "BrzA Studio, {{value0}} üzerindeki düzenlemelerinizi yedekleyemedi",
           "strandedDescription": "Düzenlemeleriniz hâlâ {{value0}} konumunda. Yeniden güncellemeden önce bunları güvenli bir yere kopyalayın.",
           "preservedTitle": "{{value0}} üzerindeki düzenlemeleriniz ayrı olarak kaydedildi",
-          "preservedDescription": "Orca beceriyi güncelledi ve düzenlemelerinizi {{value0}} konumuna kaydetti.",
-          "uncertainTitle": "Orca, {{value0}} üzerindeki beceri güncellemesini doğrulayamadı",
-          "uncertainDescriptionKept": "Orca, {{value0}} üzerindeki becerileri güncellemiş olabilir ancak sonucu doğrulayamadı. Güncelleme sırasında bir beceriyi düzenlediyseniz kopyanız {{value1}} konumunda ya da hâlâ beceriler klasöründe."
+          "preservedDescription": "BrzA Studio beceriyi güncelledi ve düzenlemelerinizi {{value0}} konumuna kaydetti.",
+          "uncertainTitle": "BrzA Studio, {{value0}} üzerindeki beceri güncellemesini doğrulayamadı",
+          "uncertainDescriptionKept": "BrzA Studio, {{value0}} üzerindeki becerileri güncellemiş olabilir ancak sonucu doğrulayamadı. Güncelleme sırasında bir beceriyi düzenlediyseniz kopyanız {{value1}} konumunda ya da hâlâ beceriler klasöründe."
         },
         "SkillBackupPathLine": {
           "movedTo": "Eski kopyanın taşındığı yer:",
@@ -7294,18 +7294,18 @@
           "namingBranch": "Branch adlandırılıyor…",
           "errorDetailsAt": "Hata ayrıntıları · {{time}}",
           "reasonNothingYet": "Henüz branch'e ad vermek için kullanılabilecek değişiklik yok.",
-          "reasonBranchChanged": "Orca branch'i adlandırırken branch değişti.",
+          "reasonBranchChanged": "BrzA Studio branch'i adlandırırken branch değişti.",
           "reasonProjectMoving": "Proje taşıma işlemi sürüyor.",
-          "reasonHistoryUnreadable": "Orca bu çalışma alanının geçmişini okuyamadı. Yeniden deneyin.",
-          "reasonInterrupted": "Orca branch'i adlandırmayı tamamlayamadı. Yeniden deneyin.",
-          "reasonBranchPushed": "Branch push edildiği için Orca adını korudu.",
-          "reasonBranchRenamed": "Branch yeniden adlandırıldığı için Orca adını korudu.",
-          "reasonNameChosen": "Branch adı elle seçildiği için Orca adı değiştirmedi.",
+          "reasonHistoryUnreadable": "BrzA Studio bu çalışma alanının geçmişini okuyamadı. Yeniden deneyin.",
+          "reasonInterrupted": "BrzA Studio branch'i adlandırmayı tamamlayamadı. Yeniden deneyin.",
+          "reasonBranchPushed": "Branch push edildiği için BrzA Studio adını korudu.",
+          "reasonBranchRenamed": "Branch yeniden adlandırıldığı için BrzA Studio adını korudu.",
+          "reasonNameChosen": "Branch adı elle seçildiği için BrzA Studio adı değiştirmedi.",
           "reasonSettingOff": "Ayarlarda otomatik branch adlandırma kapalı.",
           "reasonNoDistinctName": "Oluşturulan ad mevcut adla aynı.",
-          "reasonFirstMessageUnavailable": "Orca bu çalışma alanındaki ilk mesajı bulamadı.",
+          "reasonFirstMessageUnavailable": "BrzA Studio bu çalışma alanındaki ilk mesajı bulamadı.",
           "reasonAlreadyNamed": "Bu çalışma alanı zaten yeniden adlandırılmış.",
-          "reasonUnavailable": "Orca artık bu branch'i adlandıramıyor.",
+          "reasonUnavailable": "BrzA Studio artık bu branch'i adlandıramıyor.",
           "branchNameKept": "Branch adı korundu"
         },
         "CreateProjectLocationField": {
@@ -7462,8 +7462,8 @@
           "removeDescriptionSsh": "Bu işlem yalnızca {{name}} öğesini BrzA Studio'dan kaldırır. Dosyaları {{host}} üzerinde kalır, geri almak için o SSH sunucusunu yeniden ekleyin.",
           "removeDescriptionLocal": "Bu işlem yalnızca {{name}} öğesini BrzA Studio'dan kaldırır. Hâlâ diskinizde bulunur.",
           "removeDescriptionVmRecipe": "Bu işlem {{name}} öğesini BrzA Studio'dan kaldırır. Ortamın ve dosyalarının kalıcı olarak silinip silinmeyeceğini VM tarifi belirler.",
-          "linkedWorkspaceWarning_one": "Bu projedeki {{count}} çalışma alanı da Orca'dan kaldırılacak.",
-          "linkedWorkspaceWarning_other": "Bu projedeki {{count}} çalışma alanı da Orca'dan kaldırılacak.",
+          "linkedWorkspaceWarning_one": "Bu projedeki {{count}} çalışma alanı da BrzA Studio'dan kaldırılacak.",
+          "linkedWorkspaceWarning_other": "Bu projedeki {{count}} çalışma alanı da BrzA Studio'dan kaldırılacak.",
           "openTerminalWarning_one": "Bu projedeki {{count}} açık terminal kapatılacak.",
           "openTerminalWarning_other": "Bu projedeki {{count}} açık terminal kapatılacak."
         },
@@ -7504,9 +7504,9 @@
           "setupScript": "Kurulum betiği",
           "archiveScript": "Arşiv betiği",
           "save": "Yerel kurulumu kaydet",
-          "descriptionWithSource": "Kaynak: <file>{{source}}</file>. Betiği kaydederseniz Orca, {{repo}} için her worktree oluşturduğunda bu betiği çalıştırır.",
+          "descriptionWithSource": "Kaynak: <file>{{source}}</file>. Betiği kaydederseniz BrzA Studio, {{repo}} için her worktree oluşturduğunda bu betiği çalıştırır.",
           "notImported": "İçe aktarılmadı",
-          "notImportedHint": "Bu ayarların Orca’da karşılığı yok ve ayarlar kaydedilmeyecek."
+          "notImportedHint": "Bu ayarların BrzA Studio’da karşılığı yok ve ayarlar kaydedilmeyecek."
         },
         "SidebarFeedbackDialog": {
           "8bf619e4cf": "İptal",
@@ -8368,7 +8368,7 @@
           "sshImportSynced_other": "BrzA Studio'ya {{count}} sunucu eklendi.",
           "sshImportSynced_one": "BrzA Studio'ya {{count}} sunucu eklendi.",
           "sshConfigPickerInvalidResponse": "SSH yapılandırmasındaki sunucular için geçersiz yanıt",
-          "sshImportSynced": "Orca’ya {{value0}} cihaz eklendi{{value1}}."
+          "sshImportSynced": "BrzA Studio’ya {{value0}} cihaz eklendi{{value1}}."
         },
         "ForgetSshWorkspaceDialog": {
           "cancel": "İptal",
@@ -8430,7 +8430,7 @@
                 "d42f1f14e0_other": "{{count}} Branch'i Yeniden Dene",
                 "0e0379f24a": "{{count}} branch korundu",
                 "6310412304": "{{count}} Branch'i İncele",
-                "a3cdd9d9e6": "Git, merge edilmemiş commit'ler içerebileceği için {{count}} yerel branch'i korudu. Korunan branch'ler çalışma alanı klasörlerini tutmaz; commit'leri repoda kalır. Orca, arka planda çalışma alanı disk alanını boşaltmaya devam edebilir.",
+                "a3cdd9d9e6": "Git, merge edilmemiş commit'ler içerebileceği için {{count}} yerel branch'i korudu. Korunan branch'ler çalışma alanı klasörlerini tutmaz; commit'leri repoda kalır. BrzA Studio, arka planda çalışma alanı disk alanını boşaltmaya devam edebilir.",
                 "cea24c2b7d": "{{count}} çalışma alanı kaldırıldı",
                 "d42f1f14e0": "{{count}} Branch İçin Yeniden Dene"
               }
@@ -8904,7 +8904,7 @@
           "retrySetup": "Yeniden dene",
           "installing": "Yükleniyor…",
           "hostUnavailable": "BrzA Studio bu çalışma alanının makinesine henüz beceri yükleyemiyor.",
-          "replaceWithOrcaCopy": "Orca sürümüyle değiştir",
+          "replaceWithOrcaCopy": "BrzA Studio sürümüyle değiştir",
           "copyCommandAria": "Komutu kopyala",
           "ed197f59a2": "Komutu kopyala",
           "failedToCopyCommand": "Komut kopyalanamadı.",
@@ -8943,7 +8943,7 @@
           "3f1bdf3cb4": "Ortam metni güvenli bir şekilde ayrıştırılamayacak kadar büyük.",
           "codexSessionSource": "Codex konuşmalarını şuradan içe aktar",
           "codexSessionSourceInfo": "Codex konuşmalarını içe aktarma hakkında",
-          "codexSessionSourceTooltip": "Geçmiş hesaplar arasında paylaşıldığı sürece Orca, bu Codex ana dizinindeki konuşmaları /resume listelesin diye ~/.codex'e kopyalar. Bir konuşma kopyalandıktan sonra bu klasörde eklenen turlar kopyaya ulaşmaz.",
+          "codexSessionSourceTooltip": "Geçmiş hesaplar arasında paylaşıldığı sürece BrzA Studio, bu Codex ana dizinindeki konuşmaları /resume listelesin diye ~/.codex'e kopyalar. Bir konuşma kopyalandıktan sonra bu klasörde eklenen turlar kopyaya ulaşmaz.",
           "noAgentsDetected": "Ajan algılanmadı. Bir tanesi yüklüyse, yoklama zaman aşımına uğramış olabilir.",
           "9f30095d49": "Ajan İzinleri"
         },
@@ -9439,7 +9439,7 @@
           "downloadUpdate": "Güncellemeyi indir",
           "restartToUpdate": "Güncellemek için yeniden başlat",
           "versionAvailable": "{{version}} sürümü kullanılabilir.",
-          "externallyManagedVersionAvailable": "{{version}} sürümü kullanılabilir. Orca bu sürümü kendi başına yükleyemediği için sistem paket yöneticisini kullanarak güncelleyin.",
+          "externallyManagedVersionAvailable": "{{version}} sürümü kullanılabilir. BrzA Studio bu sürümü kendi başına yükleyemediği için sistem paket yöneticisini kullanarak güncelleyin.",
           "versionReadyToInstall": "{{version}} sürümü yüklemeye hazır.",
           "versionInstalling": "{{version}} sürümü yükleniyor.",
           "downloadingVersion": "{{version}} sürümü indiriliyor (%{{percent}})…"
@@ -9563,9 +9563,9 @@
           "prAutoRefreshHintAutomatic": "Pull request’leri ve denetim sonuçlarını güncel tutar.",
           "prAutoRefreshHintLessOften": "GitHub’ı daha seyrek denetler. GitHub istek sınırlarına ulaşıyorsanız yararlıdır.",
           "prAutoRefreshTitle": "PR güncellemeleri",
-          "prAutoRefreshDescription": "Orca’nın pull request ve CI değişiklikleri için GitHub’ı ne sıklıkta denetlediği.",
+          "prAutoRefreshDescription": "BrzA Studio’nın pull request ve CI değişiklikleri için GitHub’ı ne sıklıkta denetlediği.",
           "prAutoRefreshHintOff": "Değişiklik gönderdiğinizde veya Yenile’ye tıkladığınızda günceller.",
-          "prAutoRefreshUnsupportedHost": "Bu ayarı değiştirmek için {{host}} üzerindeki Orca’yı güncelleyin",
+          "prAutoRefreshUnsupportedHost": "Bu ayarı değiştirmek için {{host}} üzerindeki BrzA Studio’yı güncelleyin",
           "prAutoRefreshUnknownHost": "seçili sunucu"
         },
         "HiddenExperimentalGroup": {
@@ -13082,7 +13082,7 @@
           "stopCleanupFailed": "Cloud VM temizlemesi durdurulamadı.",
           "cca21fb369": "Bulut sanal makinelerini yenile",
           "provisioning": "Hazırlanıyor",
-          "untrackedRuntimeHint": "Orca bu sanal makinenin ayrıntılarını alamadı. Temizleme işlemi yalnızca {{instanceId}} örnek kimliğiyle silmeyi dener. Başarısız olursa sanal makineyi sağlayıcınızdan silip bu listeden kaldırın.",
+          "untrackedRuntimeHint": "BrzA Studio bu sanal makinenin ayrıntılarını alamadı. Temizleme işlemi yalnızca {{instanceId}} örnek kimliğiyle silmeyi dener. Başarısız olursa sanal makineyi sağlayıcınızdan silip bu listeden kaldırın.",
           "removeFromList": "Listeden kaldır",
           "removeFromListFailed": "Bulut sanal makinesinin çalışma ortamı listeden kaldırılamadı."
         },
@@ -13345,7 +13345,7 @@
           },
           "decisionFailed": "İzin kararı kaydedilemedi. Tekrar deneyin.",
           "fullAccessWarning": "Tam erişim: normal bir program gibi çalışır; dosyalarınızı okuyabilir, kayıtlı oturum bilgilerinizi ve SSH anahtarlarınızı kullanabilir, ağı kullanabilir, başka programlar çalıştırabilir ve terminalleriniz ile ajanlarınız dahil BrzA Studio'yı kontrol edebilir.",
-          "uiWarning": "Görünümünü çizmek için yayıncının kodunu BrzA Studio içinde çalıştırır. Orca nelerin erişebileceğini gösterir ve etkinleştirmeden önce sorar."
+          "uiWarning": "Görünümünü çizmek için yayıncının kodunu BrzA Studio içinde çalıştırır. BrzA Studio nelerin erişebileceğini gösterir ve etkinleştirmeden önce sorar."
         },
         "PluginConsentProvenance": {
           "official": "Resmi",
@@ -13515,7 +13515,7 @@
           "invalidArtifact": "Bildirilen bir worker veya panel dosyası eksik ya da güvenli değil. Eklenti dosyalarını düzeltip yenileyin.",
           "consentChanged": "Eklenti, siz incelerken değişti. Bu iletişim kutusunu kapatıp güncellenmiş izinleri inceleyin.",
           "installGitMoved": "BrzA Studio denetledikten sonra depo değişti. Yeniden deneyin.",
-          "installReservedIdentity": "Bu eklenti, yalnızca Orca kataloğundan kurulabilen resmî eklentilere ayrılmış bir ad kullanıyor. Kendi kopyanız veya çatalınız için orca-plugin.json dosyasındaki \"id\" değerini \"orca-\" ile başlamayacak şekilde değiştirin ve \"publisher\" alanına kendi adınızı yazın."
+          "installReservedIdentity": "Bu eklenti, yalnızca BrzA Studio kataloğundan kurulabilen resmî eklentilere ayrılmış bir ad kullanıyor. Kendi kopyanız veya çatalınız için orca-plugin.json dosyasındaki \"id\" değerini \"orca-\" ile başlamayacak şekilde değiştirin ve \"publisher\" alanına kendi adınızı yazın."
         },
         "plugins": {
           "search": {
@@ -13731,11 +13731,11 @@
           "title": "BrzA Studio Hesabı",
           "description": "Çalışmanızı anında paylaşın ve nerede olursanız olun BrzA Studio Mobile'dan masaüstünüze ulaşın.",
           "searchDescription": "Artifact'ler ve BrzA Studio Relay tarafından kullanılan hesapta oturum açın veya kapatın.",
-          "managed": "Orca ayarlarının bir kısmı ekibiniz tarafından yönetiliyor.",
+          "managed": "BrzA Studio ayarlarının bir kısmı ekibiniz tarafından yönetiliyor.",
           "deviceReportNamedViewers": "{{teams}} içindeki sahipler ve yöneticiler bu cihazdan gelen raporları görüntüleyebilir.",
           "deviceReportViewers": "Ekip sahipleri ve yöneticileri bu cihazdan gelen raporları görüntüleyebilir.",
           "reportingDetails": "Cihaz raporlama ayrıntıları",
-          "reportingDisclosure": "Cihazlar görünümü; Orca sürümünüzü, yayın kanalını, cihaz adını, platformu, güncelleme durumunu, Orca'nın yükleyemediği gerekli eklentileri ve cihazın en son ne zaman rapor verdiğini gösterir.",
+          "reportingDisclosure": "Cihazlar görünümü; BrzA Studio sürümünüzü, yayın kanalını, cihaz adını, platformu, güncelleme durumunu, BrzA Studio'nın yükleyemediği gerekli eklentileri ve cihazın en son ne zaman rapor verdiğini gösterir.",
           "benefitsTitle": "Hesabınıza dahil",
           "artifactsTitle": "Artifact paylaşımı",
           "artifactsDescription": "HTML ve Markdown dosyalarını yayınlayın, ardından paylaşılan her bağlantıyı BrzA Studio'dan yönetin.",
@@ -13978,7 +13978,7 @@
             "updateAnyway": "Yine de güncelle",
             "notNow": "Şimdi değil",
             "forceUpdate": "Bu sunucuda terminaller çalışıyor. Güncelleme boyunca çalışmaya devam ederler ve BrzA Studio sunucusu yeniden başladığında bölmeleri yeniden bağlanır.",
-            "forceUpdateUncounted": "Orca bu cihazdaki terminalleri sayamadı. Güncelleme yalnızca cihazda terminal arka plan hizmeti çalışmıyorsa sürer. Orca sunucusunun doğrudan çalıştırdığı terminaller kapanır."
+            "forceUpdateUncounted": "BrzA Studio bu cihazdaki terminalleri sayamadı. Güncelleme yalnızca cihazda terminal arka plan hizmeti çalışmıyorsa sürer. BrzA Studio sunucusunun doğrudan çalıştırdığı terminaller kapanır."
           },
           "description": "BrzA Studio, boş bir SSH sunucusuna kendini kurar ve güncel tutar.",
           "deploy": {
@@ -14108,11 +14108,11 @@
           "refusedLeaveBehindUnnamed": "Bu sunucuya ait bazı kayıtlı öğeler sunucunun BrzA Studio sunucusuna taşınamıyor. Yine de taşı seçeneğiyle sunucuya bağlanılır ve bu öğeler bu bilgisayarda tutulur.",
           "windowsBuildUnsupported": "Bu sunucuda Windows 10 ve Windows Server 2016'dan eski bir Windows sürümü çalışıyor; bu nedenle BrzA Studio sunucusu çalıştırılamaz. Daha yeni bir Windows sürümü olan bir sunucu ya da Linux veya macOS sunucusu kullanın.",
           "windowsNoExtractor": "Bu Windows sunucusunda ne tar.exe ne de PowerShell'in Expand-Archive komutu var; bu yüzden BrzA Studio sunucusunun paketi burada açılamıyor. Sunucuya Windows PowerShell 5.1 yükleyin, ardından yeniden bağlanın.",
-          "setupFreeHostSpace": "Bu cihazda Orca sunucusu başlatılırken sunucu verilerini yedeklemek için yeterli boş alan yok. Cihazda yer açıp yeniden bağlanın.",
-          "setupStopUnmanagedRuntime": "Bu uygulamanın başlatmadığı bir Orca sunucusu hâlâ bu sunucunun Orca verilerini kullanıyor görünüyor. Onu sunucuda durdurup yeniden bağlanın. İşlemin adı Ayarlar > SSH Sunucuları bölümünde, bu sunucunun Ayrıntılar ekranında görünür.",
-          "setupSeeDetails": "Orca bu sunucuda kendi sunucusunu başlatamadı. Nedenini Ayarlar > SSH Sunucuları bölümünde, bu sunucunun Ayrıntılar ekranında görebilirsiniz.",
-          "linkedProjects": "Bu ana makinenin Orca sunucusunda {{paths}} zaten bulunduğu için bu masaüstü artık sunucudaki kopyayı kullanıyor. Bu masaüstünün oradaki sekmeleri ve {{count}} otomasyonu taşınmadı; orada oluşturduğu worktree'ler ise harici worktree olarak görünüyor.",
-          "olderTerminals": "Orca'nın eski bir sürümünün başlattığı {{count}} terminal bu ana makinede hâlâ çalışıyor ve kendiliğinden durmuyor. İlgili Orca sürümünde kapatın veya ana makinede sonlandırın, ardından yeniden bağlanın."
+          "setupFreeHostSpace": "Bu cihazda BrzA Studio sunucusu başlatılırken sunucu verilerini yedeklemek için yeterli boş alan yok. Cihazda yer açıp yeniden bağlanın.",
+          "setupStopUnmanagedRuntime": "Bu uygulamanın başlatmadığı bir BrzA Studio sunucusu hâlâ bu sunucunun BrzA Studio verilerini kullanıyor görünüyor. Onu sunucuda durdurup yeniden bağlanın. İşlemin adı Ayarlar > SSH Sunucuları bölümünde, bu sunucunun Ayrıntılar ekranında görünür.",
+          "setupSeeDetails": "BrzA Studio bu sunucuda kendi sunucusunu başlatamadı. Nedenini Ayarlar > SSH Sunucuları bölümünde, bu sunucunun Ayrıntılar ekranında görebilirsiniz.",
+          "linkedProjects": "Bu ana makinenin BrzA Studio sunucusunda {{paths}} zaten bulunduğu için bu masaüstü artık sunucudaki kopyayı kullanıyor. Bu masaüstünün oradaki sekmeleri ve {{count}} otomasyonu taşınmadı; orada oluşturduğu worktree'ler ise harici worktree olarak görünüyor.",
+          "olderTerminals": "BrzA Studio'nın eski bir sürümünün başlattığı {{count}} terminal bu ana makinede hâlâ çalışıyor ve kendiliğinden durmuyor. İlgili BrzA Studio sürümünde kapatın veya ana makinede sonlandırın, ardından yeniden bağlanın."
         },
         "ZcodeCliSetupSection": {
           "title": "GLM'yi ZCode ile kullanın",
@@ -14216,7 +14216,7 @@
         "wslHostsExperimental": {
           "toggleLabel": "WSL dağıtımlarını ana makine olarak kullanmayı aç/kapat",
           "title": "WSL dağıtımlarını ana makine olarak kullan",
-          "description": "Orca sunucusunu bir WSL 2 dağıtımının içinde çalıştırır; Git, dosyalar ve terminaller Linux'ta yerel olarak çalışır.",
+          "description": "BrzA Studio sunucusunu bir WSL 2 dağıtımının içinde çalıştırır; Git, dosyalar ve terminaller Linux'ta yerel olarak çalışır.",
           "keywordWsl": "wsl",
           "keywordLinux": "linux",
           "keywordDistro": "dağıtım"
@@ -14234,7 +14234,7 @@
           "restartAsWslHost": {
             "button": "WSL cihazı olarak yeniden başlat",
             "title": "WSL cihazı olarak yeniden başlatılsın mı?",
-            "description": "{{host}} üzerindeki tüm terminalleri ve ajanları (SSH cihazının açtıkları dahil) sonlandırır, ardından Orca sunucusunu WSL cihazı olarak yeniden başlatır.",
+            "description": "{{host}} üzerindeki tüm terminalleri ve ajanları (SSH cihazının açtıkları dahil) sonlandırır, ardından BrzA Studio sunucusunu WSL cihazı olarak yeniden başlatır.",
             "cancel": "İptal",
             "action": "Terminalleri kapat ve yeniden başlat"
           }
@@ -14399,7 +14399,7 @@
           "overYourSsh": "SSH bağlantınız üzerinden",
           "installViaSsh": "SSH üzerinden yükle",
           "newerThanApp": "Bu uygulamadan daha yeni (v{{version}})",
-          "shareRowHint": "Başka bir Orca'nın buraya bağlanmasına izin verin.",
+          "shareRowHint": "Başka bir BrzA Studio'nın buraya bağlanmasına izin verin.",
           "manageShare": "Yönet",
           "share": "Paylaş",
           "serversCaption": "Sunucular"
@@ -14449,7 +14449,7 @@
           "attentionSharedNotCurrent": "Dikkat gerekiyor · Bu klasörün kullandığı paylaşılan kopya BrzA Studio'ya ait değil",
           "resultUpdateSkippedPlaces": "{{result}} · {{places}} konumda güncelleme atlandı: {{reason}}",
           "resultUpdateSkippedAgent": "{{result}} · {{agent}} için güncelleme atlandı: {{reason}}",
-          "attentionDiffersFromOrca": "Dikkat gerekiyor · Bu kopya Orca'nın kopyasından farklı",
+          "attentionDiffersFromOrca": "Dikkat gerekiyor · Bu kopya BrzA Studio'nın kopyasından farklı",
           "replaceMovesCopyToBackup": "Değiştirme işlemi, ek dosyalar dahil mevcut kopyayı bir yedeğe taşır.",
           "replaceMovesCopyToFolder": "Değiştirme işlemi, ek dosyalar dahil mevcut kopyayı {{folder}} konumuna taşır.",
           "replaceMovesCopyToFolderOnHost": "Değiştirme işlemi, ek dosyalar dahil mevcut kopyayı {{host}} üzerindeki {{folder}} konumuna taşır."
@@ -14507,13 +14507,13 @@
           "newShortcuts": "Klavye kısayolları",
           "newCommands": "Komutlar",
           "newPanels": "Paneller ekler",
-          "newEvents": "Daha fazla Orca olayına tepki verir",
+          "newEvents": "Daha fazla BrzA Studio olayına tepki verir",
           "newRecipes": "Makine tarifleri",
           "newContributions": "Sizin adınıza işlem yapan özellikler",
           "allAccess": "Tüm erişimi gör",
           "update": "Güncelle",
           "newFileTypes": "Hangi dosyaları açtığını değiştirir",
-          "newHooks": "Orca'nın ve ajanlarınızın yaptıklarını değiştirebilir veya durdurabilir",
+          "newHooks": "BrzA Studio'nın ve ajanlarınızın yaptıklarını değiştirebilir veya durdurabilir",
           "newSettings": "Bir ayarlar sayfası",
           "newStatusBarItems": "Durum çubuğu öğeleri",
           "opensFileTypes": "Yeni dosya türlerini açar: {{value0}}",
@@ -14521,12 +14521,12 @@
           "needApproval": "Onayınızı bekliyor",
           "readyToUpdate": "Güncellemeye hazır",
           "movedRepository": "Farklı bir depodan geliyor",
-          "replacesAction": "Orca’nın {{value1}} işlemi yerine {{value0}} çalışır"
+          "replacesAction": "BrzA Studio’nın {{value1}} işlemi yerine {{value0}} çalışır"
         },
         "PluginUpdateReview": {
           "title": "{{value0}} güncellemesini incele",
           "approve": "Onayla ve güncelle",
-          "uncompared": "Orca bu sürümü onayladığınız sürümle karşılaştıramadı. Güncellemeden önce nelere erişebildiğini kontrol edin.",
+          "uncompared": "BrzA Studio bu sürümü onayladığınız sürümle karşılaştıramadı. Güncellemeden önce nelere erişebildiğini kontrol edin.",
           "newInVersion": "Bu sürümde yeni:",
           "titleMany": "{{value0}} güncellemeyi incele",
           "history": "Değişiklikleri GitHub’da gör"
@@ -14650,10 +14650,10 @@
           "replacesShortcut": "{{value0}} ({{value1}}), {{value2}} için kısayolunuzun yerini alır.",
           "updatesKeepApproval": "Güncellemeler yalnızca yeni erişim için yeniden sorar",
           "fullAccessUpdates": "Güncellemeler kodu sormadan değiştirebilir",
-          "editsFileTypes": "Orca’da {{value0}} dosyalarını açar ve düzenler. Açtığı dosyaları okuyabilir.",
+          "editsFileTypes": "BrzA Studio’da {{value0}} dosyalarını açar ve düzenler. Açtığı dosyaları okuyabilir.",
           "install": "Yükle ve etkinleştir",
           "keepOff": "Kapalı tut",
-          "replacesAction": "Orca’nın {{value1}} işlemi yerine {{value0}} çalışır. Eklenti sayfasından eski ayara dönebilirsiniz."
+          "replacesAction": "BrzA Studio’nın {{value1}} işlemi yerine {{value0}} çalışır. Eklenti sayfasından eski ayara dönebilirsiniz."
         },
         "PluginListEmptyStates": {
           "noFilterMatches": "Bu filtrelerle eşleşen eklenti yok",
@@ -14751,7 +14751,7 @@
           "details": "Ayrıntılar",
           "failed": "{{value0}} güncellenemedi",
           "morePlugins": "ve {{value0}} eklenti daha",
-          "uncompared": "Orca bunu onayladığınız sürümle karşılaştıramadı.",
+          "uncompared": "BrzA Studio bunu onayladığınız sürümle karşılaştıramadı.",
           "held": "{{value0}} incelemenizden sonra değişti, bu yüzden Ayarlar → Eklentiler bölümünde incelemenizi bekliyor."
         },
         "PluginThemeUseNow": {
@@ -14966,7 +14966,7 @@
         "StatusBarUsageFormatSetting": {
           "reset": "Sıfırla",
           "previewLabel": "Önizleme",
-          "previewBuiltin": "Orca’nın yerleşik biçimini kullanmak için boş bırakın.",
+          "previewBuiltin": "BrzA Studio’nın yerleşik biçimini kullanmak için boş bırakın.",
           "placeholder": {
             "provider": "sağlayıcı adı",
             "plan": "abonelik planı (Codex)",
@@ -15764,7 +15764,7 @@
                   },
                   "host_off": {
                     "title": "WSL ana makinesi kapalı",
-                    "body": "Orca, {{reviewLabel}} durumunu bu projenin kapalı olan WSL ana makinesi üzerinden yeniler. Yenilemek için yeniden bağlayın."
+                    "body": "BrzA Studio, {{reviewLabel}} durumunu bu projenin kapalı olan WSL ana makinesi üzerinden yeniler. Yenilemek için yeniden bağlayın."
                   },
                   "not_git": {
                     "title": "Git repository'si değil",
@@ -16492,7 +16492,7 @@
             "loading": "Eklenti paneli yükleniyor...",
             "unresponsive": "Bu eklenti paneli yanıt vermeyi durdurdu ve askıya alındı.",
             "loadFailed": "Eklenti paneli yüklenemedi.",
-            "needsDesktop": "Bu panel yalnızca Orca masaüstü uygulamasında çalışır.",
+            "needsDesktop": "Bu panel yalnızca BrzA Studio masaüstü uygulamasında çalışır.",
             "needsIsolatedFrames": "Bu panel için yalıtılmış eklenti çerçeveleri gerekir. Bu özellik kapalı olduğu için panel kullanılamıyor."
           },
           "activityBar": {
@@ -17020,7 +17020,7 @@
             "19c212e25e": "MacBook Pro",
             "2f1a1d10c4": "Masaüstleri",
             "af761a0c0d": "Ayarlar",
-            "5d94e8ddcc": "Orca",
+            "5d94e8ddcc": "BrzA Studio",
             "dc1f3f5535": "Kaldığınız yerden devam edin",
             "c2a0215163": "Girdi bekleniyor",
             "0c14dac908": "2 dk",
@@ -17602,7 +17602,7 @@
                 "24aaad376f": "Dikteyi kur",
                 "f98e9d1bad": "Tüm ajan oturumlarında arayın",
                 "990cc29865": "Geçmiş konuşmaları içlerinde söylenenlere göre bulun ve ajanın kaldığı yerden devam edin.",
-                "3eacedec93": "Ajanların Orca CLI ile Orca'yı yönetmesini sağlayın",
+                "3eacedec93": "Ajanların BrzA Studio CLI ile BrzA Studio'yı yönetmesini sağlayın",
                 "8d54d0ff53": "Ajanların alt worktree'leri koordine etmesini ve worktree'ler arasında iletişim kurmasını sağlayın.",
                 "0080bc86eb": "CLI ve Becerileri Yükle",
                 "9b58bc5d7a": "<shortcut> ile bir worktree'ye geçin",
@@ -18438,7 +18438,7 @@
                 "action": "UTF-8 olarak kaydet"
               }
             },
-            "bytesUpdateRequired": "İkili dosyaları buraya kaydetmek için Orca sunucusunun daha yeni bir sürümü gerekiyor. Sunucuyu güncelleyip yeniden deneyin.",
+            "bytesUpdateRequired": "İkili dosyaları buraya kaydetmek için BrzA Studio sunucusunun daha yeni bir sürümü gerekiyor. Sunucuyu güncelleyip yeniden deneyin.",
             "deniedByPlugin": "{{plugin}} eklentisi dosyanın kaydedilmesine izin vermedi: {{reason}}"
           }
         },
@@ -18582,7 +18582,7 @@
         "PluginEditorNeedsDesktopNotice": {
           "browser": "{{value0}} yalnızca yalıtılmış bir çerçevede çalışır. Tarayıcı istemcileri böyle bir çerçeve sağlayamaz.",
           "isolationOff": "{{value0}} yalnızca yalıtılmış bir çerçevede çalışır ancak yalıtılmış eklenti çerçeveleri kapalı.",
-          "heading": "Bu düzenleyici için Orca masaüstü uygulaması gerekiyor",
+          "heading": "Bu düzenleyici için BrzA Studio masaüstü uygulaması gerekiyor",
           "openSource": "Kaynağı Aç"
         },
         "MarkdownDefaultViewContextMenu": {
@@ -18593,7 +18593,7 @@
           "pathAccessDenied": "Erişim reddedildi: Yol, izin verilen dizinlerin dışında bir konuma çıkıyor. Bu kısıtlama normal çalışmanızı engelliyorsa lütfen GitHub'da bir sorun açın.",
           "changedDuringRead": "Dosya yüklenirken diskteki içeriği değişti. Son sürümü görmek için dosyayı yeniden yükleyin.",
           "remotePathIsDirectory": "Uzak konum bir dosya değil, bir dizin",
-          "remotePagedReadUnsupported": "Uzak dosya, bu Orca sunucusunun gönderebildiği 512 KB sınırını aşıyor. Dosyayı açmak için sunucuyu güncelleyin.",
+          "remotePagedReadUnsupported": "Uzak dosya, bu BrzA Studio sunucusunun gönderebildiği 512 KB sınırını aşıyor. Dosyayı açmak için sunucuyu güncelleyin.",
           "remoteFileTooLarge": "Uzak dosya düzenleyicide açılmayacak kadar büyük ({{bytes}} bayt)"
         },
         "BinaryFileDefaultAppButton": {
@@ -18832,7 +18832,7 @@
                     "extensions": {
                       "intro": {
                         "title": "Chrome uzantılarınızı getirin",
-                        "everydayTitle": "Her gün kullandığınız tarayıcı araçları, Orca'da",
+                        "everydayTitle": "Her gün kullandığınız tarayıcı araçları, BrzA Studio'da",
                         "body": "Eklentileri Chrome Web Store’dan yükleyin ve adres çubuğunun yanına sabitleyin.",
                         "action": "Chrome Web Store’u aç",
                         "secondaryAction": "Anladım"
@@ -20023,7 +20023,7 @@
         },
         "PluginDeclarativePanel": {
           "dismissLoadError": "Kapat",
-          "invalidTree": "Panel, Orca’nın görüntüleyemediği bir düzen gönderdi.",
+          "invalidTree": "Panel, BrzA Studio’nın görüntüleyemediği bir düzen gönderdi.",
           "loadFailed": "{{value0}} yüklenemedi.",
           "loadFailedKeptLastGood": "{{value0}} yüklenemedi. Başarıyla yüklenen son sürüm gösteriliyor.",
           "pluginMessage": "{{value0}} tarafından gönderilen mesaj: {{value1}}",
@@ -20645,7 +20645,7 @@
       "plugins": {
         "list": {
           "PluginsSectionDescription": {
-            "openWith": "Birlikte aç (bir Orca metin alanına yazarken hariç)"
+            "openWith": "Birlikte aç (bir BrzA Studio metin alanına yazarken hariç)"
           }
         },
         "pluginInstallCount": {
@@ -20663,7 +20663,7 @@
         },
         "declarative": {
           "PluginDeclarativeView": {
-            "unsupported": "{{value0}}, Orca’nın bu sürümünde kullanılamıyor"
+            "unsupported": "{{value0}}, BrzA Studio’nın bu sürümünde kullanılamıyor"
           },
           "KeyValue": {
             "yes": "Evet",
@@ -20682,10 +20682,10 @@
           }
         },
         "PluginCommandReplacementRow": {
-          "title": "Orca’nın {{value1}} işlemi yerine {{value0}} çalışır",
+          "title": "BrzA Studio’nın {{value1}} işlemi yerine {{value0}} çalışır",
           "conflict": "Kullanılmıyor: Daha önce kurulan {{value0}} bunun yerini alıyor",
-          "detail": "Kısayoldan, komut paletinden veya menülerden çalıştırabilirsiniz. Eklenti başarısız olursa Orca’nın kendi işlemi çalışır.",
-          "switch": "Orca’nın {{value1}} işlemi yerine {{value0}} kullan"
+          "detail": "Kısayoldan, komut paletinden veya menülerden çalıştırabilirsiniz. Eklenti başarısız olursa BrzA Studio’nın kendi işlemi çalışır.",
+          "switch": "BrzA Studio’nın {{value1}} işlemi yerine {{value0}} kullan"
         },
         "PluginCatalogHighlights": {
           "justNow": "az önce",
@@ -20720,18 +20720,18 @@
         "partial_other": "{{resumed}}/{{total}} ajan devam ettirildi. {{count}} tanesi sizi bekliyor.",
         "stoppedOn_one": "{{machine}} üzerinde {{count}} ajan durdu.",
         "stoppedOn_other": "{{machine}} üzerinde {{count}} ajan durdu.",
-        "stoppedUpdate_one": "Orca güncellenirken {{count}} ajan durdu.",
-        "stoppedUpdate_other": "Orca güncellenirken {{count}} ajan durdu.",
-        "stoppedRestart_one": "Orca kapanırken {{count}} ajan durdu.",
-        "stoppedRestart_other": "Orca kapanırken {{count}} ajan durdu.",
+        "stoppedUpdate_one": "BrzA Studio güncellenirken {{count}} ajan durdu.",
+        "stoppedUpdate_other": "BrzA Studio güncellenirken {{count}} ajan durdu.",
+        "stoppedRestart_one": "BrzA Studio kapanırken {{count}} ajan durdu.",
+        "stoppedRestart_other": "BrzA Studio kapanırken {{count}} ajan durdu.",
         "promptsNotResent": "Devam ettirmek istemlerinizi yeniden göndermez.",
         "resume": "Devam ettir",
         "details": "Ayrıntılar",
         "close": "Kapat",
         "listLabel": "Ajanlar",
         "untitled": "Başlıksız ajan",
-        "willAsk": "Orca, ajanlardan devam etmelerini ister. Sıradaki iletiler gönderilebilir.",
-        "asked": "Orca, ajanlardan devam etmelerini istedi. Sıradaki iletiler gönderilebilir.",
+        "willAsk": "BrzA Studio, ajanlardan devam etmelerini ister. Sıradaki iletiler gönderilebilir.",
+        "asked": "BrzA Studio, ajanlardan devam etmelerini istedi. Sıradaki iletiler gönderilebilir.",
         "resumedAutomatically": "Otomatik olarak devam ettirildi.",
         "changeInSettings": "Ayarlardan değiştir",
         "dismissAll": "Tümünü kaldır",
@@ -20751,7 +20751,7 @@
         "ownershipUnknownShort": "Henüz devam ettirmeye hazır değil.",
         "notAttachedShort": "Yeniden bağlanmadı.",
         "dispatchRejectedShort": "Ajan devam etmeyi reddetti.",
-        "unsupportedShort": "Orca bu ajanı devam ettiremiyor."
+        "unsupportedShort": "BrzA Studio bu ajanı devam ettiremiyor."
       },
       "task-page": {
         "checksPill": {
@@ -20813,7 +20813,7 @@
       },
       "runtimeGitSyncClient": {
         "completeMergeNeedsNewerHost": "Birleştirmeyi tamamlamak için bu ana makinede daha yeni bir BrzA Studio sürümü gerekir. Bu ana makinedeki BrzA Studio’yı güncelleyin.",
-        "continueRebaseNeedsNewerHost": "Rebase’e devam etmek için bu ana bilgisayarda daha yeni bir Orca gerekir. O ana bilgisayarda Orca’yı güncelleyin."
+        "continueRebaseNeedsNewerHost": "Rebase’e devam etmek için bu ana bilgisayarda daha yeni bir BrzA Studio gerekir. O ana bilgisayarda BrzA Studio’yı güncelleyin."
       },
       "runtimeGitWorkingTreeClient": {
         "resolveConflictNeedsNewerHost": "Çakışmaları çözmek için bu ana makinede daha yeni bir BrzA Studio sürümü gerekir. Bu ana makinedeki BrzA Studio’yı güncelleyin."
@@ -20825,8 +20825,8 @@
         "streamStopped": "Uzak terminalin veri akışı yanıt vermeyi durdurdu."
       },
       "jira": {
-        "currentSprintNeedsUpdate": "Hazır filtrelerdeki iş kayıtlarını geçerli sprint’e göre süzmek için uzak Orca sunucusunu güncelleyin.",
-        "transitionFieldsNeedsUpdate": "Durum geçişinin zorunlu alanlarını göndermek için uzak Orca sunucusunu güncelleyin veya geçişi Jira’da tamamlayın."
+        "currentSprintNeedsUpdate": "Hazır filtrelerdeki iş kayıtlarını geçerli sprint’e göre süzmek için uzak BrzA Studio sunucusunu güncelleyin.",
+        "transitionFieldsNeedsUpdate": "Durum geçişinin zorunlu alanlarını göndermek için uzak BrzA Studio sunucusunu güncelleyin veya geçişi Jira’da tamamlayın."
       }
     },
     "ssh": {
@@ -20877,7 +20877,7 @@
         "dashboard": {
           "popout": {
             "window": {
-              "title": "Orca Ajan Panosu"
+              "title": "BrzA Studio Ajan Panosu"
             }
           }
         }
@@ -20930,7 +20930,7 @@
           "subtitle": "Sohbet arayüzünü destekleyen bir ajan seçin. Sohbeti desteklemeyen ajanlar terminalde açılır."
         },
         "agentTerminal": {
-          "subtitle": "Orca tüm CLI ajanlarıyla çalışır. En sık kullanacağınız ajanı seçin."
+          "subtitle": "BrzA Studio tüm CLI ajanlarıyla çalışır. En sık kullanacağınız ajanı seçin."
         }
       },
       "skipConfirmation": {
@@ -21082,7 +21082,7 @@
         "runtimeNotInstalled": "Bu sohbetin çalıştığı bilgisayarda {{agent}} yüklü değil. BrzA Studio'nın güncel bir sürümünde sohbet içinden yükleyin.",
         "fullAccessAsRoot": "{{agent}}, root olarak çalışırken Tam erişim iznini kullanmaz. Bu sohbeti çalıştıran bilgisayarda Ayarlar → Ajanlar bölümünden {{agent}} için başka bir izin seçin, ardından yeni bir sohbet başlatın.",
         "botToolsNeedStatusHooks": "{{agent}} botları ajan durumu hook'larına ihtiyaç duyar: bir botun araçları bunlar sayesinde bot olarak çalışır. Ayarlar → Ajanlar bölümünden {{agent}} için açın, ardından yeni bir sohbet başlatın.",
-        "botToolsGatewayOutdated": "{{agent}} ağ geçidi hâlâ Orca eklentisinin eski bir sürümüyle çalışıyor, bu yüzden bu botun araçları bot olarak çalışamıyor. `hermes gateway stop` komutunu çalıştırın, ardından yeni bir sohbet başlatın.",
+        "botToolsGatewayOutdated": "{{agent}} ağ geçidi hâlâ BrzA Studio eklentisinin eski bir sürümüyle çalışıyor, bu yüzden bu botun araçları bot olarak çalışamıyor. `hermes gateway stop` komutunu çalıştırın, ardından yeni bir sohbet başlatın.",
         "launchPreparationFailed": "BrzA Studio, bu sohbeti çalıştıran bilgisayarda {{agent}} başlatmayı hazırlayamadı.",
         "conversationOpenElsewhere": "Codex bu sohbeti hâlâ açık tutuyor. Biraz sonra yeniden deneyin veya diğer Codex terminallerini kapatın.",
         "conversationOpenInTerminal": "{{agent}} bu sohbeti zaten başka bir terminalde yürütüyor. Burada devam etmek için o terminalde {{agent}} uygulamasından çıkın veya terminali kapatın.",
@@ -21260,7 +21260,7 @@
         "clearAfterSending": "Önceki mesajınız hâlâ gönderiliyor. Gönderildikten sonra /clear komutunu çalıştırın.",
         "compactAfterSending": "Önceki mesajınız hâlâ gönderiliyor. Gönderildikten sonra /compact komutunu çalıştırın.",
         "pendingWork": "Bu komutu kullanmadan önce bekleyen işlerin ve mesajların tamamlanmasını bekleyin.",
-        "mailOwnerUnconfirmed": "Orca bu mesajın hâlâ bu sohbet için olduğunu doğrulayamadı."
+        "mailOwnerUnconfirmed": "BrzA Studio bu mesajın hâlâ bu sohbet için olduğunu doğrulayamadı."
       },
       "taskList": {
         "title": "Görevler",
@@ -21323,10 +21323,10 @@
         "truncatedResponse": "Sağlayıcı yanıtı kısaltıldı (özgün boyut: {{bytes}} bayt).",
         "forkedFrom": "Çatallandığı kaynak",
         "forkedFromUnknown": "Başka bir sohbetten çatallandı",
-        "restartContinued": "Orca, yeniden başlatmanın ardından bu ajandan devam etmesini istedi. İsteminiz yeniden gönderilmedi.",
-        "restartContinueRefused": "Orca yeniden başlatmanın ardından bu sohbeti sürdüremedi. Devam etmek için bir mesaj gönderin.",
-        "restartContinueUnconfirmed": "Orca yeniden başlatmanın ardından ajandan devam etmesini istedi ancak devam ettiğini doğrulayamadı. Yeni bir mesaj göndermeden önce son yanıtını kontrol edin.",
-        "restartNotConnected": "Orca yeniden başlatmanın ardından bu sohbete yeniden bağlanamadığı için ajandan devam etmesini istemedi.",
+        "restartContinued": "BrzA Studio, yeniden başlatmanın ardından bu ajandan devam etmesini istedi. İsteminiz yeniden gönderilmedi.",
+        "restartContinueRefused": "BrzA Studio yeniden başlatmanın ardından bu sohbeti sürdüremedi. Devam etmek için bir mesaj gönderin.",
+        "restartContinueUnconfirmed": "BrzA Studio yeniden başlatmanın ardından ajandan devam etmesini istedi ancak devam ettiğini doğrulayamadı. Yeni bir mesaj göndermeden önce son yanıtını kontrol edin.",
+        "restartNotConnected": "BrzA Studio yeniden başlatmanın ardından bu sohbete yeniden bağlanamadığı için ajandan devam etmesini istemedi.",
         "autoReviewDenied": "{{agent}} ajanının otomatik incelemesi işlemi reddetti: {{action}}",
         "autoReviewNoReason": "Gerekçe belirtilmedi.",
         "autoReviewApprove": "Bir kez onayla",
@@ -21448,7 +21448,7 @@
         "permissionFullAccess": "Tam erişim",
         "permissionAgentSettings": "{{agent}} ayarları",
         "permissionAgentSettingsUsedHint": "{{agent}} izin ayarlarınızı kullanır.",
-        "permissionAgentSettingsUnnamedHint": "{{agent}} izin ayarlarınızı kullanır. Orca bu modu gösteremiyor.",
+        "permissionAgentSettingsUnnamedHint": "{{agent}} izin ayarlarınızı kullanır. BrzA Studio bu modu gösteremiyor.",
         "permissionFromAgentSettings": "{{mode}}, {{agent}} ayarlarından",
         "permissionFullAccessDescription": "Düzenleme veya komutlardan önce asla sormaz",
         "permissionFullAccessCodexDescription": "Asla sormaz; tüm dosyaları düzenleyebilir ve ağı kullanabilir",
@@ -21693,8 +21693,8 @@
         "notSavedYet": "{{agent}} bu sohbeti henüz kaydetmedi. Yanıt verdikten sonra yeniden deneyin.",
         "exitUnconfirmed": "{{agent}} bu sohbeti başka bir terminalde yürütüyor. Oradan çıkın veya o terminali kapatın, ardından yeniden deneyin.",
         "exitUnconfirmedFromTerminal": "{{agent}} bu konuşmayı hâlâ bu terminalde yürütüyor. Burada {{agent}} uygulamasından çıkın, ardından bu konuşmayı Oturum Geçmişi bölümünden açın.",
-        "terminalChanged": "{{agent}} uygulamasını çalıştıran terminal kapanmadan önce değiştiği için Orca terminali açık bıraktı. Yeniden deneyin.",
-        "terminalExitUnproven": "Orca, {{agent}} terminalini kapattı ancak durduğunu doğrulayamadığı için sohbet açılmadı. Ana makine bağlantısını kontrol edin, ardından konuşmayı Oturum Geçmişi bölümünden açın.",
+        "terminalChanged": "{{agent}} uygulamasını çalıştıran terminal kapanmadan önce değiştiği için BrzA Studio terminali açık bıraktı. Yeniden deneyin.",
+        "terminalExitUnproven": "BrzA Studio, {{agent}} terminalini kapattı ancak durduğunu doğrulayamadığı için sohbet açılmadı. Ana makine bağlantısını kontrol edin, ardından konuşmayı Oturum Geçmişi bölümünden açın.",
         "resumeFailed": "{{agent}} sohbette devam edemedi. Bu terminali ve ana makine bağlantısını kontrol edin, ardından yeniden deneyin."
       },
       "state": {
@@ -22045,7 +22045,7 @@
         "stopped": "{{distro}} durduruldu",
         "start": "Başlat",
         "connecting": "{{distro}} bağlantısı kuruluyor…",
-        "startFailed": "{{distro}} başlatılamadı. Ayarlar → Uzak Orca sunucuları bölümünden dağıtımı kontrol edin.",
+        "startFailed": "{{distro}} başlatılamadı. Ayarlar → Uzak BrzA Studio sunucuları bölümünden dağıtımı kontrol edin.",
         "unverifiable": "BrzA Studio, {{distro}} öğesinin çalışıp çalışmadığını denetleyemedi",
         "startToSend": "Göndermek için {{distro}} dağıtımını başlatın.",
         "startDistro": "{{distro}} dağıtımını başlat"
@@ -22116,7 +22116,7 @@
         "unavailable": "Bu sayfanın önizlemesi yok."
       },
       "workers": {
-        "stopUnconfirmed": "Orca, çalışanın durduğunu doğrulayamadı."
+        "stopUnconfirmed": "BrzA Studio, çalışanın durduğunu doğrulayamadı."
       },
       "connectorAsker": {
         "anApp": "Bir uygulama",
@@ -22149,7 +22149,7 @@
         "addOrg": "Kuruluş ekle",
         "addWorkspace": "Çalışma alanı ekle",
         "githubAsYou": "Ayrıca gh oturumunuzu kullanarak GitHub’da sizin adınıza çalışabilir.",
-        "linearAsYou": "Ayrıca Orca’daki kendi Linear oturumunuzu kullanarak Linear’da sizin adınıza çalışabilir."
+        "linearAsYou": "Ayrıca BrzA Studio’daki kendi Linear oturumunuzu kullanarak Linear’da sizin adınıza çalışabilir."
       },
       "toolAdded": {
         "removed": "Kaldırıldı",
@@ -22158,7 +22158,7 @@
       },
       "usageLimitAutoContinue": {
         "cancelFailed": "Otomatik devam iptal edilemedi. Tekrar deneyin.",
-        "scheduled": "Orca bu sohbeti {{time}} saatinde sürdürecek."
+        "scheduled": "BrzA Studio bu sohbeti {{time}} saatinde sürdürecek."
       },
       "botRequest": {
         "notSentTo": "Gönderilmeyen:",
@@ -22431,7 +22431,7 @@
         "greenLead": "CI başarılı:",
         "at": "commit",
         "hide": "CI sonuç satırlarını gösterme",
-        "hidden": "Orca artık CI sonuç satırlarını göstermeyecek"
+        "hidden": "BrzA Studio artık CI sonuç satırlarını göstermeyecek"
       },
       "sideChat": {
         "description": "Bu sohbetin yanındaki bir çatalda yan soru sor",
@@ -22612,9 +22612,9 @@
         "someonesDm": "{{bot}} ile özel yazışmaya da gönderilir",
         "channel": "{{channel}} kanalındaki yazışmaya da gönderilir",
         "thread": "Slack yazışmasına da gönderilir",
-        "offUnavailable": "Yalnızca Orca’da · Yazışmaya erişilemiyor",
-        "offNotInChannel": "Yalnızca Orca’da · Kanalda değil",
-        "off": "Yalnızca Orca’da",
+        "offUnavailable": "Yalnızca BrzA Studio’da · Yazışmaya erişilemiyor",
+        "offNotInChannel": "Yalnızca BrzA Studio’da · Kanalda değil",
+        "off": "Yalnızca BrzA Studio’da",
         "shortDm": "Slack özel iletisi",
         "shortChannel": "{{channel}} ileti dizisi",
         "shortThread": "Slack konuşma dizisi",
@@ -22625,23 +22625,23 @@
         "detailRemovedFrom": "{{bot}}, {{channel}} kanalından kaldırıldı.",
         "detailRemoved": "{{bot}} kanaldan kaldırıldı.",
         "detailFallback": "Mesajlar adınız belirtilerek {{bot}} hesabından gönderilir. Kendi hesabınızdan göndermek için Slack’te ayarı güncelleyin.",
-        "detailOwnDm": "Mesajlarınız ve {{bot}} botunun yanıtları bu özel yazışmada görünür. Yazışmayı yalnızca siz görebilirsiniz. Araç çağrıları ve alt ajanlar Orca’da kalır.",
-        "detailTheirDm": "Mesajlarınız ve {{bot}} botunun yanıtları, {{name}} tarafından özel yazışmada görülebilir. Araç çağrıları ve alt ajanlar Orca’da kalır.",
-        "detailSomeonesDm": "Mesajlarınız ve {{bot}} botunun yanıtları, bu özel yazışmadaki kişi tarafından görülebilir. Araç çağrıları ve alt ajanlar Orca’da kalır.",
-        "detailThread": "Kanaldaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar Orca’da kalır.",
-        "detailExternal": "Çalışma alanınızın dışından katılanlar dâhil, {{channel}} kanalındaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar Orca’da kalır.",
-        "detailChannel": "{{channel}} kanalındaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar Orca’da kalır.",
+        "detailOwnDm": "Mesajlarınız ve {{bot}} botunun yanıtları bu özel yazışmada görünür. Yazışmayı yalnızca siz görebilirsiniz. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
+        "detailTheirDm": "Mesajlarınız ve {{bot}} botunun yanıtları, {{name}} tarafından özel yazışmada görülebilir. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
+        "detailSomeonesDm": "Mesajlarınız ve {{bot}} botunun yanıtları, bu özel yazışmadaki kişi tarafından görülebilir. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
+        "detailThread": "Kanaldaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
+        "detailExternal": "Çalışma alanınızın dışından katılanlar dâhil, {{channel}} kanalındaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
+        "detailChannel": "{{channel}} kanalındaki herkes mesajlarınızı ve {{bot}} botunun yanıtlarını görebilir. Araç çağrıları ve alt ajanlar BrzA Studio’da kalır.",
         "posting": "Slack’e gönderiliyor…",
         "failedFile": "Slack’e gönderilmedi · Dosya çok büyük",
         "failedEmpty": "Slack’e gönderilmedi · Gönderilecek içerik yok",
         "failedTooLong": "Slack’e gönderilmedi · Mesaj çok uzun",
         "failed": "Slack’e gönderilmedi",
         "delete": "Slack’ten sil",
-        "postedFrom": "Orca’dan gönderildi · Hedef: {{place}}",
+        "postedFrom": "BrzA Studio’dan gönderildi · Hedef: {{place}}",
         "retry": "Yeniden dene",
         "rewindStays": "Daha önce Slack’e gönderilen mesajlar orada kalır.",
         "switch": "Bu sohbeti Slack’te paylaş",
-        "tooltipOff": "Mesajlarınız Orca’da kalır",
+        "tooltipOff": "Mesajlarınız BrzA Studio’da kalır",
         "tooltipOn": "Mesajlarınız ve {{bot}} botunun yanıtları bu Slack yazışmasına da gönderilir"
       },
       "typedBy": {
@@ -22673,7 +22673,7 @@
         "detected": "Algılandı",
         "settings": "Oturum açma ayarları…",
         "switched": "Antigravity artık {{method}} yöntemini kullanıyor.",
-        "switchFailed": "Orca, Antigravity’nin oturum açma yöntemini değiştiremedi. Yeniden deneyin.",
+        "switchFailed": "BrzA Studio, Antigravity’nin oturum açma yöntemini değiştiremedi. Yeniden deneyin.",
         "confirmTitle": "{{method}} yöntemine geçilsin mi?",
         "confirmBody": "Bu bilgisayarda çalışan Antigravity sohbetleri yeniden başlatılır. Yazılmakta olan yanıt durur; sohbetleriniz korunur.",
         "cancel": "İptal",
@@ -22682,10 +22682,10 @@
         "moreOptions": "Diğer seçenekler…",
         "useApiKey": "Gemini API anahtarınızı kullanın",
         "useGoogle": "Google oturumunuzu kullanın",
-        "apiKeySaved": "Orca’da kayıtlı",
+        "apiKeySaved": "BrzA Studio’da kayıtlı",
         "googleFound": "Bu bilgisayarda daha önce Google ile oturum açtınız",
         "askApiKeyEnvironment": "Bunun yerine ortamınızda bulunan Gemini API anahtarı kullanılsın mı?",
-        "askApiKeySaved": "Bunun yerine Orca’da kayıtlı Gemini API anahtarı kullanılsın mı?",
+        "askApiKeySaved": "Bunun yerine BrzA Studio’da kayıtlı Gemini API anahtarı kullanılsın mı?",
         "askGcloud": "Bunun yerine gcloud oturumunuz kullanılsın mı? Proje: {{project}}",
         "askGoogle": "Bunun yerine Google oturumunuz kullanılsın mı?",
         "noSubscription": "Bu Google hesabının Antigravity aboneliği yok.",
@@ -22696,8 +22696,8 @@
         "signInGoogle": "Google ile oturum aç",
         "yourAgy": "Sizin agy kopyanız",
         "yourAgyVersion": "Sizin agy sürümünüz · v{{version}}",
-        "orcasAgy": "Orca'nın agy kopyası",
-        "orcasAgyVersion": "Orca’nın agy sürümü · v{{version}}",
+        "orcasAgy": "BrzA Studio'nın agy kopyası",
+        "orcasAgyVersion": "BrzA Studio’nın agy sürümü · v{{version}}",
         "runsOn": "Çalıştığı program: {{program}}",
         "keepsOwnLogin": "Bu sohbet agy’nin kendi Google oturumunu kullanmaya devam eder. Yeni sohbetlerde kullanılacak yöntem: {{method}}.",
         "apiKeyEnvironment": "Ortamınızdan",
@@ -22844,8 +22844,8 @@
         "settingsMenu": "Otomatik devam ayarları…",
         "more": "Diğer işlemler",
         "statusUnknown": "Sınırın ne zaman sıfırlanacağı bilinmiyor.",
-        "statusCanContinueAtAuto": "{{time}} saatinde devam edebilirsiniz. Orca bu sohbeti {{autoTime}} saatinde sürdürecek.",
-        "statusCanContinueAtNoAuto": "{{time}} saatinde devam edebilirsiniz. Orca bu sohbeti otomatik olarak sürdürmeyecek.",
+        "statusCanContinueAtAuto": "{{time}} saatinde devam edebilirsiniz. BrzA Studio bu sohbeti {{autoTime}} saatinde sürdürecek.",
+        "statusCanContinueAtNoAuto": "{{time}} saatinde devam edebilirsiniz. BrzA Studio bu sohbeti otomatik olarak sürdürmeyecek.",
         "statusCanContinueAt": "{{time}} saatinde devam edebilirsiniz.",
         "resetUnknown": "Sıfırlama zamanı bilinmiyor",
         "continuesAt": "{{time}} saatinde devam eder",
@@ -22855,10 +22855,10 @@
         "titleWeeklyReached": "{{agent}} için haftalık kullanım sınırına ulaşıldı",
         "titleExtraUsageReached": "{{agent}} için ek kullanım sınırına ulaşıldı",
         "titleUsageReached": "{{agent}} için kullanım sınırına ulaşıldı",
-        "statusHasUsageAuto": "{{agent}} için yeniden kullanım hakkı var. Orca bu sohbeti {{time}} saatinde sürdürecek.",
+        "statusHasUsageAuto": "{{agent}} için yeniden kullanım hakkı var. BrzA Studio bu sohbeti {{time}} saatinde sürdürecek.",
         "statusHasUsage": "{{agent}} için yeniden kullanım hakkı var.",
         "titleHasUsage": "{{agent}} için yeniden kullanım hakkı var",
-        "statusCanContinueNowAuto": "{{agent}} şimdi devam edebilir. Orca bu sohbeti {{time}} saatinde sürdürecek.",
+        "statusCanContinueNowAuto": "{{agent}} şimdi devam edebilir. BrzA Studio bu sohbeti {{time}} saatinde sürdürecek.",
         "statusCanContinueNow": "{{agent}} şimdi devam edebilir.",
         "titleCanContinueNow": "{{agent}} şimdi devam edebilir",
         "turnOnAutoContinue": "Sınır sıfırlandığında otomatik olarak devam et"
@@ -22894,7 +22894,7 @@
         "close": "Kapat",
         "loading": "Yükleniyor…",
         "notRunning": "Sonraki mesajınızı gönderdiğinizde bağlanır",
-        "unsupported": "Burada yönetmek için bu sohbetin ana makinesindeki Orca’yı güncelleyin",
+        "unsupported": "Burada yönetmek için bu sohbetin ana makinesindeki BrzA Studio’yı güncelleyin",
         "readFailed": "Yüklenemedi",
         "retry": "Yeniden dene",
         "empty": "Bu sohbet için ayarlanmış sunucu yok",
@@ -23214,8 +23214,8 @@
           "statusLabel": "Durum",
           "signalsLabel": "Sinyaller",
           "projectOnHost": "{{project}} · {{host}}",
-          "notGit": "Git çalışma alanı değil. Bunun yerine projeyi Orca’dan kaldırın.",
-          "unreachable": "{{host}} ile bağlantı kurulamıyor. Silmek için yeniden bağlanın veya Orca’dan kaldırın.",
+          "notGit": "Git çalışma alanı değil. Bunun yerine projeyi BrzA Studio’dan kaldırın.",
+          "unreachable": "{{host}} ile bağlantı kurulamıyor. Silmek için yeniden bağlanın veya BrzA Studio’dan kaldırın.",
           "mainCheckout": "Projenin ana checkout’u silinemez.",
           "uncommittedFiles_one": "{{count}} commit edilmemiş dosya",
           "uncommittedFiles_other": "{{count}} commit edilmemiş dosya",
@@ -23361,10 +23361,10 @@
         "copySessionIdSuccess": "Oturum Kimliği kopyalandı",
         "copySessionIdError": "Oturum kimliği kopyalanamadı",
         "copySessionIdUnavailable": "Kopyalanacak oturum kimliği yok",
-        "copyOrcaSessionId": "Orca Oturum Kimliğini Kopyala",
-        "orcaSessionIdTooltip": "Orca’nın bu ajana verdiği kimliktir. Ajanın CLI'sindeki oturum kimliğinden ayrıdır. Ajanlar Orca üzerinden birbirlerine başvururken bu kimliği kullanır.",
-        "orcaSessionIdCopied": "Orca oturum kimliği kopyalandı",
-        "orcaSessionIdCopyFailed": "Orca oturum kimliği kopyalanamıyor"
+        "copyOrcaSessionId": "BrzA Studio Oturum Kimliğini Kopyala",
+        "orcaSessionIdTooltip": "BrzA Studio’nın bu ajana verdiği kimliktir. Ajanın CLI'sindeki oturum kimliğinden ayrıdır. Ajanlar BrzA Studio üzerinden birbirlerine başvururken bu kimliği kullanır.",
+        "orcaSessionIdCopied": "BrzA Studio oturum kimliği kopyalandı",
+        "orcaSessionIdCopyFailed": "BrzA Studio oturum kimliği kopyalanamıyor"
       },
       "hostFile": {
         "updateHostForOutsideFiles": "Çalışma alanları dışındaki dosyaları açmak için {{value0}} üzerindeki BrzA Studio'yı güncelleyin"
@@ -23402,7 +23402,7 @@
           "position": "konum"
         },
         "claudeCodeThemeSync": {
-          "description": "Bu bilgisayardaki Claude Code, Orca dışında da terminalinizin renklerini kullanır ve tema değişikliklerini anında uygular. Bu seçeneği kapatırsanız önceki Claude Code temanız geri yüklenir. Claude Code içinden bir tema seçerseniz eşitleme durur.",
+          "description": "Bu bilgisayardaki Claude Code, BrzA Studio dışında da terminalinizin renklerini kullanır ve tema değişikliklerini anında uygular. Bu seçeneği kapatırsanız önceki Claude Code temanız geri yüklenir. Claude Code içinden bir tema seçerseniz eşitleme durur.",
           "claude": "claude",
           "9353305ea6": "Claude Code temasını terminal temasıyla eşitle"
         }
@@ -23447,7 +23447,7 @@
         "promptSuggestionsSearchGhost": "hayalet metin",
         "linkPreviewsToggleLabel": "Bağlantı önizlemelerini aç veya kapat",
         "linkPreviewsTitle": "Bağlantı önizlemeleri",
-        "linkPreviewsCopy": "İşaretçiyi bir web bağlantısının üzerine getirdiğinizde önizleme kartı görünür. Orca kartı oluşturmak için sayfayı getirir; dolayısıyla site bu isteği görebilir.",
+        "linkPreviewsCopy": "İşaretçiyi bir web bağlantısının üzerine getirdiğinizde önizleme kartı görünür. BrzA Studio kartı oluşturmak için sayfayı getirir; dolayısıyla site bu isteği görebilir.",
         "linkPreviewsSearchUnfurl": "bağlantı önizlemesini genişlet",
         "linkPreviewsSearchHover": "üzerine gelince açılan kart",
         "composerSpellcheckTitle": "Yazım denetimi ve otomatik düzeltme",
@@ -23455,11 +23455,11 @@
         "composerSpellcheckSearchSpelling": "yazım denetimi",
         "composerSpellcheckSearchAutocorrect": "otomatik düzeltme",
         "usageLimitContinueTitle": "Kullanım sınırı sıfırlandığında sohbetlere otomatik olarak devam et",
-        "usageLimitContinueCopy": "Sınır sıfırlandığında Orca, “Kaldığın yerden devam et.” mesajını gönderir. Bu ayar, sıfırlama zamanı bilinen tüm sohbetler için geçerlidir.",
+        "usageLimitContinueCopy": "Sınır sıfırlandığında BrzA Studio, “Kaldığın yerden devam et.” mesajını gönderir. Bu ayar, sıfırlama zamanı bilinen tüm sohbetler için geçerlidir.",
         "usageLimitContinueSearchLimit": "kullanım sınırı",
         "usageLimitContinueSearchReset": "sıfırla",
         "usageLimitContinueToggleLabel": "Kullanım sınırı sıfırlandığında sohbete devam etme özelliğini aç veya kapat",
-        "usageLimitContinueUnsupported": "Bu ayarı orada değiştirmek için {{host}} üzerindeki Orca'yı güncelleyin.",
+        "usageLimitContinueUnsupported": "Bu ayarı orada değiştirmek için {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
         "usageLimitContinueUpdateFailed": "{{host}} üzerindeki ayar güncellenemedi.",
         "openedPullRequestsSearchPr": "PR",
         "ciResultLinesTitle": "CI sonuç satırları",
@@ -23613,7 +23613,7 @@
             "waitLabel": "Bekleme",
             "wait": "Metin birkaç saniye sonra eklenir.",
             "title": "Yapay zekâ ile düzeltme açılsın mı?",
-            "description": "Her diktenin ardından Orca, metni eklemeden önce düzeltmesi için {{agent}} ajanına gönderir.",
+            "description": "Her diktenin ardından BrzA Studio, metni eklemeden önce düzeltmesi için {{agent}} ajanına gönderir.",
             "cancel": "İptal",
             "confirm": "Aç"
           },
@@ -23685,8 +23685,8 @@
       "recoverServer": {
         "titleOnHost": "{{host}} üzerindeki eski kilit kaldırılsın mı?",
         "titleGeneric": "Eski kilit kaldırılsın mı?",
-        "summary": "Önceki bir çalıştırma kilit bıraktığı için Orca'nın sunucusu başlatılamıyor.",
-        "confirmCheckHomeFolder": "Bu ana klasörü paylaşan başka hiçbir makine Orca çalıştırmıyor",
+        "summary": "Önceki bir çalıştırma kilit bıraktığı için BrzA Studio'nın sunucusu başlatılamıyor.",
+        "confirmCheckHomeFolder": "Bu ana klasörü paylaşan başka hiçbir makine BrzA Studio çalıştırmıyor",
         "details": "Ayrıntılar",
         "clearing": "Kaldırılıyor…"
       },
@@ -23701,8 +23701,8 @@
       },
       "workspaceCleanup": {
         "title": "Çalışma Alanı Temizliği",
-        "description": "İşinizin bittiği çalışma alanlarını kaldırın. Orca herhangi bir şeyi kaldırmadan önce kaydedilmemiş çalışma olup olmadığını yeniden denetler.",
-        "unsupportedHost": "Bu bilgisayardaki Orca sürümü otomatik temizlemeyi desteklemiyor. Bu ayarları kullanmak için o bilgisayarda Orca’yı güncelleyin.",
+        "description": "İşinizin bittiği çalışma alanlarını kaldırın. BrzA Studio herhangi bir şeyi kaldırmadan önce kaydedilmemiş çalışma olup olmadığını yeniden denetler.",
+        "unsupportedHost": "Bu bilgisayardaki BrzA Studio sürümü otomatik temizlemeyi desteklemiyor. Bu ayarları kullanmak için o bilgisayarda BrzA Studio’yı güncelleyin.",
         "previewFailed": "Bu değişiklikten hangi çalışma alanlarının etkileneceği denetlenemedi.",
         "pinFailed": "{{name}} korunamadı.",
         "rules": {
@@ -23921,13 +23921,13 @@
         "deleteHistoryWithWorkspace": {
           "updateFailed": "{{host}} üzerindeki ayar güncellenemedi.",
           "recommended": "Önerilen",
-          "unsupported": "Bu ayarı {{host}} üzerinde kullanmak için o bilgisayarda Orca’yı güncelleyin.",
+          "unsupported": "Bu ayarı {{host}} üzerinde kullanmak için o bilgisayarda BrzA Studio’yı güncelleyin.",
           "confirmTitle": "Silinmiş çalışma alanlarına ait ajan geçmişi silinsin mi?",
-          "confirmDescription": "Orca, bugün ve daha önce silinenler dâhil, artık var olmayan çalışma alanlarına ait Orca, Claude Code ve Codex sohbetlerini silecek. Mevcut çalışma alanlarınızdaki sohbetler korunacak. Silinen sohbetler kurtarılamaz.",
+          "confirmDescription": "BrzA Studio, bugün ve daha önce silinenler dâhil, artık var olmayan çalışma alanlarına ait BrzA Studio, Claude Code ve Codex sohbetlerini silecek. Mevcut çalışma alanlarınızdaki sohbetler korunacak. Silinen sohbetler kurtarılamaz.",
           "cancel": "İptal",
           "turnOn": "Aç",
           "title": "Çalışma alanı silindiğinde ajan geçmişini de sil",
-          "description": "Diskte yer açmak için silinen çalışma alanlarına ait Orca, Claude Code ve Codex sohbetleri otomatik olarak silinir. Bu sohbetler kurtarılamaz.",
+          "description": "Diskte yer açmak için silinen çalışma alanlarına ait BrzA Studio, Claude Code ve Codex sohbetleri otomatik olarak silinir. Bu sohbetler kurtarılamaz.",
           "codexHistoryBadge": "Codex geçmişi: {{size}}",
           "codexHistoryBadgeAtLeast": "Codex geçmişi: en az {{size}}",
           "codexHistoryTooltip": "Codex’in {{host}} üzerinde kendi sohbet geçmişi için kullandığı alan. Mevcut çalışma alanlarınızdaki sohbetler de bu değere dâhildir.",
@@ -23943,20 +23943,20 @@
         "server": {
           "fallbackHost": "bu sunucu",
           "updateFailed": "{{host}} üzerindeki bildirim ayarları güncellenemedi.",
-          "unsupported": "Bildirimleri buradan değiştirebilmek için {{host}} üzerinde Orca’yı güncelleyin.",
+          "unsupported": "Bildirimleri buradan değiştirebilmek için {{host}} üzerinde BrzA Studio’yı güncelleyin.",
           "enabledDescription": "{{host}} üzerindeki ajan ve terminaller için gönderilen uyarılar. Telefonlarınıza gönderilen anlık bildirimler de buna dâhildir.",
           "sectionDescription": "{{host}} üzerindeki ajan ve terminaller için gönderilen uyarılar."
         }
       },
       "orcaAccount": {
         "server": {
-          "sectionDescription": "{{host}} üzerindeki botların Slack, GitHub, Linear ve webhook bağlantılarında kullanılan Orca hesabı.",
-          "unread": "{{host}} üzerindeki Orca hesabı okunamadı. {{host}} üzerindeki Orca’yı güncelleyin veya bağlantıyı yeniden kurun.",
+          "sectionDescription": "{{host}} üzerindeki botların Slack, GitHub, Linear ve webhook bağlantılarında kullanılan BrzA Studio hesabı.",
+          "unread": "{{host}} üzerindeki BrzA Studio hesabı okunamadı. {{host}} üzerindeki BrzA Studio’yı güncelleyin veya bağlantıyı yeniden kurun.",
           "signInThere": "Oturum açmak için {{host}} üzerinde `orca auth login` komutunu çalıştırın."
         }
       },
       "hostScope": {
-        "updateHostToChange": "Bu ayarı orada değiştirmek için {{host}} üzerindeki Orca'yı güncelleyin.",
+        "updateHostToChange": "Bu ayarı orada değiştirmek için {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
         "updateFailed": "{{host}} üzerindeki ayar güncellenemedi."
       },
       "git": {
@@ -24087,7 +24087,7 @@
       "stepDownload": "İndir",
       "stepUnpack": "Arşivden çıkar",
       "stepCheck": "Kontrol et",
-      "installedByOrca": "Orca tarafından kuruldu · {{version}}",
+      "installedByOrca": "BrzA Studio tarafından kuruldu · {{version}}",
       "updateTo": "{{version}} sürümüne güncelle"
     },
     "linearWorkspacePicker": {
@@ -24186,8 +24186,8 @@
       "routing": {
         "preference": {
           "dialog": {
-            "keepInOrcaTitle": "Terminal bağlantıları Orca'da açılmaya devam etsin mi?",
-            "openInOrcaTitle": "Terminal bağlantıları Orca'da açılsın mı?",
+            "keepInOrcaTitle": "Terminal bağlantıları BrzA Studio'da açılmaya devam etsin mi?",
+            "openInOrcaTitle": "Terminal bağlantıları BrzA Studio'da açılsın mı?",
             "shortcutSummary": "{{shortcut}}-tıklama sistem tarayıcınızı bir kez açar. Bunu Ayarlar'dan değiştirebilirsiniz."
           }
         }
@@ -24202,7 +24202,7 @@
     },
     "sidebar": {
       "ForgetSshWorkspaceDialog": {
-        "removeFromOrcaTitle": "{{name}} Orca'dan kaldırılsın mı?",
+        "removeFromOrcaTitle": "{{name}} BrzA Studio'dan kaldırılsın mı?",
         "ghostHostLine": "{{host}} artık kayıtlı bir ana makine değil. Dosyalar orada kalır.",
         "disconnectedHostLine": "{{host}} bağlı değil. Dosyalar ana makinede kalır.",
         "filesStayLine": "Dosyalar {{host}} üzerinde kalır.",
@@ -24238,7 +24238,7 @@
       "inherit": "Tarayıcı ayarı ({{scope}})",
       "deletedOption": "Silinmiş profil",
       "deleted": "Bu proje için seçilen profil silindi. Yeni sekmeler artık Tarayıcı ayarını kullanıyor.",
-      "saveFailed": "Tarayıcı profili kaydedilemedi. Projenin bulunduğu bilgisayarda Orca’yı güncellemeniz gerekebilir."
+      "saveFailed": "Tarayıcı profili kaydedilemedi. Projenin bulunduğu bilgisayarda BrzA Studio’yı güncellemeniz gerekebilir."
     },
     "orchestrationCrew": {
       "mentionAll": "Herkesten bahset",
@@ -24315,11 +24315,11 @@
       "activeAgentNeedsPermission": "Etkin ajan izin bekliyor.",
       "statusUnverified": "{{target}} ajanının durumu doğrulanamadı.",
       "approvalUnseen": "{{target}} ajanı onay bekliyor olabilir. Notları, ajanın bu turu sona erdiğinde gönderin.",
-      "hostUpdateRequired": "Notları {{target}} ajanına göndermek için ajanın çalıştığı bilgisayarda Orca’yı güncelleyin.",
+      "hostUpdateRequired": "Notları {{target}} ajanına göndermek için ajanın çalıştığı bilgisayarda BrzA Studio’yı güncelleyin.",
       "notReady": "{{target}} ajanı henüz girdi almaya hazır değildi.",
       "notWritable": "{{target}} ajanı notları kabul etmedi.",
-      "selectedSubmitFailed": "Notlar seçilen terminale yapıştırılmış olabilir ancak Orca bunları gönderemedi.",
-      "activeSubmitFailed": "Notlar etkin terminale yapıştırılmış olabilir ancak Orca bunları gönderemedi.",
+      "selectedSubmitFailed": "Notlar seçilen terminale yapıştırılmış olabilir ancak BrzA Studio bunları gönderemedi.",
+      "activeSubmitFailed": "Notlar etkin terminale yapıştırılmış olabilir ancak BrzA Studio bunları gönderemedi.",
       "notWritableSelection": "{{target}} ajanı seçilen içeriği kabul etmedi."
     }
   },
@@ -24608,7 +24608,7 @@
       "taskTypes": "Tür hataları",
       "teamLead": "Ekibin bir parçası.",
       "title": "Yapay zekâ takım arkadaşınız",
-      "product": "Orca Botları",
+      "product": "BrzA Studio Botları",
       "slackAppTag": "UYGULAMA",
       "slackChannel": "# mobil",
       "slackPerson": "Jordan Lee"
@@ -25164,8 +25164,8 @@
       "turnOffSharing": "Paylaşımı kapat",
       "dialogQuestion": "Her Codex sekmesine kendi sunucusu verilsin mi?",
       "stopSummary": "Çalışan sunucuyu durdurur ve onu kullanan tüm Codex oturumlarını kapatır.",
-      "dialogSummary": "Codex sunucu paylaşımını Orca dışında da kapatır.",
-      "alsoStop": "Çalışan sunucuyu da durdur (Orca dışındakiler dahil onu kullanan tüm Codex oturumlarını kapatır)",
+      "dialogSummary": "Codex sunucu paylaşımını BrzA Studio dışında da kapatır.",
+      "alsoStop": "Çalışan sunucuyu da durdur (BrzA Studio dışındakiler dahil onu kullanan tüm Codex oturumlarını kapatır)",
       "couldNotTurnOff": "Paylaşım kapatılamadı.",
       "stopFailedAfterOff": "Paylaşım kapalı ancak sunucu durmadı.",
       "turnOffAndStop": "Turn off and stop server"
@@ -25250,11 +25250,11 @@
       "lighterText": "Daha ince terminal yazısı"
     },
     "claudeThemeSyncOffer": {
-      "title": "Claude Code teması Orca temanızla eşitlensin mi?",
-      "description": "Bu bilgisayardaki Claude Code, Orca dışında da terminal renklerinizi kullanır ve tema değişikliklerini izler. Bu seçimi Ayarlar’dan değiştirebilirsiniz.",
+      "title": "Claude Code teması BrzA Studio temanızla eşitlensin mi?",
+      "description": "Bu bilgisayardaki Claude Code, BrzA Studio dışında da terminal renklerinizi kullanır ve tema değişikliklerini izler. Bu seçimi Ayarlar’dan değiştirebilirsiniz.",
       "accept": "Temayla eşleştir",
       "accepted": "Claude Code tema eşitlemesi açık",
-      "acceptedDescription": "Bu bilgisayarda açılan yeni Claude Code oturumları Orca temanızı kullanır.",
+      "acceptedDescription": "Bu bilgisayarda açılan yeni Claude Code oturumları BrzA Studio temanızı kullanır.",
       "decline": "Hayır, teşekkürler",
       "failed": "Claude Code tema eşitlemesi açılamadı",
       "failedDescription": "Bu özelliği Ayarlar’dan açın."
@@ -25315,7 +25315,7 @@
     "noDirectories": "Henüz klasör eklenmedi.",
     "removePath": "{{name}} klasörünü kaldır",
     "addTypedPathCode": "<path/> ekle",
-    "updateServerToRemove": "Bu projenin hazır ayarlarını kaldırmak için projenin sunucusunda Orca’yı güncelleyin."
+    "updateServerToRemove": "Bu projenin hazır ayarlarını kaldırmak için projenin sunucusunda BrzA Studio’yı güncelleyin."
   },
   "accounts": {
     "wslAccountNotApplied": {
@@ -25371,8 +25371,8 @@
       "agentPlatform": "Google Agent Platform",
       "projectFromGcloud": "gcloud üzerinden",
       "locationGlobal": "genel",
-      "adcHint": "İsteğe bağlı. Orca, gcloud projenizi ve global konumu kullanır. Önce bir kez gcloud auth application-default login komutunu çalıştırın.",
-      "apiKeySaveFailed": "Orca anahtarı kaydedemedi. Yeniden deneyin.",
+      "adcHint": "İsteğe bağlı. BrzA Studio, gcloud projenizi ve global konumu kullanır. Önce bir kez gcloud auth application-default login komutunu çalıştırın.",
+      "apiKeySaveFailed": "BrzA Studio anahtarı kaydedemedi. Yeniden deneyin.",
       "apiKeySaved": "Anahtar bu bilgisayara şifrelenerek kaydedildi.",
       "apiKeyFromEnvironment": "Ortamınızdaki GEMINI_API_KEY kullanılıyor. Farklı bir anahtar kullanmak için buraya yapıştırın.",
       "apiKeyLabel": "Gemini API anahtarı",
@@ -25519,12 +25519,12 @@
     "rename": {
       "action": "Yeniden adlandır",
       "title": "Hesabı yeniden adlandır",
-      "description": "Yalnızca Orca’da görünen ad değişir. {{email}} adresinin görünmesi için bu alanı boş bırakın.",
+      "description": "Yalnızca BrzA Studio’da görünen ad değişir. {{email}} adresinin görünmesi için bu alanı boş bırakın.",
       "label": "Görünen Ad",
       "reset": "Varsayılana sıfırla",
       "cancel": "İptal",
       "save": "Kaydet",
-      "unsupportedHost": "Bu ayarı orada değiştirmek için {{host}} üzerindeki Orca'yı güncelleyin."
+      "unsupportedHost": "Bu ayarı orada değiştirmek için {{host}} üzerindeki BrzA Studio'yı güncelleyin."
     }
   },
   "fileSearch": {
@@ -25560,7 +25560,7 @@
       "createdBranchSkipped": "Kurulum çalışmadı: bu çalışma alanının dalındaki orca.yaml kurulum komutları onayladıklarınızdan farklı.",
       "runFailed": "Kurulum başlatılamadı.",
       "changedAgain": "Kurulum çalıştırılmadı: Bu çalışma alanının orca.yaml dosyası, siz inceledikten sonra yeniden değişti.",
-      "hostUnsupported": "Onaylandı. Mevcut çalışma alanında kurulumu çalıştırmak için alanın bulunduğu bilgisayarda Orca’yı güncelleyin.",
+      "hostUnsupported": "Onaylandı. Mevcut çalışma alanında kurulumu çalıştırmak için alanın bulunduğu bilgisayarda BrzA Studio’yı güncelleyin.",
       "reviewAction": "Kurulumu incele",
       "branchDiffersTitle": "Bu çalışma alanının branch'inde farklı kurulum komutları var",
       "branchDiffersBody": "Çalışma alanı oluşturuldu ancak kurulum çalıştırılmadı: Bu branch'teki <code>orca.yaml</code> onayladığınız dosyadan farklı. Bu komutları yalnızca <repo/> repository'sine güveniyorsanız bu çalışma alanında çalıştırın.",
@@ -25861,8 +25861,8 @@
   "updates": {
     "installOnQuit": {
       "title": "Güncelleme yüklenmeye hazır",
-      "summary": "Orca'dan çıkın. Yüklemeden sonra yeniden açın.",
-      "quit": "Orca'dan çık",
+      "summary": "BrzA Studio'dan çıkın. Yüklemeden sonra yeniden açın.",
+      "quit": "BrzA Studio'dan çık",
       "later": "Daha sonra"
     },
     "installBlock": {
@@ -25902,7 +25902,7 @@
       "releaseNotReady": "Bu cihaz için daha yeni bir sürüm henüz kullanıma sunulmadı. Daha sonra tekrar kontrol edin.",
       "updateServerUnreachable": "Güncelleme sunucusuna ulaşılamadı. Birkaç dakika sonra tekrar deneyin.",
       "channelUnsupportedPlatform": "“{{channel}}” kanalındaki sürümler yalnızca macOS ve Windows için üretilir.",
-      "unsignedDevChannel": "“{{channel}}” kanalındaki sürümler imzasızdır. Geçerli imzalı sürüm yalnızca Orca’nın yayımcısının imzaladığı güncellemeleri yükler. Yükleyiciyi sürümler sayfasından indirip bir kez çalıştırın. Bundan sonra Kararlı kanalına dönüş dahil güncellemeler normal şekilde çalışır.",
+      "unsignedDevChannel": "“{{channel}}” kanalındaki sürümler imzasızdır. Geçerli imzalı sürüm yalnızca BrzA Studio’nın yayımcısının imzaladığı güncellemeleri yükler. Yükleyiciyi sürümler sayfasından indirip bir kez çalıştırın. Bundan sonra Kararlı kanalına dönüş dahil güncellemeler normal şekilde çalışır.",
       "linuxPackageMissing": "İndirilen paket artık güncelleme önbelleğinde değil. Güncellemeyi yeniden indirin veya resmi sürüm sayfasından edinin.",
       "linuxPackageNotRegular": "İndirilen paket artık güncelleme önbelleğinde geçerli bir dosya değil. Güncellemeyi yeniden indirin veya resmi sürüm sayfasından edinin.",
       "linuxPackageHashMismatch": "İndirilen paket artık doğrulanmış sürümle eşleşmediğinden BrzA Studio paketi bir paket yöneticisine aktarmayacak. Güncellemeyi yeniden indirin veya resmi sürüm sayfasından edinin.",
@@ -25927,29 +25927,29 @@
       "rateLimitedInMinutes_other": "GitHub istek sınırına ulaşıldı. Yaklaşık {{count}} dakika sonra tekrar deneyin.",
       "rateLimitedInMinutesSignedOut_one": "GitHub istek sınırına ulaşıldı. Yaklaşık {{count}} dakika sonra tekrar deneyin veya BrzA Studio'nın hesabınızdaki daha yüksek sınırı kullanabilmesi için `gh auth login` komutunu çalıştırın.",
       "rateLimitedInMinutesSignedOut_other": "GitHub istek sınırına ulaşıldı. Yaklaşık {{count}} dakika sonra tekrar deneyin veya BrzA Studio'nın hesabınızdaki daha yüksek sınırı kullanabilmesi için `gh auth login` komutunu çalıştırın.",
-      "teamUpdatePolicy": "Orca güncellemelerini ekibiniz yönetiyor.",
-      "automaticInstallCheckpointFailed": "Orca, yeniden başlamadan önce geçerli pencereyi kaydedemedi. Güncellemeyi yeniden yüklemeyi deneyin.",
-      "automaticInstallTerminalBusy": "Yeniden başlatma bazı terminalleri kapatır. Orca daha sonraki bir güncelleme denetiminde yeniden dener.",
-      "macStagingTimeout": "macOS hâlâ güncellemeyi hazırlıyor. Bu durum sürerse Orca’dan çıkıp uygulamayı yeniden açın."
+      "teamUpdatePolicy": "BrzA Studio güncellemelerini ekibiniz yönetiyor.",
+      "automaticInstallCheckpointFailed": "BrzA Studio, yeniden başlamadan önce geçerli pencereyi kaydedemedi. Güncellemeyi yeniden yüklemeyi deneyin.",
+      "automaticInstallTerminalBusy": "Yeniden başlatma bazı terminalleri kapatır. BrzA Studio daha sonraki bir güncelleme denetiminde yeniden dener.",
+      "macStagingTimeout": "macOS hâlâ güncellemeyi hazırlıyor. Bu durum sürerse BrzA Studio’dan çıkıp uygulamayı yeniden açın."
     },
     "automatic": {
-      "downloading": "Orca {{version}} indiriliyor…",
-      "installing": "Orca {{version}} kuruluyor…",
-      "restarting": "Orca otomatik olarak yeniden başlayacak."
+      "downloading": "BrzA Studio {{version}} indiriliyor…",
+      "installing": "BrzA Studio {{version}} kuruluyor…",
+      "restarting": "BrzA Studio otomatik olarak yeniden başlayacak."
     },
     "emergencyRequired": {
-      "title": "Orca {{version}} gerekli",
-      "summary": "Orca {{version}} gerekli. Güncellemek için yeniden başlatın."
+      "title": "BrzA Studio {{version}} gerekli",
+      "summary": "BrzA Studio {{version}} gerekli. Güncellemek için yeniden başlatın."
     },
     "teamRequired": {
-      "summary": "Ekibiniz Orca {{version}} sürümünü gerektiriyor. Güncellemek için yeniden başlatın.",
-      "title": "Ekibiniz Orca {{version}} sürümünü gerektiriyor",
+      "summary": "Ekibiniz BrzA Studio {{version}} sürümünü gerektiriyor. Güncellemek için yeniden başlatın.",
+      "title": "Ekibiniz BrzA Studio {{version}} sürümünü gerektiriyor",
       "restartNow": "Şimdi yeniden başlat",
-      "countdown": "Geri sayım bittikten sonra Orca oturumlarınızı kaydedip yeniden başlatacak. Etkin ajanlar yeniden başlatmayı geciktirebilir.",
-      "waiting": "Orca yeniden başlatmadan önce etkin ajanları bekliyor.",
-      "retry": "Orca bu güncellemeyi bir sonraki başlatışında yeniden deneyecek.",
+      "countdown": "Geri sayım bittikten sonra BrzA Studio oturumlarınızı kaydedip yeniden başlatacak. Etkin ajanlar yeniden başlatmayı geciktirebilir.",
+      "waiting": "BrzA Studio yeniden başlatmadan önce etkin ajanları bekliyor.",
+      "retry": "BrzA Studio bu güncellemeyi bir sonraki başlatışında yeniden deneyecek.",
       "manual": "Otomatik yükleme yapılamadı. Bu güncellemeyi elle yükleyin.",
-      "deadline": "{{deadline}} öncesinde yeniden başlatın. Orca yeniden başlatmadan önce oturumlarınızı kaydeder.",
+      "deadline": "{{deadline}} öncesinde yeniden başlatın. BrzA Studio yeniden başlatmadan önce oturumlarınızı kaydeder.",
       "download": "İndirmeleri aç"
     },
     "remoteUpdateBusy": "Bu sunucu zaten güncelleniyor. Güncelleme tamamlandığında yeniden kontrol edin."
@@ -26179,10 +26179,10 @@
     "killAllLocal": "Tüm yerel oturumları sonlandır",
     "killFailed": "Terminal sonlandırılamadı. Son gözlemlenen oturumlar korunur.",
     "owner": {
-      "orca": "Orca",
+      "orca": "BrzA Studio",
       "agents": "Ajanlar",
       "otherTerminals": "Diğer terminaller",
-      "privateBytes": "Orca, ajanlar ve terminaller için ayrılmış bellek"
+      "privateBytes": "BrzA Studio, ajanlar ve terminaller için ayrılmış bellek"
     },
     "chatRow": {
       "tooltip": "{{agent}} sohbeti (altında çalışan işlemler dahil)"
@@ -26812,9 +26812,9 @@
       "scopeChanged": "Taşıma hazırlanırken bir proje değiştiği için hiçbir şey taşınmadı. Projeleri kontrol edip tekrar deneyin.",
       "cancelled": "Taşıma iptal edildi. Hiçbir şey taşınmadı.",
       "finishedEarlierMove": "BrzA Studio önce {{distro}} içine yapılan önceki bir taşımayı tamamladı. Pencereyi yeniden yükleyin, ardından bu taşımayı yeniden başlatın.",
-      "hostLaunchUnproven": "{{distro}} içindeki Orca sunucusu uygulamayla aynı sürümde ancak bu projeleri devralamıyor; güncelleme sorunu çözmez. Sunucuyu WSL dışında bir ana bilgisayar, örneğin bir SSH ana bilgisayarı başlatmış olabilir. Ayarlar’dan {{distro}} ana bilgisayarını kaldırıp yeniden ekleyin.",
-      "hostNotWslLaunched": "{{distro}} içindeki Orca sunucusu WSL ana bilgisayarı olarak başlatılmadığı için bu projeleri devralamıyor. Genellikle sunucuyu bu dağıtıma ait bir SSH ana bilgisayarı başlatmıştır. Güncelleme sorunu çözmez. Ayarlar’da {{distro}} için “WSL ana bilgisayarı olarak yeniden başlat”ı seçip yeniden deneyin.",
-      "mappedDriveUnverifiable": "Orca bazı projelerin kayıtlı olduğu sürücünün harfini denetleyemedi. Sürücünün bağlı olduğundan emin olup yeniden deneyin.",
+      "hostLaunchUnproven": "{{distro}} içindeki BrzA Studio sunucusu uygulamayla aynı sürümde ancak bu projeleri devralamıyor; güncelleme sorunu çözmez. Sunucuyu WSL dışında bir ana bilgisayar, örneğin bir SSH ana bilgisayarı başlatmış olabilir. Ayarlar’dan {{distro}} ana bilgisayarını kaldırıp yeniden ekleyin.",
+      "hostNotWslLaunched": "{{distro}} içindeki BrzA Studio sunucusu WSL ana bilgisayarı olarak başlatılmadığı için bu projeleri devralamıyor. Genellikle sunucuyu bu dağıtıma ait bir SSH ana bilgisayarı başlatmıştır. Güncelleme sorunu çözmez. Ayarlar’da {{distro}} için “WSL ana bilgisayarı olarak yeniden başlat”ı seçip yeniden deneyin.",
+      "mappedDriveUnverifiable": "BrzA Studio bazı projelerin kayıtlı olduğu sürücünün harfini denetleyemedi. Sürücünün bağlı olduğundan emin olup yeniden deneyin.",
       "nothingMovable": "Henüz hiçbir proje {{distro}} ana bilgisayarına taşınamıyor. Her projenin gerekçesi ayrı gösterilir."
     },
     "step": {
@@ -26856,8 +26856,8 @@
       "other": "Taşınamaz.",
       "windowsGitWorktrees": "Bazı worktree'lerin kayıtlarını Git for Windows oluşturmuş; sonradan silinenlerin kayıtları da buna dâhil. WSL ana bilgisayarındaki Git bu kayıtları kullanamaz. Bu worktree'leri kaldırın veya WSL içinden git worktree repair komutunu çalıştırın. Ardından projeyi taşıyın.",
       "windowsGitDir": "Git klasörü bir Windows yoluyla bağlanmış. Bu, Git for Windows’un oluşturduğu bir worktree veya ayrı bir Git klasörü olabilir. WSL ana bilgisayarındaki Git bu yolu çözümleyemiyor.",
-      "gitUnreadable": "Orca, Git bilgilerini denetlemek için zamanında okuyamadı. Proje bu bilgisayarda kaldı. Biraz sonra yeniden kontrol edin.",
-      "mappedDriveUnverifiable": "Orca sürücü harfinin hangi konuma karşılık geldiğini denetleyemedi. Sürücünün bağlı olduğundan emin olup yeniden kontrol edin."
+      "gitUnreadable": "BrzA Studio, Git bilgilerini denetlemek için zamanında okuyamadı. Proje bu bilgisayarda kaldı. Biraz sonra yeniden kontrol edin.",
+      "mappedDriveUnverifiable": "BrzA Studio sürücü harfinin hangi konuma karşılık geldiğini denetleyemedi. Sürücünün bağlı olduğundan emin olup yeniden kontrol edin."
     },
     "reloadToast": {
       "title": "Taşımayı tamamlamak için yeniden yükleyin"
@@ -26916,11 +26916,11 @@
         "unsupported": "Seçili otomasyon sunucusu bu projeyi desteklemiyor."
       },
       "botProviderErrorNotSaved": "Botun turu başarısız oldu ancak bu çalıştırmada sağlayıcının hatası kaydedilmedi. Asıl sohbette daha fazla ayrıntı olabilir.",
-      "botsOff": "Botlar Ayarlar’da kapalı olduğu için Orca bu çalıştırmayı atladı.",
-      "botsOffByTeam": "Botlar ekibiniz tarafından kapatıldığı için Orca bu çalıştırmayı atladı.",
+      "botsOff": "Botlar Ayarlar’da kapalı olduğu için BrzA Studio bu çalıştırmayı atladı.",
+      "botsOffByTeam": "Botlar ekibiniz tarafından kapatıldığı için BrzA Studio bu çalıştırmayı atladı.",
       "botMissing": "Bu otomasyonun adına çalıştığı bot artık yok.",
       "botFolderMissing": "Botun klasörü artık kullanılamıyor.",
-      "botPaused": "{{bot}} duraklatıldığı için Orca bu çalıştırmayı atladı.",
+      "botPaused": "{{bot}} duraklatıldığı için BrzA Studio bu çalıştırmayı atladı.",
       "agentInterrupted": "Ajan bu çalıştırmayı tamamlayamadan kesintiye uğradı.",
       "blocked": {
         "trustWorkspace": "Ajan bu klasöre güvendiğinizi onaylamanızı bekliyor.",
@@ -26960,7 +26960,7 @@
       "listSkippedTitle": "Dalının orca.yaml kurulum komutları değiştiği için son çalıştırma kurulumu atladı. Eylemler menüsünden inceleyin."
     },
     "botTarget": {
-      "hostNeedsUpdate": "Botlarının otomasyon kullanabilmesi için {host} üzerindeki Orca sunucusunu güncelleyin.",
+      "hostNeedsUpdate": "Botlarının otomasyon kullanabilmesi için {host} üzerindeki BrzA Studio sunucusunu güncelleyin.",
       "chat": "{{name}} sohbeti",
       "runsIn": "Çalıştığı yer",
       "runsInNew": "Her seferinde yeni bir sohbet",
@@ -26969,7 +26969,7 @@
       "resultsToChannelNeedsSlack": "Bir kanal (önce Slack’i bağlayın)",
       "resultsToThread": "Olayın konuşma dizisi",
       "resultsToThreadNeedsEvents": "Olayın gerçekleştiği yazışma (yalnızca olayla tetiklenen yeni sohbetlerde)",
-      "resultsToThreadUnsupported": "Olayın gerçekleştiği yazışma (Orca Cloud henüz desteklemiyor)",
+      "resultsToThreadUnsupported": "Olayın gerçekleştiği yazışma (BrzA Studio Cloud henüz desteklemiyor)",
       "resultsToNone": "Hiçbir yere",
       "channelPlaceholder": "#kanal veya Slack bağlantısı",
       "channelLabel": "Kanal",
@@ -27038,8 +27038,8 @@
     },
     "wontFire": "Çalışmayacak: {{connectors}} bağlantısı gerekiyor",
     "eventsWontFire": "Yalnızca zamanlamaya göre çalışır: Olaylar için {{connectors}} bağlantısı gerekiyor",
-    "webhooksOff": "Çalışmayacak: Orca Cloud henüz webhook’ları desteklemiyor",
-    "webhooksOffScheduled": "Yalnızca zamanlamaya göre çalışır: Orca Cloud henüz webhook’ları desteklemiyor",
+    "webhooksOff": "Çalışmayacak: BrzA Studio Cloud henüz webhook’ları desteklemiyor",
+    "webhooksOffScheduled": "Yalnızca zamanlamaya göre çalışır: BrzA Studio Cloud henüz webhook’ları desteklemiyor",
     "openConnectors": "Bağlayıcıları aç",
     "hostUnreachable": "{{host}} sunucusuna ulaşılamadı. Yeniden bağlandığında tekrar deneyin."
   },
@@ -27317,8 +27317,8 @@
       "suspendExitedWithoutCode": "Askıya alma işlemi sona erdi. Çıkış kodu bilinmiyor.",
       "resumeExited": "Sürdürme işlemi {{exitCode}} çıkış koduyla sona erdi.",
       "resumeExitedWithoutCode": "Sürdürme işlemi sona erdi. Çıkış kodu bilinmiyor.",
-      "recipeTimedOut": "Kurulum tarifinin {{mode}} adımı {{timeout}} içinde tamamlanmadığı için Orca adımı durdurdu. Tarifin çıktısını kontrol edin. Daha fazla süre gerekiyorsa orca.yaml dosyasında timeoutSeconds değerini artırın.",
-      "provisionInterrupted": "Sanal makine oluşturulurken Orca durdu. Sağlayıcıda ayrılmış olabilecek kaynakları serbest bırakmak için sanal makineyi silin."
+      "recipeTimedOut": "Kurulum tarifinin {{mode}} adımı {{timeout}} içinde tamamlanmadığı için BrzA Studio adımı durdurdu. Tarifin çıktısını kontrol edin. Daha fazla süre gerekiyorsa orca.yaml dosyasında timeoutSeconds değerini artırın.",
+      "provisionInterrupted": "Sanal makine oluşturulurken BrzA Studio durdu. Sağlayıcıda ayrılmış olabilecek kaynakları serbest bırakmak için sanal makineyi silin."
     }
   },
   "installDirAcl": {
@@ -27370,7 +27370,7 @@
     "disabledReason": {
       "needsPermission": "Ajan için izin gerekiyor",
       "approvalUnseen": "Ajan onay bekliyor olabilir",
-      "hostUpdateRequired": "Bu ajana göndermek için bu ana makinedeki Orca’yı güncelleyin"
+      "hostUpdateRequired": "Bu ajana göndermek için bu ana makinedeki BrzA Studio’yı güncelleyin"
     }
   },
   "wslDistroHold": {
@@ -27403,7 +27403,7 @@
       "needYou_one": "{{count}} sizi bekliyor",
       "needYou_other": "{{count}} sizi bekliyor",
       "addNamed": "{{name}} ekle",
-      "signInChanged": "Bu bilgisayardaki Orca oturumu değişti. Yeniden bağlanmak için oturum açın.",
+      "signInChanged": "Bu bilgisayardaki BrzA Studio oturumu değişti. Yeniden bağlanmak için oturum açın.",
       "addAnotherWorkspace": "Başka bir çalışma alanı ekle",
       "addGitHubAccess": "Repository veya kuruluş ekle",
       "addAnotherOrg": "Başka bir kuruluş ekle",
@@ -27494,8 +27494,8 @@
       "stateFirstChat": "İlk sohbet",
       "stateNotConnected": "Bağlı değil",
       "needsSetup": "Kurulum gerekli",
-      "publisher": "Orca tarafından",
-      "official": "Resmî Orca şablonu",
+      "publisher": "BrzA Studio tarafından",
+      "official": "Resmî BrzA Studio şablonu",
       "useTemplate": "Şablonu kullan…",
       "inItsChat": "botun sohbetinde",
       "firstChat": "İlk yaptığı şey",
@@ -27562,8 +27562,8 @@
       "unreviewed-work": {
         "name": "İncelenmemiş ajan çalışmaları",
         "line": "Ajanların tamamladığı ve henüz kimsenin incelemediği işlerin günlük listesi.",
-        "firstChat": "Ajanın çalışmasını tamamladığı, ancak değişiklikleri henüz incelemediğiniz veya pull request'e dönüştürmediğiniz çalışma alanlarını listeler. Orca, bir ajan sizi beklediğinde zaten haber verir; burada tamamlanan işleri görürsünüz.",
-        "watches": "Orca çalışma alanlarınız",
+        "firstChat": "Ajanın çalışmasını tamamladığı, ancak değişiklikleri henüz incelemediğiniz veya pull request'e dönüştürmediğiniz çalışma alanlarını listeler. BrzA Studio, bir ajan sizi beklediğinde zaten haber verir; burada tamamlanan işleri görürsünüz.",
+        "watches": "BrzA Studio çalışma alanlarınız",
         "does": "Ajanın değişiklikleri tamamladığı ancak henüz kimsenin incelemediği veya pull request açmadığı çalışma alanlarını listeler.",
         "reports": "Hafta içi saat 09.00'da, burada",
         "example1": "mobile-pairing dün tamamlandı. 340 satırlık bir diff var; pull request açılmadı.",
@@ -27579,7 +27579,7 @@
         "name": "Çalışma alanı temizliği",
         "line": "Tamamlanmış veya terk edilmiş çalışma alanlarını bulur ve kaldırmayı önerir.",
         "firstChat": "Pull request'i merge edilmiş veya iki haftadır değişmemiş çalışma alanlarını, henüz commit edilmemiş değişiklikleriyle birlikte listeler. Yalnızca seçtiklerinizi kaldırır.",
-        "watches": "Orca çalışma alanlarınız ve bunların pull request'leri",
+        "watches": "BrzA Studio çalışma alanlarınız ve bunların pull request'leri",
         "does": "Tamamlanmış ya da terk edilmiş çalışma alanlarıyla commit edilmemiş değişiklikleri listeler. Yalnızca seçtiğiniz alanları kaldırır.",
         "reports": "Cuma günleri saat 16.00'da, burada",
         "example1": "6 çalışma alanında iş tamamlandı: İlgili pull request'ler bu hafta merge edildi.",
@@ -27919,11 +27919,11 @@
       "colorSlate": "Arduvaz grisi",
       "colorWhite": "Beyaz",
       "computer": "Bilgisayar",
-      "computerAccountHint": "Botun çalıştığı yer; Orca oturumu {{account}} hesabıyla açık.",
+      "computerAccountHint": "Botun çalıştığı yer; BrzA Studio oturumu {{account}} hesabıyla açık.",
       "computerHint": "Botun çalıştığı yer.",
       "folder": "Klasör: {{path}}",
-      "hostNeedsServer": "Orca sunucusu gerekli",
-      "hostNeedsServerHint": "Botları çalıştırmak için Ayarlar → Uzak Orca Sunucuları bölümünde {{host}} üzerinde bir Orca sunucusu kurun.",
+      "hostNeedsServer": "BrzA Studio sunucusu gerekli",
+      "hostNeedsServerHint": "Botları çalıştırmak için Ayarlar → Uzak BrzA Studio Sunucuları bölümünde {{host}} üzerinde bir BrzA Studio sunucusu kurun.",
       "noChatAgents": "Bu bilgisayarda kullanılabilir sohbet ajanı yok.",
       "pictureColor": "Arka plan rengi",
       "pictureColorCustom": "Özel renk",
@@ -27938,12 +27938,12 @@
         "noAgents": "Ajan yok",
         "noAgentsAvailable": "Kullanılabilir ajan yok",
         "pictureLoading": "Görsel yükleniyor…",
-        "updateOrca": "Orca’yı güncelleyin"
+        "updateOrca": "BrzA Studio’yı güncelleyin"
       },
       "agentClaude": "Claude Code",
       "hostUnreachable": "{{host}} adresine ulaşılamıyor",
-      "hostUpdate": "{{host}} üzerindeki Orca'yı güncelle",
-      "hostNoBots": "{{host}} üzerindeki Orca henüz bot çalıştıramıyor",
+      "hostUpdate": "{{host}} üzerindeki BrzA Studio'yı güncelle",
+      "hostNoBots": "{{host}} üzerindeki BrzA Studio henüz bot çalıştıramıyor",
       "hostAs": "{{account}} olarak",
       "hostReconnect": "Yeniden bağlan",
       "hostReconnecting": "Yeniden bağlanılıyor…",
@@ -28666,30 +28666,30 @@
       "deleteDescription": "<name/> ve çalıştırma geçmişini sil."
     },
     "cloudSignIn": {
-      "eventsHostChat": "{{source}} olayları için {{host}} üzerinde Orca Cloud oturumu açılması gerekiyor. Oturum açıldığında bu kuralı kaydedeceğim.",
+      "eventsHostChat": "{{source}} olayları için {{host}} üzerinde BrzA Studio Cloud oturumu açılması gerekiyor. Oturum açıldığında bu kuralı kaydedeceğim.",
       "signIn": "Oturum aç",
-      "webhooksHostChat": "Webhook'lar için {{host}} üzerinde Orca Cloud oturumu açılması gerekiyor. Oturum açıldığında onu oluşturacağım.",
-      "webhooksNotReaching": "Orca Cloud {{name}} botuna ulaşamıyor, bu yüzden henüz webhook oluşturamıyor.",
-      "automationScheduledOnly": "Yalnızca zamanlamasına göre çalışır. Orca oturumu kapalıyken olay tetikleyicileri duraklatılır.",
-      "automationPaused": "Orca oturumu kapalıyken duraklatıldı",
-      "botOff": "Orca oturumu kapalı · Slack, olaylar ve paylaşım devre dışı",
-      "accessRequests": "Erişim istekleri için Orca'da oturum açmanız gerekir.",
-      "slack": "Slack, Orca Cloud üzerinden bağlanır. Devam etmek için Orca'da oturum açın.",
-      "github": "GitHub, Orca Cloud üzerinden bağlanır. Devam etmek için Orca'da oturum açın.",
-      "linear": "Linear, Orca Cloud üzerinden bağlanır. Devam etmek için Orca'da oturum açın.",
+      "webhooksHostChat": "Webhook'lar için {{host}} üzerinde BrzA Studio Cloud oturumu açılması gerekiyor. Oturum açıldığında onu oluşturacağım.",
+      "webhooksNotReaching": "BrzA Studio Cloud {{name}} botuna ulaşamıyor, bu yüzden henüz webhook oluşturamıyor.",
+      "automationScheduledOnly": "Yalnızca zamanlamasına göre çalışır. BrzA Studio oturumu kapalıyken olay tetikleyicileri duraklatılır.",
+      "automationPaused": "BrzA Studio oturumu kapalıyken duraklatıldı",
+      "botOff": "BrzA Studio oturumu kapalı · Slack, olaylar ve paylaşım devre dışı",
+      "accessRequests": "Erişim istekleri için BrzA Studio'da oturum açmanız gerekir.",
+      "slack": "Slack, BrzA Studio Cloud üzerinden bağlanır. Devam etmek için BrzA Studio'da oturum açın.",
+      "github": "GitHub, BrzA Studio Cloud üzerinden bağlanır. Devam etmek için BrzA Studio'da oturum açın.",
+      "linear": "Linear, BrzA Studio Cloud üzerinden bağlanır. Devam etmek için BrzA Studio'da oturum açın.",
       "cancel": "İptal",
       "paused": "Oturum kapalı olduğu için duraklatıldı",
       "needsSignIn": "Oturum açmak gerekiyor",
-      "toldBot": "Artık Orca Cloud'da oturum açtım.",
-      "signedIn": "Orca oturumu açık",
+      "toldBot": "Artık BrzA Studio Cloud'da oturum açtım.",
+      "signedIn": "BrzA Studio oturumu açık",
       "continue": "Devam et",
-      "webhooksChat": "Webhook oluşturmak için Orca Cloud oturumu gerekir. Oturum açtığınızda oluşturacağım.",
-      "eventsChat": "{{source}} olayları için Orca Cloud oturumu gerekir. Oturum açtığınızda bu kuralı kaydedeceğim."
+      "webhooksChat": "Webhook oluşturmak için BrzA Studio Cloud oturumu gerekir. Oturum açtığınızda oluşturacağım.",
+      "eventsChat": "{{source}} olayları için BrzA Studio Cloud oturumu gerekir. Oturum açtığınızda bu kuralı kaydedeceğim."
     },
     "errors": {
       "unsavedDrafts": "Klasöründe kaydedilmemiş düzenleyici değişiklikleri var. Bunları kaydedin veya kapatın, ardından silmeyi tekrar deneyin.",
       "nameTaken": "Bu ad başka bir bot tarafından kullanılıyor.",
-      "purposeTooLongForHost": "{{host}} üzerindeki Orca, amaç için en fazla 200 karakter kabul ediyor. Kısaltın veya {{host}} üzerindeki Orca'yı güncelleyin.",
+      "purposeTooLongForHost": "{{host}} üzerindeki BrzA Studio, amaç için en fazla 200 karakter kabul ediyor. Kısaltın veya {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
       "generic": "Bir sorun oluştu. Tekrar deneyin.",
       "avatarHomeUnreadable": "Kaydedilen resim okunamadı. Resmi yeniden seçin.",
       "folderNotOwned": "Bu botun klasörü doğrulanamadı.",
@@ -28718,7 +28718,7 @@
         "guideHere": "Burada bana yol göster",
         "guideBrowser": "Tarayıcımda bana yol göster",
         "doItNote": "{{bot}} adımları uygular",
-        "guideHereNote": "Orca içinden siz tıklarsınız",
+        "guideHereNote": "BrzA Studio içinden siz tıklarsınız",
         "guideBrowserNote": "Tarayıcınızda siz tıklarsınız"
       },
       "account": {
@@ -28737,8 +28737,8 @@
         "titleAccount": "{{email}} hesabını bağlamak için oturum açın",
         "title": "Bağlanmak için oturum açın",
         "note": "Google’ın oturum açma sayfası tarayıcınızda açılır. Google oturum bilgileriniz bu bilgisayarda kalır.",
-        "warning": "Bu uygulama size ait ve yeni oluşturulduğu için Google bir uyarı gösterir. Advanced’i, ardından Go to Orca’yı seçin ve sonraki ekrandaki tüm kutuları işaretleyin.",
-        "noteOnHost": "Google’ın oturum açma sayfası {{host}} üzerindeki Orca tarayıcısında açılır. Google oturum bilgileriniz {{host}} üzerinde kalır."
+        "warning": "Bu uygulama size ait ve yeni oluşturulduğu için Google bir uyarı gösterir. Advanced’i, ardından Go to BrzA Studio’yı seçin ve sonraki ekrandaki tüm kutuları işaretleyin.",
+        "noteOnHost": "Google’ın oturum açma sayfası {{host}} üzerindeki BrzA Studio tarayıcısında açılır. Google oturum bilgileriniz {{host}} üzerinde kalır."
       },
       "connected": {
         "heading": "Google bağlandı",
@@ -28766,7 +28766,7 @@
       "takeOver": "Buradan devral",
       "ownerStep": "3 adımdan {{step}}. adım",
       "otherAccount": "Hesap değiştir",
-      "keyMissed": "Anahtarı indirdiniz ama Orca algılamadı mı?",
+      "keyMissed": "Anahtarı indirdiniz ama BrzA Studio algılamadı mı?",
       "action": {
         "makeNewKey": "Yeni anahtar oluştur",
         "importKey": "Anahtar dosyasını içe aktar",
@@ -28786,7 +28786,7 @@
         "stopped": "Kurulum durduruldu.",
         "paused": "Kurulum {{step}} adımında duraklatıldı. Şu ana kadarki işlemler kaydedildi.",
         "yourTurn": "Sıra sizde: {{step}}.",
-        "noKey": "Orca’nın önce uygulama anahtarına ihtiyacı var.",
+        "noKey": "BrzA Studio’nın önce uygulama anahtarına ihtiyacı var.",
         "keyGone": "Uygulama anahtarı artık çalışmıyor: Google Cloud’dan kaldırılmış.",
         "keyOtherProject": "Kayıtlı anahtar {{project}} projesine değil, {{keyProject}} projesine ait.",
         "otherAccount": "{{signedIn}} hesabıyla oturum açtınız; bu kurulum {{wanted}} hesabı içindi.",
@@ -28794,7 +28794,7 @@
         "needsPermission": "Son adım: {{services}} hizmetlerine izin verin. Google her hizmet için bir kutu gösterir; hepsini işaretleyin.",
         "apiOff": "{{services}} hizmetleri Google Cloud’da kapalı.",
         "adminBlocked": "Şirketinizin Google yöneticisi şu hizmetleri engelledi: {{services}}.",
-        "checkFailed": "Orca şu hizmetleri kontrol edemedi: {{services}}."
+        "checkFailed": "BrzA Studio şu hizmetleri kontrol edemedi: {{services}}."
       },
       "notNow": "Şimdi değil",
       "importSetupFile": "Kurulum dosyasını içe aktar",
@@ -28900,11 +28900,11 @@
       "botWorkspaceUnavailable": "Bu ajanın çalışma alanı şu anda burada kullanılamıyor, bu yüzden sayfa orada açılamıyor.",
       "signIn": {
         "readAgain": "Tekrar dene",
-        "unconfigured": "{{host}} üzerindeki Orca, Orca Cloud oturum açma desteği olmadan derlenmiş. Oturum açmak için oraya Orca'nın yayın sürümünü yükleyin.",
-        "unread": "{{host}} üzerindeki Orca oturumu okunamadı.",
-        "updateFirst": "{{host}} üzerindeki Orca'yı güncelleyin, ardından buradan oturum açın.",
-        "waitingFirst": "{{host}} için Orca tarayıcısını açın ve {{host}} üzerinde kullanılacak Orca hesabıyla oturum açın. Sayfada {{code}} kodunu gördüğünüzden emin olun.",
-        "waiting": "{{host}} için Orca tarayıcısında sayfanın {{code}} kodunu gösterdiğini kontrol edip onaylayın.",
+        "unconfigured": "{{host}} üzerindeki BrzA Studio, BrzA Studio Cloud oturum açma desteği olmadan derlenmiş. Oturum açmak için oraya BrzA Studio'nın yayın sürümünü yükleyin.",
+        "unread": "{{host}} üzerindeki BrzA Studio oturumu okunamadı.",
+        "updateFirst": "{{host}} üzerindeki BrzA Studio'yı güncelleyin, ardından buradan oturum açın.",
+        "waitingFirst": "{{host}} için BrzA Studio tarayıcısını açın ve {{host}} üzerinde kullanılacak BrzA Studio hesabıyla oturum açın. Sayfada {{code}} kodunu gördüğünüzden emin olun.",
+        "waiting": "{{host}} için BrzA Studio tarayıcısında sayfanın {{code}} kodunu gösterdiğini kontrol edip onaylayın.",
         "copied": "Bağlantı kopyalandı.",
         "copyLink": "Bağlantıyı kopyala",
         "cancel": "İptal",
@@ -28913,26 +28913,26 @@
         "trust": "{{host}} ile eşleştirilmiş herkes bu sunucudaki hesabın bağlayıcılarını kullanabilir."
       },
       "errors": {
-        "signedOut": "{{service}} bağlantısını kurmak için {{host}} üzerinde Orca Cloud oturumu açın.",
-        "accountChanged": "{{host}} üzerindeki Orca oturumu değişti. Baştan başlayın.",
-        "accountChangedHere": "Bu bilgisayardaki Orca oturumu değişti. Baştan başlayın.",
-        "notRouted": "{{service}} sayfasının {{host}} üzerindeki Orca tarayıcısında açılması gerekiyor. {{host}} bağlantısını yeniden kurup baştan başlayın."
+        "signedOut": "{{service}} bağlantısını kurmak için {{host}} üzerinde BrzA Studio Cloud oturumu açın.",
+        "accountChanged": "{{host}} üzerindeki BrzA Studio oturumu değişti. Baştan başlayın.",
+        "accountChangedHere": "Bu bilgisayardaki BrzA Studio oturumu değişti. Baştan başlayın.",
+        "notRouted": "{{service}} sayfasının {{host}} üzerindeki BrzA Studio tarayıcısında açılması gerekiyor. {{host}} bağlantısını yeniden kurup baştan başlayın."
       },
       "thisComputer": "bu bilgisayar",
       "pageUnrouted": "Bu sayfayı {{host}} üzerindeki tarayıcıda açmak için sunucuya ulaşılamıyor. {{host}} bağlantısını yeniden kurup tekrar deneyin.",
       "notice": {
         "notReachingHost": "Slack, Linear ve GitHub, {{host}} üzerindeki botlara ulaşamıyor.",
         "notReaching": "Slack, Linear ve GitHub, {{name}} botuna ulaşamıyor.",
-        "updateNeeded": "{{name}} botunun bağlayıcılarını buradan yapılandırmak için {{host}} üzerindeki Orca'yı güncelleyin.",
-        "unreachable": "{{host}}, Orca Cloud'a ulaşamıyor.",
-        "cantSave": "{{host}}, Orca oturumunu kaydedemiyor: {{reason}}",
-        "cantSaveNext": "{{host}} üzerinde anahtar zincirinin kilidini açın veya yeni bir zincir oluşturun. Ardından orada Orca'yı yeniden başlatıp buradan oturum açın.",
-        "lapsed": "{{host}} üzerinde {{email}} için açılan Orca oturumu değişti.",
-        "lapsedNoEmail": "{{host}} üzerindeki Orca oturumu değişti.",
-        "signedOut": "{{host}} üzerinde Orca oturumu açık değil.",
+        "updateNeeded": "{{name}} botunun bağlayıcılarını buradan yapılandırmak için {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
+        "unreachable": "{{host}}, BrzA Studio Cloud'a ulaşamıyor.",
+        "cantSave": "{{host}}, BrzA Studio oturumunu kaydedemiyor: {{reason}}",
+        "cantSaveNext": "{{host}} üzerinde anahtar zincirinin kilidini açın veya yeni bir zincir oluşturun. Ardından orada BrzA Studio'yı yeniden başlatıp buradan oturum açın.",
+        "lapsed": "{{host}} üzerinde {{email}} için açılan BrzA Studio oturumu değişti.",
+        "lapsedNoEmail": "{{host}} üzerindeki BrzA Studio oturumu değişti.",
+        "signedOut": "{{host}} üzerinde BrzA Studio oturumu açık değil.",
         "linksBelong": "{{name}} botunun bağlayıcıları {{email}} hesabına ait.",
-        "signedOutFirst": "{{host}} üzerinde Orca oturumu açık olmadığı için {{name}} henüz Slack, Linear veya GitHub'ı kullanamıyor.",
-        "linksBelongElsewhere": "{{name}} botunun bağlayıcıları başka bir Orca hesabına ait."
+        "signedOutFirst": "{{host}} üzerinde BrzA Studio oturumu açık olmadığı için {{name}} henüz Slack, Linear veya GitHub'ı kullanamıyor.",
+        "linksBelongElsewhere": "{{name}} botunun bağlayıcıları başka bir BrzA Studio hesabına ait."
       }
     },
     "import": {
@@ -29026,7 +29026,7 @@
       "computerFoot": "Bağlayıcıları, araçları ve dosyaları bu bilgisayarda bulunur.",
       "pairedServer": "Eşleştirilmiş sunucu · Bu botun sohbetlerini, araçlarını ve otomasyonlarını çalıştırır",
       "thisComputerDetail": "Bu bilgisayar",
-      "orcaAccount": "Orca hesabı",
+      "orcaAccount": "BrzA Studio hesabı",
       "folder": "Klasör",
       "copyPath": "Yolu kopyala",
       "topicFiles": "Konu dosyaları",
@@ -29097,7 +29097,7 @@
       "secretWhere": "{{where}}, satır {{line}}: {{flag}}",
       "view": "Görüntüle",
       "goToLine": "Satıra git",
-      "openFailed": "Orca bu dosyayı açamadı.",
+      "openFailed": "BrzA Studio bu dosyayı açamadı.",
       "description": "Bağlantıya sahip herkes bir kopya oluşturabilir.",
       "removeSecret": "Yayımlamak için gizli bilgiyi kaldırın",
       "cancel": "İptal",
@@ -29154,8 +29154,8 @@
       "warnings": "{{count}} uyarı",
       "nothingFound": "Sonuç bulunamadı",
       "whereLine": "{{where}}, satır {{line}}",
-      "reconnect": "Paylaşmak için Orca’da yeniden oturum açın.",
-      "signIn": "Paylaşmak için Orca’da oturum açın.",
+      "reconnect": "Paylaşmak için BrzA Studio’da yeniden oturum açın.",
+      "signIn": "Paylaşmak için BrzA Studio’da oturum açın.",
       "review": {
         "reviewAgain": "Yeniden incele",
         "oneFlag": "{{summary}}: {{where}} içinde {{flag}}",
@@ -29191,8 +29191,8 @@
         "prepareAgain": "Bu arada bot başka bir pencereden paylaşıldı. “Botu paylaş”ı yeniden açın.",
         "stopped": "Bu bağlantı devre dışı bırakıldı. Yeni bağlantı oluşturmak için yeniden yayımlayın.",
         "moved": "Bu bağlantı başka bir yerde güncellendi. Güncel hâlini görmek için “Botu paylaş”ı yeniden açın.",
-        "unavailable": "Orca Cloud henüz bot paylaşımlarını kabul etmiyor.",
-        "avatarRefused": "Orca Cloud botun resmini kabul etmedi. Başka bir resim seçip yeniden deneyin.",
+        "unavailable": "BrzA Studio Cloud henüz bot paylaşımlarını kabul etmiyor.",
+        "avatarRefused": "BrzA Studio Cloud botun resmini kabul etmedi. Başka bir resim seçip yeniden deneyin.",
         "tooLarge": "Bu bot paylaşılamayacak kadar büyük. Bazı bellek dosyalarını veya becerileri paylaşım dışında bırakıp yeniden deneyin."
       }
     },
@@ -29249,7 +29249,7 @@
       "hooks": "Hook'lar",
       "addInChat": "Sohbette ekle",
       "editDraft": "“{{automation}}” otomasyonunun ne zaman çalışacağını değiştir: ",
-      "orphanedNote": "{{bot}} botunun Orca'sı bu otomasyonu artık listelemiyor, bu yüzden çağrılar çalıştırılmıyor.",
+      "orphanedNote": "{{bot}} botunun BrzA Studio'sı bu otomasyonu artık listelemiyor, bu yüzden çağrılar çalıştırılmıyor.",
       "checksLabel": "Kontroller",
       "checks": {
         "change": "Değiştir…",
@@ -29298,11 +29298,11 @@
         "copy": "Sırrı kopyala",
         "changeTitle": "İmzalama sırrını değiştir",
         "addTitle": "İmzalama sırrı ekle",
-        "note": "Orca bundan sonra yalnızca bu sırla imzalanmış çağrıları kabul eder; böylece sızdırılmış bir URL tek başına “{{automation}}” otomasyonunu başlatamaz.",
+        "note": "BrzA Studio bundan sonra yalnızca bu sırla imzalanmış çağrıları kabul eder; böylece sızdırılmış bir URL tek başına “{{automation}}” otomasyonunu başlatamaz.",
         "sender": "Gönderici",
-        "generateNote": "Bu sırrı Orca oluşturur. Ardından onu {{sender}} içine kopyalarsınız.",
+        "generateNote": "Bu sırrı BrzA Studio oluşturur. Ardından onu {{sender}} içine kopyalarsınız.",
         "mode": "Gizli anahtarın kaynağı",
-        "modeGenerate": "Orca bir tane oluşturur",
+        "modeGenerate": "BrzA Studio bir tane oluşturur",
         "modePaste": "Göndericininkini yapıştır",
         "pasteNote": "Gönderici size kendi sırrını verdiğinde bunu kullanın.",
         "paste": "{{sender}} sırrı",
@@ -29321,11 +29321,11 @@
       "resultsNowhere": "sonuçlar gönderilmedi",
       "resultsToPlace": "sonuçlar şuraya: {{place}}",
       "hostOffline": "{{bot}} botunun bilgisayarı çevrimdışı",
-      "hostNeedsUpdate": "{{bot}} bunu yapabilmeden önce Orca'nızın güncellenmesi gerekiyor.",
+      "hostNeedsUpdate": "{{bot}} bunu yapabilmeden önce BrzA Studio'nızın güncellenmesi gerekiyor.",
       "errors": {
         "notFound": "Bu webhook silindi.",
         "unavailable": "Webhook'lar şu anda kullanılamıyor.",
-        "signedOut": "Orca oturumu kapalı olduğu için duraklatıldı."
+        "signedOut": "BrzA Studio oturumu kapalı olduğu için duraklatıldı."
       },
       "calls": {
         "refused": "Reddedildi ×{{count}}",
@@ -29384,8 +29384,8 @@
         "starts": "Webhook · “{{automation}}” otomasyonunu başlatır"
       },
       "theBot": "bot",
-      "fallbackNamed": "“{{automation}}” webhook’u etkin. URL’sini bilgisayarınızda Orca’nın Ayarlar › Botlar › {{bot}} › Webhook’lar bölümünden kopyalayın. Duraklatmak veya silmek için burada {{bot}} botuna yazın.",
-      "fallback": "Bu webhook etkin. URL’sini bilgisayarınızda Orca’nın bot ayarlarındaki Webhook’lar bölümünden kopyalayın. Duraklatmak veya silmek için burada bota yazın.",
+      "fallbackNamed": "“{{automation}}” webhook’u etkin. URL’sini bilgisayarınızda BrzA Studio’nın Ayarlar › Botlar › {{bot}} › Webhook’lar bölümünden kopyalayın. Duraklatmak veya silmek için burada {{bot}} botuna yazın.",
+      "fallback": "Bu webhook etkin. URL’sini bilgisayarınızda BrzA Studio’nın bot ayarlarındaki Webhook’lar bölümünden kopyalayın. Duraklatmak veya silmek için burada bota yazın.",
       "copiedNoClear": "İşiniz bitince panoyu temizleyin. Bu tarayıcı sizin yerinize panoyu her zaman temizleyemeyebilir.",
       "pausedSignedOut": "{{hooks}} · Oturum kapalı olduğu için duraklatıldı",
       "copied": "Kopyalandı"
@@ -29393,7 +29393,7 @@
     "failures": {
       "lookUnfinished": "Son göz atma tamamlanmadı.",
       "lookTimedOut": "Son göz atma {{minutes}} dk sonra durduruldu.",
-      "lookInterrupted": "Son göz atma sırasında Orca durdu.",
+      "lookInterrupted": "Son göz atma sırasında BrzA Studio durdu.",
       "lookCouldNotStart": "Son göz atma başlatılamadı.",
       "lookAsleep": "Bu bilgisayar uykudayken son göz atma kaçırıldı.",
       "tidyUpUnfinished": "Son toparlama tamamlanmadı.",
@@ -29402,11 +29402,11 @@
       "tidyUpAsleep": "Bu bilgisayar uykudayken son toparlama kaçırıldı.",
       "tidyUpUnreadChats": "Son toparlama sohbetlerini okuyamadığı için çalışmadı.",
       "tidyUpNoDraft": "Son toparlama yeni bir MEMORY.md ile yanıt vermedi.",
-      "tidyUpNoOps": "Son toparlamanın yanıtı, Orca'nın okuyabileceği bir değişiklik listesi değildi.",
-      "tidyUpAllSkipped": "Orca son toparlamanın istediği her değişikliği atladı, bu yüzden hiçbir şey değişmedi. ({{detail}})",
+      "tidyUpNoOps": "Son toparlamanın yanıtı, BrzA Studio'nın okuyabileceği bir değişiklik listesi değildi.",
+      "tidyUpAllSkipped": "BrzA Studio son toparlamanın istediği her değişikliği atladı, bu yüzden hiçbir şey değişmedi. ({{detail}})",
       "tidyUpNotListLines": "Son toparlama çalışmadı: MEMORY.md'de liste satırı olmayan birkaç satırdan fazlası var ve toparlama yalnızca liste satırlarını okur.",
-      "tidyUpMovedOnly": "Son toparlama durum satırlarını memory/journal/ klasörüne taşıdı, ancak Orca yanıtın geri kalanını kullanamadı. ({{detail}})",
-      "tidyUpBadTopic": "Son toparlama, Orca'nın yazamadığı bir konu dosyası belirtti, bu yüzden hiçbir şey değişmedi.",
+      "tidyUpMovedOnly": "Son toparlama durum satırlarını memory/journal/ klasörüne taşıdı, ancak BrzA Studio yanıtın geri kalanını kullanamadı. ({{detail}})",
+      "tidyUpBadTopic": "Son toparlama, BrzA Studio'nın yazamadığı bir konu dosyası belirtti, bu yüzden hiçbir şey değişmedi.",
       "tidyUpTooLong": "Son toparlamanın MEMORY.md dosyası {{max}} satırı aştı ve kısalmadı, bu yüzden hiçbir şey değişmedi.",
       "tidyUpTooManyRemoved": "Son toparlama aynı anda çok fazla satır çıkardı, bu yüzden hiçbir şey değişmedi.",
       "tidyUpTooManyAdded": "Son toparlama aynı anda çok fazla yeni satır ekledi, bu yüzden hiçbir şey değişmedi.",
@@ -29420,9 +29420,9 @@
       "toolSavedValueGone": "Bu kayıtlı değer artık kullanılamıyor. Yeniden girin veya satırını kaldırın.",
       "toolValueMissing": "Her satıra bir değer girin veya satırı kaldırın.",
       "toolCredentialsUnreadable": "Botun kayıtlı araç kimlik bilgileri okunamıyor. Aracın değerlerini yeniden girin.",
-      "toolSignInManaged": "Bu araçta oturumu Orca açar. Bunun yerine oturumunu açın veya kapatın.",
-      "toolCredentialsRaced": "Botun araç kimlik bilgileri başka bir Orca'da değişti. Tekrar deneyin.",
-      "toolSourceManaged": "Bu aracı Orca yönetiyor. Kurduğunuz yerden değiştirin.",
+      "toolSignInManaged": "Bu araçta oturumu BrzA Studio açar. Bunun yerine oturumunu açın veya kapatın.",
+      "toolCredentialsRaced": "Botun araç kimlik bilgileri başka bir BrzA Studio'da değişti. Tekrar deneyin.",
+      "toolSourceManaged": "Bu aracı BrzA Studio yönetiyor. Kurduğunuz yerden değiştirin.",
       "toolValuesUnmoved": "Bir araç hâlâ kayıtlı değerlerini tutuyor. Taşımak için botun araçlarını yeniden açın.",
       "googleAccountsChanged": "Google hesapları siz açtıktan sonra değişti. Hesapları kontrol edip yeniden kaydedin.",
       "toolCodexCheckFailed": "Codex araçları denetleyemedi veya bağlayamadı. Kurulumunu kontrol edip tekrar deneyin.",
@@ -29438,7 +29438,7 @@
       "toolSignInEnded": "Oturum açma zaten sona ermiş veya zaman aşımına uğramıştı. Bağlan ile yeniden başlatın.",
       "toolNotFound": "Bu botta {{name}} adlı bir araç yok.",
       "toolNeedsNoSignIn": "{{name}} kayıtlı değerlerini kullanır ve oturum açması gerekmez.",
-      "toolSignInAgentUnsupported": "Orca, {{name}} için yalnızca Claude Code ve Codex'te oturum açar. Bunun yerine oturum açma değerleriyle ekleyin.",
+      "toolSignInAgentUnsupported": "BrzA Studio, {{name}} için yalnızca Claude Code ve Codex'te oturum açar. Bunun yerine oturum açma değerleriyle ekleyin.",
       "toolCodexNoSignInPage": "Codex, {{name}} için bir oturum açma sayfası vermedi.",
       "toolClaudeSignInFailed": "Claude, {{name}} için oturum açmayı başlatamadı.",
       "toolClaudeNoSignInPage": "Claude, {{name}} için bir oturum açma sayfası açmadı.",
@@ -29457,7 +29457,7 @@
       "groupNeedsLocalBot": "Bu grubun bu bilgisayarda en az bir bota ihtiyacı var.",
       "groupNameTaken": "{{name}} zaten bu grupta. Bahsetmelerin karışmaması için üyelerin farklı adları olmalı.",
       "groupPostFromHost": "Başka bilgisayarlarda botları olan bir gruba göndermek için {{host}} kullanın.",
-      "groupPeerTooOld": "Botlarını bir gruba eklemek için {{host}} üzerindeki Orca'yı güncelleyin.",
+      "groupPeerTooOld": "Botlarını bir gruba eklemek için {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
       "attachmentUnreadable": "{{name}} okunamıyor.",
       "attachmentTooLarge": "{{name}}, {{maxMb}} MB'tan büyük.",
       "attachmentUploading": "{{name}} hâlâ yükleniyor.",
@@ -29537,7 +29537,7 @@
       "appAdded": "Ekibinizin Google uygulaması eklendi",
       "disconnect": {
         "title": "{{email}} hesabının bağlantısı kesilsin mi?",
-        "revokeNote": "Botlar bu hesabı burada kullanmayı bırakır. Google, Orca’ya daha önce izin verdiğiniz her yerde bu erişimi iptal eder.",
+        "revokeNote": "Botlar bu hesabı burada kullanmayı bırakır. Google, BrzA Studio’ya daha önce izin verdiğiniz her yerde bu erişimi iptal eder.",
         "removeNote": "Botlar bu hesabı burada kullanmayı bırakır. Bot ayarları korunur; “Google’a bağlan” ile erişimi yeniden açabilirsiniz.",
         "confirm": "Bağlantıyı kes",
         "remove": "Bu bilgisayardan kaldır",
@@ -29608,7 +29608,7 @@
       "importSetupFile": "Dosyayı içe aktar",
       "hostChoice": {
         "description": "{{bot}} botunun Gmail, Takvim ve Drive hesaplarınıza nasıl giriş yapacağını seçin.",
-        "orca": "Orca’da barındırılıyor",
+        "orca": "BrzA Studio’da barındırılıyor",
         "soon": "Yakında",
         "orcaNote": "Google ile oturum açın.",
         "self": "Kendi sunucunuzda",
@@ -29621,7 +29621,7 @@
         "privacyPolicy": "Uygulamanın gizlilik politikası bağlantısı",
         "authorizedDomain": "Yetkilendirilmiş alan adı",
         "copy": "Kopyala: {{label}}",
-        "owner": "Bu Google uygulamasının sahibi sizsiniz; bu bağlantılar yalnızca Orca’ya yönlendirir."
+        "owner": "Bu Google uygulamasının sahibi sizsiniz; bu bağlantılar yalnızca BrzA Studio’ya yönlendirir."
       },
       "setUp": "Google kurulumunu başlat",
       "setUpOpens": "{{bot}} ile sohbeti açar",
@@ -29637,7 +29637,7 @@
         },
         "branding": {
           "start": "<b>Get started</b> düğmesine tıklayın.",
-          "name": "Uygulama adı olarak <b>Orca</b>, destek e-postası olarak kendi e-posta adresinizi girin.",
+          "name": "Uygulama adı olarak <b>BrzA Studio</b>, destek e-postası olarak kendi e-posta adresinizi girin.",
           "external": "Audience: <b>External</b>.",
           "internal": "Audience: <b>Internal</b>.",
           "contact": "İletişim e-postası olarak kendi e-posta adresinizi girin.",
@@ -29656,7 +29656,7 @@
         "client": {
           "type": "Application type olarak <b>Desktop app</b> seçin, ardından <b>Create</b> düğmesine tıklayın.",
           "agent": "<b>Use this client for an AI-powered agent</b> seçeneği görünüyorsa işaretleyin.",
-          "download": "<b>Download JSON</b> düğmesine tıklayın. Orca anahtarı kaydeder."
+          "download": "<b>Download JSON</b> düğmesine tıklayın. BrzA Studio anahtarı kaydeder."
         }
       },
       "pasteHint": "“İzin ver”e tıkladıktan sonra sayfa yüklenmeyecek. Sayfanın adresini buraya yapıştırın.",
@@ -29671,7 +29671,7 @@
       "setDefault": "Varsayılan yap",
       "accountActions": "{{email}} hesabıyla ilgili işlemler",
       "addServiceMenu": "Hizmet ekle…",
-      "updateToAdd": "Başka bir Google hesabı eklemek için {{host}} üzerindeki Orca'yı güncelleyin.",
+      "updateToAdd": "Başka bir Google hesabı eklemek için {{host}} üzerindeki BrzA Studio'yı güncelleyin.",
       "account": "Google · {{email}}"
     },
     "notices": {
@@ -29705,7 +29705,7 @@
         "unsupported": "Bu uygulama henüz desteklenmiyor.",
         "unavailable": "Bu uygulamaya ulaşılamıyor. Adresi kontrol edip yeniden deneyin.",
         "noTool": "Bu botta artık o araç yok.",
-        "desktopOnly": "{{host}} üzerindeki Orca’dan oturum açın.",
+        "desktopOnly": "{{host}} üzerindeki BrzA Studio’dan oturum açın.",
         "denied": "Erişime izin verilmedi.",
         "expired": "Oturum açmanın süresi doldu. Yeniden deneyin.",
         "couldNotSignIn": "Oturum açılamadı. Yeniden deneyin."
@@ -29721,7 +29721,7 @@
         "waitingDetail": "Kurulumu Slack’te tamamlayın. Yeni uygulamalar yönetici onayı gerektiriyorsa {{name}} onay verildiğinde çalışma alanına katılır. İstek reddedilirse “Yeniden kur” seçeneği aynı uygulamayı kullanır.",
         "close": "Kapat",
         "installAgain": "Yeniden yükle",
-        "uncertain": "Slack, {{name}} adlı bir uygulama oluşturmuş olabilir ancak Orca bu uygulamayı kullanamıyor. Uygulama Slack’in uygulama ayarlarında görünüyorsa silip kurulumu yeniden başlatın.",
+        "uncertain": "Slack, {{name}} adlı bir uygulama oluşturmuş olabilir ancak BrzA Studio bu uygulamayı kullanamıyor. Uygulama Slack’in uygulama ayarlarında görünüyorsa silip kurulumu yeniden başlatın.",
         "uncertainChecked": "Slack’i kontrol ettim: Böyle bir uygulama yok veya uygulamayı sildim",
         "again": "Yeniden kur",
         "done": "Tamam",
@@ -29770,7 +29770,7 @@
         "step1": "Slack uygulama ayarlarında “Your App Configuration Tokens” bölümünü bulun ve “Generate Token”ı seçin.",
         "step2": "Botunuz için çalışma alanını seçin.",
         "step3": "Yenileme belirtecini (Refresh Token) kopyalayıp aşağıya yapıştırın.",
-        "kept": "Orca Cloud bu belirteci şifreli olarak saklar. Böylece bu çalışma alanına ekleyeceğiniz diğer botları tek tıklamayla bağlayabilirsiniz.",
+        "kept": "BrzA Studio Cloud bu belirteci şifreli olarak saklar. Böylece bu çalışma alanına ekleyeceğiniz diğer botları tek tıklamayla bağlayabilirsiniz.",
         "label": "Yapılandırma yenileme belirteci",
         "accessPasted": "Bu, erişim belirteci (Access Token). Yanındaki yenileme belirtecini (Refresh Token) kopyalayın.",
         "openSettings": "Slack uygulama ayarlarını aç",
@@ -29778,16 +29778,16 @@
         "copyRefresh": "Yenileme belirtecini (Refresh Token) kopyala"
       },
       "workspaces": {
-        "otherTeam": "Bu belirteç başka bir çalışma alanına ait. Orca belirteci o çalışma alanı için saklar.",
+        "otherTeam": "Bu belirteç başka bir çalışma alanına ait. BrzA Studio belirteci o çalışma alanı için saklar.",
         "reconnected": "Slack çalışma alanı yeniden bağlandı.",
         "reconnectTitle": "Slack çalışma alanını yeniden bağla",
         "reconnectFor": "Çalışma alanı {{teamId}}",
         "reconnect": "Yeniden bağlan",
         "forgotten": "Kayıtlı belirteç kaldırıldı. Mevcut botlar Slack’te kalır. Bu çalışma alanına yeni bot eklemek için yeni bir belirteç gerekir.",
-        "description": "Orca Cloud, her botun Slack uygulamasını oluşturabilmek için çalışma alanı başına bir şifreli belirteç saklar.",
+        "description": "BrzA Studio Cloud, her botun Slack uygulamasını oluşturabilmek için çalışma alanı başına bir şifreli belirteç saklar.",
         "forget": "Unut",
         "title": "Slack çalışma alanları",
-        "descriptionFor": "Orca Cloud, {{account}} hesabı için her çalışma alanında bir şifreli belirteç saklar. Bu belirteçle kurulan botların sahibi, bağlantıyı kuran Slack kullanıcısıdır.",
+        "descriptionFor": "BrzA Studio Cloud, {{account}} hesabı için her çalışma alanında bir şifreli belirteç saklar. Bu belirteçle kurulan botların sahibi, bağlantıyı kuran Slack kullanıcısıdır.",
         "installedBy": "{{bot}} · Kuran: @{{user}}"
       },
       "errors": {
@@ -29796,19 +29796,19 @@
         "rateLimited": "Çok fazla deneme yapıldı. Bir dakika bekleyip yeniden deneyin.",
         "slackUnavailable": "Slack yanıt vermedi. Yeniden deneyin.",
         "slackRefused": "Slack uygulamanın kurulmasına izin vermedi.",
-        "unknownBot": "Bu bot henüz Orca Cloud’da görünmüyor. Bir dakika sonra yeniden deneyin.",
+        "unknownBot": "Bu bot henüz BrzA Studio Cloud’da görünmüyor. Bir dakika sonra yeniden deneyin.",
         "wrongWorkspace": "Bu botun Slack uygulaması başka bir çalışma alanında. Önce uygulamayı Slack’ten kaldırın.",
         "notInstalled": "Önce bu botu Slack’e ekleyin.",
-        "signedOut": "Slack’i bağlamak için Orca Cloud’da oturum açın.",
-        "unreachable": "Orca Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
+        "signedOut": "Slack’i bağlamak için BrzA Studio Cloud’da oturum açın.",
+        "unreachable": "BrzA Studio Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
         "handOffExpired": "Bu aktarımın süresi dolmuş veya bağlantı zaten kullanılmış. Yeniden deneyin."
       },
       "howToAsk": "Bir kanalda <code>@{{name}}</code> yazarak bottan bahsedin veya bota doğrudan mesaj gönderin.",
       "handOff": {
-        "confirmMac": "Bu Mac’teki Orca, Slack uygulamasını {{email}} hesabının belirteciyle oluşturur. {{host}} yalnızca bu botun uygulamasına erişebilir.",
-        "confirm": "Bu bilgisayardaki Orca, Slack uygulamasını {{email}} hesabının belirteciyle oluşturur. {{host}} yalnızca bu botun uygulamasına erişebilir.",
-        "offerMac": "Bu Mac’te Orca oturumu {{email}} hesabıyla açık. Bu hesabın {{workspace}} için zaten bir belirteci var.",
-        "offer": "Bu bilgisayarda Orca oturumu {{email}} hesabıyla açık. Bu hesabın {{workspace}} için zaten bir belirteci var.",
+        "confirmMac": "Bu Mac’teki BrzA Studio, Slack uygulamasını {{email}} hesabının belirteciyle oluşturur. {{host}} yalnızca bu botun uygulamasına erişebilir.",
+        "confirm": "Bu bilgisayardaki BrzA Studio, Slack uygulamasını {{email}} hesabının belirteciyle oluşturur. {{host}} yalnızca bu botun uygulamasına erişebilir.",
+        "offerMac": "Bu Mac’te BrzA Studio oturumu {{email}} hesabıyla açık. Bu hesabın {{workspace}} için zaten bir belirteci var.",
+        "offer": "Bu bilgisayarda BrzA Studio oturumu {{email}} hesabıyla açık. Bu hesabın {{workspace}} için zaten bir belirteci var.",
         "use": "Bunu kullan →",
         "question": "Bunun yerine {{device}} cihazınızdaki Slack oturumu kullanılsın mı?",
         "firstQuestion": "{{device}} cihazınızda Slack oturumu zaten açık. Bu oturum kullanılsın mı?",
@@ -29819,15 +29819,15 @@
         "anotherWay": "Başka bir yolla kur"
       },
       "postAs": {
-        "orcaUser": "Orca kullanıcısı",
+        "orcaUser": "BrzA Studio kullanıcısı",
         "thisComputer": "Bu bilgisayar",
         "caption": "Bu botun Slack yazışmalarında",
         "approve": "Slack’te onayla",
         "cancel": "İptal",
-        "viaOrca": "{{name}} (Orca aracılığıyla)",
+        "viaOrca": "{{name}} (BrzA Studio aracılığıyla)",
         "app": "UYGULAMA",
         "sample": "Ondan sonra yayımla",
-        "line": "Orca’dan bir Slack yazışmasına verdiğiniz yanıt <picker>{{name}}</picker> adına gönderilir",
+        "line": "BrzA Studio’dan bir Slack yazışmasına verdiğiniz yanıt <picker>{{name}}</picker> adına gönderilir",
         "waitingOn": "{{name}} adına gönderim yapabilmek için {{installer}} kullanıcısının Slack’te onay vermesi gerekiyor.",
         "waiting": "{{name}} adına gönderim yapabilmek için Slack’te onay gerekiyor."
       },
@@ -29839,22 +29839,22 @@
         "why": "Slack artık bu çalışma alanının kayıtlı belirtecini kabul etmiyor.",
         "submit": "Yeniden bağlan",
         "about": "Slack belirteçleri hakkında",
-        "kept": "Orca Cloud yeni belirteci şifreli olarak saklar. Böylece bu çalışma alanına ekleyeceğiniz sonraki botları tek tıklamayla bağlayabilirsiniz.",
+        "kept": "BrzA Studio Cloud yeni belirteci şifreli olarak saklar. Böylece bu çalışma alanına ekleyeceğiniz sonraki botları tek tıklamayla bağlayabilirsiniz.",
         "mineMac": "Bu Mac’teki belirtecin süresi doldu. Yeni bir belirteç yapıştırın.",
         "mine": "Bu bilgisayardaki belirtecin süresi doldu. Yeni bir belirteç yapıştırın.",
         "paste": "Yeniden bağlanmak için yeni bir belirteç yapıştırın.",
         "expiredOnTitle": "{{host}} üzerindeki Slack oturumunun süresi doldu",
         "signInAgain": "Yeniden oturum aç",
         "neededTitle": "Slack bu çalışma alanı için bir belirteç gerektiriyor",
-        "whyNeeded": "Orca’nın bu çalışma alanı için çalışan bir Slack belirteci yok.",
+        "whyNeeded": "BrzA Studio’nın bu çalışma alanı için çalışan bir Slack belirteci yok.",
         "pasteNeeded": "Devam etmek için bir belirteç yapıştırın.",
         "continue": "Devam et"
       },
       "problem": {
         "reconnecting": "{{host}} bağlantısının yeniden kurulması bekleniyor…",
         "reconnectingNext": "{{host}} yeniden bağlandığında Slack kurulumu kendiliğinden devam eder. Baştan başlamanız veya belirteç yapıştırmanız gerekmez.",
-        "offline": "Orca, {{host}} sunucusuna ulaşamıyor.",
-        "offlineNext": "{{host}} üzerinde Orca'nın çalıştığını kontrol edip yeniden bağlanın. {{host}} yeniden bağlandığında Slack kurulumu devam eder.",
+        "offline": "BrzA Studio, {{host}} sunucusuna ulaşamıyor.",
+        "offlineNext": "{{host}} üzerinde BrzA Studio'nın çalıştığını kontrol edip yeniden bağlanın. {{host}} yeniden bağlandığında Slack kurulumu devam eder.",
         "otherUser": "Bağlantıyı başka bir Slack hesabı onayladı.",
         "otherUserNext": "Slack bağlantısını başka bir hesap onayladığı için {{bot}} sizin adınıza işlem yapamıyor. Yeni bir bağlantı alın ve kendi Slack hesabınızda oturum açtıktan sonra onaylayın.",
         "expired": "Slack oturum açma işlemi tamamlanmadı.",
@@ -29864,11 +29864,11 @@
         "reconnect": "Yeniden bağlan",
         "replaceToken": "Belirteci değiştir",
         "details": "Ayrıntılar",
-        "reconnectFailed": "Orca hâlâ {{host}} sunucusuna ulaşamıyor."
+        "reconnectFailed": "BrzA Studio hâlâ {{host}} sunucusuna ulaşamıyor."
       },
       "approve": {
-        "noteUntil": "{{time}} saatine kadar, yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın; Orca Cloud onayı {{host}} sunucusuna iletir.",
-        "note": "Yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın; Orca Cloud onayı {{host}} sunucusuna iletir.",
+        "noteUntil": "{{time}} saatine kadar, yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın; BrzA Studio Cloud onayı {{host}} sunucusuna iletir.",
+        "note": "Yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın; BrzA Studio Cloud onayı {{host}} sunucusuna iletir.",
         "noteUntilHere": "{{time}} saatine kadar, yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın.",
         "noteHere": "Yalnızca bir kez çalışır. Orada Slack’e kendi hesabınızla giriş yapın.",
         "openOn": "Slack’i {{host}} üzerinde aç",
@@ -29913,7 +29913,7 @@
       "missing": "Bu sohbet bu bilgisayarda açık değil.",
       "unreachable": "Şu bilgisayarlara ulaşılamadı: {{hosts}}. Bot bunlardan birinde olabilir. Bağlantı yeniden kurulduğunda bağlantıyı tekrar açın.",
       "pick": "Bu bağlantıya ait bot birden fazla bilgisayarda bulundu: {{hosts}}. Botu kenar çubuğundan açın.",
-      "updateNeeded": "Botu burada açabilmek için {{hosts}} üzerinde Orca’yı güncelleyin."
+      "updateNeeded": "Botu burada açabilmek için {{hosts}} üzerinde BrzA Studio’yı güncelleyin."
     },
     "workspaces": {
       "showMore": "{{count}} tane daha göster",
@@ -29951,15 +29951,15 @@
       "mentionChatClosed": "{{name}} botunun “{{chat}}” sohbeti kapatıldığı için artık mesaj kabul etmiyor.",
       "mentionChatElsewhere": "{{name}} botunun “{{chat}}” sohbeti artık başka bir bilgisayarda çalışıyor. Bu sohbetten mesaj alamaz.",
       "mentionChatNotItsChat": "Bu sohbet {{name}} botuna ait değil.",
-      "mentionChatOlderHost": "{{host}} üzerindeki Orca henüz belirli bir sohbete mesaj gönderemiyor.",
-      "mentionChatOlderHostHere": "Orca’nın bu sürümü henüz belirli bir sohbete mesaj gönderemiyor.",
+      "mentionChatOlderHost": "{{host}} üzerindeki BrzA Studio henüz belirli bir sohbete mesaj gönderemiyor.",
+      "mentionChatOlderHostHere": "BrzA Studio’nın bu sürümü henüz belirli bir sohbete mesaj gönderemiyor.",
       "mentionChatSelf": "{{name}} botunun “{{chat}}” sohbeti zaten bu sohbet. Bir sohbet kendisinden mesaj alamaz.",
       "mentionChatsLoadFailed": "Sohbetler yüklenemedi",
       "mentionChatsLoadFailedOn": "Sohbetler yüklenemedi: {{host}} bağlı değil",
       "mentionChatsUnreachable": "{{name}} botunun sohbetleri denetlenemiyor: {{host}} bağlı değil.",
       "mentionChatsUnreadable": "{{name}} botunun sohbetleri denetlenemiyor.",
       "mentionChatUnavailable": "Sohbet kullanılamıyor",
-      "mentionChatUnverifiable": "Orca bu sohbetin mesaj kabul edip edemediğini doğrulayamıyor.",
+      "mentionChatUnverifiable": "BrzA Studio bu sohbetin mesaj kabul edip edemediğini doğrulayamıyor.",
       "mentionLabelChatUnavailable": "Bahsedilen bot: {{name}} · Sohbet kullanılamıyor",
       "mentionOwnChats": "Diğer sohbetleriniz",
       "mentionLabelChat": "Bahsedilen bot: {{name}} · Sohbet"
@@ -29978,13 +29978,13 @@
       "description": "{{name}} botunun ana sohbeti {{agent}} ile baştan başlar. Mevcut sohbet geçmişte saklanır.",
       "kept": "Korunanlar: ruh, bellek, otomasyonlar, bağlayıcılar",
       "notKept": "Korunmayan: mevcut konuşma",
-      "threads": "Orca’da zaten bir sohbeti olan Slack yazışmaları aynı ajanı kullanmaya devam eder",
+      "threads": "BrzA Studio’da zaten bir sohbeti olan Slack yazışmaları aynı ajanı kullanmaya devam eder",
       "action": "{{agent}} ajanına geç"
     },
     "avatar": {
       "intake": {
         "tooBig": "Bu görsel 10 MB'den büyük.",
-        "type": "Orca bu görseli okuyamıyor. PNG veya JPEG deneyin.",
+        "type": "BrzA Studio bu görseli okuyamıyor. PNG veya JPEG deneyin.",
         "tooSmall": "Çok küçük. En az 128 piksel olan bir görsel kullanın.",
         "dropLine": "Bu görseli kullanmak için buraya bırakın",
         "saved": "Resim güncellendi",
@@ -30014,7 +30014,7 @@
     "linear": {
       "connection": {
         "unlinked": "{{workspace}} çalışma alanındaki Linear hesabınızı bağlamak için kurulumu tamamlayın.",
-        "removeNote": "{{workspace}} çalışma alanındaki kişiler artık bota sorun atayamaz. Botun Linear kullanıcı listesi temizlenir. Orca bu çalışma alanında kurulu kalır.",
+        "removeNote": "{{workspace}} çalışma alanındaki kişiler artık bota sorun atayamaz. Botun Linear kullanıcı listesi temizlenir. BrzA Studio bu çalışma alanında kurulu kalır.",
         "removeConfirm": "Kaldır",
         "finishSetup": "Kurulumu tamamla"
       },
@@ -30024,9 +30024,9 @@
         "close": "Kapat",
         "checking": "Linear denetleniyor…",
         "retry": "Yeniden deneyin",
-        "install": "Orca henüz {{workspace}} çalışma alanında kurulu değil. Bir Linear yöneticisinin Orca’yı herkes için bir kez kurması yeterlidir.",
+        "install": "BrzA Studio henüz {{workspace}} çalışma alanında kurulu değil. Bir Linear yöneticisinin BrzA Studio’yı herkes için bir kez kurması yeterlidir.",
         "installing": "Kurulum bekleniyor…",
-        "noInstallYet": "Orca o çalışma alanında henüz kurulu değil.",
+        "noInstallYet": "BrzA Studio o çalışma alanında henüz kurulu değil.",
         "finish": "Tamam",
         "title": "{{name}} botunu Linear’a ekle",
         "titleOn": "Linear’da {{name}}",
@@ -30034,8 +30034,8 @@
         "connectTitle": "Linear'ı bağla",
         "tryIt": "Herhangi bir Linear sorununda deneyin",
         "orLabel": "veya etiketi ekleyin",
-        "actsOnHost": "Orca, {{host}} üzerinden bu Linear kullanıcısı adına işlem yapar.",
-        "actsAsYou": "Orca bu bilgisayardan Linear’da sizin adınıza işlem yapar."
+        "actsOnHost": "BrzA Studio, {{host}} üzerinden bu Linear kullanıcısı adına işlem yapar.",
+        "actsAsYou": "BrzA Studio bu bilgisayardan Linear’da sizin adınıza işlem yapar."
       },
       "whoCanAsk": {
         "outsiders": "{{workspace}} çalışma alanındaki diğer kişilere, size başvurmalarını isteyen herkese açık bir yanıt gönderilir.",
@@ -30050,31 +30050,31 @@
         "description": "Linear’ın hangi isteklerin size ait olduğunu belirlemek için kullandığı, her çalışma alanındaki Linear hesabınız.",
         "linkedAs": "{{name}} olarak bağlandı",
         "unlink": "Bağlantıyı kaldır",
-        "linkHelp": "Linear hesabınızı bağlamak veya başka bir Orca hesabından buraya taşımak için bir botun Bağlayıcılar bölümünden Linear’ı bağlayın.",
+        "linkHelp": "Linear hesabınızı bağlamak veya başka bir BrzA Studio hesabından buraya taşımak için bir botun Bağlayıcılar bölümünden Linear’ı bağlayın.",
         "descriptionOnHost": "{{host}} üzerindeki botların sahibi olan ve adına işlem yaptıkları Linear kullanıcısı. Oturum bilgileri {{host}} üzerinde kalır.",
         "reconnect": "Yeniden bağlan",
-        "linkFromApp": "Linear hesabınızı {{host}} ile eşleştirilmiş bir bilgisayarda Orca üzerinden bağlayın."
+        "linkFromApp": "Linear hesabınızı {{host}} ile eşleştirilmiş bir bilgisayarda BrzA Studio üzerinden bağlayın."
       },
       "errors": {
         "off": "Linear desteği yakında geliyor.",
         "notLinked": "Hesabınızı bağlamak için bir botun Bağlayıcılar bölümünden Linear’ı bağlayın.",
-        "alreadyLinked": "Bu Orca hesabı, o çalışma alanında başka bir Linear kullanıcısına bağlı. Önce Ayarlar › Botlar › Linear bölümünden mevcut bağlantıyı kaldırın.",
+        "alreadyLinked": "Bu BrzA Studio hesabı, o çalışma alanında başka bir Linear kullanıcısına bağlı. Önce Ayarlar › Botlar › Linear bölümünden mevcut bağlantıyı kaldırın.",
         "notAMember": "Linear çalışma alanından kişi seçebilmek için o alanın tam üyesi olmanız gerekir.",
         "rateLimited": "Çok fazla deneme yapıldı. Bir dakika bekleyip yeniden deneyin.",
         "unavailable": "Linear yanıt vermedi. Yeniden deneyin.",
-        "signedOut": "Linear’ı bağlamak için Orca Cloud’da oturum açın.",
-        "unreachable": "Orca Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
-        "wrongAccount": "Oturum açma işlemi başka bir Orca hesabından başlatılmış. Linear’ı bu hesaptan yeniden bağlayın.",
+        "signedOut": "Linear’ı bağlamak için BrzA Studio Cloud’da oturum açın.",
+        "unreachable": "BrzA Studio Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
+        "wrongAccount": "Oturum açma işlemi başka bir BrzA Studio hesabından başlatılmış. Linear’ı bu hesaptan yeniden bağlayın.",
         "replaced": "Linear bağlantısı tamamlanmadı. Sonradan başlatılan bir Linear veya GitHub bağlantısı bu işlemin yerini almış olabilir. Baştan başlayın."
       },
-      "howToAsk": "Bir sorunda <code>@Orca {{handle}}</code> yazarak bottan bahsedin veya <code>bot:{{handle}}</code> etiketini ekleyin.",
+      "howToAsk": "Bir sorunda <code>@BrzA Studio {{handle}}</code> yazarak bottan bahsedin veya <code>bot:{{handle}}</code> etiketini ekleyin.",
       "connect": {
         "who": "{{workspace}} çalışma alanında {{name}}",
         "button": "Linear'ı bağla",
         "waiting": "Linear oturumunu açma işlemini tarayıcınızda tamamlayın…",
         "turnOn": "{{name}} özelliğini aç",
         "connected": "Linear bağlandı.",
-        "stuck": "Linear’da “Could not find OAuth client” hatasını mı görüyorsunuz? Orca’nın Linear uygulaması henüz bu çalışma alanına açık değil. Uygulamanın sahibi olan çalışma alanının bir yöneticisi, uygulamayı herkese açık hâle getirmeli.",
+        "stuck": "Linear’da “Could not find OAuth client” hatasını mı görüyorsunuz? BrzA Studio’nın Linear uygulaması henüz bu çalışma alanına açık değil. Uygulamanın sahibi olan çalışma alanının bir yöneticisi, uygulamayı herkese açık hâle getirmeli.",
         "another": "Başka bir çalışma alanı kullan",
         "pick": "Bir Linear çalışma alanı seçin.",
         "pickWorkspace": "Oturum açıp {{name}} botunun çalışacağı Linear çalışma alanını seçin."
@@ -30098,8 +30098,8 @@
       "connection": {
         "description": "{{repos}} · @{{login}} olarak oturum açıldı",
         "unlinked": "GitHub hesabınızı bağlamak için GitHub ile oturum açın.",
-        "notInstalled": "@{{login}} olarak oturum açtınız. Orca uygulamasını çalışmasına izin verdiğiniz repository'lere kurun.",
-        "removeNote": "Kullanıcılar artık GitHub üzerinden bota istekte bulunamaz. Botun GitHub kullanıcı listesi temizlenir. Orca uygulaması kurulu kalır.",
+        "notInstalled": "@{{login}} olarak oturum açtınız. BrzA Studio uygulamasını çalışmasına izin verdiğiniz repository'lere kurun.",
+        "removeNote": "Kullanıcılar artık GitHub üzerinden bota istekte bulunamaz. Botun GitHub kullanıcı listesi temizlenir. BrzA Studio uygulaması kurulu kalır.",
         "removeConfirm": "Kaldır",
         "finishSetup": "Kurulumu tamamla",
         "orgDescription": "{{repos}} · @{{login}} olarak oturum açıldı",
@@ -30150,7 +30150,7 @@
         "otherComputer": "Başka bir bilgisayardaki bot",
         "title": "GitHub",
         "description": "Botlarınızın hangi yorumların size ait olduğunu anlamak için kullandığı GitHub hesabınız.",
-        "linked": "Bu Orca hesabına bağlı",
+        "linked": "Bu BrzA Studio hesabına bağlı",
         "unlink": "Bağlantıyı kaldır",
         "unlinked": "Hesabınızı bağlamak için bir botun Bağlayıcılar bölümünden GitHub’ı ekleyin.",
         "descriptionOnHost": "{{host}} üzerindeki botların sahibi olan ve adına işlem yaptıkları GitHub kullanıcısı.",
@@ -30158,17 +30158,17 @@
         "descriptionOnHostPlural": "{{host}} üzerindeki botların sahibi olan ve adına işlem yaptıkları GitHub kullanıcıları.",
         "linkedAs": "{{login}} olarak bağlandı",
         "reconnect": "Yeniden bağlan",
-        "linkFromApp": "GitHub hesabınızı {{host}} ile eşleştirilmiş bir bilgisayarda Orca üzerinden bağlayın.",
-        "linkedOnHost": "{{host}} üzerinde kullanılan Orca hesabına bağlı"
+        "linkFromApp": "GitHub hesabınızı {{host}} ile eşleştirilmiş bir bilgisayarda BrzA Studio üzerinden bağlayın.",
+        "linkedOnHost": "{{host}} üzerinde kullanılan BrzA Studio hesabına bağlı"
       },
       "errors": {
         "off": "GitHub desteği yakında geliyor.",
         "rateLimited": "Çok fazla deneme yapıldı. Bir dakika bekleyip yeniden deneyin.",
         "unavailable": "GitHub yanıt vermedi. Yeniden deneyin.",
-        "signedOut": "GitHub’ı bağlamak için Orca Cloud’da oturum açın.",
-        "unreachable": "Orca Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
-        "wrongAccount": "Oturum açma işlemi başka bir Orca hesabından başlatılmış. Bu Orca hesabından GitHub ile yeniden oturum açın.",
-        "alreadyLinked": "Bu Orca hesabı başka bir GitHub kullanıcısına bağlı. Önce Ayarlar › Botlar › GitHub bölümünden mevcut bağlantıyı kaldırın.",
+        "signedOut": "GitHub’ı bağlamak için BrzA Studio Cloud’da oturum açın.",
+        "unreachable": "BrzA Studio Cloud’a ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
+        "wrongAccount": "Oturum açma işlemi başka bir BrzA Studio hesabından başlatılmış. Bu BrzA Studio hesabından GitHub ile yeniden oturum açın.",
+        "alreadyLinked": "Bu BrzA Studio hesabı başka bir GitHub kullanıcısına bağlı. Önce Ayarlar › Botlar › GitHub bölümünden mevcut bağlantıyı kaldırın.",
         "replaced": "GitHub bağlantısı tamamlanmadı. Sonradan başlatılan bir Linear veya GitHub bağlantısı bu işlemin yerini almış olabilir. Baştan başlayın."
       },
       "howToAsk": "Bir sorunda veya pull request'te <code>{{mention}} {{handle}} …</code> yazarak bottan bahsedin.",
@@ -30176,11 +30176,11 @@
       "connect": {
         "button": "GitHub’a bağlan",
         "waiting": "GitHub oturumunu açma işlemini tarayıcınızda tamamlayın…",
-        "requested": "Kuruluş sahiplerinden birine Orca uygulaması için onay isteği gönderildi.",
-        "notInstalled": "Orca uygulaması henüz hiçbir repository'nizde kurulu değil.",
+        "requested": "Kuruluş sahiplerinden birine BrzA Studio uygulaması için onay isteği gönderildi.",
+        "notInstalled": "BrzA Studio uygulaması henüz hiçbir repository'nizde kurulu değil.",
         "connected": "GitHub bağlandı.",
         "pickRepositories": "Oturum açıp {{name}} botunun hangi repository'lerde çalışabileceğini seçin.",
-        "readsOnly": "Orca yalnızca GitHub kullanıcı adınızı ve kullanıcı kimliğinizi okur."
+        "readsOnly": "BrzA Studio yalnızca GitHub kullanıcı adınızı ve kullanıcı kimliğinizi okur."
       },
       "allRepositoriesShort": "tüm repository'ler",
       "signOut": {
@@ -30212,7 +30212,7 @@
       "heading": "Erişim izni istiyor",
       "decline": "Reddet",
       "full": "{{person}} adlı kişiyi eklemeden önce listeden birini kaldırın.",
-      "notOwner": "Bu istek başka bir Orca hesabına ait. İncelemek için botun sahibi olarak oturum açın.",
+      "notOwner": "Bu istek başka bir BrzA Studio hesabına ait. İncelemek için botun sahibi olarak oturum açın.",
       "expired": "Bu istek daha önce açılmış veya süresi dolmuş. Bekleyen istekleri görmek için botun ayarlarını açın.",
       "failed": "İstek açılamadı. Bağlantınızı kontrol edip yeniden deneyin.",
       "notHere": "Bu istek başka bir bilgisayarda çalışan bir bot için. Bağlantıyı botun çalıştığı bilgisayarda açın.",
@@ -30239,9 +30239,9 @@
       "namesMore": "{{names}} ve {{count}} tane daha",
       "stepCreate": "Bot oluştur",
       "stepReply": "İlk mesaj",
-      "projectsReading": "Projeler: Orca'da neleriniz olduğuna bakılıyor…",
+      "projectsReading": "Projeler: BrzA Studio'da neleriniz olduğuna bakılıyor…",
       "projectsDone": "Projelerinize bakıldı",
-      "projectsNone": "Orca'da henüz proje yok",
+      "projectsNone": "BrzA Studio'da henüz proje yok",
       "projectsOne": "1 proje bulundu: {{names}}",
       "projectsMany": "{{count}} proje bulundu: {{names}}",
       "githubReading": "GitHub: açık PR'larınız okunuyor…",
@@ -30316,14 +30316,14 @@
         "keyAdded": "✓ Anahtar eklendi",
         "declined": "Kapatıldı",
         "connectTitle": "{{app}} uygulamasına bağlan",
-        "connectNote": "Composio üzerinden tarayıcınızda {{app}} oturum açma sayfası açılır. Oturum bilgilerinizi Composio saklar; Orca saklamaz.",
+        "connectNote": "Composio üzerinden tarayıcınızda {{app}} oturum açma sayfası açılır. Oturum bilgilerinizi Composio saklar; BrzA Studio saklamaz.",
         "keyFirst": "Önce Composio anahtarınızı ekleyin.",
         "connect": "{{app}} uygulamasına bağlan",
         "ready": "Hazır",
         "readyTitle": "{{bot}} artık {{app}} uygulamasını kullanabilir",
         "readyAs": "{{label}} olarak bağlısınız. Uygulamalarınızın oturum bilgilerini Composio saklar.",
         "browse": "Daha fazla uygulamaya göz at",
-        "connectKeyNote": "{{app}} API anahtarınızı girmeniz için Composio açılır. Anahtarınızı yalnızca Composio saklar; Orca saklamaz.",
+        "connectKeyNote": "{{app}} API anahtarınızı girmeniz için Composio açılır. Anahtarınızı yalnızca Composio saklar; BrzA Studio saklamaz.",
         "goneHeading": "Kurulum gerekli",
         "goneTitle": "{{bot}} şu anda {{app}} uygulamasını kullanamıyor",
         "goneDetail": "Botun Araçlar bölümünden yeniden kurun."
@@ -30364,7 +30364,7 @@
         "byHand": "Elle kurulum",
         "done": "✓ Kuruldu",
         "chosenByHand": "Bu adımı Composio’da yapıyorum",
-        "oneAddressNote": "Orca, oturumunuz için {{trigger}} tetikleyicisini etkinleştirir. Composio projenizdeki tüm olaylar tek bir adresten Orca’ya ulaşır ve her biri ilgili bota iletilir."
+        "oneAddressNote": "BrzA Studio, oturumunuz için {{trigger}} tetikleyicisini etkinleştirir. Composio projenizdeki tüm olaylar tek bir adresten BrzA Studio’ya ulaşır ve her biri ilgili bota iletilir."
       },
       "removeKey": {
         "title": "Composio anahtarınız kaldırılsın mı?",
@@ -30397,7 +30397,7 @@
         "paste": "Composio’da proje ayarlarını açın. “Webhooks” bölümüne gidip adresi yapıştırın.",
         "open": "Composio’yu aç",
         "done": "Tamam",
-        "doneNote": "Ardından Orca, {{trigger}} tetikleyicisini etkinleştirir ve Composio’nun imzalama anahtarını kaydeder."
+        "doneNote": "Ardından BrzA Studio, {{trigger}} tetikleyicisini etkinleştirir ve Composio’nun imzalama anahtarını kaydeder."
       },
       "disconnectTitle": "{{app}} bağlantısı kesilsin mi?",
       "disconnectNote": "{{bot}} artık {{app}} uygulamasını kullanamaz. İstediğiniz zaman yeniden bağlayabilirsiniz.",
@@ -30413,7 +30413,7 @@
       "signInOnComposio": "Composio sayfasından {{app}} hesabınızda oturum açın.",
       "fixKey": "Anahtarı düzelt",
       "signInsUnreadShort": "Oturum bilgileri okunamadı",
-      "signInsUnreadNote": "Orca, {{bot}} botunun hangi uygulamaları kullandığını Composio’dan öğrenemedi.",
+      "signInsUnreadNote": "BrzA Studio, {{bot}} botunun hangi uygulamaları kullandığını Composio’dan öğrenemedi.",
       "signInEnded": "Oturum açma isteği reddedildi, işlem başarısız oldu veya zaman aşımına uğradı.",
       "tryAgain": "Yeniden deneyin"
     },
@@ -30457,10 +30457,10 @@
       "cantReach": "Ulaşılamıyor",
       "signInOrca": "Claude ve Codex ile çalışır",
       "finishing": "Oturum açma tamamlanıyor…",
-      "updateHost": "Uygulamalarda oturum açmak için {{host}} üzerindeki Orca'yı güncelleyin",
-      "updateServer": "Uygulamalarda oturum açmak için sunucudaki Orca'yı güncelleyin",
-      "updateHostShort": "{{host}} üzerindeki Orca'yı güncelle",
-      "updateServerShort": "Sunucudaki Orca'yı güncelle"
+      "updateHost": "Uygulamalarda oturum açmak için {{host}} üzerindeki BrzA Studio'yı güncelleyin",
+      "updateServer": "Uygulamalarda oturum açmak için sunucudaki BrzA Studio'yı güncelleyin",
+      "updateHostShort": "{{host}} üzerindeki BrzA Studio'yı güncelle",
+      "updateServerShort": "Sunucudaki BrzA Studio'yı güncelle"
     },
     "handToBot": {
       "cantMove": "{{name}} buradan {{bot}} altına taşınamıyor.",
@@ -30501,8 +30501,8 @@
     "page": {
       "serverDownTitle": "{{host}} adresine ulaşılamıyor",
       "serverReconnectingTitle": "{{host}} sunucusuna yeniden bağlanılıyor",
-      "serverDownBody": "{{host}} üzerinde Orca'nın çalıştığını kontrol edip yeniden bağlanın.",
-      "serverReconnectingBody": "Sunucuyla bağlantı kesildi. Orca otomatik olarak yeniden bağlanmayı deniyor.",
+      "serverDownBody": "{{host}} üzerinde BrzA Studio'nın çalıştığını kontrol edip yeniden bağlanın.",
+      "serverReconnectingBody": "Sunucuyla bağlantı kesildi. BrzA Studio otomatik olarak yeniden bağlanmayı deniyor.",
       "serverReconnect": "Yeniden bağlan"
     },
     "tabs": {
@@ -30615,8 +30615,8 @@
       "teamPublisher": "Ekibiniz"
     },
     "displayText": {
-      "tb0b38488": "Orca için GitHub Temaları",
-      "tb8aa98fc": "Orca için VS Code Varsayılan Temaları",
+      "tb0b38488": "BrzA Studio için GitHub Temaları",
+      "tb8aa98fc": "BrzA Studio için VS Code Varsayılan Temaları",
       "tfc425a57": "Multipass VM Tarifleri",
       "t0f9f5503": "GitHub'ın kendi VS Code temaları: Light Default, Dark Default, Dark Dimmed ve yüksek kontrastlı varyantlar.",
       "t0b4f7e19": "VS Code'un varsayılan renk temalarının resmî olmayan portları: Dark Modern, Light Modern, Dark+ ve Light+.",
@@ -30630,8 +30630,8 @@
   "renderer": {
     "lib": {
       "filePreview": {
-        "remoteFileUnsupported": "Orca Tarayıcısında Aç seçeneği yalnızca yerel dosyalar için kullanılabilir.",
-        "twinFileUnsupported": "Bu proje birden fazla sunucuda bulunduğundan Orca hangi kopyayı açacağını belirleyemiyor."
+        "remoteFileUnsupported": "BrzA Studio Tarayıcısında Aç seçeneği yalnızca yerel dosyalar için kullanılabilir.",
+        "twinFileUnsupported": "Bu proje birden fazla sunucuda bulunduğundan BrzA Studio hangi kopyayı açacağını belirleyemiyor."
       }
     }
   },
@@ -30870,7 +30870,7 @@
     "turnOnPlugins": "Eklentiler bölümünde etkinleştir",
     "languageDidNotLoad": "{{language}} yüklenemedi.",
     "yourLanguage": "Diliniz",
-    "offerSentence": "Orca için {{language}} dilinde bir topluluk çevirisi bulunuyor.",
+    "offerSentence": "BrzA Studio için {{language}} dilinde bir topluluk çevirisi bulunuyor.",
     "offerInstall": "<lang>{{language}}</lang> çevirisini yükle…",
     "offerUse": "<lang>{{language}}</lang> kullan",
     "offerInstalling": "<lang>{{language}}</lang> çevirisi yükleniyor…",
@@ -30880,7 +30880,7 @@
     "preparing": "Hazırlanıyor…",
     "offerConfirming": "Onay bekleniyor…",
     "offerRetry": "Yeniden deneyin",
-    "suggestionTitle": "Orca: <lang>{{language}}</lang>",
+    "suggestionTitle": "BrzA Studio: <lang>{{language}}</lang>",
     "systemResolved": "{{system}} ({{language}})",
     "suggestionInstall": "Yükle",
     "suggestionUse": "Kullan",
@@ -30924,7 +30924,7 @@
   },
   "chats": {
     "delete": {
-      "updateHost": "Sohbetleri silmek için {{host}} üzerindeki Orca'yı güncelleyin",
+      "updateHost": "Sohbetleri silmek için {{host}} üzerindeki BrzA Studio'yı güncelleyin",
       "failed": "Sohbet silinemedi",
       "undone": "Bu işlem geri alınamaz.",
       "title": "Bu sohbet silinsin mi?",
@@ -30955,10 +30955,10 @@
       "attachmentsOmitted": "Kaydedilen donma raporu ve tanılama günlükleri eklenmedi: {{value0}}",
       "description": "Ne olduğunu anlamamıza yardımcı olmak için kaydedilen donma raporunu gönderin.",
       "notSent": "Donma raporu gönderilmedi",
-      "notes": "İsteğe bağlı: Orca donmadan önce ne yapıyordunuz?",
+      "notes": "İsteğe bağlı: BrzA Studio donmadan önce ne yapıyordunuz?",
       "sent": "Donma raporu gönderildi.",
       "sentWithoutAttachments": "Ayrıntılar, kayıtlı donma raporu ve tanılama günlükleri olmadan gönderildi",
-      "summary": "Orca yanıt vermeyi durdurdu",
+      "summary": "BrzA Studio yanıt vermeyi durdurdu",
       "title": "Donma bildir"
     },
     "includeRecentLogsRedacted": "Son günlükleri ekle (maskelenmiş)",
@@ -31015,17 +31015,17 @@
     "failedChipLabel": "Güncellenemedi: hatayı görüntüle",
     "failedChipTooltip": "Güncelleme yapılamadı. Ayrıntılar için tıklayın.",
     "failedTitle": "{{product}} güncellenemedi",
-    "failedDescription": "Orca, <strong>{{host}}</strong> üzerinde {{product}} sürümünü <strong>{{installedVersion}}</strong> sürümünden <strong>{{latestVersion}}</strong> sürümüne yükseltmek için <code>{{command}}</code> komutunu çalıştırdı ancak güncelleme yapılamadı.",
-    "failedDescriptionNoCommand": "Orca, <strong>{{host}}</strong> üzerinde {{product}} güncellemesini yapamadı."
+    "failedDescription": "BrzA Studio, <strong>{{host}}</strong> üzerinde {{product}} sürümünü <strong>{{installedVersion}}</strong> sürümünden <strong>{{latestVersion}}</strong> sürümüne yükseltmek için <code>{{command}}</code> komutunu çalıştırdı ancak güncelleme yapılamadı.",
+    "failedDescriptionNoCommand": "BrzA Studio, <strong>{{host}}</strong> üzerinde {{product}} güncellemesini yapamadı."
   },
   "wslDriveProject": {
     "label": "Git",
-    "converted": "Orca bu proje için Git’i Windows üzerinde çalıştırır. Terminaller ve ajanlar {{distro}} içinde çalışmaya devam eder.",
-    "checkFailed": "Orca bu projeyi denetleyemedi.",
-    "convertFailed": "Orca bu projenin kullandığı Git uygulamasını değiştiremedi.",
+    "converted": "BrzA Studio bu proje için Git’i Windows üzerinde çalıştırır. Terminaller ve ajanlar {{distro}} içinde çalışmaya devam eder.",
+    "checkFailed": "BrzA Studio bu projeyi denetleyemedi.",
+    "convertFailed": "BrzA Studio bu projenin kullandığı Git uygulamasını değiştiremedi.",
     "description": "Bu proje bir Windows sürücüsünde. Burada WSL içindeki Git yavaş çalışır ve Windows’ta yapılan değişiklikleri algılamayabilir. Bunun yerine Git for Windows’u kullanın; terminaller ve ajanlar {{distro}} içinde kalır.",
     "useWindowsGit": "Git for Windows kullan",
-    "review": "Projenin Orca’daki sekmeleri, terminalleri, sohbetleri ve çalışma alanları olduğu gibi kalır. Çalışan terminaller kesintiye uğramaz.",
+    "review": "Projenin BrzA Studio’daki sekmeleri, terminalleri, sohbetleri ve çalışma alanları olduğu gibi kalır. Çalışan terminaller kesintiye uğramaz.",
     "lineEndings": "Bu repoda core.autocrlf ayarını da yapılandır; böylece WSL terminallerindeki Git her dosyayı değiştirilmiş olarak göstermez.",
     "cancel": "İptal",
     "confirm": "Git for Windows kullan",
@@ -31040,24 +31040,24 @@
   },
   "wslDriveUnc": {
     "label": "Konum",
-    "description": "Orca bu projeyi WSL üzerinden açıyor. Bunun yerine {{drivePath}} konumundan açın. Böylece Git bu konumda çok daha hızlı olan Windows üzerinde çalışır; terminaller ve ajanlar {{distro}} içinde kalır.",
+    "description": "BrzA Studio bu projeyi WSL üzerinden açıyor. Bunun yerine {{drivePath}} konumundan açın. Böylece Git bu konumda çok daha hızlı olan Windows üzerinde çalışır; terminaller ve ajanlar {{distro}} içinde kalır.",
     "convert": "{{drivePath}} konumundan aç",
-    "review": "Orca, projenin terminallerini duraklatıp yeniden başlar ve projeyi {{drivePath}} konumundan açar. Sekmeler, terminal geçmişleri, sohbetler ve ayarlar korunur. Duraklatılan terminaller kaldıkları yerden devam eder.",
+    "review": "BrzA Studio, projenin terminallerini duraklatıp yeniden başlar ve projeyi {{drivePath}} konumundan açar. Sekmeler, terminal geçmişleri, sohbetler ve ayarlar korunur. Duraklatılan terminaller kaldıkları yerden devam eder.",
     "cancel": "İptal",
     "confirm": "Yeniden başlat ve dönüştür",
-    "failed": "Orca bu projeyi dönüştüremedi.",
-    "restarting": "Projeyi dönüştürmek için Orca yeniden başlatılıyor…",
+    "failed": "BrzA Studio bu projeyi dönüştüremedi.",
+    "restarting": "Projeyi dönüştürmek için BrzA Studio yeniden başlatılıyor…",
     "terminalsBusy": "Bu projenin bazı terminallerinde işlemler sürüyor. Tamamlanmalarını bekleyin veya terminalleri kapatıp yeniden deneyin.",
-    "pauseFailed": "Orca bu projenin terminallerini duraklatamadı. Hiçbir değişiklik yapılmadı.",
+    "pauseFailed": "BrzA Studio bu projenin terminallerini duraklatamadı. Hiçbir değişiklik yapılmadı.",
     "blocker": {
-      "pending": "Orca zaten bir projeyi dönüştürüyor. Dönüşüm, Orca yeniden başladığında tamamlanacak.",
-      "state": "Orca bu projede güvenle dönüştüremeyeceği kayıtlı durum bilgileri buldu. Hiçbir değişiklik yapılmadı.",
-      "duplicate": "{{drivePath}} konumu Orca’da zaten bir proje olarak kayıtlı.",
+      "pending": "BrzA Studio zaten bir projeyi dönüştürüyor. Dönüşüm, BrzA Studio yeniden başladığında tamamlanacak.",
+      "state": "BrzA Studio bu projede güvenle dönüştüremeyeceği kayıtlı durum bilgileri buldu. Hiçbir değişiklik yapılmadı.",
+      "duplicate": "{{drivePath}} konumu BrzA Studio’da zaten bir proje olarak kayıtlı.",
       "mixed": "Bu projenin bazı klasörleri Windows sürücüsünde değil, WSL içinde.",
-      "overlap": "Bu proje, Orca’nın dönüştüremediği bir projeyle aynı klasörleri kullanıyor. Dönüştürme işlemi ortak klasörleri birbirinden ayırırdı.",
+      "overlap": "Bu proje, BrzA Studio’nın dönüştüremediği bir projeyle aynı klasörleri kullanıyor. Dönüştürme işlemi ortak klasörleri birbirinden ayırırdı.",
       "notDriveMount": "Bu dağıtımda klasör {{drivePath}} konumuna karşılık gelmiyor; o Windows sürücüsünden bağlanmamış.",
       "notConvertible": "Bu proje, bu bilgisayardaki bir Windows sürücüsünde bulunmuyor.",
-      "differingState": "Orca bu klasör için WSL yolu ile {{drivePath}} konumunda farklı bilgiler kaydetmiş. Hiçbir değişiklik yapılmadı.",
+      "differingState": "BrzA Studio bu klasör için WSL yolu ile {{drivePath}} konumunda farklı bilgiler kaydetmiş. Hiçbir değişiklik yapılmadı.",
       "projectSplit": "Bu projede dönüşüme dâhil olmayan bir repository de var. Hiçbir değişiklik yapılmadı."
     }
   }

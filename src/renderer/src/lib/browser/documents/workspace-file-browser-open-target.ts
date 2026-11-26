@@ -13,14 +13,14 @@ export const TWIN_FILE_BROWSER_UNSUPPORTED_MESSAGE =
 export function remoteFileBrowserUnsupportedMessage(): string {
   return translate(
     'renderer.lib.filePreview.remoteFileUnsupported',
-    'Open in Orca Browser is only available for local files.'
+    'Open in BrzA Studio Browser is only available for local files.'
   )
 }
 
 export function twinFileBrowserUnsupportedMessage(): string {
   return translate(
     'renderer.lib.filePreview.twinFileUnsupported',
-    'This project is on more than one host, so Orca cannot tell which copy to open.'
+    'This project is on more than one host, so BrzA Studio cannot tell which copy to open.'
   )
 }
 

@@ -118,7 +118,7 @@ export function LanguagePackDiscoverySummary({
         ) : (
           t(
             'languages.offerSentence',
-            'Orca is available in {{language}} as a community translation.',
+            'BrzA Studio is available in {{language}} as a community translation.',
             {
               language: hint.offer.englishName
             }

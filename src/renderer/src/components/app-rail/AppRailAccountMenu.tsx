@@ -83,7 +83,7 @@ export function AppRailAccountMenu({
   const signedIn = useAppStore((s) => s.orcaProfileAuthStatus?.state === 'connected')
   // A stable store reference, so the rail re-renders only when the auth status changes.
   const cloud = useAppStore((s) => s.orcaProfileAuthStatus?.cloud)
-  const fallbackName = t('auto.components.settings.orcaAccount.account', 'Orca account')
+  const fallbackName = t('auto.components.settings.orcaAccount.account', 'BrzA Studio account')
   const account = useMemo(
     () => (signedIn ? appRailAccount(cloud, fallbackName) : null),
     [signedIn, cloud, fallbackName]

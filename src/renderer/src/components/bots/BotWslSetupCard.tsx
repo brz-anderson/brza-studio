@@ -14,7 +14,7 @@ function stepLabel(step: BotWslSetupStage, distro: string, t: Translate): string
     case 'starting-distro':
       return t('bots.new.wslSetup.starting', 'Starting {{distro}}', { distro })
     case 'installing-server':
-      return t('bots.new.wslSetup.installing', 'Installing Orca’s server in ~/.orca-remote')
+      return t('bots.new.wslSetup.installing', 'Installing BrzA Studio’s server in ~/.orca-remote')
     case 'connecting':
       return t('bots.new.wslSetup.connecting', 'Connecting')
     case 'finding-agents':
@@ -92,7 +92,7 @@ function FailedBody({
           {state.message ??
             t(
               'bots.new.wslSetup.failedGeneric',
-              'Orca’s server didn’t start in the distro. Details say what stopped it.'
+              'BrzA Studio’s server didn’t start in the distro. Details say what stopped it.'
             )}
         </p>
         {state.detail ? (

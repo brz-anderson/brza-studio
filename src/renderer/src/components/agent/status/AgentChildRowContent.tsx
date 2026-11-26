@@ -3,7 +3,7 @@ import type { AgentChildRowModel } from '../../../../../shared/agent-status/pres
 import { AgentStateDot } from '@/components/agent/status/AgentStateDot'
 import { cn } from '@/lib/class-names'
 import type { StateIndicatorTooltipSide } from '@/components/agent/status/StateIndicatorTooltip'
-import { agentChildRowText, agentChildRowTypeBeforeTool } from './agent-child-row-text'
+import { agentChildRowText } from './agent-child-row-text'
 
 type AgentChildRowContentProps = {
   row: AgentChildRowModel
@@ -18,8 +18,6 @@ type AgentChildRowContentProps = {
   tooltipSide?: StateIndicatorTooltipSide
   /** Name the whole line on hover, for surfaces that truncate it tightly. */
   lineTitle?: boolean
-  /** Put the agent type between the name and the tool (the chat strip); other surfaces keep name · tool. */
-  agentTypeBeforeTool?: boolean
   /** After the state dot, where rows of several kinds mix and each shows its kind's icon there. */
   icon?: React.ReactNode
   /** A kind label after the name, such as "Subagent" where rows of several kinds mix. */
@@ -37,13 +35,10 @@ export const AgentChildRowContent = React.memo(function AgentChildRowContent({
   dotTitle,
   tooltipSide,
   lineTitle = false,
-  agentTypeBeforeTool = false,
   icon,
   badge
 }: AgentChildRowContentProps): React.JSX.Element {
-  const { lead, trail: tool } = agentChildRowText(row, now)
-  const agentType = agentTypeBeforeTool && tool ? agentChildRowTypeBeforeTool(row) : ''
-  const trail = agentType ? `${agentType}${separator}${tool}` : tool
+  const { lead, trail } = agentChildRowText(row, now)
   return (
     <>
       <AgentStateDot

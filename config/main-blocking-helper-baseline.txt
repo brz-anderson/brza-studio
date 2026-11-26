@@ -1356,7 +1356,7 @@
 1 src/main/startup/agent-accounts/codex-launch-preparation.ts
 1 src/main/startup/agent-accounts/codex-session-resume-launch.ts
 1 src/main/startup/cloud-startup/main-process-connector-startup.ts
-7 src/main/startup/configure-process.ts
+8 src/main/startup/configure-process.ts # +1 ensureWindowsAppDataPath: one mkdir at process start, Windows only, before the app is ready
 1 src/main/startup/diagnostics/event-loop-stall-probe.ts
 2 src/main/startup/diagnostics/startup-diagnostics.ts
 3 src/main/startup/gpu-recovery/gpu-fallback-marker.ts
@@ -1423,17 +1423,22 @@
 1 src/main/updater/lifecycle/updater-check-state.ts
 1 src/main/updater/lifecycle/updater-download-install.ts
 5 src/main/updater/lifecycle/updater-install-execution.ts
-2 src/main/updater/lifecycle/updater-remote-status.ts
-4 src/main/updater/lifecycle/updater-setup.ts
-1 src/main/updater/lifecycle/windows-update-install-directory.ts
+1 src/main/updater/lifecycle/updater-menu-checks.ts # isUpdaterEnabled: marker stat cached per resources folder
+3 src/main/updater/lifecycle/updater-remote-status.ts # +1 isUpdaterEnabled: marker stat cached per resources folder
+1 src/main/updater/lifecycle/updater-scheduling.ts # isUpdaterEnabled: marker stat cached per resources folder
+5 src/main/updater/lifecycle/updater-setup.ts # +1 isUpdaterEnabled: marker stat cached per resources folder
+2 src/main/updater/lifecycle/windows-update-install-directory.ts # +1 pin at updater setup: one readdir of the Windows install folder, once per launch
 10 src/main/updater/linux-package/appimage-runtime-identity.ts
 2 src/main/updater/linux-package/linux-package-downloaded-status.ts
 3 src/main/updater/linux-package/linux-package-install-command.ts
 2 src/main/updater/linux-package/linux-package-update-recovery.ts
 4 src/main/updater/linux-package/linux-update-package-type.ts
 1 src/main/updater/linux-package/updater-package-recovery.ts
+1 src/main/updater/nudges/updater-nudge.ts # isUpdaterEnabled: marker stat cached per resources folder
+1 src/main/updater/releases/updater-build-selection.ts # isUpdaterEnabled: marker stat cached per resources folder
 8 src/main/updater/serve-update-handoff.ts
 1 src/main/updater/update-install-exit-watchdog.ts
+1 src/main/updater/updater-enabled.ts # isAdHocSignedBuild: marker stat cached per resources folder
 3 src/main/updater/updater-events.ts
 6 src/main/usage/scan-worker/usage-scan-worker-spawn.ts
 1 src/main/warp-themes/auto-discovered-theme-files.ts

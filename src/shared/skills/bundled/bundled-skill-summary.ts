@@ -37,8 +37,8 @@ const OP_PLAN_STATE: Readonly<Record<BundledSkillOpKind, BundledSkillPlanState>>
 
 export const BUNDLED_SKILL_LEAVE_REASON_TEXT: Readonly<Record<BundledSkillLeaveReason, string>> = {
   // Why neutral: an older Orca release with extra files and a hand edit both land here.
-  edited: "This copy differs from Orca's",
-  'other-build': 'Installed by another Orca version',
+  edited: "This copy differs from BrzA Studio's",
+  'other-build': 'Installed by another BrzA Studio version',
   other: 'A different skill uses this name',
   unwritable: "BrzA Studio can't write to this folder",
   unreadable: "BrzA Studio can't read every file",

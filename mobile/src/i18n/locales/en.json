@@ -5933,8 +5933,8 @@
       "unreviewed-work": {
         "name": "Unreviewed agent work",
         "line": "A daily list of finished agent work nobody has looked at yet.",
-        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. Orca already tells you when an agent is waiting on you; this covers what’s done.",
-        "watches": "Your Orca workspaces",
+        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. BrzA Studio already tells you when an agent is waiting on you; this covers what’s done.",
+        "watches": "Your BrzA Studio workspaces",
         "does": "Lists workspaces whose agent finished with changes nobody reviewed or opened a pull request for.",
         "reports": "Here, weekdays at 9 AM",
         "example1": "mobile-pairing finished yesterday with a 340-line diff, no pull request.",
@@ -5950,7 +5950,7 @@
         "name": "Workspace cleanup",
         "line": "Finds finished or abandoned workspaces and offers to remove them.",
         "firstChat": "Lists workspaces whose pull request merged or that haven’t changed in two weeks, with any uncommitted changes. It removes only the ones you pick.",
-        "watches": "Your Orca workspaces and their pull requests",
+        "watches": "Your BrzA Studio workspaces and their pull requests",
         "does": "Lists workspaces that are done or abandoned, with uncommitted changes; removes only the ones you pick.",
         "reports": "Here, Fridays at 4 PM",
         "example1": "6 workspaces are done: their pull requests merged this week.",
@@ -6956,9 +6956,9 @@
       "reading": "Getting to know your setup…",
       "read": "Getting to know your setup",
       "namesMore": "{{names}} and {{count}} more",
-      "projectsReading": "Projects: looking at what you have in Orca…",
+      "projectsReading": "Projects: looking at what you have in BrzA Studio…",
       "projectsDone": "Looked at your projects",
-      "projectsNone": "No projects in Orca yet",
+      "projectsNone": "No projects in BrzA Studio yet",
       "projectsOne": "Found 1 project: {{names}}",
       "projectsMany": "Found {{count}} projects: {{names}}",
       "githubReading": "GitHub: reading your open PRs…",
@@ -7120,7 +7120,7 @@
         "unsupported": "This app isn’t supported yet.",
         "unavailable": "Can’t reach this app. Check the address, then try again.",
         "noTool": "This bot no longer has that tool.",
-        "desktopOnly": "Sign in from Orca on {{host}}.",
+        "desktopOnly": "Sign in from BrzA Studio on {{host}}.",
         "denied": "Access wasn’t allowed.",
         "expired": "The sign-in expired. Try again.",
         "couldNotSignIn": "Couldn’t sign in. Try again."
@@ -8363,7 +8363,7 @@
             "cursor": {
               "expired": {
                 "label": "Sign-in expired",
-                "message": "Run cursor-agent login in a terminal on the computer running Orca, then retry usage."
+                "message": "Run cursor-agent login in a terminal on the computer running BrzA Studio, then retry usage."
               }
             },
             "usage": {
@@ -8374,8 +8374,8 @@
             "7ad719c4bf": "Limited",
             "e740f92596": "Refresh failed",
             "2c35eca8d4": "Unable to fetch usage",
-            "d1b7f509ac": "Run grok in a terminal on the computer running Orca and wait for it to start. If prompted, complete sign-in, then retry usage. You do not need to send a chat message.",
-            "a37e8c15d4": "Run kimi in a terminal on the computer running Orca and wait for it to start, then retry usage.",
+            "d1b7f509ac": "Run grok in a terminal on the computer running BrzA Studio and wait for it to start. If prompted, complete sign-in, then retry usage. You do not need to send a chat message.",
+            "a37e8c15d4": "Run kimi in a terminal on the computer running BrzA Studio and wait for it to start, then retry usage.",
             "3d3c9c0c1f": "Claude usage will refresh after the live Claude terminal rotates its credentials.",
             "42fdd4da1d": "Claude sign-in is being refreshed. Agent sessions may still be signed in.",
             "c06c1d215d": "Claude usage could not be refreshed because the network request failed.",

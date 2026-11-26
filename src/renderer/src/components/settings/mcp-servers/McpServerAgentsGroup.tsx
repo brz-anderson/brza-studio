@@ -85,12 +85,16 @@ export function McpServerAgentsGroup({
     const ok = await askFileConsent(
       () =>
         confirm({
-          title: t('settings.mcpServers.fileAgent.title', 'Let Orca edit {{agent}}’s MCP file?', {
-            agent: label
-          }),
+          title: t(
+            'settings.mcpServers.fileAgent.title',
+            'Let BrzA Studio edit {{agent}}’s MCP file?',
+            {
+              agent: label
+            }
+          ),
           description: t(
             'settings.mcpServers.fileAgent.line',
-            'Orca will keep your MCP servers in {{agent}}’s settings file ({{file}}). Your own entries stay as they are.',
+            'BrzA Studio will keep your MCP servers in {{agent}}’s settings file ({{file}}). Your own entries stay as they are.',
             { agent: label, file: AGENT_FILES[agent] }
           ),
           confirmLabel: t('settings.mcpServers.fileAgent.allow', 'Allow'),

@@ -120,10 +120,12 @@ function problemWords(
       }
     case 'offline':
       return {
-        headline: t('bots.slack.problem.offline', 'Orca can’t reach {{host}}.', { host: hostName }),
+        headline: t('bots.slack.problem.offline', 'BrzA Studio can’t reach {{host}}.', {
+          host: hostName
+        }),
         next: t(
           'bots.slack.problem.offlineNext',
-          'Check that Orca is running on {{host}}, then reconnect. Slack setup starts again once {{host}} is back.',
+          'Check that BrzA Studio is running on {{host}}, then reconnect. Slack setup starts again once {{host}} is back.',
           { host: hostName }
         )
       }
@@ -199,9 +201,13 @@ export function SlackSetupProblemStep({
                 (reachable) => {
                   if (!reachable) {
                     toast.error(
-                      t('bots.slack.problem.reconnectFailed', 'Orca still can’t reach {{host}}.', {
-                        host
-                      })
+                      t(
+                        'bots.slack.problem.reconnectFailed',
+                        'BrzA Studio still can’t reach {{host}}.',
+                        {
+                          host
+                        }
+                      )
                     )
                   }
                   if (mountedRef.current) {

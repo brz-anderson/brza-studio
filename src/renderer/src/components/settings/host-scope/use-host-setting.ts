@@ -189,7 +189,7 @@ export function useHostSetting<K extends HostOwnedSettingKey>(args: {
 export function getHostSettingUnsupportedNote(host: string, t: Translate): string {
   return t(
     'components.settings.hostScope.updateHostToChange',
-    'Update Orca on {{host}} to change this setting there.',
+    'Update BrzA Studio on {{host}} to change this setting there.',
     { host }
   )
 }

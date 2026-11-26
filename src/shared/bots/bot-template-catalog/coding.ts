@@ -94,9 +94,9 @@ export const BOT_TEMPLATES_CODING: readonly BotTemplate[] = [
     name: 'Unreviewed agent work',
     line: 'A daily list of finished agent work nobody has looked at yet.',
     firstChat:
-      'Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. Orca already tells you when an agent is waiting on you; this covers what’s done.',
+      'Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. BrzA Studio already tells you when an agent is waiting on you; this covers what’s done.',
     mascot: 'K2',
-    watches: 'Your Orca workspaces',
+    watches: 'Your BrzA Studio workspaces',
     does: 'Lists workspaces whose agent finished with changes nobody reviewed or opened a pull request for.',
     reports: 'Here, weekdays at 9 AM',
     connectors: [],
@@ -125,7 +125,7 @@ export const BOT_TEMPLATES_CODING: readonly BotTemplate[] = [
     firstChat:
       'Lists workspaces whose pull request merged or that haven’t changed in two weeks, with any uncommitted changes. It removes only the ones you pick.',
     mascot: 'J1',
-    watches: 'Your Orca workspaces and their pull requests',
+    watches: 'Your BrzA Studio workspaces and their pull requests',
     does: 'Lists workspaces that are done or abandoned, with uncommitted changes; removes only the ones you pick.',
     reports: 'Here, Fridays at 4 PM',
     connectors: ['github'],

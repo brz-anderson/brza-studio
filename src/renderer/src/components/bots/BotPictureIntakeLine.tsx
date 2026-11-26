@@ -30,7 +30,7 @@ export function useIntakeErrorMessage(): (error: BotAvatarIntakeError) => string
       case 'too_big':
         return t('bots.avatar.intake.tooBig', 'That image is over 10 MB.')
       case 'type':
-        return t('bots.avatar.intake.type', "Orca can't read that image. Try PNG or JPEG.")
+        return t('bots.avatar.intake.type', "BrzA Studio can't read that image. Try PNG or JPEG.")
       case 'too_small':
         return t('bots.avatar.intake.tooSmall', 'Too small. Use an image at least 128 px.')
     }

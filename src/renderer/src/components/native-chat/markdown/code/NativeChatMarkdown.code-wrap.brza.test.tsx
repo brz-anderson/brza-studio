@@ -26,7 +26,7 @@ import { NativeChatNoticeRow } from '../../messages/notices/NativeChatNoticeRow'
 import { NativeChatReasoningRow } from '../../messages/reasoning/NativeChatReasoningRow'
 
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
-  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
+  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma.brza.test-harness'))
     .loadNodeOniguruma
 }))
 

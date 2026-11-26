@@ -36,7 +36,12 @@ import {
 } from '../orca-cloud-sign-in'
 import { ConnectWaiting, ConnectorSetupHeader, connectorSetupFor } from '../connector-connect-parts'
 import { useConfirmConnectorSignOut } from '../connector-sign-out-confirm'
-import { botGitHubErrorMessage, gitHubPushesAs } from './bot-github-copy'
+import {
+  botGitHubErrorMessage,
+  botGitHubInstallText,
+  botGitHubReadsOnlyText,
+  gitHubPushesAs
+} from './bot-github-copy'
 import { GitHubTryItPreview } from './GitHubTryItPreview'
 import { useGitHubWhoCanAsk } from './use-github-who-can-ask'
 import { GitHubSetupCorner, GitHubSignedInLine } from './github-setup-header'
@@ -257,7 +262,7 @@ function BotGitHubSetupFlow({
               </p>
               <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Lock className="size-3.5 shrink-0" />
-                {t('bots.github.connect.readsOnly', 'Orca only reads your GitHub username and id.')}
+                {botGitHubReadsOnlyText()}
               </p>
             </div>
             {step.error ? (
@@ -284,17 +289,7 @@ function BotGitHubSetupFlow({
       case 'install':
         return (
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              {step.requested
-                ? t(
-                    'bots.github.connect.requested',
-                    'An owner of the organization has been asked to approve the Orca app.'
-                  )
-                : t(
-                    'bots.github.connect.notInstalled',
-                    'The Orca app is not on any of your repositories yet.'
-                  )}
-            </p>
+            <p className="text-sm text-muted-foreground">{botGitHubInstallText(step.requested)}</p>
             {trip.inSystemBrowser ? (
               <GitHubFinishInBrowser trip={trip} url={step.installUrl} />
             ) : awaiting ? (

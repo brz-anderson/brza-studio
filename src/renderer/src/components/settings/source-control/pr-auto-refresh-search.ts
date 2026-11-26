@@ -22,7 +22,7 @@ export function getPRAutoRefreshTitle(t: Translate = translate): string {
 export function getPRAutoRefreshDescription(t: Translate = translate): string {
   return t(
     'auto.components.settings.GitPane.prAutoRefreshDescription',
-    'How often Orca checks GitHub for pull request and CI changes.'
+    'How often BrzA Studio checks GitHub for pull request and CI changes.'
   )
 }
 

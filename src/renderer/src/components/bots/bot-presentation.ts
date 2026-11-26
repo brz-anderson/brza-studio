@@ -88,7 +88,7 @@ export function botCreateErrorMessage(
     refusedForOlderHostPurposeLimit(error.code, error.message, purpose)
     ? translate(
         'bots.errors.purposeTooLongForHost',
-        "Orca on {{host}} takes up to 200 characters for what it's for. Shorten it, or update Orca on {{host}}.",
+        "BrzA Studio on {{host}} takes up to 200 characters for what it's for. Shorten it, or update BrzA Studio on {{host}}.",
         { host }
       )
     : botErrorMessage(error)

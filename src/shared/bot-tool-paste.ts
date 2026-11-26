@@ -124,7 +124,7 @@ function pastedLineServer(
     throw new Error(
       t(
         'mcpServers.paste.badCommand',
-        'Put the values themselves in the mcp add command: Orca can’t fill in $VARIABLES or other shell expressions.'
+        'Put the values themselves in the mcp add command: BrzA Studio can’t fill in $VARIABLES or other shell expressions.'
       )
     )
   }
@@ -135,7 +135,7 @@ function pastedLineServer(
       throw new Error(
         t(
           'mcpServers.paste.unsupported',
-          'Orca can’t add this server as written: it uses SSE, its own OAuth client, or a value read from the environment.'
+          'BrzA Studio can’t add this server as written: it uses SSE, its own OAuth client, or a value read from the environment.'
         )
       )
     }
@@ -178,7 +178,7 @@ export function parseMcpServersPaste(
     throw new Error(
       t(
         'mcpServers.paste.none',
-        'Orca found no server it can add. SSE servers, servers with their own OAuth client or tool filters, and values read from the environment (${VAR}) aren’t supported.'
+        'BrzA Studio found no server it can add. SSE servers, servers with their own OAuth client or tool filters, and values read from the environment (${VAR}) aren’t supported.'
       )
     )
   }

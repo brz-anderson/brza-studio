@@ -172,8 +172,8 @@ export function McpDiscoveredRow({
         {server.movable ? (
           <Button variant="outline" size="sm" disabled={busy} onClick={moves ? onMove : onCopy}>
             {moves
-              ? t('settings.mcpServers.found.move', 'Move to Orca')
-              : t('settings.mcpServers.found.copy', 'Copy to Orca')}
+              ? t('settings.mcpServers.found.move', 'Move to BrzA Studio')
+              : t('settings.mcpServers.found.copy', 'Copy to BrzA Studio')}
           </Button>
         ) : null}
         {(server.movable && moves) || (onOpenFile && server.files.length > 0) ? (
@@ -195,7 +195,7 @@ export function McpDiscoveredRow({
                 <>
                   <DropdownMenuItem onSelect={onCopy}>
                     <Copy />
-                    {t('settings.mcpServers.found.copy', 'Copy to Orca')}
+                    {t('settings.mcpServers.found.copy', 'Copy to BrzA Studio')}
                   </DropdownMenuItem>
                   {onOpenFile && server.files.length > 0 ? <DropdownMenuSeparator /> : null}
                 </>

@@ -91,11 +91,14 @@ export function MobilePairingConnectionOptions({
 
   const relayCell = relayStatus.cellUrl ? relayCellLabel(relayStatus.cellUrl) : null
   const relayDescription = relayBlocked
-    ? t('settings.mobile.teamDisabledRelay', 'Orca Relay is turned off by your team. Use LAN.')
+    ? t(
+        'settings.mobile.teamDisabledRelay',
+        'BrzA Studio Relay is turned off by your team. Use LAN.'
+      )
     : relayUnavailable
       ? t(
           'auto.components.settings.MobilePairingConnectionOptions.relayUnavailable',
-          'Orca Relay isn’t available in this build. Use LAN.'
+          'BrzA Studio Relay isn’t available in this build. Use LAN.'
         )
       : t(
           'auto.components.settings.MobilePairingConnectionOptions.anywhereDescription',

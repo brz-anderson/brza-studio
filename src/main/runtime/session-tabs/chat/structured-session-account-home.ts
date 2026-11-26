@@ -74,7 +74,12 @@ export abstract class OrcaRuntimeWithStructuredSessionAccountHome extends OrcaRu
     const launchEnv = this.structuredAgentLaunchEnv(provider, this.requireStore().getSettings())
     // A chat switched to an account in place launches there whatever the selection (P36).
     const pinned = record.accountSwitch
-      ? pinnedClaudeAccountHome(getClaudeProfileRouter(), record.accountSwitch, launchEnv, purpose)
+      ? await pinnedClaudeAccountHome(
+          getClaudeProfileRouter(),
+          record.accountSwitch,
+          launchEnv,
+          purpose
+        )
       : undefined
     if (pinned !== undefined) {
       return pinned

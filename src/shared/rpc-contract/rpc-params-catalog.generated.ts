@@ -930,6 +930,7 @@ import {
   SshTargetAdd,
   SshTargetUpdate
 } from './ssh/ssh-params'
+import { SwitchAccountParams } from './structured-agent-session-account-switch-params'
 import {
   AttachmentReadParams,
   AttachmentTextReadParams,
@@ -944,7 +945,6 @@ import { AutoReviewApprovalParams } from './structured-agent-session/structured-
 import { ContinueInterruptedParams } from './structured-agent-session/structured-agent-session-continue-params'
 import { ContinuationContextParams } from './structured-agent-session/structured-agent-session-identifiers'
 import { AgentSessionMcpParams } from './structured-agent-session/structured-agent-session-mcp-params'
-import { SwitchAccountParams } from './structured-agent-session-account-switch-params'
 import {
   AcknowledgeAttentionParams,
   AgentsParams,

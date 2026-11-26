@@ -161,7 +161,7 @@ function SecretForm({
         <DialogDescription>
           {t(
             'bots.webhooks.secret.note',
-            'Orca then accepts only calls signed with this secret, so a leaked URL alone can’t start “{{automation}}”.',
+            'BrzA Studio then accepts only calls signed with this secret, so a leaked URL alone can’t start “{{automation}}”.',
             { automation: summary.automationName }
           )}
         </DialogDescription>
@@ -208,7 +208,7 @@ function SecretForm({
             }}
           >
             <ToggleGroupItem role="radio" aria-checked={mode === 'generate'} value="generate">
-              {t('bots.webhooks.secret.modeGenerate', 'Orca makes one')}
+              {t('bots.webhooks.secret.modeGenerate', 'BrzA Studio makes one')}
             </ToggleGroupItem>
             <ToggleGroupItem role="radio" aria-checked={mode === 'paste'} value="paste">
               {t('bots.webhooks.secret.modePaste', 'Paste the sender’s')}
@@ -219,7 +219,7 @@ function SecretForm({
           <p className="text-xs text-muted-foreground">
             {t(
               'bots.webhooks.secret.generateNote',
-              'Orca makes this secret. You copy it into {{sender}} next.',
+              'BrzA Studio makes this secret. You copy it into {{sender}} next.',
               { sender }
             )}
           </p>

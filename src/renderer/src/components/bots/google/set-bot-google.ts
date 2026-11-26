@@ -87,7 +87,7 @@ export async function setBotGoogle(
       throw new GoogleAccountsNeedHostUpdate(
         translate(
           'bots.google.updateToChooseAccounts',
-          'Update Orca on {{host}} to choose accounts.',
+          'Update BrzA Studio on {{host}} to choose accounts.',
           {
             host: hostLabel(bot, target)
           }

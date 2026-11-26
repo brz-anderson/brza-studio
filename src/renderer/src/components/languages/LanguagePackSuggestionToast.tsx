@@ -45,7 +45,7 @@ export function LanguagePackSuggestionToast({
       <div id={titleId} className="pr-7 text-[13.5px] leading-snug font-semibold">
         <Trans
           i18n={i18n}
-          defaults={t('languages.suggestionTitle', 'Orca in <lang>{{language}}</lang>')}
+          defaults={t('languages.suggestionTitle', 'BrzA Studio in <lang>{{language}}</lang>')}
           values={{ language: offer.name }}
           components={{ lang: <bdi lang={offer.locale} /> }}
         />

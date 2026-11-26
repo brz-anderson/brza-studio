@@ -14,7 +14,7 @@ export function skillRefusalLines(
   const noReminder = (): string =>
     t(
       'auto.components.skills.skillBackupRefusal.noReminder',
-      "Move it out of the skills folder. Orca won't remind you."
+      "Move it out of the skills folder. BrzA Studio won't remind you."
     )
   switch (notice.source) {
     case 'in-place':

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { forkTestSource } from './structured-agent-session-fork.test-fixture'
+import { forkTestSource } from './structured-agent-session-fork.brza.test-fixture'
 import {
   createRestTestRig,
   type RestTestRig

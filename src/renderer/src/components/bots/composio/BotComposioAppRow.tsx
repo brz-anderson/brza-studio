@@ -84,7 +84,7 @@ export function BotComposioProblemRow({
               )
             : t(
                 'bots.composio.signInsUnreadNote',
-                'Orca couldn’t ask Composio which apps {{bot}} uses.',
+                'BrzA Studio couldn’t ask Composio which apps {{bot}} uses.',
                 {
                   bot: bot.name
                 }

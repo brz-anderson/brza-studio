@@ -101,7 +101,7 @@ export function McpServersPane({
       .then(() => {
         if (mode === 'copy') {
           toast.success(
-            t('settings.mcpServers.found.copied', 'Copied {{name}} to Orca', {
+            t('settings.mcpServers.found.copied', 'Copied {{name}} to BrzA Studio', {
               name: mcpServerTitle(servers[0]?.name ?? '')
             })
           )
@@ -120,21 +120,21 @@ export function McpServersPane({
     )
     const ok = await confirm({
       title: one
-        ? t('settings.mcpServers.move.title', 'Move {{name}} to Orca?', {
+        ? t('settings.mcpServers.move.title', 'Move {{name}} to BrzA Studio?', {
             name: mcpServerTitle(one.name)
           })
-        : t('settings.mcpServers.move.allTitle', 'Move {{count}} servers to Orca?', {
+        : t('settings.mcpServers.move.allTitle', 'Move {{count}} servers to BrzA Studio?', {
             count: servers.length
           }),
       description: one
         ? t(
             'settings.mcpServers.move.line',
-            'Orca removes it from {{agents}} settings and keeps a backup.',
+            'BrzA Studio removes it from {{agents}} settings and keeps a backup.',
             { agents: agentNames }
           )
         : t(
             'settings.mcpServers.move.allLine',
-            'Orca removes them from {{agents}} settings and keeps a backup.',
+            'BrzA Studio removes them from {{agents}} settings and keeps a backup.',
             { agents: agentNames }
           ),
       confirmLabel: t('settings.mcpServers.move.confirm', 'Move')
@@ -167,7 +167,7 @@ export function McpServersPane({
         action={
           firstRun && movable.length > 1 ? (
             <Button variant="outline" size="sm" onClick={() => void move(movable)}>
-              {t('settings.mcpServers.found.moveAll', 'Move all to Orca')}
+              {t('settings.mcpServers.found.moveAll', 'Move all to BrzA Studio')}
             </Button>
           ) : undefined
         }

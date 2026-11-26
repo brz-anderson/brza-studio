@@ -25,12 +25,12 @@ export function botGitHubErrorMessage(code: string, hostName: string | null): st
     case 'already_linked':
       return translate(
         'bots.github.errors.alreadyLinked',
-        'This Orca account is linked to another GitHub user. Unlink it in Settings › Bots › GitHub first.'
+        'This BrzA Studio account is linked to another GitHub user. Unlink it in Settings › Bots › GitHub first.'
       )
     case 'wrong_account':
       return translate(
         'bots.github.errors.wrongAccount',
-        'This sign-in was started from another Orca account. Sign in with GitHub again from this one.'
+        'This sign-in was started from another BrzA Studio account. Sign in with GitHub again from this one.'
       )
     case 'rate_limited':
       return translate(
@@ -40,11 +40,14 @@ export function botGitHubErrorMessage(code: string, hostName: string | null): st
     case 'github_unavailable':
       return translate('bots.github.errors.unavailable', 'GitHub did not answer. Try again.')
     case 'signed_out':
-      return translate('bots.github.errors.signedOut', 'Sign in to Orca Cloud to connect GitHub.')
+      return translate(
+        'bots.github.errors.signedOut',
+        'Sign in to BrzA Studio Cloud to connect GitHub.'
+      )
     case 'cloud_unreachable':
       return translate(
         'bots.github.errors.unreachable',
-        'Orca Cloud could not be reached. Check your connection and try again.'
+        'BrzA Studio Cloud could not be reached. Check your connection and try again.'
       )
     default:
       return translate('bots.errors.generic', 'Something went wrong. Try again.')
@@ -108,4 +111,25 @@ export function gitHubInstallationsSummary(
         accounts,
         defaultValue_one: '{{count}} repository in {{accounts}}'
       })
+}
+
+/** The line under the sign-in step: what the GitHub sign-in reads. */
+export function botGitHubReadsOnlyText(): string {
+  return translate(
+    'bots.github.connect.readsOnly',
+    'BrzA Studio only reads your GitHub username and id.'
+  )
+}
+
+/** The line on the install step: the app still needs an owner's approval, or is not on any repository yet. */
+export function botGitHubInstallText(requested: boolean): string {
+  return requested
+    ? translate(
+        'bots.github.connect.requested',
+        'An owner of the organization has been asked to approve the BrzA Studio app.'
+      )
+    : translate(
+        'bots.github.connect.notInstalled',
+        'The BrzA Studio app is not on any of your repositories yet.'
+      )
 }

@@ -21,7 +21,7 @@ export function RequiredPluginWarnings(): React.JSX.Element | null {
         <PluginWarningBanner
           key={pluginKey}
           label={t('plugins.requiredFailures.label', 'Required by your team')}
-          body={t('plugins.requiredFailures.body', 'Orca couldn’t install {{plugin}}.', {
+          body={t('plugins.requiredFailures.body', 'BrzA Studio couldn’t install {{plugin}}.', {
             plugin: pluginKey
           })}
         />

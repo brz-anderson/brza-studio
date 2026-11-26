@@ -187,12 +187,12 @@ export function LinearAccountSettings({
         {isPairedWebClientWindow()
           ? t(
               'bots.linear.account.linkFromApp',
-              'Link Linear from Orca on a computer paired to {{host}}.',
+              'Link Linear from BrzA Studio on a computer paired to {{host}}.',
               { host: hostName ?? '' }
             )
           : t(
               'bots.linear.account.linkHelp',
-              'To link your Linear account, or move it here from another Orca account, connect Linear from a bot’s Connectors.'
+              'To link your Linear account, or move it here from another BrzA Studio account, connect Linear from a bot’s Connectors.'
             )}
       </p>
     </section>

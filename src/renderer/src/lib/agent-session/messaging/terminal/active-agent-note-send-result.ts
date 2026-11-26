@@ -107,7 +107,7 @@ export function activeAgentNotesSendFailureMessage(
     case 'host-update-required':
       message = translate(
         'components.agentNotes.hostUpdateRequired',
-        "Update Orca on the {{target}} agent's host to send it notes.",
+        "Update BrzA Studio on the {{target}} agent's host to send it notes.",
         { target }
       )
       break

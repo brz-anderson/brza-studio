@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom/vitest'
 
 import { cleanup, fireEvent, screen } from '@testing-library/react'
-import { render } from '../messages/actions/native-chat-tooltip-test-harness'
+import { render } from '../messages/actions/native-chat-tooltip.brza.test-harness'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Why: these fixtures have neither inline visual owners nor sender navigation.
@@ -27,7 +27,7 @@ afterEach(() => {
 })
 import type { NativeChatLiveSession } from '../session/terminal/read/native-chat-live-session-contract'
 import { NativeChatMessageList } from '../NativeChatMessageList'
-import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list-test-viewport'
+import { installNativeChatMessageListTestViewport } from '../viewport/virtualization/native-chat-message-list.brza.test-viewport'
 import type {
   AgentJournalItemBody,
   AgentJournalRenderItem

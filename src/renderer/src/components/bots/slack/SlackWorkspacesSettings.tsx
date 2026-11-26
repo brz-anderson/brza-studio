@@ -156,7 +156,7 @@ function ReconnectDialog({
       setError(
         t(
           'bots.slack.workspaces.otherTeam',
-          'That token is for another workspace. Orca keeps it for that workspace.'
+          'That token is for another workspace. BrzA Studio keeps it for that workspace.'
         )
       )
       return
@@ -233,12 +233,12 @@ export function SlackWorkspacesSettings({
           account
             ? t(
                 'bots.slack.workspaces.descriptionFor',
-                'Orca Cloud keeps one encrypted token per workspace for {{account}}. The Slack user who connected it owns the bots it installs.',
+                'BrzA Studio Cloud keeps one encrypted token per workspace for {{account}}. The Slack user who connected it owns the bots it installs.',
                 { account }
               )
             : t(
                 'bots.slack.workspaces.description',
-                'For Slack, Orca Cloud keeps one encrypted token per workspace to create each bot’s app.'
+                'For Slack, BrzA Studio Cloud keeps one encrypted token per workspace to create each bot’s app.'
               )
         }
       />

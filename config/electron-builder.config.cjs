@@ -377,7 +377,6 @@ module.exports = {
     'out/main/droid/**',
     'out/main/gitlab/projects/project-ref-parser.js',
     'out/main/grok/**',
-    'out/main/ipc/command-path/command-path-resolver.js',
     'out/main/hermes/**',
     'out/main/filesystem/asar-transparent-fs.js',
     'out/main/filesystem/macos-tree-clone.js',

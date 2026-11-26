@@ -45,7 +45,7 @@ function NextStep({
   const t = useTranslate()
   const quit = (
     <Button size="sm" onClick={() => finish('quit')}>
-      {t('settings.uninstall.quit', 'Quit Orca')}
+      {t('settings.uninstall.quit', 'Quit BrzA Studio')}
     </Button>
   )
   const reveal = (platform: string): React.ReactNode =>
@@ -57,7 +57,7 @@ function NextStep({
 
   let lead: React.ReactNode = t(
     'settings.uninstall.next.unknown',
-    'Quit Orca, then delete the app.'
+    'Quit BrzA Studio, then delete the app.'
   )
   let actions: React.ReactNode = quit
   let command: string | null = null
@@ -65,7 +65,7 @@ function NextStep({
     case 'mac-app':
       lead = t(
         'settings.uninstall.next.macApp',
-        'Quit Orca, then drag it from Applications to the Trash.'
+        'Quit BrzA Studio, then drag it from Applications to the Trash.'
       )
       actions = (
         <>
@@ -78,7 +78,7 @@ function NextStep({
       if (plan.removeAppCommand) {
         lead = t(
           'settings.uninstall.next.homebrew',
-          'Orca was installed with Homebrew. Run this to remove the app:'
+          'BrzA Studio was installed with Homebrew. Run this to remove the app:'
         )
         command = plan.removeAppCommand
       }
@@ -92,7 +92,7 @@ function NextStep({
     case 'windows-installer':
       lead = t(
         'settings.uninstall.next.windows',
-        'Finish in the Windows uninstaller. Orca quits when it opens.'
+        'Finish in the Windows uninstaller. BrzA Studio quits when it opens.'
       )
       actions = (
         <Button size="sm" onClick={() => finish('open-windows-uninstaller')}>
@@ -107,7 +107,7 @@ function NextStep({
             i18n={i18n}
             defaults={t(
               'settings.uninstall.next.appImage',
-              'Quit Orca, then delete <path>{{path}}</path>.'
+              'Quit BrzA Studio, then delete <path>{{path}}</path>.'
             )}
             values={{ path: plan.appPath }}
             components={{ path: <span className="break-all font-mono text-xs" /> }}
@@ -135,7 +135,7 @@ function NextStep({
       <p className={HINT_CLASS}>
         {t(
           'settings.uninstall.agentStatusOff',
-          "Agent status is off. Orca won't add hooks again unless you turn it on in Settings → Agents."
+          "Agent status is off. BrzA Studio won't add hooks again unless you turn it on in Settings → Agents."
         )}
       </p>
     </div>
@@ -157,7 +157,7 @@ export function OrcaUninstallFooter({
     return (
       <div className="flex items-center justify-between gap-3 pt-3 pb-3.5">
         <p className={HINT_CLASS}>
-          {t('settings.uninstall.loadFailed', 'Orca could not check what it installed.')}
+          {t('settings.uninstall.loadFailed', 'BrzA Studio could not check what it installed.')}
         </p>
         <Button variant="outline" size="sm" onClick={model.reload}>
           {t('settings.uninstall.tryAgain', 'Try again')}
@@ -166,7 +166,7 @@ export function OrcaUninstallFooter({
     )
   }
   const running = phase === 'running'
-  let hint = t('settings.uninstall.keeps', 'Projects, worktrees and Orca settings stay.')
+  let hint = t('settings.uninstall.keeps', 'Projects, worktrees and BrzA Studio settings stay.')
   if (plan?.terminalDaemon) {
     hint = joinSentences([
       hint,

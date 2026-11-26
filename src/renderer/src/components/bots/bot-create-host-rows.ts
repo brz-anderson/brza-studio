@@ -59,7 +59,7 @@ export function botCreateHostRows(
         group: ready ? 'ready' : 'unavailable',
         meta:
           host.blocked === 'needs-server'
-            ? t('bots.new.hostNeedsServer', 'Needs Orca server')
+            ? t('bots.new.hostNeedsServer', 'Needs BrzA Studio server')
             : null,
         action: hostAction(host, input),
         hint: botCreateHostBlockedHint(host, updatable, t)

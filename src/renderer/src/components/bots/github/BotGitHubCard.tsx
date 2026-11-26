@@ -110,11 +110,11 @@ function gitHubStateFace(
     return {
       description: translate(
         'bots.github.connection.notInstalled',
-        'Signed in as @{{login}}. Install the Orca app on the repositories it may work in.',
+        'Signed in as @{{login}}. Install the BrzA Studio app on the repositories it may work in.',
         { login: account.login }
       ),
       status: {
-        label: translate('settings.bots.githubStatus.notInstalled', 'Orca not installed'),
+        label: translate('settings.bots.githubStatus.notInstalled', 'BrzA Studio not installed'),
         tone: 'attention'
       },
       ready: false
@@ -178,7 +178,7 @@ export function BotGitHubCard({
       }),
       description: t(
         'bots.github.connection.removeNote',
-        'People can no longer ask it on GitHub, and its GitHub people are cleared. The Orca app stays installed.'
+        'People can no longer ask it on GitHub, and its GitHub people are cleared. The BrzA Studio app stays installed.'
       ),
       confirmLabel: t('bots.github.connection.removeConfirm', 'Remove'),
       confirmVariant: 'destructive'

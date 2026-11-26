@@ -259,12 +259,12 @@ function ConnectBody({
           : signIn === 'key'
             ? t(
                 'bots.composio.card.connectKeyNote',
-                'Opens Composio to enter your {{app}} API key. Composio keeps it, not Orca.',
+                'Opens Composio to enter your {{app}} API key. Composio keeps it, not BrzA Studio.',
                 { app: app.name }
               )
             : t(
                 'bots.composio.card.connectNote',
-                'Opens {{app}}’s sign-in from Composio in your browser. Composio keeps this sign-in, not Orca.',
+                'Opens {{app}}’s sign-in from Composio in your browser. Composio keeps this sign-in, not BrzA Studio.',
                 { app: app.name }
               )}
       </p>

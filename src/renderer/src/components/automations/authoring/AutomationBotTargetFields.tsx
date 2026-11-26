@@ -118,7 +118,7 @@ export function AutomationBotTargetFields({
                     )
                   : t(
                       'automations.botTarget.resultsToThreadUnsupported',
-                      "The event's thread (Orca Cloud doesn't support this yet)"
+                      "The event's thread (BrzA Studio Cloud doesn't support this yet)"
                     )}
             </SelectItem>
             {/* A channel post goes through the bot's Slack app, so it needs one. */}

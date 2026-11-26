@@ -85,7 +85,10 @@ export function NativeChatSlackMirrorItem(): React.JSX.Element | null {
                 "Your messages and {{bot}}'s replies also post to this Slack thread",
                 { bot: mirror.botName }
               )
-            : t('components.native-chat.slackMirror.tooltipOff', 'Your messages stay in Orca')}
+            : t(
+                'components.native-chat.slackMirror.tooltipOff',
+                'Your messages stay in BrzA Studio'
+              )}
         </TooltipContent>
       </Tooltip>
       <DropdownMenuContent align="start" side="top" sideOffset={6} className="w-72">

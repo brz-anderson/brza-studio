@@ -39,7 +39,7 @@ export function GoogleBrandingLinks(): React.JSX.Element {
       <p className="text-xs text-muted-foreground">
         {t(
           'bots.google.links.owner',
-          'You’re the owner of this Google app; these links just point to Orca.'
+          'You’re the owner of this Google app; these links just point to BrzA Studio.'
         )}
       </p>
     </div>

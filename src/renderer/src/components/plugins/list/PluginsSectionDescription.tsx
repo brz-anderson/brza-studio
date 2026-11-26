@@ -13,7 +13,7 @@ export function PluginsSectionDescription({ text }: { text: string }): React.JSX
         <span className="ml-2">
           {t(
             'auto.components.plugins.list.PluginsSectionDescription.openWith',
-            'Open with (except while typing in an Orca text field)'
+            'Open with (except while typing in a BrzA Studio text field)'
           )}{' '}
           <ShortcutKeyCombo
             keys={shortcut.keys}

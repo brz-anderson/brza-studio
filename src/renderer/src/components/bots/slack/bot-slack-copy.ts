@@ -32,7 +32,7 @@ export function botSlackErrorMessage(code: string, hostName: string | null): str
     case 'unknown_bot':
       return translate(
         'bots.slack.errors.unknownBot',
-        'Orca Cloud has not seen this bot yet. Try again in a minute.'
+        'BrzA Studio Cloud has not seen this bot yet. Try again in a minute.'
       )
     case 'wrong_workspace':
       return translate(
@@ -47,11 +47,14 @@ export function botSlackErrorMessage(code: string, hostName: string | null): str
     case 'not_installed':
       return translate('bots.slack.errors.notInstalled', 'Add this bot to Slack first.')
     case 'signed_out':
-      return translate('bots.slack.errors.signedOut', 'Sign in to Orca Cloud to connect Slack.')
+      return translate(
+        'bots.slack.errors.signedOut',
+        'Sign in to BrzA Studio Cloud to connect Slack.'
+      )
     case 'cloud_unreachable':
       return translate(
         'bots.slack.errors.unreachable',
-        'Orca Cloud could not be reached. Check your connection and try again.'
+        'BrzA Studio Cloud could not be reached. Check your connection and try again.'
       )
     default:
       return translate('bots.errors.generic', 'Something went wrong. Try again.')

@@ -58,7 +58,7 @@ export function ServerNotificationsPane({
           setting.state === 'unsupported'
             ? t(
                 'components.settings.notifications.server.unsupported',
-                'Update Orca on {{host}} to change its notifications here.',
+                'Update BrzA Studio on {{host}} to change its notifications here.',
                 { host }
               )
             : t(

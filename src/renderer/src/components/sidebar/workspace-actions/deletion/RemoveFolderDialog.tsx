@@ -97,10 +97,11 @@ const RemoveFolderDialog = React.memo(function RemoveFolderDialog() {
       ? null
       : t(
           'auto.components.sidebar.RemoveFolderDialog.linkedWorkspaceWarning',
-          '{{count}} workspaces in this project will also be removed from Orca.',
+          '{{count}} workspaces in this project will also be removed from BrzA Studio.',
           {
             count: linkedWorkspaceCount,
-            defaultValue_one: '{{count}} workspace in this project will also be removed from Orca.'
+            defaultValue_one:
+              '{{count}} workspace in this project will also be removed from BrzA Studio.'
           }
         )
 

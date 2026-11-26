@@ -47,7 +47,7 @@ export function BotComputerPage({
         ? serverAccount.email
         : undefined
       : ownAccount?.cloud?.email
-    return email ?? t('settings.bots.group.signedOut', 'Signed out of Orca')
+    return email ?? t('settings.bots.group.signedOut', 'Signed out of BrzA Studio')
   }
   const copyPath = (): void => {
     if (folderPath) {
@@ -84,7 +84,7 @@ export function BotComputerPage({
       />
       <SettingsInsetRow
         icon={<UserRound />}
-        title={t('bots.settingsView.orcaAccount', 'Orca account')}
+        title={t('bots.settingsView.orcaAccount', 'BrzA Studio account')}
         detail={accountLine()}
       />
       <SettingsInsetRow

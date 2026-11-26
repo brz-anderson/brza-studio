@@ -61,7 +61,7 @@ const contributionGrowthLabel = (point: PluginContributionPoint, t: Translate): 
   if (point === 'events') {
     return t(
       'auto.components.settings.PluginUpdateAllDialog.newEvents',
-      'Reacts to more Orca events'
+      'Reacts to more BrzA Studio events'
     )
   }
   if (point === 'vmRecipes') {
@@ -79,7 +79,7 @@ const contributionGrowthLabel = (point: PluginContributionPoint, t: Translate): 
   if (point === 'hooks') {
     return t(
       'auto.components.settings.PluginUpdateAllDialog.newHooks',
-      'Can change or stop what Orca and your agents do'
+      'Can change or stop what BrzA Studio and your agents do'
     )
   }
   if (point === 'settings') {

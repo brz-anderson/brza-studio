@@ -124,7 +124,7 @@ function HookDetail({
         <p className="mb-1 text-xs text-muted-foreground">
           {t(
             'bots.webhooks.orphanedNote',
-            '{{bot}}’s Orca no longer lists this automation, so calls aren’t run.',
+            '{{bot}}’s BrzA Studio no longer lists this automation, so calls aren’t run.',
             { bot: bot.name }
           )}
         </p>

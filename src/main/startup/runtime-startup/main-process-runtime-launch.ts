@@ -78,8 +78,6 @@ function installRuntimeRpc(
   if (isE2E && (!Number.isInteger(e2eWsPort) || e2eWsPort < 0 || e2eWsPort > 65_535)) {
     throw new Error(`Invalid ORCA_E2E_RUNTIME_WS_PORT value: ${requestedE2EWsPort}`)
   }
-  // STA-1511: separate dev port from packaged Orca so pairing/repro URLs do not fall back unpredictably.
-  const devWsPort = !app.isPackaged && !isE2E ? BRAND_DEV_WS_PORT : undefined
   const pinnedBindHost = resolveServePinnedBindHost({
     orcadSidecar: isOrcadSidecarLaunch(),
     serveOptions
@@ -102,7 +100,8 @@ function installRuntimeRpc(
         }
       : {}),
     ...(isE2E ? { wsPort: e2eWsPort } : {}),
-    ...(devWsPort !== undefined ? { wsPort: devWsPort } : {}),
+    // STA-1511: a dev port apart from the packaged app, so pairing/repro URLs do not fall back unpredictably.
+    ...(!app.isPackaged && !isE2E ? { wsPort: BRAND_DEV_WS_PORT } : {}),
     ...(serveOptions?.wsPort !== undefined
       ? {
           wsPort: serveOptions.wsPort,

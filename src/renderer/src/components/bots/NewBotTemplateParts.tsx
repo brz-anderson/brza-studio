@@ -125,7 +125,7 @@ export function NewBotTemplateParts({
     }
     const note = t(
       'bots.new.parts.olderHost',
-      '{{host}} needs an Orca update to add skills and schedules',
+      '{{host}} needs a BrzA Studio update to add skills and schedules',
       { host: hostLabel }
     )
     return (

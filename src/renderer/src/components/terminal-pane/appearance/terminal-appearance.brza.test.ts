@@ -5,7 +5,6 @@ import { getDefaultSettings } from '../../../../../shared/orca-profiles/constant
 import { applyTerminalAppearance, hexToRgba } from './terminal-appearance'
 
 import { safeFit } from '@/lib/pane-manager/terminal-fit/pane-fit'
-import { _resetTerminalViewAttributesPublisherForTest } from './terminal-view-attributes-publisher'
 describe('applyTerminalAppearance theme assignment', () => {
   // xterm rebuilds the palette on any new theme-object identity (wiping OSC color mutations), so the assignment must be value-gated.
   // Metric writes require a measurable pane; hidden panes defer until fit/reveal.

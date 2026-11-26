@@ -4441,7 +4441,7 @@
             "cursor": {
               "expired": {
                 "label": "Anmeldung abgelaufen",
-                "message": "cursor-agent login in einem Terminal auf dem Computer ausführen, auf dem Orca läuft, und anschließend den Abruf der Nutzung erneut versuchen."
+                "message": "cursor-agent login in einem Terminal auf dem Computer ausführen, auf dem BrzA Studio läuft, und anschließend den Abruf der Nutzung erneut versuchen."
               }
             },
             "usage": {
@@ -4452,8 +4452,8 @@
             "7ad719c4bf": "Begrenzt",
             "e740f92596": "Aktualisierung fehlgeschlagen",
             "2c35eca8d4": "Nutzung konnte nicht abgerufen werden",
-            "d1b7f509ac": "grok in einem Terminal auf dem Computer ausführen, auf dem Orca läuft, und den Start abwarten. Falls erforderlich, die Anmeldung abschließen und anschließend den Abruf der Nutzung erneut versuchen. Es muss keine Chatnachricht gesendet werden.",
-            "a37e8c15d4": "kimi in einem Terminal auf dem Computer ausführen, auf dem Orca läuft, und den Start abwarten. Anschließend den Abruf der Nutzung erneut versuchen.",
+            "d1b7f509ac": "grok in einem Terminal auf dem Computer ausführen, auf dem BrzA Studio läuft, und den Start abwarten. Falls erforderlich, die Anmeldung abschließen und anschließend den Abruf der Nutzung erneut versuchen. Es muss keine Chatnachricht gesendet werden.",
+            "a37e8c15d4": "kimi in einem Terminal auf dem Computer ausführen, auf dem BrzA Studio läuft, und den Start abwarten. Anschließend den Abruf der Nutzung erneut versuchen.",
             "3d3c9c0c1f": "Die Claude-Nutzung wird aktualisiert, nachdem das aktive Claude-Terminal seine Zugangsdaten erneuert hat.",
             "42fdd4da1d": "Die Claude-Anmeldung wird aktualisiert. Agentensitzungen sind möglicherweise weiterhin angemeldet.",
             "c06c1d215d": "Die Claude-Nutzung konnte nicht aktualisiert werden, da die Netzwerkanfrage fehlgeschlagen ist.",
@@ -4802,9 +4802,9 @@
       "reading": "Lerne dein Setup kennen…",
       "read": "Lerne dein Setup kennen",
       "namesMore": "{{names}} und {{count}} weitere",
-      "projectsReading": "Projekte: Ich sehe mir an, was du in Orca hast…",
+      "projectsReading": "Projekte: Ich sehe mir an, was du in BrzA Studio hast…",
       "projectsDone": "Deine Projekte angesehen",
-      "projectsNone": "Noch keine Projekte in Orca",
+      "projectsNone": "Noch keine Projekte in BrzA Studio",
       "projectsOne": "1 Projekt gefunden: {{names}}",
       "projectsMany": "{{count}} Projekte gefunden: {{names}}",
       "githubReading": "GitHub: deine offenen PRs werden gelesen…",
@@ -4933,7 +4933,7 @@
         "unsupported": "Diese App wird noch nicht unterstützt.",
         "unavailable": "Diese App ist nicht erreichbar. Prüfe die Adresse und versuche es dann erneut.",
         "noTool": "Dieser Bot hat dieses Tool nicht mehr.",
-        "desktopOnly": "Melde dich in Orca auf {{host}} an.",
+        "desktopOnly": "Melde dich in BrzA Studio auf {{host}} an.",
         "denied": "Der Zugriff wurde nicht erlaubt.",
         "expired": "Die Anmeldung ist abgelaufen. Versuche es erneut.",
         "couldNotSignIn": "Anmeldung nicht möglich. Versuche es erneut."

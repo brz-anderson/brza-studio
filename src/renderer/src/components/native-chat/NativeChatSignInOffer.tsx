@@ -39,11 +39,11 @@ function signInReason(offer: ConnectorOffer, t: Translate): string {
   return offer.source === 'webhook'
     ? t(
         'bots.cloudSignIn.webhooksChat',
-        'Webhooks need Orca Cloud sign-in. I’ll make it once you’re in.'
+        'Webhooks need BrzA Studio Cloud sign-in. I’ll make it once you’re in.'
       )
     : t(
         'bots.cloudSignIn.eventsChat',
-        '{{source}} events need Orca Cloud sign-in. I’ll save this rule once you’re in.',
+        '{{source}} events need BrzA Studio Cloud sign-in. I’ll save this rule once you’re in.',
         { source: CONNECTOR_OFFER_NAMES[offer.source] }
       )
 }
@@ -59,7 +59,7 @@ function SignedInRow({
     <div className="flex items-center gap-2 text-xs text-muted-foreground">
       <p className="flex min-w-0 flex-1 items-center gap-1">
         <Check className="size-3" aria-hidden />
-        {t('bots.cloudSignIn.signedIn', 'Signed in to Orca')}
+        {t('bots.cloudSignIn.signedIn', 'Signed in to BrzA Studio')}
       </p>
       {answering.sent ? null : (
         <Button type="button" variant="outline" size="xs" onClick={() => tellBot(answering)}>
@@ -71,7 +71,10 @@ function SignedInRow({
 }
 
 function tellBot(answering: ReturnType<typeof useNativeChatOffer>): void {
-  answering.send(translate('bots.cloudSignIn.toldBot', 'I’m signed in to Orca Cloud now.'), [])
+  answering.send(
+    translate('bots.cloudSignIn.toldBot', 'I’m signed in to BrzA Studio Cloud now.'),
+    []
+  )
 }
 
 // This computer's sign-in as far as its link goes: who, and whether signed in. A change starts the
@@ -145,7 +148,7 @@ export function SignInOffer({ bot, offer, messageId }: SignInOfferProps): React.
         {offer.source === 'webhook'
           ? t(
               'bots.cloudSignIn.webhooksNotReaching',
-              'Orca Cloud isn’t reaching {{name}}, so it can’t make webhooks yet.',
+              'BrzA Studio Cloud isn’t reaching {{name}}, so it can’t make webhooks yet.',
               { name: bot.name }
             )
           : notReaching(bot.name, t)}
@@ -167,12 +170,12 @@ function serverSignInReason(offer: ConnectorOffer, host: string, t: Translate): 
   return offer.source === 'webhook'
     ? t(
         'bots.cloudSignIn.webhooksHostChat',
-        'Webhooks need {{host}} signed in to Orca Cloud. I’ll make it once it is.',
+        'Webhooks need {{host}} signed in to BrzA Studio Cloud. I’ll make it once it is.',
         { host }
       )
     : t(
         'bots.cloudSignIn.eventsHostChat',
-        '{{source}} events need {{host}} signed in to Orca Cloud. I’ll save this rule once it is.',
+        '{{source}} events need {{host}} signed in to BrzA Studio Cloud. I’ll save this rule once it is.',
         { source: CONNECTOR_OFFER_NAMES[offer.source], host }
       )
 }

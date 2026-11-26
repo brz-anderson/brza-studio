@@ -37,12 +37,12 @@ export function ServerOrcaAccountPane({
     ? settled
       ? t(
           'components.settings.orcaAccount.server.unread',
-          'Can’t read {{host}}’s Orca account. Update or reconnect {{host}}.',
+          'Can’t read {{host}}’s BrzA Studio account. Update or reconnect {{host}}.',
           { host }
         )
       : accountStatusCopy(undefined, undefined, t)
     : cantSave !== null
-      ? t('bots.host.notice.cantSave', '{{host}} can’t save an Orca sign-in: {{reason}}', {
+      ? t('bots.host.notice.cantSave', '{{host}} can’t save a BrzA Studio sign-in: {{reason}}', {
           host,
           reason: cantSave
         })

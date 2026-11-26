@@ -31,7 +31,7 @@ export function WslHostRestartAsWslHostDialog({
           <DialogDescription>
             {t(
               'auto.components.settings.wslHosts.restartAsWslHost.description',
-              'Ends every terminal and agent on {{host}}, including ones an SSH host opened, then restarts Orca’s server as a WSL host.',
+              'Ends every terminal and agent on {{host}}, including ones an SSH host opened, then restarts BrzA Studio’s server as a WSL host.',
               { host: hostName ?? '' }
             )}
           </DialogDescription>

@@ -186,9 +186,9 @@
         "serviceUnconfirmed": "WSL 服務未確認此發行版是否正在執行。",
         "peerCheckFailed": "BrzA Studio 無法向 WSL 主機詢問此電腦上的另一個 BrzA Studio 是否仍在使用該主機：{{detail}}",
         "removalUnrecorded": "BrzA Studio 無法記錄此次移除後仍在執行的項目：{{detail}}",
-        "installLockWait_other": "正在等待此發行版中的另一個 Orca 安裝完成。若未完成，Orca 將在約 {{count}} 分鐘後接手。",
-        "installLockWaitGivesUp_other": "正在等待此發行版中的另一個 Orca 安裝完成。若未完成，Orca 將在約 {{count}} 分鐘後停止等待。",
-        "installLockWaitHolderGone": "此發行版中的另一個 Orca 安裝已停止。Orca 將在幾秒內接手。"
+        "installLockWait_other": "正在等待此發行版中的另一個 BrzA Studio 安裝完成。若未完成，BrzA Studio 將在約 {{count}} 分鐘後接手。",
+        "installLockWaitGivesUp_other": "正在等待此發行版中的另一個 BrzA Studio 安裝完成。若未完成，BrzA Studio 將在約 {{count}} 分鐘後停止等待。",
+        "installLockWaitHolderGone": "此發行版中的另一個 BrzA Studio 安裝已停止。BrzA Studio 將在幾秒內接手。"
       }
     },
     "agentSummary": {
@@ -255,13 +255,13 @@
       "hidden": "已隱藏 {{name}}",
       "hiddenDescription": "其終端機和代理程式會繼續執行。可從清單下方的「已隱藏的專案」中重新顯示。",
       "undo": "復原",
-      "hideFailed": "無法隱藏 {{name}}。其主機可能需要更新 Orca。",
+      "hideFailed": "無法隱藏 {{name}}。其主機可能需要更新 BrzA Studio。",
       "showFailed": "無法重新顯示 {{name}}。",
       "listLabel": "已隱藏的專案",
       "show": "顯示",
       "showAriaLabel": "在側邊欄中顯示 {{name}}",
       "settingsTitle": "從側邊欄隱藏",
-      "settingsDescription": "從側邊欄、專案選擇器和工作區切換器中隱藏此主機上的專案副本。其終端機、代理程式和自動化會繼續執行。在已配對的 Orca 伺服器上，這會對連線至該伺服器的所有人隱藏此專案副本。",
+      "settingsDescription": "從側邊欄、專案選擇器和工作區切換器中隱藏此主機上的專案副本。其終端機、代理程式和自動化會繼續執行。在已配對的 BrzA Studio 伺服器上，這會對連線至該伺服器的所有人隱藏此專案副本。",
       "settingsToggleLabel": "從側邊欄隱藏 {{name}}",
       "keywordHide": "隱藏",
       "keywordHidden": "已隱藏",
@@ -269,7 +269,7 @@
       "hideFromSidebar": "從側邊欄隱藏",
       "sectionTitle": "已隱藏的專案（{{count}}）",
       "allHidden": "所有專案都已隱藏。可從下方的「已隱藏的專案」中顯示一個專案。",
-      "undoGone": "{{name}} 已從 Orca 中移除。",
+      "undoGone": "{{name}} 已從 BrzA Studio 中移除。",
       "settingsGroup": "側邊欄",
       "showOnHostAriaLabel": "在側邊欄中顯示 {{host}} 上的 {{name}}",
       "keywordShow": "顯示",
@@ -308,10 +308,10 @@
     "googleCookieClear": {
       "signInKeyword": "登入",
       "unavailable": "所選主機上的此設定檔無法使用。",
-      "explanation": "Google 會將登入狀態綁定在登入時所用的瀏覽器上，因此 Orca 不會從其他瀏覽器匯入 Google Cookie。如果 Google 卡在錯誤的帳戶，或反覆讓你登出，請清除目前設定檔中的 Google Cookie，然後在 Orca 中重新登入 Google。其他網站仍保持登入狀態。",
+      "explanation": "Google 會將登入狀態綁定在登入時所用的瀏覽器上，因此 BrzA Studio 不會從其他瀏覽器匯入 Google Cookie。如果 Google 卡在錯誤的帳戶，或反覆讓你登出，請清除目前設定檔中的 Google Cookie，然後在 BrzA Studio 中重新登入 Google。其他網站仍保持登入狀態。",
       "action": "清除 Google Cookie…",
       "confirmTitle": "要清除「{{profile}}」中的 Google Cookie 嗎？",
-      "confirmDescription": "此設定檔在 Orca 瀏覽器中將登出 Google，其他網站仍保持登入狀態。",
+      "confirmDescription": "此設定檔在 BrzA Studio 瀏覽器中將登出 Google，其他網站仍保持登入狀態。",
       "clear": "清除",
       "cancel": "取消",
       "cleared": "已清除「{{profile}}」中的 Google Cookie。",
@@ -545,7 +545,7 @@
         "importFailed": "無法從 {{browser}} 匯入 Cookie。",
         "importFailedTryClosing": "無法從 {{browser}} 匯入 Cookie。請先嘗試關閉 {{browser}}。",
         "importFailedWithLog": "無法從 {{browser}} 匯入 Cookie：{{detail}}。詳細資訊已寫入 {{logPath}}。",
-        "safariFullDiskAccess": "macOS 拒絕存取 Safari 的 Cookie。請在「系統設定」→「隱私權與安全性」→「完全取用磁碟」中授予 Orca「完全取用磁碟」權限。",
+        "safariFullDiskAccess": "macOS 拒絕存取 Safari 的 Cookie。請在「系統設定」→「隱私權與安全性」→「完全取用磁碟」中授予 BrzA Studio「完全取用磁碟」權限。",
         "connectionEnded": "匯入期間與此伺服器的連線已中斷。請重新連線後再試一次。",
         "serverRepaired": "此伺服器已在匯入期間重新配對。請再試一次。",
         "macFullDiskAccess": "macOS 拒絕存取 {{browser}} Cookie。請在「系統設定」→「隱私權與安全性」→「完全取用磁碟」中授予 BrzA Studio 權限，然後重新啟動 BrzA Studio。",
@@ -650,7 +650,7 @@
     },
     "diffTooLarge": {
       "title": "檔案太大，無法比較差異",
-      "detail": "此檔案的其中一個版本超過 10 MB，因此 Orca 不會載入它來比較文字差異。",
+      "detail": "此檔案的其中一個版本超過 10 MB，因此 BrzA Studio 不會載入它來比較文字差異。",
       "connectionDetail": "此差異太大，無法透過遠端連線開啟。"
     },
     "pdfExport": {
@@ -750,9 +750,9 @@
         "restartingAdministrator": "正在重新啟動…",
         "administratorSearchDescription": "檢視 BrzA Studio 的 Windows 權限，或經系統管理員核准後重新啟動。",
         "10aafff216": "開啟管理工作階段",
-        "confirmOrcaAdministratorRestart": "以系統管理員身分重新啟動 Orca？",
+        "confirmOrcaAdministratorRestart": "以系統管理員身分重新啟動 BrzA Studio？",
         "administratorRestartSummary": "本機終端機與代理程式將會關閉。Windows 會要求你核准。",
-        "orcaCouldNotRestart": "Orca 無法重新啟動。",
+        "orcaCouldNotRestart": "BrzA Studio 無法重新啟動。",
         "manualAdministratorSteps": "手動步驟",
         "restartOrca": "重新啟動"
       },
@@ -764,7 +764,7 @@
         "shared": "與其他終端機應用程式共用。這是總容量，不是剩餘可用數量。",
         "disconnected": "此主機已中斷連線。請重新連線以檢視或變更其終端機上限。",
         "unsupported": "此主機的終端機服務尚不支援變更此上限。",
-        "environment": "此 Orca 執行個體的終端機上限由其執行環境設定。請在此主機上移除該覆寫設定，才能在這裡編輯。",
+        "environment": "此 BrzA Studio 執行個體的終端機上限由其執行環境設定。請在此主機上移除該覆寫設定，才能在這裡編輯。",
         "savedUnreadable": "無法讀取此主機已儲存的終端機上限，目前使用 {{value}}。輸入數值並按 Enter 即可取代。",
         "failed": "無法確認終端機上限。請再試一次。",
         "retry": "重試",
@@ -1029,7 +1029,7 @@
           "touchId": "touch id"
         },
         "authFailed": "無法確認你的身分",
-        "copied": "已複製密碼。Orca 會在 2 分鐘後將它從剪貼簿清除。",
+        "copied": "已複製密碼。BrzA Studio 會在 2 分鐘後將它從剪貼簿清除。",
         "search": "搜尋 {{count}} 個密碼",
         "add": "新增",
         "noMatches": "沒有符合的已儲存密碼。",
@@ -1062,38 +1062,38 @@
           "note": "備註",
           "cancel": "取消",
           "save": "儲存",
-          "description": "當你在此網站的登入欄位下方選取它時，Orca 會將它填入。",
+          "description": "當你在此網站的登入欄位下方選取它時，BrzA Studio 會將它填入。",
           "usernamePlaceholder": "電子郵件或使用者名稱",
           "addNote": "新增備註"
         },
         "hide": "隱藏密碼",
         "show": "顯示密碼",
         "offerToSave": "詢問是否儲存密碼",
-        "offerToSaveDescription": "在 Orca 瀏覽器中登入網站後，詢問是否儲存登入資訊。",
+        "offerToSaveDescription": "在 BrzA Studio 瀏覽器中登入網站後，詢問是否儲存登入資訊。",
         "fillReauth": "填入前要求 Touch ID 驗證",
         "fillReauthDescription": "適用於共用電腦。顯示或複製密碼時本來就會要求驗證。",
         "noReauth": "這台電腦無法使用 Touch ID 確認你的身分，因此顯示和填入密碼時不會經過驗證。",
-        "reauthUnavailable": "目前無法使用 Touch ID，因此 Orca 不會顯示、複製或填入需要 Touch ID 驗證的密碼。",
+        "reauthUnavailable": "目前無法使用 Touch ID，因此 BrzA Studio 不會顯示、複製或填入需要 Touch ID 驗證的密碼。",
         "import": "匯入",
         "importCsv": "從 CSV 檔案…",
         "deleteAllTitle": "刪除所有密碼資料",
         "deleteAllDescription": "{{profile}} 設定檔中所有已儲存的密碼、備註，以及「永不儲存」清單中的網站。",
-        "empty": "你登入網站後，Orca 會詢問是否儲存登入資訊。你也可以從其他瀏覽器或 CSV 檔案匯入。",
+        "empty": "你登入網站後，BrzA Studio 會詢問是否儲存登入資訊。你也可以從其他瀏覽器或 CSV 檔案匯入。",
         "account": "{{site}} 上的 {{username}}",
         "lastUsed": "上次使用：{{when}}",
         "copyFor": "複製 {{account}} 的密碼",
         "editFor": "編輯 {{account}}",
         "moreActions": "{{account}} 的更多操作",
         "accountCount": "{{count}} 個帳戶",
-        "deleteConfirmDescription": "Orca 將不再填入此密碼。此操作無法復原。",
+        "deleteConfirmDescription": "BrzA Studio 將不再填入此密碼。此操作無法復原。",
         "deleteConfirm": "刪除",
-        "profileDescription": "{{profile}} 設定檔的已儲存登入資訊。只有在你於登入欄位下方選取時，Orca 才會填入。",
+        "profileDescription": "{{profile}} 設定檔的已儲存登入資訊。只有在你於登入欄位下方選取時，BrzA Studio 才會填入。",
         "unavailableTitle": "這台電腦無法使用已儲存的密碼",
         "emptyTitle": "尚無已儲存的密碼",
         "searchLabel": "搜尋密碼",
         "deleteAllAction": "刪除…",
         "title": "密碼",
-        "description": "Orca 瀏覽器的已儲存登入資訊：可新增、匯入、編輯和刪除。",
+        "description": "BrzA Studio 瀏覽器的已儲存登入資訊：可新增、匯入、編輯和刪除。",
         "httpSuffix": " · http"
       },
       "memorySaver": {
@@ -1141,7 +1141,7 @@
       "defaultOpensAsCli": "CLI",
       "save": "儲存",
       "clearDefault": "清除預設代理程式",
-      "autoUnsupported": "使用「替我核准」需要此主機上較新版本的 Orca。",
+      "autoUnsupported": "使用「替我核准」需要此主機上較新版本的 BrzA Studio。",
       "permissionsDescription": "設定代理程式無須詢問即可執行的操作範圍。已自訂啟動參數的代理程式會保留這些參數。",
       "permissionsAutoDescription": "<agents>支援的代理程式</agents>會自行核准安全的操作。",
       "permissionsMixed": "大多數代理程式使用 {{mode}}。選擇模式會重設已標記的例外，但保留自訂參數。",
@@ -1209,7 +1209,7 @@
       "defaultSurfaceKeptChat_other": "{{agents}} 依你的設定繼續以聊天方式開啟。",
       "defaultSurfaceSetAllChat": "全部設為聊天",
       "defaultSurfaceSetAllTerminal": "全部設為終端機",
-      "modelListFallback": "內建清單。Orca 無法從此主機取得模型清單。",
+      "modelListFallback": "內建清單。BrzA Studio 無法從此主機取得模型清單。",
       "chatUnavailableOnWindows": "{{value0}} Chat 尚不支援 Windows，因此 {{value0}} 會在此主機的終端機中開啟。macOS 或 Linux 主機上的聊天仍可正常使用。",
       "undetectedCommandHint": "如果 {{agent}} CLI 安裝在 PATH 之外，請輸入其在此主機上的可執行檔完整路徑。",
       "agentActions": "{{agent}} 操作",
@@ -1228,8 +1228,8 @@
     "followSymlinkedDirectories": "跟隨符號連結目錄",
     "followSymlinkedDirectoriesDescription": "在快速開啟中搜尋連結資料夾，並在檔案總管中展開本機連結資料夾。",
     "accounts": {
-      "codexRemoveHome": "Orca 會刪除此帳戶在 {{host}} 上的 Codex 資料夾，包括其中的登入資訊和 MCP 登入。此操作無法復原。如果目前選取的是此帳戶，下次啟動 Codex 時會改用「系統預設」。",
-      "claudeRemoveProfile": "Orca 會刪除 {{host}} 上此帳戶專屬的 Claude 資料夾，以及其中儲存的登入資訊。「系統預設」的登入資訊，以及與它共用的聊天記錄都會保留。如果目前選取的是此帳戶，下次啟動 Claude 時會改用「系統預設」。"
+      "codexRemoveHome": "BrzA Studio 會刪除此帳戶在 {{host}} 上的 Codex 資料夾，包括其中的登入資訊和 MCP 登入。此操作無法復原。如果目前選取的是此帳戶，下次啟動 Codex 時會改用「系統預設」。",
+      "claudeRemoveProfile": "BrzA Studio 會刪除 {{host}} 上此帳戶專屬的 Claude 資料夾，以及其中儲存的登入資訊。「系統預設」的登入資訊，以及與它共用的聊天記錄都會保留。如果目前選取的是此帳戶，下次啟動 Claude 時會改用「系統預設」。"
     },
     "sourceControl": {
       "gitOperationInAnotherWorkspace": "其他工作區正在執行 Git 操作",
@@ -1440,7 +1440,7 @@
       "reducedEffects": "開啟「減少視覺效果」或系統的「減少透明度」設定時會關閉。",
       "needsOpacity": "將「背景不透明度」調到小於 1，即可透過終端機看到桌面。",
       "linuxCompositor": "是否套用模糊由你的合成器決定。需要重新啟動。",
-      "restartDescription": "重新啟動 Orca 以套用視窗材質變更。",
+      "restartDescription": "重新啟動 BrzA Studio 以套用視窗材質變更。",
       "keywords": {
         "acrylic": "壓克力"
       },
@@ -1475,14 +1475,14 @@
       "example": "範例：在每個存放庫中建立工作樹（僅限這台電腦）",
       "useExample": "使用此範例",
       "description": "建立工作區時在此資料夾中執行的指令碼。所有工作區共用此資料夾。本機指令碼儲存在這台電腦上；`orca.yaml` 指令碼會與你的團隊共用。",
-      "invalidSetup": "檔案存在，但 Orca 找不到有效的設定指令碼。",
+      "invalidSetup": "檔案存在，但 BrzA Studio 找不到有效的設定指令碼。",
       "supportedKeys": "只定義支援的鍵：`scripts` 和 `setup`。",
       "supportedArchiveKeys": "只定義支援的鍵：`scripts`、`setup` 和 `archive`。",
-      "invalidArchive": "檔案存在，但 Orca 找不到有效的設定或封存指令碼。"
+      "invalidArchive": "檔案存在，但 BrzA Studio 找不到有效的設定或封存指令碼。"
     },
     "uninstall": {
       "groupTitle": "解除安裝",
-      "title": "解除安裝 Orca",
+      "title": "解除安裝 BrzA Studio",
       "searchDescription": "移除代理程式鉤子、orca 指令、orca serve 伺服器，以及 SSH 主機上的鉤子。",
       "keywords": {
         "uninstall": "解除安裝",
@@ -1492,20 +1492,20 @@
         "hooks": "鉤子"
       },
       "copyCommand": "複製指令",
-      "quit": "結束 Orca",
+      "quit": "結束 BrzA Studio",
       "next": {
-        "unknown": "結束 Orca，然後刪除應用程式。",
-        "macApp": "結束 Orca，然後將它從「應用程式」資料夾拖到垃圾桶。",
-        "homebrew": "Orca 是透過 Homebrew 安裝的。執行以下指令來移除應用程式：",
+        "unknown": "結束 BrzA Studio，然後刪除應用程式。",
+        "macApp": "結束 BrzA Studio，然後將它從「應用程式」資料夾拖到垃圾桶。",
+        "homebrew": "BrzA Studio 是透過 Homebrew 安裝的。執行以下指令來移除應用程式：",
         "linuxPackage": "執行以下指令來移除套件：",
-        "windows": "請在 Windows 解除安裝程式中完成。解除安裝程式開啟時，Orca 會結束。",
-        "appImage": "結束 Orca，然後刪除 <path>{{path}}</path>。"
+        "windows": "請在 Windows 解除安裝程式中完成。解除安裝程式開啟時，BrzA Studio 會結束。",
+        "appImage": "結束 BrzA Studio，然後刪除 <path>{{path}}</path>。"
       },
       "openUninstaller": "開啟解除安裝程式",
-      "agentStatusOff": "「代理程式狀態鉤子」已關閉。除非你到「設定 → 代理程式」重新開啟，否則 Orca 不會再加入鉤子。",
-      "loadFailed": "Orca 無法檢查它安裝了哪些項目。",
+      "agentStatusOff": "「代理程式狀態鉤子」已關閉。除非你到「設定 → 代理程式」重新開啟，否則 BrzA Studio 不會再加入鉤子。",
+      "loadFailed": "BrzA Studio 無法檢查它安裝了哪些項目。",
       "tryAgain": "再試一次",
-      "keeps": "專案、工作樹和 Orca 設定會保留。",
+      "keeps": "專案、工作樹和 BrzA Studio 設定會保留。",
       "keepsShared": "{{name}} 也已安裝，因此它共用的鉤子也會保留。",
       "closesTerminals": "開啟中的終端機將會關閉。",
       "removing": "正在移除…",
@@ -1524,8 +1524,8 @@
         "sshHosts_other": "{{count}} 個 SSH 主機"
       },
       "path": {
-        "codexAccount": "Orca 管理的 Codex 帳戶",
-        "appData": "Orca 應用程式資料"
+        "codexAccount": "BrzA Studio 管理的 Codex 帳戶",
+        "appData": "BrzA Studio 應用程式資料"
       },
       "host": {
         "ssh": "SSH",
@@ -1540,10 +1540,10 @@
         "terminalDaemon": "終端機背景行程",
         "hookScripts": "鉤子指令碼",
         "nothing": "應用程式以外沒有需要移除的項目。",
-        "loading": "正在檢查 Orca 安裝了哪些項目…",
+        "loading": "正在檢查 BrzA Studio 安裝了哪些項目…",
         "done": "已移除。刪除應用程式即可完成。",
         "problems_other": "刪除應用程式前，還有 {{count}} 個項目需要你處理。",
-        "stillInUse": "部分 Orca 檔案仍在使用中，因此暫時保留。"
+        "stillInUse": "部分 BrzA Studio 檔案仍在使用中，因此暫時保留。"
       },
       "status": {
         "running": "移除中",
@@ -1551,8 +1551,8 @@
         "problem": "需要處理",
         "kept": "已保留"
       },
-      "stepFailed": "Orca 無法完成此步驟。",
-      "finishFailed": "Orca 無法執行此操作。"
+      "stepFailed": "BrzA Studio 無法完成此步驟。",
+      "finishFailed": "BrzA Studio 無法執行此操作。"
     },
     "notifications": {
       "perfNotices": {
@@ -1574,7 +1574,7 @@
     },
     "automaticUpdates": {
       "title": "自動更新",
-      "description": "在支援此功能的桌面版安裝中，Orca 會在定期檢查時下載符合條件的更新，並自動重新啟動以完成安裝。",
+      "description": "在支援此功能的桌面版安裝中，BrzA Studio 會在定期檢查時下載符合條件的更新，並自動重新啟動以完成安裝。",
       "info": "關於自動更新",
       "saveFailed": "無法儲存自動更新設定。"
     },
@@ -1589,7 +1589,7 @@
       "signInFailedDetail": "瀏覽器仍已開啟該頁面。請在該處登入以繼續。"
     },
     "mobile": {
-      "teamDisabledRelay": "你的團隊已關閉 Orca Relay。請使用區域網路。"
+      "teamDisabledRelay": "你的團隊已關閉 BrzA Studio Relay。請使用區域網路。"
     },
     "computerUse": {
       "teamDisabled": "你的團隊已關閉電腦控制。"
@@ -1636,8 +1636,8 @@
         "repoOff": "已在 {{repo}} 中關閉 {{name}}"
       },
       "fileAgent": {
-        "title": "要讓 Orca 編輯 {{agent}} 的 MCP 檔案嗎？",
-        "line": "Orca 會將你的 MCP 伺服器保存在 {{agent}} 的設定檔（{{file}}）中。你自己的項目會維持原狀。",
+        "title": "要讓 BrzA Studio 編輯 {{agent}} 的 MCP 檔案嗎？",
+        "line": "BrzA Studio 會將你的 MCP 伺服器保存在 {{agent}} 的設定檔（{{file}}）中。你自己的項目會維持原狀。",
         "allow": "允許"
       },
       "agents": {
@@ -1685,14 +1685,14 @@
       },
       "found": {
         "onlyIn": "{{agents}} · 僅限 {{projects}}",
-        "move": "移至 Orca",
+        "move": "移至 BrzA Studio",
         "actions": "{{name}} 的操作",
-        "copy": "複製到 Orca",
+        "copy": "複製到 BrzA Studio",
         "open": "開啟",
-        "copied": "已將 {{name}} 複製到 Orca",
+        "copied": "已將 {{name}} 複製到 BrzA Studio",
         "title": "在你的代理程式中",
         "summary": "在 {{agents}} 中找到 {{count}} 個伺服器",
-        "moveAll": "全部移至 Orca"
+        "moveAll": "全部移至 BrzA Studio"
       },
       "signedInToast": "已登入 {{name}}",
       "pasteRefused": "該位址並非來自這次登入。",
@@ -1717,10 +1717,10 @@
         "linear": "讀取和更新議題與專案"
       },
       "move": {
-        "title": "要將 {{name}} 移至 Orca 嗎？",
-        "allTitle": "要將 {{count}} 個伺服器移至 Orca 嗎？",
-        "line": "Orca 會將它從 {{agents}} 的設定中移除，並保留備份。",
-        "allLine": "Orca 會將它們從 {{agents}} 的設定中移除，並保留備份。",
+        "title": "要將 {{name}} 移至 BrzA Studio 嗎？",
+        "allTitle": "要將 {{count}} 個伺服器移至 BrzA Studio 嗎？",
+        "line": "BrzA Studio 會將它從 {{agents}} 的設定中移除，並保留備份。",
+        "allLine": "BrzA Studio 會將它們從 {{agents}} 的設定中移除，並保留備份。",
         "confirm": "移動"
       },
       "yours": "你的伺服器",
@@ -1806,8 +1806,8 @@
       "cli": {
         "title": "命令列",
         "otherTerminals": "在其他終端機中使用 {{command}}",
-        "skillTitle": "給代理程式用的 Orca 技能",
-        "description": "Orca 內建的終端機已經可以使用。"
+        "skillTitle": "給代理程式用的 BrzA Studio 技能",
+        "description": "BrzA Studio 內建的終端機已經可以使用。"
       },
       "previewTabs": {
         "title": "預覽分頁",
@@ -1848,7 +1848,7 @@
       },
       "about": {
         "title": "關於",
-        "version": "Orca {{version}}"
+        "version": "BrzA Studio {{version}}"
       },
       "inlineBlameTitle": "行內 git blame",
       "inlineBlameDescription": "在游標所在行的行尾顯示最後修改這一行的人與時間。",
@@ -1868,14 +1868,14 @@
       "ab7e864374": "關於更新延遲",
       "ee1d96f74a": "略過這次延遲",
       "teamManaged": "由你的團隊設定",
-      "description": "新版本發行後，Orca 會等待所選天數再提供更新。",
+      "description": "新版本發行後，BrzA Studio 會等待所選天數再提供更新。",
       "none": "無",
       "availableSoon": "{{relative}}可更新",
       "availableOn": "於 {{date}}（{{relative}}）開放更新",
-      "clearedTitle": "Orca {{version}} 已可更新",
-      "heldTitle": "Orca {{version}} 暫緩提供",
+      "clearedTitle": "BrzA Studio {{version}} 已可更新",
+      "heldTitle": "BrzA Studio {{version}} 暫緩提供",
       "released": "發行於 {{released}}",
-      "progress": "距離 Orca {{version}} 開放更新的剩餘時間",
+      "progress": "距離 BrzA Studio {{version}} 開放更新的剩餘時間",
       "skipDelayOnceHint": "立即檢查這個版本，保留原有的延遲設定。",
       "upToDateWithHeld": "目前使用的是最新可用版本。較新的版本將延至 {{date}} 提供。",
       "heldReleaseReady": "有較新的版本可用。檢查更新即可取得。",
@@ -1917,9 +1917,9 @@
     "selectAll": "全選",
     "quitAndStopAllSessions": "完全結束...",
     "quitAndStopAllSessionsTooltip": "同時停止所有終端機工作階段，包括執行中的代理程式。一般的「結束」會讓這些工作階段繼續執行，以便 BrzA Studio 下次啟動時重新連線。",
-    "about": "關於 Orca",
+    "about": "關於 BrzA Studio",
     "cut": "剪下",
-    "hide": "隱藏 Orca",
+    "hide": "隱藏 BrzA Studio",
     "hideOthers": "隱藏其他",
     "minimize": "最小化",
     "redo": "重做",
@@ -2244,7 +2244,7 @@
             "33290e88ed": "連線設定檔失敗",
             "9fcb07a796": "設定檔已連線",
             "2f6c78a039": "重新整理設定檔身分驗證失敗",
-            "a37b5e6d37": "已登出 Orca",
+            "a37b5e6d37": "已登出 BrzA Studio",
             "83600521e7": "登出失敗",
             "76deec8f58": "切換組織失敗",
             "7d4bc516ee": "切換設定檔失敗",
@@ -2255,7 +2255,7 @@
         },
         "runtime": {
           "status": {
-            "runtimeHostDisconnectedDescription": "檢查 Orca 是否正在該伺服器上執行並且你的網路連線是否正常運作，然後重試。",
+            "runtimeHostDisconnectedDescription": "檢查 BrzA Studio 是否正在該伺服器上執行並且你的網路連線是否正常運作，然後重試。",
             "runtimeHostUnreachableNamed": "無法到達 {{hostName}}",
             "runtimeHostUnreachable": "無法存取 BrzA Studio 伺服器",
             "tryAgain": "重試"
@@ -2343,7 +2343,7 @@
               "8d6eedf97e": "無法在 PATH 中註冊 BrzA Studio CLI。",
               "0f116999f1": "設定前，請重新啟動 shell，或將 BrzA Studio CLI 目錄新增至 PATH。",
               "15cbedc3e3": "在執行代理程式技能設定之前安裝 BrzA Studio CLI。",
-              "windowsPathUnknown": "Orca 無法檢查你的 Windows 使用者 PATH",
+              "windowsPathUnknown": "BrzA Studio 無法檢查你的 Windows 使用者 PATH",
               "refreshCliRegistration": "請重新整理 CLI 註冊狀態後重試。"
             }
           }
@@ -2390,7 +2390,7 @@
             }
           },
           "availability": {
-            "web": "浮動工作區在你自己的電腦上執行，因此只能在 Orca 桌面應用程式中使用。"
+            "web": "浮動工作區在你自己的電腦上執行，因此只能在 BrzA Studio 桌面應用程式中使用。"
           }
         }
       },
@@ -2572,7 +2572,7 @@
         },
         "ports": {
           "serverPortForward": {
-            "updateServer": "無法轉送來自 {{host}} 的連接埠 {{port}}。請更新 {{host}} 上的 Orca，然後再試一次。",
+            "updateServer": "無法轉送來自 {{host}} 的連接埠 {{port}}。請更新 {{host}} 上的 BrzA Studio，然後再試一次。",
             "failed": "無法轉送來自 {{host}} 的連接埠 {{port}}。請檢查連線，然後再試一次。",
             "forwarded": "已轉送來自 {{host}} 的連接埠 {{port}}",
             "opened": "已在你的預設瀏覽器中開啟 {{address}}。",
@@ -2728,10 +2728,10 @@
       "activateAiVaultStructuredSession": {
         "gone": "此聊天不再在此主機上，因此無法在此處重新開啟。",
         "hostCannotOpen": "在 BrzA Studio 更新之前，無法重新開啟此聊天。",
-        "notLocatedNamed": "Orca 找不到 {{agent}} 的執行位置，因此無法開啟。",
-        "notLocated": "Orca 找不到此代理程式的執行位置，因此無法開啟。",
+        "notLocatedNamed": "BrzA Studio 找不到 {{agent}} 的執行位置，因此無法開啟。",
+        "notLocated": "BrzA Studio 找不到此代理程式的執行位置，因此無法開啟。",
         "worktreeDeleted": "工作樹已刪除。",
-        "projectRemoved": "專案已從 Orca 移除。",
+        "projectRemoved": "專案已從 BrzA Studio 移除。",
         "folderWorkspaceRemoved": "資料夾工作區已移除。",
         "chatStillStarting": "此聊天仍在啟動中。請稍後再試。",
         "chatOpenFailed": "無法開啟此聊天",
@@ -2853,41 +2853,41 @@
       },
       "cli": {
         "detail": {
-          "registerForWsl": "註冊 {{path}} 以從 WSL 使用 Orca。",
-          "registerForTerminal": "註冊 {{path}} 以從終端機使用 Orca。",
-          "registerForWindowsShell": "註冊 {{path}} 以從命令提示字元或 PowerShell 使用 Orca。",
+          "registerForWsl": "註冊 {{path}} 以從 WSL 使用 BrzA Studio。",
+          "registerForTerminal": "註冊 {{path}} 以從終端機使用 BrzA Studio。",
+          "registerForWindowsShell": "註冊 {{path}} 以從命令提示字元或 PowerShell 使用 BrzA Studio。",
           "devLauncherOnly": "開發模式僅使用產生的啟動器進行驗證。",
           "differentLauncher": "{{path}} 指向其他啟動器。",
-          "launcherMissing": "此 Orca 版本缺少隨附的 CLI 啟動器。",
+          "launcherMissing": "此 BrzA Studio 版本缺少隨附的 CLI 啟動器。",
           "noWslDistro": "沒有可用的 WSL 發行版。",
-          "notOrcaLauncherScript": "{{path}} 已存在，但不是 Orca 啟動器指令碼。",
-          "notOrcaSymlink": "{{path}} 已存在，但不是 Orca 符號連結。",
-          "olderLauncher": "{{path}} 包含舊版 Orca 啟動器。",
+          "notOrcaLauncherScript": "{{path}} 已存在，但不是 BrzA Studio 啟動器指令碼。",
+          "notOrcaSymlink": "{{path}} 已存在，但不是 BrzA Studio 符號連結。",
+          "olderLauncher": "{{path}} 包含舊版 BrzA Studio 啟動器。",
           "platformUnsupported": "此平台尚未實作 CLI 註冊。",
-          "readlinkPermissionDenied": "Orca 沒有權限檢查 {{path}}。請檢查該路徑及其父目錄的權限，然後再試一次。",
+          "readlinkPermissionDenied": "BrzA Studio 沒有權限檢查 {{path}}。請檢查該路徑及其父目錄的權限，然後再試一次。",
           "registeredAt": "已註冊至 {{path}}。",
           "registeredInDistroAt": "已在 {{distro}} 中註冊至 {{path}}。",
           "registrationUnavailable": "此組建版本不支援 CLI 註冊。",
           "unreadableSymlink": "無法讀取 {{path}}。請重新註冊以修復。",
-          "windowsLauncherMissing": "缺少 Windows 版 Orca CLI 啟動器。",
-          "windowsPathCheckFailed": "Orca 啟動器已存在，但 Orca 無法檢查你的 Windows 使用者 PATH。",
+          "windowsLauncherMissing": "缺少 Windows 版 BrzA Studio CLI 啟動器。",
+          "windowsPathCheckFailed": "BrzA Studio 啟動器已存在，但 BrzA Studio 無法檢查你的 Windows 使用者 PATH。",
           "windowsPathTimedOut": "Windows PATH 命令在 {{ms}} 毫秒後逾時。",
           "wslCommandTimedOut": "WSL 命令在 {{ms}} 毫秒後逾時。",
           "wslDistroUnreachable": "無法連線到 WSL 發行版。請再試一次。",
           "wslHomeUnresolved": "無法解析 WSL 主目錄。",
-          "wslInteropUnavailable": "WSL 的 Windows 互通功能無法使用；Orca 無法從 WSL 啟動 Windows CLI。",
+          "wslInteropUnavailable": "WSL 的 Windows 互通功能無法使用；BrzA Studio 無法從 WSL 啟動 Windows CLI。",
           "wslRegistrationUnavailable": "WSL CLI 註冊無法使用。",
           "wslWindowsOnly": "WSL CLI 註冊僅適用於 Windows。"
         }
       },
       "ephemeralVm": {
-        "provisionedRootNeedsUpdate": "此虛擬機器上的 Orca 伺服器無法採用已佈建的根目錄。請更新虛擬機器上的 Orca。"
+        "provisionedRootNeedsUpdate": "此虛擬機器上的 BrzA Studio 伺服器無法採用已佈建的根目錄。請更新虛擬機器上的 BrzA Studio。"
       },
       "executionHostFacts": {
         "sshPlatformWithheld": "SSH 主機尚未回報其作業系統。請連線到該主機後再試一次。",
-        "runtimePlatformWithheld": "Orca 伺服器尚未回報其作業系統。請重新連線到該伺服器後再試一次。",
-        "runtimePlatformUpdate": "此 Orca 伺服器不會回報其作業系統。請更新伺服器，才能在上面啟動代理程式。",
-        "hostUnresolvedWithheld": "Orca 目前還無法判斷此工作區屬於哪台主機。"
+        "runtimePlatformWithheld": "BrzA Studio 伺服器尚未回報其作業系統。請重新連線到該伺服器後再試一次。",
+        "runtimePlatformUpdate": "此 BrzA Studio 伺服器不會回報其作業系統。請更新伺服器，才能在上面啟動代理程式。",
+        "hostUnresolvedWithheld": "BrzA Studio 目前還無法判斷此工作區屬於哪台主機。"
       },
       "fileOwnerRuntimeTarget": {
         "unresolved": "無法確認此檔案屬於哪台主機。請重新開啟檔案後再試一次。"
@@ -2946,7 +2946,7 @@
           "grokBillingConfigMissing": "Grok 的計費回應未包含設定資料",
           "grokBillingUsageMissing": "Grok 的計費回應未包含額度使用量",
           "grokNotSignedIn": "尚未登入 Grok：請執行 grok login",
-          "grokSignInExpired": "Grok 登入已過期：請在執行 Orca 的電腦上執行 grok，若出現提示就登入。不需要傳送聊天訊息。",
+          "grokSignInExpired": "Grok 登入已過期：請在執行 BrzA Studio 的電腦上執行 grok，若出現提示就登入。不需要傳送聊天訊息。",
           "grokUsageFailedHttp": "Grok 用量請求失敗（HTTP {{status}}）",
           "grokUsageRequestFailed": "Grok 用量請求失敗",
           "grokUsageUnauthorizedHttp": "Grok 用量請求未獲授權（HTTP {{status}}）",
@@ -3040,7 +3040,7 @@
         "nativeDropUnresolvedPaths": "BrzA Studio 無法讀取拖放檔案的路徑。",
         "nativeDropTempCopyFailed_one": "BrzA Studio 無法複製 {{count}} 個拖放的檔案。",
         "nativeDropTempCopyFailed_other": "BrzA Studio 無法複製 {{count}} 個拖放的檔案。",
-        "nativeDropTempCopyFailed": "Orca 無法複製 {{count}} 個拖放的檔案。"
+        "nativeDropTempCopyFailed": "BrzA Studio 無法複製 {{count}} 個拖放的檔案。"
       },
       "useIpcEvents": {
         "0e3cf53060": "未找到瀏覽器分頁 {{value0}}",
@@ -3050,7 +3050,7 @@
         "f000b2ff76": "沒有作用中的工作樹",
         "7a64b31991": "遠端執行環境運作時，無法建立本機終端機",
         "ef223fbb6b": "有裝置嘗試連線但未配對",
-        "11992d0337": "如果這是你的手機或其他 Orca 用戶端，請從設定 → 行動版重新配對。",
+        "11992d0337": "如果這是你的手機或其他 BrzA Studio 用戶端，請從設定 → 行動版重新配對。",
         "6573cfe955": "開啟行動版設定",
         "unresolvedTerminalWorktreeOwner": "由於無法解析工作樹擁有者，無法建立終端機"
       },
@@ -3203,7 +3203,7 @@
       "GitHubItemDialog": {
         "refreshTask": "重新整理任務",
         "refreshTaskFailed": "無法重新整理此任務。請再試一次。",
-        "refreshTaskUnsupported": "請更新此伺服器上的 Orca，才能在這裡重新整理任務。",
+        "refreshTaskUnsupported": "請更新此伺服器上的 BrzA Studio，才能在這裡重新整理任務。",
         "3cd5ae5b7b": "沒有變更任何檔案。",
         "filesUnavailable": "無法載入變更的檔案。",
         "filesRetry": "重試",
@@ -4288,7 +4288,7 @@
         "b1e390250d": "無法完成本機建置切換。",
         "d29740d175": "無法使用所選的建置。",
         "37d45c9ec1": "選擇其他建置",
-        "7f1a4c9e02": "你的系統套件管理員安裝了 Orca，因此請從那裡更新它 — BrzA Studio 本身無法安裝此版本。",
+        "7f1a4c9e02": "你的系統套件管理員安裝了 BrzA Studio，因此請從那裡更新它 — BrzA Studio 本身無法安裝此版本。",
         "compatibilityModeFailed": "無法啟用相容模式。{{message}}",
         "moreSinceLastUpdate": "自上次更新以來另有 +{{count}} 個版本",
         "downloadingPercent": "下載中... {{percent}}%",
@@ -5288,7 +5288,7 @@
             "fitHere": "在此調整"
           },
           "legacyRelayBridge": {
-            "unreachable": "此終端機仍在主機上以舊版 Orca 執行。正在重新連線…"
+            "unreachable": "此終端機仍在主機上以舊版 BrzA Studio 執行。正在重新連線…"
           }
         }
       },
@@ -5591,7 +5591,7 @@
             "c4a8968bdd": "展開工作區",
             "b10695d6ce": "終止工作階段",
             "288a4dd177": "BrzA Studio",
-            "53dd5560ae": "收合 Orca",
+            "53dd5560ae": "收合 BrzA Studio",
             "e419d27083": "展開 BrzA Studio",
             "41ae4fa725": "正在結束…",
             "138b99bd80": "本次工作階段",
@@ -6428,7 +6428,7 @@
         "StatsHostScope": {
           "remoteCaption": "記錄於 {{value0}} 的統計與用量。「啟用」和「重新整理」會作用於 {{value0}}。",
           "tooOldTitle": "{{value0}} 目前還無法回報用量",
-          "tooOldBody": "它執行的是舊版 Orca。請更新 {{value0}} 上的 Orca，才能在這裡查看其 token 用量。"
+          "tooOldBody": "它執行的是舊版 BrzA Studio。請更新 {{value0}} 上的 BrzA Studio，才能在這裡查看其 token 用量。"
         }
       },
       "sparse": {
@@ -6721,7 +6721,7 @@
           "installing": "下載、驗證和安裝…",
           "selectSkill": "至少選擇一項技能。",
           "chooseWorkspace": "選擇一個工作區。",
-          "reconnectBeforeInstalling": "安裝前重新連線你的 Orca 帳戶。",
+          "reconnectBeforeInstalling": "安裝前重新連線你的 BrzA Studio 帳戶。",
           "bundleVerificationFailed": "在 BrzA Studio 驗證要求的套件組之前安裝失敗。",
           "destinationAlreadyFinished": "目的地已經完成此安裝。",
           "enterShareLink": "輸入 BrzA Studio 技能分享連結。",
@@ -6729,10 +6729,10 @@
           "requestedVersionVerificationFailed": "在 BrzA Studio 驗證請求的版本之前安裝失敗。",
           "versionVerificationFailed": "BrzA Studio 無法驗證要求的版本。",
           "inspectManagedFailed": "BrzA Studio 無法檢查此電腦上受管理的安裝項目。",
-          "reconnectForVersionHistory": "重新連線你的 Orca 帳戶以載入版本歷史記錄。",
+          "reconnectForVersionHistory": "重新連線你的 BrzA Studio 帳戶以載入版本歷史記錄。",
           "versionHistoryUnavailable": "此技能的版本歷史記錄不可用。",
           "bundleSkillsMissing": "此版本不包含已安裝套件組中的任何技能。",
-          "reconnectBeforeVersionChange": "在變更版本之前重新連線你的 Orca 帳戶。",
+          "reconnectBeforeVersionChange": "在變更版本之前重新連線你的 BrzA Studio 帳戶。",
           "removeFailed": "BrzA Studio 無法安全地移除該技能。",
           "agentsLabel": "代理程式",
           "agentNotInstalled": "未安裝",
@@ -6873,9 +6873,9 @@
           "updateAvailable": "有可用更新",
           "repairAvailable": "可修復",
           "installAvailable": "可安裝",
-          "otherBuild": "由其他版本的 Orca 安裝",
-          "otherBuildKept": "已保留：由其他版本的 Orca 寫入",
-          "differsFromOrca": "此副本與 Orca 的副本不同",
+          "otherBuild": "由其他版本的 BrzA Studio 安裝",
+          "otherBuildKept": "已保留：由其他版本的 BrzA Studio 寫入",
+          "differsFromOrca": "此副本與 BrzA Studio 的副本不同",
           "replaceMovesFolder": "取代會將整個資料夾（包括所有額外檔案）移至 {{folder}}。",
           "replaceMovesFolderOnHost": "取代會將整個資料夾（包括所有額外檔案）移至 {{host}} 上的 {{folder}}。",
           "replaceMovesLink": "取代會將此連結移至 {{folder}}。",
@@ -6899,13 +6899,13 @@
           "removedPreserved_other": "已移除 {{removed}} 個 · 已保留 {{count}} 個已修改的技能。"
         },
         "skillFreshnessAutoUpdate": {
-          "strandedTitle": "Orca 無法備份你對 {{value0}} 所做的修改",
+          "strandedTitle": "BrzA Studio 無法備份你對 {{value0}} 所做的修改",
           "strandedDescription": "你修改的內容仍在 {{value0}}。再次更新前，請先將這些內容複製到安全的位置。",
           "preservedTitle": "你對 {{value0}} 所做的修改已另行儲存",
-          "preservedDescription": "Orca 已更新技能，並將你修改的內容儲存至 {{value0}}。",
-          "preservedBackupOnly": "Orca 已將你修改的內容儲存至 {{value0}}。",
-          "uncertainTitle": "Orca 無法確認 {{value0}} 上的技能更新",
-          "uncertainDescriptionKept": "Orca 可能已更新 {{value0}} 上的技能，但無法確認結果。如果你在更新期間編輯了技能，你的副本位於 {{value1}}，或仍在技能資料夾中。"
+          "preservedDescription": "BrzA Studio 已更新技能，並將你修改的內容儲存至 {{value0}}。",
+          "preservedBackupOnly": "BrzA Studio 已將你修改的內容儲存至 {{value0}}。",
+          "uncertainTitle": "BrzA Studio 無法確認 {{value0}} 上的技能更新",
+          "uncertainDescriptionKept": "BrzA Studio 可能已更新 {{value0}} 上的技能，但無法確認結果。如果你在更新期間編輯了技能，你的副本位於 {{value1}}，或仍在技能資料夾中。"
         },
         "SkillBackupPathLine": {
           "movedTo": "舊副本已移至：",
@@ -6918,7 +6918,7 @@
           "leftoverReason": "無法備份殘留的副本：它位於另一個磁碟機上。",
           "movedAsideReason": "無法備份舊副本：它位於另一個磁碟機上。",
           "keepIt": "若要保留它，請將它移出技能資料夾。",
-          "noReminder": "請將它移出技能資料夾。Orca 不會再提醒你。",
+          "noReminder": "請將它移出技能資料夾。BrzA Studio 不會再提醒你。",
           "copyPathFor": "複製 {{value0}} 的路徑",
           "copyFailed": "無法複製路徑。"
         }
@@ -7069,18 +7069,18 @@
           "namingBranch": "正在為分支命名…",
           "errorDetailsAt": "錯誤詳情 · {{time}}",
           "reasonNothingYet": "目前還沒有可用來為此分支命名的變更。",
-          "reasonBranchChanged": "Orca 為分支命名時，分支已變更。",
+          "reasonBranchChanged": "BrzA Studio 為分支命名時，分支已變更。",
           "reasonProjectMoving": "專案正在移動中。",
-          "reasonHistoryUnreadable": "Orca 無法讀取此工作區的歷史記錄。請再試一次。",
-          "reasonInterrupted": "Orca 無法完成分支命名。請再試一次。",
-          "reasonBranchPushed": "分支已推送，因此 Orca 保留了原名稱。",
-          "reasonBranchRenamed": "分支已重新命名，因此 Orca 保留了該名稱。",
-          "reasonNameChosen": "此分支名稱是手動選定的，因此 Orca 予以保留。",
+          "reasonHistoryUnreadable": "BrzA Studio 無法讀取此工作區的歷史記錄。請再試一次。",
+          "reasonInterrupted": "BrzA Studio 無法完成分支命名。請再試一次。",
+          "reasonBranchPushed": "分支已推送，因此 BrzA Studio 保留了原名稱。",
+          "reasonBranchRenamed": "分支已重新命名，因此 BrzA Studio 保留了該名稱。",
+          "reasonNameChosen": "此分支名稱是手動選定的，因此 BrzA Studio 予以保留。",
           "reasonSettingOff": "「設定」中已關閉分支自動命名。",
           "reasonNoDistinctName": "產生的名稱與目前名稱相同。",
-          "reasonFirstMessageUnavailable": "Orca 找不到此工作區的第一則訊息。",
+          "reasonFirstMessageUnavailable": "BrzA Studio 找不到此工作區的第一則訊息。",
           "reasonAlreadyNamed": "此工作區已重新命名過。",
-          "reasonUnavailable": "Orca 已無法為此分支命名。",
+          "reasonUnavailable": "BrzA Studio 已無法為此分支命名。",
           "branchNameKept": "已保留分支名稱"
         },
         "CreateProjectLocationField": {
@@ -7227,7 +7227,7 @@
           "removeDescriptionSsh": "此操作僅將 {{name}} 從 BrzA Studio 中移除。檔案仍保留在 {{host}} 上 — 重新新增該 SSH 主機即可恢復。",
           "removeDescriptionLocal": "此操作僅將 {{name}} 從 BrzA Studio 中移除。檔案仍保留在你的磁碟上。",
           "removeDescriptionVmRecipe": "這會從 BrzA Studio 中移除 {{name}}。其虛擬機器環境範本決定是否永久刪除環境及其檔案。",
-          "linkedWorkspaceWarning_other": "此專案中的 {{count}} 個工作區也會從 Orca 中移除。",
+          "linkedWorkspaceWarning_other": "此專案中的 {{count}} 個工作區也會從 BrzA Studio 中移除。",
           "openTerminalWarning_other": "此專案中開啟的 {{count}} 個終端機將會關閉。"
         },
         "SetupGuideSidebarEntry": {
@@ -7271,9 +7271,9 @@
           "setupScript": "設定指令碼",
           "archiveScript": "封存指令碼",
           "save": "儲存本機設定",
-          "descriptionWithSource": "來自 <file>{{source}}</file>。儲存後，Orca 每次為 {{repo}} 建立工作樹時都會執行此指令碼。",
+          "descriptionWithSource": "來自 <file>{{source}}</file>。儲存後，BrzA Studio 每次為 {{repo}} 建立工作樹時都會執行此指令碼。",
           "notImported": "未匯入",
-          "notImportedHint": "這些設定在 Orca 中沒有對應項目，因此不會儲存。"
+          "notImportedHint": "這些設定在 BrzA Studio 中沒有對應項目，因此不會儲存。"
         },
         "SidebarFeedbackDialog": {
           "8bf619e4cf": "取消",
@@ -8118,7 +8118,7 @@
           "pairingHelpShareComputer": "在另一台電腦的「設定 → 遠端 BrzA Studio 伺服器 → 共用此電腦」中建立。",
           "sshImportSynced_other": "已將 {{count}} 個主機新增至 BrzA Studio。",
           "sshConfigPickerInvalidResponse": "SSH 設定主機回應無效",
-          "sshImportSynced": "已將 {{value0}} 部主機{{value1}}新增至 Orca。"
+          "sshImportSynced": "已將 {{value0}} 部主機{{value1}}新增至 BrzA Studio。"
         },
         "ForgetSshWorkspaceDialog": {
           "cancel": "取消",
@@ -8179,7 +8179,7 @@
                 "d42f1f14e0_other": "重試刪除 {{count}} 個分支",
                 "0e0379f24a": "已保留 {{count}} 個分支",
                 "6310412304": "審查 {{count}} 個分支",
-                "a3cdd9d9e6": "Git 已保留 {{count}} 個本機分支，因為其中可能含有未合併的提交。保留分支不會一併保留工作區資料夾；提交仍會留在存放庫中。Orca 可能會繼續在背景釋放工作區的磁碟空間。",
+                "a3cdd9d9e6": "Git 已保留 {{count}} 個本機分支，因為其中可能含有未合併的提交。保留分支不會一併保留工作區資料夾；提交仍會留在存放庫中。BrzA Studio 可能會繼續在背景釋放工作區的磁碟空間。",
                 "cea24c2b7d": "已移除 {{count}} 個工作區",
                 "d42f1f14e0": "重試刪除 {{count}} 個分支"
               }
@@ -8437,7 +8437,7 @@
           "cancel": "取消",
           "stepAllowUnknown": "無法驗證。如果已允許則跳過。",
           "stepAllowDenied": "BrzA Studio 已獲得權限，但 macOS 並未將權限套用至終端機服務。重設會再次向 macOS 請求權限。出現提示時按一下「允許」。",
-          "stepReallow": "重新允許 Orca 存取你的 {{folder}}",
+          "stepReallow": "重新允許 BrzA Studio 存取你的 {{folder}}",
           "reset": "重設權限",
           "resetting": "正在重設…",
           "resetFailed": "無法重設權限。請改用系統設定。",
@@ -8600,7 +8600,7 @@
           "apiKeyInstructions": "從 MiniMax 控制台 → API 金鑰中複製金鑰。已儲存的 API 金鑰優先於 Cookie；使用「忘記金鑰」可切換回 Cookie。",
           "opencodeGo": {
             "apiKey": {
-              "description": "選用的覆寫設定。如果留空，Orca 將使用你執行 /connect 時 OpenCode 儲存的金鑰，其次使用 OPENCODE_API_KEY。",
+              "description": "選用的覆寫設定。如果留空，BrzA Studio 將使用你執行 /connect 時 OpenCode 儲存的金鑰，其次使用 OPENCODE_API_KEY。",
               "label": "OpenCode Go API 金鑰",
               "placeholder": "留空以使用 /connect 儲存的金鑰或 OPENCODE_API_KEY",
               "help": "用於在狀態列中顯示 OpenCode Go 用量。下方的工作階段 Cookie 僅供舊版控制台 (OpenCode Black) 帳戶使用。",
@@ -8642,7 +8642,7 @@
           "retrySetup": "重試",
           "installing": "正在安裝...",
           "hostUnavailable": "BrzA Studio 目前還無法在此工作區所在的機器上安裝技能。",
-          "replaceWithOrcaCopy": "換成 Orca 版本",
+          "replaceWithOrcaCopy": "換成 BrzA Studio 版本",
           "copyCommandAria": "複製命令",
           "ed197f59a2": "複製命令",
           "failedToCopyCommand": "複製命令失敗。",
@@ -8681,7 +8681,7 @@
           "3f1bdf3cb4": "環境文字過長，無法安全解析。",
           "codexSessionSource": "從此處匯入 Codex 對話",
           "codexSessionSourceInfo": "關於匯入 Codex 對話",
-          "codexSessionSourceTooltip": "在帳號之間共用歷史記錄時，Orca 會將此 Codex 主目錄中的對話複製到 ~/.codex，讓 /resume 列出它們。對話複製後在此資料夾中新增的內容不會出現在副本中。",
+          "codexSessionSourceTooltip": "在帳號之間共用歷史記錄時，BrzA Studio 會將此 Codex 主目錄中的對話複製到 ~/.codex，讓 /resume 列出它們。對話複製後在此資料夾中新增的內容不會出現在副本中。",
           "noAgentsDetected": "未偵測到代理程式。若已安裝代理程式，可能是偵測作業逾時。",
           "9f30095d49": "代理程式權限"
         },
@@ -8831,7 +8831,7 @@
         "BrowserUsePane": {
           "67d9a53f47": "管理設定檔",
           "112f70adc4": "上次匯入自 {{value0}}",
-          "72d4815523": "將你現有的登入資訊帶入 Orca，以便代理程式可以存取經過身分驗證的頁面。匯入到預設設定檔中。",
+          "72d4815523": "將你現有的登入資訊帶入 BrzA Studio，以便代理程式可以存取經過身分驗證的頁面。匯入到預設設定檔中。",
           "af8c83ed61": "從 Chrome、Edge 或其他瀏覽器匯入 Cookie，以便代理程式可以重複使用你的登入資訊。",
           "68ea76eb71": "安裝瀏覽器使用技能，以便代理程式可以操作 BrzA Studio 的瀏覽器。",
           "96b91c6349": "讓程式設計代理程式透過你的登入資訊來操控此瀏覽器。",
@@ -8869,7 +8869,7 @@
           "b0fca411a0": "註冊…",
           "068552b191": "正在刪除…",
           "aa6536977e": "BrzA Studio 將註冊 {{value0}}，以便該命令在你的終端機上執行。",
-          "a030816e3e": "這將刪除 shell 命令符號連結。Orca 本身仍保持安裝狀態。",
+          "a030816e3e": "這將刪除 shell 命令符號連結。BrzA Studio 本身仍保持安裝狀態。",
           "fa87db3d6e": "在 PATH 中註冊 `{{value0}}`？",
           "14444243ba": "從 PATH 中刪除 `{{value0}}`？",
           "d363e5929b": "正在檢查 CLI 註冊…",
@@ -8950,7 +8950,7 @@
         },
         "DeveloperPermissionsPane": {
           "4c17304beb": "重新整理",
-          "6326a4c5cc": "當 CLI、本機應用程式或自動化工具需要 macOS 隱私存取時，請使用這些控制項。Orca 在啟動時不會詢問。",
+          "6326a4c5cc": "當 CLI、本機應用程式或自動化工具需要 macOS 隱私存取時，請使用這些控制項。BrzA Studio 在啟動時不會詢問。",
           "6f011b9bf6": "終端機工具會繼承 BrzA Studio 在 macOS 上的隱私權限範圍。",
           "bfa3402305": "無法請求權限",
           "66e94d6cf3": "已傳送權限請求",
@@ -9111,8 +9111,8 @@
           "b492397d34": "預設顯示 git 差異時偏好的呈現格式。",
           "a5db1d3975": "ms",
           "fc5c5306ff": "ms。",
-          "8112cd6dcf": "Orca 在你上次編輯後等待多長時間才會自動儲存。首次啟動預設為",
-          "1bec6d8318": "Orca 在你上次編輯後等待多長時間才會自動儲存。",
+          "8112cd6dcf": "BrzA Studio 在你上次編輯後等待多長時間才會自動儲存。首次啟動預設為",
+          "1bec6d8318": "BrzA Studio 在你上次編輯後等待多長時間才會自動儲存。",
           "45c6e85c4d": "編輯器",
           "4aa4d9fb73": "在差異編輯器中換行顯示長行，而不是要求水平捲動。",
           "94a479cef3": "顯示差異中前導和尾隨空白的差異。",
@@ -9177,7 +9177,7 @@
           "downloadUpdate": "下載更新",
           "restartToUpdate": "重新啟動以更新",
           "versionAvailable": "版本 {{version}} 已可使用。",
-          "externallyManagedVersionAvailable": "版本 {{version}} 已可使用。Orca 無法自行安裝此版本，請透過系統的套件管理程式更新。",
+          "externallyManagedVersionAvailable": "版本 {{version}} 已可使用。BrzA Studio 無法自行安裝此版本，請透過系統的套件管理程式更新。",
           "versionReadyToInstall": "版本 {{version}} 已可安裝。",
           "versionInstalling": "正在安裝版本 {{version}}。",
           "downloadingVersion": "正在下載版本 {{version}}（{{percent}}%）…"
@@ -9301,9 +9301,9 @@
           "prAutoRefreshHintAutomatic": "讓 PR 和檢查保持最新狀態。",
           "prAutoRefreshHintLessOften": "降低檢查 GitHub 的頻率。如果你遇到 GitHub 速率限制，這會很有用。",
           "prAutoRefreshTitle": "PR 更新",
-          "prAutoRefreshDescription": "Orca 向 GitHub 檢查 PR 與 CI 變更的頻率。",
+          "prAutoRefreshDescription": "BrzA Studio 向 GitHub 檢查 PR 與 CI 變更的頻率。",
           "prAutoRefreshHintOff": "在你推送或按一下「重新整理」時更新。",
-          "prAutoRefreshUnsupportedHost": "請更新 {{host}} 上的 Orca 才能變更此設定",
+          "prAutoRefreshUnsupportedHost": "請更新 {{host}} 上的 BrzA Studio 才能變更此設定",
           "prAutoRefreshUnknownHost": "所選伺服器"
         },
         "HiddenExperimentalGroup": {
@@ -9448,7 +9448,7 @@
           "copyPairingCode": "複製配對碼",
           "diagnosticsCopied": "已複製診斷訊息",
           "diagnosticsCopyFailed": "無法複製診斷訊息",
-          "5e2c7a1f84": "當你在手機上使用終端機時，Orca 會將其縮小以適合你的手機螢幕。當你關閉應用程式或切換離開時，此設定可控制終端機要保持手機尺寸（讓互動式 CLI 工具不會重新排版），還是調整回桌面尺寸。你隨時可以使用橫幅上的「還原」或「全部還原」來手動調整大小。",
+          "5e2c7a1f84": "當你在手機上使用終端機時，BrzA Studio 會將其縮小以適合你的手機螢幕。當你關閉應用程式或切換離開時，此設定可控制終端機要保持手機尺寸（讓互動式 CLI 工具不會重新排版），還是調整回桌面尺寸。你隨時可以使用橫幅上的「還原」或「全部還原」來手動調整大小。",
           "codeRefreshesAutomatically": "配對碼會自動重新整理。複製的配對碼最多可使用 10 分鐘。",
           "legacyEncryption": "使用舊版加密。請在此裝置上更新 BrzA Studio 應用程式。",
           "olderPairingMethod": "使用較舊的配對方式。請更新這支手機上的 BrzA Studio App。",
@@ -9598,7 +9598,7 @@
           "e3970bbbf5": "由於設定了 CI 環境變數，遙測被停用。取消設定並重新啟動。",
           "fe904ac984": "共用匿名使用資料",
           "77410e0566": "隱私權政策",
-          "8bfdd23a88": "幫助我們弄清楚下一步要建置什麼。Orca 會傳送匿名計數，記錄你使用的功能以及出現故障的位置。"
+          "8bfdd23a88": "幫助我們弄清楚下一步要建置什麼。BrzA Studio 會傳送匿名計數，記錄你使用的功能以及出現故障的位置。"
         },
         "QuickCommandsList": {
           "noSearchMatches": "沒有命令與此搜尋相符。"
@@ -9670,7 +9670,7 @@
           "787ca433ef": "僅定義支援的鍵：`scripts`、`setup`、`archive` 和 `issueCommand`。",
           "ecc73d9125": "將你的檔案與下面可用的範本進行比較，並在需要時複製該結構。",
           "0cc712b823": "核心設定檔存在於存放庫根目錄中，但 BrzA Studio 尚無法解析支援的掛鉤定義。",
-          "aba825233f": "該檔案包含此版本的 BrzA Studio 無法辨識的設定鍵。你可能需要更新 Orca，或檢查檔案是否有拼字錯誤。",
+          "aba825233f": "該檔案包含此版本的 BrzA Studio 無法辨識的設定鍵。你可能需要更新 BrzA Studio，或檢查檔案是否有拼字錯誤。",
           "8bfe65fc60": "使用本機命令",
           "8d6c56bff8": "執行兩者",
           "0fa21e19ec": "工作區的名稱，通常基於分支名稱。",
@@ -9697,7 +9697,7 @@
           "4611b78617": "命令來源",
           "c5a55a2d2e": "進階",
           "0ce113fd7b": "本機指令碼已儲存，但指令碼來源僅設定為 orca.yaml。",
-          "7f78e5eea6": "本機指令碼已儲存。Orca 仍在檢查 orca.yaml，完成後才能建議使用哪個指令碼來源。",
+          "7f78e5eea6": "本機指令碼已儲存。BrzA Studio 仍在檢查 orca.yaml，完成後才能建議使用哪個指令碼來源。",
           "2b6356e744": "已儲存",
           "81057d5f71": "儲存中...",
           "da37d6f10e": "複製",
@@ -10024,7 +10024,7 @@
           "7118953f14": "使代理程式能夠控制你電腦上的任何應用程式。",
           "475980f53d": "透過 BrzA Studio 協調多個程式開發代理程式。",
           "00c3a7950d": "編排",
-          "21f09426ea": "可選。Orca 可與你現有的供應商登入配合使用；僅當你希望 Orca 幫助在帳戶之間切換時才新增帳戶。",
+          "21f09426ea": "可選。BrzA Studio 可與你現有的供應商登入配合使用；僅當你希望 BrzA Studio 幫助在帳戶之間切換時才新增帳戶。",
           "ec1ba547f7": "管理 AI 代理程式、設定預設代理程式並自訂命令。",
           "8afa676615": "代理程式",
           "c7ad095d96": "正在載入設定...",
@@ -10124,7 +10124,7 @@
           "fb09da4345": "命令範本",
           "0740d30915": "自訂命令",
           "ee0e5c2a48": "使用預設代理程式",
-          "bf84dea6af": "僅當你希望 Orca 注入上下文時才使用變數。將代理程式保留為預設值以遵循你的正常代理程式偏好。",
+          "bf84dea6af": "僅當你希望 BrzA Studio 注入上下文時才使用變數。將代理程式保留為預設值以遵循你的正常代理程式偏好。",
           "a79c567194": "操作方案",
           "cf01d41bce": "每個原始碼控制 AI 按鈕使用的代理程式、CLI 參數和命令範本。",
           "b5f46664d3": "無法儲存原始碼控制 AI 操作預設值：{{value0}}",
@@ -10602,7 +10602,7 @@
           "4c4a9178a3": "註冊...",
           "4598b18464": "正在刪除...",
           "7ee4e52b99": "BrzA Studio 將註冊 {{value0}}，以便該命令能從 WSL 終端機執行。",
-          "d8216eb22e": "這會刪除 WSL shell 命令。Orca 本身仍安裝在 Windows 上。",
+          "d8216eb22e": "這會刪除 WSL shell 命令。BrzA Studio 本身仍安裝在 Windows 上。",
           "e49688f67f": "在 WSL 中註冊 `{{value0}}`？",
           "61ac55278e": "從 WSL 中刪除 `{{value0}}`？",
           "7aa456a460": "在 WSL 內的 ~/.local/bin 中註冊 `orca-ide`。",
@@ -11388,7 +11388,7 @@
             "b2799ba622": "毫秒",
             "146728ac2c": "延遲",
             "86f54575c7": "自動儲存",
-            "8ea61ad55c": "Orca 在你上次編輯後等待多長時間才會自動儲存。",
+            "8ea61ad55c": "BrzA Studio 在你上次編輯後等待多長時間才會自動儲存。",
             "4469b6fa4e": "儲存",
             "c56cb6f1c2": "網路",
             "nodeDistMirror": "鏡像站",
@@ -11500,7 +11500,7 @@
             "564942ffc5": "origin/main",
             "28192e3a63": "master",
             "e3e9adde59": "main",
-            "0e993bf00f": "當你建立工作區時，Orca 會重新整理遠端基準並安全地快轉對應的本機分支，例如 main 或 master。這可以防止像 git diff main...HEAD 這樣的命令對比過時的歷史記錄。如果該分支有未提交的變更或僅在本機的提交，BrzA Studio 會跳過更新。",
+            "0e993bf00f": "當你建立工作區時，BrzA Studio 會重新整理遠端基準並安全地快轉對應的本機分支，例如 main 或 master。這可以防止像 git diff main...HEAD 這樣的命令對比過時的歷史記錄。如果該分支有未提交的變更或僅在本機的提交，BrzA Studio 會跳過更新。",
             "769ddd7f81": "自訂",
             "1d2fae1fa2": "git 使用者名稱",
             "f83c8937c4": "分支命名",
@@ -12819,7 +12819,7 @@
           "cleanupStopped": "清理已停止",
           "stopCleanupFailed": "無法停止雲端虛擬機器清理。",
           "provisioning": "佈建中",
-          "untrackedRuntimeHint": "Orca 從未收到此虛擬機器的詳細資訊。清理時只會以執行個體 ID {{instanceId}} 執行 destroy；如果失敗，請在你的供應商刪除此虛擬機器，再將它從此清單移除。",
+          "untrackedRuntimeHint": "BrzA Studio 從未收到此虛擬機器的詳細資訊。清理時只會以執行個體 ID {{instanceId}} 執行 destroy；如果失敗，請在你的供應商刪除此虛擬機器，再將它從此清單移除。",
           "removeFromList": "從清單中移除",
           "removeFromListFailed": "無法將雲端虛擬機器執行環境從清單中移除。",
           "cca21fb369": "重新整理雲端虛擬機器"
@@ -13084,7 +13084,7 @@
           },
           "decisionFailed": "無法儲存權限決定。請重試。",
           "fullAccessWarning": "完整存取：以一般程式執行，可以讀取你的檔案、使用你已儲存的登入資訊和 SSH 金鑰、使用網路、執行其他程式，並控制 BrzA Studio（包括你的終端機和代理程式）。",
-          "uiWarning": "在 Orca 中執行發佈者的程式碼來繪製其檢視畫面。Orca 會顯示它能存取什麼，並在啟用前徵求你的同意。"
+          "uiWarning": "在 BrzA Studio 中執行發佈者的程式碼來繪製其檢視畫面。BrzA Studio 會顯示它能存取什麼，並在啟用前徵求你的同意。"
         },
         "PluginConsentProvenance": {
           "official": "官方",
@@ -13254,7 +13254,7 @@
           "invalidArtifact": "工作行程或面板檔案缺失或不安全。請修正後重新整理。",
           "consentChanged": "此外掛在你審查期間已變更。請重新審查。",
           "installGitMoved": "BrzA Studio 檢查後存放庫已變更。請再試一次。",
-          "installReservedIdentity": "此外掛使用了保留給 Orca 官方外掛的名稱，官方外掛只能從 Orca 外掛目錄安裝。若是你自己的副本或 fork，請將 orca-plugin.json 中的「id」改成不以「orca-」開頭，並將「publisher」設為你自己的名稱。"
+          "installReservedIdentity": "此外掛使用了保留給 BrzA Studio 官方外掛的名稱，官方外掛只能從 BrzA Studio 外掛目錄安裝。若是你自己的副本或 fork，請將 orca-plugin.json 中的「id」改成不以「orca-」開頭，並將「publisher」設為你自己的名稱。"
         },
         "plugins": {
           "search": {
@@ -13417,7 +13417,7 @@
           "permissionDenied": "麥克風存取遭到封鎖。請在系統設定中允許麥克風存取，然後重試。"
         },
         "TerminalTccAttributionNotice": {
-          "body": "終端機常駐程式是由已不存在的 Orca 安裝副本啟動的，因此 macOS 無法將其命令歸屬於 BrzA Studio —「輔助使用」和「自動化」的授權會被忽略，且不會顯示提示（osascript 執行失敗，錯誤碼為 -25211）。重新啟動常駐程式即可解決此問題；正在執行的終端機工作階段將會關閉。",
+          "body": "終端機常駐程式是由已不存在的 BrzA Studio 安裝副本啟動的，因此 macOS 無法將其命令歸屬於 BrzA Studio —「輔助使用」和「自動化」的授權會被忽略，且不會顯示提示（osascript 執行失敗，錯誤碼為 -25211）。重新啟動常駐程式即可解決此問題；正在執行的終端機工作階段將會關閉。",
           "title": "macOS 權限授權未套用至終端機",
           "63b8513f1e": "開啟管理工作階段"
         },
@@ -13470,14 +13470,14 @@
           "title": "BrzA Studio 帳戶",
           "description": "無論你身在何處，都可以立即分享工作並透過 BrzA Studio Mobile 存取你的桌面。",
           "searchDescription": "登入或登出使用成品與 BrzA Studio Relay 的帳戶。",
-          "managed": "你的團隊管理部分 Orca 設定。",
+          "managed": "你的團隊管理部分 BrzA Studio 設定。",
           "deviceReportNamedViewers": "{{teams}} 的擁有者和管理員可以檢視此裝置的報告。",
           "deviceReportViewers": "團隊擁有者和管理員可以檢視此裝置的報告。",
           "reportingDetails": "裝置回報詳細資訊",
-          "reportingDisclosure": "「裝置」檢視會顯示你的 Orca 版本、發布頻道、裝置名稱、平台、更新狀態、Orca 無法安裝的必要外掛，以及裝置上次回報的時間。",
+          "reportingDisclosure": "「裝置」檢視會顯示你的 BrzA Studio 版本、發布頻道、裝置名稱、平台、更新狀態、BrzA Studio 無法安裝的必要外掛，以及裝置上次回報的時間。",
           "benefitsTitle": "包含在你的帳戶中",
           "artifactsTitle": "成品分享",
-          "artifactsDescription": "發布 HTML 和 Markdown 檔案，並管理 Orca 中的共用連結。",
+          "artifactsDescription": "發布 HTML 和 Markdown 檔案，並管理 BrzA Studio 中的共用連結。",
           "relayTitle": "BrzA Studio Relay",
           "relayDescription": "透過行動網路或任何 Wi-Fi 將 BrzA Studio Mobile 連線到此桌面。",
           "skillsTitle": "技能分享",
@@ -13550,7 +13550,7 @@
           "linkDescription": "分享的套件無法在 BrzA Studio 中搜尋或列出。該連結是憑證，因此僅將其傳送給你信任的人。",
           "signInTitle": "登入以分享技能",
           "signInWebDescription": "BrzA Studio 桌面應用程式提供發布和連結管理。",
-          "signInDescription": "使用你的 Orca 帳戶發布套件並管理其連結。收件者不需要帳戶。",
+          "signInDescription": "使用你的 BrzA Studio 帳戶發布套件並管理其連結。收件者不需要帳戶。",
           "signInAgain": "重新登入",
           "signIn": "登入 BrzA Studio",
           "howToTitle": "如何分享技能",
@@ -13717,7 +13717,7 @@
             "updateAnyway": "仍要更新",
             "notNow": "暫時不要",
             "forceUpdate": "此主機上有終端機正在執行。更新期間會持續執行，BrzA Studio 伺服器重新啟動後，終端機窗格會重新連線。",
-            "forceUpdateUncounted": "Orca 無法計算此主機上的終端機數量。只有在該處沒有執行終端機常駐程式時才會進行更新，且由 Orca 伺服器自行執行的終端機都會結束。"
+            "forceUpdateUncounted": "BrzA Studio 無法計算此主機上的終端機數量。只有在該處沒有執行終端機常駐程式時才會進行更新，且由 BrzA Studio 伺服器自行執行的終端機都會結束。"
           },
           "description": "BrzA Studio 會在空白的 SSH 主機上自行安裝，並自動保持最新版本。",
           "deploy": {
@@ -13820,9 +13820,9 @@
           "unsupportedUnknown": "此版本的 BrzA Studio 不支援此主機。如需繼續使用，請安裝舊版本的 BrzA Studio。",
           "tunnelUnsupported": "此版本的 BrzA Studio 不支援此主機：其 SSH 伺服器不允許連接埠轉送，BrzA Studio 也無法透過 SSH 工作階段連線到其伺服器。如需繼續使用，請安裝舊版本的 BrzA Studio。",
           "setupRetry": "BrzA Studio 無法在此主機上啟動其伺服器。請重新連線。",
-          "setupFreeHostSpace": "此主機的可用磁碟空間不足，Orca 無法在啟動伺服器時備份其伺服器資料。請釋放主機上的空間，再重新連線。",
-          "setupStopUnmanagedRuntime": "有一個不是由此應用程式啟動的 Orca 伺服器，似乎仍在使用此主機的 Orca 資料。請在主機上停止它，再重新連線。「設定 > SSH 主機」中此主機的「詳情」會列出它的行程。",
-          "setupSeeDetails": "Orca 無法在此主機上啟動其伺服器。原因請見「設定 > SSH 主機」中此主機的「詳情」。",
+          "setupFreeHostSpace": "此主機的可用磁碟空間不足，BrzA Studio 無法在啟動伺服器時備份其伺服器資料。請釋放主機上的空間，再重新連線。",
+          "setupStopUnmanagedRuntime": "有一個不是由此應用程式啟動的 BrzA Studio 伺服器，似乎仍在使用此主機的 BrzA Studio 資料。請在主機上停止它，再重新連線。「設定 > SSH 主機」中此主機的「詳情」會列出它的行程。",
+          "setupSeeDetails": "BrzA Studio 無法在此主機上啟動其伺服器。原因請見「設定 > SSH 主機」中此主機的「詳情」。",
           "moveHeld": "BrzA Studio 無法確認伺服器上的副本，因此已暫停將此主機的專案遷移至其 BrzA Studio 伺服器。資料沒有遺失：專案仍保留在主機上，主機會保持鎖定，直到遷移完成。請重新連線以繼續。若伺服器無法恢復連線，請在「設定 > SSH 主機上的 BrzA Studio」中停止或忘記該伺服器。",
           "olderTerminalsBridged": "尚未在此主機上設定 BrzA Studio：由舊版 BrzA Studio 啟動的終端機仍在此主機的專案中執行，且仍可在這裡正常使用。請關閉這些終端機，或在主機上結束它們，再重新連線。",
           "olderTerminalsUncounted": "由舊版本 BrzA Studio 啟動的終端機仍在此主機上執行，且不會自行停止。請在該版本的 BrzA Studio 中關閉它們，或在主機上結束它們，然後重新連線。",
@@ -13850,8 +13850,8 @@
           "refusedLeaveBehindUnnamed": "此主機的部分已儲存內容無法遷移至其 BrzA Studio 伺服器。選擇「仍要遷移」會連線至主機，並將這些內容保留在這臺電腦上。",
           "windowsBuildUnsupported": "此主機的 Windows 版本早於 Windows 10 與 Windows Server 2016，因此無法執行 BrzA Studio 伺服器。請使用 Windows 版本較新的主機，或改用 Linux 或 macOS 主機。",
           "windowsNoExtractor": "此 Windows 主機既沒有 tar.exe，也沒有 PowerShell 的 Expand-Archive，因此 BrzA Studio 無法在該處解壓縮伺服器。請在主機上安裝 Windows PowerShell 5.1，再重新連線。",
-          "linkedProjects": "此主機的 Orca 伺服器已有 {{paths}}，因此此桌面現在使用伺服器的副本。此桌面在那裡的分頁和 {{count}} 個自動化未被遷移，它在那裡建立的工作樹會顯示為外部工作樹。",
-          "olderTerminals": "由舊版本 Orca 啟動的 {{count}} 個終端機仍在此主機上執行，且不會自行停止。請在該版本的 Orca 中關閉它們，或在主機上結束它們，然後重新連線。"
+          "linkedProjects": "此主機的 BrzA Studio 伺服器已有 {{paths}}，因此此桌面現在使用伺服器的副本。此桌面在那裡的分頁和 {{count}} 個自動化未被遷移，它在那裡建立的工作樹會顯示為外部工作樹。",
+          "olderTerminals": "由舊版本 BrzA Studio 啟動的 {{count}} 個終端機仍在此主機上執行，且不會自行停止。請在該版本的 BrzA Studio 中關閉它們，或在主機上結束它們，然後重新連線。"
         },
         "ZcodeCliSetupSection": {
           "title": "透過 ZCode 使用 GLM",
@@ -13973,7 +13973,7 @@
           "restartAsWslHost": {
             "button": "以 WSL 主機身分重新啟動",
             "title": "要以 WSL 主機身分重新啟動嗎？",
-            "description": "結束 {{host}} 上的所有終端機和代理程式（包括 SSH 主機開啟的），然後以 WSL 主機身分重新啟動 Orca 的伺服器。",
+            "description": "結束 {{host}} 上的所有終端機和代理程式（包括 SSH 主機開啟的），然後以 WSL 主機身分重新啟動 BrzA Studio 的伺服器。",
             "cancel": "取消",
             "action": "結束終端機並重新啟動"
           }
@@ -14098,7 +14098,7 @@
           "defaultHostHelp": "現有專案會保留在原位置。",
           "defaultHostWebHelp": "此瀏覽器會在所選的伺服器上開啟新專案。",
           "updateAll": "全部更新",
-          "shareRowHint": "讓另一個 Orca 連線到此處。",
+          "shareRowHint": "讓另一個 BrzA Studio 連線到此處。",
           "manageShare": "管理",
           "share": "分享",
           "serversCaption": "伺服器",
@@ -14187,7 +14187,7 @@
           "attentionSharedNotCurrent": "需要處理 · 此資料夾使用的共用副本並非 BrzA Studio 的副本",
           "resultUpdateSkippedPlaces": "{{result}} · 已略過 {{places}} 處的更新：{{reason}}",
           "resultUpdateSkippedAgent": "{{result}} · 已略過 {{agent}} 中的更新：{{reason}}",
-          "attentionDiffersFromOrca": "需要處理 · 此副本與 Orca 的副本不同",
+          "attentionDiffersFromOrca": "需要處理 · 此副本與 BrzA Studio 的副本不同",
           "replaceMovesCopyToBackup": "取代會將目前的副本（包括所有額外檔案）移至備份。",
           "replaceMovesCopyToFolder": "取代會將目前的副本（包括所有額外檔案）移至 {{folder}}。",
           "replaceMovesCopyToFolderOnHost": "取代會將目前的副本（包括所有額外檔案）移至 {{host}} 上的 {{folder}}。"
@@ -14245,15 +14245,15 @@
           "newShortcuts": "鍵盤快速鍵",
           "newCommands": "命令",
           "newPanels": "新增面板",
-          "newEvents": "回應更多 Orca 事件",
+          "newEvents": "回應更多 BrzA Studio 事件",
           "newRecipes": "虛擬機器環境範本",
           "newMcpServers": "MCP 伺服器",
           "newContributions": "代替你執行動作的功能",
           "allAccess": "查看所有存取權限",
           "update": "更新",
-          "replacesAction": "改由 {{value0}} 執行，取代 Orca 的 {{value1}}",
+          "replacesAction": "改由 {{value0}} 執行，取代 BrzA Studio 的 {{value1}}",
           "newFileTypes": "變更它開啟的檔案",
-          "newHooks": "可以變更或阻止 Orca 和你的代理程式的動作",
+          "newHooks": "可以變更或阻止 BrzA Studio 和你的代理程式的動作",
           "newSettings": "一個設定頁面",
           "newStatusBarItems": "狀態列項目",
           "opensFileTypes": "開啟新的檔案類型：{{value0}}",
@@ -14265,7 +14265,7 @@
         "PluginUpdateReview": {
           "title": "檢視 {{value0}} 的更新",
           "approve": "核准並更新",
-          "uncompared": "Orca 無法將此版本與你核准的版本比較。更新前請檢查它可以存取的內容。",
+          "uncompared": "BrzA Studio 無法將此版本與你核准的版本比較。更新前請檢查它可以存取的內容。",
           "newInVersion": "此版本新增：",
           "titleMany": "審核 {{value0}} 個更新",
           "history": "在 GitHub 上查看變更"
@@ -14391,7 +14391,7 @@
           "updatesKeepApproval": "僅在需要新權限時，更新才會再次詢問",
           "fullAccessUpdates": "更新可在不詢問的情況下變更其程式碼",
           "editsFileTypes": "在 BrzA Studio 中開啟並編輯 {{value0}} 檔案，並可讀取它所開啟的檔案",
-          "replacesAction": "改由 {{value0}} 執行，取代 Orca 的 {{value1}}。你可以在它的外掛頁面中切換回來。",
+          "replacesAction": "改由 {{value0}} 執行，取代 BrzA Studio 的 {{value1}}。你可以在它的外掛頁面中切換回來。",
           "install": "安裝並啟用",
           "keepOff": "保持關閉"
         },
@@ -14492,7 +14492,7 @@
           "details": "詳細資料",
           "failed": "無法更新 {{value0}}",
           "morePlugins": "以及另外 {{value0}} 個外掛程式",
-          "uncompared": "Orca 無法將其與你核准的版本比較。",
+          "uncompared": "BrzA Studio 無法將其與你核准的版本比較。",
           "held": "{{value0}} 在你審核後有所變更，因此正在 設定 → 外掛程式 中等待你審核。"
         },
         "PluginThemeUseNow": {
@@ -14681,7 +14681,7 @@
         "StatusBarUsageFormatSetting": {
           "reset": "重設",
           "previewLabel": "預覽",
-          "previewBuiltin": "留空以使用 Orca 的內建格式。",
+          "previewBuiltin": "留空以使用 BrzA Studio 的內建格式。",
           "placeholder": {
             "provider": "供應商名稱",
             "plan": "方案（Codex）",
@@ -15493,7 +15493,7 @@
                   },
                   "host_off": {
                     "title": "WSL 主機已關閉",
-                    "body": "Orca 透過此專案的 WSL 主機重新整理 {{reviewLabel}} 狀態，但主機已關閉。請重新連線以更新狀態。"
+                    "body": "BrzA Studio 透過此專案的 WSL 主機重新整理 {{reviewLabel}} 狀態，但主機已關閉。請重新連線以更新狀態。"
                   },
                   "not_git": {
                     "title": "不是 Git 存放庫",
@@ -16207,7 +16207,7 @@
             "loading": "正在載入外掛面板...",
             "unresponsive": "外掛面板停止回應，已被暫停。",
             "loadFailed": "無法載入外掛面板。",
-            "needsDesktop": "此面板只能在 Orca 桌面應用程式中執行。",
+            "needsDesktop": "此面板只能在 BrzA Studio 桌面應用程式中執行。",
             "needsIsolatedFrames": "此面板無法使用：它需要隔離的外掛框架，但該功能已關閉。"
           },
           "activityBar": {
@@ -16833,7 +16833,7 @@
           "retrying": "正在重試…",
           "retry": "重試 Relay",
           "copyDiagnostics": "複製診斷",
-          "reconnectTitle": "你的 Orca 帳戶工作階段已過期。",
+          "reconnectTitle": "你的 BrzA Studio 帳戶工作階段已過期。",
           "reconnectBody": "再次登入使用 BrzA Studio Relay，或使用 LAN 透過 Tailscale 或相同 Wi-Fi 進行配對。",
           "notEntitledTitle": "此 BrzA Studio 帳戶不包含 BrzA Studio Relay。",
           "rateLimitedBody": "BrzA Studio Relay 正忙。請等待一分鐘再重試，或使用 LAN 透過 Tailscale 或同一 Wi‑Fi 配對。"
@@ -17129,7 +17129,7 @@
                       "workOnTwoTasks": "同時處理兩項任務",
                       "62bac8f43c": "同時在兩個不同的工作樹中工作。即使屬於同一專案，兩個工作樹也彼此隔離，適合同時開發兩項功能。",
                       "908898c3ee": "使用 BrzA Studio 瀏覽器",
-                      "43781563c3": "無需離開 Orca 即可瀏覽你的網頁應用程式。抓取任何元素，然後一鍵將其確切的原始碼和樣式傳送給代理程式。",
+                      "43781563c3": "無需離開 BrzA Studio 即可瀏覽你的網頁應用程式。抓取任何元素，然後一鍵將其確切的原始碼和樣式傳送給代理程式。",
                       "29aa2c2077": "開啟通知",
                       "71bd9a8c95": "即時得知代理程式何時完成、需要關注或受阻。",
                       "46db810da8": "選擇你的預設代理程式",
@@ -17139,7 +17139,7 @@
                       "eddc532e58": "自動化工作區設定",
                       "56049b74c2": "自動執行安裝和設定命令，以便每個新工作樹都為代理程式做好準備。",
                       "2cf795433b": "在多個存放庫中開始工作",
-                      "42525ba8a4": "將你的關鍵存放庫帶入 Orca，這樣你就可以讓代理程式開始工作，而無需尋找資料夾。",
+                      "42525ba8a4": "將你的關鍵存放庫帶入 BrzA Studio，這樣你就可以讓代理程式開始工作，而無需尋找資料夾。",
                       "agentSkillsName": "為代理程式提供 BrzA Studio 技能",
                       "agentSkillsDescription": "安裝代理程式用於操作 BrzA Studio 瀏覽器、控制你的電腦以及協調多步驟工作的技能。"
                     }
@@ -17298,7 +17298,7 @@
           },
           "CliSkillSetupTerminal": {
             "6ff813fc1d": "複製技能命令失敗。",
-            "1953e90447": "按 Enter 為你的代理程式安裝 Orca CLI 編排技能。",
+            "1953e90447": "按 Enter 為你的代理程式安裝 BrzA Studio CLI 編排技能。",
             "84e9576dac": "技能設定",
             "43b60ec5c3": "BrzA Studio CLI 和編排技能安裝終端機",
             "5c3aee22c0": "複製命令",
@@ -17311,7 +17311,7 @@
                 "f98e9d1bad": "搜尋所有代理程式工作階段",
                 "990cc29865": "根據對話內容找出任何過往對話，再從代理程式上次停下的地方繼續。",
                 "91e2719807": "啟用工作階段搜尋",
-                "3eacedec93": "讓代理程式透過 Orca CLI 操控 Orca",
+                "3eacedec93": "讓代理程式透過 BrzA Studio CLI 操控 BrzA Studio",
                 "8d54d0ff53": "讓代理程式協調子工作樹，並在工作樹之間通訊。",
                 "0080bc86eb": "安裝 CLI 與技能",
                 "9b58bc5d7a": "使用 <shortcut> 跳至工作樹",
@@ -18126,7 +18126,7 @@
             "sectionStale": {
               "notice": "載入此區段後，磁碟上的檔案已變更。"
             },
-            "bytesUpdateRequired": "在此儲存二進位檔案需要較新版本的 Orca 伺服器。請更新 Orca 伺服器後再試一次。",
+            "bytesUpdateRequired": "在此儲存二進位檔案需要較新版本的 BrzA Studio 伺服器。請更新 BrzA Studio 伺服器後再試一次。",
             "notUtf8": {
               "notice": "{{name}} 不是 UTF-8 文字，因此已暫停自動儲存。手動儲存會將其改寫為 UTF-8，並取代無效的 UTF-8 字元。",
               "refused": "此檔案不是 UTF-8 文字，因此未儲存。",
@@ -18257,7 +18257,7 @@
         "PluginEditorNeedsDesktopNotice": {
           "browser": "{{value0}} 只能在隔離的框架中執行，而瀏覽器用戶端無法提供這種框架。",
           "isolationOff": "{{value0}} 只能在隔離的框架中執行，而隔離的外掛框架目前已關閉。",
-          "heading": "此編輯器需要 Orca 桌面應用程式",
+          "heading": "此編輯器需要 BrzA Studio 桌面應用程式",
           "openSource": "開啟原始碼"
         },
         "MarkdownDefaultViewContextMenu": {
@@ -18268,7 +18268,7 @@
           "pathAccessDenied": "存取遭拒：路徑解析後位於允許的目錄之外。如果這妨礙了正當的工作流程，請提交 GitHub 議題。",
           "changedDuringRead": "檔案在載入期間於磁碟上遭到變更。請重新載入檔案以檢視最新版本。",
           "remotePathIsDirectory": "遠端路徑是目錄",
-          "remotePagedReadUnsupported": "遠端檔案超過此 Orca 伺服器可傳送的 512 KB 上限。請更新伺服器以開啟此檔案。",
+          "remotePagedReadUnsupported": "遠端檔案超過此 BrzA Studio 伺服器可傳送的 512 KB 上限。請更新伺服器以開啟此檔案。",
           "remoteFileTooLarge": "遠端檔案太大，無法在編輯器中開啟（{{bytes}} 位元組）"
         },
         "BinaryFileDefaultAppButton": {
@@ -18526,7 +18526,7 @@
                     "extensions": {
                       "intro": {
                         "title": "帶上你的 Chrome 擴充功能",
-                        "everydayTitle": "你常用的瀏覽器工具，盡在 Orca",
+                        "everydayTitle": "你常用的瀏覽器工具，盡在 BrzA Studio",
                         "body": "從 Chrome Web Store 安裝擴充功能，並將其釘選在網址列旁。",
                         "action": "開啟 Chrome Web Store",
                         "secondaryAction": "知道了"
@@ -19689,7 +19689,7 @@
         },
         "PluginDeclarativePanel": {
           "dismissLoadError": "關閉",
-          "invalidTree": "面板傳來的版面配置 Orca 無法顯示。",
+          "invalidTree": "面板傳來的版面配置 BrzA Studio 無法顯示。",
           "loadFailed": "{{value0}} 載入失敗。",
           "loadFailedKeptLastGood": "{{value0}} 載入失敗。正在顯示上次成功載入的版本。",
           "pluginMessage": "來自 {{value0}} 的訊息：{{value1}}",
@@ -20173,7 +20173,7 @@
         "5a1c8d3e6f": "重新登入以恢復成品分享、BrzA Studio Relay 和技能分享。",
         "1f6b2c9d4e": "重新登入後可使用的功能",
         "8d2e4f7a1b": "成品分享",
-        "2c9a5b6e8d": "發布 HTML 和 Markdown 檔案，並在 Orca 中管理所有共用連結。",
+        "2c9a5b6e8d": "發布 HTML 和 Markdown 檔案，並在 BrzA Studio 中管理所有共用連結。",
         "6e3f1a9c5b": "BrzA Studio Relay",
         "4b7d2e8f1a": "透過行動網路或任何 Wi-Fi 將 BrzA Studio Mobile 連線到此桌面。",
         "9a4c6b2d7e": "技能分享",
@@ -20307,7 +20307,7 @@
       "plugins": {
         "list": {
           "PluginsSectionDescription": {
-            "openWith": "開啟方式（在 Orca 文字欄位中輸入時除外）"
+            "openWith": "開啟方式（在 BrzA Studio 文字欄位中輸入時除外）"
           }
         },
         "pluginInstallCount": {
@@ -20315,7 +20315,7 @@
         },
         "declarative": {
           "PluginDeclarativeView": {
-            "unsupported": "此版本的 Orca 無法使用 {{value0}}"
+            "unsupported": "此版本的 BrzA Studio 無法使用 {{value0}}"
           },
           "KeyValue": {
             "yes": "是",
@@ -20334,10 +20334,10 @@
           }
         },
         "PluginCommandReplacementRow": {
-          "title": "由 {{value0}} 取代 Orca 的 {{value1}} 執行",
+          "title": "由 {{value0}} 取代 BrzA Studio 的 {{value1}} 執行",
           "conflict": "未使用：先安裝的 {{value0}} 已取代它",
-          "detail": "適用於其快速鍵、命令面板和選單。如果外掛失敗，則改為執行 Orca 原本的命令。",
-          "switch": "使用 {{value0}} 取代 Orca 的 {{value1}}"
+          "detail": "適用於其快速鍵、命令面板和選單。如果外掛失敗，則改為執行 BrzA Studio 原本的命令。",
+          "switch": "使用 {{value0}} 取代 BrzA Studio 的 {{value1}}"
         },
         "PluginCatalogLinkDialog": {
           "failed": "無法新增此目錄。",
@@ -20386,16 +20386,16 @@
         "resumedRestart_other": "重新啟動後已恢復 {{count}} 個聊天。",
         "partial_other": "已恢復 {{total}} 個聊天中的 {{resumed}} 個。{{count}} 個需要你處理。",
         "stoppedOn_other": "{{machine}} 上有 {{count}} 個聊天已停止。",
-        "stoppedUpdate_other": "Orca 更新時有 {{count}} 個聊天已停止。",
-        "stoppedRestart_other": "Orca 關閉時有 {{count}} 個聊天已停止。",
+        "stoppedUpdate_other": "BrzA Studio 更新時有 {{count}} 個聊天已停止。",
+        "stoppedRestart_other": "BrzA Studio 關閉時有 {{count}} 個聊天已停止。",
         "promptsNotResent": "恢復不會重新傳送你的提示。",
         "resume": "恢復",
         "details": "詳情",
         "close": "關閉",
         "listLabel": "聊天",
         "untitled": "無標題聊天",
-        "willAsk": "Orca 會要求聊天繼續。排隊中的訊息可能會被傳送。",
-        "asked": "Orca 已要求聊天繼續。排隊中的訊息可能會被傳送。",
+        "willAsk": "BrzA Studio 會要求聊天繼續。排隊中的訊息可能會被傳送。",
+        "asked": "BrzA Studio 已要求聊天繼續。排隊中的訊息可能會被傳送。",
         "resumedAutomatically": "已自動恢復。",
         "changeInSettings": "在設定中變更",
         "dismissAll": "全部忽略",
@@ -20420,7 +20420,7 @@
         "ownershipUnknownShort": "尚未準備好恢復。",
         "notAttachedShort": "未重新連線。",
         "dispatchRejectedShort": "代理拒絕繼續。",
-        "unsupportedShort": "Orca 無法恢復此聊天。"
+        "unsupportedShort": "BrzA Studio 無法恢復此聊天。"
       }
     },
     "i18n": {
@@ -20476,12 +20476,12 @@
         "streamStopped": "遠端終端機串流已停止回應。"
       },
       "jira": {
-        "currentSprintNeedsUpdate": "請更新遠端 Orca 伺服器，才能依目前衝刺篩選預設檢視的議題。",
-        "transitionFieldsNeedsUpdate": "請更新遠端 Orca 伺服器，才能提交狀態更改所需的欄位，或在 Jira 中完成狀態更改。"
+        "currentSprintNeedsUpdate": "請更新遠端 BrzA Studio 伺服器，才能依目前衝刺篩選預設檢視的議題。",
+        "transitionFieldsNeedsUpdate": "請更新遠端 BrzA Studio 伺服器，才能提交狀態更改所需的欄位，或在 Jira 中完成狀態更改。"
       },
       "runtimeGitSyncClient": {
         "completeMergeNeedsNewerHost": "完成合併需要此主機上有較新版本的 BrzA Studio。請更新該主機上的 BrzA Studio。",
-        "continueRebaseNeedsNewerHost": "繼續重定基底需要此主機上較新版本的 Orca。請在該主機上更新 Orca。"
+        "continueRebaseNeedsNewerHost": "繼續重定基底需要此主機上較新版本的 BrzA Studio。請在該主機上更新 BrzA Studio。"
       },
       "runtimeGitWorkingTreeClient": {
         "resolveConflictNeedsNewerHost": "解決衝突需要此主機上有較新版本的 BrzA Studio。請更新該主機上的 BrzA Studio。"
@@ -20535,7 +20535,7 @@
         "dashboard": {
           "popout": {
             "window": {
-              "title": "Orca 代理程式儀表板"
+              "title": "BrzA Studio 代理程式儀表板"
             }
           }
         }
@@ -20588,7 +20588,7 @@
           "subtitle": "選擇一個聊天介面代理程式。不支援聊天的代理程式會改在終端機中開啟。"
         },
         "agentTerminal": {
-          "subtitle": "Orca 支援所有 CLI 代理程式。選擇你最常用的那一個。"
+          "subtitle": "BrzA Studio 支援所有 CLI 代理程式。選擇你最常用的那一個。"
         }
       },
       "skipConfirmation": {
@@ -20743,12 +20743,12 @@
         "historyInOtherAccount": "此聊天的歷史記錄位於另一個 Claude 帳戶中。請切換回該帳戶以繼續此聊天。",
         "claudeAccountFolderMissing": "所選 Claude 帳戶的資料夾不存在。請重新登入該帳戶或選擇其他帳戶。",
         "claudeAccountSetupFailed": "無法設定所選 Claude 帳戶。請重試或選擇其他帳戶。",
-        "agentCommandNotRunnable": "{{agent}} 在「設定 → 代理程式」中的命令必須以 Orca 能找到的程式開頭。不支援變數、管線和其他 shell 語法；變數請使用「環境」設定。請修改或重設。",
+        "agentCommandNotRunnable": "{{agent}} 在「設定 → 代理程式」中的命令必須以 BrzA Studio 能找到的程式開頭。不支援變數、管線和其他 shell 語法；變數請使用「環境」設定。請修改或重設。",
         "agentCommandFailed": "{{agent}} 在「設定 → 代理程式」中的命令未能啟動 {{agent}}：{{detail}}。請修改或重設。",
         "runtimeNotInstalled": "執行此聊天的電腦上未安裝 {{agent}}。請在新版 BrzA Studio 中從聊天裡安裝。",
         "fullAccessAsRoot": "{{agent}} 以 root 身分執行時不會使用「完整存取權」。請在執行此聊天的電腦上，前往「設定 → 代理程式」為 {{agent}} 選擇其他權限，然後開始新的聊天。",
         "botToolsNeedStatusHooks": "{{agent}} 機器人需要代理程式狀態鉤子：機器人的工具正是透過它們以機器人身分運作。請在「設定 → 代理程式」中為 {{agent}} 開啟，然後開始新的聊天。",
-        "botToolsGatewayOutdated": "{{agent}} 的閘道仍在執行舊版 Orca 外掛，因此此機器人的工具無法以機器人身分運作。請執行 `hermes gateway stop`，然後開始新的聊天。",
+        "botToolsGatewayOutdated": "{{agent}} 的閘道仍在執行舊版 BrzA Studio 外掛，因此此機器人的工具無法以機器人身分運作。請執行 `hermes gateway stop`，然後開始新的聊天。",
         "launchPreparationFailed": "BrzA Studio 無法在執行此聊天的電腦上準備啟動 {{agent}}。",
         "conversationOpenElsewhere": "Codex 尚未關閉此對話。請稍後重試，或關閉其他 Codex 終端機。",
         "conversationOpenInTerminal": "{{agent}} 已在另一個終端機中執行此對話。請在該處結束 {{agent}} 或關閉該終端機，以便在此繼續。",
@@ -20876,7 +20876,7 @@
         "attachmentExpired": "此附件已過期。",
         "reattachFile": "請將其移除後重新附加。",
         "reattachFiles": "請將它們移除後重新附加。",
-        "mailOwnerUnconfirmed": "Orca 無法確認此訊息是否仍應送往此聊天。",
+        "mailOwnerUnconfirmed": "BrzA Studio 無法確認此訊息是否仍應送往此聊天。",
         "conversationCleared": "此對話已被清除。",
         "openCurrentConversation": "請開啟目前對話以繼續。",
         "clearUnfinished": "上一次 /clear 未完成。",
@@ -20973,10 +20973,10 @@
         "orcaStopRemote": "此回覆進行期間，{{machine}} 上的 BrzA Studio 已停止。",
         "orcaStopCanContinue": "你可以在此對話中繼續。",
         "orcaStopUnnamedServer": "遠端伺服器",
-        "restartContinued": "Orca 在重新啟動後已請此代理程式繼續。你自己的提示詞未重新傳送。",
-        "restartContinueRefused": "Orca 在重新啟動後無法繼續此聊天。請傳送訊息以繼續。",
-        "restartContinueUnconfirmed": "Orca 在重新啟動後已請此代理程式繼續，但無法確認它是否照做。傳送其他訊息前，請先查看它的最新回覆。",
-        "restartNotConnected": "Orca 在重新啟動後無法重新連線到此聊天，因此未請代理程式繼續。",
+        "restartContinued": "BrzA Studio 在重新啟動後已請此代理程式繼續。你自己的提示詞未重新傳送。",
+        "restartContinueRefused": "BrzA Studio 在重新啟動後無法繼續此聊天。請傳送訊息以繼續。",
+        "restartContinueUnconfirmed": "BrzA Studio 在重新啟動後已請此代理程式繼續，但無法確認它是否照做。傳送其他訊息前，請先查看它的最新回覆。",
+        "restartNotConnected": "BrzA Studio 在重新啟動後無法重新連線到此聊天，因此未請代理程式繼續。",
         "permissionDenied": "{{agent}} 拒絕了權限。查看詳細資訊。",
         "safetyReviewApproved": "{{agent}} 已核准此操作。查看詳細資訊。",
         "safetyReview": "{{agent}} 回報了安全審查警告。查看詳細資訊。",
@@ -21108,7 +21108,7 @@
         "permissionFullAccess": "完整存取權",
         "permissionAgentSettings": "{{agent}} 設定",
         "permissionAgentSettingsUsedHint": "使用你的 {{agent}} 權限設定。",
-        "permissionAgentSettingsUnnamedHint": "使用你的 {{agent}} 權限設定。Orca 無法顯示此模式。",
+        "permissionAgentSettingsUnnamedHint": "使用你的 {{agent}} 權限設定。BrzA Studio 無法顯示此模式。",
         "permissionFromAgentSettings": "{{mode}}，來自 {{agent}} 設定",
         "permissionFullAccessDescription": "編輯或執行命令前從不詢問",
         "permissionFullAccessCodexDescription": "從不詢問；可以編輯任何檔案並使用網路",
@@ -21304,8 +21304,8 @@
         "hostUpdateRequired": "請更新此主機上的 BrzA Studio，以便在聊天介面中繼續。",
         "exitUnconfirmedFromTerminal": "{{agent}} 仍在此終端機中執行此對話。請在這裡結束 {{agent}}，然後從工作階段歷史記錄開啟此對話。",
         "notSavedYet": "{{agent}} 尚未儲存此對話。請在它回覆後重試。",
-        "terminalChanged": "執行 {{agent}} 的終端機在關閉前已變更，因此 Orca 讓它保持開啟。請再試一次。",
-        "terminalExitUnproven": "Orca 已關閉 {{agent}} 的終端機，但無法確認它已停止，因此未開啟聊天。請檢查主機連線，然後從工作階段歷史記錄開啟此對話。",
+        "terminalChanged": "執行 {{agent}} 的終端機在關閉前已變更，因此 BrzA Studio 讓它保持開啟。請再試一次。",
+        "terminalExitUnproven": "BrzA Studio 已關閉 {{agent}} 的終端機，但無法確認它已停止，因此未開啟聊天。請檢查主機連線，然後從工作階段歷史記錄開啟此對話。",
         "resumeFailed": "{{agent}} 無法在聊天中繼續。請檢查此終端機和主機連線，然後重試。",
         "exitUnconfirmed": "{{agent}} 正在另一個終端機中執行此對話。請在該處結束它或關閉該終端機，然後重試。"
       },
@@ -21491,7 +21491,7 @@
         "providerRefused": "代理程式無法返回到此訊息。",
         "proofMismatch": "代理程式的歷史記錄與此聊天不符。請在繼續前檢查對話。",
         "outcomeUnknown": "BrzA Studio 無法確認對話是否已返回到更早的訊息。它會在傳送你的下一則訊息前進行檢查。",
-        "outcomeUnknownReturned": "BrzA Studio 無法確認對話是否已返回到此訊息。你的訊息已回到輸入框中，Orca 會在傳送你的下一則訊息前檢查對話。",
+        "outcomeUnknownReturned": "BrzA Studio 無法確認對話是否已返回到此訊息。你的訊息已回到輸入框中，BrzA Studio 會在傳送你的下一則訊息前檢查對話。",
         "timeout": "返回到此訊息後聊天未更新。請重新開啟以檢視最新內容。",
         "refused": "BrzA Studio 無法返回到此訊息。請在繼續前檢查對話。",
         "unavailable": "請等待聊天完成連線。",
@@ -21653,7 +21653,7 @@
         "stopped": "{{distro}} 已停止",
         "start": "啟動",
         "connecting": "正在連線至 {{distro}}…",
-        "startFailed": "無法啟動 {{distro}}。請在「設定 → 遠端 Orca 伺服器」中檢查。",
+        "startFailed": "無法啟動 {{distro}}。請在「設定 → 遠端 BrzA Studio 伺服器」中檢查。",
         "unverifiable": "BrzA Studio 無法確認 {{distro}} 是否正在執行",
         "startToSend": "請啟動 {{distro}} 後再傳送。",
         "startDistro": "啟動 {{distro}}"
@@ -21865,7 +21865,7 @@
         "unavailable": "此頁面沒有預覽。"
       },
       "workers": {
-        "stopUnconfirmed": "Orca 無法確認工作者已停止。"
+        "stopUnconfirmed": "BrzA Studio 無法確認工作者已停止。"
       },
       "connectorAsker": {
         "anApp": "某個應用程式",
@@ -21981,7 +21981,7 @@
         "greenLead": "CI 通過於",
         "at": "提交",
         "hide": "不顯示 CI 結果行",
-        "hidden": "Orca 之後不會再顯示 CI 結果行"
+        "hidden": "BrzA Studio 之後不會再顯示 CI 結果行"
       },
       "openedPullRequests": {
         "one": "已建立 {{name}}",
@@ -22149,9 +22149,9 @@
         "someonesDm": "同時張貼到與 {{bot}} 的 DM",
         "channel": "同時張貼到 {{channel}} 討論串",
         "thread": "同時張貼到 Slack 討論串",
-        "offUnavailable": "僅限 Orca · 討論串無法使用",
-        "offNotInChannel": "僅限 Orca · 不在頻道中",
-        "off": "僅限 Orca",
+        "offUnavailable": "僅限 BrzA Studio · 討論串無法使用",
+        "offNotInChannel": "僅限 BrzA Studio · 不在頻道中",
+        "off": "僅限 BrzA Studio",
         "shortDm": "Slack DM",
         "shortChannel": "{{channel}} 討論串",
         "shortThread": "Slack 討論串",
@@ -22162,23 +22162,23 @@
         "detailRemovedFrom": "{{bot}} 已從 {{channel}} 中移除。",
         "detailRemoved": "{{bot}} 已從頻道中移除。",
         "detailFallback": "以 {{bot}} 的身分並附上你的名字張貼。請在 Slack 中更新，才能以你的名字張貼。",
-        "detailOwnDm": "你的訊息與 {{bot}} 的回覆。只有你看得到此 DM。工具呼叫與工作者會留在 Orca 中。",
-        "detailTheirDm": "你的訊息與 {{bot}} 的回覆。{{name}} 會在他們的 DM 中看到。工具呼叫與工作者會留在 Orca 中。",
-        "detailSomeonesDm": "你的訊息與 {{bot}} 的回覆。此 DM 中的對方會看到。工具呼叫與工作者會留在 Orca 中。",
-        "detailThread": "你的訊息與 {{bot}} 的回覆。頻道中的所有人都看得到。工具呼叫與工作者會留在 Orca 中。",
-        "detailExternal": "你的訊息與 {{bot}} 的回覆。{{channel}} 中的所有人都看得到，包括你工作區以外的人。工具呼叫與工作者會留在 Orca 中。",
-        "detailChannel": "你的訊息與 {{bot}} 的回覆。{{channel}} 中的所有人都看得到。工具呼叫與工作者會留在 Orca 中。",
+        "detailOwnDm": "你的訊息與 {{bot}} 的回覆。只有你看得到此 DM。工具呼叫與工作者會留在 BrzA Studio 中。",
+        "detailTheirDm": "你的訊息與 {{bot}} 的回覆。{{name}} 會在他們的 DM 中看到。工具呼叫與工作者會留在 BrzA Studio 中。",
+        "detailSomeonesDm": "你的訊息與 {{bot}} 的回覆。此 DM 中的對方會看到。工具呼叫與工作者會留在 BrzA Studio 中。",
+        "detailThread": "你的訊息與 {{bot}} 的回覆。頻道中的所有人都看得到。工具呼叫與工作者會留在 BrzA Studio 中。",
+        "detailExternal": "你的訊息與 {{bot}} 的回覆。{{channel}} 中的所有人都看得到，包括你工作區以外的人。工具呼叫與工作者會留在 BrzA Studio 中。",
+        "detailChannel": "你的訊息與 {{bot}} 的回覆。{{channel}} 中的所有人都看得到。工具呼叫與工作者會留在 BrzA Studio 中。",
         "posting": "正在張貼到 Slack…",
         "failedFile": "未張貼到 Slack · 檔案過大",
         "failedEmpty": "未張貼到 Slack · 沒有可張貼的內容",
         "failedTooLong": "未張貼到 Slack · 訊息過長",
         "failed": "未張貼到 Slack",
         "delete": "從 Slack 刪除",
-        "postedFrom": "已從 Orca 張貼到 {{place}}",
+        "postedFrom": "已從 BrzA Studio 張貼到 {{place}}",
         "retry": "重試",
         "rewindStays": "已在 Slack 中的訊息會保留。",
         "switch": "將此聊天張貼到 Slack",
-        "tooltipOff": "你的訊息只會留在 Orca",
+        "tooltipOff": "你的訊息只會留在 BrzA Studio",
         "tooltipOn": "你的訊息與 {{bot}} 的回覆也會張貼到此 Slack 討論串"
       },
       "typedBy": {
@@ -22210,7 +22210,7 @@
         "detected": "已偵測到",
         "settings": "登入設定…",
         "switched": "Antigravity 現在使用 {{method}}。",
-        "switchFailed": "Orca 無法變更 Antigravity 的登入方式。請再試一次。",
+        "switchFailed": "BrzA Studio 無法變更 Antigravity 的登入方式。請再試一次。",
         "confirmTitle": "要切換為 {{method}} 嗎？",
         "confirmBody": "此主機上執行中的 Antigravity 聊天會重新啟動。進行中的回覆會停止，但你的對話會保留。",
         "cancel": "取消",
@@ -22219,10 +22219,10 @@
         "moreOptions": "更多選項…",
         "useApiKey": "使用你的 Gemini API 金鑰",
         "useGoogle": "使用你的 Google 登入",
-        "apiKeySaved": "已儲存在 Orca 中",
+        "apiKeySaved": "已儲存在 BrzA Studio 中",
         "googleFound": "你先前曾在此主機上以 Google 登入",
         "askApiKeyEnvironment": "改用在你的環境中找到的 Gemini API 金鑰嗎？",
-        "askApiKeySaved": "改用儲存在 Orca 中的 Gemini API 金鑰嗎？",
+        "askApiKeySaved": "改用儲存在 BrzA Studio 中的 Gemini API 金鑰嗎？",
         "askGcloud": "改用你的 gcloud 登入（專案 {{project}}）嗎？",
         "askGoogle": "改用你的 Google 登入嗎？",
         "noSubscription": "此 Google 帳戶沒有 Antigravity 訂閱。",
@@ -22233,8 +22233,8 @@
         "signInGoogle": "使用 Google 登入",
         "yourAgy": "你的 agy",
         "yourAgyVersion": "你的 agy · v{{version}}",
-        "orcasAgy": "Orca 的 agy",
-        "orcasAgyVersion": "Orca 的 agy · v{{version}}",
+        "orcasAgy": "BrzA Studio 的 agy",
+        "orcasAgyVersion": "BrzA Studio 的 agy · v{{version}}",
         "runsOn": "執行於：{{program}}",
         "keepsOwnLogin": "此聊天會沿用 agy 自己的 Google 登入。新的聊天會使用 {{method}}。",
         "apiKeyEnvironment": "來自你的環境",
@@ -22371,7 +22371,7 @@
         "addOrg": "新增組織",
         "addWorkspace": "新增工作區",
         "githubAsYou": "它也能透過你的 gh 登入，以你的身分在 GitHub 中運作。",
-        "linearAsYou": "它也能透過你在 Orca 中的 Linear 登入，以你的身分在 Linear 中運作。"
+        "linearAsYou": "它也能透過你在 BrzA Studio 中的 Linear 登入，以你的身分在 Linear 中運作。"
       },
       "toolAdded": {
         "removed": "已移除",
@@ -22394,8 +22394,8 @@
         "handOff": "交接給代理程式",
         "more": "更多動作",
         "statusUnknown": "重設時間未知。",
-        "statusCanContinueAtAuto": "你可以在 {{time}} 繼續。Orca 會在 {{autoTime}} 繼續此聊天。",
-        "statusCanContinueAtNoAuto": "你可以在 {{time}} 繼續。Orca 不會自動繼續此聊天。",
+        "statusCanContinueAtAuto": "你可以在 {{time}} 繼續。BrzA Studio 會在 {{autoTime}} 繼續此聊天。",
+        "statusCanContinueAtNoAuto": "你可以在 {{time}} 繼續。BrzA Studio 不會自動繼續此聊天。",
         "statusCanContinueAt": "你可以在 {{time}} 繼續。",
         "resetUnknown": "重設時間未知",
         "continuesAt": "將於 {{time}} 繼續",
@@ -22405,17 +22405,17 @@
         "titleWeeklyReached": "{{agent}} 已達每週上限",
         "titleExtraUsageReached": "{{agent}} 已達額外用量上限",
         "titleUsageReached": "{{agent}} 已達用量上限",
-        "statusHasUsageAuto": "{{agent}} 又有用量了。Orca 會在 {{time}} 繼續此聊天。",
+        "statusHasUsageAuto": "{{agent}} 又有用量了。BrzA Studio 會在 {{time}} 繼續此聊天。",
         "statusHasUsage": "{{agent}} 又有用量了。",
         "titleHasUsage": "{{agent}} 又有用量了",
-        "statusCanContinueNowAuto": "{{agent}} 現在可以繼續。Orca 會在 {{time}} 繼續此聊天。",
+        "statusCanContinueNowAuto": "{{agent}} 現在可以繼續。BrzA Studio 會在 {{time}} 繼續此聊天。",
         "statusCanContinueNow": "{{agent}} 現在可以繼續。",
         "titleCanContinueNow": "{{agent}} 現在可以繼續",
         "turnOnAutoContinue": "重設時自動繼續"
       },
       "usageLimitAutoContinue": {
         "cancelFailed": "無法取消自動繼續。請再試一次。",
-        "scheduled": "Orca 會在 {{time}} 繼續此聊天。"
+        "scheduled": "BrzA Studio 會在 {{time}} 繼續此聊天。"
       },
       "mcp": {
         "status": {
@@ -22447,7 +22447,7 @@
         "close": "關閉",
         "loading": "載入中…",
         "notRunning": "傳送下一則訊息時連線",
-        "unsupported": "更新此聊天主機上的 Orca，即可在這裡管理",
+        "unsupported": "更新此聊天主機上的 BrzA Studio，即可在這裡管理",
         "readFailed": "無法載入",
         "retry": "重試",
         "empty": "此聊天尚未設定",
@@ -22750,8 +22750,8 @@
           "statusLabel": "狀態",
           "signalsLabel": "訊號",
           "projectOnHost": "{{project}} · {{host}}",
-          "notGit": "不是 Git 工作區。請改為從 Orca 中移除該專案。",
-          "unreachable": "無法連線 {{host}}。重新連線後即可刪除，或將其從 Orca 中移除。",
+          "notGit": "不是 Git 工作區。請改為從 BrzA Studio 中移除該專案。",
+          "unreachable": "無法連線 {{host}}。重新連線後即可刪除，或將其從 BrzA Studio 中移除。",
           "mainCheckout": "無法刪除專案的主要簽出。",
           "uncommittedFiles_other": "{{count}} 個未提交的檔案",
           "couldntCheck": "無法檢查變更"
@@ -22891,10 +22891,10 @@
         "copySessionIdSuccess": "已複製工作階段 ID",
         "copySessionIdError": "複製工作階段 ID 失敗",
         "copySessionIdUnavailable": "沒有可複製的工作階段 ID",
-        "copyOrcaSessionId": "複製 Orca 工作階段 ID",
-        "orcaSessionIdTooltip": "Orca 為此代理程式指定的 ID，與代理程式 CLI 自己的工作階段 ID 不同。代理程式透過 Orca 互相指稱時會使用它。",
-        "orcaSessionIdCopied": "已複製 Orca 工作階段 ID",
-        "orcaSessionIdCopyFailed": "無法複製 Orca 工作階段 ID"
+        "copyOrcaSessionId": "複製 BrzA Studio 工作階段 ID",
+        "orcaSessionIdTooltip": "BrzA Studio 為此代理程式指定的 ID，與代理程式 CLI 自己的工作階段 ID 不同。代理程式透過 BrzA Studio 互相指稱時會使用它。",
+        "orcaSessionIdCopied": "已複製 BrzA Studio 工作階段 ID",
+        "orcaSessionIdCopyFailed": "無法複製 BrzA Studio 工作階段 ID"
       },
       "hostFile": {
         "updateHostForOutsideFiles": "更新 {{value0}} 上的 BrzA Studio，以開啟其工作區以外的檔案"
@@ -22932,7 +22932,7 @@
           "position": "位置"
         },
         "claudeCodeThemeSync": {
-          "description": "這台電腦上的 Claude Code 會使用你的終端機配色，並即時跟隨主題變更，包括在 Orca 之外。關閉此選項會還原你先前的 Claude Code 主題。在 Claude Code 中選擇主題會停止同步。",
+          "description": "這台電腦上的 Claude Code 會使用你的終端機配色，並即時跟隨主題變更，包括在 BrzA Studio 之外。關閉此選項會還原你先前的 Claude Code 主題。在 Claude Code 中選擇主題會停止同步。",
           "claude": "claude",
           "9353305ea6": "讓 Claude Code 與終端機主題一致"
         }
@@ -22959,7 +22959,7 @@
         "shellEnvSearchProxy": "代理",
         "linkPreviewsToggleLabel": "切換連結預覽",
         "linkPreviewsTitle": "連結預覽",
-        "linkPreviewsCopy": "滑鼠暫留在網頁連結上時會顯示預覽卡片。Orca 會擷取該網頁來產生預覽，因此網站能看到這個請求。",
+        "linkPreviewsCopy": "滑鼠暫留在網頁連結上時會顯示預覽卡片。BrzA Studio 會擷取該網頁來產生預覽，因此網站能看到這個請求。",
         "linkPreviewsSearchUnfurl": "連結展開",
         "linkPreviewsSearchHover": "暫留卡片",
         "composerSpellcheckTitle": "拼字檢查與自動修正",
@@ -22967,11 +22967,11 @@
         "composerSpellcheckSearchSpelling": "拼字檢查",
         "composerSpellcheckSearchAutocorrect": "自動修正",
         "usageLimitContinueTitle": "用量上限重設時自動繼續聊天",
-        "usageLimitContinueCopy": "上限重設時，Orca 會傳送「Continue where you left off.」。適用於所有已知重設時間的聊天。",
+        "usageLimitContinueCopy": "上限重設時，BrzA Studio 會傳送「Continue where you left off.」。適用於所有已知重設時間的聊天。",
         "usageLimitContinueSearchLimit": "用量上限",
         "usageLimitContinueSearchReset": "重設",
         "usageLimitContinueToggleLabel": "切換用量上限重設時自動繼續聊天",
-        "usageLimitContinueUnsupported": "請更新 {{host}} 上的 Orca，才能在該主機上變更此設定。",
+        "usageLimitContinueUnsupported": "請更新 {{host}} 上的 BrzA Studio，才能在該主機上變更此設定。",
         "usageLimitContinueUpdateFailed": "無法更新 {{host}} 上的設定。",
         "idleStopTitle": "閒置多久後停止代理",
         "idleStopCopy": "聊天閒置達到此時長後，結束該聊天的代理以釋放記憶體。聊天會保留，你傳送下一則訊息時代理會重新啟動。如果代理在輪次之間仍會在背景繼續工作，請選擇「永不」。",
@@ -23161,7 +23161,7 @@
             "waitLabel": "等待",
             "wait": "文字會在幾秒後輸入。",
             "title": "開啟 AI 整理？",
-            "description": "每次聽寫結束後，Orca 都會將文字傳送給 {{agent}}，整理後再輸入。",
+            "description": "每次聽寫結束後，BrzA Studio 都會將文字傳送給 {{agent}}，整理後再輸入。",
             "cancel": "取消",
             "confirm": "開啟"
           },
@@ -23200,8 +23200,8 @@
       },
       "workspaceCleanup": {
         "title": "工作區清理",
-        "description": "移除你已用完的工作區。移除任何內容之前，Orca 會再次檢查是否有未儲存的工作。",
-        "unsupportedHost": "此主機執行的 Orca 版本不支援自動清理。請更新該主機上的 Orca 以使用這些設定。",
+        "description": "移除你已用完的工作區。移除任何內容之前，BrzA Studio 會再次檢查是否有未儲存的工作。",
+        "unsupportedHost": "此主機執行的 BrzA Studio 版本不支援自動清理。請更新該主機上的 BrzA Studio 以使用這些設定。",
         "previewFailed": "無法確認此變更後哪些工作區會符合。",
         "pinFailed": "無法保留 {{name}}。",
         "rules": {
@@ -23432,8 +23432,8 @@
       "recoverServer": {
         "titleOnHost": "清除 {{host}} 上的舊鎖定？",
         "titleGeneric": "清除舊鎖定？",
-        "summary": "先前的執行留下了鎖定，因此 Orca 的伺服器無法啟動。",
-        "confirmCheckHomeFolder": "沒有其他共用此主資料夾的電腦正在執行 Orca",
+        "summary": "先前的執行留下了鎖定，因此 BrzA Studio 的伺服器無法啟動。",
+        "confirmCheckHomeFolder": "沒有其他共用此主資料夾的電腦正在執行 BrzA Studio",
         "details": "詳細資料",
         "clearing": "正在清除…"
       },
@@ -23441,13 +23441,13 @@
         "deleteHistoryWithWorkspace": {
           "updateFailed": "無法更新 {{host}} 上的設定。",
           "recommended": "推薦",
-          "unsupported": "請更新 {{host}} 上的 Orca，才能在該主機使用此設定。",
+          "unsupported": "請更新 {{host}} 上的 BrzA Studio，才能在該主機使用此設定。",
           "confirmTitle": "刪除已刪除工作區的代理程式歷史記錄？",
-          "confirmDescription": "Orca 會刪除已不存在的工作區中的 Orca、Claude Code 和 Codex 聊天，今天以前刪除的工作區也包括在內。現有工作區中的聊天會保留。刪除的聊天無法復原。",
+          "confirmDescription": "BrzA Studio 會刪除已不存在的工作區中的 BrzA Studio、Claude Code 和 Codex 聊天，今天以前刪除的工作區也包括在內。現有工作區中的聊天會保留。刪除的聊天無法復原。",
           "cancel": "取消",
           "turnOn": "開啟",
           "title": "刪除工作區時一併刪除代理程式歷史記錄",
-          "description": "已刪除工作區中的 Orca、Claude Code 和 Codex 聊天會自動移除，以釋放磁碟空間。移除後無法復原。",
+          "description": "已刪除工作區中的 BrzA Studio、Claude Code 和 Codex 聊天會自動移除，以釋放磁碟空間。移除後無法復原。",
           "codexHistoryBadge": "Codex 歷史記錄：{{size}}",
           "codexHistoryBadgeAtLeast": "Codex 歷史記錄：{{size}}+",
           "codexHistoryTooltip": "Codex 在 {{host}} 上存放自身聊天記錄所用的空間，包括你仍保有的工作區中的聊天。",
@@ -23460,13 +23460,13 @@
         }
       },
       "hostScope": {
-        "updateHostToChange": "請更新 {{host}} 上的 Orca，才能在該處變更此設定。",
+        "updateHostToChange": "請更新 {{host}} 上的 BrzA Studio，才能在該處變更此設定。",
         "updateFailed": "無法更新 {{host}} 上的設定。"
       },
       "orcaAccount": {
         "server": {
-          "sectionDescription": "{{host}} 執行時使用的 Orca 帳戶，供其機器人的 Slack、GitHub、Linear 和 webhook 使用。",
-          "unread": "無法讀取 {{host}} 的 Orca 帳戶。請更新或重新連線 {{host}}。",
+          "sectionDescription": "{{host}} 執行時使用的 BrzA Studio 帳戶，供其機器人的 Slack、GitHub、Linear 和 webhook 使用。",
+          "unread": "無法讀取 {{host}} 的 BrzA Studio 帳戶。請更新或重新連線 {{host}}。",
           "signInThere": "在 {{host}} 上執行 `orca auth login` 來登入。"
         }
       },
@@ -23477,7 +23477,7 @@
         "server": {
           "fallbackHost": "此伺服器",
           "updateFailed": "無法更新 {{host}} 上的通知。",
-          "unsupported": "請更新 {{host}} 上的 Orca，才能在這裡變更其通知。",
+          "unsupported": "請更新 {{host}} 上的 BrzA Studio，才能在這裡變更其通知。",
           "enabledDescription": "{{host}} 為其代理程式和終端機發出的提醒，包括推播到你的手機。",
           "sectionDescription": "{{host}} 為其代理程式和終端機發出的提醒。"
         }
@@ -23564,7 +23564,7 @@
       "inherit": "瀏覽器設定（{{scope}}）",
       "deletedOption": "已刪除的設定檔",
       "deleted": "為此專案選擇的設定檔已被刪除，因此新分頁會改依照瀏覽器設定。",
-      "saveFailed": "無法儲存瀏覽器設定檔。此專案主機上的 Orca 可能需要更新。"
+      "saveFailed": "無法儲存瀏覽器設定檔。此專案主機上的 BrzA Studio 可能需要更新。"
     },
     "managed-runtime": {
       "cancelled": "已取消安裝。",
@@ -23580,7 +23580,7 @@
       "failed": "安裝失敗。請再試一次。",
       "cancelFailed": "無法取消安裝。請再試一次。",
       "install": "安裝 {{agent}}",
-      "installedByOrca": "由 Orca 安裝 · {{version}}",
+      "installedByOrca": "由 BrzA Studio 安裝 · {{version}}",
       "notInstalled": "尚未安裝。",
       "progress": "{{agent}} 下載",
       "readFailed": "無法檢查此主機上的 {{agent}}。正在重試。",
@@ -23771,11 +23771,11 @@
       "activeAgentNeedsPermission": "作用中的代理程式正在等待權限核准。",
       "statusUnverified": "無法驗證{{target}}代理程式的狀態。",
       "approvalUnseen": "{{target}}代理程式可能正在等待核准。請在它這一輪結束後再傳送備註。",
-      "hostUpdateRequired": "請更新{{target}}代理程式所在主機上的 Orca，才能傳送備註給它。",
+      "hostUpdateRequired": "請更新{{target}}代理程式所在主機上的 BrzA Studio，才能傳送備註給它。",
       "notReady": "{{target}}代理程式尚未準備好接收輸入。",
       "notWritable": "{{target}}代理程式未接受備註。",
-      "selectedSubmitFailed": "備註可能已貼到所選的終端機中，但 Orca 無法送出。",
-      "activeSubmitFailed": "備註可能已貼到作用中的終端機中，但 Orca 無法送出。",
+      "selectedSubmitFailed": "備註可能已貼到所選的終端機中，但 BrzA Studio 無法送出。",
+      "activeSubmitFailed": "備註可能已貼到作用中的終端機中，但 BrzA Studio 無法送出。",
       "notWritableSelection": "{{target}}代理程式未接受選取內容。"
     },
     "crash": {
@@ -23790,8 +23790,8 @@
       "routing": {
         "preference": {
           "dialog": {
-            "keepInOrcaTitle": "繼續在 Orca 中開啟終端機連結？",
-            "openInOrcaTitle": "在 Orca 中開啟終端機連結？",
+            "keepInOrcaTitle": "繼續在 BrzA Studio 中開啟終端機連結？",
+            "openInOrcaTitle": "在 BrzA Studio 中開啟終端機連結？",
             "shortcutSummary": "{{shortcut}}-按一下可改用系統瀏覽器開啟一次。可在設定中變更。"
           }
         }
@@ -23806,7 +23806,7 @@
     },
     "sidebar": {
       "ForgetSshWorkspaceDialog": {
-        "removeFromOrcaTitle": "要從 Orca 中移除 {{name}}？",
+        "removeFromOrcaTitle": "要從 BrzA Studio 中移除 {{name}}？",
         "ghostHostLine": "{{host}} 已不再是已儲存的主機。檔案會留在該主機上。",
         "disconnectedHostLine": "{{host}} 未連線。檔案會留在主機上。",
         "filesStayLine": "檔案會留在 {{host}} 上。",
@@ -23835,7 +23835,7 @@
   },
   "dashboardPopout": {
     "recoverableError": {
-      "title": "Orca 儀表板遇到錯誤。",
+      "title": "BrzA Studio 儀表板遇到錯誤。",
       "description": "儀表板未能完成繪製。請重試以重新掛載，或重新開啟。"
     },
     "bucket": {
@@ -23952,7 +23952,7 @@
       "progressStarting": "正在尋找你的工作階段…",
       "agentsInstruction": "你的代理程式也可以搜尋。請它「找到我們修正登入逾時的那次工作階段」。",
       "readyDescription": "現在可以透過工作階段內容找到此電腦上的每個代理程式工作階段。",
-      "indexingDescription": "Orca 正在讀取你過去的代理程式工作階段記錄，以便你可以搜尋它們。這可能需要幾分鐘。",
+      "indexingDescription": "BrzA Studio 正在讀取你過去的代理程式工作階段記錄，以便你可以搜尋它們。這可能需要幾分鐘。",
       "indexingTitle": "正在為你的代理程式工作階段建立索引",
       "readyTitle": "工作階段搜尋已就緒",
       "continueInBackground": "在背景繼續",
@@ -24413,7 +24413,7 @@
       "open": "開啟工作區",
       "occupied": "已在 {{path}} 中簽出",
       "remote": "遠端",
-      "statusFailed": "Orca 無法讀取目前工作目錄的變更。請先重新整理原始碼管理再切換。",
+      "statusFailed": "BrzA Studio 無法讀取目前工作目錄的變更。請先重新整理原始碼管理再切換。",
       "statusUnknown": "切換前請先讀取目前工作目錄的變更。",
       "conflict": "切換分支前，請完成或中止 {{operation}}。",
       "dirty_one": "切換分支前，請提交或捨棄 {{count}} 個已變更的檔案。",
@@ -24650,7 +24650,7 @@
     },
     "codexSharedSettingsNotice": {
       "title": "BrzA Studio 中的 Codex 現在使用 ~/.codex",
-      "description": "Codex 可能會再次要求信任資料夾或批准命令。重新新增你僅在 Orca 中新增的所有 MCP 伺服器。",
+      "description": "Codex 可能會再次要求信任資料夾或批准命令。重新新增你僅在 BrzA Studio 中新增的所有 MCP 伺服器。",
       "dismiss": "關閉"
     },
     "codexSharedServerBanner": {
@@ -24672,8 +24672,8 @@
       "turnOffSharing": "關閉共用",
       "dialogQuestion": "讓每個 Codex 分頁使用自己的伺服器？",
       "stopSummary": "停止執行中的伺服器，並關閉所有使用它的 Codex 工作階段。",
-      "dialogSummary": "關閉 Codex 伺服器共用，在 Orca 以外也會生效。",
-      "alsoStop": "同時停止執行中的伺服器（會關閉所有使用它的 Codex 工作階段，包括 Orca 以外的）",
+      "dialogSummary": "關閉 Codex 伺服器共用，在 BrzA Studio 以外也會生效。",
+      "alsoStop": "同時停止執行中的伺服器（會關閉所有使用它的 Codex 工作階段，包括 BrzA Studio 以外的）",
       "couldNotTurnOff": "無法關閉共用。",
       "stopFailedAfterOff": "共用已關閉，但伺服器未停止。",
       "turnOffAndStop": "關閉共用並停止伺服器"
@@ -24731,7 +24731,7 @@
       "restarted": "終端機服務已重新啟動。",
       "failed": "重新啟動失敗。",
       "title": "終端機服務在缺少其程式檔案的情況下執行",
-      "body": "此電腦上的終端機服務是從一個已不再掛載的 AppImage 啟動的。它仍在執行 {{sessions}}，但隨時可能當機。在你重新啟動它之前，Orca 結束時不會保留新終端機。",
+      "body": "此電腦上的終端機服務是從一個已不再掛載的 AppImage 啟動的。它仍在執行 {{sessions}}，但隨時可能當機。在你重新啟動它之前，BrzA Studio 結束時不會保留新終端機。",
       "restart": "重新啟動終端機常駐程式",
       "dismiss": "關閉",
       "confirmTitle": "要重新啟動終端機常駐程式嗎？",
@@ -24750,11 +24750,11 @@
       "lighterText": "較細的終端機文字"
     },
     "claudeThemeSyncOffer": {
-      "title": "要讓 Claude Code 配合你的 Orca 主題嗎？",
-      "description": "這台電腦上的 Claude Code 會使用你的終端機顏色並跟隨主題變更，包括在 Orca 之外。你可以在「設定」中變更此項。",
+      "title": "要讓 Claude Code 配合你的 BrzA Studio 主題嗎？",
+      "description": "這台電腦上的 Claude Code 會使用你的終端機顏色並跟隨主題變更，包括在 BrzA Studio 之外。你可以在「設定」中變更此項。",
       "accept": "配合主題",
       "accepted": "Claude Code 主題同步已開啟",
-      "acceptedDescription": "這台電腦上新的 Claude Code 工作階段會使用你的 Orca 主題。",
+      "acceptedDescription": "這台電腦上新的 Claude Code 工作階段會使用你的 BrzA Studio 主題。",
       "decline": "不用了",
       "failed": "無法開啟 Claude Code 主題同步",
       "failedDescription": "請在「設定」中開啟。"
@@ -24791,7 +24791,7 @@
     "new": "建立稀疏檢出預設",
     "edit": "編輯稀疏檢出預設",
     "saveFailed": "無法儲存預設。請重試。",
-    "updateServerToRemove": "請更新此專案伺服器上的 Orca，才能移除其預設。",
+    "updateServerToRemove": "請更新此專案伺服器上的 BrzA Studio，才能移除其預設。",
     "nameRequired": "請輸入名稱。",
     "nameTooLong": "名稱不能超過 80 個字元。",
     "nameExists": "名為「{{name}}」的預設已存在。",
@@ -24871,8 +24871,8 @@
       "agentPlatform": "Google Agent Platform",
       "projectFromGcloud": "取自 gcloud",
       "locationGlobal": "global",
-      "adcHint": "選填。Orca 會使用你的 gcloud 專案和 global 位置。請先執行一次 gcloud auth application-default login。",
-      "apiKeySaveFailed": "Orca 無法儲存金鑰。請再試一次。",
+      "adcHint": "選填。BrzA Studio 會使用你的 gcloud 專案和 global 位置。請先執行一次 gcloud auth application-default login。",
+      "apiKeySaveFailed": "BrzA Studio 無法儲存金鑰。請再試一次。",
       "apiKeySaved": "金鑰已加密儲存在此主機上。",
       "apiKeyFromEnvironment": "正在使用你環境中的 GEMINI_API_KEY。貼上金鑰即可改用其他金鑰。",
       "apiKeyLabel": "Gemini API 金鑰",
@@ -25035,12 +25035,12 @@
     "rename": {
       "action": "重新命名",
       "title": "重新命名帳戶",
-      "description": "只會變更 Orca 顯示的名稱。留空則顯示 {{email}}。",
+      "description": "只會變更 BrzA Studio 顯示的名稱。留空則顯示 {{email}}。",
       "label": "顯示名稱",
       "reset": "重設為預設值",
       "cancel": "取消",
       "save": "儲存",
-      "unsupportedHost": "請更新 {{host}} 上的 Orca，才能在那裡變更此設定。"
+      "unsupportedHost": "請更新 {{host}} 上的 BrzA Studio，才能在那裡變更此設定。"
     }
   },
   "fileSearch": {
@@ -25065,14 +25065,14 @@
       "createdBranchSkipped": "設定指令碼未執行：此工作區分支中的 orca.yaml 設定命令與你核准的命令不同。",
       "runFailed": "無法執行設定指令碼。",
       "changedAgain": "設定指令碼未執行：你審查後，此工作區的 orca.yaml 又有變更。",
-      "hostUnsupported": "已核准。請更新工作區主機上的 Orca，才能為既有工作區執行設定指令碼。",
+      "hostUnsupported": "已核准。請更新工作區主機上的 BrzA Studio，才能為既有工作區執行設定指令碼。",
       "reviewAction": "審查設定指令碼",
       "branchDiffersTitle": "此工作區分支的設定命令不同",
       "branchDiffersBody": "工作區已建立，但設定指令碼未執行：此工作區分支中的 <code>orca.yaml</code> 與你核准的內容不同。只有在你信任 <repo/> 時，才為此工作區執行這些命令。",
       "branchSetupScript": "分支的設定指令碼",
       "runOnce": "執行一次",
       "alwaysTrust": "一律信任",
-      "alwaysTrustScope": "選擇「一律信任」後，即使 <repo/> 的 <code>orca.yaml</code> 日後變更，Orca 執行其中的命令前也不會再詢問。"
+      "alwaysTrustScope": "選擇「一律信任」後，即使 <repo/> 的 <code>orca.yaml</code> 日後變更，BrzA Studio 執行其中的命令前也不會再詢問。"
     },
     "nestedRemoval": {
       "refreshFailed": "無法重新整理工作區清單",
@@ -25374,8 +25374,8 @@
   "updates": {
     "installOnQuit": {
       "title": "更新已可安裝",
-      "summary": "結束 Orca。安裝完成後再重新開啟。",
-      "quit": "結束 Orca",
+      "summary": "結束 BrzA Studio。安裝完成後再重新開啟。",
+      "quit": "結束 BrzA Studio",
       "later": "稍後"
     },
     "installBlock": {
@@ -25415,7 +25415,7 @@
       "releaseNotReady": "此裝置尚無可用的較新版本。請稍後再檢查。",
       "updateServerUnreachable": "無法連線至更新伺服器。請稍候幾分鐘再試。",
       "channelUnsupportedPlatform": "「{{channel}}」管道僅適用於 macOS 和 Windows。",
-      "unsignedDevChannel": "「{{channel}}」管道的版本未簽署。目前版本已簽署，只能安裝由 Orca 發行者簽署的更新。請從版本發行頁面下載並執行一次安裝程式，之後即可正常更新，包括切回穩定版。",
+      "unsignedDevChannel": "「{{channel}}」管道的版本未簽署。目前版本已簽署，只能安裝由 BrzA Studio 發行者簽署的更新。請從版本發行頁面下載並執行一次安裝程式，之後即可正常更新，包括切回穩定版。",
       "linuxPackageMissing": "下載的套件已不在更新快取中。請重新下載更新，或從官方發行版本頁面取得。",
       "linuxPackageNotRegular": "更新快取中下載的套件已不再是有效檔案。請重新下載更新，或從官方發行版本頁面取得。",
       "linuxPackageHashMismatch": "下載的套件已不再符合驗證過的發行版本，因此 BrzA Studio 不會將其交給套件管理員。請重新下載更新，或從官方發行版本頁面取得。",
@@ -25424,7 +25424,7 @@
       "linuxPackageNoPackageManager": "系統目錄中找不到支援的套件管理員，因此 BrzA Studio 無法產生安全的安裝指令。請顯示套件，並使用套件管理員安裝。",
       "linuxPackageInvalidPath": "下載的套件不在可用的路徑中，因此 BrzA Studio 無法產生安全的安裝指令。請顯示套件，並使用套件管理員安裝。",
       "linuxPackageMarkerUnusable": "BrzA Studio 無法驗證已安裝的 Linux 套件格式，因此不會自動安裝此更新。請從官方發行版本頁面下載更新並手動安裝。",
-      "linuxPackageExternallyManaged": "此 BrzA Studio 由系統套件管理員管理，因此 BrzA Studio 無法自行安裝更新。請透過你使用的發行版更新 Orca。",
+      "linuxPackageExternallyManaged": "此 BrzA Studio 由系統套件管理員管理，因此 BrzA Studio 無法自行安裝更新。請透過你使用的發行版更新 BrzA Studio。",
       "linuxPackageManualInstall": "執行系統套件安裝指令前，請先結束 BrzA Studio。",
       "linuxPackageMetadataUnusable": "無法驗證下載套件的後設資料。請先結束 BrzA Studio，再從官方發行版本頁面下載並安裝更新。",
       "unknownReleaseChannel": "未知的發布頻道「{{channel}}」。",
@@ -25433,34 +25433,34 @@
       "releaseListFailed": "無法取得「{{channel}}」管道的版本清單（HTTP {{status}}）。",
       "releaseListUnreadable": "無法讀取「{{channel}}」管道的版本清單。",
       "rateLimitedSoon": "已達 GitHub 速率限制。請稍候幾分鐘再試。",
-      "rateLimitedSoonSignedOut": "已達 GitHub 速率限制。請稍候幾分鐘再試，或執行 `gh auth login`，讓 Orca 使用你帳戶的較高額度。",
+      "rateLimitedSoonSignedOut": "已達 GitHub 速率限制。請稍候幾分鐘再試，或執行 `gh auth login`，讓 BrzA Studio 使用你帳戶的較高額度。",
       "rateLimitedInMinute": "已達 GitHub 速率限制。請約一分鐘後再試。",
-      "rateLimitedInMinuteSignedOut": "已達 GitHub 速率限制。請約一分鐘後再試，或執行 `gh auth login`，讓 Orca 使用你帳戶的較高額度。",
+      "rateLimitedInMinuteSignedOut": "已達 GitHub 速率限制。請約一分鐘後再試，或執行 `gh auth login`，讓 BrzA Studio 使用你帳戶的較高額度。",
       "rateLimitedInMinutes_other": "已達 GitHub 速率限制。請約 {{count}} 分鐘後再試。",
-      "rateLimitedInMinutesSignedOut_other": "已達 GitHub 速率限制。請約 {{count}} 分鐘後再試，或執行 `gh auth login`，讓 Orca 使用你帳戶的較高額度。",
-      "teamUpdatePolicy": "你的團隊管理 Orca 更新。",
-      "automaticInstallCheckpointFailed": "Orca 無法在重新啟動前儲存目前的視窗。請再次嘗試安裝更新。",
-      "automaticInstallTerminalBusy": "重新啟動會結束部分終端機工作階段。Orca 會在之後檢查更新時重試。",
-      "macStagingTimeout": "macOS 仍在準備更新。如果此狀態持續，請結束並重新開啟 Orca。"
+      "rateLimitedInMinutesSignedOut_other": "已達 GitHub 速率限制。請約 {{count}} 分鐘後再試，或執行 `gh auth login`，讓 BrzA Studio 使用你帳戶的較高額度。",
+      "teamUpdatePolicy": "你的團隊管理 BrzA Studio 更新。",
+      "automaticInstallCheckpointFailed": "BrzA Studio 無法在重新啟動前儲存目前的視窗。請再次嘗試安裝更新。",
+      "automaticInstallTerminalBusy": "重新啟動會結束部分終端機工作階段。BrzA Studio 會在之後檢查更新時重試。",
+      "macStagingTimeout": "macOS 仍在準備更新。如果此狀態持續，請結束並重新開啟 BrzA Studio。"
     },
     "automatic": {
-      "downloading": "正在下載 Orca {{version}}…",
-      "installing": "正在安裝 Orca {{version}}…",
-      "restarting": "Orca 將自動重新啟動。"
+      "downloading": "正在下載 BrzA Studio {{version}}…",
+      "installing": "正在安裝 BrzA Studio {{version}}…",
+      "restarting": "BrzA Studio 將自動重新啟動。"
     },
     "emergencyRequired": {
-      "title": "必須更新至 Orca {{version}}",
-      "summary": "必須更新至 Orca {{version}}。請重新啟動以更新。"
+      "title": "必須更新至 BrzA Studio {{version}}",
+      "summary": "必須更新至 BrzA Studio {{version}}。請重新啟動以更新。"
     },
     "teamRequired": {
-      "summary": "你的團隊要求使用 Orca {{version}}。請重新啟動以更新。",
-      "title": "你的團隊要求使用 Orca {{version}}",
+      "summary": "你的團隊要求使用 BrzA Studio {{version}}。請重新啟動以更新。",
+      "title": "你的團隊要求使用 BrzA Studio {{version}}",
       "restartNow": "立即重新啟動",
-      "countdown": "倒數結束後，Orca 會儲存你的工作階段並重新啟動。執行中的代理程式可能會延後重新啟動。",
-      "waiting": "Orca 正在等待執行中的代理程式完成，之後才會重新啟動。",
-      "retry": "Orca 會在下次啟動時重試此更新。",
+      "countdown": "倒數結束後，BrzA Studio 會儲存你的工作階段並重新啟動。執行中的代理程式可能會延後重新啟動。",
+      "waiting": "BrzA Studio 正在等待執行中的代理程式完成，之後才會重新啟動。",
+      "retry": "BrzA Studio 會在下次啟動時重試此更新。",
       "manual": "自動安裝失敗。請手動安裝此更新。",
-      "deadline": "請在 {{deadline}} 前重新啟動。Orca 會在重新啟動前儲存你的工作階段。",
+      "deadline": "請在 {{deadline}} 前重新啟動。BrzA Studio 會在重新啟動前儲存你的工作階段。",
       "download": "開啟下載項目"
     },
     "remoteUpdateBusy": "此伺服器已在更新中。請在更新完成後再檢查一次。"
@@ -25688,10 +25688,10 @@
     "killAllLocal": "結束所有本機工作階段",
     "killFailed": "無法結束終端機。將保留上次觀察到的工作階段。",
     "owner": {
-      "orca": "Orca",
+      "orca": "BrzA Studio",
       "agents": "代理程式",
       "otherTerminals": "其他終端機",
-      "privateBytes": "Orca、代理程式與終端機的認可記憶體"
+      "privateBytes": "BrzA Studio、代理程式與終端機的認可記憶體"
     },
     "chatRow": {
       "tooltip": "{{agent}} 聊天，包括在其下執行的行程"
@@ -26021,12 +26021,12 @@
   },
   "wslDriveProject": {
     "label": "Git",
-    "converted": "Orca 會在 Windows 上為此專案執行 Git。終端機與代理程式仍在 {{distro}} 中執行。",
-    "checkFailed": "Orca 無法檢查此專案。",
-    "convertFailed": "Orca 無法切換 Git。",
+    "converted": "BrzA Studio 會在 Windows 上為此專案執行 Git。終端機與代理程式仍在 {{distro}} 中執行。",
+    "checkFailed": "BrzA Studio 無法檢查此專案。",
+    "convertFailed": "BrzA Studio 無法切換 Git。",
     "description": "此專案位於 Windows 磁碟機上，WSL 中的 Git 在此處速度很慢，而且會漏掉在 Windows 中所做的變更。請改用 Git for Windows；終端機與代理程式仍會留在 {{distro}} 中。",
     "useWindowsGit": "使用 Git for Windows",
-    "review": "Orca 中此專案的一切都不會改變：其分頁、終端機、聊天與工作區都維持原樣。執行中的終端機會繼續執行。",
+    "review": "BrzA Studio 中此專案的一切都不會改變：其分頁、終端機、聊天與工作區都維持原樣。執行中的終端機會繼續執行。",
     "lineEndings": "同時在此存放庫中設定 core.autocrlf，讓 WSL 終端機中的 git 不再把每個檔案都顯示為已變更。",
     "cancel": "取消",
     "confirm": "使用 Git for Windows",
@@ -26041,24 +26041,24 @@
   },
   "wslDriveUnc": {
     "label": "位置",
-    "description": "Orca 目前透過 WSL 開啟此專案。請改在 {{drivePath}} 開啟：Git 會在 Windows 上執行，在這裡快得多，終端機與代理程式仍會留在 {{distro}} 中。",
+    "description": "BrzA Studio 目前透過 WSL 開啟此專案。請改在 {{drivePath}} 開啟：Git 會在 Windows 上執行，在這裡快得多，終端機與代理程式仍會留在 {{distro}} 中。",
     "convert": "在 {{drivePath}} 開啟",
-    "review": "Orca 會暫停此專案的終端機、重新啟動，並在 {{drivePath}} 重新開啟此專案。分頁、終端機及其歷程記錄、聊天與設定都會一併保留，已暫停的終端機會從原本的進度繼續。",
+    "review": "BrzA Studio 會暫停此專案的終端機、重新啟動，並在 {{drivePath}} 重新開啟此專案。分頁、終端機及其歷程記錄、聊天與設定都會一併保留，已暫停的終端機會從原本的進度繼續。",
     "cancel": "取消",
     "confirm": "重新啟動並轉換",
-    "failed": "Orca 無法轉換此專案。",
-    "restarting": "正在重新啟動 Orca 以轉換此專案…",
+    "failed": "BrzA Studio 無法轉換此專案。",
+    "restarting": "正在重新啟動 BrzA Studio 以轉換此專案…",
     "terminalsBusy": "此專案中有些終端機正在忙碌。請等它們完成或將其關閉，然後再試一次。",
-    "pauseFailed": "Orca 無法暫停此專案的終端機，因此未做任何變更。",
+    "pauseFailed": "BrzA Studio 無法暫停此專案的終端機，因此未做任何變更。",
     "blocker": {
-      "pending": "Orca 已在轉換一個專案，會在 Orca 重新啟動時完成。",
-      "state": "Orca 找到此專案無法安全轉換的已儲存狀態，因此未做任何變更。",
-      "duplicate": "{{drivePath}} 已是 Orca 中的專案。",
+      "pending": "BrzA Studio 已在轉換一個專案，會在 BrzA Studio 重新啟動時完成。",
+      "state": "BrzA Studio 找到此專案無法安全轉換的已儲存狀態，因此未做任何變更。",
+      "duplicate": "{{drivePath}} 已是 BrzA Studio 中的專案。",
       "mixed": "此專案有部分資料夾位於 WSL 內，而不是在 Windows 磁碟機上。",
-      "overlap": "此專案與一個 Orca 無法轉換的專案共用資料夾，轉換後兩者會被拆開。",
+      "overlap": "此專案與一個 BrzA Studio 無法轉換的專案共用資料夾，轉換後兩者會被拆開。",
       "notDriveMount": "在此發行版中，該資料夾不是 {{drivePath}}：它並非從該 Windows 磁碟機掛載。",
       "notConvertible": "此專案不在這台電腦的 Windows 磁碟機上。",
-      "differingState": "Orca 在此資料夾的 WSL 路徑與 {{drivePath}} 下都儲存了詳細資訊，但兩者不同，因此未做任何變更。",
+      "differingState": "BrzA Studio 在此資料夾的 WSL 路徑與 {{drivePath}} 下都儲存了詳細資訊，但兩者不同，因此未做任何變更。",
       "projectSplit": "此專案還包含一個不會轉換的存放庫，因此未做任何變更。"
     }
   },
@@ -26194,7 +26194,7 @@
     },
     "linear": {
       "addAccess": "新增 Linear 存取權限",
-      "apiKeyHint": "請貼上你要讓 Orca 使用的 Linear 工作區的個人 API 金鑰。若該工作區已連線，BrzA Studio 會取代已儲存的金鑰。",
+      "apiKeyHint": "請貼上你要讓 BrzA Studio 使用的 Linear 工作區的個人 API 金鑰。若該工作區已連線，BrzA Studio 會取代已儲存的金鑰。",
       "commentsLoadFailed": "無法載入留言。",
       "connect": "連線",
       "connectionFailed": "連線失敗",
@@ -26355,8 +26355,8 @@
       "destinationChanged": "先前來自 {{distro}} 的專案已移至另一個 WSL 主機。請連線該主機以移動更多專案。",
       "hostUnavailable": "{{distro}} 主機未連線。請在設定中連線，然後再試一次。",
       "hostUpdateRequired": "{{distro}} 主機執行的是舊版 BrzA Studio。請在設定中更新，然後再試一次。",
-      "hostLaunchUnproven": "{{distro}} 中的 Orca 伺服器與你目前使用的 Orca 版本相同，但無法接收這些專案，因此更新也無法解決問題。它可能不是以 WSL 主機身分啟動，而是由 SSH 主機等其他方式啟動。請在設定中移除 {{distro}} 主機，再重新新增。",
-      "hostNotWslLaunched": "{{distro}} 中的 Orca 伺服器並非以 WSL 主機身分啟動（通常是由此發行版的 SSH 主機啟動），因此無法接收這些專案。更新也沒有幫助。請在設定中對 {{distro}} 主機選擇「以 WSL 主機身分重新啟動」，然後再試一次。",
+      "hostLaunchUnproven": "{{distro}} 中的 BrzA Studio 伺服器與你目前使用的 BrzA Studio 版本相同，但無法接收這些專案，因此更新也無法解決問題。它可能不是以 WSL 主機身分啟動，而是由 SSH 主機等其他方式啟動。請在設定中移除 {{distro}} 主機，再重新新增。",
+      "hostNotWslLaunched": "{{distro}} 中的 BrzA Studio 伺服器並非以 WSL 主機身分啟動（通常是由此發行版的 SSH 主機啟動），因此無法接收這些專案。更新也沒有幫助。請在設定中對 {{distro}} 主機選擇「以 WSL 主機身分重新啟動」，然後再試一次。",
       "terminalsBlocked": "這些專案中的部分終端機、代理程式或自動化正在忙碌。未移動任何內容。",
       "exportIncomplete": "這些專案中的部分已儲存狀態目前還無法移動，因此未移動任何內容：",
       "exportIncompletePreview": "這些專案中的部分已儲存狀態目前還無法移動：",
@@ -26365,7 +26365,7 @@
       "scopeChanged": "準備移動期間有專案發生變更，因此未移動任何內容。請檢查專案後再試一次。",
       "cancelled": "移動已取消。未移動任何內容。",
       "finishedEarlierMove": "BrzA Studio 先完成了先前一次移至 {{distro}} 的操作。請重新載入視窗，然後重新開始此次移動。",
-      "mappedDriveUnverifiable": "Orca 無法檢查部分專案所在的磁碟機代號。請確認該磁碟機已連線，然後再試一次。",
+      "mappedDriveUnverifiable": "BrzA Studio 無法檢查部分專案所在的磁碟機代號。請確認該磁碟機已連線，然後再試一次。",
       "nothingMovable": "這些專案目前都還無法移至 {{distro}} 主機。每個專案都會說明原因。"
     },
     "step": {
@@ -26407,8 +26407,8 @@
       "other": "它無法移動。",
       "windowsGitWorktrees": "Git for Windows 留有此專案部分工作樹的記錄，也可能包含已刪除的工作樹。WSL 主機上的 Git 無法使用這些記錄。請移除這些工作樹，或在 WSL 中執行 git worktree repair，再移動此專案。",
       "windowsGitDir": "其 Git 資料夾是以 Windows 路徑連結（Git for Windows 設定的工作樹或獨立 Git 資料夾），WSL 主機上的 Git 無法跟隨此路徑。",
-      "gitUnreadable": "Orca 無法及時讀取其 Git 詳細資訊以進行檢查，因此它會留在這台電腦上。請稍後再檢查一次。",
-      "mappedDriveUnverifiable": "Orca 目前無法檢查其磁碟機代號指向的位置。請確認該磁碟機已連線，然後再檢查一次。"
+      "gitUnreadable": "BrzA Studio 無法及時讀取其 Git 詳細資訊以進行檢查，因此它會留在這台電腦上。請稍後再檢查一次。",
+      "mappedDriveUnverifiable": "BrzA Studio 目前無法檢查其磁碟機代號指向的位置。請確認該磁碟機已連線，然後再檢查一次。"
     },
     "reloadToast": {
       "title": "重新載入以完成移動"
@@ -26478,11 +26478,11 @@
         "prompt": "代理程式停在一個需要你回答的提示上。"
       },
       "botProviderErrorNotSaved": "機器人的回合執行失敗，但此次執行未儲存供應商的錯誤。原始聊天中可能有更多詳細資訊。",
-      "botsOff": "設定中已關閉機器人，因此 Orca 略過了這次執行。",
-      "botsOffByTeam": "你的團隊已關閉機器人，因此 Orca 略過了這次執行。",
+      "botsOff": "設定中已關閉機器人，因此 BrzA Studio 略過了這次執行。",
+      "botsOffByTeam": "你的團隊已關閉機器人，因此 BrzA Studio 略過了這次執行。",
       "botMissing": "執行這個自動化的機器人已不存在。",
       "botFolderMissing": "機器人的資料夾已無法使用。",
-      "botPaused": "{{bot}} 已暫停，因此 Orca 略過了這次執行。"
+      "botPaused": "{{bot}} 已暫停，因此 BrzA Studio 略過了這次執行。"
     },
     "extraAgentArgs": {
       "errors": {
@@ -26511,12 +26511,12 @@
       "listSkippedTitle": "由於分支的 orca.yaml 設定命令已變更，上次執行略過了設定。請從動作選單中審查。"
     },
     "botTarget": {
-      "hostNeedsUpdate": "更新 {host} 上的 Orca 伺服器，讓該主機上的機器人可以使用自動化。"
+      "hostNeedsUpdate": "更新 {host} 上的 BrzA Studio 伺服器，讓該主機上的機器人可以使用自動化。"
     },
     "wontFire": "不會執行：需要 {{connectors}} 連接器",
     "eventsWontFire": "僅依排程執行：需要 {{connectors}} 連接器",
-    "webhooksOff": "不會執行：Orca Cloud 尚不支援 Webhook",
-    "webhooksOffScheduled": "僅依排程執行：Orca Cloud 尚不支援 Webhook",
+    "webhooksOff": "不會執行：BrzA Studio Cloud 尚不支援 Webhook",
+    "webhooksOffScheduled": "僅依排程執行：BrzA Studio Cloud 尚不支援 Webhook",
     "openConnectors": "開啟連接器",
     "hostUnreachable": "無法連線至 {{host}}。待其恢復後請再試一次。"
   },
@@ -26794,8 +26794,8 @@
       "suspendExitedWithoutCode": "暫停作業已結束，結束代碼未知。",
       "resumeExited": "恢復作業已結束，結束代碼為 {{exitCode}}。",
       "resumeExitedWithoutCode": "恢復作業已結束，結束代碼未知。",
-      "recipeTimedOut": "環境範本的 {{mode}} 步驟未在 {{timeout}} 內完成，因此 Orca 已將其停止。請檢查環境範本的輸出；如果它需要更長時間，請在 orca.yaml 中調高 timeoutSeconds。",
-      "provisionInterrupted": "建立此虛擬機器時，Orca 已停止執行。請銷毀此虛擬機器，以釋放供應商可能已為它配置的資源。"
+      "recipeTimedOut": "環境範本的 {{mode}} 步驟未在 {{timeout}} 內完成，因此 BrzA Studio 已將其停止。請檢查環境範本的輸出；如果它需要更長時間，請在 orca.yaml 中調高 timeoutSeconds。",
+      "provisionInterrupted": "建立此虛擬機器時，BrzA Studio 已停止執行。請銷毀此虛擬機器，以釋放供應商可能已為它配置的資源。"
     }
   },
   "installDirAcl": {
@@ -26847,7 +26847,7 @@
     "disabledReason": {
       "needsPermission": "代理程式需要權限",
       "approvalUnseen": "代理程式可能正在等待核准",
-      "hostUpdateRequired": "請更新此主機上的 Orca 才能傳送給此代理程式"
+      "hostUpdateRequired": "請更新此主機上的 BrzA Studio 才能傳送給此代理程式"
     }
   },
   "wslDistroHold": {
@@ -26951,8 +26951,8 @@
     },
     "new": {
       "fromTemplate": "範本",
-      "hostNeedsServer": "需要 Orca 伺服器",
-      "hostNeedsServerHint": "在「設定 → 遠端 Orca 伺服器」中，為 {{host}} 設定 Orca 伺服器以執行機器人。",
+      "hostNeedsServer": "需要 BrzA Studio 伺服器",
+      "hostNeedsServerHint": "在「設定 → 遠端 BrzA Studio 伺服器」中，為 {{host}} 設定 BrzA Studio 伺服器以執行機器人。",
       "pictureColor": "背景顏色",
       "pictureColorCustom": "自訂顏色",
       "pictureOutfit": "服裝",
@@ -26981,7 +26981,7 @@
       "change": "變更",
       "computer": "電腦",
       "computerHint": "機器人執行的位置。",
-      "computerAccountHint": "機器人執行的位置，以 {{account}} 身分登入 Orca。",
+      "computerAccountHint": "機器人執行的位置，以 {{account}} 身分登入 BrzA Studio。",
       "useChatDefaults": "使用聊天預設設定",
       "agent": "代理程式",
       "folder": "資料夾：{{path}}",
@@ -26995,7 +26995,7 @@
         "noAgents": "無代理程式",
         "noAgentsAvailable": "沒有可用的代理程式",
         "pictureLoading": "正在載入圖片…",
-        "updateOrca": "更新 Orca"
+        "updateOrca": "更新 BrzA Studio"
       },
       "identityWatches": "關注{{what}}",
       "identityReports": "回報{{what}}",
@@ -27004,7 +27004,7 @@
       "wslSetup": {
         "waiting": "正在等待 {{distro}}…",
         "starting": "啟動 {{distro}}",
-        "installing": "將 Orca 的伺服器安裝到 ~/.orca-remote",
+        "installing": "將 BrzA Studio 的伺服器安裝到 ~/.orca-remote",
         "connecting": "連線",
         "findingAgents": "在 {{distro}} 中尋找代理程式",
         "installingHint": "第一次還會下載它的 Linux Node 執行環境。",
@@ -27015,7 +27015,7 @@
         "title": "正在將 {{distro}} 設定為主機",
         "subtitle": "第一次大約需要一分鐘。不會動到你的 Windows 檔案和其他發行版。",
         "cancel": "取消",
-        "failedGeneric": "Orca 伺服器未能在此發行版中啟動。請展開「詳細資料」查看啟動失敗的原因。"
+        "failedGeneric": "BrzA Studio 伺服器未能在此發行版中啟動。請展開「詳細資料」查看啟動失敗的原因。"
       },
       "wslNoAgent": {
         "field": "{{distro}} 中沒有代理程式",
@@ -27302,7 +27302,7 @@
     },
     "errors": {
       "unsavedDrafts": "它的資料夾中有尚未儲存的編輯器變更。請先儲存或關閉，再重新刪除。",
-      "purposeTooLongForHost": "{{host}} 上的 Orca 最多接受 200 個字元的用途說明。請縮短內容，或更新 {{host}} 上的 Orca。",
+      "purposeTooLongForHost": "{{host}} 上的 BrzA Studio 最多接受 200 個字元的用途說明。請縮短內容，或更新 {{host}} 上的 BrzA Studio。",
       "avatarHomeUnreadable": "無法讀取已儲存的圖片。請重新選擇。",
       "folderNotOwned": "無法驗證此機器人的資料夾。"
     },
@@ -27338,22 +27338,22 @@
         "why": "Slack 已不再接受此工作區已儲存的權杖。",
         "submit": "重新連線",
         "about": "關於 Slack 權杖",
-        "kept": "Orca Cloud 會加密保存新權杖。之後只要按一下，就能將其他機器人連到這個 Slack 工作區。",
+        "kept": "BrzA Studio Cloud 會加密保存新權杖。之後只要按一下，就能將其他機器人連到這個 Slack 工作區。",
         "mineMac": "這台 Mac 的權杖已過期。請貼上新的權杖。",
         "mine": "這台電腦的權杖已過期。請貼上新的權杖。",
         "paste": "貼上新的權杖以重新連線。",
         "expiredOnTitle": "{{host}} 上的 Slack 登入已過期",
         "signInAgain": "重新登入",
         "neededTitle": "Slack 需要此工作區的權杖",
-        "whyNeeded": "Orca 沒有此工作區可用的 Slack 權杖。",
+        "whyNeeded": "BrzA Studio 沒有此工作區可用的 Slack 權杖。",
         "pasteNeeded": "貼上權杖以繼續。",
         "continue": "繼續"
       },
       "problem": {
         "reconnecting": "正在等待 {{host}} 重新連線…",
         "reconnectingNext": "{{host}} 恢復連線後，Slack 設定會自動重新開始。你不需要從頭開始，也不需要貼上權杖。",
-        "offline": "Orca 無法連線到 {{host}}。",
-        "offlineNext": "請確認 {{host}} 上的 Orca 正在執行，然後重新連線。{{host}} 恢復連線後，Slack 設定會重新開始。",
+        "offline": "BrzA Studio 無法連線到 {{host}}。",
+        "offlineNext": "請確認 {{host}} 上的 BrzA Studio 正在執行，然後重新連線。{{host}} 恢復連線後，Slack 設定會重新開始。",
         "otherUser": "連線是由另一個 Slack 帳戶核准的。",
         "otherUserNext": "有人用另一個 Slack 帳戶核准了連線，因此 {{bot}} 無法以你的身分操作。請取得新連結，再用你自己的 Slack 帳戶登入並核准連線。",
         "expired": "Slack 登入沒有完成。",
@@ -27363,11 +27363,11 @@
         "reconnect": "重新連線",
         "replaceToken": "更換權杖",
         "details": "詳細資料",
-        "reconnectFailed": "Orca 仍無法連線到 {{host}}。"
+        "reconnectFailed": "BrzA Studio 仍無法連線到 {{host}}。"
       },
       "approve": {
-        "noteUntil": "此連結僅可使用一次，有效期限為 {{time}}。請在開啟連結的裝置上用你自己的 Slack 帳戶登入；Orca Cloud 會將核准結果傳回 {{host}}。",
-        "note": "此連結僅可使用一次。請在開啟連結的裝置上用你自己的 Slack 帳戶登入；Orca Cloud 會將核准結果傳回 {{host}}。",
+        "noteUntil": "此連結僅可使用一次，有效期限為 {{time}}。請在開啟連結的裝置上用你自己的 Slack 帳戶登入；BrzA Studio Cloud 會將核准結果傳回 {{host}}。",
+        "note": "此連結僅可使用一次。請在開啟連結的裝置上用你自己的 Slack 帳戶登入；BrzA Studio Cloud 會將核准結果傳回 {{host}}。",
         "noteUntilHere": "此連結僅可使用一次，有效期限為 {{time}}。請在開啟連結的裝置上用你自己的 Slack 帳戶登入。",
         "noteHere": "此連結僅可使用一次。請在開啟連結的裝置上用你自己的 Slack 帳戶登入。",
         "openOn": "在 {{host}} 上開啟 Slack",
@@ -27499,17 +27499,17 @@
     "host": {
       "botWorkspaceUnavailable": "此代理程式的工作區目前無法在這裡使用，因此無法在該工作區開啟此頁面。",
       "signIn": {
-        "updateFirst": "請更新 {{host}} 上的 Orca，再從這裡讓它登入。",
-        "unconfigured": "{{host}} 上的 Orca 版本未包含 Orca Cloud 登入功能。請在該電腦安裝 Orca 的正式版以登入。",
-        "unread": "無法讀取 {{host}} 上的 Orca 登入狀態。",
+        "updateFirst": "請更新 {{host}} 上的 BrzA Studio，再從這裡讓它登入。",
+        "unconfigured": "{{host}} 上的 BrzA Studio 版本未包含 BrzA Studio Cloud 登入功能。請在該電腦安裝 BrzA Studio 的正式版以登入。",
+        "unread": "無法讀取 {{host}} 上的 BrzA Studio 登入狀態。",
         "readAgain": "重試"
       }
     },
     "cloudSignIn": {
       "signIn": "登入",
-      "webhooksHostChat": "Webhook 需要 {{host}} 登入 Orca Cloud。登入後我就會建立。",
-      "eventsHostChat": "{{source}} 事件需要 {{host}} 登入 Orca Cloud。登入後我就會儲存這條規則。",
-      "webhooksNotReaching": "Orca Cloud 無法連線到 {{name}}，因此目前無法建立 Webhook。"
+      "webhooksHostChat": "Webhook 需要 {{host}} 登入 BrzA Studio Cloud。登入後我就會建立。",
+      "eventsHostChat": "{{source}} 事件需要 {{host}} 登入 BrzA Studio Cloud。登入後我就會儲存這條規則。",
+      "webhooksNotReaching": "BrzA Studio Cloud 無法連線到 {{name}}，因此目前無法建立 Webhook。"
     },
     "tabs": {
       "homeTitle": "Home"
@@ -27541,7 +27541,7 @@
     "failures": {
       "lookUnfinished": "上次四處檢視沒有完成。",
       "lookTimedOut": "上次四處檢視在 {{minutes}} 分鐘後被停止。",
-      "lookInterrupted": "上次四處檢視期間 Orca 停止了。",
+      "lookInterrupted": "上次四處檢視期間 BrzA Studio 停止了。",
       "lookCouldNotStart": "上次四處檢視無法開始。",
       "lookAsleep": "這台電腦處於睡眠狀態，錯過了上次四處檢視。",
       "tidyUpUnfinished": "上次整理沒有完成。",
@@ -27550,11 +27550,11 @@
       "tidyUpAsleep": "這台電腦處於睡眠狀態，錯過了上次整理。",
       "tidyUpUnreadChats": "上次整理無法讀取它的聊天，因此沒有執行。",
       "tidyUpNoDraft": "上次整理沒有回覆新的 MEMORY.md。",
-      "tidyUpNoOps": "上次整理的回覆不是 Orca 能讀取的變更清單。",
-      "tidyUpAllSkipped": "Orca 略過了上次整理要求的所有變更，因此沒有任何變化。（{{detail}}）",
+      "tidyUpNoOps": "上次整理的回覆不是 BrzA Studio 能讀取的變更清單。",
+      "tidyUpAllSkipped": "BrzA Studio 略過了上次整理要求的所有變更，因此沒有任何變化。（{{detail}}）",
       "tidyUpNotListLines": "上次整理沒有執行：MEMORY.md 中有不少不是清單行的內容，而整理只讀取清單行。",
-      "tidyUpMovedOnly": "上次整理把狀態行移到了 memory/journal/，但 Orca 無法使用它回覆的其餘部分。（{{detail}}）",
-      "tidyUpBadTopic": "上次整理指定了 Orca 無法寫入的主題檔案，因此沒有任何變化。",
+      "tidyUpMovedOnly": "上次整理把狀態行移到了 memory/journal/，但 BrzA Studio 無法使用它回覆的其餘部分。（{{detail}}）",
+      "tidyUpBadTopic": "上次整理指定了 BrzA Studio 無法寫入的主題檔案，因此沒有任何變化。",
       "tidyUpTooLong": "上次整理的 MEMORY.md 超過 {{max}} 行且沒有變短，因此沒有任何變化。",
       "tidyUpTooManyRemoved": "上次整理一次刪去了太多行，因此沒有任何變化。",
       "tidyUpTooManyAdded": "上次整理一次新增了太多新行，因此沒有任何變化。",
@@ -27568,9 +27568,9 @@
       "toolSavedValueGone": "那個已儲存的值不再可用。請重新輸入，或刪除它所在的列。",
       "toolValueMissing": "請為每一列輸入值，或刪除該列。",
       "toolCredentialsUnreadable": "無法讀取機器人已儲存的工具憑證。請重新輸入該工具的值。",
-      "toolSignInManaged": "這個工具由 Orca 登入。請改為登入或登出它。",
-      "toolCredentialsRaced": "機器人的工具憑證已在另一個 Orca 中變更。請重試。",
-      "toolSourceManaged": "這個工具由 Orca 管理。請到你設定它的地方變更。",
+      "toolSignInManaged": "這個工具由 BrzA Studio 登入。請改為登入或登出它。",
+      "toolCredentialsRaced": "機器人的工具憑證已在另一個 BrzA Studio 中變更。請重試。",
+      "toolSourceManaged": "這個工具由 BrzA Studio 管理。請到你設定它的地方變更。",
       "toolValuesUnmoved": "有個工具仍保存著它的值。請重新開啟機器人的工具以移轉這些值。",
       "googleAccountsChanged": "你開啟帳戶清單後，這個機器人可使用的 Google 帳戶已有變更。請確認清單後再儲存一次。",
       "toolCodexCheckFailed": "Codex 無法檢查或連線這些工具。請檢查它的設定後重試。",
@@ -27586,7 +27586,7 @@
       "toolSignInEnded": "登入已經結束或逾時。請用「連線」重新開始。",
       "toolNotFound": "這個機器人沒有名為 {{name}} 的工具。",
       "toolNeedsNoSignIn": "{{name}} 使用已儲存的值，無需登入。",
-      "toolSignInAgentUnsupported": "Orca 只為 Claude Code 和 Codex 登入 {{name}}。請改為用它的登入值新增。",
+      "toolSignInAgentUnsupported": "BrzA Studio 只為 Claude Code 和 Codex 登入 {{name}}。請改為用它的登入值新增。",
       "toolCodexNoSignInPage": "Codex 沒有提供 {{name}} 的登入頁面。",
       "toolClaudeSignInFailed": "Claude 無法開始登入 {{name}}。",
       "toolClaudeNoSignInPage": "Claude 沒有開啟 {{name}} 的登入頁面。",
@@ -27605,7 +27605,7 @@
       "groupNeedsLocalBot": "這個群組至少需要一個在這台電腦上的機器人。",
       "groupNameTaken": "{{name}} 已在這個群組中。成員需要不同的名稱，提及才不會混淆。",
       "groupPostFromHost": "要在包含其他電腦上機器人的群組中發文，請使用 {{host}}。",
-      "groupPeerTooOld": "請更新 {{host}} 上的 Orca，才能把它的機器人加入群組。",
+      "groupPeerTooOld": "請更新 {{host}} 上的 BrzA Studio，才能把它的機器人加入群組。",
       "attachmentUnreadable": "無法讀取 {{name}}。",
       "attachmentTooLarge": "{{name}} 超過 {{maxMb}} MB。",
       "attachmentUploading": "{{name}} 仍在上傳。",
@@ -27662,7 +27662,7 @@
       "setDefault": "設為預設",
       "accountActions": "{{email}} 的操作",
       "addServiceMenu": "新增服務…",
-      "updateToAdd": "請更新 {{host}} 上的 Orca，才能新增其他 Google 帳戶。",
+      "updateToAdd": "請更新 {{host}} 上的 BrzA Studio，才能新增其他 Google 帳戶。",
       "signInRun": {
         "cancelled": "Google 登入已取消。",
         "failed": "Google 登入失敗。請再試一次。",
@@ -27676,8 +27676,8 @@
       "useAnotherSignIn": "使用 Google 登入",
       "useAnotherSignInDetail": "使用你目前的 Google 應用程式",
       "setUpNewAppDetail": "如果你目前的應用程式不適用於此帳戶或組織",
-      "updateToSetUpNewApp": "請更新 {{host}} 上的 Orca，才能設定新的 Google 應用程式。",
-      "updateToChooseAccounts": "請更新 {{host}} 上的 Orca，才能選擇帳戶。",
+      "updateToSetUpNewApp": "請更新 {{host}} 上的 BrzA Studio，才能設定新的 Google 應用程式。",
+      "updateToChooseAccounts": "請更新 {{host}} 上的 BrzA Studio，才能選擇帳戶。",
       "picker": {
         "label": "Google 帳戶",
         "addAccount": "新增其他帳戶",
@@ -27716,7 +27716,7 @@
         "unsupported": "尚不支援此應用程式。",
         "unavailable": "無法連線到此應用程式。請檢查網址後再試一次。",
         "noTool": "這個機器人已經沒有那個工具了。",
-        "desktopOnly": "請在 {{host}} 上的 Orca 中登入。",
+        "desktopOnly": "請在 {{host}} 上的 BrzA Studio 中登入。",
         "denied": "未獲准存取。",
         "expired": "登入已逾期。請再試一次。",
         "couldNotSignIn": "無法登入。請再試一次。"
@@ -27729,7 +27729,7 @@
       "toast": "無法安裝必要的外掛",
       "open": "開啟外掛",
       "label": "由你的團隊要求",
-      "body": "Orca 無法安裝 {{plugin}}。"
+      "body": "BrzA Studio 無法安裝 {{plugin}}。"
     },
     "frameSaveAs": {
       "title": "儲存檔案",
@@ -27761,8 +27761,8 @@
       "teamPublisher": "你的團隊"
     },
     "displayText": {
-      "tb0b38488": "Orca 的 GitHub 主題",
-      "tb8aa98fc": "Orca 的 VS Code 預設主題",
+      "tb0b38488": "BrzA Studio 的 GitHub 主題",
+      "tb8aa98fc": "BrzA Studio 的 VS Code 預設主題",
       "tfc425a57": "Multipass 虛擬機器範本",
       "t0f9f5503": "GitHub 自家的 VS Code 主題：Light Default、Dark Default、Dark Dimmed 以及高對比變體。",
       "t0b4f7e19": "VS Code 預設色彩主題的非官方移植版：Dark Modern、Light Modern、Dark+ 和 Light+。",
@@ -27831,7 +27831,7 @@
     "unsupportedDescription": "Apple 不支援在此 Mac 上執行 macOS {{macos}}。",
     "unknownDescription": "無法確認此 Mac 是否可以升級。請參考 Apple 的相容性指南。",
     "whyTitle": "為什麼要進行這項變更？",
-    "whyIntro": "我們更新了 Orca 的部分基礎元件，例如 Electron 和裝置上的語音引擎，以提供：",
+    "whyIntro": "我們更新了 BrzA Studio 的部分基礎元件，例如 Electron 和裝置上的語音引擎，以提供：",
     "whySecurity": "來自 Electron 和 Chromium 的持續安全性修正。",
     "whyPerformance": "更快的啟動速度和更有效率的原生 API 呼叫。",
     "whySystemApis": "支援目前的 macOS 通知 API 和安全的鑰匙圈儲存。",
@@ -27929,8 +27929,8 @@
   "renderer": {
     "lib": {
       "filePreview": {
-        "remoteFileUnsupported": "「在 Orca 瀏覽器中開啟」僅適用於本機檔案。",
-        "twinFileUnsupported": "此專案位於多台主機上，因此 Orca 無法判斷要開啟哪一份副本。"
+        "remoteFileUnsupported": "「在 BrzA Studio 瀏覽器中開啟」僅適用於本機檔案。",
+        "twinFileUnsupported": "此專案位於多台主機上，因此 BrzA Studio 無法判斷要開啟哪一份副本。"
       }
     }
   },
@@ -27955,10 +27955,10 @@
       "attachmentsOmitted": "未附加已儲存的凍結報告與診斷記錄：{{value0}}",
       "description": "傳送已儲存的凍結報告，協助我們了解發生了什麼事。",
       "notSent": "凍結報告未傳送",
-      "notes": "選填：Orca 凍結前你正在做什麼？",
+      "notes": "選填：BrzA Studio 凍結前你正在做什麼？",
       "sent": "已傳送凍結報告。",
       "sentWithoutAttachments": "已傳送詳細資訊，但未包含已儲存的凍結報告或診斷記錄",
-      "summary": "Orca 停止回應",
+      "summary": "BrzA Studio 停止回應",
       "title": "回報凍結問題",
       "includeRedacted": "包含已儲存的凍結報告與近期記錄（已遮蔽）",
       "uncheckAttachments": "取消勾選「包含已儲存的凍結報告與近期記錄（已遮蔽）」後再試一次，或複製詳情。"
@@ -28036,7 +28036,7 @@
     "turnOnPlugins": "在外掛中開啟",
     "languageDidNotLoad": "無法載入「{{language}}」。",
     "yourLanguage": "你的語言",
-    "offerSentence": "Orca 提供 {{language}} 社群翻譯版本。",
+    "offerSentence": "BrzA Studio 提供 {{language}} 社群翻譯版本。",
     "offerInstall": "安裝 <lang>{{language}}</lang>…",
     "offerUse": "使用 <lang>{{language}}</lang>",
     "offerInstalling": "正在安裝 <lang>{{language}}</lang>…",
@@ -28045,7 +28045,7 @@
     "preparing": "正在準備…",
     "offerConfirming": "正在等待確認…",
     "offerRetry": "再試一次",
-    "suggestionTitle": "<lang>{{language}}</lang> 版的 Orca",
+    "suggestionTitle": "<lang>{{language}}</lang> 版的 BrzA Studio",
     "systemResolved": "{{system}}（{{language}}）",
     "suggestionInstall": "安裝",
     "suggestionUse": "使用",
@@ -28097,8 +28097,8 @@
     "failedChipLabel": "更新失敗：檢視錯誤",
     "failedChipTooltip": "更新失敗。按一下以查看詳細資訊。",
     "failedTitle": "無法更新 {{product}}",
-    "failedDescription": "Orca 在 <strong>{{host}}</strong> 上執行了 <code>{{command}}</code>，要將你的 {{product}} 從 <strong>{{installedVersion}}</strong> 更新至 <strong>{{latestVersion}}</strong>，但執行失敗。",
-    "failedDescriptionNoCommand": "Orca 無法在 <strong>{{host}}</strong> 上更新你的 {{product}}。",
+    "failedDescription": "BrzA Studio 在 <strong>{{host}}</strong> 上執行了 <code>{{command}}</code>，要將你的 {{product}} 從 <strong>{{installedVersion}}</strong> 更新至 <strong>{{latestVersion}}</strong>，但執行失敗。",
+    "failedDescriptionNoCommand": "BrzA Studio 無法在 <strong>{{host}}</strong> 上更新你的 {{product}}。",
     "cardLabel": "代理程式 CLI 更新",
     "cardLater": "稍後",
     "toastUpdating_other": "正在更新第 {{current}} 個 CLI，共 {{count}} 個",
@@ -28136,7 +28136,7 @@
   },
   "chats": {
     "delete": {
-      "updateHost": "請更新 {{host}} 上的 Orca，才能刪除聊天",
+      "updateHost": "請更新 {{host}} 上的 BrzA Studio，才能刪除聊天",
       "failed": "無法刪除聊天",
       "undone": "此操作無法復原。",
       "title": "要刪除此聊天嗎？",
@@ -28176,11 +28176,11 @@
   },
   "mcpServers": {
     "paste": {
-      "badCommand": "請直接把值寫進 mcp add 指令：Orca 無法填入 $VARIABLES 或其他 shell 運算式。",
-      "unsupported": "Orca 無法照原樣新增此伺服器：它使用 SSE、自己的 OAuth 用戶端，或從環境讀取的值。",
+      "badCommand": "請直接把值寫進 mcp add 指令：BrzA Studio 無法填入 $VARIABLES 或其他 shell 運算式。",
+      "unsupported": "BrzA Studio 無法照原樣新增此伺服器：它使用 SSE、自己的 OAuth 用戶端，或從環境讀取的值。",
       "badAddCommand": "請檢查 mcp add 指令：需要名稱，以及 URL 或指令。",
       "badJson": "請檢查貼上的 JSON：無法解析。",
-      "none": "Orca 找不到可新增的伺服器。不支援 SSE 伺服器、有自己的 OAuth 用戶端或工具篩選器的伺服器，以及從環境讀取的值（${VAR}）。"
+      "none": "BrzA Studio 找不到可新增的伺服器。不支援 SSE 伺服器、有自己的 OAuth 用戶端或工具篩選器的伺服器，以及從環境讀取的值（${VAR}）。"
     }
   }
 }

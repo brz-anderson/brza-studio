@@ -51,12 +51,12 @@ export function leaveReasonText(
       // Why neutral: an older Orca release with extra files and a hand edit both land here.
       return t(
         'auto.components.skills.skillPlanOpCopy.differsFromOrca',
-        "This copy differs from Orca's"
+        "This copy differs from BrzA Studio's"
       )
     case 'other-build':
       return t(
         'auto.components.skills.skillPlanOpCopy.otherBuild',
-        'Installed by another Orca version'
+        'Installed by another BrzA Studio version'
       )
     case 'other':
       return t('auto.components.skills.skillPlanOpCopy.other', 'A different skill uses this name')
@@ -105,7 +105,7 @@ export function locationStateText(location: BundledSkillLocation): string {
       location.reason === 'other-build'
         ? translate(
             'auto.components.skills.skillPlanOpCopy.otherBuildKept',
-            'Kept: written by another Orca version'
+            'Kept: written by another BrzA Studio version'
           )
         : translate(
             'auto.components.skills.skillPlanOpCopy.updateSkipped',

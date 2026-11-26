@@ -11,6 +11,10 @@ export function isDirectory(path: string): boolean {
   }
 }
 
+export async function isDirectoryAsync(path: string): Promise<boolean> {
+  return (await lstat(path).catch(() => null))?.isDirectory() === true
+}
+
 export function listClaudeProfileHomes(dataRoot: string): string[] {
   const root = join(dataRoot, 'claude-profiles')
   let ids: string[]

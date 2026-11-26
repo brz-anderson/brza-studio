@@ -73,7 +73,7 @@ export function BotSlackPostAs({
       slack.poster?.name ||
       hostAccount?.displayName ||
       hostAccount?.email?.split('@')[0] ||
-      t('bots.slack.postAs.orcaUser', 'Orca user'),
+      t('bots.slack.postAs.orcaUser', 'BrzA Studio user'),
     avatar: (
       <ConnectorAvatar
         avatarUrl={slack.poster?.avatarUrl}
@@ -158,7 +158,7 @@ export function BotSlackPostAs({
         <Trans
           i18n={i18n}
           i18nKey="bots.slack.postAs.line"
-          defaults="When you reply to a Slack thread from Orca, it posts as <picker>{{name}}</picker>"
+          defaults="When you reply to a Slack thread from BrzA Studio, it posts as <picker>{{name}}</picker>"
           values={{ name: posters[current].name }}
           shouldUnescape
           components={{ picker: <PickerName /> }}
@@ -254,7 +254,7 @@ function SlackPostPreview({
       <span className="min-w-0 flex-1 pr-5">
         <span className="flex min-w-0 items-baseline gap-1">
           <span className="truncate text-[13px] leading-[18px] font-black">
-            {t('bots.slack.postAs.viaOrca', '{{name}} (via Orca)', { name: poster.name })}
+            {t('bots.slack.postAs.viaOrca', '{{name}} (via BrzA Studio)', { name: poster.name })}
           </span>
           <span className="shrink-0 rounded-sm bg-[var(--slack-muted)]/15 px-0.5 text-[9px] leading-3 font-bold text-[var(--slack-muted)]">
             {t('bots.slack.postAs.app', 'APP')}

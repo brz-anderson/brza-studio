@@ -212,7 +212,7 @@ function RowSenderName({
   const t = useTranslate()
   const label = useAgentMessageSenderLabel(sender, chatWorktreeId, target, dispatchId)
   const opens = useAgentMessageSenderOpens(sender, chatWorktreeId, target, dispatchId)
-  if (!opens || !chatWorktreeId) {
+  if (!opens || !chatWorktreeId || brzaClaudePeerKind(sender) !== null) {
     return (
       <span aria-hidden={!spoken || undefined} className={NATIVE_CHAT_READABLE_SHARE} title={label}>
         {label}
@@ -251,7 +251,7 @@ export function SenderChip({
   const t = useTranslate()
   const label = useAgentMessageSenderLabel(sender, chatWorktreeId, target, dispatchId)
   const opens = useAgentMessageSenderOpens(sender, chatWorktreeId, target, dispatchId)
-  if (!opens || !chatWorktreeId) {
+  if (!opens || !chatWorktreeId || brzaClaudePeerKind(sender) !== null) {
     return (
       <SenderTooltip label={label}>
         <span className={NATIVE_CHAT_INLINE_NAME}>{label}</span>

@@ -141,12 +141,12 @@ function SignInWaiting({
           {firstSignIn
             ? t(
                 'bots.host.signIn.waitingFirst',
-                'Log in with the Orca account {{host}} should use, in Orca’s browser for {{host}}. Check the page shows {{code}}.',
+                'Log in with the BrzA Studio account {{host}} should use, in BrzA Studio’s browser for {{host}}. Check the page shows {{code}}.',
                 { host, code }
               )
             : t(
                 'bots.host.signIn.waiting',
-                'Approve in Orca’s browser for {{host}}. Check the page shows {{code}}.',
+                'Approve in BrzA Studio’s browser for {{host}}. Check the page shows {{code}}.',
                 { host, code }
               )}
         </span>
@@ -290,7 +290,7 @@ function ServerNotice({
           <p>
             {t(
               'bots.host.notice.updateNeeded',
-              'Update Orca on {{host}} to set up {{name}}’s connectors from here.',
+              'Update BrzA Studio on {{host}} to set up {{name}}’s connectors from here.',
               { host, name }
             )}
           </p>
@@ -305,20 +305,26 @@ function ServerNotice({
           </>
         )
       case 'unreachable':
-        return line(t('bots.host.notice.unreachable', '{{host}} can’t reach Orca Cloud.', { host }))
+        return line(
+          t('bots.host.notice.unreachable', '{{host}} can’t reach BrzA Studio Cloud.', { host })
+        )
       case 'cant-save':
         return (
           <>
             {line(
-              t('bots.host.notice.cantSave', '{{host}} can’t save an Orca sign-in: {{reason}}', {
-                host,
-                reason: state.reason
-              })
+              t(
+                'bots.host.notice.cantSave',
+                '{{host}} can’t save a BrzA Studio sign-in: {{reason}}',
+                {
+                  host,
+                  reason: state.reason
+                }
+              )
             )}
             <p>
               {t(
                 'bots.host.notice.cantSaveNext',
-                'Unlock or set up a keychain on {{host}} and restart Orca there, then sign it in here.',
+                'Unlock or set up a keychain on {{host}} and restart BrzA Studio there, then sign it in here.',
                 { host }
               )}
             </p>
@@ -329,11 +335,15 @@ function ServerNotice({
           <>
             {line(
               state.email
-                ? t('bots.host.notice.lapsed', '{{host}}’s Orca sign-in for {{email}} changed.', {
-                    host,
-                    email: state.email
-                  })
-                : t('bots.host.notice.lapsedNoEmail', '{{host}}’s Orca sign-in changed.', {
+                ? t(
+                    'bots.host.notice.lapsed',
+                    '{{host}}’s BrzA Studio sign-in for {{email}} changed.',
+                    {
+                      host,
+                      email: state.email
+                    }
+                  )
+                : t('bots.host.notice.lapsedNoEmail', '{{host}}’s BrzA Studio sign-in changed.', {
                     host
                   })
             )}
@@ -347,11 +357,13 @@ function ServerNotice({
               ? line(
                   joinSentences(
                     [
-                      t('bots.host.notice.signedOut', '{{host}} is signed out of Orca.', { host }),
+                      t('bots.host.notice.signedOut', '{{host}} is signed out of BrzA Studio.', {
+                        host
+                      }),
                       state.linkedTo?.email === null
                         ? t(
                             'bots.host.notice.linksBelongElsewhere',
-                            '{{name}}’s connectors belong to another Orca account.',
+                            '{{name}}’s connectors belong to another BrzA Studio account.',
                             { name }
                           )
                         : state.linkedTo?.email
@@ -367,7 +379,7 @@ function ServerNotice({
               : line(
                   t(
                     'bots.host.notice.signedOutFirst',
-                    '{{host}} is signed out of Orca, so {{name}} can’t use Slack, Linear or GitHub yet.',
+                    '{{host}} is signed out of BrzA Studio, so {{name}} can’t use Slack, Linear or GitHub yet.',
                     { host, name }
                   )
                 )}

@@ -190,11 +190,11 @@
         "serviceUnconfirmed": "The WSL service did not confirm whether the distro runs.",
         "peerCheckFailed": "BrzA Studio couldn’t ask the WSL host whether another BrzA Studio on this computer still uses it: {{detail}}",
         "removalUnrecorded": "BrzA Studio couldn’t record what this Remove left running: {{detail}}",
-        "installLockWait_one": "Waiting for another Orca install in this distro to finish. If it doesn’t, Orca takes over in about {{count}} minute.",
-        "installLockWait_other": "Waiting for another Orca install in this distro to finish. If it doesn’t, Orca takes over in about {{count}} minutes.",
-        "installLockWaitGivesUp_one": "Waiting for another Orca install in this distro to finish. If it doesn’t, Orca stops waiting in about {{count}} minute.",
-        "installLockWaitGivesUp_other": "Waiting for another Orca install in this distro to finish. If it doesn’t, Orca stops waiting in about {{count}} minutes.",
-        "installLockWaitHolderGone": "The other Orca install in this distro stopped. Orca takes over in a few seconds."
+        "installLockWait_one": "Waiting for another BrzA Studio install in this distro to finish. If it doesn’t, BrzA Studio takes over in about {{count}} minute.",
+        "installLockWait_other": "Waiting for another BrzA Studio install in this distro to finish. If it doesn’t, BrzA Studio takes over in about {{count}} minutes.",
+        "installLockWaitGivesUp_one": "Waiting for another BrzA Studio install in this distro to finish. If it doesn’t, BrzA Studio stops waiting in about {{count}} minute.",
+        "installLockWaitGivesUp_other": "Waiting for another BrzA Studio install in this distro to finish. If it doesn’t, BrzA Studio stops waiting in about {{count}} minutes.",
+        "installLockWaitHolderGone": "The other BrzA Studio install in this distro stopped. BrzA Studio takes over in a few seconds."
       }
     },
     "agentSummary": {
@@ -284,13 +284,13 @@
       "hidden": "{{name}} hidden",
       "hiddenDescription": "Its terminals and agents keep running. Show it again from Hidden projects below the list.",
       "undo": "Undo",
-      "hideFailed": "Couldn't hide {{name}}. Its host may need an Orca update.",
+      "hideFailed": "Couldn't hide {{name}}. Its host may need a BrzA Studio update.",
       "showFailed": "Couldn't show {{name}} again.",
       "listLabel": "Hidden projects",
       "show": "Show",
       "showAriaLabel": "Show {{name}} in the sidebar",
       "settingsTitle": "Hide from sidebar",
-      "settingsDescription": "Hides this host's copy of the project from the sidebar, project pickers and the workspace switcher. Its terminals, agents and automations keep running. On a paired Orca server, this hides it for everyone connected to that server.",
+      "settingsDescription": "Hides this host's copy of the project from the sidebar, project pickers and the workspace switcher. Its terminals, agents and automations keep running. On a paired BrzA Studio server, this hides it for everyone connected to that server.",
       "settingsToggleLabel": "Hide {{name}} from the sidebar",
       "keywordHide": "hide",
       "keywordHidden": "hidden",
@@ -298,7 +298,7 @@
       "hideFromSidebar": "Hide from Sidebar",
       "sectionTitle": "Hidden projects ({{count}})",
       "allHidden": "Every project is hidden. Show one from Hidden projects below.",
-      "undoGone": "{{name}} was removed from Orca.",
+      "undoGone": "{{name}} was removed from BrzA Studio.",
       "settingsGroup": "Sidebar",
       "showOnHostAriaLabel": "Show {{name}} on {{host}} in the sidebar",
       "keywordShow": "show",
@@ -782,9 +782,9 @@
         "restartingAdministrator": "Restarting…",
         "administratorSearchDescription": "See BrzA Studio’s Windows permissions or restart with administrator approval.",
         "10aafff216": "Open manage sessions",
-        "confirmOrcaAdministratorRestart": "Restart Orca as administrator?",
+        "confirmOrcaAdministratorRestart": "Restart BrzA Studio as administrator?",
         "administratorRestartSummary": "Local terminals and agents will close. Windows will ask you to approve.",
-        "orcaCouldNotRestart": "Orca couldn’t restart.",
+        "orcaCouldNotRestart": "BrzA Studio couldn’t restart.",
         "manualAdministratorSteps": "Manual steps",
         "restartOrca": "Restart"
       },
@@ -1253,7 +1253,7 @@
       "defaultSurfaceKeptChat_other": "{{agents}} stay as chats, as you set.",
       "defaultSurfaceSetAllChat": "Set all to Chat",
       "defaultSurfaceSetAllTerminal": "Set all to Terminal",
-      "modelListFallback": "Built-in list. Orca could not get a model list from this host.",
+      "modelListFallback": "Built-in list. BrzA Studio could not get a model list from this host.",
       "chatUnavailableOnWindows": "{{value0}} Chat isn't available on Windows yet, so {{value0}} opens in a terminal on this host. Chats on a macOS or Linux host still work.",
       "undetectedCommandHint": "If the {{agent}} CLI is installed outside PATH, enter the full path to its executable on this host.",
       "agentActions": "{{agent}} actions",
@@ -1272,8 +1272,8 @@
     "followSymlinkedDirectories": "Follow symlinked directories",
     "followSymlinkedDirectoriesDescription": "Search linked folders in Quick Open and expand local linked folders in File Explorer.",
     "accounts": {
-      "codexRemoveHome": "Orca deletes this account's Codex folder on {{host}}, including its sign-in and MCP logins. This cannot be undone. If it is selected, the next Codex you start uses System default.",
-      "claudeRemoveProfile": "Orca deletes this account's own Claude folder and the sign-in saved in it on {{host}}. Your System default login and chat history shared with it stay. If it is selected, the next Claude you start uses System default."
+      "codexRemoveHome": "BrzA Studio deletes this account's Codex folder on {{host}}, including its sign-in and MCP logins. This cannot be undone. If it is selected, the next Codex you start uses System default.",
+      "claudeRemoveProfile": "BrzA Studio deletes this account's own Claude folder and the sign-in saved in it on {{host}}. Your System default login and chat history shared with it stay. If it is selected, the next Claude you start uses System default."
     },
     "sourceControl": {
       "gitOperationInAnotherWorkspace": "Git operation running elsewhere",
@@ -1580,7 +1580,7 @@
         "chat": "Chat “{{title}}”",
         "aChat": "A chat",
         "chatFrom": "{{chat}} · from {{source}}",
-        "kept": "Orca · {{chat}} wrote over it",
+        "kept": "BrzA Studio · {{chat}} wrote over it",
         "owner": "You, in Settings",
         "bot": "Forget, from {{chat}}",
         "undo": "Undo",
@@ -1631,14 +1631,14 @@
         "checking": "Checking",
         "unknown": "Can’t check",
         "unlinked": "Not linked",
-        "notInstalled": "Orca not installed"
+        "notInstalled": "BrzA Studio not installed"
       },
       "noLinearBots": "No bots on Linear yet",
       "githubStatus": {
         "checking": "Checking",
         "unknown": "Can’t check",
         "unlinked": "Not linked",
-        "notInstalled": "Orca not installed"
+        "notInstalled": "BrzA Studio not installed"
       },
       "noGitHubBots": "No bots on GitHub yet",
       "connectorPeopleCount": "{{count}} with access",
@@ -1663,7 +1663,7 @@
         "focusPlaceholder": "PRs waiting on me, questions in #eng, issues due this week",
         "focusDescription": "Optional. Leave empty to look for anything waiting on you.",
         "lastLooked": "Last looked",
-        "whileRunning": "Orca must be running on this computer.",
+        "whileRunning": "BrzA Studio must be running on this computer.",
         "looking": "Looking…"
       },
       "tools": {
@@ -1746,7 +1746,7 @@
         "remove": "Remove",
         "reading": "Reading its skills…",
         "remote": "On another host. {{bot}} runs on this computer, so it can’t load these yet.",
-        "missing": "This project is no longer in Orca.",
+        "missing": "This project is no longer in BrzA Studio.",
         "notYet": "Not available yet",
         "none": "No skills in this project yet. Run your project’s setup to add its skills; they load in {{bot}}’s next chat.",
         "openFolder": "Open folder",
@@ -1803,19 +1803,19 @@
         "changes": "{{count}} changes",
         "review": "Review",
         "never": "Not yet. The first comes after a night with new chats.",
-        "whileRunning": "Orca must be running on this computer.",
+        "whileRunning": "BrzA Studio must be running on this computer.",
         "tidying": "Tidying…",
         "now": "Tidy now",
         "undoStale": "A newer tidy-up ran since. Review it before undoing."
       },
       "notifyCouldNotFinishOnHostDescription": "An automation run or worker fails. Only phones paired to {{host}} hear of it.",
       "group": {
-        "noAccount": "Orca account",
+        "noAccount": "BrzA Studio account",
         "notSignedIn": "Not signed in · {{computers}}",
         "yourAccount": "your account · {{computers}}",
-        "signedOut": "Signed out of Orca",
-        "signInChanged": "Orca sign-in changed",
-        "updateNeeded": "Update Orca on {{host}} to manage its bots here",
+        "signedOut": "Signed out of BrzA Studio",
+        "signInChanged": "BrzA Studio sign-in changed",
+        "updateNeeded": "Update BrzA Studio on {{host}} to manage its bots here",
         "offline": "Can’t reach {{host}}"
       },
       "connectorsOnHost": "Where people can reach the bots on {{host}}.",
@@ -1936,14 +1936,14 @@
       "example": "Example: create a worktree in each repo (this machine only)",
       "useExample": "Use this example",
       "description": "Scripts that run in this folder when a workspace is created. Every workspace shares the folder. Local scripts are stored on this machine; `orca.yaml` scripts are shared with your team.",
-      "invalidSetup": "The file is present, but Orca could not find a valid setup script.",
+      "invalidSetup": "The file is present, but BrzA Studio could not find a valid setup script.",
       "supportedKeys": "Define only the supported keys: `scripts` and `setup`.",
       "supportedArchiveKeys": "Define only the supported keys: `scripts`, `setup`, and `archive`.",
-      "invalidArchive": "The file is present, but Orca could not find a valid setup or archive script."
+      "invalidArchive": "The file is present, but BrzA Studio could not find a valid setup or archive script."
     },
     "uninstall": {
       "groupTitle": "Uninstall",
-      "title": "Uninstall Orca",
+      "title": "Uninstall BrzA Studio",
       "searchDescription": "Remove agent hooks, the orca command, the orca serve server and hooks on SSH hosts.",
       "keywords": {
         "uninstall": "uninstall",
@@ -1953,20 +1953,20 @@
         "hooks": "hooks"
       },
       "copyCommand": "Copy command",
-      "quit": "Quit Orca",
+      "quit": "Quit BrzA Studio",
       "next": {
-        "unknown": "Quit Orca, then delete the app.",
-        "macApp": "Quit Orca, then drag it from Applications to the Trash.",
-        "homebrew": "Orca was installed with Homebrew. Run this to remove the app:",
+        "unknown": "Quit BrzA Studio, then delete the app.",
+        "macApp": "Quit BrzA Studio, then drag it from Applications to the Trash.",
+        "homebrew": "BrzA Studio was installed with Homebrew. Run this to remove the app:",
         "linuxPackage": "Run this to remove the package:",
-        "windows": "Finish in the Windows uninstaller. Orca quits when it opens.",
-        "appImage": "Quit Orca, then delete <path>{{path}}</path>."
+        "windows": "Finish in the Windows uninstaller. BrzA Studio quits when it opens.",
+        "appImage": "Quit BrzA Studio, then delete <path>{{path}}</path>."
       },
       "openUninstaller": "Open uninstaller",
-      "agentStatusOff": "Agent status is off. Orca won't add hooks again unless you turn it on in Settings → Agents.",
-      "loadFailed": "Orca could not check what it installed.",
+      "agentStatusOff": "Agent status is off. BrzA Studio won't add hooks again unless you turn it on in Settings → Agents.",
+      "loadFailed": "BrzA Studio could not check what it installed.",
       "tryAgain": "Try again",
-      "keeps": "Projects, worktrees and Orca settings stay.",
+      "keeps": "Projects, worktrees and BrzA Studio settings stay.",
       "keepsShared": "{{name}} is also installed, so hooks it shares stay too.",
       "closesTerminals": "Open terminals will close.",
       "removing": "Removing…",
@@ -1988,7 +1988,7 @@
       },
       "path": {
         "codexAccount": "Orca-managed Codex account",
-        "appData": "Orca app data"
+        "appData": "BrzA Studio app data"
       },
       "host": {
         "ssh": "SSH",
@@ -2003,11 +2003,11 @@
         "terminalDaemon": "the terminal background process",
         "hookScripts": "hook scripts",
         "nothing": "Nothing outside the app to remove.",
-        "loading": "Checking what Orca installed…",
+        "loading": "Checking what BrzA Studio installed…",
         "done": "Removed. Delete the app to finish.",
         "problems_one": "1 item needs you before you delete the app.",
         "problems_other": "{{count}} items need you before you delete the app.",
-        "stillInUse": "Some Orca files are still in use, so they stay for now."
+        "stillInUse": "Some BrzA Studio files are still in use, so they stay for now."
       },
       "status": {
         "running": "Removing",
@@ -2015,8 +2015,8 @@
         "problem": "Needs attention",
         "kept": "Kept"
       },
-      "stepFailed": "Orca could not finish this step.",
-      "finishFailed": "Orca could not do that."
+      "stepFailed": "BrzA Studio could not finish this step.",
+      "finishFailed": "BrzA Studio could not do that."
     },
     "notifications": {
       "perfNotices": {
@@ -2039,7 +2039,7 @@
     "automaticUpdates": {
       "saveFailed": "Could not save automatic updates.",
       "title": "Automatic updates",
-      "description": "On supported desktop installs, Orca downloads eligible updates on its regular check schedule and restarts to install them automatically.",
+      "description": "On supported desktop installs, BrzA Studio downloads eligible updates on its regular check schedule and restarts to install them automatically.",
       "info": "About automatic updates"
     },
     "cloudConsole": {
@@ -2053,7 +2053,7 @@
       "signInFailedDetail": "Your browser opened it anyway. Sign in there to continue."
     },
     "mobile": {
-      "teamDisabledRelay": "Orca Relay is turned off by your team. Use LAN."
+      "teamDisabledRelay": "BrzA Studio Relay is turned off by your team. Use LAN."
     },
     "computerUse": {
       "teamDisabled": "Computer Use is turned off by your team."
@@ -2105,8 +2105,8 @@
         "repoOff": "{{name}} turned off in {{repo}}"
       },
       "fileAgent": {
-        "title": "Let Orca edit {{agent}}’s MCP file?",
-        "line": "Orca will keep your MCP servers in {{agent}}’s settings file ({{file}}). Your own entries stay as they are.",
+        "title": "Let BrzA Studio edit {{agent}}’s MCP file?",
+        "line": "BrzA Studio will keep your MCP servers in {{agent}}’s settings file ({{file}}). Your own entries stay as they are.",
         "allow": "Allow"
       },
       "agents": {
@@ -2154,14 +2154,14 @@
       },
       "found": {
         "onlyIn": "{{agents}} · {{projects}} only",
-        "move": "Move to Orca",
+        "move": "Move to BrzA Studio",
         "actions": "{{name}} actions",
-        "copy": "Copy to Orca",
+        "copy": "Copy to BrzA Studio",
         "open": "Open",
-        "copied": "Copied {{name}} to Orca",
+        "copied": "Copied {{name}} to BrzA Studio",
         "title": "In your agents",
         "summary": "Found {{count}} servers in {{agents}}",
-        "moveAll": "Move all to Orca"
+        "moveAll": "Move all to BrzA Studio"
       },
       "signedInToast": "Signed in to {{name}}",
       "pasteRefused": "That address isn’t from this sign-in.",
@@ -2186,10 +2186,10 @@
         "linear": "Read and update issues and projects"
       },
       "move": {
-        "title": "Move {{name}} to Orca?",
-        "allTitle": "Move {{count}} servers to Orca?",
-        "line": "Orca removes it from {{agents}} settings and keeps a backup.",
-        "allLine": "Orca removes them from {{agents}} settings and keeps a backup.",
+        "title": "Move {{name}} to BrzA Studio?",
+        "allTitle": "Move {{count}} servers to BrzA Studio?",
+        "line": "BrzA Studio removes it from {{agents}} settings and keeps a backup.",
+        "allLine": "BrzA Studio removes them from {{agents}} settings and keeps a backup.",
         "confirm": "Move"
       },
       "yours": "Yours",
@@ -2238,9 +2238,9 @@
     "selectAll": "Select All",
     "quitAndStopAllSessions": "Quit Completely...",
     "quitAndStopAllSessionsTooltip": "Also stops every terminal session, including running agents. Plain Quit keeps them running so BrzA Studio reattaches on next launch.",
-    "about": "About Orca",
+    "about": "About BrzA Studio",
     "cut": "Cut",
-    "hide": "Hide Orca",
+    "hide": "Hide BrzA Studio",
     "hideOthers": "Hide Others",
     "minimize": "Minimize",
     "redo": "Redo",
@@ -2566,7 +2566,7 @@
             "33290e88ed": "Failed to connect profile",
             "9fcb07a796": "Profile connected",
             "2f6c78a039": "Failed to refresh profile auth",
-            "a37b5e6d37": "Signed out of Orca",
+            "a37b5e6d37": "Signed out of BrzA Studio",
             "83600521e7": "Failed to sign out",
             "76deec8f58": "Failed to switch organization",
             "7d4bc516ee": "Failed to switch profile",
@@ -2712,7 +2712,7 @@
             }
           },
           "availability": {
-            "web": "The floating workspace runs on your own computer, so it is only available in the Orca desktop app."
+            "web": "The floating workspace runs on your own computer, so it is only available in the BrzA Studio desktop app."
           }
         }
       },
@@ -2894,7 +2894,7 @@
         },
         "ports": {
           "serverPortForward": {
-            "updateServer": "Couldn't forward port {{port}} from {{host}}. Update Orca on {{host}} and try again.",
+            "updateServer": "Couldn't forward port {{port}} from {{host}}. Update BrzA Studio on {{host}} and try again.",
             "failed": "Couldn't forward port {{port}} from {{host}}. Check the connection and try again.",
             "forwarded": "Forwarded port {{port}} from {{host}}",
             "opened": "Opened {{address}} in your default browser.",
@@ -3050,10 +3050,10 @@
       "activateAiVaultStructuredSession": {
         "gone": "This chat is no longer on this host, so it cannot be reopened here.",
         "hostCannotOpen": "This chat can't be reopened until BrzA Studio is updated.",
-        "notLocatedNamed": "Orca can't find where {{agent}} is running, so it can't open it.",
-        "notLocated": "Orca can't find where this agent is running, so it can't open it.",
+        "notLocatedNamed": "BrzA Studio can't find where {{agent}} is running, so it can't open it.",
+        "notLocated": "BrzA Studio can't find where this agent is running, so it can't open it.",
         "worktreeDeleted": "The worktree was deleted.",
-        "projectRemoved": "The project was removed from Orca.",
+        "projectRemoved": "The project was removed from BrzA Studio.",
         "folderWorkspaceRemoved": "The folder workspace was removed.",
         "chatStillStarting": "This chat is still starting. Try again in a moment.",
         "chatOpenFailed": "Couldn't open chat",
@@ -3175,41 +3175,41 @@
       },
       "cli": {
         "detail": {
-          "registerForWsl": "Register {{path}} to use Orca from WSL.",
-          "registerForTerminal": "Register {{path}} to use Orca from the terminal.",
-          "registerForWindowsShell": "Register {{path}} to use Orca from Command Prompt or PowerShell.",
+          "registerForWsl": "Register {{path}} to use BrzA Studio from WSL.",
+          "registerForTerminal": "Register {{path}} to use BrzA Studio from the terminal.",
+          "registerForWindowsShell": "Register {{path}} to use BrzA Studio from Command Prompt or PowerShell.",
           "devLauncherOnly": "Development mode uses a generated launcher for validation only.",
           "differentLauncher": "{{path}} points to a different launcher.",
-          "launcherMissing": "The bundled CLI launcher is missing from this Orca build.",
+          "launcherMissing": "The bundled CLI launcher is missing from this BrzA Studio build.",
           "noWslDistro": "No WSL distribution is available.",
-          "notOrcaLauncherScript": "{{path}} exists but is not an Orca launcher script.",
-          "notOrcaSymlink": "{{path}} exists but is not an Orca symlink.",
-          "olderLauncher": "{{path}} contains an older Orca launcher.",
+          "notOrcaLauncherScript": "{{path}} exists but is not a BrzA Studio launcher script.",
+          "notOrcaSymlink": "{{path}} exists but is not a BrzA Studio symlink.",
+          "olderLauncher": "{{path}} contains an older BrzA Studio launcher.",
           "platformUnsupported": "CLI registration is not implemented on this platform.",
-          "readlinkPermissionDenied": "Orca does not have permission to inspect {{path}}. Check the path and its parent directory permissions, then try again.",
+          "readlinkPermissionDenied": "BrzA Studio does not have permission to inspect {{path}}. Check the path and its parent directory permissions, then try again.",
           "registeredAt": "Registered at {{path}}.",
           "registeredInDistroAt": "Registered in {{distro}} at {{path}}.",
           "registrationUnavailable": "CLI registration is unavailable on this build.",
           "unreadableSymlink": "{{path}} cannot be read. Register again to repair it.",
-          "windowsLauncherMissing": "The Windows Orca CLI launcher is missing.",
-          "windowsPathCheckFailed": "The Orca launcher exists, but Orca could not check your Windows user PATH.",
+          "windowsLauncherMissing": "The Windows BrzA Studio CLI launcher is missing.",
+          "windowsPathCheckFailed": "The BrzA Studio launcher exists, but BrzA Studio could not check your Windows user PATH.",
           "windowsPathTimedOut": "Windows PATH command timed out after {{ms}}ms.",
           "wslCommandTimedOut": "WSL command timed out after {{ms}}ms.",
           "wslDistroUnreachable": "Could not reach the WSL distro. Try again.",
           "wslHomeUnresolved": "Unable to resolve the WSL home directory.",
-          "wslInteropUnavailable": "WSL Windows interop is unavailable; Orca cannot launch the Windows CLI from WSL.",
+          "wslInteropUnavailable": "WSL Windows interop is unavailable; BrzA Studio cannot launch the Windows CLI from WSL.",
           "wslRegistrationUnavailable": "WSL CLI registration is unavailable.",
           "wslWindowsOnly": "WSL CLI registration is only available on Windows."
         }
       },
       "ephemeralVm": {
-        "provisionedRootNeedsUpdate": "The Orca server on this VM cannot adopt a provisioned root. Update Orca on the VM."
+        "provisionedRootNeedsUpdate": "The BrzA Studio server on this VM cannot adopt a provisioned root. Update BrzA Studio on the VM."
       },
       "executionHostFacts": {
         "sshPlatformWithheld": "The SSH host has not reported its operating system yet. Connect to it and try again.",
-        "runtimePlatformWithheld": "The Orca server has not reported its operating system yet. Reconnect to it and try again.",
-        "runtimePlatformUpdate": "This Orca server does not report its operating system. Update the server to launch agents on it.",
-        "hostUnresolvedWithheld": "Orca cannot tell which host owns this workspace yet."
+        "runtimePlatformWithheld": "The BrzA Studio server has not reported its operating system yet. Reconnect to it and try again.",
+        "runtimePlatformUpdate": "This BrzA Studio server does not report its operating system. Update the server to launch agents on it.",
+        "hostUnresolvedWithheld": "BrzA Studio cannot tell which host owns this workspace yet."
       },
       "fileOwnerRuntimeTarget": {
         "unresolved": "Couldn't verify which host owns this file. Reopen the file and try again."
@@ -3272,7 +3272,7 @@
           "grokBillingConfigMissing": "Grok billing response did not include config",
           "grokBillingUsageMissing": "Grok billing response did not include credit usage",
           "grokNotSignedIn": "Not signed in to Grok — run grok login",
-          "grokSignInExpired": "Grok sign-in expired — run grok on the computer running Orca; sign in if prompted. No chat message is needed.",
+          "grokSignInExpired": "Grok sign-in expired — run grok on the computer running BrzA Studio; sign in if prompted. No chat message is needed.",
           "grokUsageFailedHttp": "Grok usage request failed (HTTP {{status}})",
           "grokUsageRequestFailed": "Grok usage request failed",
           "grokUsageUnauthorizedHttp": "Grok usage request unauthorized (HTTP {{status}})",
@@ -3362,7 +3362,7 @@
         "nativeDropUnresolvedPaths": "BrzA Studio couldn't read a path for the dropped files.",
         "nativeDropTempCopyFailed_one": "BrzA Studio couldn't copy {{count}} dropped file.",
         "nativeDropTempCopyFailed_other": "BrzA Studio couldn't copy {{count}} dropped files.",
-        "nativeDropTempCopyFailed": "Orca couldn't copy {{count}} dropped files."
+        "nativeDropTempCopyFailed": "BrzA Studio couldn't copy {{count}} dropped files."
       },
       "useIpcEvents": {
         "0e3cf53060": "Browser tab {{value0}} not found",
@@ -5634,7 +5634,7 @@
             "fitHere": "Fit here"
           },
           "legacyRelayBridge": {
-            "unreachable": "This terminal is still running on the host under an older version of Orca. Reconnecting to it…"
+            "unreachable": "This terminal is still running on the host under an older version of BrzA Studio. Reconnecting to it…"
           }
         }
       },
@@ -6378,12 +6378,12 @@
           },
           "NativeChatResumeStatusSegment": {
             "tooltip": "Open interrupted agents available to resume",
-            "failedTooltip": "Agents Orca could not resume after the restart. Click for details.",
-            "checkTooltip": "Agents Orca couldn’t resume, or couldn’t confirm it resumed, after the restart. Click for details.",
+            "failedTooltip": "Agents BrzA Studio could not resume after the restart. Click for details.",
+            "checkTooltip": "Agents BrzA Studio couldn’t resume, or couldn’t confirm it resumed, after the restart. Click for details.",
             "resumingTooltip": "Restoring interrupted agents and asking them to carry on…",
             "resumingProgressLabel": "Resuming agents {{value0}}/{{value1}}",
             "resumingProgressAria": "Resuming agents, {{value0}} of {{value1}} done. Click to open details.",
-            "resumedTooltip": "Agents Orca resumed after the restart. Click to see them.",
+            "resumedTooltip": "Agents BrzA Studio resumed after the restart. Click to see them.",
             "chatsFailedLabel_one": "{{count}} agent failed to resume",
             "chatsFailedLabel_other": "{{count}} agents failed to resume",
             "chatsFailedAria_one": "{{count}} agent failed to resume. Click for details.",
@@ -6809,7 +6809,7 @@
         "StatsHostScope": {
           "remoteCaption": "Stats and usage recorded on {{value0}}. Enable and Refresh act on {{value0}}.",
           "tooOldTitle": "{{value0}} can't report usage yet",
-          "tooOldBody": "It runs an older version of Orca. Update Orca on {{value0}} to see its token usage here."
+          "tooOldBody": "It runs an older version of BrzA Studio. Update BrzA Studio on {{value0}} to see its token usage here."
         }
       },
       "sparse": {
@@ -7278,9 +7278,9 @@
           "updateAvailable": "Update available",
           "repairAvailable": "Repair available",
           "installAvailable": "Install available",
-          "otherBuild": "Installed by another Orca version",
-          "otherBuildKept": "Kept: written by another Orca version",
-          "differsFromOrca": "This copy differs from Orca's",
+          "otherBuild": "Installed by another BrzA Studio version",
+          "otherBuildKept": "Kept: written by another BrzA Studio version",
+          "differsFromOrca": "This copy differs from BrzA Studio's",
           "replaceMovesFolder": "Replacing moves the whole folder, including any extra files, to {{folder}}.",
           "replaceMovesFolderOnHost": "Replacing moves the whole folder, including any extra files, to {{folder}} on {{host}}.",
           "replaceMovesLink": "Replacing moves this link to {{folder}}.",
@@ -7309,9 +7309,9 @@
           "strandedDescription": "Your edits are still in {{value0}}. Copy them somewhere safe before updating again.",
           "preservedTitle": "Your edits to {{value0}} were saved separately",
           "preservedDescription": "BrzA Studio updated the skill and saved your edits to {{value0}}.",
-          "preservedBackupOnly": "Orca saved your edits to {{value0}}.",
+          "preservedBackupOnly": "BrzA Studio saved your edits to {{value0}}.",
           "uncertainTitle": "BrzA Studio couldn't confirm the skill update on {{value0}}",
-          "uncertainDescriptionKept": "Orca may have updated skills on {{value0}} but couldn't confirm the result. If you edited a skill during the update, your copy is in {{value1}} or still in the skills folder."
+          "uncertainDescriptionKept": "BrzA Studio may have updated skills on {{value0}} but couldn't confirm the result. If you edited a skill during the update, your copy is in {{value1}} or still in the skills folder."
         },
         "SkillBackupPathLine": {
           "movedTo": "Old copy moved to:",
@@ -7324,7 +7324,7 @@
           "leftoverReason": "Can't back up the left-over copy: it's on another drive.",
           "movedAsideReason": "Couldn't back up the old copy: it's on another drive.",
           "keepIt": "Move it out of the skills folder to keep it.",
-          "noReminder": "Move it out of the skills folder. Orca won't remind you.",
+          "noReminder": "Move it out of the skills folder. BrzA Studio won't remind you.",
           "copyPathFor": "Copy path for {{value0}}",
           "copyFailed": "Couldn't copy the path."
         }
@@ -7477,18 +7477,18 @@
           "namingBranch": "Naming branch…",
           "errorDetailsAt": "Error details · {{time}}",
           "reasonNothingYet": "No changes to name this branch from yet.",
-          "reasonBranchChanged": "The branch changed while Orca was naming it.",
+          "reasonBranchChanged": "The branch changed while BrzA Studio was naming it.",
           "reasonProjectMoving": "A project move is in progress.",
-          "reasonHistoryUnreadable": "Orca couldn't read this workspace's history. Try again.",
-          "reasonInterrupted": "Orca couldn't finish naming the branch. Try again.",
-          "reasonBranchPushed": "The branch was pushed, so Orca kept its name.",
-          "reasonBranchRenamed": "The branch was renamed, so Orca kept its name.",
-          "reasonNameChosen": "This branch name was chosen by hand, so Orca kept it.",
+          "reasonHistoryUnreadable": "BrzA Studio couldn't read this workspace's history. Try again.",
+          "reasonInterrupted": "BrzA Studio couldn't finish naming the branch. Try again.",
+          "reasonBranchPushed": "The branch was pushed, so BrzA Studio kept its name.",
+          "reasonBranchRenamed": "The branch was renamed, so BrzA Studio kept its name.",
+          "reasonNameChosen": "This branch name was chosen by hand, so BrzA Studio kept it.",
           "reasonSettingOff": "Branch auto-naming is off in Settings.",
           "reasonNoDistinctName": "The generated name matched the current one.",
-          "reasonFirstMessageUnavailable": "Orca couldn't find this workspace's first message.",
+          "reasonFirstMessageUnavailable": "BrzA Studio couldn't find this workspace's first message.",
           "reasonAlreadyNamed": "This workspace was already renamed.",
-          "reasonUnavailable": "Orca can't name this branch anymore.",
+          "reasonUnavailable": "BrzA Studio can't name this branch anymore.",
           "branchNameKept": "Branch name kept"
         },
         "CreateProjectLocationField": {
@@ -7645,8 +7645,8 @@
           "removeDescriptionSsh": "This only removes {{name}} from BrzA Studio. Its files stay on {{host}} — re-add that SSH host to recover it.",
           "removeDescriptionLocal": "This only removes {{name}} from BrzA Studio. It is still on your disk.",
           "removeDescriptionVmRecipe": "This removes {{name}} from BrzA Studio. Its VM recipe determines whether the environment and its files are permanently deleted.",
-          "linkedWorkspaceWarning_one": "{{count}} workspace in this project will also be removed from Orca.",
-          "linkedWorkspaceWarning_other": "{{count}} workspaces in this project will also be removed from Orca.",
+          "linkedWorkspaceWarning_one": "{{count}} workspace in this project will also be removed from BrzA Studio.",
+          "linkedWorkspaceWarning_other": "{{count}} workspaces in this project will also be removed from BrzA Studio.",
           "openTerminalWarning_one": "{{count}} open terminal in this project will be closed.",
           "openTerminalWarning_other": "{{count}} open terminals in this project will be closed."
         },
@@ -8556,7 +8556,7 @@
           "sshImportSynced_one": "Added {{count}} host to BrzA Studio.",
           "sshImportSynced_other": "Added {{count}} hosts to BrzA Studio.",
           "sshConfigPickerInvalidResponse": "Invalid SSH config host response",
-          "sshImportSynced": "Added {{value0}} host{{value1}} to Orca."
+          "sshImportSynced": "Added {{value0}} host{{value1}} to BrzA Studio."
         },
         "ForgetSshWorkspaceDialog": {
           "cancel": "Cancel",
@@ -8618,7 +8618,7 @@
                 "d42f1f14e0_other": "Retry {{count}} Branches",
                 "0e0379f24a": "{{count}} branches kept",
                 "6310412304": "Review {{count}} Branches",
-                "a3cdd9d9e6": "Git kept {{count}} local branches because they may contain unmerged commits. Kept branches do not retain workspace folders; their commits remain in the repository. Orca may continue freeing workspace disk space in the background.",
+                "a3cdd9d9e6": "Git kept {{count}} local branches because they may contain unmerged commits. Kept branches do not retain workspace folders; their commits remain in the repository. BrzA Studio may continue freeing workspace disk space in the background.",
                 "cea24c2b7d": "{{count}} workspaces removed",
                 "d42f1f14e0": "Retry {{count}} Branches"
               }
@@ -9084,7 +9084,7 @@
           "retrySetup": "Retry",
           "installing": "Installing...",
           "hostUnavailable": "BrzA Studio can't install skills on this workspace's machine yet.",
-          "replaceWithOrcaCopy": "Replace with Orca’s",
+          "replaceWithOrcaCopy": "Replace with BrzA Studio’s",
           "copyCommandAria": "Copy command",
           "ed197f59a2": "Copy command",
           "failedToCopyCommand": "Failed to copy command.",
@@ -9123,7 +9123,7 @@
           "3f1bdf3cb4": "Environment text is too large to parse safely.",
           "codexSessionSource": "Import Codex conversations from",
           "codexSessionSourceInfo": "About importing Codex conversations",
-          "codexSessionSourceTooltip": "While history is shared across accounts, Orca copies this Codex home's conversations into ~/.codex so /resume lists them. Turns added in this folder after a conversation is copied don't reach the copy.",
+          "codexSessionSourceTooltip": "While history is shared across accounts, BrzA Studio copies this Codex home's conversations into ~/.codex so /resume lists them. Turns added in this folder after a conversation is copied don't reach the copy.",
           "noAgentsDetected": "No agents detected. If one is installed, the probe may have timed out.",
           "9f30095d49": "Agent permissions"
         },
@@ -9619,7 +9619,7 @@
           "downloadUpdate": "Download update",
           "restartToUpdate": "Restart to update",
           "versionAvailable": "Version {{version}} is available.",
-          "externallyManagedVersionAvailable": "Version {{version}} is available. Update Orca through your system package manager — Orca cannot install this release itself.",
+          "externallyManagedVersionAvailable": "Version {{version}} is available. Update BrzA Studio through your system package manager — BrzA Studio cannot install this release itself.",
           "versionReadyToInstall": "Version {{version}} is ready to install.",
           "versionInstalling": "Version {{version}} is being installed.",
           "downloadingVersion": "Downloading version {{version}} ({{percent}}%)…"
@@ -9743,9 +9743,9 @@
           "prAutoRefreshHintAutomatic": "Keeps pull requests and checks up to date.",
           "prAutoRefreshHintLessOften": "Checks GitHub less often. Useful if you hit GitHub rate limits.",
           "prAutoRefreshTitle": "PR Updates",
-          "prAutoRefreshDescription": "How often Orca checks GitHub for pull request and CI changes.",
+          "prAutoRefreshDescription": "How often BrzA Studio checks GitHub for pull request and CI changes.",
           "prAutoRefreshHintOff": "Updates when you push or click Refresh.",
-          "prAutoRefreshUnsupportedHost": "Update Orca on {{host}} to change this",
+          "prAutoRefreshUnsupportedHost": "Update BrzA Studio on {{host}} to change this",
           "prAutoRefreshUnknownHost": "the selected server"
         },
         "HiddenExperimentalGroup": {
@@ -13918,11 +13918,11 @@
           "title": "BrzA Studio Account",
           "description": "Share work instantly and reach your desktop from BrzA Studio Mobile wherever you are.",
           "searchDescription": "Sign in or out of the account used by Artifacts and BrzA Studio Relay.",
-          "managed": "Your team manages some Orca settings.",
+          "managed": "Your team manages some BrzA Studio settings.",
           "deviceReportNamedViewers": "Owners and admins at {{teams}} can view reports from this device.",
           "deviceReportViewers": "Team owners and admins can view reports from this device.",
           "reportingDetails": "Device reporting details",
-          "reportingDisclosure": "The Devices view shows your Orca version, release channel, device name, platform, update status, required plugins Orca couldn’t install, and when the device last reported.",
+          "reportingDisclosure": "The Devices view shows your BrzA Studio version, release channel, device name, platform, update status, required plugins BrzA Studio couldn’t install, and when the device last reported.",
           "benefitsTitle": "Included with your account",
           "artifactsTitle": "Artifact sharing",
           "artifactsDescription": "Publish HTML and Markdown files, then manage every shared link from BrzA Studio.",
@@ -14165,7 +14165,7 @@
             "updateAnyway": "Update anyway",
             "notNow": "Not now",
             "forceUpdate": "Terminals are running on this host. They keep running through the update, and their panes reconnect when BrzA Studio’s server restarts.",
-            "forceUpdateUncounted": "Orca couldn’t count the terminals on this host. The update goes ahead only if no terminal daemon is running there, and any terminals Orca’s server runs itself will end."
+            "forceUpdateUncounted": "BrzA Studio couldn’t count the terminals on this host. The update goes ahead only if no terminal daemon is running there, and any terminals BrzA Studio’s server runs itself will end."
           },
           "description": "BrzA Studio installs itself on an empty SSH host and keeps itself up to date.",
           "deploy": {
@@ -14298,8 +14298,8 @@
           "refusedLeaveBehindUnnamed": "Some saved items for this host can’t move to its BrzA Studio server. Move anyway connects the host and keeps them on this computer.",
           "windowsBuildUnsupported": "This host runs a version of Windows older than Windows 10 and Windows Server 2016, so it can’t run BrzA Studio’s server. Use a host with a newer version of Windows, or a Linux or macOS host.",
           "windowsNoExtractor": "This Windows host has neither tar.exe nor PowerShell’s Expand-Archive, so BrzA Studio can’t unpack its server there. Install Windows PowerShell 5.1 on the host, then connect again.",
-          "linkedProjects": "This host’s Orca server already had {{paths}}, so this desktop now uses the server’s copy. This desktop’s tabs and {{count}} automations there were not moved, and worktrees it created there show as external worktrees.",
-          "olderTerminals": "{{count}} terminals started by an older version of Orca are still running on this host, and they don’t stop on their own. Close them in that version of Orca or end them on the host, then reconnect."
+          "linkedProjects": "This host’s BrzA Studio server already had {{paths}}, so this desktop now uses the server’s copy. This desktop’s tabs and {{count}} automations there were not moved, and worktrees it created there show as external worktrees.",
+          "olderTerminals": "{{count}} terminals started by an older version of BrzA Studio are still running on this host, and they don’t stop on their own. Close them in that version of BrzA Studio or end them on the host, then reconnect."
         },
         "ZcodeCliSetupSection": {
           "title": "Use GLM with ZCode",
@@ -14403,7 +14403,7 @@
         "wslHostsExperimental": {
           "toggleLabel": "Toggle WSL distros as hosts",
           "title": "WSL distros as hosts",
-          "description": "Run Orca’s server inside a WSL 2 distro, so git, files and terminals run natively in Linux.",
+          "description": "Run BrzA Studio’s server inside a WSL 2 distro, so git, files and terminals run natively in Linux.",
           "keywordWsl": "wsl",
           "keywordLinux": "linux",
           "keywordDistro": "distro"
@@ -14421,7 +14421,7 @@
           "restartAsWslHost": {
             "button": "Restart as WSL host",
             "title": "Restart as WSL host?",
-            "description": "Ends every terminal and agent on {{host}}, including ones an SSH host opened, then restarts Orca’s server as a WSL host.",
+            "description": "Ends every terminal and agent on {{host}}, including ones an SSH host opened, then restarts BrzA Studio’s server as a WSL host.",
             "cancel": "Cancel",
             "action": "End terminals and restart"
           }
@@ -14584,7 +14584,7 @@
           "overYourSsh": "Over your SSH connection",
           "newerThanApp": "Newer than this app (v{{version}})",
           "installViaSsh": "Install via SSH",
-          "shareRowHint": "Let another Orca connect here.",
+          "shareRowHint": "Let another BrzA Studio connect here.",
           "manageShare": "Manage",
           "share": "Share",
           "serversCaption": "Servers",
@@ -14636,7 +14636,7 @@
           "attentionSharedNotCurrent": "Needs attention · The shared copy this folder uses is not BrzA Studio’s",
           "resultUpdateSkippedPlaces": "{{result}} · Update skipped in {{places}} places: {{reason}}",
           "resultUpdateSkippedAgent": "{{result}} · Update skipped in {{agent}}: {{reason}}",
-          "attentionDiffersFromOrca": "Needs attention · This copy differs from Orca's",
+          "attentionDiffersFromOrca": "Needs attention · This copy differs from BrzA Studio's",
           "replaceMovesCopyToBackup": "Replacing moves the current copy, including any extra files, to a backup.",
           "replaceMovesCopyToFolder": "Replacing moves the current copy, including any extra files, to {{folder}}.",
           "replaceMovesCopyToFolderOnHost": "Replacing moves the current copy, including any extra files, to {{folder}} on {{host}}."
@@ -14841,7 +14841,7 @@
           "newShortcuts": "Keyboard shortcuts",
           "newCommands": "Commands",
           "newPanels": "Adds panels",
-          "newEvents": "Reacts to more Orca events",
+          "newEvents": "Reacts to more BrzA Studio events",
           "newRecipes": "Machine recipes",
           "newMcpServers": "MCP servers",
           "newContributions": "Features that act for you",
@@ -14849,7 +14849,7 @@
           "update": "Update",
           "replacesAction": "{{value0}} runs instead of BrzA Studio’s {{value1}}",
           "newFileTypes": "Changes which files it opens",
-          "newHooks": "Can change or stop what Orca and your agents do",
+          "newHooks": "Can change or stop what BrzA Studio and your agents do",
           "newSettings": "A settings page",
           "newStatusBarItems": "Status bar items",
           "opensFileTypes": "Opens new file types: {{value0}}",
@@ -15040,7 +15040,7 @@
         "PluginUpdateReview": {
           "title": "Review update to {{value0}}",
           "approve": "Approve & update",
-          "uncompared": "Orca couldn’t compare this version with the one you approved. Check what it can access before you update.",
+          "uncompared": "BrzA Studio couldn’t compare this version with the one you approved. Check what it can access before you update.",
           "newInVersion": "New in this version:",
           "titleMany": "Review {{value0}} updates",
           "history": "See its changes on GitHub"
@@ -15065,7 +15065,7 @@
           "details": "Details",
           "failed": "Couldn’t update {{value0}}",
           "morePlugins": "and {{value0}} more plugins",
-          "uncompared": "Orca couldn’t compare it with the version you approved.",
+          "uncompared": "BrzA Studio couldn’t compare it with the version you approved.",
           "held": "{{value0}} changed after you reviewed it, so it waits for your review in Settings → Plugins."
         },
         "PluginInstallTrustDialog": {
@@ -15144,7 +15144,7 @@
         "StatusBarUsageFormatSetting": {
           "reset": "Reset",
           "previewLabel": "Preview",
-          "previewBuiltin": "Leave empty to use Orca’s built-in format.",
+          "previewBuiltin": "Leave empty to use BrzA Studio’s built-in format.",
           "placeholder": {
             "provider": "provider name",
             "plan": "plan (Codex)",
@@ -15958,7 +15958,7 @@
                   },
                   "host_off": {
                     "title": "WSL host is off",
-                    "body": "Orca refreshes {{reviewLabel}} status through this project’s WSL host, which is off. Reconnect it to refresh."
+                    "body": "BrzA Studio refreshes {{reviewLabel}} status through this project’s WSL host, which is off. Reconnect it to refresh."
                   },
                   "not_git": {
                     "title": "Not a Git repository",
@@ -17796,7 +17796,7 @@
                 "f98e9d1bad": "Search every agent session",
                 "990cc29865": "Find any past conversation by what was said in it, then pick up where the agent left off.",
                 "91e2719807": "Enable session search",
-                "3eacedec93": "Let agents drive Orca with the Orca CLI",
+                "3eacedec93": "Let agents drive BrzA Studio with the BrzA Studio CLI",
                 "8d54d0ff53": "Enable agents to coordinate child worktrees and communicate between worktrees.",
                 "0080bc86eb": "Install CLI & Skills",
                 "9b58bc5d7a": "Jump to a worktree with <shortcut>",
@@ -18788,7 +18788,7 @@
           "pathAccessDenied": "Access denied: path resolves outside allowed directories. If this blocks a legitimate workflow, please file a GitHub issue.",
           "changedDuringRead": "File changed on disk while it was loading. Reload the file to see the latest version.",
           "remotePathIsDirectory": "Remote path is a directory",
-          "remotePagedReadUnsupported": "Remote file is larger than the 512 KB this Orca server can send. Update the server to open it.",
+          "remotePagedReadUnsupported": "Remote file is larger than the 512 KB this BrzA Studio server can send. Update the server to open it.",
           "remoteFileTooLarge": "Remote file is too large to open in the editor ({{bytes}} bytes)"
         },
         "BinaryFileDefaultAppButton": {
@@ -19027,7 +19027,7 @@
                     "extensions": {
                       "intro": {
                         "title": "Bring your Chrome extensions",
-                        "everydayTitle": "Your everyday browser tools, in Orca",
+                        "everydayTitle": "Your everyday browser tools, in BrzA Studio",
                         "body": "Install from the Chrome Web Store and pin them next to the address bar.",
                         "action": "Open Web Store",
                         "secondaryAction": "Got it"
@@ -20717,7 +20717,7 @@
         "ownershipUnknownShort": "Not ready to resume yet.",
         "notAttachedShort": "Didn’t reconnect.",
         "dispatchRejectedShort": "The agent declined to continue.",
-        "unsupportedShort": "Orca can’t resume this agent."
+        "unsupportedShort": "BrzA Studio can’t resume this agent."
       },
       "web": {
         "preloadApi": {
@@ -20857,7 +20857,7 @@
         },
         "list": {
           "PluginsSectionDescription": {
-            "openWith": "Open with (except while typing in an Orca text field)"
+            "openWith": "Open with (except while typing in a BrzA Studio text field)"
           }
         },
         "pluginInstallCount": {
@@ -20936,18 +20936,18 @@
         "partial_other": "Resumed {{resumed}} of {{total}} agents. {{count}} need you.",
         "stoppedOn_one": "{{count}} agent stopped on {{machine}}.",
         "stoppedOn_other": "{{count}} agents stopped on {{machine}}.",
-        "stoppedUpdate_one": "{{count}} agent stopped when Orca updated.",
-        "stoppedUpdate_other": "{{count}} agents stopped when Orca updated.",
-        "stoppedRestart_one": "{{count}} agent stopped when Orca closed.",
-        "stoppedRestart_other": "{{count}} agents stopped when Orca closed.",
+        "stoppedUpdate_one": "{{count}} agent stopped when BrzA Studio updated.",
+        "stoppedUpdate_other": "{{count}} agents stopped when BrzA Studio updated.",
+        "stoppedRestart_one": "{{count}} agent stopped when BrzA Studio closed.",
+        "stoppedRestart_other": "{{count}} agents stopped when BrzA Studio closed.",
         "promptsNotResent": "Resuming won’t send your prompts again.",
         "resume": "Resume",
         "details": "Details",
         "close": "Close",
         "listLabel": "Agents",
         "untitled": "Untitled agent",
-        "willAsk": "Orca asks agents to continue. Queued messages may be sent.",
-        "asked": "Orca asked agents to continue. Queued messages may be sent.",
+        "willAsk": "BrzA Studio asks agents to continue. Queued messages may be sent.",
+        "asked": "BrzA Studio asked agents to continue. Queued messages may be sent.",
         "resumedAutomatically": "Resumed automatically.",
         "changeInSettings": "Change in Settings",
         "dismissAll": "Dismiss all",
@@ -21018,12 +21018,12 @@
         "streamStopped": "Remote terminal stream stopped responding."
       },
       "jira": {
-        "currentSprintNeedsUpdate": "Update the remote Orca server to filter preset issues by current sprint.",
-        "transitionFieldsNeedsUpdate": "Update the remote Orca server to submit required transition fields, or complete the transition in Jira."
+        "currentSprintNeedsUpdate": "Update the remote BrzA Studio server to filter preset issues by current sprint.",
+        "transitionFieldsNeedsUpdate": "Update the remote BrzA Studio server to submit required transition fields, or complete the transition in Jira."
       },
       "runtimeGitSyncClient": {
         "completeMergeNeedsNewerHost": "Completing a merge needs a newer BrzA Studio on this host. Update BrzA Studio on that host.",
-        "continueRebaseNeedsNewerHost": "Continuing a rebase needs a newer Orca on this host. Update Orca on that host."
+        "continueRebaseNeedsNewerHost": "Continuing a rebase needs a newer BrzA Studio on this host. Update BrzA Studio on that host."
       },
       "runtimeGitWorkingTreeClient": {
         "resolveConflictNeedsNewerHost": "Resolving conflicts needs a newer BrzA Studio on this host. Update BrzA Studio on that host."
@@ -21077,7 +21077,7 @@
         "dashboard": {
           "popout": {
             "window": {
-              "title": "Orca Agent Dashboard"
+              "title": "BrzA Studio Agent Dashboard"
             }
           }
         }
@@ -21290,7 +21290,7 @@
         "runtimeNotInstalled": "{{agent}} isn't installed on the computer running this chat. Install it from the chat in a current version of BrzA Studio.",
         "fullAccessAsRoot": "{{agent}} won't use Full access while it runs as root. Choose another permission for {{agent}} in Settings → Agents for the computer running this chat, then start a new chat.",
         "botToolsNeedStatusHooks": "{{agent}} bots need Agent status hooks: they are how a bot's tools act as the bot. Turn them on for {{agent}} in Settings → Agents, then start a new chat.",
-        "botToolsGatewayOutdated": "{{agent}}'s gateway is still running an older copy of Orca's plugin, so this bot's tools can't act as the bot. Run `hermes gateway stop`, then start a new chat.",
+        "botToolsGatewayOutdated": "{{agent}}'s gateway is still running an older copy of BrzA Studio's plugin, so this bot's tools can't act as the bot. Run `hermes gateway stop`, then start a new chat.",
         "launchPreparationFailed": "BrzA Studio couldn't prepare {{agent}} to start on the computer running this chat.",
         "conversationOpenElsewhere": "Codex is still holding this conversation open. Try again in a moment, or close other Codex terminals.",
         "conversationOpenInTerminal": "{{agent}} is already running this conversation in another terminal. Quit {{agent}} there or close that terminal to continue here.",
@@ -21518,10 +21518,10 @@
         "orcaStopRemote": "BrzA Studio on {{machine}} stopped while this response was in progress.",
         "orcaStopCanContinue": "You can continue in this conversation.",
         "orcaStopUnnamedServer": "the remote server",
-        "restartContinued": "Orca asked this agent to continue after a restart. Your own prompt was not re-sent.",
-        "restartContinueRefused": "Orca couldn't continue this chat after the restart. Send a message to continue it.",
-        "restartContinueUnconfirmed": "Orca asked this agent to continue after the restart but couldn't confirm it did. Check its latest reply before sending another message.",
-        "restartNotConnected": "Orca couldn't reconnect this chat after the restart, so it didn't ask the agent to continue.",
+        "restartContinued": "BrzA Studio asked this agent to continue after a restart. Your own prompt was not re-sent.",
+        "restartContinueRefused": "BrzA Studio couldn't continue this chat after the restart. Send a message to continue it.",
+        "restartContinueUnconfirmed": "BrzA Studio asked this agent to continue after the restart but couldn't confirm it did. Check its latest reply before sending another message.",
+        "restartNotConnected": "BrzA Studio couldn't reconnect this chat after the restart, so it didn't ask the agent to continue.",
         "permissionDenied": "{{agent}} denied permission. View details.",
         "safetyReviewApproved": "{{agent}} approved this action. View details.",
         "safetyReview": "{{agent}} reported a safety review warning. View details.",
@@ -21660,7 +21660,7 @@
         "permissionFullAccess": "Full access",
         "permissionAgentSettings": "{{agent}} settings",
         "permissionAgentSettingsUsedHint": "Uses your {{agent}} permission settings.",
-        "permissionAgentSettingsUnnamedHint": "Uses your {{agent}} permission settings. Orca can't show this mode.",
+        "permissionAgentSettingsUnnamedHint": "Uses your {{agent}} permission settings. BrzA Studio can't show this mode.",
         "permissionFromAgentSettings": "{{mode}}, from {{agent}} settings",
         "permissionFullAccessDescription": "Never asks before edits or commands",
         "permissionFullAccessCodexDescription": "Never asks; can edit any file and use the network",
@@ -22478,7 +22478,7 @@
         "unavailable": "No preview for this page."
       },
       "workers": {
-        "stopUnconfirmed": "Orca couldn’t confirm the worker stopped."
+        "stopUnconfirmed": "BrzA Studio couldn’t confirm the worker stopped."
       },
       "connectorAsker": {
         "anApp": "An app",
@@ -22531,7 +22531,7 @@
         "addOrg": "Add org",
         "addWorkspace": "Add workspace",
         "githubAsYou": "It can also work in GitHub as you, through your gh login.",
-        "linearAsYou": "It can also work in Linear as you, through your own Linear sign-in in Orca."
+        "linearAsYou": "It can also work in Linear as you, through your own Linear sign-in in BrzA Studio."
       },
       "toolAdded": {
         "removed": "Removed",
@@ -22554,8 +22554,8 @@
         "handOff": "Hand off to agent",
         "more": "More actions",
         "statusUnknown": "Reset time unknown.",
-        "statusCanContinueAtAuto": "You can continue at {{time}}. Orca will continue this chat at {{autoTime}}.",
-        "statusCanContinueAtNoAuto": "You can continue at {{time}}. Orca won't continue this chat automatically.",
+        "statusCanContinueAtAuto": "You can continue at {{time}}. BrzA Studio will continue this chat at {{autoTime}}.",
+        "statusCanContinueAtNoAuto": "You can continue at {{time}}. BrzA Studio won't continue this chat automatically.",
         "statusCanContinueAt": "You can continue at {{time}}.",
         "resetUnknown": "Reset time unknown",
         "continuesAt": "Continues at {{time}}",
@@ -22565,10 +22565,10 @@
         "titleWeeklyReached": "{{agent}} weekly limit reached",
         "titleExtraUsageReached": "{{agent}} extra usage limit reached",
         "titleUsageReached": "{{agent}} usage limit reached",
-        "statusHasUsageAuto": "{{agent}} has usage again. Orca will continue this chat at {{time}}.",
+        "statusHasUsageAuto": "{{agent}} has usage again. BrzA Studio will continue this chat at {{time}}.",
         "statusHasUsage": "{{agent}} has usage again.",
         "titleHasUsage": "{{agent}} has usage again",
-        "statusCanContinueNowAuto": "{{agent}} can continue now. Orca will continue this chat at {{time}}.",
+        "statusCanContinueNowAuto": "{{agent}} can continue now. BrzA Studio will continue this chat at {{time}}.",
         "statusCanContinueNow": "{{agent}} can continue now.",
         "titleCanContinueNow": "{{agent}} can continue now",
         "turnOnAutoContinue": "Auto-continue on reset"
@@ -22709,7 +22709,7 @@
         "close": "Close",
         "loading": "Loading…",
         "notRunning": "Connect when you send your next message",
-        "unsupported": "Update Orca on this chat’s host to manage them here",
+        "unsupported": "Update BrzA Studio on this chat’s host to manage them here",
         "readFailed": "Couldn’t load",
         "retry": "Retry",
         "empty": "None set up for this chat",
@@ -22945,9 +22945,9 @@
         "someonesDm": "Also posts to a DM with {{bot}}",
         "channel": "Also posts to {{channel}} thread",
         "thread": "Also posts to the Slack thread",
-        "offUnavailable": "Only in Orca · thread unavailable",
-        "offNotInChannel": "Only in Orca · not in channel",
-        "off": "Only in Orca",
+        "offUnavailable": "Only in BrzA Studio · thread unavailable",
+        "offNotInChannel": "Only in BrzA Studio · not in channel",
+        "off": "Only in BrzA Studio",
         "shortDm": "Slack DM",
         "shortChannel": "{{channel}} thread",
         "shortThread": "Slack thread",
@@ -22958,23 +22958,23 @@
         "detailRemovedFrom": "{{bot}} was removed from {{channel}}.",
         "detailRemoved": "{{bot}} was removed from the channel.",
         "detailFallback": "Posts as {{bot}} with your name. Update in Slack to post under your name.",
-        "detailOwnDm": "Your messages and {{bot}}'s replies. Only you see this DM. Tool calls and workers stay in Orca.",
-        "detailTheirDm": "Your messages and {{bot}}'s replies. {{name}} sees them in their DM. Tool calls and workers stay in Orca.",
-        "detailSomeonesDm": "Your messages and {{bot}}'s replies. The person in this DM sees them. Tool calls and workers stay in Orca.",
-        "detailThread": "Your messages and {{bot}}'s replies. Everyone in the channel can see them. Tool calls and workers stay in Orca.",
-        "detailExternal": "Your messages and {{bot}}'s replies. Everyone in {{channel}} can see them, including people outside your workspace. Tool calls and workers stay in Orca.",
-        "detailChannel": "Your messages and {{bot}}'s replies. Everyone in {{channel}} can see them. Tool calls and workers stay in Orca.",
+        "detailOwnDm": "Your messages and {{bot}}'s replies. Only you see this DM. Tool calls and workers stay in BrzA Studio.",
+        "detailTheirDm": "Your messages and {{bot}}'s replies. {{name}} sees them in their DM. Tool calls and workers stay in BrzA Studio.",
+        "detailSomeonesDm": "Your messages and {{bot}}'s replies. The person in this DM sees them. Tool calls and workers stay in BrzA Studio.",
+        "detailThread": "Your messages and {{bot}}'s replies. Everyone in the channel can see them. Tool calls and workers stay in BrzA Studio.",
+        "detailExternal": "Your messages and {{bot}}'s replies. Everyone in {{channel}} can see them, including people outside your workspace. Tool calls and workers stay in BrzA Studio.",
+        "detailChannel": "Your messages and {{bot}}'s replies. Everyone in {{channel}} can see them. Tool calls and workers stay in BrzA Studio.",
         "posting": "Posting to Slack…",
         "failedFile": "Not posted to Slack · file too large",
         "failedEmpty": "Not posted to Slack · nothing to post",
         "failedTooLong": "Not posted to Slack · message too long",
         "failed": "Not posted to Slack",
         "delete": "Delete from Slack",
-        "postedFrom": "Posted to {{place}} from Orca",
+        "postedFrom": "Posted to {{place}} from BrzA Studio",
         "retry": "Retry",
         "rewindStays": "Messages already in Slack stay there.",
         "switch": "Post this chat to Slack",
-        "tooltipOff": "Your messages stay in Orca",
+        "tooltipOff": "Your messages stay in BrzA Studio",
         "tooltipOn": "Your messages and {{bot}}'s replies also post to this Slack thread"
       },
       "typedBy": {
@@ -23006,7 +23006,7 @@
         "detected": "Detected",
         "settings": "Sign-in settings…",
         "switched": "Antigravity now uses {{method}}.",
-        "switchFailed": "Orca couldn't change how Antigravity signs in. Try again.",
+        "switchFailed": "BrzA Studio couldn't change how Antigravity signs in. Try again.",
         "confirmTitle": "Switch to {{method}}?",
         "confirmBody": "Antigravity chats running on this host restart. A reply in progress stops; your conversations stay.",
         "cancel": "Cancel",
@@ -23015,10 +23015,10 @@
         "moreOptions": "More options…",
         "useApiKey": "Use your Gemini API key",
         "useGoogle": "Use your Google sign-in",
-        "apiKeySaved": "Saved in Orca",
+        "apiKeySaved": "Saved in BrzA Studio",
         "googleFound": "You signed in with Google on this host before",
         "askApiKeyEnvironment": "Use the Gemini API key found in your environment instead?",
-        "askApiKeySaved": "Use the Gemini API key saved in Orca instead?",
+        "askApiKeySaved": "Use the Gemini API key saved in BrzA Studio instead?",
         "askGcloud": "Use your gcloud login (project {{project}}) instead?",
         "askGoogle": "Use your Google sign-in instead?",
         "noSubscription": "This Google account has no Antigravity subscription.",
@@ -23029,8 +23029,8 @@
         "signInGoogle": "Sign in with Google",
         "yourAgy": "Your agy",
         "yourAgyVersion": "Your agy · v{{version}}",
-        "orcasAgy": "Orca's agy",
-        "orcasAgyVersion": "Orca's agy · v{{version}}",
+        "orcasAgy": "BrzA Studio's agy",
+        "orcasAgyVersion": "BrzA Studio's agy · v{{version}}",
         "runsOn": "Runs on: {{program}}",
         "keepsOwnLogin": "This chat keeps agy's own Google login. New chats use {{method}}.",
         "apiKeyEnvironment": "From your environment",
@@ -23429,8 +23429,8 @@
           "statusLabel": "Status",
           "signalsLabel": "Signals",
           "projectOnHost": "{{project}} · {{host}}",
-          "notGit": "Not a git workspace. Remove the project from Orca instead.",
-          "unreachable": "Can't reach {{host}}. Reconnect to delete, or remove it from Orca.",
+          "notGit": "Not a git workspace. Remove the project from BrzA Studio instead.",
+          "unreachable": "Can't reach {{host}}. Reconnect to delete, or remove it from BrzA Studio.",
           "mainCheckout": "Can't delete the project's main checkout.",
           "uncommittedFiles_one": "{{count}} uncommitted file",
           "uncommittedFiles_other": "{{count}} uncommitted files",
@@ -23576,10 +23576,10 @@
         "copySessionIdSuccess": "Session ID copied",
         "copySessionIdError": "Unable to copy session ID",
         "copySessionIdUnavailable": "No session ID to copy",
-        "copyOrcaSessionId": "Copy Orca Session ID",
-        "orcaSessionIdTooltip": "Orca's ID for this agent, separate from the agent CLI's own session ID. Agents use it to refer to each other through Orca.",
-        "orcaSessionIdCopied": "Orca session ID copied",
-        "orcaSessionIdCopyFailed": "Unable to copy Orca session ID"
+        "copyOrcaSessionId": "Copy BrzA Studio Session ID",
+        "orcaSessionIdTooltip": "BrzA Studio's ID for this agent, separate from the agent CLI's own session ID. Agents use it to refer to each other through BrzA Studio.",
+        "orcaSessionIdCopied": "BrzA Studio session ID copied",
+        "orcaSessionIdCopyFailed": "Unable to copy BrzA Studio session ID"
       },
       "hostFile": {
         "updateHostForOutsideFiles": "Update BrzA Studio on {{value0}} to open files outside its workspaces"
@@ -23663,7 +23663,7 @@
         "usageLimitContinueSearchLimit": "usage limit",
         "usageLimitContinueSearchReset": "reset",
         "usageLimitContinueToggleLabel": "Toggle continuing chats when a usage limit resets",
-        "usageLimitContinueUnsupported": "Update Orca on {{host}} to change this setting there.",
+        "usageLimitContinueUnsupported": "Update BrzA Studio on {{host}} to change this setting there.",
         "usageLimitContinueUpdateFailed": "Couldn't update the setting on {{host}}.",
         "idleStopTitle": "Stop idle agents after",
         "idleStopCopy": "Ends a chat's agent once the chat has been idle this long, to free memory. The chat stays, and your next message starts the agent again. Choose Never for agents that keep working in the background between turns.",
@@ -23859,7 +23859,7 @@
             "waitLabel": "Wait",
             "wait": "Text lands a few seconds later.",
             "title": "Turn on AI cleanup?",
-            "description": "After each dictation, Orca sends the text to {{agent}} to tidy it before it lands.",
+            "description": "After each dictation, BrzA Studio sends the text to {{agent}} to tidy it before it lands.",
             "cancel": "Cancel",
             "confirm": "Turn on"
           },
@@ -23901,8 +23901,8 @@
       },
       "workspaceCleanup": {
         "title": "Workspace Cleanup",
-        "description": "Remove workspaces you're done with. Before removing anything, Orca checks again for unsaved work.",
-        "unsupportedHost": "This host runs an Orca version without automatic cleanup. Update Orca on it to use these settings.",
+        "description": "Remove workspaces you're done with. Before removing anything, BrzA Studio checks again for unsaved work.",
+        "unsupportedHost": "This host runs a BrzA Studio version without automatic cleanup. Update BrzA Studio on it to use these settings.",
         "previewFailed": "Couldn't check which workspaces this change matches.",
         "pinFailed": "Couldn't keep {{name}}.",
         "rules": {
@@ -24136,8 +24136,8 @@
       "recoverServer": {
         "titleOnHost": "Clear the old lock on {{host}}?",
         "titleGeneric": "Clear the old lock?",
-        "summary": "An earlier run left a lock, so Orca’s server can’t start.",
-        "confirmCheckHomeFolder": "No other machine sharing this home folder is running Orca",
+        "summary": "An earlier run left a lock, so BrzA Studio’s server can’t start.",
+        "confirmCheckHomeFolder": "No other machine sharing this home folder is running BrzA Studio",
         "details": "Details",
         "clearing": "Clearing…"
       },
@@ -24145,13 +24145,13 @@
         "deleteHistoryWithWorkspace": {
           "updateFailed": "Couldn't update the setting on {{host}}.",
           "recommended": "Recommended",
-          "unsupported": "Update Orca on {{host}} to use this setting there.",
+          "unsupported": "Update BrzA Studio on {{host}} to use this setting there.",
           "confirmTitle": "Delete agent history from deleted workspaces?",
-          "confirmDescription": "Orca will delete Orca, Claude Code and Codex chats from workspaces that no longer exist, including ones deleted before today. Chats from workspaces you still have are kept. Deleted chats can't be recovered.",
+          "confirmDescription": "BrzA Studio will delete BrzA Studio, Claude Code and Codex chats from workspaces that no longer exist, including ones deleted before today. Chats from workspaces you still have are kept. Deleted chats can't be recovered.",
           "cancel": "Cancel",
           "turnOn": "Turn on",
           "title": "Delete agent history when a workspace is deleted",
-          "description": "Orca, Claude Code and Codex chats from deleted workspaces are removed automatically to free disk space. They can't be recovered.",
+          "description": "BrzA Studio, Claude Code and Codex chats from deleted workspaces are removed automatically to free disk space. They can't be recovered.",
           "codexHistoryBadge": "Codex history: {{size}}",
           "codexHistoryBadgeAtLeast": "Codex history: {{size}}+",
           "codexHistoryTooltip": "Space Codex uses for its own chat history on {{host}}, including chats from workspaces you still have.",
@@ -24167,20 +24167,20 @@
         "server": {
           "fallbackHost": "this server",
           "updateFailed": "Couldn't update notifications on {{host}}.",
-          "unsupported": "Update Orca on {{host}} to change its notifications here.",
+          "unsupported": "Update BrzA Studio on {{host}} to change its notifications here.",
           "enabledDescription": "Alerts {{host}} sends for its agents and terminals, including pushes to your phones.",
           "sectionDescription": "Alerts {{host}} sends for its agents and terminals."
         }
       },
       "orcaAccount": {
         "server": {
-          "sectionDescription": "The Orca account {{host}} runs as, for its bots’ Slack, GitHub, Linear and webhooks.",
-          "unread": "Can’t read {{host}}’s Orca account. Update or reconnect {{host}}.",
+          "sectionDescription": "The BrzA Studio account {{host}} runs as, for its bots’ Slack, GitHub, Linear and webhooks.",
+          "unread": "Can’t read {{host}}’s BrzA Studio account. Update or reconnect {{host}}.",
           "signInThere": "Run `orca auth login` on {{host}} to sign it in."
         }
       },
       "hostScope": {
-        "updateHostToChange": "Update Orca on {{host}} to change this setting there.",
+        "updateHostToChange": "Update BrzA Studio on {{host}} to change this setting there.",
         "updateFailed": "Couldn't update the setting on {{host}}."
       },
       "git": {
@@ -24275,7 +24275,7 @@
       "inherit": "Browser setting ({{scope}})",
       "deletedOption": "Deleted profile",
       "deleted": "The profile picked for this project was deleted, so new tabs follow the Browser setting.",
-      "saveFailed": "Couldn't save the browser profile. The Orca on this project's host may need an update."
+      "saveFailed": "Couldn't save the browser profile. The BrzA Studio on this project's host may need an update."
     },
     "managed-runtime": {
       "cancelled": "Installation cancelled.",
@@ -24291,7 +24291,7 @@
       "failed": "Installation failed. Try again.",
       "cancelFailed": "Couldn't cancel the installation. Try again.",
       "install": "Install {{agent}}",
-      "installedByOrca": "Installed by Orca · {{version}}",
+      "installedByOrca": "Installed by BrzA Studio · {{version}}",
       "notInstalled": "Not installed.",
       "progress": "{{agent}} download",
       "readFailed": "Could not check {{agent}} on this host. Retrying.",
@@ -24473,11 +24473,11 @@
       "activeAgentNeedsPermission": "The active agent needs permission.",
       "statusUnverified": "The {{target}} agent status could not be verified.",
       "approvalUnseen": "The {{target}} agent may be waiting for approval. Send the notes when its turn ends.",
-      "hostUpdateRequired": "Update Orca on the {{target}} agent's host to send it notes.",
+      "hostUpdateRequired": "Update BrzA Studio on the {{target}} agent's host to send it notes.",
       "notReady": "The {{target}} agent was not ready for input yet.",
       "notWritable": "The {{target}} agent did not accept the notes.",
-      "selectedSubmitFailed": "The notes may already be pasted in the selected terminal, but Orca could not submit them.",
-      "activeSubmitFailed": "The notes may already be pasted in the active terminal, but Orca could not submit them.",
+      "selectedSubmitFailed": "The notes may already be pasted in the selected terminal, but BrzA Studio could not submit them.",
+      "activeSubmitFailed": "The notes may already be pasted in the active terminal, but BrzA Studio could not submit them.",
       "notWritableSelection": "The {{target}} agent did not accept the selection."
     },
     "dictation": {
@@ -24539,7 +24539,7 @@
     },
     "sidebar": {
       "ForgetSshWorkspaceDialog": {
-        "removeFromOrcaTitle": "Remove {{name}} from Orca?",
+        "removeFromOrcaTitle": "Remove {{name}} from BrzA Studio?",
         "ghostHostLine": "{{host}} is no longer a saved host. Its files stay on it.",
         "disconnectedHostLine": "{{host}} isn’t connected. Its files stay on the host.",
         "filesStayLine": "Its files stay on {{host}}.",
@@ -24752,7 +24752,7 @@
       "itemsTitle": "Its work, in one list",
       "groupTitle": "Bots work together",
       "pageAnnounce": "Page {{number}} of {{count}}: {{title}}",
-      "product": "Orca Bots",
+      "product": "BrzA Studio Bots",
       "groupName": "Launch crew",
       "releaseBot": "Release bot",
       "reviewBot": "Review bot",
@@ -25396,8 +25396,8 @@
       "turnOffSharing": "Turn off sharing",
       "dialogQuestion": "Give each Codex tab its own server?",
       "stopSummary": "Stops the running server and closes all Codex sessions using it.",
-      "dialogSummary": "Turns off Codex server sharing, also outside Orca.",
-      "alsoStop": "Also stop the running server (closes all Codex sessions using it, including outside Orca)",
+      "dialogSummary": "Turns off Codex server sharing, also outside BrzA Studio.",
+      "alsoStop": "Also stop the running server (closes all Codex sessions using it, including outside BrzA Studio)",
       "couldNotTurnOff": "Couldn’t turn off sharing.",
       "stopFailedAfterOff": "Sharing is off, but the server didn’t stop.",
       "turnOffAndStop": "Turn off and stop server"
@@ -25515,7 +25515,7 @@
     "new": "New sparse preset",
     "edit": "Edit sparse preset",
     "saveFailed": "Could not save the preset. Try again.",
-    "updateServerToRemove": "Update Orca on this project’s server to remove its presets.",
+    "updateServerToRemove": "Update BrzA Studio on this project’s server to remove its presets.",
     "nameRequired": "Name is required.",
     "nameTooLong": "Name must be 80 characters or fewer.",
     "nameExists": "A preset named “{{name}}” already exists.",
@@ -25595,8 +25595,8 @@
       "agentPlatform": "Google Agent Platform",
       "projectFromGcloud": "From gcloud",
       "locationGlobal": "global",
-      "adcHint": "Optional. Orca uses your gcloud project and the global location. Run gcloud auth application-default login once first.",
-      "apiKeySaveFailed": "Orca couldn't save the key. Try again.",
+      "adcHint": "Optional. BrzA Studio uses your gcloud project and the global location. Run gcloud auth application-default login once first.",
+      "apiKeySaveFailed": "BrzA Studio couldn't save the key. Try again.",
       "apiKeySaved": "Key saved on this host, encrypted.",
       "apiKeyFromEnvironment": "Using GEMINI_API_KEY from your environment. Paste a key to use a different one.",
       "apiKeyLabel": "Gemini API key",
@@ -25762,12 +25762,12 @@
     "rename": {
       "action": "Rename",
       "title": "Rename account",
-      "description": "Only the name Orca shows changes. Leave it blank to show {{email}}.",
+      "description": "Only the name BrzA Studio shows changes. Leave it blank to show {{email}}.",
       "label": "Display name",
       "reset": "Reset to default",
       "cancel": "Cancel",
       "save": "Save",
-      "unsupportedHost": "Update Orca on {{host}} to change this setting there."
+      "unsupportedHost": "Update BrzA Studio on {{host}} to change this setting there."
     }
   },
   "fileSearch": {
@@ -26104,8 +26104,8 @@
   "updates": {
     "installOnQuit": {
       "title": "Update ready to install",
-      "summary": "Quit Orca. Reopen after installation.",
-      "quit": "Quit Orca",
+      "summary": "Quit BrzA Studio. Reopen after installation.",
+      "quit": "Quit BrzA Studio",
       "later": "Later"
     },
     "installBlock": {
@@ -26142,9 +26142,9 @@
     "wslMoveInstallHeld": "A project is moving to its WSL host. Install the update once the move finishes.",
     "wslMoveUndoInstallHeld": "A project is coming back from its WSL host. Install the update once that finishes.",
     "failure": {
-      "automaticInstallTerminalBusy": "Some terminals would end on restart. Orca will try again on a later update check.",
-      "macStagingTimeout": "macOS is still preparing the update. If this persists, quit and reopen Orca.",
-      "automaticInstallCheckpointFailed": "Orca could not save the current window before restarting. Try installing the update again.",
+      "automaticInstallTerminalBusy": "Some terminals would end on restart. BrzA Studio will try again on a later update check.",
+      "macStagingTimeout": "macOS is still preparing the update. If this persists, quit and reopen BrzA Studio.",
+      "automaticInstallCheckpointFailed": "BrzA Studio could not save the current window before restarting. Try installing the update again.",
       "releaseNotReady": "A newer release isn't available for this device yet. Check again later.",
       "updateServerUnreachable": "Couldn't reach the update server. Try again in a few minutes.",
       "channelUnsupportedPlatform": "{{channel}} builds are produced only for macOS and Windows.",
@@ -26173,26 +26173,26 @@
       "rateLimitedInMinutes_other": "GitHub rate limit reached. Try again in about {{count}} minutes.",
       "rateLimitedInMinutesSignedOut_one": "GitHub rate limit reached. Try again in about {{count}} minute, or run `gh auth login` so BrzA Studio can use your account's higher limit.",
       "rateLimitedInMinutesSignedOut_other": "GitHub rate limit reached. Try again in about {{count}} minutes, or run `gh auth login` so BrzA Studio can use your account's higher limit.",
-      "teamUpdatePolicy": "Your team manages Orca updates."
+      "teamUpdatePolicy": "Your team manages BrzA Studio updates."
     },
     "automatic": {
-      "downloading": "Downloading Orca {{version}}…",
-      "installing": "Installing Orca {{version}}…",
-      "restarting": "Orca will restart automatically."
+      "downloading": "Downloading BrzA Studio {{version}}…",
+      "installing": "Installing BrzA Studio {{version}}…",
+      "restarting": "BrzA Studio will restart automatically."
     },
     "emergencyRequired": {
-      "title": "Orca {{version}} is required",
-      "summary": "Orca {{version}} is required. Restart to update."
+      "title": "BrzA Studio {{version}} is required",
+      "summary": "BrzA Studio {{version}} is required. Restart to update."
     },
     "teamRequired": {
-      "summary": "Your team requires Orca {{version}}. Restart to update.",
-      "title": "Your team requires Orca {{version}}",
+      "summary": "Your team requires BrzA Studio {{version}}. Restart to update.",
+      "title": "Your team requires BrzA Studio {{version}}",
       "restartNow": "Restart now",
-      "countdown": "Orca will save your sessions and restart after the countdown. Active agents may delay the restart.",
-      "waiting": "Orca is waiting for active agents before restarting.",
-      "retry": "Orca will retry this update the next time it starts.",
+      "countdown": "BrzA Studio will save your sessions and restart after the countdown. Active agents may delay the restart.",
+      "waiting": "BrzA Studio is waiting for active agents before restarting.",
+      "retry": "BrzA Studio will retry this update the next time it starts.",
       "manual": "Automatic installation failed. Install this update manually.",
-      "deadline": "Restart by {{deadline}}. Orca saves your sessions before restarting.",
+      "deadline": "Restart by {{deadline}}. BrzA Studio saves your sessions before restarting.",
       "download": "Open downloads"
     },
     "remoteUpdateBusy": "This server is already updating. Check again once it finishes."
@@ -26440,8 +26440,8 @@
       "destinationChanged": "Earlier projects from {{distro}} moved to a different WSL host. Connect that host to move more.",
       "hostUnavailable": "The {{distro}} host is not connected. Connect it in Settings, then try again.",
       "hostUpdateRequired": "The {{distro}} host runs an older version of BrzA Studio. Update it in Settings, then try again.",
-      "hostLaunchUnproven": "The Orca server in {{distro}} runs this version of Orca but can't take these projects, so updating won't help. It may have been started outside WSL hosts, such as by an SSH host. Remove the {{distro}} host in Settings, then add it again.",
-      "hostNotWslLaunched": "The Orca server in {{distro}} was not started as a WSL host (an SSH host for this distro usually started it), so it can't take these projects. Updating won't help. Choose Restart as WSL host on the {{distro}} host in Settings, then try again.",
+      "hostLaunchUnproven": "The BrzA Studio server in {{distro}} runs this version of BrzA Studio but can't take these projects, so updating won't help. It may have been started outside WSL hosts, such as by an SSH host. Remove the {{distro}} host in Settings, then add it again.",
+      "hostNotWslLaunched": "The BrzA Studio server in {{distro}} was not started as a WSL host (an SSH host for this distro usually started it), so it can't take these projects. Updating won't help. Choose Restart as WSL host on the {{distro}} host in Settings, then try again.",
       "terminalsBlocked": "Some terminals, agents or automations in these projects are busy. Nothing was moved.",
       "exportIncomplete": "Some saved state in these projects cannot move yet, so nothing was moved:",
       "exportIncompletePreview": "Some saved state in these projects can't move yet:",
@@ -26450,7 +26450,7 @@
       "scopeChanged": "A project changed while the move was getting ready, so nothing was moved. Check the projects and try again.",
       "cancelled": "Move cancelled. Nothing was moved.",
       "finishedEarlierMove": "BrzA Studio first finished an earlier move into {{distro}}. Reload the window, then start this move again.",
-      "mappedDriveUnverifiable": "Orca could not check a drive letter some projects are saved on. Make sure the drive is connected, then try again.",
+      "mappedDriveUnverifiable": "BrzA Studio could not check a drive letter some projects are saved on. Make sure the drive is connected, then try again.",
       "nothingMovable": "None of these projects can move to the {{distro}} host yet. Each one says why."
     },
     "step": {
@@ -26492,8 +26492,8 @@
       "other": "It cannot move.",
       "windowsGitWorktrees": "Git for Windows recorded some of its worktrees, including any since deleted, and Git on the WSL host can’t use those records. Remove those worktrees, or run git worktree repair from WSL, then move it.",
       "windowsGitDir": "Its Git folder is linked by a Windows path (a worktree or a separate Git folder Git for Windows set up), which Git on the WSL host can’t follow.",
-      "gitUnreadable": "Orca couldn’t read its Git details in time to check them, so it stays on this computer. Check again in a moment.",
-      "mappedDriveUnverifiable": "Orca couldn’t check where its drive letter points just now. Make sure the drive is connected, then check again."
+      "gitUnreadable": "BrzA Studio couldn’t read its Git details in time to check them, so it stays on this computer. Check again in a moment.",
+      "mappedDriveUnverifiable": "BrzA Studio couldn’t check where its drive letter points just now. Make sure the drive is connected, then check again."
     },
     "reloadToast": {
       "title": "Reload to finish the move"
@@ -26588,10 +26588,10 @@
     "killAllLocal": "Kill all local sessions",
     "killFailed": "The terminal could not be ended. Last-observed sessions are retained.",
     "owner": {
-      "orca": "Orca",
+      "orca": "BrzA Studio",
       "agents": "Agents",
       "otherTerminals": "Other terminals",
-      "privateBytes": "Committed by Orca, agents and terminals"
+      "privateBytes": "Committed by BrzA Studio, agents and terminals"
     },
     "chatRow": {
       "tooltip": "{{agent}} chat, including the processes running under it"
@@ -27270,11 +27270,11 @@
         "signIn": "The agent is waiting for you to sign in.",
         "prompt": "The agent stopped at a prompt that needs your answer."
       },
-      "botsOff": "Bots are turned off in Settings, so Orca skipped this run.",
-      "botsOffByTeam": "Bots are turned off by your team, so Orca skipped this run.",
+      "botsOff": "Bots are turned off in Settings, so BrzA Studio skipped this run.",
+      "botsOffByTeam": "Bots are turned off by your team, so BrzA Studio skipped this run.",
       "botMissing": "The bot this automation runs as no longer exists.",
       "botFolderMissing": "The bot's folder is no longer available.",
-      "botPaused": "{{bot}} is paused, so Orca skipped this run."
+      "botPaused": "{{bot}} is paused, so BrzA Studio skipped this run."
     },
     "extraAgentArgs": {
       "errors": {
@@ -27311,7 +27311,7 @@
       "resultsToChannelNeedsSlack": "A channel (connect Slack first)",
       "resultsToThread": "The event's thread",
       "resultsToThreadNeedsEvents": "The event's thread (only events, new conversation)",
-      "resultsToThreadUnsupported": "The event's thread (Orca Cloud doesn't support this yet)",
+      "resultsToThreadUnsupported": "The event's thread (BrzA Studio Cloud doesn't support this yet)",
       "resultsToNone": "Nowhere",
       "channelPlaceholder": "#channel or a Slack link",
       "channelLabel": "Channel",
@@ -27320,7 +27320,7 @@
       "option": "Bot · {{name}}",
       "channelMissing": "Enter the channel to send results to.",
       "hostUnavailable": "The bot's computer can't hold a new automation yet. Try again in a moment.",
-      "hostNeedsUpdate": "Update the Orca server on {host} so its bots can have automations.",
+      "hostNeedsUpdate": "Update the BrzA Studio server on {host} so its bots can have automations.",
       "promptMissing": "Enter what it should do.",
       "deletedBot": "Deleted bot",
       "fieldLabel": "Bot or project",
@@ -27381,8 +27381,8 @@
     },
     "wontFire": "Won’t run: needs the {{connectors}} connector",
     "eventsWontFire": "Runs on its schedule only: needs the {{connectors}} connector",
-    "webhooksOff": "Won’t run: Orca Cloud doesn’t support webhooks yet",
-    "webhooksOffScheduled": "Runs on its schedule only: Orca Cloud doesn’t support webhooks yet",
+    "webhooksOff": "Won’t run: BrzA Studio Cloud doesn’t support webhooks yet",
+    "webhooksOffScheduled": "Runs on its schedule only: BrzA Studio Cloud doesn’t support webhooks yet",
     "openConnectors": "Open connectors",
     "hostUnreachable": "Couldn't reach {{host}}. Try again once it's back."
   },
@@ -27713,7 +27713,7 @@
     "disabledReason": {
       "needsPermission": "Agent needs permission",
       "approvalUnseen": "Agent may be waiting for approval",
-      "hostUpdateRequired": "Update Orca on this host to send to this agent"
+      "hostUpdateRequired": "Update BrzA Studio on this host to send to this agent"
     }
   },
   "wslDistroHold": {
@@ -27748,10 +27748,10 @@
     "new": {
       "agentClaude": "Claude Code",
       "hostUnreachable": "Can’t reach {{host}}",
-      "hostUpdate": "Update Orca on {{host}}",
-      "hostNoBots": "Orca on {{host}} can’t run bots yet",
-      "hostNeedsServer": "Needs Orca server",
-      "hostNeedsServerHint": "Set up an Orca server on {{host}} in Settings → Remote Orca Servers to run bots.",
+      "hostUpdate": "Update BrzA Studio on {{host}}",
+      "hostNoBots": "BrzA Studio on {{host}} can’t run bots yet",
+      "hostNeedsServer": "Needs BrzA Studio server",
+      "hostNeedsServerHint": "Set up a BrzA Studio server on {{host}} in Settings → Remote BrzA Studio Servers to run bots.",
       "hostAs": "as {{account}}",
       "hostReconnect": "Reconnect",
       "hostReconnecting": "Reconnecting…",
@@ -27794,7 +27794,7 @@
       "change": "Change",
       "computer": "Computer",
       "computerHint": "Where the bot runs.",
-      "computerAccountHint": "Where the bot runs, signed in to Orca as {{account}}.",
+      "computerAccountHint": "Where the bot runs, signed in to BrzA Studio as {{account}}.",
       "useChatDefaults": "Use chat defaults",
       "usingChatDefault": "Using your chat default. Background runs use your Agents setting.",
       "agent": "Agent",
@@ -27824,10 +27824,10 @@
         "noAgents": "No agents",
         "noAgentsAvailable": "No agents available",
         "pictureLoading": "Picture loading…",
-        "updateOrca": "Update Orca"
+        "updateOrca": "Update BrzA Studio"
       },
       "parts": {
-        "olderHost": "{{host}} needs an Orca update to add skills and schedules",
+        "olderHost": "{{host}} needs a BrzA Studio update to add skills and schedules",
         "skillsKept_one": "{{kept}}/{{count}} skill",
         "skillsKept_other": "{{kept}}/{{count}} skills",
         "skills_one": "{{count}} skill",
@@ -27848,7 +27848,7 @@
       "wslSetup": {
         "waiting": "Waiting for {{distro}}…",
         "starting": "Starting {{distro}}",
-        "installing": "Installing Orca’s server in ~/.orca-remote",
+        "installing": "Installing BrzA Studio’s server in ~/.orca-remote",
         "connecting": "Connecting",
         "findingAgents": "Looking for agents in {{distro}}",
         "installingHint": "The first time also downloads its Linux Node runtime.",
@@ -27859,7 +27859,7 @@
         "title": "Setting up {{distro}} as a host",
         "subtitle": "About a minute the first time. Your Windows files and other distros aren’t touched.",
         "cancel": "Cancel",
-        "failedGeneric": "Orca’s server didn’t start in the distro. Details say what stopped it."
+        "failedGeneric": "BrzA Studio’s server didn’t start in the distro. Details say what stopped it."
       },
       "wslNoAgent": {
         "field": "No agent in {{distro}}",
@@ -27891,7 +27891,7 @@
     },
     "errors": {
       "nameTaken": "Another bot already has that name.",
-      "purposeTooLongForHost": "Orca on {{host}} takes up to 200 characters for what it's for. Shorten it, or update Orca on {{host}}.",
+      "purposeTooLongForHost": "BrzA Studio on {{host}} takes up to 200 characters for what it's for. Shorten it, or update BrzA Studio on {{host}}.",
       "generic": "Something went wrong. Try again.",
       "avatarHomeUnreadable": "Couldn't read the saved picture. Choose it again.",
       "folderNotOwned": "Couldn't verify this bot's folder.",
@@ -27908,7 +27908,7 @@
         "waitingDetail": "Finish in Slack. If your workspace needs an admin to approve new apps, {{name}} joins once they do. If they decline, Install again reuses the same app.",
         "close": "Close",
         "installAgain": "Install again",
-        "uncertain": "Slack may have created an app named {{name}} that Orca cannot use. Delete it in Slack app settings if it is there, then set up again.",
+        "uncertain": "Slack may have created an app named {{name}} that BrzA Studio cannot use. Delete it in Slack app settings if it is there, then set up again.",
         "uncertainChecked": "I checked Slack: there is no such app, or I deleted it",
         "again": "Set up again",
         "done": "Done",
@@ -27957,7 +27957,7 @@
         "step1": "In Slack app settings, find “Your App Configuration Tokens” and choose Generate Token.",
         "step2": "Select the workspace for your bot.",
         "step3": "Copy the Refresh Token and paste it below.",
-        "kept": "Orca Cloud keeps this token encrypted, so your next bots in this workspace need one click.",
+        "kept": "BrzA Studio Cloud keeps this token encrypted, so your next bots in this workspace need one click.",
         "label": "Configuration refresh token",
         "accessPasted": "That is the Access Token. Copy the Refresh Token, the one next to it.",
         "openSettings": "Open Slack app settings",
@@ -27965,16 +27965,16 @@
         "copyRefresh": "Copy the Refresh Token"
       },
       "workspaces": {
-        "otherTeam": "That token is for another workspace. Orca keeps it for that workspace.",
+        "otherTeam": "That token is for another workspace. BrzA Studio keeps it for that workspace.",
         "reconnected": "Slack workspace reconnected.",
         "reconnectTitle": "Reconnect Slack workspace",
         "reconnectFor": "Workspace {{teamId}}",
         "reconnect": "Reconnect",
         "forgotten": "Forgotten. Bots already there stay in Slack; new bots there need a new token.",
-        "description": "For Slack, Orca Cloud keeps one encrypted token per workspace to create each bot’s app.",
+        "description": "For Slack, BrzA Studio Cloud keeps one encrypted token per workspace to create each bot’s app.",
         "forget": "Forget",
         "title": "Slack workspaces",
-        "descriptionFor": "Orca Cloud keeps one encrypted token per workspace for {{account}}. The Slack user who connected it owns the bots it installs.",
+        "descriptionFor": "BrzA Studio Cloud keeps one encrypted token per workspace for {{account}}. The Slack user who connected it owns the bots it installs.",
         "installedBy": "{{bot}}, installed by @{{user}}"
       },
       "errors": {
@@ -27983,19 +27983,19 @@
         "rateLimited": "Too many tries. Wait a minute, then try again.",
         "slackUnavailable": "Slack did not answer. Try again.",
         "slackRefused": "Slack refused to set up the app.",
-        "unknownBot": "Orca Cloud has not seen this bot yet. Try again in a minute.",
+        "unknownBot": "BrzA Studio Cloud has not seen this bot yet. Try again in a minute.",
         "wrongWorkspace": "This bot’s Slack app is in another workspace. Remove it from Slack first.",
         "notInstalled": "Add this bot to Slack first.",
-        "signedOut": "Sign in to Orca Cloud to connect Slack.",
-        "unreachable": "Orca Cloud could not be reached. Check your connection and try again.",
+        "signedOut": "Sign in to BrzA Studio Cloud to connect Slack.",
+        "unreachable": "BrzA Studio Cloud could not be reached. Check your connection and try again.",
         "handOffExpired": "That hand-off expired or was already used. Try again."
       },
       "howToAsk": "Mention <code>@{{name}}</code> in a channel, or send it a direct message.",
       "handOff": {
-        "confirmMac": "Orca on this Mac creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.",
-        "confirm": "Orca on this computer creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.",
-        "offerMac": "This Mac is signed in to Orca as {{email}}, which already has a token for {{workspace}}.",
-        "offer": "This computer is signed in to Orca as {{email}}, which already has a token for {{workspace}}.",
+        "confirmMac": "BrzA Studio on this Mac creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.",
+        "confirm": "BrzA Studio on this computer creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.",
+        "offerMac": "This Mac is signed in to BrzA Studio as {{email}}, which already has a token for {{workspace}}.",
+        "offer": "This computer is signed in to BrzA Studio as {{email}}, which already has a token for {{workspace}}.",
         "use": "Use it →",
         "question": "Use your {{device}}’s Slack sign-in instead?",
         "firstQuestion": "Your {{device}} is already signed in to Slack. Use that sign-in?",
@@ -28006,15 +28006,15 @@
         "anotherWay": "Set up another way"
       },
       "postAs": {
-        "orcaUser": "Orca user",
+        "orcaUser": "BrzA Studio user",
         "thisComputer": "This computer",
         "caption": "In this bot’s Slack threads",
         "approve": "Approve in Slack",
         "cancel": "Cancel",
-        "viaOrca": "{{name}} (via Orca)",
+        "viaOrca": "{{name}} (via BrzA Studio)",
         "app": "APP",
         "sample": "Ship it after that",
-        "line": "When you reply to a Slack thread from Orca, it posts as <picker>{{name}}</picker>",
+        "line": "When you reply to a Slack thread from BrzA Studio, it posts as <picker>{{name}}</picker>",
         "waitingOn": "Switching to {{name}} needs {{installer}} to approve in Slack.",
         "waiting": "Switching to {{name}} needs approval in Slack."
       },
@@ -28026,22 +28026,22 @@
         "why": "Slack stopped accepting this workspace’s saved token.",
         "submit": "Reconnect",
         "about": "About Slack tokens",
-        "kept": "Orca Cloud keeps the new token encrypted, so your next bots here need one click.",
+        "kept": "BrzA Studio Cloud keeps the new token encrypted, so your next bots here need one click.",
         "mineMac": "This Mac’s token expired. Paste a new one.",
         "mine": "This computer’s token expired. Paste a new one.",
         "paste": "Paste a new token to reconnect.",
         "expiredOnTitle": "Slack sign-in expired on {{host}}",
         "signInAgain": "Sign in again",
         "neededTitle": "Slack needs a token for this workspace",
-        "whyNeeded": "Orca has no working Slack token for this workspace.",
+        "whyNeeded": "BrzA Studio has no working Slack token for this workspace.",
         "pasteNeeded": "Paste a token to continue.",
         "continue": "Continue"
       },
       "problem": {
         "reconnecting": "Waiting for {{host}} to reconnect…",
         "reconnectingNext": "Slack setup starts again by itself once {{host}} is back. You don’t need to start over or paste a token.",
-        "offline": "Orca can’t reach {{host}}.",
-        "offlineNext": "Check that Orca is running on {{host}}, then reconnect. Slack setup starts again once {{host}} is back.",
+        "offline": "BrzA Studio can’t reach {{host}}.",
+        "offlineNext": "Check that BrzA Studio is running on {{host}}, then reconnect. Slack setup starts again once {{host}} is back.",
         "otherUser": "A different Slack account approved the connection.",
         "otherUserNext": "Someone signed in to another Slack account approved the Slack link, so {{bot}} can’t act as you. Get a new link and approve it while signed in to your own Slack account.",
         "expired": "Slack sign-in didn’t finish.",
@@ -28051,11 +28051,11 @@
         "reconnect": "Reconnect",
         "replaceToken": "Replace token",
         "details": "Details",
-        "reconnectFailed": "Orca still can’t reach {{host}}."
+        "reconnectFailed": "BrzA Studio still can’t reach {{host}}."
       },
       "approve": {
-        "noteUntil": "Works once, until {{time}}. Sign in to Slack as yourself there; Orca Cloud passes the approval back to {{host}}.",
-        "note": "Works once. Sign in to Slack as yourself there; Orca Cloud passes the approval back to {{host}}.",
+        "noteUntil": "Works once, until {{time}}. Sign in to Slack as yourself there; BrzA Studio Cloud passes the approval back to {{host}}.",
+        "note": "Works once. Sign in to Slack as yourself there; BrzA Studio Cloud passes the approval back to {{host}}.",
         "noteUntilHere": "Works once, until {{time}}. Sign in to Slack as yourself there.",
         "noteHere": "Works once. Sign in to Slack as yourself there.",
         "openOn": "Open Slack on {{host}}",
@@ -28100,7 +28100,7 @@
       "missing": "That conversation isn't open on this computer.",
       "unreachable": "Couldn't reach {{hosts}}. The bot may be there; open the link again once it's back.",
       "pick": "More than one computer has a bot for this link: {{hosts}}. Open it from the sidebar.",
-      "updateNeeded": "Update Orca on {{hosts}} to open this bot here."
+      "updateNeeded": "Update BrzA Studio on {{hosts}} to open this bot here."
     },
     "activity": {
       "title": "Activity",
@@ -28143,7 +28143,7 @@
     },
     "connectors": {
       "addNamed": "Add {{name}}",
-      "signInChanged": "This computer’s Orca sign-in changed. Sign in again to reconnect.",
+      "signInChanged": "This computer’s BrzA Studio sign-in changed. Sign in again to reconnect.",
       "addAnotherWorkspace": "Add another workspace",
       "addGitHubAccess": "Add repositories or organizations",
       "addAnotherOrg": "Add another org",
@@ -28188,15 +28188,15 @@
       "mentionChatClosed": "{{name}}'s chat \"{{chat}}\" was closed, so it can't take messages.",
       "mentionChatElsewhere": "{{name}}'s chat \"{{chat}}\" now runs on another computer, so it can't take messages from this chat.",
       "mentionChatNotItsChat": "That chat isn't one of {{name}}'s.",
-      "mentionChatOlderHost": "The Orca on {{host}} can't send to a specific chat yet.",
-      "mentionChatOlderHostHere": "This Orca can't send to a specific chat yet.",
+      "mentionChatOlderHost": "The BrzA Studio on {{host}} can't send to a specific chat yet.",
+      "mentionChatOlderHostHere": "This BrzA Studio can't send to a specific chat yet.",
       "mentionChatSelf": "{{name}}'s chat \"{{chat}}\" is this chat, so it can't take messages from it.",
       "mentionChatsLoadFailed": "Couldn't load chats",
       "mentionChatsLoadFailedOn": "Couldn't load chats: {{host}} isn't connected",
       "mentionChatsUnreachable": "Can't check {{name}}'s chats: {{host}} isn't connected.",
       "mentionChatsUnreadable": "Can't check {{name}}'s chats.",
       "mentionChatUnavailable": "Chat unavailable",
-      "mentionChatUnverifiable": "Orca can't confirm this chat can take messages.",
+      "mentionChatUnverifiable": "BrzA Studio can't confirm this chat can take messages.",
       "mentionLabelChatUnavailable": "Mentioned bot: {{name}}, chat unavailable",
       "mentionOwnChats": "Your other chats",
       "mentionLabelChat": "Mentioned bot: {{name}}, chat"
@@ -28215,13 +28215,13 @@
       "description": "{{name}}'s Home Chat starts fresh on {{agent}}. The current conversation stays in history.",
       "kept": "Kept: soul, memory, automations, connectors",
       "notKept": "Not kept: the current conversation",
-      "threads": "Slack threads with an existing Orca chat keep that chat's agent",
+      "threads": "Slack threads with an existing BrzA Studio chat keep that chat's agent",
       "action": "Switch to {{agent}}"
     },
     "avatar": {
       "intake": {
         "tooBig": "That image is over 10 MB.",
-        "type": "Orca can't read that image. Try PNG or JPEG.",
+        "type": "BrzA Studio can't read that image. Try PNG or JPEG.",
         "tooSmall": "Too small. Use an image at least 128 px.",
         "dropLine": "Drop to use this image",
         "saved": "Picture updated",
@@ -28251,7 +28251,7 @@
     "linear": {
       "connection": {
         "unlinked": "Finish setup to link your Linear account in {{workspace}}.",
-        "removeNote": "People in {{workspace}} can no longer hand it issues, and its Linear people are cleared. Orca stays installed there.",
+        "removeNote": "People in {{workspace}} can no longer hand it issues, and its Linear people are cleared. BrzA Studio stays installed there.",
         "removeConfirm": "Remove",
         "finishSetup": "Finish setup"
       },
@@ -28261,9 +28261,9 @@
         "close": "Close",
         "checking": "Checking Linear…",
         "retry": "Try again",
-        "install": "Orca is not installed in {{workspace}} yet. A Linear admin installs it once for everyone.",
+        "install": "BrzA Studio is not installed in {{workspace}} yet. A Linear admin installs it once for everyone.",
         "installing": "Waiting for the install…",
-        "noInstallYet": "Orca isn’t installed there yet.",
+        "noInstallYet": "BrzA Studio isn’t installed there yet.",
         "finish": "Done",
         "title": "Add {{name}} to Linear",
         "titleOn": "{{name}} in Linear",
@@ -28271,8 +28271,8 @@
         "connectTitle": "Connect Linear",
         "tryIt": "Try it on any Linear issue",
         "orLabel": "or add the label",
-        "actsOnHost": "Orca acts as that Linear user from {{host}}.",
-        "actsAsYou": "Orca acts as you in Linear from this computer."
+        "actsOnHost": "BrzA Studio acts as that Linear user from {{host}}.",
+        "actsAsYou": "BrzA Studio acts as you in Linear from this computer."
       },
       "whoCanAsk": {
         "outsiders": "Everyone else in {{workspace}} gets a public reply to ask you.",
@@ -28287,31 +28287,31 @@
         "description": "Your Linear account in each workspace, so Linear knows your requests are yours.",
         "linkedAs": "Linked as {{name}}",
         "unlink": "Unlink",
-        "linkHelp": "To link your Linear account, or move it here from another Orca account, connect Linear from a bot’s Connectors.",
+        "linkHelp": "To link your Linear account, or move it here from another BrzA Studio account, connect Linear from a bot’s Connectors.",
         "descriptionOnHost": "The Linear user {{host}}’s bots act as and are owned by. {{host}} keeps its sign-in.",
         "reconnect": "Reconnect",
-        "linkFromApp": "Link Linear from Orca on a computer paired to {{host}}."
+        "linkFromApp": "Link Linear from BrzA Studio on a computer paired to {{host}}."
       },
       "errors": {
         "off": "Linear is coming soon.",
         "notLinked": "Connect Linear from a bot’s Connectors to link your account.",
-        "alreadyLinked": "This Orca account is linked to another Linear user in that workspace. Unlink it in Settings › Bots › Linear first.",
+        "alreadyLinked": "This BrzA Studio account is linked to another Linear user in that workspace. Unlink it in Settings › Bots › Linear first.",
         "notAMember": "Only full members of the Linear workspace can pick people from it.",
         "rateLimited": "Too many tries. Wait a minute, then try again.",
         "unavailable": "Linear did not answer. Try again.",
-        "signedOut": "Sign in to Orca Cloud to connect Linear.",
-        "unreachable": "Orca Cloud could not be reached. Check your connection and try again.",
-        "wrongAccount": "This sign-in was started from another Orca account. Connect Linear again from this one.",
+        "signedOut": "Sign in to BrzA Studio Cloud to connect Linear.",
+        "unreachable": "BrzA Studio Cloud could not be reached. Check your connection and try again.",
+        "wrongAccount": "This sign-in was started from another BrzA Studio account. Connect Linear again from this one.",
         "replaced": "Linear didn’t finish. A newer Linear or GitHub connect may have replaced it. Start again."
       },
-      "howToAsk": "Mention <code>@Orca {{handle}}</code> on an issue, or add the label <code>bot:{{handle}}</code>.",
+      "howToAsk": "Mention <code>@BrzA Studio {{handle}}</code> on an issue, or add the label <code>bot:{{handle}}</code>.",
       "connect": {
         "who": "{{name}} in {{workspace}}",
         "button": "Connect Linear",
         "waiting": "Finish signing in to Linear in your browser…",
         "turnOn": "Turn on {{name}}",
         "connected": "Linear connected.",
-        "stuck": "Stuck on a Linear page that says “Could not find OAuth client”? Orca’s Linear app isn’t open to this workspace yet. An admin of the workspace that owns the app must make it public.",
+        "stuck": "Stuck on a Linear page that says “Could not find OAuth client”? BrzA Studio’s Linear app isn’t open to this workspace yet. An admin of the workspace that owns the app must make it public.",
         "another": "Use another workspace",
         "pick": "Choose a Linear workspace.",
         "pickWorkspace": "Sign in and pick the Linear workspace {{name}} works in."
@@ -28335,8 +28335,8 @@
       "connection": {
         "description": "{{repos}} · signed in as @{{login}}",
         "unlinked": "Sign in with GitHub to link your GitHub account.",
-        "notInstalled": "Signed in as @{{login}}. Install the Orca app on the repositories it may work in.",
-        "removeNote": "People can no longer ask it on GitHub, and its GitHub people are cleared. The Orca app stays installed.",
+        "notInstalled": "Signed in as @{{login}}. Install the BrzA Studio app on the repositories it may work in.",
+        "removeNote": "People can no longer ask it on GitHub, and its GitHub people are cleared. The BrzA Studio app stays installed.",
         "removeConfirm": "Remove",
         "finishSetup": "Finish setup",
         "orgDescription": "{{repos}} · signed in as @{{login}}",
@@ -28387,7 +28387,7 @@
         "otherComputer": "A bot on another computer",
         "title": "GitHub",
         "description": "Your GitHub account, so your bots know which comments are yours.",
-        "linked": "Linked to this Orca account",
+        "linked": "Linked to this BrzA Studio account",
         "unlink": "Unlink",
         "unlinked": "Add GitHub from a bot’s Connectors to link your account.",
         "descriptionOnHost": "The GitHub user {{host}}’s bots work as and are owned by.",
@@ -28395,17 +28395,17 @@
         "descriptionOnHostPlural": "The GitHub users {{host}}’s bots work as and are owned by.",
         "linkedAs": "Linked as {{login}}",
         "reconnect": "Reconnect",
-        "linkFromApp": "Link GitHub from Orca on a computer paired to {{host}}.",
-        "linkedOnHost": "Linked to {{host}}’s Orca account"
+        "linkFromApp": "Link GitHub from BrzA Studio on a computer paired to {{host}}.",
+        "linkedOnHost": "Linked to {{host}}’s BrzA Studio account"
       },
       "errors": {
         "off": "GitHub is coming soon.",
         "rateLimited": "Too many tries. Wait a minute, then try again.",
         "unavailable": "GitHub did not answer. Try again.",
-        "signedOut": "Sign in to Orca Cloud to connect GitHub.",
-        "unreachable": "Orca Cloud could not be reached. Check your connection and try again.",
-        "wrongAccount": "This sign-in was started from another Orca account. Sign in with GitHub again from this one.",
-        "alreadyLinked": "This Orca account is linked to another GitHub user. Unlink it in Settings › Bots › GitHub first.",
+        "signedOut": "Sign in to BrzA Studio Cloud to connect GitHub.",
+        "unreachable": "BrzA Studio Cloud could not be reached. Check your connection and try again.",
+        "wrongAccount": "This sign-in was started from another BrzA Studio account. Sign in with GitHub again from this one.",
+        "alreadyLinked": "This BrzA Studio account is linked to another GitHub user. Unlink it in Settings › Bots › GitHub first.",
         "replaced": "GitHub didn’t finish. A newer Linear or GitHub connect may have replaced it. Start again."
       },
       "howToAsk": "Mention <code>{{mention}} {{handle}} …</code> on an issue or pull request.",
@@ -28413,11 +28413,11 @@
       "connect": {
         "button": "Connect GitHub",
         "waiting": "Finish signing in to GitHub in your browser…",
-        "requested": "An owner of the organization has been asked to approve the Orca app.",
-        "notInstalled": "The Orca app is not on any of your repositories yet.",
+        "requested": "An owner of the organization has been asked to approve the BrzA Studio app.",
+        "notInstalled": "The BrzA Studio app is not on any of your repositories yet.",
         "connected": "GitHub connected.",
         "pickRepositories": "Sign in and choose which repositories {{name}} can work in.",
-        "readsOnly": "Orca only reads your GitHub username and id."
+        "readsOnly": "BrzA Studio only reads your GitHub username and id."
       },
       "allRepositoriesShort": "all repositories",
       "signOut": {
@@ -28588,7 +28588,7 @@
       "heading": "Asking for access",
       "decline": "Decline",
       "full": "Remove someone before adding {{person}}.",
-      "notOwner": "This request is for another Orca account. Sign in as the bot’s owner to review it.",
+      "notOwner": "This request is for another BrzA Studio account. Sign in as the bot’s owner to review it.",
       "expired": "This request was already opened or has expired. Open the bot’s settings to see what is waiting.",
       "failed": "Couldn’t open this request. Check your connection, then try again.",
       "notHere": "This request is for a bot on another computer. Open the link on the computer that runs it.",
@@ -28634,7 +28634,7 @@
       "hooks": "Hooks",
       "addInChat": "Add in chat",
       "editDraft": "Change when “{{automation}}” runs: ",
-      "orphanedNote": "{{bot}}’s Orca no longer lists this automation, so calls aren’t run.",
+      "orphanedNote": "{{bot}}’s BrzA Studio no longer lists this automation, so calls aren’t run.",
       "checksLabel": "Checks",
       "checks": {
         "change": "Change…",
@@ -28695,11 +28695,11 @@
         "copy": "Copy secret",
         "changeTitle": "Change signing secret",
         "addTitle": "Add signing secret",
-        "note": "Orca then accepts only calls signed with this secret, so a leaked URL alone can’t start “{{automation}}”.",
+        "note": "BrzA Studio then accepts only calls signed with this secret, so a leaked URL alone can’t start “{{automation}}”.",
         "sender": "Sender",
-        "generateNote": "Orca makes this secret. You copy it into {{sender}} next.",
+        "generateNote": "BrzA Studio makes this secret. You copy it into {{sender}} next.",
         "mode": "Where the secret comes from",
-        "modeGenerate": "Orca makes one",
+        "modeGenerate": "BrzA Studio makes one",
         "modePaste": "Paste the sender’s",
         "pasteNote": "Use this when the sender gives you its own secret.",
         "paste": "{{sender}} secret",
@@ -28718,11 +28718,11 @@
       "resultsNowhere": "results not sent",
       "resultsToPlace": "results to {{place}}",
       "hostOffline": "{{bot}}’s computer is offline",
-      "hostNeedsUpdate": "Your Orca needs an update before {{bot}} can do this.",
+      "hostNeedsUpdate": "Your BrzA Studio needs an update before {{bot}} can do this.",
       "errors": {
         "notFound": "This webhook was deleted.",
         "unavailable": "Webhooks aren’t available right now.",
-        "signedOut": "Paused while signed out of Orca."
+        "signedOut": "Paused while signed out of BrzA Studio."
       },
       "calls": {
         "refused": "Refused ×{{count}}",
@@ -28781,8 +28781,8 @@
         "starts": "Webhook · starts “{{automation}}”"
       },
       "theBot": "the bot",
-      "fallbackNamed": "Webhook “{{automation}}” is live. Copy its URL from Orca on a computer: Settings › Bots › {{bot}} › Webhooks. To pause or delete it, ask {{bot}} here.",
-      "fallback": "This webhook is live. Copy its URL from Orca on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.",
+      "fallbackNamed": "Webhook “{{automation}}” is live. Copy its URL from BrzA Studio on a computer: Settings › Bots › {{bot}} › Webhooks. To pause or delete it, ask {{bot}} here.",
+      "fallback": "This webhook is live. Copy its URL from BrzA Studio on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.",
       "copiedNoClear": "Clear your clipboard when you’re done; this browser can’t promise to clear it for you.",
       "pausedSignedOut": "{{hooks}} · paused while signed out",
       "copied": "Copied"
@@ -28809,9 +28809,9 @@
       "namesMore": "{{names}} and {{count}} more",
       "stepCreate": "Create bot",
       "stepReply": "First message",
-      "projectsReading": "Projects: looking at what you have in Orca…",
+      "projectsReading": "Projects: looking at what you have in BrzA Studio…",
       "projectsDone": "Looked at your projects",
-      "projectsNone": "No projects in Orca yet",
+      "projectsNone": "No projects in BrzA Studio yet",
       "projectsOne": "Found 1 project: {{names}}",
       "projectsMany": "Found {{count}} projects: {{names}}",
       "githubReading": "GitHub: reading your open PRs…",
@@ -28988,7 +28988,7 @@
       "appAdded": "Your team’s Google app is added",
       "disconnect": {
         "title": "Disconnect {{email}}?",
-        "revokeNote": "Bots stop using this account here, and Google cancels Orca’s access everywhere it was allowed.",
+        "revokeNote": "Bots stop using this account here, and Google cancels BrzA Studio’s access everywhere it was allowed.",
         "removeNote": "Bots stop using this account here. Bot settings stay, so Connect Google turns it back on.",
         "confirm": "Disconnect",
         "remove": "Remove from this computer",
@@ -29059,7 +29059,7 @@
       "importSetupFile": "Import file",
       "hostChoice": {
         "description": "Choose how {{bot}} signs in to your Gmail, Calendar and Drive.",
-        "orca": "Orca hosted",
+        "orca": "BrzA Studio hosted",
         "soon": "Soon",
         "orcaNote": "Sign in with Google.",
         "self": "Self hosted",
@@ -29072,7 +29072,7 @@
         "privacyPolicy": "Application privacy policy link",
         "authorizedDomain": "Authorized domain",
         "copy": "Copy {{label}}",
-        "owner": "You’re the owner of this Google app; these links just point to Orca."
+        "owner": "You’re the owner of this Google app; these links just point to BrzA Studio."
       },
       "setUp": "Set up Google",
       "setUpOpens": "Opens {{bot}}’s chat",
@@ -29088,7 +29088,7 @@
         },
         "branding": {
           "start": "Click <b>Get started</b>.",
-          "name": "App name <b>Orca</b>, and your email as the support email.",
+          "name": "App name <b>BrzA Studio</b>, and your email as the support email.",
           "external": "Audience: <b>External</b>.",
           "internal": "Audience: <b>Internal</b>.",
           "contact": "Your email as the contact email.",
@@ -29107,7 +29107,7 @@
         "client": {
           "type": "Application type: <b>Desktop app</b>, then <b>Create</b>.",
           "agent": "If you see <b>Use this client for an AI-powered agent</b>, tick it.",
-          "download": "Click <b>Download JSON</b>. Orca saves the key."
+          "download": "Click <b>Download JSON</b>. BrzA Studio saves the key."
         }
       },
       "pasteHint": "After you click Allow, the page won’t load. Paste its address here.",
@@ -29122,7 +29122,7 @@
       "setDefault": "Set as default",
       "accountActions": "{{email}} actions",
       "addServiceMenu": "Add a service…",
-      "updateToAdd": "Update Orca on {{host}} to add another Google account.",
+      "updateToAdd": "Update BrzA Studio on {{host}} to add another Google account.",
       "account": "Google · {{email}}",
       "signInRun": {
         "cancelled": "The Google sign-in was cancelled.",
@@ -29137,8 +29137,8 @@
       "useAnotherSignIn": "Sign in with Google",
       "useAnotherSignInDetail": "Uses your current Google app",
       "setUpNewAppDetail": "If your current app doesn’t work for this account or organization",
-      "updateToSetUpNewApp": "Update Orca on {{host}} to set up a new Google app.",
-      "updateToChooseAccounts": "Update Orca on {{host}} to choose accounts.",
+      "updateToSetUpNewApp": "Update BrzA Studio on {{host}} to set up a new Google app.",
+      "updateToChooseAccounts": "Update BrzA Studio on {{host}} to choose accounts.",
       "picker": {
         "label": "Google accounts",
         "addAccount": "Add another account",
@@ -29167,7 +29167,7 @@
         "guideHere": "Guide me here",
         "guideBrowser": "Guide me in my browser",
         "doItNote": "{{bot}} clicks through it",
-        "guideHereNote": "You click, in Orca",
+        "guideHereNote": "You click, in BrzA Studio",
         "guideBrowserNote": "You click, in your browser"
       },
       "account": {
@@ -29186,8 +29186,8 @@
         "titleAccount": "Sign in to connect {{email}}",
         "title": "Sign in to connect",
         "note": "Your browser opens Google’s sign-in. Your Google sign-in stays on this computer.",
-        "warning": "Google will show a warning because this app is yours and brand new. Choose Advanced, then Go to Orca, and tick every box on the next screen.",
-        "noteOnHost": "Orca’s browser for {{host}} opens Google’s sign-in. Your Google sign-in stays on {{host}}."
+        "warning": "Google will show a warning because this app is yours and brand new. Choose Advanced, then Go to BrzA Studio, and tick every box on the next screen.",
+        "noteOnHost": "BrzA Studio’s browser for {{host}} opens Google’s sign-in. Your Google sign-in stays on {{host}}."
       },
       "connected": {
         "heading": "Google connected",
@@ -29215,7 +29215,7 @@
       "takeOver": "Take over from here",
       "ownerStep": "Step {{step}} of 3",
       "otherAccount": "Switch account",
-      "keyMissed": "Downloaded the key and Orca didn’t pick it up?",
+      "keyMissed": "Downloaded the key and BrzA Studio didn’t pick it up?",
       "pickHostKey": "Pick the key file to import:",
       "pickKeyHere": "Choose a file on this computer",
       "action": {
@@ -29237,7 +29237,7 @@
         "stopped": "Setup stopped.",
         "paused": "The setup paused at {{step}}. Everything so far is saved.",
         "yourTurn": "Your turn: {{step}}.",
-        "noKey": "Orca needs the app’s key first.",
+        "noKey": "BrzA Studio needs the app’s key first.",
         "keyGone": "This app’s key no longer works: it was removed in Google Cloud.",
         "keyOtherProject": "The saved key is for project {{keyProject}}, not {{project}}.",
         "otherAccount": "You signed in as {{signedIn}}; this setup was for {{wanted}}.",
@@ -29245,7 +29245,7 @@
         "needsPermission": "Almost there: allow {{services}}. Google shows a box for each one; tick them all.",
         "apiOff": "{{services}} is turned off in Google Cloud.",
         "adminBlocked": "Your company’s Google admin blocked {{services}}.",
-        "checkFailed": "Orca couldn’t check {{services}}."
+        "checkFailed": "BrzA Studio couldn’t check {{services}}."
       },
       "notNow": "Not now",
       "importSetupFile": "Import setup file",
@@ -29325,14 +29325,14 @@
         "keyAdded": "✓ Key added",
         "declined": "Dismissed",
         "connectTitle": "Connect {{app}}",
-        "connectNote": "Opens {{app}}’s sign-in from Composio in your browser. Composio keeps this sign-in, not Orca.",
+        "connectNote": "Opens {{app}}’s sign-in from Composio in your browser. Composio keeps this sign-in, not BrzA Studio.",
         "keyFirst": "Add your Composio key first.",
         "connect": "Connect {{app}}",
         "ready": "Ready",
         "readyTitle": "{{bot}} can now use {{app}}",
         "readyAs": "As {{label}}. Your app sign-ins are held by Composio.",
         "browse": "Browse more apps",
-        "connectKeyNote": "Opens Composio to enter your {{app}} API key. Composio keeps it, not Orca.",
+        "connectKeyNote": "Opens Composio to enter your {{app}} API key. Composio keeps it, not BrzA Studio.",
         "goneHeading": "Needs setup",
         "goneTitle": "{{bot}} can’t use {{app}} now",
         "goneDetail": "Set it up again from the bot’s Tools."
@@ -29373,7 +29373,7 @@
         "byHand": "Manual setup",
         "done": "✓ Set up",
         "chosenByHand": "Doing it in Composio",
-        "oneAddressNote": "Orca turns on {{trigger}} for your sign-in. Your Composio project’s events come to Orca at one address, and each goes to the bot it’s for."
+        "oneAddressNote": "BrzA Studio turns on {{trigger}} for your sign-in. Your Composio project’s events come to BrzA Studio at one address, and each goes to the bot it’s for."
       },
       "removeKey": {
         "title": "Remove your Composio key?",
@@ -29406,7 +29406,7 @@
         "paste": "In Composio, open your project’s settings, then Webhooks, and paste it.",
         "open": "Open Composio",
         "done": "Done",
-        "doneNote": "Orca then turns on {{trigger}} and saves Composio’s signing secret."
+        "doneNote": "BrzA Studio then turns on {{trigger}} and saves Composio’s signing secret."
       },
       "disconnectTitle": "Disconnect {{app}}?",
       "disconnectNote": "{{bot}} can no longer use {{app}}. You can connect it again any time.",
@@ -29422,7 +29422,7 @@
       "signInOnComposio": "Sign in to {{app}} on Composio’s page.",
       "fixKey": "Fix key",
       "signInsUnreadShort": "Couldn’t read sign-ins",
-      "signInsUnreadNote": "Orca couldn’t ask Composio which apps {{bot}} uses.",
+      "signInsUnreadNote": "BrzA Studio couldn’t ask Composio which apps {{bot}} uses.",
       "signInEnded": "The sign-in was turned down, failed, or took too long.",
       "tryAgain": "Try again"
     },
@@ -29439,8 +29439,8 @@
       "stateFirstChat": "First chat",
       "stateNotConnected": "Not connected",
       "needsSetup": "Needs setup",
-      "publisher": "by Orca",
-      "official": "Official Orca template",
+      "publisher": "by BrzA Studio",
+      "official": "Official BrzA Studio template",
       "useTemplate": "Use template…",
       "inItsChat": "in its chat",
       "firstChat": "What it does first",
@@ -29517,8 +29517,8 @@
       "unreviewed-work": {
         "name": "Unreviewed agent work",
         "line": "A daily list of finished agent work nobody has looked at yet.",
-        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. Orca already tells you when an agent is waiting on you; this covers what’s done.",
-        "watches": "Your Orca workspaces",
+        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. BrzA Studio already tells you when an agent is waiting on you; this covers what’s done.",
+        "watches": "Your BrzA Studio workspaces",
         "does": "Lists workspaces whose agent finished with changes nobody reviewed or opened a pull request for.",
         "reports": "Here, weekdays at 9 AM",
         "example1": "mobile-pairing finished yesterday with a 340-line diff, no pull request.",
@@ -29534,7 +29534,7 @@
         "name": "Workspace cleanup",
         "line": "Finds finished or abandoned workspaces and offers to remove them.",
         "firstChat": "Lists workspaces whose pull request merged or that haven’t changed in two weeks, with any uncommitted changes. It removes only the ones you pick.",
-        "watches": "Your Orca workspaces and their pull requests",
+        "watches": "Your BrzA Studio workspaces and their pull requests",
         "does": "Lists workspaces that are done or abandoned, with uncommitted changes; removes only the ones you pick.",
         "reports": "Here, Fridays at 4 PM",
         "example1": "6 workspaces are done: their pull requests merged this week.",
@@ -29898,7 +29898,7 @@
       "secretWhere": "{{flag}} in {{where}}, line {{line}}",
       "view": "View",
       "goToLine": "Go to line",
-      "openFailed": "Orca could not open this file.",
+      "openFailed": "BrzA Studio could not open this file.",
       "description": "Anyone with the link can make a copy.",
       "removeSecret": "Remove the secret to publish",
       "cancel": "Cancel",
@@ -29960,8 +29960,8 @@
       "warnings": "{{count}} warnings",
       "nothingFound": "Nothing found",
       "whereLine": "{{where}}, line {{line}}",
-      "reconnect": "Sign in to Orca again to share.",
-      "signIn": "Sign in to Orca to share.",
+      "reconnect": "Sign in to BrzA Studio again to share.",
+      "signIn": "Sign in to BrzA Studio to share.",
       "receive": {
         "fromLinkMenu": "From a link…",
         "fromLink": "From a link",
@@ -30014,8 +30014,8 @@
         "prepareAgain": "This bot was shared from another window meanwhile. Open Share bot again.",
         "stopped": "This link was stopped. Publish to make a new link.",
         "moved": "This link was updated somewhere else. Open Share bot again to see it.",
-        "unavailable": "Orca Cloud doesn't accept bot shares yet.",
-        "avatarRefused": "Orca Cloud refused the bot's picture. Pick another picture, then try again.",
+        "unavailable": "BrzA Studio Cloud doesn't accept bot shares yet.",
+        "avatarRefused": "BrzA Studio Cloud refused the bot's picture. Pick another picture, then try again.",
         "tooLarge": "This bot is too large to share. Leave out some memory or skills, then try again."
       },
       "duplicateSkill": "Same name, in {{folder}} · not shared"
@@ -30261,10 +30261,10 @@
       "cantReach": "Can’t reach",
       "signInOrca": "Works with Claude and Codex",
       "finishing": "Finishing sign-in…",
-      "updateHost": "Update Orca on {{host}} to sign in to apps",
-      "updateServer": "Update Orca on the server to sign in to apps",
-      "updateHostShort": "Update Orca on {{host}}",
-      "updateServerShort": "Update Orca on the server"
+      "updateHost": "Update BrzA Studio on {{host}} to sign in to apps",
+      "updateServer": "Update BrzA Studio on the server to sign in to apps",
+      "updateHostShort": "Update BrzA Studio on {{host}}",
+      "updateServerShort": "Update BrzA Studio on the server"
     },
     "handToBot": {
       "cantMove": "{{name}} can't move under {{bot}} from here.",
@@ -30327,47 +30327,47 @@
     "page": {
       "serverDownTitle": "Can’t reach {{host}}",
       "serverReconnectingTitle": "Reconnecting to {{host}}",
-      "serverDownBody": "Check that Orca is running on {{host}}, then reconnect.",
-      "serverReconnectingBody": "The connection to the server dropped. Orca is retrying automatically.",
+      "serverDownBody": "Check that BrzA Studio is running on {{host}}, then reconnect.",
+      "serverReconnectingBody": "The connection to the server dropped. BrzA Studio is retrying automatically.",
       "serverReconnect": "Reconnect"
     },
     "host": {
       "errors": {
-        "signedOut": "Sign {{host}} in to Orca Cloud to connect {{service}}.",
-        "accountChanged": "{{host}}’s Orca sign-in changed. Start again.",
-        "accountChangedHere": "This computer’s Orca sign-in changed. Start again.",
-        "notRouted": "{{service}}’s page has to open in Orca’s browser for {{host}}. Reconnect {{host}}, then start again."
+        "signedOut": "Sign {{host}} in to BrzA Studio Cloud to connect {{service}}.",
+        "accountChanged": "{{host}}’s BrzA Studio sign-in changed. Start again.",
+        "accountChangedHere": "This computer’s BrzA Studio sign-in changed. Start again.",
+        "notRouted": "{{service}}’s page has to open in BrzA Studio’s browser for {{host}}. Reconnect {{host}}, then start again."
       },
       "thisComputer": "this computer",
       "pageUnrouted": "Can’t reach {{host}} to open this page in its browser. Reconnect {{host}}, then try again.",
       "botWorkspaceUnavailable": "This agent’s workspace isn’t available here now, so the page can’t open in it.",
       "signIn": {
-        "waitingFirst": "Log in with the Orca account {{host}} should use, in Orca’s browser for {{host}}. Check the page shows {{code}}.",
-        "waiting": "Approve in Orca’s browser for {{host}}. Check the page shows {{code}}.",
+        "waitingFirst": "Log in with the BrzA Studio account {{host}} should use, in BrzA Studio’s browser for {{host}}. Check the page shows {{code}}.",
+        "waiting": "Approve in BrzA Studio’s browser for {{host}}. Check the page shows {{code}}.",
         "copied": "Link copied.",
         "copyLink": "Copy link",
         "cancel": "Cancel",
         "again": "Sign {{host}} in again",
         "start": "Sign in on {{host}}",
         "trust": "Anyone paired to {{host}} can use its account’s connectors.",
-        "updateFirst": "Update Orca on {{host}}, then sign it in from here.",
-        "unconfigured": "Orca on {{host}} was built without Orca Cloud sign-in. Install Orca’s release build there to sign it in.",
-        "unread": "Couldn’t read {{host}}’s Orca sign-in.",
+        "updateFirst": "Update BrzA Studio on {{host}}, then sign it in from here.",
+        "unconfigured": "BrzA Studio on {{host}} was built without BrzA Studio Cloud sign-in. Install BrzA Studio’s release build there to sign it in.",
+        "unread": "Couldn’t read {{host}}’s BrzA Studio sign-in.",
         "readAgain": "Try again"
       },
       "notice": {
         "notReachingHost": "Slack, Linear and GitHub aren’t reaching bots on {{host}}.",
         "notReaching": "Slack, Linear and GitHub aren’t reaching {{name}}.",
-        "updateNeeded": "Update Orca on {{host}} to set up {{name}}’s connectors from here.",
-        "unreachable": "{{host}} can’t reach Orca Cloud.",
-        "cantSave": "{{host}} can’t save an Orca sign-in: {{reason}}",
-        "cantSaveNext": "Unlock or set up a keychain on {{host}} and restart Orca there, then sign it in here.",
-        "lapsed": "{{host}}’s Orca sign-in for {{email}} changed.",
-        "lapsedNoEmail": "{{host}}’s Orca sign-in changed.",
-        "signedOut": "{{host}} is signed out of Orca.",
+        "updateNeeded": "Update BrzA Studio on {{host}} to set up {{name}}’s connectors from here.",
+        "unreachable": "{{host}} can’t reach BrzA Studio Cloud.",
+        "cantSave": "{{host}} can’t save a BrzA Studio sign-in: {{reason}}",
+        "cantSaveNext": "Unlock or set up a keychain on {{host}} and restart BrzA Studio there, then sign it in here.",
+        "lapsed": "{{host}}’s BrzA Studio sign-in for {{email}} changed.",
+        "lapsedNoEmail": "{{host}}’s BrzA Studio sign-in changed.",
+        "signedOut": "{{host}} is signed out of BrzA Studio.",
         "linksBelong": "{{name}}’s connectors belong to {{email}}.",
-        "signedOutFirst": "{{host}} is signed out of Orca, so {{name}} can’t use Slack, Linear or GitHub yet.",
-        "linksBelongElsewhere": "{{name}}’s connectors belong to another Orca account."
+        "signedOutFirst": "{{host}} is signed out of BrzA Studio, so {{name}} can’t use Slack, Linear or GitHub yet.",
+        "linksBelongElsewhere": "{{name}}’s connectors belong to another BrzA Studio account."
       }
     },
     "chats": {
@@ -30425,25 +30425,25 @@
       "hideOlder": "Hide older"
     },
     "cloudSignIn": {
-      "automationScheduledOnly": "Runs on its schedule only: its events are paused while signed out of Orca",
-      "automationPaused": "Paused while signed out of Orca",
-      "botOff": "Signed out of Orca · Slack, events, sharing off",
-      "accessRequests": "Access requests need Orca sign-in.",
+      "automationScheduledOnly": "Runs on its schedule only: its events are paused while signed out of BrzA Studio",
+      "automationPaused": "Paused while signed out of BrzA Studio",
+      "botOff": "Signed out of BrzA Studio · Slack, events, sharing off",
+      "accessRequests": "Access requests need BrzA Studio sign-in.",
       "signIn": "Sign in",
-      "slack": "Slack connects through Orca Cloud. Sign in to Orca to continue.",
-      "github": "GitHub connects through Orca Cloud. Sign in to Orca to continue.",
-      "linear": "Linear connects through Orca Cloud. Sign in to Orca to continue.",
+      "slack": "Slack connects through BrzA Studio Cloud. Sign in to BrzA Studio to continue.",
+      "github": "GitHub connects through BrzA Studio Cloud. Sign in to BrzA Studio to continue.",
+      "linear": "Linear connects through BrzA Studio Cloud. Sign in to BrzA Studio to continue.",
       "cancel": "Cancel",
       "paused": "Paused while signed out",
       "needsSignIn": "Needs sign-in",
-      "toldBot": "I’m signed in to Orca Cloud now.",
-      "signedIn": "Signed in to Orca",
+      "toldBot": "I’m signed in to BrzA Studio Cloud now.",
+      "signedIn": "Signed in to BrzA Studio",
       "continue": "Continue",
-      "webhooksChat": "Webhooks need Orca Cloud sign-in. I’ll make it once you’re in.",
-      "eventsChat": "{{source}} events need Orca Cloud sign-in. I’ll save this rule once you’re in.",
-      "webhooksHostChat": "Webhooks need {{host}} signed in to Orca Cloud. I’ll make it once it is.",
-      "eventsHostChat": "{{source}} events need {{host}} signed in to Orca Cloud. I’ll save this rule once it is.",
-      "webhooksNotReaching": "Orca Cloud isn’t reaching {{name}}, so it can’t make webhooks yet."
+      "webhooksChat": "Webhooks need BrzA Studio Cloud sign-in. I’ll make it once you’re in.",
+      "eventsChat": "{{source}} events need BrzA Studio Cloud sign-in. I’ll save this rule once you’re in.",
+      "webhooksHostChat": "Webhooks need {{host}} signed in to BrzA Studio Cloud. I’ll make it once it is.",
+      "eventsHostChat": "{{source}} events need {{host}} signed in to BrzA Studio Cloud. I’ll save this rule once it is.",
+      "webhooksNotReaching": "BrzA Studio Cloud isn’t reaching {{name}}, so it can’t make webhooks yet."
     },
     "tabs": {
       "homeDetail": "Home: the bot's main chat. Its memory, automations and requests from others land here.",
@@ -30457,7 +30457,7 @@
       "computerFoot": "Its connectors, tools and files live on this computer.",
       "pairedServer": "Paired server · runs this bot’s chats, tools and automations",
       "thisComputerDetail": "This computer",
-      "orcaAccount": "Orca account",
+      "orcaAccount": "BrzA Studio account",
       "folder": "Folder",
       "copyPath": "Copy path",
       "topicFiles": "Topic files",
@@ -30788,7 +30788,7 @@
     "failures": {
       "lookUnfinished": "The last look didn't finish.",
       "lookTimedOut": "The last look was stopped after {{minutes}} min.",
-      "lookInterrupted": "Orca stopped during the last look.",
+      "lookInterrupted": "BrzA Studio stopped during the last look.",
       "lookCouldNotStart": "The last look couldn't start.",
       "lookAsleep": "The last look was missed because this computer was asleep.",
       "tidyUpUnfinished": "The last tidy-up didn't finish.",
@@ -30797,11 +30797,11 @@
       "tidyUpAsleep": "The last tidy-up was missed because this computer was asleep.",
       "tidyUpUnreadChats": "The last tidy-up couldn't read its chats, so it didn't run.",
       "tidyUpNoDraft": "The last tidy-up didn't reply with a new MEMORY.md.",
-      "tidyUpNoOps": "The last tidy-up's reply wasn't a list of changes Orca could read.",
-      "tidyUpAllSkipped": "Orca skipped every change the last tidy-up asked for, so nothing changed. ({{detail}})",
+      "tidyUpNoOps": "The last tidy-up's reply wasn't a list of changes BrzA Studio could read.",
+      "tidyUpAllSkipped": "BrzA Studio skipped every change the last tidy-up asked for, so nothing changed. ({{detail}})",
       "tidyUpNotListLines": "The last tidy-up didn't run: MEMORY.md has more than a few lines that aren't list lines, and ops Tidy-up reads only list lines.",
-      "tidyUpMovedOnly": "The last tidy-up moved status lines to memory/journal/, but Orca could not use the rest of its reply. ({{detail}})",
-      "tidyUpBadTopic": "The last tidy-up named a topic file Orca can't write, so nothing changed.",
+      "tidyUpMovedOnly": "The last tidy-up moved status lines to memory/journal/, but BrzA Studio could not use the rest of its reply. ({{detail}})",
+      "tidyUpBadTopic": "The last tidy-up named a topic file BrzA Studio can't write, so nothing changed.",
       "tidyUpTooLong": "The last tidy-up's MEMORY.md was over {{max}} lines and no shorter, so nothing changed.",
       "tidyUpTooManyRemoved": "The last tidy-up took out too many lines at once, so nothing changed.",
       "tidyUpTooManyAdded": "The last tidy-up added too many new lines at once, so nothing changed.",
@@ -30815,9 +30815,9 @@
       "toolSavedValueGone": "That saved value is no longer available. Re-enter it or remove its row.",
       "toolValueMissing": "Enter a value for each row, or remove the row.",
       "toolCredentialsUnreadable": "The bot’s saved tool credentials are unreadable. Re-enter the tool’s values.",
-      "toolSignInManaged": "Orca signs in to this tool. Sign it in or out instead.",
-      "toolCredentialsRaced": "The bot’s tool credentials changed in another Orca. Try again.",
-      "toolSourceManaged": "Orca manages this tool. Change it where you set it up.",
+      "toolSignInManaged": "BrzA Studio signs in to this tool. Sign it in or out instead.",
+      "toolCredentialsRaced": "The bot’s tool credentials changed in another BrzA Studio. Try again.",
+      "toolSourceManaged": "BrzA Studio manages this tool. Change it where you set it up.",
       "toolValuesUnmoved": "A tool still holds its saved values. Reopen the bot’s tools to move them.",
       "googleAccountsChanged": "Its Google accounts changed since you opened them. Check them and save again.",
       "toolCodexCheckFailed": "Codex could not check or connect the tools. Check its setup and try again.",
@@ -30833,7 +30833,7 @@
       "toolSignInEnded": "The sign-in had already ended or timed out. Start it again with Connect.",
       "toolNotFound": "This bot has no tool named {{name}}.",
       "toolNeedsNoSignIn": "{{name}} uses its saved values and needs no sign-in.",
-      "toolSignInAgentUnsupported": "Orca signs {{name}} in only for Claude Code and Codex. Add it with its sign-in values instead.",
+      "toolSignInAgentUnsupported": "BrzA Studio signs {{name}} in only for Claude Code and Codex. Add it with its sign-in values instead.",
       "toolCodexNoSignInPage": "Codex gave no sign-in page for {{name}}.",
       "toolClaudeSignInFailed": "Claude couldn't start signing in to {{name}}.",
       "toolClaudeNoSignInPage": "Claude didn't open a sign-in page for {{name}}.",
@@ -30852,7 +30852,7 @@
       "groupNeedsLocalBot": "This group needs at least one bot on this computer.",
       "groupNameTaken": "{{name}} is already in this group. Members need different names so mentions stay unambiguous.",
       "groupPostFromHost": "To post in a group with bots on other computers, use {{host}}.",
-      "groupPeerTooOld": "Update Orca on {{host}} to add its bots to a group.",
+      "groupPeerTooOld": "Update BrzA Studio on {{host}} to add its bots to a group.",
       "attachmentUnreadable": "{{name}} can't be read.",
       "attachmentTooLarge": "{{name}} is over {{maxMb}} MB.",
       "attachmentUploading": "{{name}} is still uploading.",
@@ -30945,7 +30945,7 @@
         "unsupported": "This app isn’t supported yet.",
         "unavailable": "Can’t reach this app. Check the address, then try again.",
         "noTool": "This bot no longer has that tool.",
-        "desktopOnly": "Sign in from Orca on {{host}}.",
+        "desktopOnly": "Sign in from BrzA Studio on {{host}}.",
         "denied": "Access wasn’t allowed.",
         "expired": "The sign-in expired. Try again.",
         "couldNotSignIn": "Couldn’t sign in. Try again."
@@ -30958,7 +30958,7 @@
       "toast": "A required plugin could not be installed",
       "open": "Open Plugins",
       "label": "Required by your team",
-      "body": "Orca couldn’t install {{plugin}}."
+      "body": "BrzA Studio couldn’t install {{plugin}}."
     },
     "frameSaveAs": {
       "title": "Save File",
@@ -30990,8 +30990,8 @@
       "teamPublisher": "Your team"
     },
     "displayText": {
-      "tb0b38488": "GitHub Themes for Orca",
-      "tb8aa98fc": "VS Code Default Themes for Orca",
+      "tb0b38488": "GitHub Themes for BrzA Studio",
+      "tb8aa98fc": "VS Code Default Themes for BrzA Studio",
       "tfc425a57": "Multipass VM Recipes",
       "t0f9f5503": "GitHub's own VS Code themes: Light Default, Dark Default, Dark Dimmed and the high-contrast variants.",
       "t0b4f7e19": "Unofficial ports of VS Code's default color themes: Dark Modern, Light Modern, Dark+ and Light+.",
@@ -31117,8 +31117,8 @@
   "renderer": {
     "lib": {
       "filePreview": {
-        "remoteFileUnsupported": "Open in Orca Browser is only available for local files.",
-        "twinFileUnsupported": "This project is on more than one host, so Orca cannot tell which copy to open."
+        "remoteFileUnsupported": "Open in BrzA Studio Browser is only available for local files.",
+        "twinFileUnsupported": "This project is on more than one host, so BrzA Studio cannot tell which copy to open."
       }
     }
   },
@@ -31143,10 +31143,10 @@
       "attachmentsOmitted": "The saved freeze report and diagnostic logs were not attached: {{value0}}",
       "description": "Send the saved freeze report to help us understand what happened.",
       "notSent": "Freeze report wasn't sent",
-      "notes": "Optional: what were you doing before Orca froze?",
+      "notes": "Optional: what were you doing before BrzA Studio froze?",
       "sent": "Freeze report sent.",
       "sentWithoutAttachments": "Details sent without the saved freeze report or diagnostic logs",
-      "summary": "Orca stopped responding",
+      "summary": "BrzA Studio stopped responding",
       "title": "Report a freeze",
       "uncheckAttachments": "Uncheck \"Include the saved freeze report and recent logs (redacted)\" and try again, or copy the details.",
       "includeRedacted": "Include the saved freeze report and recent logs (redacted)"
@@ -31224,7 +31224,7 @@
     "turnOnPlugins": "Turn on in Plugins",
     "languageDidNotLoad": "{{language}} didn’t load.",
     "yourLanguage": "Your language",
-    "offerSentence": "Orca is available in {{language}} as a community translation.",
+    "offerSentence": "BrzA Studio is available in {{language}} as a community translation.",
     "offerInstall": "Install <lang>{{language}}</lang>…",
     "offerUse": "Use <lang>{{language}}</lang>",
     "offerInstalling": "Installing <lang>{{language}}</lang>…",
@@ -31234,7 +31234,7 @@
     "preparing": "Preparing…",
     "offerConfirming": "Waiting for confirmation…",
     "offerRetry": "Try again",
-    "suggestionTitle": "Orca in <lang>{{language}}</lang>",
+    "suggestionTitle": "BrzA Studio in <lang>{{language}}</lang>",
     "systemResolved": "{{system}} ({{language}})",
     "suggestionInstall": "Install",
     "suggestionUse": "Use",
@@ -31288,8 +31288,8 @@
     "failedChipLabel": "Update failed: view error",
     "failedChipTooltip": "Update failed. Click to see details.",
     "failedTitle": "Couldn't update {{product}}",
-    "failedDescription": "Orca ran <code>{{command}}</code> on <strong>{{host}}</strong> to update your {{product}} from <strong>{{installedVersion}}</strong> to <strong>{{latestVersion}}</strong>, and it failed.",
-    "failedDescriptionNoCommand": "Orca couldn't update your {{product}} on <strong>{{host}}</strong>.",
+    "failedDescription": "BrzA Studio ran <code>{{command}}</code> on <strong>{{host}}</strong> to update your {{product}} from <strong>{{installedVersion}}</strong> to <strong>{{latestVersion}}</strong>, and it failed.",
+    "failedDescriptionNoCommand": "BrzA Studio couldn't update your {{product}} on <strong>{{host}}</strong>.",
     "cardLabel": "Agent CLI updates",
     "cardLater": "Later",
     "toastUpdating_one": "Updating {{current}} of {{count}} CLI",
@@ -31372,11 +31372,11 @@
   },
   "mcpServers": {
     "paste": {
-      "badCommand": "Put the values themselves in the mcp add command: Orca can’t fill in $VARIABLES or other shell expressions.",
-      "unsupported": "Orca can’t add this server as written: it uses SSE, its own OAuth client, or a value read from the environment.",
+      "badCommand": "Put the values themselves in the mcp add command: BrzA Studio can’t fill in $VARIABLES or other shell expressions.",
+      "unsupported": "BrzA Studio can’t add this server as written: it uses SSE, its own OAuth client, or a value read from the environment.",
       "badAddCommand": "Check the mcp add command: a name and a URL or command.",
       "badJson": "Check the pasted JSON: it doesn’t parse.",
-      "none": "Orca found no server it can add. SSE servers, servers with their own OAuth client or tool filters, and values read from the environment (${VAR}) aren’t supported."
+      "none": "BrzA Studio found no server it can add. SSE servers, servers with their own OAuth client or tool filters, and values read from the environment (${VAR}) aren’t supported."
     }
   }
 }

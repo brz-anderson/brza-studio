@@ -5,7 +5,7 @@ export type ResourceOwnerKey = 'orca' | 'agents' | 'yourProcesses'
 
 export function resourceOwnerLabels(t: Translate = translate): Record<ResourceOwnerKey, string> {
   return {
-    orca: t('resourceManager.owner.orca', 'Orca'),
+    orca: t('resourceManager.owner.orca', 'BrzA Studio'),
     agents: t('resourceManager.owner.agents', 'Agents'),
     yourProcesses: t('resourceManager.owner.otherTerminals', 'Other terminals')
   }

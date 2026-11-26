@@ -24,7 +24,7 @@ export function googleSetupPathNote(mode: GoogleSetupMode, botName: string): str
         bot: botName
       })
     case 'guide-here':
-      return translate('bots.googleSetup.path.guideHereNote', 'You click, in Orca')
+      return translate('bots.googleSetup.path.guideHereNote', 'You click, in BrzA Studio')
     case 'guide-browser':
       return translate('bots.googleSetup.path.guideBrowserNote', 'You click, in your browser')
   }

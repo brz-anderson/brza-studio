@@ -135,7 +135,7 @@ export function TerminalWindowsAdministratorSection(): React.JSX.Element {
               {showConfirmation
                 ? t(
                     'settings.terminal.windows.confirmOrcaAdministratorRestart',
-                    'Restart Orca as administrator?'
+                    'Restart BrzA Studio as administrator?'
                   )
                 : helpLabel}
             </DialogTitle>
@@ -182,7 +182,7 @@ export function TerminalWindowsAdministratorSection(): React.JSX.Element {
           )}
           {restartError ? (
             <DialogError onRetry={() => void restartAsAdministrator()}>
-              {t('settings.terminal.windows.orcaCouldNotRestart', 'Orca couldn’t restart.')}
+              {t('settings.terminal.windows.orcaCouldNotRestart', 'BrzA Studio couldn’t restart.')}
             </DialogError>
           ) : null}
           <DialogFooter

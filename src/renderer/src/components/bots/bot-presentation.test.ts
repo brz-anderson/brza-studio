@@ -90,7 +90,7 @@ describe('botCreateErrorMessage', () => {
     const message = botCreateErrorMessage(olderHost, 'x'.repeat(201), 'build-box')
     expect(message).toContain('up to 200 characters')
     // Names the computer to update, so a paired one isn't read as this Mac.
-    expect(message).toContain('update Orca on build-box')
+    expect(message).toContain('update BrzA Studio on build-box')
   })
 
   it('keeps the generic copy when the purpose was within the older limit', () => {

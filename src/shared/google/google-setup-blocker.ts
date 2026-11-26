@@ -319,7 +319,7 @@ export function googleSetupBlockerLine(blocker: GoogleSetupBlocker): string {
     case 'needs-user':
       return blocker.note ?? `Your owner's turn: ${blocker.step}.`
     case 'no-key':
-      return "Orca needs the app's key first."
+      return "BrzA Studio needs the app's key first."
     case 'key-gone':
       return "This app's key no longer works: it was removed in Google Cloud."
     case 'key-other-project':

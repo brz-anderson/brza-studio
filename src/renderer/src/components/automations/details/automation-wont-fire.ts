@@ -38,9 +38,9 @@ export function automationWontFire<B extends ListedBot>(
     const label = hasAutomationSchedule(automation)
       ? translate(
           'bots.cloudSignIn.automationScheduledOnly',
-          'Runs on its schedule only: its events are paused while signed out of Orca'
+          'Runs on its schedule only: its events are paused while signed out of BrzA Studio'
         )
-      : translate('bots.cloudSignIn.automationPaused', 'Paused while signed out of Orca')
+      : translate('bots.cloudSignIn.automationPaused', 'Paused while signed out of BrzA Studio')
     return { bot: owner, label, needsConnector: false }
   }
   const unheard = automationUnheardSources(
@@ -69,9 +69,12 @@ export function automationWontFire<B extends ListedBot>(
     const label = scheduled
       ? translate(
           'automations.webhooksOffScheduled',
-          'Runs on its schedule only: Orca Cloud doesn’t support webhooks yet'
+          'Runs on its schedule only: BrzA Studio Cloud doesn’t support webhooks yet'
         )
-      : translate('automations.webhooksOff', 'Won’t run: Orca Cloud doesn’t support webhooks yet')
+      : translate(
+          'automations.webhooksOff',
+          'Won’t run: BrzA Studio Cloud doesn’t support webhooks yet'
+        )
     return { bot, label, needsConnector: false }
   }
   const connectors = new Intl.ListFormat(getIntlLocale(), { type: 'disjunction' }).format(names)

@@ -77,7 +77,7 @@ export async function removeRuntimeSparsePreset(
       throw new Error(
         translate(
           'sparsePreset.updateServerToRemove',
-          'Update Orca on this project’s server to remove its presets.'
+          'Update BrzA Studio on this project’s server to remove its presets.'
         )
       )
     }

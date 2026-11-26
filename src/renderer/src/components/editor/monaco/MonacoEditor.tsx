@@ -5,7 +5,7 @@ import type { MarkdownDocument } from '../../../../../shared/file-listing/file-d
 import { useAppStore } from '@/store/index'
 import '@/lib/editor/monaco/monaco-setup'
 import { monacoTypographyOptions } from '@/lib/editor/appearance/editor-typography'
-import { useEditorTypography } from '@/lib/editor/appearance/use-editor-typography'
+import { useBrzaMarkdownCodeTypography } from '../brza/use-brza-markdown-code-typography'
 import { useContextualCopySetup } from '../contextual-copy/useContextualCopySetup'
 import { MonacoGutterContextMenu } from './MonacoGutterContextMenu'
 import { isLinuxUserAgent } from '../../../app-shell/platform/user-agent-platform'
@@ -64,8 +64,6 @@ type MonacoEditorProps = {
   passiveMirror?: boolean
   liveTail?: boolean
   autoHeight?: boolean
-  /** Replaces the editor font, as the Markdown code mode does while it follows the chat. */
-  fontFamily?: string
 }
 
 export default function MonacoEditor({
@@ -89,8 +87,7 @@ export default function MonacoEditor({
   readOnly = false,
   passiveMirror = false,
   liveTail = false,
-  autoHeight = false,
-  fontFamily
+  autoHeight = false
 }: MonacoEditorProps): React.JSX.Element {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const editorContainerRef = useRef<HTMLDivElement | null>(null)
@@ -118,13 +115,8 @@ export default function MonacoEditor({
   const settings = useAppStore((s) => s.settings)
   const setPendingEditorReveal = useAppStore((s) => s.setPendingEditorReveal)
   const setEditorCursorLine = useAppStore((s) => s.setEditorCursorLine)
-  const baseTypography = useEditorTypography()
   // The Markdown code mode takes the chat's code font in place of the editor's.
-  const typography = useMemo(
-    () =>
-      fontFamily ? { ...baseTypography, fontFamily, cssFontFamily: fontFamily } : baseTypography,
-    [baseTypography, fontFamily]
-  )
+  const typography = useBrzaMarkdownCodeTypography(markdownDocuments !== undefined)
   const typographyOptions = useMemo(() => monacoTypographyOptions(typography), [typography])
   // Mirrors Monaco's automatic spacing closely enough to size before mount.
   const autoHeightLineHeight = typography.lineHeight || Math.ceil(typography.fontSize * 1.45)

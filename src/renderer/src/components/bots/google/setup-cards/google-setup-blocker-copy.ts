@@ -69,7 +69,7 @@ export function googleSetupBlockerText(blocker: GoogleSetupBlocker): string {
         })
       )
     case 'no-key':
-      return translate('bots.googleSetup.blocker.noKey', 'Orca needs the app’s key first.')
+      return translate('bots.googleSetup.blocker.noKey', 'BrzA Studio needs the app’s key first.')
     case 'key-gone':
       return translate(
         'bots.googleSetup.blocker.keyGone',
@@ -112,7 +112,7 @@ export function googleSetupBlockerText(blocker: GoogleSetupBlocker): string {
     case 'check-failed':
       return translate(
         'bots.googleSetup.blocker.checkFailed',
-        'Orca couldn’t check {{services}}.',
+        'BrzA Studio couldn’t check {{services}}.',
         { services: googleSetupServicesList(blocker.services) }
       )
   }

@@ -184,29 +184,18 @@ export class ClaudeProfileRouter {
     if (!profile) {
       return this.preparation()
     }
-    await prepareClaudeProfileForLaunch(
-      profile,
-      (value) => this.setUp(value),
-      this.args.refreshWaitMs
-    )
+    await this.readyProfile(profile)
     return this.preparation()
+  }
+
+  private readyProfile(profile: ClaudeProfileDescriptor): Promise<void> {
+    return prepareClaudeProfileForLaunch(profile, (v) => this.setUp(v), this.args.refreshWaitMs)
   }
 
   /** Ready a launch on `accountId`, or on System default when null, whatever the selection. */
   async readyForLaunch(accountId: string | null): Promise<void> {
     // Only fallback routing needs the shell env.
-    await (accountId === null ? this.envReady : this.prepareReceivingAccount(accountId))
-  }
-
-  /** Prepare an observed receiving route without mutating selection or adopting a System-default alias. */
-  async prepareReceivingAccount(accountId: string): Promise<string> {
-    const profile = this.describe(accountId)
-    await prepareClaudeProfileForLaunch(
-      profile,
-      (value) => this.setUp(value),
-      this.args.refreshWaitMs
-    )
-    return profile.home
+    await (accountId === null ? this.envReady : this.readyProfile(this.describe(accountId)))
   }
 
   accountHome(accountId: string): string {

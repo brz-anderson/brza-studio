@@ -123,7 +123,7 @@ function HookPath({ entry }: { entry: OrcaUninstallPath }): React.JSX.Element {
   const place =
     entry.orcaData.kind === 'codex-account'
       ? t('settings.uninstall.path.codexAccount', 'Orca-managed Codex account')
-      : t('settings.uninstall.path.appData', 'Orca app data')
+      : t('settings.uninstall.path.appData', 'BrzA Studio app data')
   return (
     <span className="block" title={entry.path}>
       <span className="font-sans">{place}</span> · {entry.orcaData.relative}

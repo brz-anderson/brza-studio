@@ -149,7 +149,7 @@ function formatRegisterCliDetail(normalized: string): string | null {
   if (wsl) {
     return translate(
       'auto.lib.cli.detail.registerForWsl',
-      'Register {{path}} to use Orca from WSL.',
+      'Register {{path}} to use BrzA Studio from WSL.',
       { path: registerPathToken(wsl[1]) }
     )
   }
@@ -157,7 +157,7 @@ function formatRegisterCliDetail(normalized: string): string | null {
   if (terminal) {
     return translate(
       'auto.lib.cli.detail.registerForTerminal',
-      'Register {{path}} to use Orca from the terminal.',
+      'Register {{path}} to use BrzA Studio from the terminal.',
       { path: registerPathToken(terminal[1]) }
     )
   }
@@ -167,7 +167,7 @@ function formatRegisterCliDetail(normalized: string): string | null {
   if (windowsShell) {
     return translate(
       'auto.lib.cli.detail.registerForWindowsShell',
-      'Register {{path}} to use Orca from Command Prompt or PowerShell.',
+      'Register {{path}} to use BrzA Studio from Command Prompt or PowerShell.',
       { path: registerPathToken(windowsShell[1]) }
     )
   }

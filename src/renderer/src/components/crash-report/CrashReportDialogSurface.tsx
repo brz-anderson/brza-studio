@@ -265,7 +265,7 @@ export function CrashReportDialogSurface({
                   : report.createdAt
               ).toLocaleString(intlLocale)}{' '}
               · {report.platform} {report.arch} ·{' '}
-              {t('auto.components.crash.report.CrashReportDialog.835037edc9', 'Orca')}{' '}
+              {t('auto.components.crash.report.CrashReportDialog.835037edc9', 'BrzA Studio')}{' '}
               {report.appVersion}
             </div>
             <pre className="mt-1.5 whitespace-pre-wrap [overflow-wrap:anywhere]">

@@ -5733,7 +5733,7 @@
             "cursor": {
               "expired": {
                 "label": "登录已过期",
-                "message": "请在运行 Orca 的电脑上的终端中运行 cursor-agent login，然后重新刷新用量"
+                "message": "请在运行 BrzA Studio 的电脑上的终端中运行 cursor-agent login，然后重新刷新用量"
               }
             },
             "usage": {
@@ -5744,8 +5744,8 @@
             "7ad719c4bf": "受限",
             "e740f92596": "刷新失败",
             "2c35eca8d4": "无法获取使用情况",
-            "d1b7f509ac": "在运行 Orca 的电脑上的终端中运行 grok，并等待其启动，如有提示，请完成登录，然后重试用量检查，您无需发送聊天消息",
-            "a37e8c15d4": "在运行 Orca 的电脑上的终端中运行 kimi，等待其启动，然后重试用量检查",
+            "d1b7f509ac": "在运行 BrzA Studio 的电脑上的终端中运行 grok，并等待其启动，如有提示，请完成登录，然后重试用量检查，您无需发送聊天消息",
+            "a37e8c15d4": "在运行 BrzA Studio 的电脑上的终端中运行 kimi，等待其启动，然后重试用量检查",
             "3d3c9c0c1f": "实时 Claude 终端轮换凭据后，Claude 用量会刷新",
             "42fdd4da1d": "正在刷新 Claude 登录，代理会话可能仍处于登录状态",
             "c06c1d215d": "由于网络请求失败，无法刷新 Claude 用量",
@@ -6194,8 +6194,8 @@
       "unreviewed-work": {
         "name": "未评审的智能体工作",
         "line": "每天列出还没人看过的已完成智能体工作",
-        "firstChat": "列出智能体已完成、但其更改你尚未评审或尚未变成 PR 的工作区。智能体等待你时 Orca 已经会通知你；这里关注的是已完成的工作",
-        "watches": "你的 Orca 工作区",
+        "firstChat": "列出智能体已完成、但其更改你尚未评审或尚未变成 PR 的工作区。智能体等待你时 BrzA Studio 已经会通知你；这里关注的是已完成的工作",
+        "watches": "你的 BrzA Studio 工作区",
         "does": "列出智能体已完成、但其更改无人评审或尚未开 PR 的工作区",
         "reports": "在这里，工作日上午 9 点",
         "example1": "mobile-pairing 昨天完成，差异有 340 行，还没有 PR",
@@ -6211,7 +6211,7 @@
         "name": "工作区清理",
         "line": "找出已完成或已废弃的工作区，并提议移除",
         "firstChat": "列出 PR 已合并或两周内没有变化的工作区，并注明未提交的更改。它只会移除你选中的工作区",
-        "watches": "你的 Orca 工作区及其 PR",
+        "watches": "你的 BrzA Studio 工作区及其 PR",
         "does": "列出已完成或已废弃的工作区，并注明未提交的更改；只移除你选中的工作区",
         "reports": "在这里，每周五下午 4 点",
         "example1": "6 个工作区已完成：它们的 PR 已在本周合并",
@@ -7122,9 +7122,9 @@
       "reading": "正在了解你的工作环境…",
       "read": "了解你的工作环境",
       "namesMore": "{{names}} 以及另外 {{count}} 个",
-      "projectsReading": "项目：正在查看你在 Orca 中的项目…",
+      "projectsReading": "项目：正在查看你在 BrzA Studio 中的项目…",
       "projectsDone": "已查看你的项目",
-      "projectsNone": "Orca 中还没有项目",
+      "projectsNone": "BrzA Studio 中还没有项目",
       "projectsOne": "找到 1 个项目：{{names}}",
       "projectsMany": "找到 {{count}} 个项目：{{names}}",
       "githubReading": "GitHub：正在读取你未关闭的 PR…",
@@ -7285,7 +7285,7 @@
         "unsupported": "暂不支持此应用。",
         "unavailable": "无法连接此应用。请检查地址后重试。",
         "noTool": "这个机器人已经没有那个工具了。",
-        "desktopOnly": "请在 {{host}} 上的 Orca 中登录。",
+        "desktopOnly": "请在 {{host}} 上的 BrzA Studio 中登录。",
         "denied": "未获得访问授权",
         "expired": "登录已过期。请重试。",
         "couldNotSignIn": "无法登录。请重试。"

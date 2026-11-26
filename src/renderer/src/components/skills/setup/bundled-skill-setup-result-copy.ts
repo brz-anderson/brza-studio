@@ -60,7 +60,7 @@ export function bundledSkillSetupAttentionMessage(plan: BundledSkillPlan): strin
     case 'edited':
       return translate(
         'auto.components.settings.bundledSkillSetupCopy.attentionDiffersFromOrca',
-        "Needs attention · This copy differs from Orca's"
+        "Needs attention · This copy differs from BrzA Studio's"
       )
     case 'other':
       return translate(

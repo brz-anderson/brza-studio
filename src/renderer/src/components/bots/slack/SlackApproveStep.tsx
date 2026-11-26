@@ -42,12 +42,12 @@ export function SlackApproveStep({
     ? until
       ? t(
           'bots.slack.approve.noteUntil',
-          'Works once, until {{time}}. Sign in to Slack as yourself there; Orca Cloud passes the approval back to {{host}}.',
+          'Works once, until {{time}}. Sign in to Slack as yourself there; BrzA Studio Cloud passes the approval back to {{host}}.',
           { time: until, host: hostName }
         )
       : t(
           'bots.slack.approve.note',
-          'Works once. Sign in to Slack as yourself there; Orca Cloud passes the approval back to {{host}}.',
+          'Works once. Sign in to Slack as yourself there; BrzA Studio Cloud passes the approval back to {{host}}.',
           { host: hostName }
         )
     : until

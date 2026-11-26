@@ -84,7 +84,7 @@ describe('Connect Slack error states', () => {
 
   it('offers Reconnect once the server stopped retrying', () => {
     const view = show({ kind: 'failed', code: 'cloud_error' }, offline)
-    expect(view.text).toContain('Orca can’t reach build-box.')
+    expect(view.text).toContain('BrzA Studio can’t reach build-box.')
     expect(view.buttons).toEqual(['Details', 'Close', 'Reconnect'])
   })
 

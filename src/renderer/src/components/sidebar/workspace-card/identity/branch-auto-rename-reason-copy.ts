@@ -23,7 +23,7 @@ export function branchAutoRenameReasonText(
         case 'branch-changed':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonBranchChanged',
-            'The branch changed while Orca was naming it.'
+            'The branch changed while BrzA Studio was naming it.'
           )
         case 'project-moving':
           return t(
@@ -33,12 +33,12 @@ export function branchAutoRenameReasonText(
         case 'history-unreadable':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonHistoryUnreadable',
-            "Orca couldn't read this workspace's history. Try again."
+            "BrzA Studio couldn't read this workspace's history. Try again."
           )
         case 'interrupted':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonInterrupted',
-            "Orca couldn't finish naming the branch. Try again."
+            "BrzA Studio couldn't finish naming the branch. Try again."
           )
       }
       return null
@@ -47,17 +47,17 @@ export function branchAutoRenameReasonText(
         case 'branch-pushed':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonBranchPushed',
-            'The branch was pushed, so Orca kept its name.'
+            'The branch was pushed, so BrzA Studio kept its name.'
           )
         case 'branch-renamed':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonBranchRenamed',
-            'The branch was renamed, so Orca kept its name.'
+            'The branch was renamed, so BrzA Studio kept its name.'
           )
         case 'name-chosen':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonNameChosen',
-            'This branch name was chosen by hand, so Orca kept it.'
+            'This branch name was chosen by hand, so BrzA Studio kept it.'
           )
         case 'setting-off':
           return t(
@@ -72,7 +72,7 @@ export function branchAutoRenameReasonText(
         case 'first-message-unavailable':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonFirstMessageUnavailable',
-            "Orca couldn't find this workspace's first message."
+            "BrzA Studio couldn't find this workspace's first message."
           )
         case 'already-named':
           return t(
@@ -82,7 +82,7 @@ export function branchAutoRenameReasonText(
         case 'unavailable':
           return t(
             'auto.components.sidebar.AutoRenameFailedDialog.reasonUnavailable',
-            "Orca can't name this branch anymore."
+            "BrzA Studio can't name this branch anymore."
           )
       }
       return null

@@ -142,9 +142,13 @@ export async function openBotLinkHome(
       return
     case 'update-needed':
       toast.info(
-        translate('bots.deepLink.updateNeeded', 'Update Orca on {{hosts}} to open this bot here.', {
-          hosts: hostNames(resolution.hostIds)
-        })
+        translate(
+          'bots.deepLink.updateNeeded',
+          'Update BrzA Studio on {{hosts}} to open this bot here.',
+          {
+            hosts: hostNames(resolution.hostIds)
+          }
+        )
       )
       return
     case 'missing':

@@ -175,7 +175,7 @@ function BrowserPasswordsProfile({
         item.username || t('settings.browser.passwords.noUsername', '(no username)'),
         t(
           'settings.browser.passwords.deleteConfirmDescription',
-          'Orca won’t fill it anymore. This can’t be undone.'
+          'BrzA Studio won’t fill it anymore. This can’t be undone.'
         )
       ].join('\n'),
       confirmLabel: t('settings.browser.passwords.deleteConfirm', 'Delete'),

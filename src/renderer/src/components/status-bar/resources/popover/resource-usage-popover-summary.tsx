@@ -174,7 +174,7 @@ export function renderResourceUsageSummary(
   const widths = barWidths(ownerSplit)
   const privateLabel = t(
     'resourceManager.owner.privateBytes',
-    'Committed by Orca, agents and terminals'
+    'Committed by BrzA Studio, agents and terminals'
   )
   return (
     <div className="shrink-0 border-b border-border px-3 pt-2 pb-1.5 text-xs tabular-nums">

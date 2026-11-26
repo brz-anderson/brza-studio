@@ -139,14 +139,14 @@ export function useBotChatPicker(
           why: hostLabel
             ? t(
                 'bots.chat.mentionChatOlderHost',
-                "The Orca on {{host}} can't send to a specific chat yet.",
+                "The BrzA Studio on {{host}} can't send to a specific chat yet.",
                 {
                   host: hostLabel
                 }
               )
             : t(
                 'bots.chat.mentionChatOlderHostHere',
-                "This Orca can't send to a specific chat yet."
+                "This BrzA Studio can't send to a specific chat yet."
               )
         }
       }
@@ -329,7 +329,7 @@ function chatPick(
         state: 'unavailable',
         why: t(
           'bots.chat.mentionChatUnverifiable',
-          "Orca can't confirm this chat can take messages."
+          "BrzA Studio can't confirm this chat can take messages."
         )
       }
   }

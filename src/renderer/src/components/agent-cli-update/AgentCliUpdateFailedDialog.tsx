@@ -48,7 +48,7 @@ function FailedDialog({ request }: { request: AgentCliUpdateFailureRequest }): R
             i18n={i18n}
             defaults={t(
               'agentCliUpdate.failedDescription',
-              'Orca ran <code>{{command}}</code> on <strong>{{host}}</strong> to update your {{product}} from <strong>{{installedVersion}}</strong> to <strong>{{latestVersion}}</strong>, and it failed.'
+              'BrzA Studio ran <code>{{command}}</code> on <strong>{{host}}</strong> to update your {{product}} from <strong>{{installedVersion}}</strong> to <strong>{{latestVersion}}</strong>, and it failed.'
             )}
             values={{
               command: failed.command,
@@ -65,7 +65,7 @@ function FailedDialog({ request }: { request: AgentCliUpdateFailureRequest }): R
             i18n={i18n}
             defaults={t(
               'agentCliUpdate.failedDescriptionNoCommand',
-              "Orca couldn't update your {{product}} on <strong>{{host}}</strong>."
+              "BrzA Studio couldn't update your {{product}} on <strong>{{host}}</strong>."
             )}
             values={{ product, host }}
             components={{ strong }}

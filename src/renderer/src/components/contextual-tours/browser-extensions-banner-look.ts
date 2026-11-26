@@ -27,7 +27,7 @@ export function withBrowserExtensionsBannerLook(
       copy === 'everyday'
         ? translate(
             'auto.components.contextual.tours.contextual.tour.step.copy.browser.extensions.intro.everydayTitle',
-            'Your everyday browser tools, in Orca'
+            'Your everyday browser tools, in BrzA Studio'
           )
         : state.title,
     control: { kind: 'browser-extension-icons', colored: coloredIcons }

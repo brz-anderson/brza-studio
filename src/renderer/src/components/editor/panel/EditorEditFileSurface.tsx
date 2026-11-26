@@ -28,7 +28,6 @@ import { PluginFileTypeSuggestion } from '../plugin-editors/PluginFileTypeSugges
 import { BinaryFileDefaultAppButton } from '../document-media/BinaryFileDefaultAppButton'
 import type { useMarkdownDocuments } from '../markdown/documents/useMarkdownDocuments'
 import { EditorMarkdownFileSurface } from './EditorMarkdownFileSurface'
-import { useMarkdownSurfaceTheme } from '../use-markdown-surface-theme'
 import type { MarkdownRenderState } from '../markdown/render-mode/markdown-render-mode'
 import type { ActivePluginCustomEditor } from '@/store/plugins/file-editors/plugin-custom-editors'
 import { PluginEditorSourceFallbackNotice } from '../plugin-editors/PluginEditorNeedsDesktopNotice'
@@ -117,7 +116,6 @@ export function EditorEditFileSurface({
   handleSave: (content: string) => Promise<boolean>
   reloadContent: (file: OpenFile, options?: ReloadContentOptions) => void
 }): React.JSX.Element {
-  const { codeFontFamily: markdownCodeFontFamily } = useMarkdownSurfaceTheme()
   const t = useTranslate()
   if (activeFile.conflict?.kind === 'conflict-placeholder') {
     return <ConflictPlaceholderView file={activeFile} />
@@ -287,7 +285,6 @@ export function EditorEditFileSurface({
         }
         worktreeId={activeFile.worktreeId}
         markdownAnnotationsEnabled={markdownAnnotationsEnabled && isMarkdown}
-        fontFamily={isMarkdown ? markdownCodeFontFamily : undefined}
         conflictDecorationsEnabled={activeFile.conflict?.conflictStatus === 'unresolved'}
         revealLine={
           matchesPendingEditorReveal(pendingEditorReveal, activeFile, viewStateScopeId)

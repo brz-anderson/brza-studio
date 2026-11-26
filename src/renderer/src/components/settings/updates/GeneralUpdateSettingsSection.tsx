@@ -201,7 +201,7 @@ export function GeneralUpdateSettingsSection({
               <span className="block font-medium text-foreground">
                 {t('updates.installOnQuit.title', 'Update ready to install')}
               </span>
-              {t('updates.installOnQuit.summary', 'Quit Orca. Reopen after installation.')}
+              {t('updates.installOnQuit.summary', 'Quit BrzA Studio. Reopen after installation.')}
             </p>
             <Button
               variant="default"
@@ -210,7 +210,7 @@ export function GeneralUpdateSettingsSection({
               className="ms-auto"
             >
               <Power className="size-3.5" />
-              {t('updates.installOnQuit.quit', 'Quit Orca')}
+              {t('updates.installOnQuit.quit', 'Quit BrzA Studio')}
             </Button>
           </div>
         )}

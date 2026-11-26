@@ -6,7 +6,7 @@ import { NativeChatPromptEditor } from './composer/editor/NativeChatPromptEditor
 import type { NativeChatComposerInput } from './composer/editor/native-chat-composer-input'
 import { clearNativeChatComposerDraftsForTests } from './drafts/native-chat-draft-reset'
 import { readNativeChatDraftCache } from './drafts/native-chat-draft-views'
-import { promptEditor } from './composer/editor/native-chat-prompt-editor.test-support'
+import { promptEditor } from './composer/editor/native-chat-prompt-editor.brza.test-support'
 
 const settings = vi.hoisted(() => ({ nativeChatMarkdownComposer: true }))
 vi.mock('@/store', () => ({

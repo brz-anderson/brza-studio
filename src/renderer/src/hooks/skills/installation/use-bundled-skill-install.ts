@@ -42,7 +42,7 @@ export type BundledSkillInstallState =
       /** The host this run wrote on, so its backup paths say where they are. */
       backupHost?: SkillBackupHost
     }
-  /** An older server ("Update Orca on the server"), or an SSH host no server serves yet. */
+  /** An older server ("Update BrzA Studio on the server"), or an SSH host no server serves yet. */
   | { kind: 'unsupported'; reason: BundledSkillUnsupportedReason }
   /** The request itself failed; nothing says what reached the disk. */
   | { kind: 'failed'; message: string }

@@ -74,7 +74,7 @@ function accessibleStatus(input: UsageLimitRowWordsInput, t: Translate): string 
     return autoTime
       ? t(
           'components.native-chat.usageLimitActions.statusHasUsageAuto',
-          '{{agent}} has usage again. Orca will continue this chat at {{time}}.',
+          '{{agent}} has usage again. BrzA Studio will continue this chat at {{time}}.',
           { agent, time: autoTime }
         )
       : t('components.native-chat.usageLimitActions.statusHasUsage', '{{agent}} has usage again.', {
@@ -85,7 +85,7 @@ function accessibleStatus(input: UsageLimitRowWordsInput, t: Translate): string 
     return autoTime
       ? t(
           'components.native-chat.usageLimitActions.statusCanContinueNowAuto',
-          '{{agent}} can continue now. Orca will continue this chat at {{time}}.',
+          '{{agent}} can continue now. BrzA Studio will continue this chat at {{time}}.',
           { agent, time: autoTime }
         )
       : t(
@@ -97,21 +97,21 @@ function accessibleStatus(input: UsageLimitRowWordsInput, t: Translate): string 
   if (autoTime && sameTime) {
     return t(
       'components.native-chat.usageLimitAutoContinue.scheduled',
-      'Orca will continue this chat at {{time}}.',
+      'BrzA Studio will continue this chat at {{time}}.',
       { time: autoTime }
     )
   }
   if (autoTime) {
     return t(
       'components.native-chat.usageLimitActions.statusCanContinueAtAuto',
-      'You can continue at {{time}}. Orca will continue this chat at {{autoTime}}.',
+      'You can continue at {{time}}. BrzA Studio will continue this chat at {{autoTime}}.',
       { time: manualTime, autoTime }
     )
   }
   return auto?.kind === 'cancelled'
     ? t(
         'components.native-chat.usageLimitActions.statusCanContinueAtNoAuto',
-        "You can continue at {{time}}. Orca won't continue this chat automatically.",
+        "You can continue at {{time}}. BrzA Studio won't continue this chat automatically.",
         { time: manualTime }
       )
     : t(

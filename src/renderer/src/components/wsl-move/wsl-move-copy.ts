@@ -48,7 +48,7 @@ export function wslMoveRefusalMessage(
       if (refusal.detail === WSL_MOVE_MAPPED_DRIVE_UNVERIFIABLE_DETAIL) {
         return t(
           'wslMove.refusal.mappedDriveUnverifiable',
-          'Orca could not check a drive letter some projects are saved on. Make sure the drive is connected, then try again.'
+          'BrzA Studio could not check a drive letter some projects are saved on. Make sure the drive is connected, then try again.'
         )
       }
       if (refusal.detail === 'start-failed') {

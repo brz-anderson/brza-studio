@@ -103,9 +103,9 @@ describe('Set up a new Google app on a paired server', () => {
       await act(async () => fireEvent.click(screen.getByRole('button', { name: NEW_APP })))
       expect(start).toHaveBeenCalledTimes(supported ? 1 : 0)
       expect(cancel).toHaveBeenCalledTimes(supported ? 1 : 0)
-      expect(Boolean(screen.queryByText(/^Update Orca on .+ to set up a new Google app\.$/))).toBe(
-        !supported
-      )
+      expect(
+        Boolean(screen.queryByText(/^Update BrzA Studio on .+ to set up a new Google app\.$/))
+      ).toBe(!supported)
       cleanup()
     }
   })

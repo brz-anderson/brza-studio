@@ -47,7 +47,7 @@ describe('setBotGoogle', () => {
   it('refuses a subset on an older host, sending it nothing', async () => {
     const saving = setBotGoogle(bot('old'), true, { accounts: ['me@gmail.com'] })
     const error = await saving.catch((caught: unknown) => caught)
-    expect(botErrorMessage(error)).toMatch(/^Update Orca on .+ to choose accounts\.$/)
+    expect(botErrorMessage(error)).toMatch(/^Update BrzA Studio on .+ to choose accounts\.$/)
     expect(sets()).toEqual([])
   })
 

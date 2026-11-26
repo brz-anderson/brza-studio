@@ -155,7 +155,7 @@ export function RepositoryBrowserProfileSection({
         <p className="text-xs text-destructive">
           {t(
             'components.RepositoryBrowserProfileSection.saveFailed',
-            "Couldn't save the browser profile. The Orca on this project's host may need an update."
+            "Couldn't save the browser profile. The BrzA Studio on this project's host may need an update."
           )}
         </p>
       ) : null}

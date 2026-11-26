@@ -195,7 +195,7 @@ export function googleStepNotes(
         translate('bots.google.notes.branding.start', 'Click <b>Get started</b>.'),
         translate(
           'bots.google.notes.branding.name',
-          'App name <b>Orca</b>, and your email as the support email.'
+          'App name <b>BrzA Studio</b>, and your email as the support email.'
         ),
         kind === 'personal'
           ? translate('bots.google.notes.branding.external', 'Audience: <b>External</b>.')
@@ -246,7 +246,7 @@ export function googleStepNotes(
         ),
         translate(
           'bots.google.notes.client.download',
-          'Click <b>Download JSON</b>. Orca saves the key.'
+          'Click <b>Download JSON</b>. BrzA Studio saves the key.'
         )
       ]
   }

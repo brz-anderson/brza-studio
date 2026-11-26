@@ -93,7 +93,7 @@ export function linearCardFace(
     status: workspace.installed
       ? null
       : {
-          label: translate('settings.bots.linearStatus.notInstalled', 'Orca not installed'),
+          label: translate('settings.bots.linearStatus.notInstalled', 'BrzA Studio not installed'),
           tone: 'attention'
         },
     linked: true
@@ -140,7 +140,7 @@ export function BotLinearCard({
       }),
       description: t(
         'bots.linear.connection.removeNote',
-        'People in {{workspace}} can no longer hand it issues, and its Linear people are cleared. Orca stays installed there.',
+        'People in {{workspace}} can no longer hand it issues, and its Linear people are cleared. BrzA Studio stays installed there.',
         { workspace: linearWorkspaceLabel(linear.workspaceName, linear.urlKey) }
       ),
       confirmLabel: t('bots.linear.connection.removeConfirm', 'Remove'),

@@ -14,20 +14,20 @@ export function wslMoveHostUpdateRequiredMessage(
   if (detail === WSL_MOVE_HOST_NOT_WSL_LAUNCHED_DETAIL) {
     return t(
       'wslMove.refusal.hostNotWslLaunched',
-      "The Orca server in {{distro}} was not started as a WSL host (an SSH host for this distro usually started it), so it can't take these projects. Updating won't help. Choose Restart as WSL host on the {{distro}} host in Settings, then try again.",
+      "The BrzA Studio server in {{distro}} was not started as a WSL host (an SSH host for this distro usually started it), so it can't take these projects. Updating won't help. Choose Restart as WSL host on the {{distro}} host in Settings, then try again.",
       { distro }
     )
   }
   if (detail === WSL_MOVE_HOST_LAUNCH_UNPROVEN_DETAIL) {
     return t(
       'wslMove.refusal.hostLaunchUnproven',
-      "The Orca server in {{distro}} runs this version of Orca but can't take these projects, so updating won't help. It may have been started outside WSL hosts, such as by an SSH host. Remove the {{distro}} host in Settings, then add it again.",
+      "The BrzA Studio server in {{distro}} runs this version of BrzA Studio but can't take these projects, so updating won't help. It may have been started outside WSL hosts, such as by an SSH host. Remove the {{distro}} host in Settings, then add it again.",
       { distro }
     )
   }
   return t(
     'wslMove.refusal.hostUpdateRequired',
-    'The {{distro}} host runs an older version of Orca. Update it in Settings, then try again.',
+    'The {{distro}} host runs an older version of BrzA Studio. Update it in Settings, then try again.',
     { distro }
   )
 }

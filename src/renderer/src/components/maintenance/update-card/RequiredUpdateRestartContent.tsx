@@ -37,8 +37,8 @@ export function RequiredUpdateRestartContent({
   const t = useTranslate()
   const locale = useIntlLocale()
   const title = requiredByOrca
-    ? t('updates.emergencyRequired.title', 'Orca {{version}} is required', { version })
-    : t('updates.teamRequired.title', 'Your team requires Orca {{version}}', { version })
+    ? t('updates.emergencyRequired.title', 'BrzA Studio {{version}} is required', { version })
+    : t('updates.teamRequired.title', 'Your team requires BrzA Studio {{version}}', { version })
   const restartNow = t('updates.teamRequired.restartNow', 'Restart now')
   if (restart.phase === 'countdown') {
     return (
@@ -54,7 +54,7 @@ export function RequiredUpdateRestartContent({
             <DialogDescription>
               {t(
                 'updates.teamRequired.countdown',
-                'Orca will save your sessions and restart after the countdown. Active agents may delay the restart.'
+                'BrzA Studio will save your sessions and restart after the countdown. Active agents may delay the restart.'
               )}
             </DialogDescription>
           </DialogHeader>
@@ -70,9 +70,15 @@ export function RequiredUpdateRestartContent({
   }
   const summary =
     restart.phase === 'waiting-for-agents'
-      ? t('updates.teamRequired.waiting', 'Orca is waiting for active agents before restarting.')
+      ? t(
+          'updates.teamRequired.waiting',
+          'BrzA Studio is waiting for active agents before restarting.'
+        )
       : restart.phase === 'retry-next-launch'
-        ? t('updates.teamRequired.retry', 'Orca will retry this update the next time it starts.')
+        ? t(
+            'updates.teamRequired.retry',
+            'BrzA Studio will retry this update the next time it starts.'
+          )
         : restart.phase === 'manual'
           ? t(
               'updates.teamRequired.manual',
@@ -80,7 +86,7 @@ export function RequiredUpdateRestartContent({
             )
           : t(
               'updates.teamRequired.deadline',
-              'Restart by {{deadline}}. Orca saves your sessions before restarting.',
+              'Restart by {{deadline}}. BrzA Studio saves your sessions before restarting.',
               {
                 deadline: new Date(restart.deadlineAt).toLocaleString(locale, {
                   dateStyle: 'medium',

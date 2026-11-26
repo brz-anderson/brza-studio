@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type * as SyntaxHighlighterModule from './syntax-highlighter'
-import { loadNodeOniguruma } from './oniguruma-test-harness'
+import { loadNodeOniguruma } from './oniguruma.brza.test-harness'
 import {
   loadedSyntaxHighlighter,
   loadSyntaxLanguage,

@@ -35,7 +35,7 @@ export function pluginNotOfficialBody(
   }
   return t(
     'auto.components.settings.PluginNotOfficialWarning.installed',
-    'Make sure you trust {{value0}}. This plugin runs the publisher’s code inside Orca.',
+    'Make sure you trust {{value0}}. This plugin runs the publisher’s code inside BrzA Studio.',
     { value0 }
   )
 }

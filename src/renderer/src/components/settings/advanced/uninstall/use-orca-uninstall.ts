@@ -35,7 +35,7 @@ export function orcaUninstallRetryKey(step: OrcaUninstallStep, id?: string): str
 }
 
 const failureDetail = (): string =>
-  translate('settings.uninstall.stepFailed', 'Orca could not finish this step.')
+  translate('settings.uninstall.stepFailed', 'BrzA Studio could not finish this step.')
 
 /** Loads the plan on mount (the collapsed summary names every part) and drives the step runner. */
 export function useOrcaUninstall(): OrcaUninstallModel {
@@ -143,7 +143,7 @@ export function useOrcaUninstall(): OrcaUninstallModel {
   const finish = useCallback((action: OrcaUninstallFinishAction): void => {
     window.api.orcaUninstall.finish(action).catch((error) => {
       console.error(`[uninstall] finish(${action}) failed:`, error)
-      toast.error(translate('settings.uninstall.finishFailed', 'Orca could not do that.'))
+      toast.error(translate('settings.uninstall.finishFailed', 'BrzA Studio could not do that.'))
     })
   }, [])
 

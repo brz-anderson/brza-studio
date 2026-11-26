@@ -23,7 +23,7 @@ export function hostSetupErrorMessage(
       return hostName
         ? translate(
             'bots.host.errors.signedOut',
-            'Sign {{host}} in to Orca Cloud to connect {{service}}.',
+            'Sign {{host}} in to BrzA Studio Cloud to connect {{service}}.',
             {
               host: hostName,
               service
@@ -34,19 +34,19 @@ export function hostSetupErrorMessage(
       return hostName
         ? translate(
             'bots.host.errors.accountChanged',
-            '{{host}}’s Orca sign-in changed. Start again.',
+            '{{host}}’s BrzA Studio sign-in changed. Start again.',
             {
               host: hostName
             }
           )
         : translate(
             'bots.host.errors.accountChangedHere',
-            'This computer’s Orca sign-in changed. Start again.'
+            'This computer’s BrzA Studio sign-in changed. Start again.'
           )
     case CONNECT_NOT_ROUTED:
       return translate(
         'bots.host.errors.notRouted',
-        '{{service}}’s page has to open in Orca’s browser for {{host}}. Reconnect {{host}}, then start again.',
+        '{{service}}’s page has to open in BrzA Studio’s browser for {{host}}. Reconnect {{host}}, then start again.',
         { service, host: hostName ?? '' }
       )
     default:

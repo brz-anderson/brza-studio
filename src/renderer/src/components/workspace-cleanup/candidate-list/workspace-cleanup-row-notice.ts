@@ -20,13 +20,13 @@ function getCannotDeleteText(candidate: WorkspaceCleanupCandidate, t: Translate)
   if (candidate.blockers.includes('folder-repo')) {
     return t(
       'components.workspace.cleanup.row.notGit',
-      'Not a git workspace. Remove the project from Orca instead.'
+      'Not a git workspace. Remove the project from BrzA Studio instead.'
     )
   }
   if (candidate.blockers.includes('ssh-disconnected')) {
     return t(
       'components.workspace.cleanup.row.unreachable',
-      "Can't reach {{host}}. Reconnect to delete, or remove it from Orca.",
+      "Can't reach {{host}}. Reconnect to delete, or remove it from BrzA Studio.",
       { host: getWorkspaceCleanupCandidateHostLabel(candidate, t) }
     )
   }

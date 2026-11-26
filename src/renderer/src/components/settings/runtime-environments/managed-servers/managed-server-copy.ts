@@ -80,7 +80,7 @@ export function forceUpdateMessage(t: Translate = translate, uncounted = false):
 export function uncountedForceUpdateMessage(t: Translate = translate): string {
   return t(
     'auto.components.settings.managedServers.row.forceUpdateUncounted',
-    'Orca couldn’t count the terminals on this host. The update goes ahead only if no terminal daemon is running there, and any terminals Orca’s server runs itself will end.'
+    'BrzA Studio couldn’t count the terminals on this host. The update goes ahead only if no terminal daemon is running there, and any terminals BrzA Studio’s server runs itself will end.'
   )
 }
 

@@ -96,7 +96,7 @@ export function ComposioEventsCardView({
               )
             : t(
                 'bots.composio.events.oneAddressNote',
-                'Orca turns on {{trigger}} for your sign-in. Your Composio project’s events come to Orca at one address, and each goes to the bot it’s for.',
+                'BrzA Studio turns on {{trigger}} for your sign-in. Your Composio project’s events come to BrzA Studio at one address, and each goes to the bot it’s for.',
                 { trigger: triggerName }
               )}
         </p>

@@ -1,4 +1,3 @@
-// BRZA-SYNC: rodada — o fork tinha aqui `accountSwitch` (recibo do "Continuar em outra conta", P36/P79); falta decidir como portá-lo.
 import type { AgentSessionForkedFrom } from '../../../../shared/agent-session/lifecycle/agent-session-record'
 import type { AgentSessionAccountSwitch } from '../../agent-session-account-switch-record'
 import type { AgentSessionStoreTransactions } from './agent-session-store-transactions'

@@ -14,7 +14,7 @@ function dialog(adapter: 'github' | null): React.JSX.Element {
   )
 }
 
-// Standard Webhooks: "Orca makes one" by default; "Paste the sender's" is one click away.
+// Standard Webhooks: "BrzA Studio makes one" by default; "Paste the sender's" is one click away.
 export const standard = defineFixture({ width: 640, render: () => dialog(null) })
 
 export const github = defineFixture({ width: 640, render: () => dialog('github') })

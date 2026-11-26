@@ -28,7 +28,7 @@ export function browserSessionHostOption(
             )
           : t(
               'auto.components.settings.BrowserPane.c0f85056d9',
-              'Browser profiles on this Orca server.'
+              'Browser profiles on this BrzA Studio server.'
             )
   }
 }

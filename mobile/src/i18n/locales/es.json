@@ -4547,7 +4547,7 @@
             "cursor": {
               "expired": {
                 "label": "Inicio de sesión caducado",
-                "message": "Ejecuta cursor-agent login en una terminal del equipo donde se ejecuta Orca y vuelve a intentar consultar el uso."
+                "message": "Ejecuta cursor-agent login en una terminal del equipo donde se ejecuta BrzA Studio y vuelve a intentar consultar el uso."
               }
             },
             "usage": {
@@ -4558,8 +4558,8 @@
             "7ad719c4bf": "Limitado",
             "e740f92596": "Error al actualizar",
             "2c35eca8d4": "No se pudo obtener el uso",
-            "d1b7f509ac": "Ejecute grok en una terminal en la computadora que ejecuta Orca y espere a que se inicie. Si se le solicita, complete el inicio de sesión y luego vuelva a intentar el uso. No es necesario enviar un mensaje de chat.",
-            "a37e8c15d4": "Ejecute kimi en una terminal en la computadora que ejecuta Orca y espere a que se inicie, luego vuelva a intentar usarlo.",
+            "d1b7f509ac": "Ejecute grok en una terminal en la computadora que ejecuta BrzA Studio y espere a que se inicie. Si se le solicita, complete el inicio de sesión y luego vuelva a intentar el uso. No es necesario enviar un mensaje de chat.",
+            "a37e8c15d4": "Ejecute kimi en una terminal en la computadora que ejecuta BrzA Studio y espere a que se inicie, luego vuelva a intentar usarlo.",
             "3d3c9c0c1f": "El uso de Claude se actualizará cuando el terminal Claude activo rote sus credenciales.",
             "42fdd4da1d": "Se está actualizando el inicio de sesión de Claude. Las sesiones de agentes pueden seguir iniciadas.",
             "c06c1d215d": "No se pudo actualizar el uso de Claude porque falló la solicitud de red.",
@@ -4913,9 +4913,9 @@
       "reading": "Conociendo tu configuración…",
       "read": "Conociendo tu configuración",
       "namesMore": "{{names}} y {{count}} más",
-      "projectsReading": "Proyectos: viendo lo que tienes en Orca…",
+      "projectsReading": "Proyectos: viendo lo que tienes en BrzA Studio…",
       "projectsDone": "Revisé tus proyectos",
-      "projectsNone": "Aún no hay proyectos en Orca",
+      "projectsNone": "Aún no hay proyectos en BrzA Studio",
       "projectsOne": "Encontré 1 proyecto: {{names}}",
       "projectsMany": "Encontré {{count}} proyectos: {{names}}",
       "githubReading": "GitHub: leyendo tus PR abiertos…",
@@ -5044,7 +5044,7 @@
         "unsupported": "Esta app aún no es compatible.",
         "unavailable": "No se puede contactar con esta app. Revisa la dirección e inténtalo de nuevo.",
         "noTool": "Este bot ya no tiene esa herramienta.",
-        "desktopOnly": "Inicia sesión desde Orca en {{host}}.",
+        "desktopOnly": "Inicia sesión desde BrzA Studio en {{host}}.",
         "denied": "No se permitió el acceso.",
         "expired": "El inicio de sesión caducó. Inténtalo de nuevo.",
         "couldNotSignIn": "No se pudo iniciar sesión. Inténtalo de nuevo."

@@ -120,7 +120,7 @@ async function applyAntigravityChatAuthMethod(
         ? cause.message
         : t(
             'components.native-chat.antigravityAuth.switchFailed',
-            "Orca couldn't change how Antigravity signs in. Try again."
+            "BrzA Studio couldn't change how Antigravity signs in. Try again."
           )
     )
   }

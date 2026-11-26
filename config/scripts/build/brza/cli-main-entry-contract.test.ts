@@ -16,8 +16,8 @@ const builderConfig = require('../../../electron-builder.config.cjs') as {
   win: { executableName: string }
 }
 
-// Why: the 251 sync moved command-path-resolver and the fork's entry kept the old path, which broke
-// the build; no other test pins these lists against the source tree.
+// Why: the 251 sync moved a CLI entry and the fork's list kept the old path, which broke the build;
+// no other test pins these lists against the source tree.
 describe('CLI main entries', () => {
   it('every CLI_MAIN_ENTRY_NAMES name has a source file', () => {
     const missing = CLI_MAIN_ENTRY_NAMES.filter(
@@ -28,11 +28,6 @@ describe('CLI main entries', () => {
 
   it('every CLI main entry is a build input', () => {
     expect(CLI_MAIN_ENTRY_NAMES.filter((name) => !(name in MAIN_BUILD_ENTRY_POINTS))).toEqual([])
-  })
-
-  it('unpacks the fork command-path-resolver entry, which the CLI loads outside the asar', () => {
-    expect(CLI_MAIN_ENTRY_NAMES).toContain('ipc/command-path/command-path-resolver')
-    expect(builderConfig.asarUnpack).toContain('out/main/ipc/command-path/command-path-resolver.js')
   })
 
   it('every unpacked out/main file has a source file or a build entry', () => {

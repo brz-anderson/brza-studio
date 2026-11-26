@@ -30,7 +30,7 @@ export function NativeChatConnectorAskerTag({
   const view = connectorAskerTagView(asker, t)
   const { own, name, place, open } = view
   const label = postedFrom
-    ? t('components.native-chat.slackMirror.postedFrom', 'Posted to {{place}} from Orca', {
+    ? t('components.native-chat.slackMirror.postedFrom', 'Posted to {{place}} from BrzA Studio', {
         place: postedFrom
       })
     : view.label

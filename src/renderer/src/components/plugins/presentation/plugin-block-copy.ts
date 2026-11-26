@@ -9,12 +9,12 @@ export function pluginBlockCopy(block: PluginBlockNotice, t: Translate, installe
   return installed
     ? t(
         'auto.components.settings.PluginSettingsRow.killListMessage',
-        "Orca's safety list disabled this plugin: {{value0}}",
+        "BrzA Studio's safety list disabled this plugin: {{value0}}",
         { value0: block.reason }
       )
     : t(
         'auto.components.settings.PluginMarketplaceListingRow.blocked',
-        "Blocked by Orca's safety list: {{value0}}",
+        "Blocked by BrzA Studio's safety list: {{value0}}",
         { value0: block.reason }
       )
 }

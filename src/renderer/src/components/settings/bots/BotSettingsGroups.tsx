@@ -93,7 +93,7 @@ export function BotAccountGroup({ account }: { account: BotSettingsAccount }): R
   return (
     <SettingsGroup
       icon={UserRound}
-      title={account.email ?? t('settings.bots.group.noAccount', 'Orca account')}
+      title={account.email ?? t('settings.bots.group.noAccount', 'BrzA Studio account')}
       detail={
         !account.email
           ? t('settings.bots.group.notSignedIn', 'Not signed in · {{computers}}', { computers })
@@ -247,8 +247,8 @@ function useServerAccountLine(computer: BotSettingsComputer): string | null {
     return account.email ?? null
   }
   return account.state === 'signed-out'
-    ? t('settings.bots.group.signedOut', 'Signed out of Orca')
-    : t('settings.bots.group.signInChanged', 'Orca sign-in changed')
+    ? t('settings.bots.group.signedOut', 'Signed out of BrzA Studio')
+    : t('settings.bots.group.signInChanged', 'BrzA Studio sign-in changed')
 }
 
 function ServerGroup({ computer }: { computer: BotSettingsComputer }): React.JSX.Element {
@@ -261,7 +261,7 @@ function ServerGroup({ computer }: { computer: BotSettingsComputer }): React.JSX
         title={host}
         detail={t(
           'settings.bots.group.updateNeeded',
-          'Update Orca on {{host}} to manage its bots here',
+          'Update BrzA Studio on {{host}} to manage its bots here',
           {
             host
           }

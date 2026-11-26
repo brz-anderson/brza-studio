@@ -64,7 +64,7 @@ export function ComposioEventsByHandStepsView({
         <span className="text-xs text-muted-foreground">
           {t(
             'bots.composio.byHand.doneNote',
-            'Orca then turns on {{trigger}} and saves Composio’s signing secret.',
+            'BrzA Studio then turns on {{trigger}} and saves Composio’s signing secret.',
             { trigger: triggerName }
           )}
         </span>

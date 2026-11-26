@@ -31,6 +31,7 @@ import {
   readBrowserExtensionContentScript,
   readBrowserExtensionWorkerShim
 } from '../api-runtime/browser-extension-worker-shim-source'
+import { reservedFileMessage } from './browser-extension-reserved-file-message'
 
 /**
  * Orca loads every extension from a folder it owns, so it can add its worker's shim loading, API shim
@@ -204,9 +205,7 @@ export async function refuseOrcaFileCollisions(
   for (const path of [...ORCA_ROOT_FILES, ...workerFiles]) {
     const target = resolveInsideExtensionDirectory(directory, path)
     if (target && (await stat(target).catch(() => null))) {
-      throw new Error(
-        `BrzA Studio can't load this extension: its file ${path} uses a name BrzA Studio reserves`
-      )
+      throw new Error(reservedFileMessage(path))
     }
   }
 }

@@ -48,11 +48,11 @@ export function BotTemplateDetail({
               <span>{botTemplateCategoryLabel(template.category, t)}</span>
               <span className="inline-flex items-center gap-1">
                 <span aria-hidden="true">·</span>
-                {t('bots.templates.publisher', 'by Orca')}
+                {t('bots.templates.publisher', 'by BrzA Studio')}
                 <BadgeCheck
                   className="size-3.5 shrink-0 text-callout-note"
                   role="img"
-                  aria-label={t('bots.templates.official', 'Official Orca template')}
+                  aria-label={t('bots.templates.official', 'Official BrzA Studio template')}
                 />
               </span>
             </p>

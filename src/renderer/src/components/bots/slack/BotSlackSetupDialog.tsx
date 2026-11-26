@@ -289,7 +289,7 @@ function BotSlackSetupFlow({
             <p className="text-sm">
               {t(
                 'bots.slack.setup.uncertain',
-                'Slack may have created an app named {{name}} that Orca cannot use. Delete it in Slack app settings if it is there, then set up again.',
+                'Slack may have created an app named {{name}} that BrzA Studio cannot use. Delete it in Slack app settings if it is there, then set up again.',
                 { name: bot.name }
               )}
             </p>

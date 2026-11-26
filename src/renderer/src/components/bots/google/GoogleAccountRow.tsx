@@ -107,7 +107,7 @@ export function GoogleAccountRow({
         (revoke
           ? t(
               'bots.google.disconnect.revokeNote',
-              'Bots stop using this account here, and Google cancels Orca’s access everywhere it was allowed.'
+              'Bots stop using this account here, and Google cancels BrzA Studio’s access everywhere it was allowed.'
             )
           : google.accounts.length > 1
             ? t('bots.google.disconnect.removeOneNote', 'Bots stop using this account here.')

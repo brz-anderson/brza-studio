@@ -84,7 +84,7 @@ export function PluginUpdateReview({
         <p className="text-sm text-muted-foreground">
           {t(
             'auto.components.settings.PluginUpdateReview.uncompared',
-            'Orca couldn’t compare this version with the one you approved. Check what it can access before you update.'
+            'BrzA Studio couldn’t compare this version with the one you approved. Check what it can access before you update.'
           )}
         </p>
       )}

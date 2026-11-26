@@ -166,7 +166,7 @@ function AfterRefresh(): React.JSX.Element {
           })
         ],
         [],
-        { retry: () => {}, message: "Needs attention · This copy differs from Orca's" }
+        { retry: () => {}, message: "Needs attention · This copy differs from BrzA Studio's" }
       )}
     </div>
   )

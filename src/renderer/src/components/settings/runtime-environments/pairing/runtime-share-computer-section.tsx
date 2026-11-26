@@ -108,7 +108,7 @@ export function RuntimeShareComputerSection(): React.JSX.Element {
                 (activeLinkCount === 0
                   ? t(
                       'auto.components.settings.serverList.shareRowHint',
-                      'Let another Orca connect here.'
+                      'Let another BrzA Studio connect here.'
                     )
                   : null)}
             </div>

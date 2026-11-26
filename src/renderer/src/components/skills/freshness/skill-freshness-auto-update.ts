@@ -95,12 +95,12 @@ export function reportPreservedEdits(result: BundledSkillInstallResult | null): 
           published
             ? translate(
                 'auto.components.skills.skillFreshnessAutoUpdate.preservedDescription',
-                'Orca updated the skill and saved your edits to {{value0}}.',
+                'BrzA Studio updated the skill and saved your edits to {{value0}}.',
                 { value0: backupPath }
               )
             : translate(
                 'auto.components.skills.skillFreshnessAutoUpdate.preservedBackupOnly',
-                'Orca saved your edits to {{value0}}.',
+                'BrzA Studio saved your edits to {{value0}}.',
                 { value0: backupPath }
               )
         )

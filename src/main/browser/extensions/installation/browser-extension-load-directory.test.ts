@@ -200,7 +200,7 @@ describe('extension load directories', () => {
     writeFileSync(join(source, 'orca-background.js'), WORKER)
     await expect(
       prepareBrowserExtensionDirectory({ source: 'unpacked', path: source })
-    ).rejects.toThrow('uses a name Orca reserves')
+    ).rejects.toThrow('uses a name BrzA Studio reserves')
   })
 
   it('never lists the worker token as web-accessible, in any spelling', async () => {

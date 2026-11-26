@@ -94,7 +94,7 @@ export function GoogleHostChoiceDialog({
           <HostOption
             value="orca"
             disabled
-            title={t('bots.google.hostChoice.orca', 'Orca hosted')}
+            title={t('bots.google.hostChoice.orca', 'BrzA Studio hosted')}
             badge={<Badge variant="comingSoon">{t('bots.google.hostChoice.soon', 'Soon')}</Badge>}
             note={t('bots.google.hostChoice.orcaNote', 'Sign in with Google.')}
           />

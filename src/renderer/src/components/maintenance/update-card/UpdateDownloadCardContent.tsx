@@ -144,18 +144,18 @@ export function UpdateReadyToInstallContent({
         {requiredByOrca
           ? t(
               'updates.emergencyRequired.summary',
-              'Orca {{version}} is required. Restart to update.',
+              'BrzA Studio {{version}} is required. Restart to update.',
               { version }
             )
           : requiredByTeam
             ? t(
                 'updates.teamRequired.summary',
-                'Your team requires Orca {{version}}. Restart to update.',
+                'Your team requires BrzA Studio {{version}}. Restart to update.',
                 { version }
               )
             : t(
                 'auto.components.UpdateCard.6714206e5a',
-                "Orca v{{value0}} is downloaded. Restart when you're ready.",
+                "BrzA Studio v{{value0}} is downloaded. Restart when you're ready.",
                 { value0: version }
               )}
       </p>

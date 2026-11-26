@@ -29,12 +29,12 @@ export function wslMoveScopeRefusalReason(reason: string, t: Translate = transla
     case 'git-unreadable':
       return t(
         'wslMove.scopeRefused.gitUnreadable',
-        'Orca couldn’t read its Git details in time to check them, so it stays on this computer. Check again in a moment.'
+        'BrzA Studio couldn’t read its Git details in time to check them, so it stays on this computer. Check again in a moment.'
       )
     case 'mapped-drive-unverifiable':
       return t(
         'wslMove.scopeRefused.mappedDriveUnverifiable',
-        'Orca couldn’t check where its drive letter points just now. Make sure the drive is connected, then check again.'
+        'BrzA Studio couldn’t check where its drive letter points just now. Make sure the drive is connected, then check again.'
       )
     default:
       return t('wslMove.scopeRefused.other', 'It cannot move.')

@@ -52,7 +52,10 @@ export function BotCloudSignInNotice({
       <OrcaCloudSignInLine
         link
         className="px-2 py-1.5"
-        text={t('bots.cloudSignIn.botOff', 'Signed out of Orca · Slack, events, sharing off')}
+        text={t(
+          'bots.cloudSignIn.botOff',
+          'Signed out of BrzA Studio · Slack, events, sharing off'
+        )}
         onSignedIn={resume}
       />
     )
@@ -63,7 +66,7 @@ export function BotCloudSignInNotice({
         className="px-2 py-1.5"
         text={t(
           'bots.connectors.signInChanged',
-          'This computer’s Orca sign-in changed. Sign in again to reconnect.'
+          'This computer’s BrzA Studio sign-in changed. Sign in again to reconnect.'
         )}
         onSignedIn={resume}
       />

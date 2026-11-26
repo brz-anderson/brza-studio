@@ -97,7 +97,10 @@ function PopoutSettingsSync(): null {
 function PopoutRoot(): React.JSX.Element {
   const t = useTranslate()
   useEffect(() => {
-    document.title = t('auto.main.window.dashboard.popout.window.title', 'Orca Agent Dashboard')
+    document.title = t(
+      'auto.main.window.dashboard.popout.window.title',
+      'BrzA Studio Agent Dashboard'
+    )
   }, [t])
   return (
     <RecoverableRenderErrorBoundary

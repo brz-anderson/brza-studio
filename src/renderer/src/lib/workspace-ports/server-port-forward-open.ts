@@ -92,7 +92,7 @@ export async function openServerLoopbackInSystemBrowser(
     toast.error(
       translate(
         'auto.lib.workspace.ports.serverPortForward.updateServer',
-        "Couldn't forward port {{port}} from {{host}}. Update Orca on {{host}} and try again.",
+        "Couldn't forward port {{port}} from {{host}}. Update BrzA Studio on {{host}} and try again.",
         { port, host }
       )
     )

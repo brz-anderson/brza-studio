@@ -99,7 +99,7 @@ function ProjectRow(props: {
         description={
           view.status === 'remote'
             ? remoteDescription(bot, host)
-            : t('settings.bots.skills.missing', 'This project is no longer in Orca.')
+            : t('settings.bots.skills.missing', 'This project is no longer in BrzA Studio.')
         }
         trailing={
           <>

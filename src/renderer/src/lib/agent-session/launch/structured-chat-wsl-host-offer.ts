@@ -140,7 +140,7 @@ async function setUpWslHostForChat(distro: string): Promise<boolean> {
   const adding = toast.loading(
     translate(
       'auto.components.sidebar.AddWslHostFormPanel.addingHint',
-      'Installing and starting the Orca server in the distro. The first time can take a minute.'
+      'Installing and starting the BrzA Studio server in the distro. The first time can take a minute.'
     )
   )
   try {

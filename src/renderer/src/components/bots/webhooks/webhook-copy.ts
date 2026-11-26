@@ -100,7 +100,7 @@ export function webhookHostLine(
   if (host === 'host_needs_update') {
     return translate(
       'bots.webhooks.hostNeedsUpdate',
-      'Your Orca needs an update before {{bot}} can do this.',
+      'Your BrzA Studio needs an update before {{bot}} can do this.',
       { bot: botName }
     )
   }
@@ -139,12 +139,12 @@ export function webhookFallbackText(
   return names
     ? translate(
         'bots.webhooks.fallbackNamed',
-        'Webhook “{{automation}}” is live. Copy its URL from Orca on a computer: Settings › Bots › {{bot}} › Webhooks. To pause or delete it, ask {{bot}} here.',
+        'Webhook “{{automation}}” is live. Copy its URL from BrzA Studio on a computer: Settings › Bots › {{bot}} › Webhooks. To pause or delete it, ask {{bot}} here.',
         { automation: names.automationName, bot: names.botName }
       )
     : translate(
         'bots.webhooks.fallback',
-        'This webhook is live. Copy its URL from Orca on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.'
+        'This webhook is live. Copy its URL from BrzA Studio on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.'
       )
 }
 
@@ -161,7 +161,7 @@ export function webhookErrorMessage(
     case 'webhooks_unavailable':
       // Signed out, the cloud that takes the calls can't be reached; that is the reason, not support.
       return readOrcaCloudSignedOut(getRuntimeTargetHostId(target))
-        ? translate('bots.webhooks.errors.signedOut', 'Paused while signed out of Orca.')
+        ? translate('bots.webhooks.errors.signedOut', 'Paused while signed out of BrzA Studio.')
         : translate('bots.webhooks.errors.unavailable', 'Webhooks aren’t available right now.')
     case 'host_offline':
     case 'host_needs_update':

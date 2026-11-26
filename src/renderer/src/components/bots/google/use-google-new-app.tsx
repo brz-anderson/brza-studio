@@ -43,7 +43,7 @@ export function useGoogleNewApp(
       <p className="text-xs text-muted-foreground">
         {t(
           'bots.google.updateToSetUpNewApp',
-          'Update Orca on {{host}} to set up a new Google app.',
+          'Update BrzA Studio on {{host}} to set up a new Google app.',
           {
             host
           }

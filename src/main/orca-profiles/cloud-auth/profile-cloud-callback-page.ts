@@ -157,7 +157,7 @@ export function orcaCloudCallbackOutcome(outcome: OrcaCloudCallbackOutcome): str
   if (outcome.status === 'connected') {
     return orcaCallbackOutcome({
       ok: true,
-      heading: 'Signed in to Orca',
+      heading: 'Signed in to BrzA Studio',
       line: 'You can close this tab and return to the app.'
     })
   }

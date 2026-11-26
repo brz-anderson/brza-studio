@@ -7,7 +7,7 @@ import type { Translate } from '@/i18n/use-translate'
 
 export function formatSummary(report: CrashReportRecord, t: Translate = translate): string {
   if (report.reason === 'main-thread-hang') {
-    return t('crashReport.freeze.summary', 'Orca stopped responding')
+    return t('crashReport.freeze.summary', 'BrzA Studio stopped responding')
   }
   if (isReactErrorBoundaryReport(report)) {
     const surface = typeof report.details.surface === 'string' ? report.details.surface : null
@@ -34,11 +34,11 @@ export function getDialogTitle(report: CrashReportRecord | null, t: Translate = 
   return report && isReactErrorBoundaryReport(report)
     ? t(
         'auto.components.crash.report.CrashReportDialogSurface.uiErrorTitle',
-        'Orca hit a recoverable UI error'
+        'BrzA Studio hit a recoverable UI error'
       )
     : t(
         'auto.components.crash.report.CrashReportDialogSurface.closedTitle',
-        'Orca closed unexpectedly'
+        'BrzA Studio closed unexpectedly'
       )
 }
 
@@ -74,7 +74,7 @@ export function getNotesPlaceholder(
   t: Translate = translate
 ): string {
   if (report?.reason === 'main-thread-hang') {
-    return t('crashReport.freeze.notes', 'Optional: what were you doing before Orca froze?')
+    return t('crashReport.freeze.notes', 'Optional: what were you doing before BrzA Studio froze?')
   }
   if (!report) {
     return t(

@@ -161,7 +161,7 @@ export function StatusBarUsageFormatSetting({
           ) : (
             t(
               'auto.components.settings.StatusBarUsageFormatSetting.previewBuiltin',
-              'Leave empty to use Orca’s built-in format.'
+              'Leave empty to use BrzA Studio’s built-in format.'
             )
           )}
         </div>

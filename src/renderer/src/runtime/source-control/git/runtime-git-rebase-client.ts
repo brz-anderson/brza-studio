@@ -42,7 +42,7 @@ export async function continueRuntimeGitRebase(
         outcome: 'failed',
         message: translate(
           'auto.runtime.runtimeGitSyncClient.continueRebaseNeedsNewerHost',
-          'Continuing a rebase needs a newer Orca on this host. Update Orca on that host.'
+          'Continuing a rebase needs a newer BrzA Studio on this host. Update BrzA Studio on that host.'
         )
       }
     }

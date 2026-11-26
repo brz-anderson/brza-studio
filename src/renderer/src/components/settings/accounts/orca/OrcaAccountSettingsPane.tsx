@@ -89,7 +89,8 @@ export function OrcaAccountHeader({
       <div className="min-w-0 flex-1 space-y-1">
         <div className="flex flex-wrap items-center gap-2">
           <p className="text-sm font-medium">
-            {name?.trim() || t('auto.components.settings.orcaAccount.account', 'Orca account')}
+            {name?.trim() ||
+              t('auto.components.settings.orcaAccount.account', 'BrzA Studio account')}
           </p>
           {connected ? (
             <Badge variant="outline" className="text-[11px] text-muted-foreground">
@@ -174,7 +175,7 @@ export function OrcaAccountSettingsPane(): React.JSX.Element {
             <p>
               {t(
                 'auto.components.settings.orcaAccount.managed',
-                'Your team manages some Orca settings.'
+                'Your team manages some BrzA Studio settings.'
               )}
             </p>
             {showReporting && (
@@ -210,7 +211,7 @@ export function OrcaAccountSettingsPane(): React.JSX.Element {
                     <p>
                       {t(
                         'auto.components.settings.orcaAccount.reportingDisclosure',
-                        'The Devices view shows your Orca version, release channel, device name, platform, update status, required plugins Orca couldn’t install, and when the device last reported.'
+                        'The Devices view shows your BrzA Studio version, release channel, device name, platform, update status, required plugins BrzA Studio couldn’t install, and when the device last reported.'
                       )}
                     </p>
                   </div>

@@ -172,7 +172,10 @@ export function showLookupFailure(
 ): void {
   if (failure === 'unreachable') {
     toast.error(
-      translate('components.native-chat.writeNotice.unreachable', "Orca couldn't reach the agent.")
+      translate(
+        'components.native-chat.writeNotice.unreachable',
+        "BrzA Studio couldn't reach the agent."
+      )
     )
   } else {
     feedback.hostCannotOpen(name)

@@ -66,7 +66,10 @@ export function LanguageRequestForm({
     >
       <div className="flex flex-col gap-2 px-5 pb-5">
         <Label htmlFor="language-request">
-          {t('onboarding.language.requestPrompt', 'Which language would you like Orca to support?')}
+          {t(
+            'onboarding.language.requestPrompt',
+            'Which language would you like BrzA Studio to support?'
+          )}
         </Label>
         <Input
           ref={input}

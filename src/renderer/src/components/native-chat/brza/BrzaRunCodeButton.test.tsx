@@ -30,7 +30,7 @@ vi.mock('@/lib/agent-session/launch/pane/launch-agent-tab-order', () => ({
 }))
 
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
-  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
+  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma.brza.test-harness'))
     .loadNodeOniguruma
 }))
 

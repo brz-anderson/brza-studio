@@ -171,7 +171,7 @@ function NativeChatPermissionModePickerInner({
     hint === 'unnamed-report'
       ? t(
           'components.native-chat.composer.permissionAgentSettingsUnnamedHint',
-          "Uses your {{agent}} permission settings. Orca can't show this mode.",
+          "Uses your {{agent}} permission settings. BrzA Studio can't show this mode.",
           { agent: settingsAgent }
         )
       : hint === 'settings'

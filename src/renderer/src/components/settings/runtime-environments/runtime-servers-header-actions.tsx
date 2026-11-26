@@ -91,7 +91,7 @@ export function RuntimeServersHeaderActions(): React.JSX.Element {
               label={t('auto.components.settings.serverList.installViaSsh', 'Install via SSH')}
               description={t(
                 'auto.components.settings.managedServers.description',
-                'Orca installs itself on an empty SSH host and keeps itself up to date.'
+                'BrzA Studio installs itself on an empty SSH host and keeps itself up to date.'
               )}
               onSelect={() => setDialog('install')}
             />

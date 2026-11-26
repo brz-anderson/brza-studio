@@ -39,8 +39,8 @@ afterEach(() => {
   mocks.select.mockReset()
 })
 
-// A reset an hour away keeps the row waiting, where the scheduled continue shows as a pressed clock.
-const LIMIT_RESETS_AT = Date.now() + 60 * 60_000
+// A reset far ahead keeps the row waiting, where the scheduled continue shows as a pressed clock; fixed, so no wall clock.
+const LIMIT_RESETS_AT = Date.parse('2999-01-01T00:00:00Z')
 
 // BrzA P40/P79 (pedido 41): on a usage-limit row, Continue in another account takes the place of
 // the account switch beside Hand Off. A pinned chat moves with its own switch (P36); a chat that

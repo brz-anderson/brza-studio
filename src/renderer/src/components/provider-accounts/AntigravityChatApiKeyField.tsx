@@ -59,7 +59,10 @@ export function AntigravityChatApiKeyField({
         setError(
           cause instanceof Error
             ? cause.message
-            : t('accounts.antigravity.apiKeySaveFailed', "Orca couldn't save the key. Try again.")
+            : t(
+                'accounts.antigravity.apiKeySaveFailed',
+                "BrzA Studio couldn't save the key. Try again."
+              )
         )
       )
       .finally(() => setPending(false))

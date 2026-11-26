@@ -11,7 +11,7 @@ import {
 } from './syntax-highlighter'
 
 vi.mock('./oniguruma', async () => ({
-  loadOniguruma: (await import('./oniguruma-test-harness')).loadNodeOniguruma
+  loadOniguruma: (await import('./oniguruma.brza.test-harness')).loadNodeOniguruma
 }))
 
 const DOCUMENT = [

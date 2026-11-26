@@ -38,7 +38,7 @@ export function GoogleSetupKeyImport({ bot }: { bot: BotRef }): React.JSX.Elemen
   })
   return (
     <div className="mt-2 text-xs text-muted-foreground">
-      {t('bots.googleSetup.keyMissed', 'Downloaded the key and Orca didn’t pick it up?')}{' '}
+      {t('bots.googleSetup.keyMissed', 'Downloaded the key and BrzA Studio didn’t pick it up?')}{' '}
       <Button
         variant="link"
         size="inlineText"

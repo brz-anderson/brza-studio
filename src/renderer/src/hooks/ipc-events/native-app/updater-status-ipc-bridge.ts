@@ -11,7 +11,7 @@ function applyUpdaterStatus(status: UpdateStatus): void {
   if (status.automaticDownload && status.state === 'downloading') {
     if (!previous.automaticDownload || previous.state !== 'downloading') {
       toast.info(
-        translate('updates.automatic.downloading', 'Downloading Orca {{version}}…', {
+        translate('updates.automatic.downloading', 'Downloading BrzA Studio {{version}}…', {
           version: status.version
         }),
         { id: AUTOMATIC_UPDATE_TOAST_ID }
@@ -20,12 +20,15 @@ function applyUpdaterStatus(status: UpdateStatus): void {
   } else if (status.automaticDownload && status.state === 'downloaded' && status.installing) {
     if (!previous.automaticDownload || previous.state !== 'downloaded' || !previous.installing) {
       toast.loading(
-        translate('updates.automatic.installing', 'Installing Orca {{version}}…', {
+        translate('updates.automatic.installing', 'Installing BrzA Studio {{version}}…', {
           version: status.version
         }),
         {
           id: AUTOMATIC_UPDATE_TOAST_ID,
-          description: translate('updates.automatic.restarting', 'Orca will restart automatically.')
+          description: translate(
+            'updates.automatic.restarting',
+            'BrzA Studio will restart automatically.'
+          )
         }
       )
     }

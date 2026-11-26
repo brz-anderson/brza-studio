@@ -122,13 +122,13 @@ export function useBotToolSignInAction(
 /** A row's short "Update Orca on <host>". */
 function updateRowLine(t: Translate, host: string | null): string {
   return host
-    ? t('bots.toolApp.updateHostShort', 'Update Orca on {{host}}', { host })
-    : t('bots.toolApp.updateServerShort', 'Update Orca on the server')
+    ? t('bots.toolApp.updateHostShort', 'Update BrzA Studio on {{host}}', { host })
+    : t('bots.toolApp.updateServerShort', 'Update BrzA Studio on the server')
 }
 
 /** "Update Orca on <host> to sign in to apps", for a host whose Orca can't sign in for this device. */
 export function updateLine(t: Translate, host: string | null): string {
   return host
-    ? t('bots.toolApp.updateHost', 'Update Orca on {{host}} to sign in to apps', { host })
-    : t('bots.toolApp.updateServer', 'Update Orca on the server to sign in to apps')
+    ? t('bots.toolApp.updateHost', 'Update BrzA Studio on {{host}} to sign in to apps', { host })
+    : t('bots.toolApp.updateServer', 'Update BrzA Studio on the server to sign in to apps')
 }

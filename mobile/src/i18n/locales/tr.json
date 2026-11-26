@@ -5887,7 +5887,7 @@
             "cursor": {
               "expired": {
                 "label": "Oturum açma süresi doldu",
-                "message": "Orca'nın çalıştığı bilgisayarda bir terminalde cursor-agent login komutunu çalıştırın, ardından kullanım bilgilerini yeniden yüklemeyi deneyin."
+                "message": "BrzA Studio'nın çalıştığı bilgisayarda bir terminalde cursor-agent login komutunu çalıştırın, ardından kullanım bilgilerini yeniden yüklemeyi deneyin."
               }
             },
             "usage": {
@@ -5898,8 +5898,8 @@
             "7ad719c4bf": "Sınırlı",
             "e740f92596": "Yenileme başarısız oldu",
             "2c35eca8d4": "Kullanım alınamadı",
-            "d1b7f509ac": "Orca'yı çalıştıran bilgisayarda bir terminalde grok komutunu çalıştırın ve başlamasını bekleyin. İstenirse oturum açmayı tamamlayın, ardından kullanım bilgilerini almayı yeniden deneyin. Sohbet mesajı göndermenize gerek yok.",
-            "a37e8c15d4": "Orca'yı çalıştıran bilgisayarda bir terminalde kimi'yi çalıştırın, başlamasını bekleyin, ardından kullanımı tekrar deneyin.",
+            "d1b7f509ac": "BrzA Studio'yı çalıştıran bilgisayarda bir terminalde grok komutunu çalıştırın ve başlamasını bekleyin. İstenirse oturum açmayı tamamlayın, ardından kullanım bilgilerini almayı yeniden deneyin. Sohbet mesajı göndermenize gerek yok.",
+            "a37e8c15d4": "BrzA Studio'yı çalıştıran bilgisayarda bir terminalde kimi'yi çalıştırın, başlamasını bekleyin, ardından kullanımı tekrar deneyin.",
             "3d3c9c0c1f": "Claude kullanımı, canlı Claude terminali kimlik bilgilerini döndürdükten sonra yenilenecek.",
             "42fdd4da1d": "Claude oturumu yenileniyor. Ajan oturumları hâlâ açık olabilir.",
             "c06c1d215d": "Ağ isteği başarısız olduğu için Claude kullanımı yenilenemedi.",
@@ -6886,8 +6886,8 @@
       "unreviewed-work": {
         "name": "İncelenmemiş ajan çalışmaları",
         "line": "Ajanların tamamladığı ve henüz kimsenin incelemediği işlerin günlük listesi.",
-        "firstChat": "Ajanın çalışmasını tamamladığı, ancak değişiklikleri henüz incelemediğiniz veya pull request'e dönüştürmediğiniz çalışma alanlarını listeler. Orca, bir ajan sizi beklediğinde zaten haber verir; burada tamamlanan işleri görürsünüz.",
-        "watches": "Orca çalışma alanlarınız",
+        "firstChat": "Ajanın çalışmasını tamamladığı, ancak değişiklikleri henüz incelemediğiniz veya pull request'e dönüştürmediğiniz çalışma alanlarını listeler. BrzA Studio, bir ajan sizi beklediğinde zaten haber verir; burada tamamlanan işleri görürsünüz.",
+        "watches": "BrzA Studio çalışma alanlarınız",
         "does": "Ajanın değişiklikleri tamamladığı ancak henüz kimsenin incelemediği veya pull request açmadığı çalışma alanlarını listeler.",
         "reports": "Hafta içi saat 09.00'da, burada",
         "example1": "mobile-pairing dün tamamlandı. 340 satırlık bir diff var; pull request açılmadı.",
@@ -6903,7 +6903,7 @@
         "name": "Çalışma alanı temizliği",
         "line": "Tamamlanmış veya terk edilmiş çalışma alanlarını bulur ve kaldırmayı önerir.",
         "firstChat": "Pull request'i merge edilmiş veya iki haftadır değişmemiş çalışma alanlarını, henüz commit edilmemiş değişiklikleriyle birlikte listeler. Yalnızca seçtiklerinizi kaldırır.",
-        "watches": "Orca çalışma alanlarınız ve bunların pull request'leri",
+        "watches": "BrzA Studio çalışma alanlarınız ve bunların pull request'leri",
         "does": "Tamamlanmış ya da terk edilmiş çalışma alanlarıyla commit edilmemiş değişiklikleri listeler. Yalnızca seçtiğiniz alanları kaldırır.",
         "reports": "Cuma günleri saat 16.00'da, burada",
         "example1": "6 çalışma alanında iş tamamlandı: İlgili pull request'ler bu hafta merge edildi.",
@@ -7691,9 +7691,9 @@
       "reading": "Kurulumunuz tanınıyor…",
       "read": "Kurulumunuz tanınıyor",
       "namesMore": "{{names}} ve {{count}} tane daha",
-      "projectsReading": "Projeler: Orca'da neleriniz olduğuna bakılıyor…",
+      "projectsReading": "Projeler: BrzA Studio'da neleriniz olduğuna bakılıyor…",
       "projectsDone": "Projelerinize bakıldı",
-      "projectsNone": "Orca'da henüz proje yok",
+      "projectsNone": "BrzA Studio'da henüz proje yok",
       "projectsOne": "1 proje bulundu: {{names}}",
       "projectsMany": "{{count}} proje bulundu: {{names}}",
       "githubReading": "GitHub: açık PR'larınız okunuyor…",
@@ -7834,7 +7834,7 @@
         "unsupported": "Bu uygulama henüz desteklenmiyor.",
         "unavailable": "Bu uygulamaya ulaşılamıyor. Adresi kontrol edip yeniden deneyin.",
         "noTool": "Bu botta artık o araç yok.",
-        "desktopOnly": "{{host}} üzerindeki Orca’dan oturum açın.",
+        "desktopOnly": "{{host}} üzerindeki BrzA Studio’dan oturum açın.",
         "denied": "Erişime izin verilmedi.",
         "expired": "Oturum açmanın süresi doldu. Yeniden deneyin.",
         "couldNotSignIn": "Oturum açılamadı. Yeniden deneyin."

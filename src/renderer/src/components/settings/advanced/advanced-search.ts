@@ -65,7 +65,7 @@ export const getAdvancedSearchEntry = createLocalizedCatalog(
         ]
       },
       uninstall: {
-        title: translate('settings.uninstall.title', 'Uninstall Orca'),
+        title: translate('settings.uninstall.title', 'Uninstall BrzA Studio'),
         description: translate(
           'settings.uninstall.searchDescription',
           'Remove agent hooks, the orca command, the orca serve server and hooks on SSH hosts.'

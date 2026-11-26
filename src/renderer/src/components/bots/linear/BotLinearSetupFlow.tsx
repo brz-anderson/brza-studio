@@ -292,7 +292,7 @@ export function BotLinearSetupFlow({
             // Linear never returns from its own error page, so Orca can only say what it likely is.
             help={t(
               'bots.linear.connect.stuck',
-              'Stuck on a Linear page that says “Could not find OAuth client”? Orca’s Linear app isn’t open to this workspace yet. An admin of the workspace that owns the app must make it public.'
+              'Stuck on a Linear page that says “Could not find OAuth client”? BrzA Studio’s Linear app isn’t open to this workspace yet. An admin of the workspace that owns the app must make it public.'
             )}
           />
         )
@@ -303,7 +303,7 @@ export function BotLinearSetupFlow({
             <p className="break-words text-sm text-muted-foreground">
               {t(
                 'bots.linear.setup.install',
-                'Orca is not installed in {{workspace}} yet. A Linear admin installs it once for everyone.',
+                'BrzA Studio is not installed in {{workspace}} yet. A Linear admin installs it once for everyone.',
                 { workspace: linearWorkspaceLabel(step.workspace.name, step.workspace.urlKey) }
               )}
             </p>
@@ -314,7 +314,7 @@ export function BotLinearSetupFlow({
               </p>
             ) : linearAwait === 'unchanged' ? (
               <p role="status" className="text-sm text-muted-foreground">
-                {t('bots.linear.setup.noInstallYet', 'Orca isn’t installed there yet.')}
+                {t('bots.linear.setup.noInstallYet', 'BrzA Studio isn’t installed there yet.')}
               </p>
             ) : null}
             {/* The label lives in the text above: inside a button, a long one pushed this off the dialog. */}

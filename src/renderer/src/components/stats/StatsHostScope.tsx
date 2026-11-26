@@ -80,7 +80,7 @@ export function StatsHostTooOldNotice({ name }: { name: string }): React.JSX.Ele
       <p className="mt-1 text-xs text-muted-foreground">
         {t(
           'auto.components.stats.StatsHostScope.tooOldBody',
-          'It runs an older version of Orca. Update Orca on {{value0}} to see its token usage here.',
+          'It runs an older version of BrzA Studio. Update BrzA Studio on {{value0}} to see its token usage here.',
           { value0: name }
         )}
       </p>

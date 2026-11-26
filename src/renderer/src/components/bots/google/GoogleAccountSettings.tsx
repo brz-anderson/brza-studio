@@ -203,9 +203,13 @@ function AccountList({
       </div>
       {canAdd ? null : (
         <p className="text-xs text-muted-foreground">
-          {t('bots.google.updateToAdd', 'Update Orca on {{host}} to add another Google account.', {
-            host
-          })}
+          {t(
+            'bots.google.updateToAdd',
+            'Update BrzA Studio on {{host}} to add another Google account.',
+            {
+              host
+            }
+          )}
         </p>
       )}
       <p className="text-xs text-muted-foreground">

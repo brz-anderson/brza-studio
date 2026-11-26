@@ -6,7 +6,7 @@ export type WebhookCardNames = { automationName: string; botName: string }
 /** The host's text for a hook, with its names; without them (the phone), the same steps unnamed. */
 export function webhookCardFallbackText(names: WebhookCardNames | null): string {
   if (!names) {
-    return 'This webhook is live. Copy its URL from Orca on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.'
+    return 'This webhook is live. Copy its URL from BrzA Studio on a computer, in the bot’s settings under Webhooks. To pause or delete it, ask the bot here.'
   }
   const { automationName, botName } = names
   return `Webhook “${automationName}” is live. Copy its URL from Orca on a computer: Settings › Bots › ${botName} › Webhooks. To pause or delete it, ask ${botName} here.`

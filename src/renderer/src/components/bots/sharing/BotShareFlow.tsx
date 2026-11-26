@@ -122,7 +122,7 @@ function ShareBody({
       if (openBotHomeFileAtLine(bot, spot.homePath, spot.flag.line)) {
         onClose()
       } else {
-        toast.error(t('bots.share.openFailed', 'Orca could not open this file.'))
+        toast.error(t('bots.share.openFailed', 'BrzA Studio could not open this file.'))
       }
     }
   }

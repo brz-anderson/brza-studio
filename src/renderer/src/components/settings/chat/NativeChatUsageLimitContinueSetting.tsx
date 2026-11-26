@@ -40,7 +40,7 @@ export function NativeChatUsageLimitContinueSetting({
         setting.state === 'unsupported'
           ? t(
               'components.settings.nativeChat.usageLimitContinueUnsupported',
-              'Update Orca on {{host}} to change this setting there.',
+              'Update BrzA Studio on {{host}} to change this setting there.',
               { host: hostLabel }
             )
           : description

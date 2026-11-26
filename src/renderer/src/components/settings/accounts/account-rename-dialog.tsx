@@ -49,7 +49,7 @@ export function AccountRenameDialog({
           <DialogDescription>
             {t(
               'accounts.rename.description',
-              'Only the name Orca shows changes. Leave it blank to show {{email}}.',
+              'Only the name BrzA Studio shows changes. Leave it blank to show {{email}}.',
               { email: target?.email ?? '' }
             )}
           </DialogDescription>

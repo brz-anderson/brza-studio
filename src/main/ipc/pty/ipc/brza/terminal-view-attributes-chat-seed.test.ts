@@ -3,11 +3,7 @@ import { getDefaultSettings } from '../../../../../shared/orca-profiles/constant
 import type { TerminalOscColorQueryReplyColors } from '../../../../../shared/terminal/protocol/queries/terminal-osc-color-reply'
 import { LocalPtyProvider } from '../../../../providers/local-pty/local-pty-provider'
 import { _resetTerminalViewAttributesForTest } from '../../../../runtime/terminal/view/terminal-view-attribute-store'
-import {
-  _resetColorQueryReplyColorsForTest,
-  getLocalPtyProvider,
-  setLocalPtyProvider
-} from '../../provider/registry'
+import { getLocalPtyProvider, setLocalPtyProvider } from '../../provider/registry'
 import { installTerminalViewAttributesIpc } from '../terminal-view-attributes-ipc'
 
 class RecordingProvider extends LocalPtyProvider {
@@ -18,19 +14,25 @@ class RecordingProvider extends LocalPtyProvider {
   }
 }
 
+// The registry replays the last published colours to a new owner, so only later pushes count.
+function installOwner(): RecordingProvider {
+  const owner = new RecordingProvider()
+  setLocalPtyProvider(owner)
+  owner.pushes.length = 0
+  return owner
+}
+
 describe('seeding PTY owner colours while the terminal follows the chat', () => {
   const originalLocal = getLocalPtyProvider()
   const settings = { ...getDefaultSettings('/tmp'), theme: 'dark' as const }
 
   afterEach(() => {
     _resetTerminalViewAttributesForTest()
-    _resetColorQueryReplyColorsForTest()
     setLocalPtyProvider(originalLocal)
   })
 
   it('seeds the chat canvas', () => {
-    const owner = new RecordingProvider()
-    setLocalPtyProvider(owner)
+    const owner = installOwner()
 
     installTerminalViewAttributesIpc({
       getSettings: () => ({ ...settings, terminalFollowsChatTheme: true })
@@ -40,8 +42,7 @@ describe('seeding PTY owner colours while the terminal follows the chat', () => 
   })
 
   it('seeds the saved terminal theme when it does not follow the chat', () => {
-    const owner = new RecordingProvider()
-    setLocalPtyProvider(owner)
+    const owner = installOwner()
 
     installTerminalViewAttributesIpc({
       getSettings: () => ({ ...settings, terminalFollowsChatTheme: false })

@@ -43,7 +43,7 @@ export function BotWhoCanAskInsetList({
       {list.requestsWaitOnSignIn ? (
         <OrcaCloudSignInLine
           className="mb-2"
-          text={t('bots.cloudSignIn.accessRequests', 'Access requests need Orca sign-in.')}
+          text={t('bots.cloudSignIn.accessRequests', 'Access requests need BrzA Studio sign-in.')}
           onSignedIn={refreshAccessRequests}
         />
       ) : null}

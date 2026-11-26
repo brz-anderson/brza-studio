@@ -77,7 +77,7 @@ export function GoogleSetupConnectCard({
               {host
                 ? t(
                     'bots.googleSetup.connect.noteOnHost',
-                    'Orca’s browser for {{host}} opens Google’s sign-in. Your Google sign-in stays on {{host}}.',
+                    'BrzA Studio’s browser for {{host}} opens Google’s sign-in. Your Google sign-in stays on {{host}}.',
                     { host }
                   )
                 : t(
@@ -89,7 +89,7 @@ export function GoogleSetupConnectCard({
               <p className="mt-1 text-xs text-muted-foreground">
                 {t(
                   'bots.googleSetup.connect.warning',
-                  'Google will show a warning because this app is yours and brand new. Choose Advanced, then Go to Orca, and tick every box on the next screen.'
+                  'Google will show a warning because this app is yours and brand new. Choose Advanced, then Go to BrzA Studio, and tick every box on the next screen.'
                 )}
               </p>
             ) : null}

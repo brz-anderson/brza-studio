@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import '@testing-library/jest-dom/vitest'
 import { cleanup, fireEvent, screen } from '@testing-library/react'
-import { render } from './messages/actions/native-chat-tooltip-test-harness'
+import { render } from './messages/actions/native-chat-tooltip.brza.test-harness'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { NativeChatMessage } from '../../../../shared/native-chat/native-chat-types'
 import { MessageRow } from './messages/rows/NativeChatMessageRow'
@@ -21,7 +21,7 @@ vi.mock('./composer/focus/native-chat-composer-focus-intent', async (importOrigi
   requestNativeChatComposerFocus
 }))
 vi.mock('@/lib/syntax-highlighting/oniguruma', async () => ({
-  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma-test-harness'))
+  loadOniguruma: (await import('@/lib/syntax-highlighting/oniguruma.brza.test-harness'))
     .loadNodeOniguruma
 }))
 

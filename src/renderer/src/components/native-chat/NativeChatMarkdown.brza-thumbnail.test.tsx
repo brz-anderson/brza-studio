@@ -14,7 +14,7 @@ import { NativeChatMarkdownImageOwnerContext } from './media/images/native-chat-
 import {
   repoFixture,
   worktreeFixture
-} from './surfaces/integration/native-chat-workspace-test-fixtures'
+} from './surfaces/integration/native-chat-workspace.brza.test-fixtures'
 
 const mocks = vi.hoisted(() => ({ readRuntimeFilePreview: vi.fn() }))
 

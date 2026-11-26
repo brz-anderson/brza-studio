@@ -60,7 +60,7 @@ export function botHostUnavailableNotice(
     return {
       message: translate(
         'automations.botTarget.hostNeedsUpdate',
-        'Update the Orca server on {host} so its bots can have automations.'
+        'Update the BrzA Studio server on {host} so its bots can have automations.'
       ).replace('{host}', () => botHost.authorityLabel),
       recovery,
       severity: 'owner'

@@ -72,7 +72,7 @@ function offerFootnote(source: ConnectorOfferSource): string | null {
     case 'linear':
       return translate(
         'components.native-chat.connectorOffer.linearAsYou',
-        'It can also work in Linear as you, through your own Linear sign-in in Orca.'
+        'It can also work in Linear as you, through your own Linear sign-in in BrzA Studio.'
       )
     case 'slack':
     case 'google':

@@ -32,7 +32,7 @@ export const UPDATER_FAILURE_COPY = {
   linuxPackageMetadataUnusable:
     'The downloaded package metadata could not be verified. Quit BrzA Studio before downloading and installing the update from the official release page.',
   unknownReleaseChannel: 'Unknown release channel "{{channel}}".',
-  teamUpdatePolicy: 'Your team manages Orca updates.',
+  teamUpdatePolicy: 'Your team manages BrzA Studio updates.',
   invalidReleaseTag: '"{{tag}}" is not a valid release tag.',
   releaseRepoNotFound: 'No releases repository found at {{repo}}.',
   releaseListFailed: 'Could not list {{channel}} builds (HTTP {{status}}).',

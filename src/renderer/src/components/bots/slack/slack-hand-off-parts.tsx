@@ -129,12 +129,12 @@ function SlackHandOffLine({
       {isMac
         ? t(
             'bots.slack.handOff.offerMac',
-            'This Mac is signed in to Orca as {{email}}, which already has a token for {{workspace}}.',
+            'This Mac is signed in to BrzA Studio as {{email}}, which already has a token for {{workspace}}.',
             { email, workspace }
           )
         : t(
             'bots.slack.handOff.offer',
-            'This computer is signed in to Orca as {{email}}, which already has a token for {{workspace}}.',
+            'This computer is signed in to BrzA Studio as {{email}}, which already has a token for {{workspace}}.',
             { email, workspace }
           )}{' '}
       <Button type="button" variant="link" size="inlineText" onClick={() => onUse(teamId)}>
@@ -158,12 +158,12 @@ export function SlackHandOffConfirm({
       {isMac
         ? t(
             'bots.slack.handOff.confirmMac',
-            'Orca on this Mac creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.',
+            'BrzA Studio on this Mac creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.',
             { email, host }
           )
         : t(
             'bots.slack.handOff.confirm',
-            'Orca on this computer creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.',
+            'BrzA Studio on this computer creates the Slack app with {{email}}’s token. {{host}} gets only this bot’s app.',
             { email, host }
           )}
     </p>

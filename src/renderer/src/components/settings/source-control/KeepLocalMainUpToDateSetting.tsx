@@ -72,7 +72,7 @@ export function KeepLocalMainUpToDateSetting({
               i18n={i18n}
               defaults={t(
                 'auto.components.settings.GitPane.refreshLocalBaseDescription',
-                'When you create a workspace, Orca refreshes the remote base and safely fast-forwards your matching local branch, such as <mainBranch>main</mainBranch> or <masterBranch>master</masterBranch>. This keeps commands like <diffCommand>git diff main...HEAD</diffCommand> from comparing against stale history. Orca skips the update if that branch has uncommitted changes or local-only commits.'
+                'When you create a workspace, BrzA Studio refreshes the remote base and safely fast-forwards your matching local branch, such as <mainBranch>main</mainBranch> or <masterBranch>master</masterBranch>. This keeps commands like <diffCommand>git diff main...HEAD</diffCommand> from comparing against stale history. BrzA Studio skips the update if that branch has uncommitted changes or local-only commits.'
               )}
               components={{
                 mainBranch: <code />,

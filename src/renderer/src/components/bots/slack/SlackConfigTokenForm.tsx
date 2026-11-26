@@ -194,7 +194,7 @@ export function SlackConfigTokenForm({
           <p className="text-sm text-muted-foreground">
             {t(
               'bots.slack.token.kept',
-              'Orca Cloud keeps this token encrypted, so your next bots in this workspace need one click.'
+              'BrzA Studio Cloud keeps this token encrypted, so your next bots in this workspace need one click.'
             )}
           </p>
         </>

@@ -831,7 +831,7 @@
         "does": "Lists workspaces whose agent finished with changes nobody reviewed or opened a pull request for.",
         "example1": "mobile-pairing finished yesterday with a 340-line diff, no pull request.",
         "example2": "2 more finished this week.",
-        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. Orca already tells you when an agent is waiting on you; this covers what’s done.",
+        "firstChat": "Lists workspaces whose agent finished with changes you haven’t reviewed or turned into a pull request. BrzA Studio already tells you when an agent is waiting on you; this covers what’s done.",
         "line": "A daily list of finished agent work nobody has looked at yet.",
         "name": "Unreviewed agent work",
         "reports": "Here, weekdays at 9 AM",
@@ -841,7 +841,7 @@
             "when": "Weekdays at 9 AM"
           }
         },
-        "watches": "Your Orca workspaces"
+        "watches": "Your BrzA Studio workspaces"
       },
       "workspace-cleanup": {
         "does": "Lists workspaces that are done or abandoned, with uncommitted changes; removes only the ones you pick.",
@@ -857,7 +857,7 @@
             "when": "Fridays at 4 PM"
           }
         },
-        "watches": "Your Orca workspaces and their pull requests"
+        "watches": "Your BrzA Studio workspaces and their pull requests"
       }
     },
     "upNext": {

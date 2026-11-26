@@ -227,7 +227,7 @@ export function hookSilentAgentSendRefusal(
     state.sendApprovalGuardEnvironmentIds ??
     selectSendApprovalGuardEnvironmentIds(readAppRuntimeStatuses())
   if (!ptyHostGuardsSendApprovals(guardedHosts, ptyId)) {
-    return 'Update Orca on this host to send to this agent'
+    return 'Update BrzA Studio on this host to send to this agent'
   }
   return sendState === 'unproven' ? 'Agent may be waiting for approval' : undefined
 }

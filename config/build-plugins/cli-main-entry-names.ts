@@ -6,8 +6,6 @@ export const CLI_MAIN_ENTRY_NAMES = [
   'worker-threads/worker-send-ledger',
   'agent-hooks/installation/managed-agent-hook-controls',
   'gitlab/projects/project-ref-parser',
-  // src/cli/external-subcommand.ts resolves binaries on the local PATH through it.
-  'ipc/command-path/command-path-resolver',
   'orca-profiles/profile-index-store',
   'claude-accounts/runtime-auth/keychain',
   // The CLI checks a relocated runtime socket dir before it sends the auth token.

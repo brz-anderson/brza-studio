@@ -258,7 +258,7 @@ export const CandidateRow = React.memo(function CandidateRow({
                   <span className="text-xs">
                     {t(
                       'auto.components.sidebar.ForgetSshWorkspaceDialog.forget',
-                      'Remove from Orca'
+                      'Remove from BrzA Studio'
                     )}
                   </span>
                 </Button>

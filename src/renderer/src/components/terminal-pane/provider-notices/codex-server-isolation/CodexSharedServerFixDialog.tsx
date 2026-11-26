@@ -192,7 +192,7 @@ export function CodexSharedServerFixDialog({
                 )
               : t(
                   'terminal.codexSharedServerBanner.dialogSummary',
-                  'Turns off Codex server sharing, also outside Orca.'
+                  'Turns off Codex server sharing, also outside BrzA Studio.'
                 )}
           </DialogDescription>
         </DialogHeader>
@@ -208,7 +208,7 @@ export function CodexSharedServerFixDialog({
             <Label htmlFor={checkboxId} variant="dialog">
               {t(
                 'terminal.codexSharedServerBanner.alsoStop',
-                'Also stop the running server (closes all Codex sessions using it, including outside Orca)'
+                'Also stop the running server (closes all Codex sessions using it, including outside BrzA Studio)'
               )}
             </Label>
           </div>

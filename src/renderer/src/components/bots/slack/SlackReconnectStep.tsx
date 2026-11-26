@@ -100,7 +100,10 @@ export function SlackReconnectStep({
           { email: ownEmail }
         )
       : unsure
-        ? t('bots.slack.reconnect.whyNeeded', 'Orca has no working Slack token for this workspace.')
+        ? t(
+            'bots.slack.reconnect.whyNeeded',
+            'BrzA Studio has no working Slack token for this workspace.'
+          )
         : hostName
           ? t(
               'bots.slack.reconnect.whyHost',
@@ -181,7 +184,7 @@ export function SlackReconnectStep({
   }, [offered, pasting])
   const kept = t(
     'bots.slack.reconnect.kept',
-    'Orca Cloud keeps the new token encrypted, so your next bots here need one click.'
+    'BrzA Studio Cloud keeps the new token encrypted, so your next bots here need one click.'
   )
 
   // One form at one place in the tree for both versions: an offer that arrives or goes while the

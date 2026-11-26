@@ -37,7 +37,7 @@ export function renderOrcaAccountSettingsSection(
             )
           : t(
               'components.settings.orcaAccount.server.sectionDescription',
-              'The Orca account {{host}} runs as, for its bots’ Slack, GitHub, Linear and webhooks.',
+              'The BrzA Studio account {{host}} runs as, for its bots’ Slack, GitHub, Linear and webhooks.',
               { host: serverName }
             )
       }
@@ -290,7 +290,7 @@ export function renderWorkspaceCleanupSettingsSection(
       title={t('components.settings.workspaceCleanup.title', 'Workspace Cleanup')}
       description={t(
         'components.settings.workspaceCleanup.description',
-        "Remove workspaces you're done with. Before removing anything, Orca checks again for unsaved work."
+        "Remove workspaces you're done with. Before removing anything, BrzA Studio checks again for unsaved work."
       )}
       searchEntries={navigation.getSectionSearchEntries('workspace-cleanup')}
     >

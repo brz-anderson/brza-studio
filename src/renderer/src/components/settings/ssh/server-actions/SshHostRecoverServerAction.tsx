@@ -169,7 +169,7 @@ function OpenRecoverServerDialog({
           <DialogDescription>
             {t(
               'components.settings.recoverServer.summary',
-              'An earlier run left a lock, so Orca’s server can’t start.'
+              'An earlier run left a lock, so BrzA Studio’s server can’t start.'
             )}
           </DialogDescription>
         </DialogHeader>

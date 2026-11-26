@@ -166,7 +166,7 @@ function refusesForAgentState(target: NotesSendAgentTarget): boolean {
   return (
     target.disabledReason === 'Agent needs permission' ||
     target.disabledReason === 'Agent may be waiting for approval' ||
-    target.disabledReason === 'Update Orca on this host to send to this agent'
+    target.disabledReason === 'Update BrzA Studio on this host to send to this agent'
   )
 }
 

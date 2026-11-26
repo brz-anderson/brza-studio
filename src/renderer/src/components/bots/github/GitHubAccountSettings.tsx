@@ -123,15 +123,15 @@ function GitHubLoginRow({
         {installUrl ? (
           <p className="flex items-center gap-1.5 truncate text-xs text-muted-foreground">
             <span className={STATUS_DOT_CLASSES.attention} aria-hidden />
-            {t('settings.bots.githubStatus.notInstalled', 'Orca not installed')}
+            {t('settings.bots.githubStatus.notInstalled', 'BrzA Studio not installed')}
           </p>
         ) : (
           <p className="truncate text-xs text-muted-foreground">
             {hostName
-              ? t('bots.github.account.linkedOnHost', 'Linked to {{host}}’s Orca account', {
+              ? t('bots.github.account.linkedOnHost', 'Linked to {{host}}’s BrzA Studio account', {
                   host: hostName
                 })
-              : t('bots.github.account.linked', 'Linked to this Orca account')}
+              : t('bots.github.account.linked', 'Linked to this BrzA Studio account')}
           </p>
         )}
       </div>
@@ -254,7 +254,7 @@ export function GitHubAccountSettings({
           {isPairedWebClientWindow()
             ? t(
                 'bots.github.account.linkFromApp',
-                'Link GitHub from Orca on a computer paired to {{host}}.',
+                'Link GitHub from BrzA Studio on a computer paired to {{host}}.',
                 { host: hostName ?? '' }
               )
             : t(
