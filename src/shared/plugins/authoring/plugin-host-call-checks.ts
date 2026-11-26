@@ -281,7 +281,7 @@ export async function pluginHostCallFindings(
       !(guardWorks && guarded.has(call.name))
     ) {
       warnings.push(
-        `engines.orca: must be at least >=${needs}, because ${call.file} calls host method "${call.name}", which needs Orca ${needs}; or guard the call with orca.host.has('${call.name}')${guardWorks ? '' : ` and engines.orca >=${PLUGIN_HOST_HAS_SINCE}, where orca.host.has arrived`}`
+        `engines.orca: must be at least >=${needs}, because ${call.file} calls host method "${call.name}", which needs BrzA Studio ${needs}; or guard the call with orca.host.has('${call.name}')${guardWorks ? '' : ` and engines.orca >=${PLUGIN_HOST_HAS_SINCE}, where orca.host.has arrived`}`
       )
     }
   }

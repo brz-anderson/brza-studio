@@ -5,7 +5,7 @@ import type { BotChatTranslate } from './bot-chat-tree'
 export const BOT_FAILURE_COPY = {
   lookUnfinished: "The last look didn't finish.",
   lookTimedOut: 'The last look was stopped after {{minutes}} min.',
-  lookInterrupted: 'Orca stopped during the last look.',
+  lookInterrupted: 'BrzA Studio stopped during the last look.',
   lookCouldNotStart: "The last look couldn't start.",
   lookAsleep: 'The last look was missed because this computer was asleep.',
   tidyUpUnfinished: "The last tidy-up didn't finish.",
@@ -14,14 +14,15 @@ export const BOT_FAILURE_COPY = {
   tidyUpAsleep: 'The last tidy-up was missed because this computer was asleep.',
   tidyUpUnreadChats: "The last tidy-up couldn't read its chats, so it didn't run.",
   tidyUpNoDraft: "The last tidy-up didn't reply with a new MEMORY.md.",
-  tidyUpNoOps: "The last tidy-up's reply wasn't a list of changes Orca could read.",
+  tidyUpNoOps: "The last tidy-up's reply wasn't a list of changes BrzA Studio could read.",
   tidyUpAllSkipped:
-    'Orca skipped every change the last tidy-up asked for, so nothing changed. ({{detail}})',
+    'BrzA Studio skipped every change the last tidy-up asked for, so nothing changed. ({{detail}})',
   tidyUpNotListLines:
     "The last tidy-up didn't run: MEMORY.md has more than a few lines that aren't list lines, and ops Tidy-up reads only list lines.",
   tidyUpMovedOnly:
-    'The last tidy-up moved status lines to memory/journal/, but Orca could not use the rest of its reply. ({{detail}})',
-  tidyUpBadTopic: "The last tidy-up named a topic file Orca can't write, so nothing changed.",
+    'The last tidy-up moved status lines to memory/journal/, but BrzA Studio could not use the rest of its reply. ({{detail}})',
+  tidyUpBadTopic:
+    "The last tidy-up named a topic file BrzA Studio can't write, so nothing changed.",
   tidyUpTooLong:
     "The last tidy-up's MEMORY.md was over {{max}} lines and no shorter, so nothing changed.",
   tidyUpTooManyRemoved: 'The last tidy-up took out too many lines at once, so nothing changed.',
@@ -39,9 +40,9 @@ export const BOT_FAILURE_COPY = {
   toolValueMissing: 'Enter a value for each row, or remove the row.',
   toolCredentialsUnreadable:
     'The bot’s saved tool credentials are unreadable. Re-enter the tool’s values.',
-  toolSignInManaged: 'Orca signs in to this tool. Sign it in or out instead.',
-  toolCredentialsRaced: 'The bot’s tool credentials changed in another Orca. Try again.',
-  toolSourceManaged: 'Orca manages this tool. Change it where you set it up.',
+  toolSignInManaged: 'BrzA Studio signs in to this tool. Sign it in or out instead.',
+  toolCredentialsRaced: 'The bot’s tool credentials changed in another BrzA Studio. Try again.',
+  toolSourceManaged: 'BrzA Studio manages this tool. Change it where you set it up.',
   toolValuesUnmoved: 'A tool still holds its saved values. Reopen the bot’s tools to move them.',
   googleAccountsChanged:
     'Its Google accounts changed since you opened them. Check them and save again.',
@@ -64,7 +65,7 @@ export const BOT_FAILURE_COPY = {
   toolNotFound: 'This bot has no tool named {{name}}.',
   toolNeedsNoSignIn: '{{name}} uses its saved values and needs no sign-in.',
   toolSignInAgentUnsupported:
-    'Orca signs {{name}} in only for Claude Code and Codex. Add it with its sign-in values instead.',
+    'BrzA Studio signs {{name}} in only for Claude Code and Codex. Add it with its sign-in values instead.',
   toolCodexNoSignInPage: 'Codex gave no sign-in page for {{name}}.',
   toolClaudeSignInFailed: "Claude couldn't start signing in to {{name}}.",
   toolClaudeNoSignInPage: "Claude didn't open a sign-in page for {{name}}.",
@@ -85,7 +86,7 @@ export const BOT_FAILURE_COPY = {
     '{{name}} is already in this group. Members need different names so mentions stay unambiguous.',
   // Sent only by hosts from before phones and paired windows could post to such groups.
   groupPostFromHost: 'To post in a group with bots on other computers, use {{host}}.',
-  groupPeerTooOld: 'Update Orca on {{host}} to add its bots to a group.',
+  groupPeerTooOld: 'Update BrzA Studio on {{host}} to add its bots to a group.',
   groupMentionAmbiguous: 'Correct the ambiguous bot mention before sending.',
   groupMentionUnavailable: 'Correct the unavailable or ambiguous bot mention before sending.',
   groupReplierNotMember: 'Choose a current room member in Room replies.',

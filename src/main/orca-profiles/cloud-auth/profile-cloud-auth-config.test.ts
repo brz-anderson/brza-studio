@@ -25,7 +25,7 @@ describe('Orca cloud auth config read from the installed app environment', () =>
     expect(allowsPlaintextOrcaCloudSession(DEV_OVERRIDES)).toBe(false)
     expect(getOrcaCloudAuthConfig(DEV_OVERRIDES)).toEqual({
       configured: false,
-      setupMessage: 'Orca Cloud sign-in is not configured for this build.'
+      setupMessage: 'BrzA Studio Cloud sign-in is not configured for this build.'
     })
     expect(getOrcaPushGatewayUrl({ ORCA_PUSH_GATEWAY_URL: 'http://127.0.0.1:9000' })).toBe(
       'https://push.onorca.dev'

@@ -139,5 +139,5 @@ export function pluginPanelIconEngineFloorError(raw: unknown): string | null {
   )
   return index === -1
     ? null
-    : `engines.orca: must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[${index}].icon needs Orca ${PLUGIN_PANEL_PATH_ICON_SINCE}`
+    : `engines.orca: must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[${index}].icon needs BrzA Studio ${PLUGIN_PANEL_PATH_ICON_SINCE}`
 }

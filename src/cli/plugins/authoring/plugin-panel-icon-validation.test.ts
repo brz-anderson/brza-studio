@@ -168,7 +168,7 @@ it('requires the path icon release in engines.orca', async () => {
   const report = await validatePluginTarget(dir)
   expect(report.valid).toBe(false)
   expect(report.errors.join('\n')).toContain(
-    `must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[0].icon needs Orca ${PLUGIN_PANEL_PATH_ICON_SINCE}`
+    `must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[0].icon needs BrzA Studio ${PLUGIN_PANEL_PATH_ICON_SINCE}`
   )
   await writeManifest('database', { engines: { orca: '>=1.4.246' } })
   expect((await validatePluginTarget(dir)).valid).toBe(true)
@@ -183,7 +183,7 @@ it(
       const report = await validatePluginTarget(dir)
       expect(report.valid, JSON.stringify(icon)).toBe(false)
       expect(report.errors.join('\n'), JSON.stringify(icon)).toContain(
-        `must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[0].icon needs Orca ${PLUGIN_PANEL_PATH_ICON_SINCE}`
+        `must be at least >=${PLUGIN_PANEL_PATH_ICON_SINCE}, because contributes.panels[0].icon needs BrzA Studio ${PLUGIN_PANEL_PATH_ICON_SINCE}`
       )
     }
   },
