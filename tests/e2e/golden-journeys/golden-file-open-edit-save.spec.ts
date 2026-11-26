@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { test } from '../desktop/electron-fixtures/orca-app'
-import { expect } from '@stablyai/playwright-test'
+import { expect, type Page } from '@stablyai/playwright-test'
 import {
   activateGoldenWorktree,
   cleanupGoldenWorktree,
@@ -10,6 +10,25 @@ import {
 import { waitForSessionReady } from '../desktop/renderer-probes/store'
 
 const README_PATH = 'README.md'
+
+// Why: BrzA Studio opens an existing Markdown file in the read-only preview (D20), so the
+// journey picks the rich editor itself, as the editor's own view toggle does.
+async function showActiveMarkdownAsRich(page: Page): Promise<void> {
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const state = window.__store?.getState()
+          if (!state?.activeFileId) {
+            return false
+          }
+          state.setMarkdownViewMode(state.activeFileId, 'rich')
+          return true
+        }),
+      { timeout: 25_000 }
+    )
+    .toBe(true)
+}
 
 test('@golden opens, edits, saves, and reopens a tracked file', async ({
   orcaPage,
@@ -41,6 +60,7 @@ test('@golden opens, edits, saves, and reopens a tracked file', async ({
   await expect(orcaPage.locator('.editor-header-path').first()).toContainText(README_PATH, {
     timeout: 20_000
   })
+  await showActiveMarkdownAsRich(orcaPage)
   const editor = orcaPage.locator('.rich-markdown-editor')
   await expect(editor).toBeVisible({ timeout: 25_000 })
   await expect(editor).toContainText('Orca E2E Test Repo')
@@ -58,6 +78,10 @@ test('@golden opens, edits, saves, and reopens a tracked file', async ({
   ).toHaveCount(0)
 
   await readmeRow.click()
+  await expect(orcaPage.locator('.editor-header-path').first()).toContainText(README_PATH, {
+    timeout: 20_000
+  })
+  await showActiveMarkdownAsRich(orcaPage)
   await expect(orcaPage.locator('.rich-markdown-editor')).toContainText(sentinel, {
     timeout: 25_000
   })

@@ -138,9 +138,9 @@ function formatRuntimeUnavailableError(message: string, error: RuntimeClientErro
   }
   const command = resolveInvokedCliCommand()
   if (error instanceof RuntimeRpcFailureError) {
-    return `${message}\nOrca is running but not ready for this yet. Wait a few seconds and retry; do not run '${command} open'. If it keeps failing and '${command} status --json' shows app.desktopWindowStatus "openable", BrzA Studio's window is closed: ask the user to reopen it.`
+    return `${message}\nBrzA Studio is running but not ready for this yet. Wait a few seconds and retry; do not run '${command} open'. If it keeps failing and '${command} status --json' shows app.desktopWindowStatus "openable", BrzA Studio's window is closed: ask the user to reopen it.`
   }
-  return `${message}\nOrca is not running. Run '${command} open' first.`
+  return `${message}\nBrzA Studio is not running. Run '${command} open' first.`
 }
 
 // Streaming commands print one JSON object per line with --json, so their failure is one line too.

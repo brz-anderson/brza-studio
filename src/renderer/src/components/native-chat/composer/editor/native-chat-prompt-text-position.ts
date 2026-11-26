@@ -1,4 +1,4 @@
-import { useMemo, useRef, type RefObject } from 'react'
+import { useState, type RefObject } from 'react'
 import type { Node } from '@tiptap/pm/model'
 import type { Transaction } from '@tiptap/pm/state'
 import {
@@ -42,14 +42,20 @@ export function createPromptTextPositionTracking(
   }
 }
 
+/** Built once per editor, outside render: the tracking reads the coordinates the owner stores in the ref. */
+function createFollowingTracking(): [
+  ReturnType<typeof createPromptTextPositionTracking>,
+  RefObject<NativeChatPromptCoordinates>
+] {
+  const coordinates: RefObject<NativeChatPromptCoordinates> = { current: PLAIN_PROMPT_COORDINATES }
+  return [createPromptTextPositionTracking(() => coordinates.current), coordinates]
+}
+
 /** The tracking for one editor, and the ref its owner points at the mode's coordinates once it has them. */
 export function usePromptTextPositionTracking(): [
   ReturnType<typeof createPromptTextPositionTracking>,
   RefObject<NativeChatPromptCoordinates>
 ] {
-  const coordinates = useRef<NativeChatPromptCoordinates>(PLAIN_PROMPT_COORDINATES)
-  return [
-    useMemo(() => createPromptTextPositionTracking(() => coordinates.current), []),
-    coordinates
-  ]
+  const [tracking] = useState(createFollowingTracking)
+  return tracking
 }

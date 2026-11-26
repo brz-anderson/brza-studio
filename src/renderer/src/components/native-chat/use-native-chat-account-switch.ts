@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/store'
 import { fetchProviderAccountsSnapshot } from '@/runtime/provider-accounts/observations/runtime-provider-accounts-client'
@@ -42,6 +42,34 @@ const NO_HOST_ACCOUNTS: ClaudeRateLimitAccountsState = {
 }
 const HOST_TARGET = { runtime: 'host', wslDistro: null } as const
 
+async function switchStructuredAccount(args: {
+  accountId: string | null
+  write: StructuredAgentSessionWrite
+  reportError: (notice: string) => void
+  inFlight: { current: boolean }
+  setSwitching: (switching: boolean) => void
+}): Promise<boolean> {
+  if (args.inFlight.current) {
+    return false
+  }
+  args.inFlight.current = true
+  args.setSwitching(true)
+  try {
+    const outcome = await args.write<AgentSessionAccountSwitchResult>(
+      'agentSession.switchAccount',
+      'agentSession.switchAccount',
+      { accountId: args.accountId }
+    )
+    if (outcome.kind === 'not-done') {
+      args.reportError(outcome.notice)
+    }
+    return outcome.kind === 'done'
+  } finally {
+    args.inFlight.current = false
+    args.setSwitching(false)
+  }
+}
+
 /** The accounts a Claude chat can move to, as the status bar's switcher lists them for this host,
  *  and the move itself. Null where the chat has no accounts to pick or its host cannot switch. */
 export function useNativeChatAccountSwitch(
@@ -49,6 +77,7 @@ export function useNativeChatAccountSwitch(
   write: StructuredAgentSessionWrite,
   reportError: (notice: string) => void
 ): NativeChatAccountSwitchView | null {
+  const t = useTranslate()
   const { agent, target, sessionId } = session
   const capability = useStructuredAgentSessionHostCapabilityState(
     agent === 'claude' ? target : null,
@@ -84,27 +113,8 @@ export function useNativeChatAccountSwitch(
       })
   }, [target])
   const switchTo = useCallback(
-    async (accountId: string | null): Promise<boolean> => {
-      if (inFlight.current) {
-        return false
-      }
-      inFlight.current = true
-      setSwitching(true)
-      try {
-        const outcome = await write<AgentSessionAccountSwitchResult>(
-          'agentSession.switchAccount',
-          'agentSession.switchAccount',
-          { accountId }
-        )
-        if (outcome.kind === 'not-done') {
-          reportError(outcome.notice)
-        }
-        return outcome.kind === 'done'
-      } finally {
-        inFlight.current = false
-        setSwitching(false)
-      }
-    },
+    (accountId: string | null) =>
+      switchStructuredAccount({ accountId, write, reportError, inFlight, setSwitching }),
     [reportError, write]
   )
   const ownerEnvironmentId = target.kind === 'environment' ? target.environmentId : null
@@ -121,7 +131,7 @@ export function useNativeChatAccountSwitch(
     (): NativeChatAccountChoice[] => [
       {
         id: null,
-        label: translate('auto.components.status.bar.StatusBar.c676918adc', 'System default'),
+        label: t('auto.components.status.bar.StatusBar.c676918adc', 'System default'),
         disabled: false,
         ...(state.systemDefaultEmail ? { detail: state.systemDefaultEmail } : {})
       },
@@ -134,7 +144,7 @@ export function useNativeChatAccountSwitch(
           disabled: account.needsSignIn === true
         }))
     ],
-    [state.accounts, state.systemDefaultEmail]
+    [state.accounts, state.systemDefaultEmail, t]
   )
   const currentId = switched
     ? switched.accountId

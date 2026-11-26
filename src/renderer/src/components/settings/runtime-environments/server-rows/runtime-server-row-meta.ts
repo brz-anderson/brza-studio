@@ -104,7 +104,10 @@ export function getRuntimeServerProblemLine(
   }
   if (remoteUpdate?.phase === 'manual') {
     return {
-      text: t('auto.components.settings.serverList.manualUpdate', 'Update BrzA Studio on the server host'),
+      text: t(
+        'auto.components.settings.serverList.manualUpdate',
+        'Update BrzA Studio on the server host'
+      ),
       destructive: false
     }
   }

@@ -1,9 +1,12 @@
 // The composer editor's mode state: plain text or Markdown shown formatted (the chat settings switch).
-import { useLayoutEffect, useMemo, useRef } from 'react'
-import type { Editor } from '@tiptap/core'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import type { AnyExtension, Editor } from '@tiptap/core'
 import Placeholder from '@tiptap/extension-placeholder'
 import { useAppStore } from '@/store'
-import { createRichMarkdownEditorCodec } from '../editor/rich-markdown/document/rich-markdown-source-transport'
+import {
+  createRichMarkdownEditorCodec,
+  type RichMarkdownEditorCodec
+} from '../editor/rich-markdown/document/rich-markdown-source-transport'
 import { nativeChatPromptPills } from './composer/editor/native-chat-prompt-document'
 import { nativeChatPromptExtensions } from './composer/editor/native-chat-prompt-extensions'
 import {
@@ -15,10 +18,38 @@ import {
 import { NativeChatAgentReference } from './composer/editor/native-chat-agent-reference'
 import { NativeChatUnkernedRunDecorations } from './composer/editor/native-chat-unkerned-run-decorations'
 
+/** The content a new editor starts with: read again only when the mode, its extensions or the scope
+ *  change, from the value the composer had then. A later value (every keystroke) leaves it alone. */
+function useInitialPromptContent(
+  extensions: AnyExtension[],
+  markdown: boolean,
+  codec: RichMarkdownEditorCodec,
+  scopeKey: string | undefined,
+  value: string
+) {
+  const [seed, setSeed] = useState({ extensions, markdown, codec, scopeKey, value })
+  if (
+    seed.extensions !== extensions ||
+    seed.markdown !== markdown ||
+    seed.codec !== codec ||
+    seed.scopeKey !== scopeKey
+  ) {
+    setSeed({ extensions, markdown, codec, scopeKey, value })
+  }
+  return useMemo(
+    () =>
+      initialPromptContent(seed.extensions, seed.markdown, seed.codec, seed.scopeKey, seed.value),
+    [seed]
+  )
+}
+
 /** The mode, its codec and extensions, and the content a new editor starts with. */
 export function useNativeChatPromptMode(scopeKey: string | undefined, initialValue: string) {
   const initialValueRef = useRef(initialValue)
-  initialValueRef.current = initialValue
+  // Why: the ref is written after commit, since React Compiler bails out on a write during render.
+  useLayoutEffect(() => {
+    initialValueRef.current = initialValue
+  })
   const markdown = useAppStore((state) => state.settings?.nativeChatMarkdownComposer === true)
   const codec = useMemo(() => createRichMarkdownEditorCodec(), [])
   const extensions = useMemo(
@@ -45,10 +76,7 @@ export function useNativeChatPromptMode(scopeKey: string | undefined, initialVal
     ],
     [codec, markdown]
   )
-  const initial = useMemo(
-    () => initialPromptContent(extensions, markdown, codec, scopeKey, initialValueRef.current),
-    [codec, extensions, markdown, scopeKey]
-  )
+  const initial = useInitialPromptContent(extensions, markdown, codec, scopeKey, initialValue)
   return { markdown, codec, extensions, initial, initialValueRef }
 }
 

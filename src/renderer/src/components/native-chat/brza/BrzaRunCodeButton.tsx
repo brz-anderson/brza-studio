@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Play } from 'lucide-react'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { NativeChatMarkdownImageOwnerContext } from '../media/images/native-chat-markdown-image-owner'
 import {
   isRunnableShellLanguage,
@@ -16,11 +16,12 @@ export function BrzaRunCodeButton({
   code: string
   language?: string
 }): React.JSX.Element | null {
+  const t = useTranslate()
   const context = useContext(NativeChatMarkdownImageOwnerContext)?.fileLinkContext
   if (!context || !language || !isRunnableShellLanguage(language)) {
     return null
   }
-  const label = translate('brza.native-chat.runInTerminal', 'Run in terminal')
+  const label = t('brza.native-chat.runInTerminal', 'Run in terminal')
   return (
     <button
       type="button"

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { MessageSquarePlus } from 'lucide-react'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { NativeChatNewChatContext } from '../native-chat-new-chat-from-message'
 
 /** The hover-bar button look the agent message's actions share. */
@@ -17,11 +17,9 @@ type BrzaAgentMessageActionsProps = {
 export function BrzaAgentMessageActions({
   text
 }: BrzaAgentMessageActionsProps): React.JSX.Element | null {
+  const t = useTranslate()
   const newChat = useContext(NativeChatNewChatContext)
-  const newChatLabel = translate(
-    'components.native-chat.newChatFromMessage',
-    'New chat from this message'
-  )
+  const newChatLabel = t('components.native-chat.newChatFromMessage', 'New chat from this message')
   return newChat ? (
     <button
       type="button"

@@ -10,6 +10,56 @@ import type { RuntimeClientTarget } from '../../../../../shared/remote-runtime/h
 import { useStructuredAgentSessionAccountSwitch } from '../session/status/structured-agent-session-status-hooks'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
 
+async function switchUsageLimitAccount(args: {
+  target: RuntimeClientTarget
+  sessionId: string
+  accountId: string | null
+  fetchSettings: () => Promise<unknown>
+  inFlight: { current: boolean }
+  setSwitching: (switching: boolean) => void
+}): Promise<boolean> {
+  if (args.inFlight.current) {
+    return false
+  }
+  args.inFlight.current = true
+  args.setSwitching(true)
+  try {
+    const options = await callStructuredAgentSession<AgentSessionOptionsResult>(
+      args.target,
+      'agentSession.options',
+      { sessionId: args.sessionId }
+    ).catch(() => null)
+    if (options?.canSwitchAccount !== true) {
+      toast.error(
+        translate(
+          'components.native-chat.usageLimitActions.accountUnavailable',
+          'This chat cannot move to another account. Hand it off to another agent instead.'
+        )
+      )
+      return false
+    }
+    await selectClaudeProviderAccount(args.target, {
+      accountId: args.accountId,
+      runtime: 'host',
+      wslDistro: null
+    })
+    // Why: remote selections live on the server; only a local one changes GlobalSettings.
+    if (runtimeTargetEnvironmentId(args.target) === null) {
+      await args.fetchSettings()
+    }
+    return true
+  } catch (error) {
+    console.error('Failed to switch Claude account from a usage-limit row:', error)
+    toast.error(
+      translate('auto.components.settings.AccountsPane.2743cdc0af', 'Claude account update failed.')
+    )
+    return false
+  } finally {
+    args.inFlight.current = false
+    args.setSwitching(false)
+  }
+}
+
 /** The accounts "Continue in another account" offers on a usage-limit row, and the move made
  *  before Continue (P40, P79). A chat pinned to an account (P36) moves with its own switch; one
  *  that follows the selection moves the selection, as the upstream's switcher on that row does,
@@ -26,47 +76,15 @@ export function useBrzaContinueInOtherAccount(
   const [switching, setSwitching] = useState(false)
   const inFlight = useRef(false)
   const switchSelection = useCallback(
-    async (accountId: string | null): Promise<boolean> => {
-      if (inFlight.current) {
-        return false
-      }
-      inFlight.current = true
-      setSwitching(true)
-      try {
-        const options = await callStructuredAgentSession<AgentSessionOptionsResult>(
-          target,
-          'agentSession.options',
-          { sessionId }
-        ).catch(() => null)
-        if (options?.canSwitchAccount !== true) {
-          toast.error(
-            translate(
-              'components.native-chat.usageLimitActions.accountUnavailable',
-              'This chat cannot move to another account. Hand it off to another agent instead.'
-            )
-          )
-          return false
-        }
-        await selectClaudeProviderAccount(target, { accountId, runtime: 'host', wslDistro: null })
-        // Why: remote selections live on the server; only a local one changes GlobalSettings.
-        if (runtimeTargetEnvironmentId(target) === null) {
-          await fetchSettings()
-        }
-        return true
-      } catch (error) {
-        console.error('Failed to switch Claude account from a usage-limit row:', error)
-        toast.error(
-          translate(
-            'auto.components.settings.AccountsPane.2743cdc0af',
-            'Claude account update failed.'
-          )
-        )
-        return false
-      } finally {
-        inFlight.current = false
-        setSwitching(false)
-      }
-    },
+    (accountId: string | null) =>
+      switchUsageLimitAccount({
+        target,
+        sessionId,
+        accountId,
+        fetchSettings,
+        inFlight,
+        setSwitching
+      }),
     [fetchSettings, sessionId, target]
   )
   return useMemo(() => {

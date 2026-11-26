@@ -3,7 +3,7 @@ import {
   resolveMarkdownThemeSettings,
   type MarkdownThemeSettings
 } from '../../../../shared/markdown-theme-settings'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import { ChatThemePairPicker } from './ChatThemePairPicker'
 import { SearchableSetting } from './section-layout/SearchableSetting'
 import { SettingsSwitchRow } from './form-controls/SettingsFormControls'
@@ -20,6 +20,7 @@ export function MarkdownThemeSetting({
   settings,
   updateSettings
 }: MarkdownThemeSettingProps): React.JSX.Element {
+  const t = useTranslate()
   const markdownTheme = resolveMarkdownThemeSettings(settings.markdownTheme)
   const entry = markdownThemeSearchEntry()
   const update = (updates: MarkdownThemeSettings): void =>
@@ -34,8 +35,8 @@ export function MarkdownThemeSetting({
         onChange={() => update({ followChat: !markdownTheme.followChat })}
       />
       <ChatThemePairPicker
-        title={translate('settings.editor.markdownTheme.ownTheme', 'Markdown theme')}
-        description={translate(
+        title={t('settings.editor.markdownTheme.ownTheme', 'Markdown theme')}
+        description={t(
           'settings.editor.markdownTheme.ownThemeDescription',
           'Colors of the Markdown viewer while it does not follow the chat.'
         )}

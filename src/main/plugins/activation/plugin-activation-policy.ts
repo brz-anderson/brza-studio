@@ -90,5 +90,7 @@ export function pluginPolicyBlockError(
   if (!blocked) {
     return null
   }
-  return blocked.team ? blocked.reason : `Blocked by BrzA Studio's plugin safety list: ${blocked.reason}`
+  return blocked.team
+    ? blocked.reason
+    : `Blocked by BrzA Studio's plugin safety list: ${blocked.reason}`
 }

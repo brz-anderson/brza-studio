@@ -55,7 +55,10 @@ export function buildRemoteSettingsSections(
       id: 'servers',
       title: t('auto.hooks.useSettingsNavigationMetadata.de0c2907a1', 'Remote BrzA Studio Servers'),
       description: isWebClient
-        ? t('auto.components.settings.Settings.7686cb5c36', 'Connect to a saved BrzA Studio server.')
+        ? t(
+            'auto.components.settings.Settings.7686cb5c36',
+            'Connect to a saved BrzA Studio server.'
+          )
         : t(
             'auto.components.settings.Settings.remoteServersDescription',
             'Work on another machine from here.'

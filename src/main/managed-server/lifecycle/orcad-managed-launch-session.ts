@@ -69,7 +69,10 @@ export async function restartManagedOrcadEnvironment(
     async ({ environment, deployment }) => {
       const context = await resolveLinkedOrcadContext(environment, deployment)
       if (!context.activationRecord.active) {
-        return { outcome: 'not-restarted', reason: 'This host has no activated BrzA Studio server.' }
+        return {
+          outcome: 'not-restarted',
+          reason: 'This host has no activated BrzA Studio server.'
+        }
       }
       const counts = updateTerminalCounts((options) =>
         collectManagedTerminalCensus(

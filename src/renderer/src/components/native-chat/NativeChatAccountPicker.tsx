@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { translate } from '@/i18n/i18n'
+import { useTranslate } from '@/i18n/use-translate'
 import type { NativeChatAccountSwitchView } from './use-native-chat-account-switch'
 
 /** Radix radio values are strings; System default is the one account without an id. */
@@ -23,11 +23,12 @@ export function NativeChatAccountPicker({
   view: NativeChatAccountSwitchView
   isWorking: boolean
 }): React.JSX.Element {
-  const title = translate('components.native-chat.composer.account', 'Account')
+  const t = useTranslate()
+  const title = t('components.native-chat.composer.account', 'Account')
   const disabledReason = view.switching
-    ? translate('components.native-chat.composer.accountSwitching', 'Switching account…')
+    ? t('components.native-chat.composer.accountSwitching', 'Switching account…')
     : isWorking
-      ? translate(
+      ? t(
           'components.native-chat.composer.accountWaitForTurn',
           'Switch accounts after the current turn finishes.'
         )
@@ -43,7 +44,7 @@ export function NativeChatAccountPicker({
                 type="button"
                 variant="ghost"
                 size="xs"
-                aria-label={translate(
+                aria-label={t(
                   'components.native-chat.composer.pillAccessibleName',
                   '{{value0}} {{value1}}',
                   { value0: title, value1: view.current.label }

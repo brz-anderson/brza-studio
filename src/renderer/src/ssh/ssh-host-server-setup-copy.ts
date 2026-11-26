@@ -18,13 +18,21 @@ export function settingUpLabel(
 ): string {
   switch (phase) {
     case 'deploying':
-      return t('auto.components.settings.sshHostServer.deploying', 'Setting up BrzA Studio on {{host}}…', {
-        host
-      })
+      return t(
+        'auto.components.settings.sshHostServer.deploying',
+        'Setting up BrzA Studio on {{host}}…',
+        {
+          host
+        }
+      )
     case 'converting':
-      return t('auto.components.settings.sshHostServer.converting', 'Moving to BrzA Studio on {{host}}…', {
-        host
-      })
+      return t(
+        'auto.components.settings.sshHostServer.converting',
+        'Moving to BrzA Studio on {{host}}…',
+        {
+          host
+        }
+      )
     case 'connecting':
       return t(
         'auto.components.settings.sshHostServer.connecting',
@@ -32,12 +40,20 @@ export function settingUpLabel(
         { host }
       )
     case 'updating':
-      return t('auto.components.settings.sshHostServer.updating', 'Updating BrzA Studio on {{host}}…', {
-        host
-      })
+      return t(
+        'auto.components.settings.sshHostServer.updating',
+        'Updating BrzA Studio on {{host}}…',
+        {
+          host
+        }
+      )
     case 'starting':
-      return t('auto.components.settings.sshHostServer.starting', 'Starting BrzA Studio on {{host}}…', {
-        host
-      })
+      return t(
+        'auto.components.settings.sshHostServer.starting',
+        'Starting BrzA Studio on {{host}}…',
+        {
+          host
+        }
+      )
   }
 }

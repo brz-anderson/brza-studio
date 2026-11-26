@@ -42,7 +42,10 @@ export function MobileRelayMintFailureNotice({
   }, [busy])
   const visibleBusy = busy && showBusyFeedback
   const title = visibleBusy
-    ? t('auto.components.mobile.MobileRelayMintFailureNotice.retryingTitle', 'Retrying BrzA Studio Relay…')
+    ? t(
+        'auto.components.mobile.MobileRelayMintFailureNotice.retryingTitle',
+        'Retrying BrzA Studio Relay…'
+      )
     : providerMissing
       ? t(
           'auto.components.mobile.MobileRelayMintFailureNotice.unavailableTitle',

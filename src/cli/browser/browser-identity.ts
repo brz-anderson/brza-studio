@@ -30,7 +30,7 @@ async function assertBrowserIdentitySupported({ client }: HandlerContext): Promi
   }
   throw new RuntimeClientError(
     'incompatible_runtime',
-    'The running Orca runtime does not support browser identity management. Update or restart Orca and try again.'
+    'The running BrzA Studio runtime does not support browser identity management. Update or restart BrzA Studio and try again.'
   )
 }
 

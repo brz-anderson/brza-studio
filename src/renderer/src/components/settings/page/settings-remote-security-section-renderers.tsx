@@ -23,7 +23,10 @@ export function renderServersSettingsSection(
         title={t('auto.components.settings.Settings.022effa46f', 'Remote BrzA Studio servers')}
         description={
           model.isWebClient
-            ? t('auto.components.settings.Settings.7686cb5c36', 'Connect to a saved BrzA Studio server.')
+            ? t(
+                'auto.components.settings.Settings.7686cb5c36',
+                'Connect to a saved BrzA Studio server.'
+              )
             : t(
                 'auto.components.settings.Settings.remoteServersDescription',
                 'Work on another machine from here.'
