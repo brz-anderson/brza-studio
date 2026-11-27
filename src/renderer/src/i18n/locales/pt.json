@@ -22015,7 +22015,11 @@
         "usageLimitExplanation": "Pede ao agente para continuar de onde parou. Use-o quando o limite for redefinido."
       },
       "continueInOtherAccount": {
-        "continue": "Continuar em outra conta"
+        "continue": "Continuar em outra conta",
+        "waiting": "Vai continuar em {{account}} quando a tarefa em segundo plano terminar",
+        "cancelWaiting": "Cancelar",
+        "expired": "A tarefa em segundo plano não terminou em 30 minutos, e o chat não continuou em {{account}}",
+        "dismissExpired": "Dispensar"
       },
       "signIn": {
         "title": "Entre no {{agent}} para começar a conversar"

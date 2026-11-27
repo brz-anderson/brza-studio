@@ -21137,7 +21137,11 @@
         "usageLimitExplanation": "让智能体从中断处继续。请在上限重置后使用。"
       },
       "continueInOtherAccount": {
-        "continue": "在其他账户中继续"
+        "continue": "在其他账户中继续",
+        "waiting": "后台任务完成后将在 {{account}} 中继续",
+        "cancelWaiting": "取消",
+        "expired": "后台任务未在 30 分钟内完成，因此未在 {{account}} 中继续",
+        "dismissExpired": "关闭"
       },
       "rewind": {
         "unsupported": "此聊天无法返回到更早的消息",

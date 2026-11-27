@@ -9,6 +9,15 @@ import type { AgentSessionOptionsResult } from '../../../../../shared/agent-sess
 import type { RuntimeClientTarget } from '../../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 import { useStructuredAgentSessionAccountSwitch } from '../session/status/structured-agent-session-status-hooks'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+import {
+  useBrzaContinueAfterWork,
+  type BrzaContinueAfterWorkView
+} from './use-brza-continue-after-work'
+
+/** The row's switch, with the host's deferred continue on a chat that follows the selection. */
+export type BrzaContinueInOtherAccountView = NativeChatAccountSwitchView & {
+  afterWork?: BrzaContinueAfterWorkView
+}
 
 async function switchUsageLimitAccount(args: {
   target: RuntimeClientTarget
@@ -69,9 +78,10 @@ export function useBrzaContinueInOtherAccount(
   pane: { sessionId: string; target: RuntimeClientTarget },
   chatAccountSwitch: NativeChatAccountSwitchView | null | undefined,
   canSwitchAccount: boolean | undefined
-): NativeChatAccountSwitchView | null {
+): BrzaContinueInOtherAccountView | null {
   const { sessionId, target } = pane
   const pinned = useStructuredAgentSessionAccountSwitch(sessionId, target)
+  const afterWork = useBrzaContinueAfterWork(pane)
   const fetchSettings = useAppStore((s) => s.fetchSettings)
   const [switching, setSwitching] = useState(false)
   const inFlight = useRef(false)
@@ -98,8 +108,9 @@ export function useBrzaContinueInOtherAccount(
       ? {
           ...chatAccountSwitch,
           switching: chatAccountSwitch.switching || switching,
-          switchTo: switchSelection
+          switchTo: switchSelection,
+          ...(afterWork ? { afterWork } : {})
         }
       : null
-  }, [canSwitchAccount, chatAccountSwitch, pinned, switchSelection, switching])
+  }, [afterWork, canSwitchAccount, chatAccountSwitch, pinned, switchSelection, switching])
 }

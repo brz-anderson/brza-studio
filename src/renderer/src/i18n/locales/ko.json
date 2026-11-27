@@ -21093,7 +21093,11 @@
         "usageLimitExplanation": "중단한 곳부터 계속하도록 에이전트에 요청합니다. 한도가 초기화된 후 사용하세요."
       },
       "continueInOtherAccount": {
-        "continue": "다른 계정에서 계속"
+        "continue": "다른 계정에서 계속",
+        "waiting": "백그라운드 작업이 끝나면 {{account}}에서 계속합니다",
+        "cancelWaiting": "취소",
+        "expired": "백그라운드 작업이 30분 안에 끝나지 않아 {{account}}에서 계속하지 않았습니다",
+        "dismissExpired": "닫기"
       },
       "signIn": {
         "title": "채팅을 시작하려면 {{agent}}에 로그인하세요"

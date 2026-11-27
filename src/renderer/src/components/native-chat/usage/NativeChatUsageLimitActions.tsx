@@ -16,7 +16,10 @@ import { buildAgentSessionContinuationPrompt } from '../../../../../shared/agent
 import type { AgentSessionContinuationRequest } from '../../../../../shared/agent-session/conversation-context/agent-session-continuation'
 import { ClaudeSwitcherMenu } from '@/components/status-bar/accounts/ClaudeSwitcherMenu'
 import { ProviderAccountChatButton } from '@/components/status-bar/accounts/ProviderAccountChatButton'
-import { useBrzaContinueInOtherAccount } from '../brza/use-brza-continue-in-other-account'
+import {
+  useBrzaContinueInOtherAccount,
+  type BrzaContinueInOtherAccountView
+} from '../brza/use-brza-continue-in-other-account'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
 import { isTuiAgent } from '../../../../../shared/agent-launch/catalog/tui-agent-config'
 import { callStructuredAgentSession } from '@/runtime/native-chat/requests/structured-agent-session-call'
@@ -32,7 +35,7 @@ import type { NativeChatFileLinkContext } from '@/components/native-chat/links/a
 export type UsageLimitActions = {
   account: ReactNode
   /** BrzA P79: beside Continue, and in place of `account`. */
-  continueInOtherAccount?: NativeChatAccountSwitchView | null
+  continueInOtherAccount?: BrzaContinueInOtherAccountView | null
   handOff?: () => void
   disabled: boolean
   /** Hand off is gathering the chat's context. */
@@ -270,6 +273,6 @@ export function useNativeChatUsageLimitActions(): UsageLimitActions | null {
 }
 
 /** BrzA P79: the chat's own account switch, which a usage-limit row continues in. */
-export function useNativeChatUsageLimitContinueInOtherAccount(): NativeChatAccountSwitchView | null {
+export function useNativeChatUsageLimitContinueInOtherAccount(): BrzaContinueInOtherAccountView | null {
   return useContext(UsageLimitActionsContext)?.continueInOtherAccount ?? null
 }

@@ -20503,7 +20503,11 @@
         "usageLimitExplanation": "中断したところから続けるよう Agent に依頼します。上限がリセットされてから使ってください。"
       },
       "continueInOtherAccount": {
-        "continue": "別のアカウントで続行"
+        "continue": "別のアカウントで続行",
+        "waiting": "バックグラウンドタスクが終わったら {{account}} で続行します",
+        "cancelWaiting": "キャンセル",
+        "expired": "バックグラウンドタスクが 30 分以内に終わらなかったため、{{account}} では続行しませんでした",
+        "dismissExpired": "閉じる"
       },
       "rewind": {
         "unsupported": "このチャットは以前のメッセージに戻れません。",

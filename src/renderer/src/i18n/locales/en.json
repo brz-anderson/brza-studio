@@ -22275,7 +22275,11 @@
         "usageLimitExplanation": "Asks the agent to continue where it left off. Use it once the limit resets."
       },
       "continueInOtherAccount": {
-        "continue": "Continue in another account"
+        "continue": "Continue in another account",
+        "waiting": "Will continue in {{account}} when the background task finishes",
+        "cancelWaiting": "Cancel",
+        "expired": "The background task didn't finish within 30 minutes, so the chat didn't continue in {{account}}",
+        "dismissExpired": "Dismiss"
       },
       "signIn": {
         "title": "Sign in to {{agent}} to start chatting"

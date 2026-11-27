@@ -10,19 +10,23 @@ import {
 import { useTranslate } from '@/i18n/use-translate'
 import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
 import { useNativeChatUsageLimitContinueInOtherAccount } from '../usage/NativeChatUsageLimitActions'
-import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+import type {
+  NativeChatAccountChoice,
+  NativeChatAccountSwitchView
+} from '../use-native-chat-account-switch'
 import type { NativeChatUsageLimitAutoContinueState } from '../usage/native-chat-usage-limit-auto-continue-setting'
+import { BrzaContinueAfterWorkLine } from './BrzaContinueAfterWorkLine'
 
 async function continueInChosenAccount(
   view: NativeChatAccountSwitchView,
-  accountId: string | null,
-  onContinue: () => void,
+  choice: NativeChatAccountChoice,
+  onContinue: (choice: NativeChatAccountChoice) => void | Promise<void>,
   setPending: (pending: boolean) => void
 ): Promise<void> {
   setPending(true)
   try {
-    if (await view.switchTo(accountId)) {
-      onContinue()
+    if (await view.switchTo(choice.id)) {
+      await onContinue(choice)
     }
   } finally {
     setPending(false)
@@ -30,7 +34,8 @@ async function continueInChosenAccount(
 }
 
 /** Beside Continue on a usage-limit row (P40, P79): moves the chat to the chosen account and
- *  continues now, which drops the scheduled automatic continue. */
+ *  continues now, which drops the scheduled automatic continue. While background work holds the
+ *  agent on the old account, the host continues once it is done and the row says so (PLN-026). */
 export function BrzaUsageLimitContinueInOtherAccount({
   autoContinue
 }: {
@@ -41,18 +46,37 @@ export function BrzaUsageLimitContinueInOtherAccount({
   if (!view) {
     return null
   }
-  return (
+  const { afterWork } = view
+  const turnItemId = orcaStopView.usageLimitTurnItemId
+  const status = afterWork?.status
+  if (afterWork && status && !status.expired) {
+    return <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />
+  }
+  const button = (
     <BrzaContinueInOtherAccount
       view={view}
       disabled={orcaStopView.usageLimitContinueDisabled}
-      onContinue={() => {
+      onContinue={async (choice) => {
+        const armed =
+          afterWork && turnItemId ? await afterWork.arm(turnItemId, choice.label) : 'now'
         if (autoContinue?.kind === 'scheduled') {
           autoContinue.cancel()
         }
-        orcaStopView.continueUsageLimit()
+        if (armed === 'now') {
+          orcaStopView.continueUsageLimit()
+        }
       }}
     />
   )
+  if (afterWork && status?.expired && status.turnItemId === turnItemId) {
+    return (
+      <>
+        <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />
+        {button}
+      </>
+    )
+  }
+  return button
 }
 
 export function BrzaContinueInOtherAccount({
@@ -62,7 +86,7 @@ export function BrzaContinueInOtherAccount({
 }: {
   view: NativeChatAccountSwitchView
   disabled?: boolean
-  onContinue: () => void
+  onContinue: (choice: NativeChatAccountChoice) => void | Promise<void>
 }): React.JSX.Element | null {
   const t = useTranslate()
   const [pending, setPending] = useState(false)
@@ -74,11 +98,11 @@ export function BrzaContinueInOtherAccount({
     'components.native-chat.continueInOtherAccount.continue',
     'Continue in another account'
   )
-  const choose = (accountId: string | null): void => {
+  const choose = (choice: NativeChatAccountChoice): void => {
     if (pending || view.switching) {
       return
     }
-    void continueInChosenAccount(view, accountId, onContinue, setPending)
+    void continueInChosenAccount(view, choice, onContinue, setPending)
   }
   return (
     <DropdownMenu onOpenChange={(open) => open && view.refresh()}>
@@ -94,7 +118,7 @@ export function BrzaContinueInOtherAccount({
           <DropdownMenuItem
             key={choice.id ?? ''}
             disabled={choice.disabled}
-            onSelect={() => choose(choice.id)}
+            onSelect={() => choose(choice)}
           >
             <div className="min-w-0 py-0.5">
               <div className="truncate">{choice.label}</div>
