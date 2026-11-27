@@ -1,4 +1,5 @@
 import { AGENT_SESSION_PERMISSION_OWN_RUNTIME_CAPABILITY } from '../options/permissions/agent-session-permission-modes-capability'
+import { BRZA_CONTINUE_AFTER_WORK_RUNTIME_CAPABILITY } from '../../rpc-contract/brza/brza-continue-after-work-params'
 // Registered-agent hosts accept only their agentSession.agents inventory; offer agents beyond Claude/Codex only after negotiation.
 // Clients advertising this can render those agents’ tabs; withhold extra-agent tabs from older clients to avoid empty panes.
 export const STRUCTURED_AGENT_SESSION_REGISTERED_AGENTS_RUNTIME_CAPABILITY =
@@ -89,5 +90,6 @@ export const STRUCTURED_AGENT_SESSION_SURFACE_RUNTIME_CAPABILITIES = [
   STRUCTURED_AGENT_SESSION_AVAILABILITY_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_REGENERATE_NAME_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_ACCOUNT_SWITCH_RUNTIME_CAPABILITY,
+  BRZA_CONTINUE_AFTER_WORK_RUNTIME_CAPABILITY,
   STRUCTURED_AGENT_SESSION_RENAME_RUNTIME_CAPABILITY
 ] as const

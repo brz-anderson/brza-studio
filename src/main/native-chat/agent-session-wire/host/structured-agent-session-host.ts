@@ -63,6 +63,7 @@ export class StructuredAgentSessionHost {
   readonly restartResume: StructuredAgentSessionRestartResume
 
   readonly usageLimitContinue: ReturnType<typeof usageLimit.start>
+  readonly brzaContinueAfterWork = usageLimit.brza.start(this, () => this.collaborators())
 
   constructor(readonly deps: HostTypes.StructuredAgentSessionHostDeps) {
     // Collaborators share a logger wrapper that cannot fail the operation it reports.
@@ -229,7 +230,7 @@ export class StructuredAgentSessionHost {
   stopDelivery = () => {
     this.sessions.endPublications()
     ;[this.conversationDelivery, this.queued.drain].forEach((d) => d.dispose())
-    this.usageLimitContinue.dispose()
+    ;[this.usageLimitContinue, this.brzaContinueAfterWork].forEach((d) => d.dispose())
   }
 
   async flushAllStreamedEvents(options?: { trigger?: 'quit' | 'update' }): Promise<void> {
@@ -274,7 +275,7 @@ export class StructuredAgentSessionHost {
     () => this.mutationContext(),
     () => this.attachContext()
   )
-  cancel = this.mutations.cancel
+  cancel = usageLimit.brza.stopsWaiting(this, this.mutations.cancel)
   respondToPrompt = this.mutations.respondToPrompt
   approveAutoReviewDenial = this.mutations.approveAutoReviewDenial
   setOption = this.mutations.setOption

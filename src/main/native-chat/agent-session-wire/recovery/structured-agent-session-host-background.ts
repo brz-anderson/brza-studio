@@ -3,6 +3,7 @@ import type { StructuredAgentSessionClientDelivery } from '../publication/subscr
 import type { StructuredAgentSessionHost } from '../host/structured-agent-session-host'
 import { StructuredAgentSessionUsageLimitContinue } from './structured-agent-session-usage-limit-continue'
 import { readSavedUsageLimitCut } from './structured-agent-session-usage-limit-chain'
+export * as brza from '../brza/brza-continue-after-work-wiring'
 
 export function start(
   context: StructuredAgentSessionMutationContext,
