@@ -27,7 +27,7 @@ import type {
 } from './journal/agent-session-journal-types'
 import type { AgentTurnOutcome } from '../agent-status/lifecycle/agent-turn-outcome'
 import type { AgentSessionRecord } from './lifecycle/agent-session-record'
-import type { AgentSessionStatusAccountSwitch } from './brza/agent-session-status-account-switch'
+import type { AgentSessionStatusBrza } from './brza/agent-session-status-brza'
 import type { AgentProviderSessionMetadata } from './lifecycle/agent-session-resume'
 import type { NativeChatSubagentEntry } from '../native-chat/native-chat-types'
 import type { AgentSessionStatusPermissionFields } from './options/permissions/agent-session-status-permission-fields'
@@ -204,7 +204,7 @@ export type AgentSessionAwaitedQuestion = { itemId: string; text: string }
 export type AgentSessionAwaitedApproval = { tool: string; input?: string }
 
 /** Host-projected list status avoids client transcript replay; older hosts lack this additive method. */
-export type AgentSessionStatusSummary = AgentSessionStatusAccountSwitch & {
+export type AgentSessionStatusSummary = AgentSessionStatusBrza & {
   usageLimitContinue?: AgentSessionUsageLimitContinue
   rewindBlockedReason?: AgentSessionRewindReason
   sessionId: string

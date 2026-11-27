@@ -25,6 +25,7 @@ import type {
 import { structuredStatusSummariesEqual } from './structured-agent-session-status-summary-equality'
 import { structuredAgentRuntimeMetadata } from '../../../runtime/agent-session/installation/structured-agent-runtime-metadata'
 import { structuredAgentSessionAwaitsAnswer } from '../../../../shared/agent-session/view/structured-agent-session-async-questions'
+import { brzaContinueAfterWorkSummary } from '../brza/brza-continue-after-work-status'
 
 export function structuredAgentSessionStatusSummary({
   sessionId,
@@ -125,6 +126,7 @@ export function structuredAgentSessionStatusSummary({
           }
         }
       : {}),
+    ...brzaContinueAfterWorkSummary(session),
     updatedAt: lastActivityAt || now()
   }
 }

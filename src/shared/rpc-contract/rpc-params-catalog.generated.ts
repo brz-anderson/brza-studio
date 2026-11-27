@@ -341,6 +341,10 @@ import {
 } from './browser/browser-screencast-params'
 import { BrowserOpenUrlParams, BrowserTabCreateParams } from './browser/browser-tab-create-params'
 import {
+  BrzaCancelContinueAfterWorkParams,
+  BrzaContinueAfterWorkParams
+} from './brza/brza-continue-after-work-params'
+import {
   ClientEventsSubscribeParams,
   ClientEventsUnsubscribeParams
 } from './client-ui/client-events-params'
@@ -1188,6 +1192,8 @@ export const RPC_PARAMS_BY_METHOD = {
   'agentSession.acknowledgeAttention': AcknowledgeAttentionParams,
   'agentSession.agents': AgentsParams,
   'agentSession.approveAutoReviewDenial': AutoReviewApprovalParams,
+  'agentSession.brzaCancelContinueAfterWork': BrzaCancelContinueAfterWorkParams,
+  'agentSession.brzaContinueAfterWork': BrzaContinueAfterWorkParams,
   'agentSession.cancel': CancelParams,
   'agentSession.cancelUsageLimitContinue': CancelUsageLimitContinueParams,
   'agentSession.close': OptionsParams,

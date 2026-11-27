@@ -5,6 +5,7 @@ import { isAgentStatusHeldOpenByChildWork } from '../../../../shared/agent-statu
 import { structuredAgentSessionAgentStatus } from '../../../../shared/agent-session/view/structured-agent-session-agent-status'
 import { structuredStatusChildrenEqual } from './structured-agent-session-status-child-work'
 import { agentSessionForkNamingEqual } from '../../../../shared/agent-session/conversation-naming/agent-session-fork-name'
+import { brzaContinueAfterWorkEqual } from '../../../../shared/agent-session/brza/agent-session-status-continue-after-work'
 
 export function structuredStatusSummariesEqual(
   a: AgentSessionStatusSummary,
@@ -52,6 +53,7 @@ export function structuredStatusSummariesEqual(
     a.sleptAt === b.sleptAt &&
     a.accountSwitch?.accountId === b.accountSwitch?.accountId &&
     a.accountSwitch?.account === b.accountSwitch?.account &&
+    brzaContinueAfterWorkEqual(a, b) &&
     a.namingError?.message === b.namingError?.message &&
     a.namingError?.failedAt === b.namingError?.failedAt &&
     a.turnOutcome === b.turnOutcome &&

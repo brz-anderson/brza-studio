@@ -42,6 +42,7 @@ import type { StructuredAgentSessionAcquireAborts } from '../startup/structured-
 import type { StructuredAgentSessionStopEnding } from '../termination/structured-agent-session-host-stop-event'
 import { settleStructuredAgentSessionLeftovers } from '../termination/structured-agent-session-leftover-settlement'
 import { createStructuredAgentSessionRanRecorder } from '../options/structured-agent-session-ran-options'
+import type { BrzaRetainedWork } from '../brza/brza-continue-after-work-wake-up'
 
 export type StructuredAgentSessionConversationDelivery = {
   loop: StructuredAgentSessionDeliveryLoop
@@ -56,6 +57,8 @@ export type StructuredAgentSessionConversationDelivery = {
   dispose: () => void
   /** After an account switch; see `retireStructuredAgentSessionChildOnOtherAccount`. */
   offAccount: (sessionId: string, committed: () => boolean) => Promise<void>
+  /** BrzA (PLN-026): what keeps a chat's agent on its account, read by the deferred continue. */
+  retainedWork: (sessionId: string) => BrzaRetainedWork
   adoptOpened: (
     sessionId: string,
     opened: OpenedStructuredAgentSessionConversation
@@ -270,6 +273,7 @@ export function createStructuredAgentSessionConversationDelivery(input: {
       afterCommit(sessionId, journal)
     },
     adoptOpened,
+    retainedWork: (sessionId) => retainedWork(sessionId),
     offAccount: (sessionId, committed) =>
       retireStructuredAgentSessionChildOnOtherAccount(sessionId, {
         committed,
