@@ -57,9 +57,9 @@ export async function limitedChatWithBackgroundWork(
     )
     return agentJournalItemKey({ provider: 'orca', clientMessageId: id })
   }
-  /** A turn that ended on the usage limit at `at`, as the CLI writes it; returns its cut's id. */
-  const limit = async (id: string, at: number): Promise<string> => {
-    const turnItemId = await turn(id, at, 'failure')
+  /** The usage-limit row of the turn `id` that failed at `at`, which makes it a cut. */
+  const limitRow = async (id: string, at: number): Promise<void> => {
+    const turnItemId = agentJournalItemKey({ provider: 'orca', clientMessageId: id })
     await journal().appendItem(
       { provider: 'orca', clientMessageId: `${id}-limit` },
       {
@@ -73,6 +73,11 @@ export async function limitedChatWithBackgroundWork(
       },
       { fence: fence(), turnScope: { kind: 'turn', turnItemId } }
     )
+  }
+  /** A turn that ended on the usage limit at `at`, as the CLI writes it; returns its cut's id. */
+  const limit = async (id: string, at: number): Promise<string> => {
+    const turnItemId = await turn(id, at, 'failure')
+    await limitRow(id, at)
     return turnItemId
   }
   const turnItemId = await limit('limited', NOW + 1)
@@ -81,6 +86,9 @@ export async function limitedChatWithBackgroundWork(
     rig,
     turnItemId,
     limit,
+    limitRow,
+    /** A failed turn whose limit row the CLI has not written yet. */
+    fail: (id: string, at: number) => turn(id, at, 'failure'),
     /** A wake-up that went through on the old account: the limit had reset. */
     succeed: (id: string, at: number) => turn(id, at, 'success'),
     deferred,

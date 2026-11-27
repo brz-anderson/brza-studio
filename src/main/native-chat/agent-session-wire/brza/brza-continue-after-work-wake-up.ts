@@ -1,6 +1,12 @@
 import type { AgentChildWorkView } from '../../../../shared/agent-status/child-work/agent-status-child-work-view'
 import type { JournalWorkAnswer } from '../../agent-session-journal/journal-work-read'
-import type { StructuredAgentSessionChildWorkReads } from '../termination/structured-agent-session-idle-sweep'
+import {
+  structuredAgentSessionChildHasOpenWork,
+  type StructuredAgentSessionChildWorkReads
+} from '../termination/structured-agent-session-idle-sweep'
+
+/** R4.1: a finished task whose wake-up has not started by now is carried in the continue. */
+export const BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS = 30_000
 
 export type BrzaRetainedWork = StructuredAgentSessionChildWorkReads & {
   childWork: () => readonly AgentChildWorkView[] | undefined
@@ -15,6 +21,18 @@ export function owedWakeUps(
   const ended = work?.newestTurnCompletedAt
   return (childWork ?? []).filter(
     (task) => task.settledAt !== undefined && (ended === undefined || task.settledAt > ended)
+  )
+}
+
+/** When the finished tasks' wake-up is overdue; null while none is owed or other work is open. */
+export async function brzaWakeUpDue(reads: BrzaRetainedWork): Promise<number | null> {
+  const work = await reads.currentWork()
+  const owed = owedWakeUps(work, reads.childWork())
+  if (owed.length === 0 || structuredAgentSessionChildHasOpenWork(reads, work)) {
+    return null
+  }
+  return (
+    Math.max(...owed.map((task) => task.settledAt ?? 0)) + BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS
   )
 }
 

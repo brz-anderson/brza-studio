@@ -2,29 +2,28 @@ import type { BrzaContinueAfterWorkStatus } from '../../../../shared/agent-sessi
 import type { BrzaContinueAfterWorkRequest } from '../../../../shared/rpc-contract/brza/brza-continue-after-work-params'
 import type { StructuredConversationCommandController } from '../operations/structured-conversation-command-controller'
 import { agentSessionAccountHomesEqual } from '../../../../shared/agent-session/lifecycle/accounts/agent-session-account-home'
-import { structuredAgentSessionMessageSendMutation } from '../../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import type { AgentSessionRecordStore } from '../../../runtime/agent-session/records/agent-session-record-store'
 import type {
   StructuredAgentSessionHostDeps,
   StructuredAgentSessionHostSession
 } from '../host/structured-agent-session-host-types'
 import { structuredAgentSessionChildOwesWork } from '../recovery/structured-agent-session-outgrown-child'
-import type { HostUsageLimitCut } from '../recovery/structured-agent-session-usage-limit-chain'
 import type { UsageLimitContinueDeps } from '../recovery/structured-agent-session-usage-limit-continue-deps'
-import { usageLimitContinueMutation } from '../recovery/structured-agent-session-usage-limit-continue-message'
-import { structuredAgentSessionChildHasOpenWork } from '../termination/structured-agent-session-idle-sweep'
 import type { StructuredAgentSessionStatusSubscriber } from '../observations/structured-agent-session-status-feed-deps'
 import { brzaContinueAfterWorkStatuses as statuses } from './brza-continue-after-work-status'
+import { BrzaContinueAfterWorkTriggers } from './brza-continue-after-work-triggers'
+import { sendBrzaContinue, type BrzaContinueSendDeps } from './brza-continue-after-work-send'
+import { BRZA_PIN_SWITCH_RETRY_MS, brzaPinOf, brzaSwitchPin } from './brza-continue-after-work-pin'
 import {
   brzaTaskNotifications,
+  brzaWakeUpDue,
   owedWakeUps,
   type BrzaRetainedWork
 } from './brza-continue-after-work-wake-up'
 
 /** R4.2, R7.2: the wait gives up after 30 minutes. */
 export const BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS = 30 * 60_000
-/** R4.1: a finished task whose wake-up has not started by now is carried in the continue. */
-export const BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS = 30_000
+const BRZA_CUT_GRACE_MS = 2_000
 
 type Pending = {
   turnItemId: string
@@ -33,24 +32,31 @@ type Pending = {
   accountId?: string | null
   armedAt: number
   fallbackAt?: number
+  /** The work was done with no cut yet; its turn's limit row may still be on its way. */
+  cutMissingAt?: number
+  /** `pin`: the chat's pin when the person chose; another since means the composer moved it. */
+  pinAtArm?: string | null
+  /** `pin`: a wake-up that never came, carried across a switch that has to wait. */
+  notices?: string
+  /** `pin`: after a refused switch, no new attempt before this. */
+  retryAt?: number
 }
 type Verdict = 'wait' | 'cancel' | 'drop' | 'expire' | 'fire' | 'fallback'
 
-export type BrzaContinueAfterWorkDeps = {
+export type BrzaContinueAfterWorkDeps = BrzaContinueSendDeps & {
   session: (sessionId: string) => StructuredAgentSessionHostSession | undefined
   store: () => Pick<AgentSessionRecordStore, 'getRecord' | 'getConversation' | 'hostId'>
   launchAccountHome: () => StructuredAgentSessionHostDeps['launchAccountHome']
   retainedWork: (sessionId: string) => BrzaRetainedWork
-  readCut: (sessionId: string) => Promise<HostUsageLimitCut | null>
   serialize: UsageLimitContinueDeps['serialize']
-  send: UsageLimitContinueDeps['send']
-  /** Stops the chat's agent at rest, as an outgrown one is. */
-  stopAgent: (sessionId: string) => Promise<void>
-  publish: (sessionId: string) => void
-  /** Moves a pinned chat to `accountId` (P36); the `pin` target switches before it continues (P5). */
+  /** Moves a pinned chat to `accountId` (P36), outside the chat's serialization, which it takes
+   *  itself; the `pin` target switches before it continues (D5). */
   switchAccount: (
     params: Parameters<StructuredConversationCommandController['switchAccount']>[1]
   ) => ReturnType<StructuredConversationCommandController['switchAccount']>
+  /** Stops the chat's agent at rest, as an outgrown one is. */
+  stopAgent: (sessionId: string) => Promise<void>
+  publish: (sessionId: string) => void
   /** Every status publish: a turn ending, child work settling, the agent stopping. */
   subscribeStatus: (subscriber: StructuredAgentSessionStatusSubscriber) => () => void
   now: () => number
@@ -63,26 +69,35 @@ export type BrzaContinueAfterWorkDeps = {
  *  selecionada. Fica em memória: o reinício do app corta a tarefa e o Continuar da linha já move. */
 export class BrzaDeferredUsageLimitContinue {
   private readonly pending = new Map<string, Pending>()
-  private readonly deadlines = new Map<string, ReturnType<typeof setTimeout>[]>()
-  private stopWatching: (() => void) | undefined
-  private pass: Promise<void> | undefined
-  private again = false
   private disposed = false
+  private readonly triggers: BrzaContinueAfterWorkTriggers
 
-  constructor(private readonly deps: BrzaContinueAfterWorkDeps) {}
+  constructor(private readonly deps: BrzaContinueAfterWorkDeps) {
+    this.triggers = new BrzaContinueAfterWorkTriggers({
+      subscribeStatus: deps.subscribeStatus,
+      now: deps.now,
+      waiting: this.pending,
+      check: (sessionId) => this.check(sessionId).catch(this.warn(sessionId)),
+      disposed: () => this.disposed
+    })
+  }
 
-  /** `now`: nothing holds the agent on another account, so the row's Continue moves it today.
-   *  The `pin` target is P5's (D5): until then it answers `now`, the pinned path of today. */
+  /** `now`: nothing holds the agent on another account, so the row's Continue moves it today. The
+   *  `pin` target: a pinned chat's own switch waits for the work, then the continue follows (D5). */
   arm = (input: BrzaContinueAfterWorkRequest): Promise<{ kind: 'now' | 'deferred' }> =>
     this.deps.serialize(input.sessionId, async () => {
-      const { sessionId, turnItemId, account = '', target = 'selection' } = input
+      const { sessionId, turnItemId, account = '', target = 'selection', accountId } = input
       const session = this.deps.session(sessionId)
-      if (
-        this.disposed ||
-        !session ||
-        target === 'pin' ||
-        !(await this.heldOnOtherAccount(sessionId))
-      ) {
+      const record = this.deps.store().getRecord(sessionId)
+      const pinAtArm = record ? brzaPinOf(record) : undefined
+      const held =
+        target === 'pin'
+          ? accountId !== undefined &&
+            pinAtArm !== accountId &&
+            !!session?.child &&
+            (await this.owesWork(sessionId))
+          : await this.heldOnOtherAccount(sessionId)
+      if (this.disposed || !session || !held) {
         return { kind: 'now' as const }
       }
       const armedAt = this.deps.now()
@@ -90,13 +105,14 @@ export class BrzaDeferredUsageLimitContinue {
         turnItemId,
         account,
         target,
-        ...(input.accountId !== undefined ? { accountId: input.accountId } : {}),
+        ...(accountId !== undefined ? { accountId } : {}),
+        ...(target === 'pin' && pinAtArm !== undefined ? { pinAtArm } : {}),
         armedAt
       })
       statuses.set(session, { turnItemId, account, since: armedAt })
       this.deps.publish(sessionId)
-      this.watch()
-      this.at(sessionId, armedAt + BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS)
+      this.triggers.watch()
+      this.triggers.at(sessionId, armedAt + BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS)
       return { kind: 'deferred' as const }
     })
 
@@ -124,61 +140,11 @@ export class BrzaDeferredUsageLimitContinue {
   }
 
   /** Checks every waiting chat; a publish that lands meanwhile runs one more pass. */
-  tick(): Promise<void> {
-    if (this.pass) {
-      this.again = true
-      return this.pass
-    }
-    this.pass = this.passes().finally(() => {
-      this.pass = undefined
-    })
-    return this.pass
-  }
-
-  private async passes(): Promise<void> {
-    do {
-      this.again = false
-      for (const sessionId of this.pending.keys()) {
-        if (!this.disposed) {
-          await this.check(sessionId).catch(this.warn(sessionId))
-        }
-      }
-    } while (this.again && !this.disposed)
-  }
-
-  /** Pushed, not polled: what ends the wait publishes the chat's status. */
-  private watch(): void {
-    this.stopWatching ??= this.deps.subscribeStatus({
-      id: 'brza-continue-after-work',
-      emit: (event) => {
-        const ids =
-          event.type === 'status'
-            ? [event.session.sessionId]
-            : event.type === 'snapshot'
-              ? event.sessions.map((summary) => summary.sessionId)
-              : []
-        if (ids.some((id) => this.pending.has(id))) {
-          void this.tick()
-        }
-      }
-    })
-  }
-
-  /** A deadline no publish announces: the 30-minute limit, or a wake-up overdue. */
-  private at(sessionId: string, when: number): void {
-    const timer = setTimeout(() => void this.tick(), Math.max(0, when - this.deps.now()))
-    timer.unref?.()
-    this.deadlines.set(sessionId, [...(this.deadlines.get(sessionId) ?? []), timer])
-  }
+  tick = (): Promise<void> => this.triggers.tick()
 
   private forget(sessionId: string): void {
     this.pending.delete(sessionId)
-    this.deadlines.get(sessionId)?.forEach(clearTimeout)
-    this.deadlines.delete(sessionId)
-    if (this.pending.size === 0) {
-      this.stopWatching?.()
-      this.stopWatching = undefined
-    }
+    this.triggers.forget(sessionId)
   }
 
   private async check(sessionId: string): Promise<void> {
@@ -193,13 +159,53 @@ export class BrzaDeferredUsageLimitContinue {
       if (verdict === 'fallback') {
         await this.deps.stopAgent(sessionId)
       }
+      // A pinned wait ends only once its switch lands or cannot (R8.2).
+      if ((verdict === 'fire' || verdict === 'fallback') && pending?.target === 'pin') {
+        pending.notices ||= notices
+        return { verdict, notices: pending.notices, pinned: pending }
+      }
       if (verdict !== 'wait') {
-        this.end(sessionId, verdict === 'expire')
+        this.end(sessionId, verdict === 'expire' ? 'expired' : undefined)
       }
       return { verdict, notices }
     })
-    if (decided.verdict === 'fire' || decided.verdict === 'fallback') {
+    if (decided.pinned) {
+      await this.switchThenContinue(sessionId, decided.pinned, decided.notices)
+    } else if (decided.verdict === 'fire' || decided.verdict === 'fallback') {
       await this.continueOn(sessionId, decided.notices)
+    }
+  }
+
+  /** The pinned chat's switch now that nothing is owed, then the continue on the fence it left. */
+  private async switchThenContinue(sessionId: string, pending: Pending, notices: string) {
+    const record = this.deps.store().getRecord(sessionId)
+    const fence = this.deps.store().getConversation(sessionId)?.currentFence
+    const { accountId } = pending
+    if (!record || fence === undefined || accountId === undefined) {
+      return
+    }
+    const at = this.deps.now()
+    const outcome = await brzaSwitchPin({
+      sessionId,
+      accountId,
+      fence: record.lease.runtimeFence,
+      at,
+      switchAccount: this.deps.switchAccount
+    })
+    if (outcome === 'wait') {
+      pending.retryAt = at + BRZA_PIN_SWITCH_RETRY_MS
+      this.triggers.at(sessionId, pending.retryAt)
+      return
+    }
+    const current = await this.deps.serialize(sessionId, async () => {
+      const same = this.pending.get(sessionId) === pending
+      if (same) {
+        this.end(sessionId, outcome === 'unavailable' ? 'accountUnavailable' : undefined)
+      }
+      return same
+    })
+    if (current && outcome === 'switched') {
+      await this.continueOn(sessionId, notices, fence)
     }
   }
 
@@ -210,80 +216,79 @@ export class BrzaDeferredUsageLimitContinue {
     if (!session || !record || record.location.executionHostId !== this.deps.store().hostId) {
       return 'drop'
     }
-    // Pinned since (P36): the chat no longer follows the selection.
-    if (record.accountSwitch) {
-      return 'cancel'
+    // Read when used: the reads before it wait, and the clock moves on meanwhile.
+    const expired = () => this.deps.now() - pending.armedAt >= BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS
+    if (pending.target === 'pin') {
+      // The composer moved the pin since; a switch that keeps waiting runs out as the work does.
+      if (brzaPinOf(record) !== pending.pinAtArm) {
+        return 'cancel'
+      }
+      if (expired()) {
+        return 'expire'
+      }
+      if (pending.retryAt !== undefined && this.deps.now() < pending.retryAt) {
+        return 'wait'
+      }
+    } else {
+      // Pinned since (P36): the chat no longer follows the selection.
+      if (record.accountSwitch) {
+        return 'cancel'
+      }
+      const selected = await this.selectedHome(sessionId)
+      const home = session.child?.accountHome
+      if (home && selected && agentSessionAccountHomesEqual(home, selected)) {
+        return 'cancel'
+      }
     }
-    const selected = await this.selectedHome(sessionId)
-    const home = session.child?.accountHome
-    if (home && selected && agentSessionAccountHomesEqual(home, selected)) {
-      return 'cancel'
+    if (!session.child || !(await this.owesWork(sessionId))) {
+      return (await this.deps.readCut(sessionId)) ? 'fire' : this.withoutCut(sessionId, pending)
     }
-    if (!session.child || !(await structuredAgentSessionChildOwesWork(this.retained(sessionId)))) {
-      return 'fire'
-    }
-    if (this.deps.now() - pending.armedAt >= BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS) {
+    if (expired()) {
       return 'expire'
     }
     return (await this.wakeUpOverdue(sessionId, pending)) ? 'fallback' : 'wait'
   }
 
-  /** The task settled a while ago, nothing else is open and no turn started for its wake-up;
-   *  until then, a deadline checks again when the grace runs out. */
-  private async wakeUpOverdue(sessionId: string, pending: Pending): Promise<boolean> {
-    const reads = this.retained(sessionId)
-    const work = await reads.currentWork()
-    const owed = owedWakeUps(work, reads.childWork())
-    if (owed.length === 0 || structuredAgentSessionChildHasOpenWork(reads, work)) {
-      return false
+  /** No cut once the work is done: the wake-up went through on the old account, a newer turn or
+   *  send already continues the chat, or a failed turn's row has landed and its limit row not yet;
+   *  that row's publish checks again. A failure that never brings one ends quietly after a grace. */
+  private async withoutCut(sessionId: string, pending: Pending): Promise<Verdict> {
+    const reads = this.deps.session(sessionId)?.journal.reads
+    const turn = await reads?.newestTurn()
+    if (
+      !reads ||
+      turn?.state !== 'completed' ||
+      turn.outcome !== 'failure' ||
+      (await reads.pendingSubmissions()).length > 0
+    ) {
+      return 'drop'
     }
-    const due =
-      Math.max(...owed.map((task) => task.settledAt ?? 0)) +
-      BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS
-    if (this.deps.now() >= due) {
-      return true
+    if (pending.cutMissingAt === undefined) {
+      pending.cutMissingAt = this.deps.now()
+      this.triggers.at(sessionId, pending.cutMissingAt + BRZA_CUT_GRACE_MS)
+    }
+    return this.deps.now() - pending.cutMissingAt >= BRZA_CUT_GRACE_MS ? 'drop' : 'wait'
+  }
+
+  /** Until the wake-up is overdue, a deadline checks again when its grace runs out. */
+  private async wakeUpOverdue(sessionId: string, pending: Pending): Promise<boolean> {
+    const due = await brzaWakeUpDue(this.retained(sessionId))
+    if (due === null || this.deps.now() >= due) {
+      return due !== null
     }
     if (pending.fallbackAt !== due) {
       pending.fallbackAt = due
-      this.at(sessionId, due)
+      this.triggers.at(sessionId, due)
     }
     return false
   }
 
-  /** The newest cut's continue: it releases the agent and starts it on the selected account. With
-   *  `notices`, the stopped agent never woke up for its tasks, so they travel in the body. */
-  private async continueOn(sessionId: string, notices: string): Promise<void> {
-    const cut = await this.deps.readCut(sessionId)
-    const fence = this.deps.store().getConversation(sessionId)?.currentFence
-    // No cut left: the wake-up went through on the old account, so nothing is cut off any more.
-    if (!cut || fence === undefined) {
-      return
-    }
-    const base = await usageLimitContinueMutation({
-      sessionId,
-      cut,
-      at: this.deps.now(),
-      expectedRuntimeFence: fence
-    })
-    const result = await this.deps.send(
-      notices
-        ? structuredAgentSessionMessageSendMutation({
-            sessionId,
-            clientOperationId: base.envelope.clientOperationId,
-            expectedRuntimeFence: fence,
-            body: { ...base.body, blocks: [...base.body.blocks, { type: 'text', text: notices }] },
-            usageLimitContinuationOfTurnItemId: cut.turnItemId
-          })
-        : base
-    )
-    // Superseded: the automatic continue reached the newer cut first and already moved the chat.
-    if (!result.ok && result.refusal.details?.reason !== 'continuationSuperseded') {
-      this.deps.logger().warn('the deferred continue in another account was refused', {
-        scope: 'brza-continue-after-work',
-        sessionId,
-        reason: result.refusal.details?.reason
-      })
-    }
+  private continueOn(
+    sessionId: string,
+    notices: string,
+    fence = this.deps.store().getConversation(sessionId)?.currentFence
+  ): Promise<void> {
+    return sendBrzaContinue(this.deps, { sessionId, notices, fence })
   }
 
   private async heldOnOtherAccount(sessionId: string): Promise<boolean> {
@@ -295,9 +300,12 @@ export class BrzaDeferredUsageLimitContinue {
       selected !== null &&
       !this.deps.store().getRecord(sessionId)?.accountSwitch &&
       !agentSessionAccountHomesEqual(home, selected) &&
-      (await structuredAgentSessionChildOwesWork(this.retained(sessionId)))
+      (await this.owesWork(sessionId))
     )
   }
+
+  private owesWork = (sessionId: string) =>
+    structuredAgentSessionChildOwesWork(this.retained(sessionId))
 
   private async selectedHome(sessionId: string) {
     const record = this.deps.store().getRecord(sessionId)
@@ -309,13 +317,15 @@ export class BrzaDeferredUsageLimitContinue {
   private childWork = (sessionId: string) => this.retained(sessionId).childWork()
 
   /** Expired keeps the status, so the row says the wait ran out until the person dismisses it. */
-  private end(sessionId: string, expired = false): void {
+  private end(sessionId: string, ending?: 'expired' | 'accountUnavailable'): void {
     const session = this.deps.session(sessionId)
     const status = session && statuses.get(session)
     this.forget(sessionId)
     if (session && status) {
-      if (expired) {
-        statuses.set(session, { ...status, expired: true })
+      if (ending) {
+        const unavailable =
+          ending === 'accountUnavailable' ? { accountUnavailable: true as const } : {}
+        statuses.set(session, { ...status, expired: true, ...unavailable })
       } else {
         statuses.delete(session)
       }

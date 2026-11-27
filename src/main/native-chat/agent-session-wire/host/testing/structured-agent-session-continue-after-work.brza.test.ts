@@ -104,6 +104,17 @@ it('drops the wait quietly when the wake-up goes through on the old account', as
   expect(chat.child()?.accountHome).toEqual(home('/homes/a'))
 })
 
+// A wake-up's turn row and its limit row land apart: a check between them must not end the wait.
+it('keeps waiting for the limit row of a wake-up whose turn already failed', async () => {
+  const chat = await waiting()
+  await chat.fail('wake-up', NOW + 60_001)
+  await chat.deferred().tick()
+  expect(chat.state()).toMatchObject({ account: 'Conta B' })
+  expect(chat.deferredSends()).toHaveLength(0)
+  await chat.limitRow('wake-up', NOW + 60_001)
+  await eventually(() => expect(chat.child()?.accountHome).toEqual(home('/homes/b')))
+})
+
 it('sends once when the automatic continue reached the newer cut first', async () => {
   const chat = await waiting()
   const cut = await chat.limit('wake-up', NOW + 60_001)

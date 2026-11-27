@@ -14,11 +14,20 @@ import { sendPreparation } from './structured-agent-session-send-preparation'
 import { runAfterRewindStart } from './structured-agent-session-ready-operation'
 import type { ReadyOperationSelection } from './structured-agent-session-operation-child'
 import type { StructuredAgentSessionCaller } from '../host/structured-agent-session-host-types'
-import { readHostStructuredAgentSessionWork } from '../observations/structured-agent-session-read-work'
+import {
+  readContextStructuredAgentSessionWork,
+  readHostStructuredAgentSessionWork
+} from '../observations/structured-agent-session-read-work'
 import { hostStructuredAgentSessionCurrentWork } from '../observations/structured-agent-session-host-current-work'
 import { conversationCommandBlocked } from './structured-conversation-command-admission'
+import { owedWakeUps } from '../brza/brza-continue-after-work-wake-up'
 
 const METHOD = 'agentSession.switchAccount'
+const WAKE_UP_OWED = refuse(
+  'agent_session_operation_invalid',
+  { reason: 'backgroundTasksRunning' },
+  'Wait for background tasks to finish before using this command.'
+)
 
 /** Moves a chat to another account as `/clear` does its context: the same tab and Orca session,
  *  the agent stopped, and a divider; the next start resumes the conversation in that account. */
@@ -106,6 +115,16 @@ async function switchUnderSerialize(
         )
         if (blocked) {
           return { ok: false, refusal: blocked }
+        }
+        // A finished task's result reaches the lead only on its wake-up (R8.1).
+        if (
+          context.sessions.get(sessionId)?.child &&
+          owedWakeUps(
+            await readContextStructuredAgentSessionWork(ctx, { kind: 'child-work' }),
+            context.readChildWork(sessionId)
+          ).length > 0
+        ) {
+          return { ok: false, refusal: WAKE_UP_OWED }
         }
         // No process may outlive the switch on the account it is leaving.
         await context.stopAgent(sessionId, { cause: 'evict', resting: true })
