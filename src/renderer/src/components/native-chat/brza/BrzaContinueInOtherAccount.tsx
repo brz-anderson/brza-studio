@@ -93,9 +93,8 @@ export function BrzaUsageLimitContinueInOtherAccount({
       }}
     />
   )
-  // A pinned chat's refused account shows on the row of the wake-up's newer cut.
-  const shown = status?.accountUnavailable || status?.turnItemId === turnItemId
-  if (afterWork && status?.expired && shown) {
+  // The host moves an ended wait to the newest cut, so only that cut's row says it.
+  if (afterWork && status?.expired && status.turnItemId === turnItemId) {
     return (
       <>
         <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />

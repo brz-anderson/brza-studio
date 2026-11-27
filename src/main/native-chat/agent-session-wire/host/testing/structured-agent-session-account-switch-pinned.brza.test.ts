@@ -222,7 +222,12 @@ it('ends the wait when the chosen account cannot take the chat once the work is 
   expect(await chat.continueIn(GONE)).toEqual({ kind: 'deferred' })
   await chat.wakeUpHitsLimit()
   await chat.deferred().tick()
-  expect(chat.state()).toMatchObject({ expired: true, accountUnavailable: true })
+  // On the wake-up's newer cut, the row it shows on, so no later cut's row says it.
+  expect(chat.state()).toMatchObject({
+    expired: true,
+    reason: 'accountUnavailable',
+    turnItemId: agentJournalItemKey({ provider: 'orca', clientMessageId: 'wake-up' })
+  })
   // The switch's refusal leaves the chat on its pin, its agent stopped at rest as before.
   expect(chat.rig.store.getRecord(SESSION)?.accountSwitch).toMatchObject({ accountId: 'a' })
 })

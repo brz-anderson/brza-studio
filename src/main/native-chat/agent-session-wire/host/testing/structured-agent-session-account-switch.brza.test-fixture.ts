@@ -4,7 +4,7 @@ import { agentSessionFailureWords } from '../../../../../shared/agent-session/fa
 import { agentJournalItemKey } from '../../../../../shared/agent-session/journal/agent-session-journal-item-key'
 import { AGENT_JOURNAL_THREAD_SCOPE } from '../../../../../shared/agent-session/journal/agent-session-journal-types'
 import { expect } from 'vitest'
-import { releaseIdleChatsOnOtherAccount } from '../structured-agent-session-account-switch'
+import { releaseIdleChatsAndRecheck } from '../../brza/brza-continue-after-work-wiring'
 import {
   HOST_TEST_NOW as NOW,
   HOST_TEST_SESSION as SESSION
@@ -18,14 +18,14 @@ export const accountHome = (path: string) => ({ variable: 'CLAUDE_CONFIG_DIR' as
  *  `work` is read live, so a case can settle it later; `open` stands for work still running. */
 export async function limitedChatWithBackgroundWork(
   work: AgentChildWorkView[],
-  options: { open?: () => boolean } = {}
+  options: { open?: () => boolean; clock?: () => number } = {}
 ) {
   let selected = '/homes/a'
   let now = NOW
   const rig = await createQueuedMessageTestRig({
     agent: 'claude',
     restartable: true,
-    now: () => now,
+    now: () => options.clock?.() ?? now,
     acquiredAccountHome: () => accountHome(selected),
     hostDeps: {
       statusSink: { publish: () => {}, forget: () => {}, readChildWork: () => work },
@@ -93,10 +93,10 @@ export async function limitedChatWithBackgroundWork(
     succeed: (id: string, at: number) => turn(id, at, 'success'),
     deferred,
     child: () => rig.host.collaboratorsForTests().sessions.get(SESSION)?.child,
-    /** Moves the selection to `path` and lets the switch release idle chats, as the picker does. */
+    /** Moves the selection to `path` and runs what applying it runs (provider-account-services). */
     select: async (path: string) => {
       selected = path
-      await releaseIdleChatsOnOtherAccount(rig.host, 'claude', () => true)
+      await releaseIdleChatsAndRecheck(rig.host, 'claude', () => true)
     },
     arm: (turn = turnItemId) =>
       deferred().arm({ sessionId: SESSION, turnItemId: turn, account: 'Conta B' }),

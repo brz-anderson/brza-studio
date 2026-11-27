@@ -23,7 +23,7 @@ export function useBrzaContinueAfterWorkStatus(
             status.account,
             status.since,
             status.expired ? '1' : '',
-            status.accountUnavailable ? '1' : ''
+            status.reason ?? ''
           ].join(SEPARATOR)
         : ''
     },
@@ -33,14 +33,14 @@ export function useBrzaContinueAfterWorkStatus(
     if (!key) {
       return null
     }
-    const [turnItemId = '', account = '', since = '0', expired = '', unavailable = ''] =
+    const [turnItemId = '', account = '', since = '0', expired = '', reason = ''] =
       key.split(SEPARATOR)
     return {
       turnItemId,
       account,
       since: Number(since),
       ...(expired ? { expired: true } : {}),
-      ...(unavailable ? { accountUnavailable: true } : {})
+      ...(reason === 'accountUnavailable' || reason === 'turnFailed' ? { reason } : {})
     }
   }, [key])
 }

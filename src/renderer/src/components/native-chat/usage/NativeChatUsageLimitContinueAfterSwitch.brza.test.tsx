@@ -19,7 +19,8 @@ const mocks = vi.hoisted(() => ({
   call: vi.fn(),
   pinned: true,
   afterWork: 'supported',
-  afterWorkKind: 'now'
+  afterWorkKind: 'now',
+  afterWorkFails: false
 }))
 vi.mock('@/components/native-chat/telemetry/native-chat-telemetry', () => ({
   emitNativeChatMessageSent: vi.fn()
@@ -72,11 +73,14 @@ beforeEach(() => {
   mocks.pinned = true
   mocks.afterWork = 'supported'
   mocks.afterWorkKind = 'now'
+  mocks.afterWorkFails = false
   mocks.call.mockImplementation(async (_target: unknown, method: string) =>
     method === 'agentSession.options'
       ? { canSwitchAccount: true }
       : method === 'agentSession.brzaContinueAfterWork'
-        ? { kind: mocks.afterWorkKind }
+        ? mocks.afterWorkFails
+          ? Promise.reject(new Error('host unreachable'))
+          : { kind: mocks.afterWorkKind }
         : new Promise(() => {})
   )
 })
@@ -289,6 +293,17 @@ it('leaves a pinned chat on its account and the switch to the host while work ho
   await act(async () => {})
   expect(switched).not.toHaveBeenCalled()
   expect(calls('agentSession.send')).toHaveLength(0)
+})
+
+// PLN-026 A4: a failed request to the host must not lose the Continue the person asked for.
+it('continues now when the request to hold the continue fails', async () => {
+  mocks.pinned = false
+  mocks.afterWorkFails = true
+  vi.spyOn(console, 'error').mockImplementation(() => {})
+  render(<Harness items={limitedChat} isWorking={false} />)
+  await chooseAccount('c@example.com')
+  await waitFor(() => expect(calls('agentSession.send')).toHaveLength(1))
+  expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(1)
 })
 
 it('continues now on a host without the deferred continue', async () => {

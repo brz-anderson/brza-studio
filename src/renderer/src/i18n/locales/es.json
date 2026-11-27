@@ -20119,6 +20119,7 @@
         "cancelWaiting": "Cancelar",
         "expired": "La tarea en segundo plano no terminó en 30 minutos, así que el chat no continuó en {{account}}",
         "accountUnavailable": "{{account}} no pudo recibir el chat, así que no continuó allí",
+        "turnFailed": "El chat se detuvo con un error en la cuenta anterior, así que no continuó en {{account}}",
         "dismissExpired": "Descartar"
       },
       "signIn": {

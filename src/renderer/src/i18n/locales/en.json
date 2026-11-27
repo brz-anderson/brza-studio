@@ -22280,6 +22280,7 @@
         "cancelWaiting": "Cancel",
         "expired": "The background task didn't finish within 30 minutes, so the chat didn't continue in {{account}}",
         "accountUnavailable": "{{account}} couldn't take this chat, so it didn't continue there",
+        "turnFailed": "The chat stopped with an error on the old account, so it didn't continue in {{account}}",
         "dismissExpired": "Dismiss"
       },
       "signIn": {

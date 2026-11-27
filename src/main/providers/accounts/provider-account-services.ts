@@ -25,7 +25,7 @@ import { normalizeClaudeRuntimeSelection } from '../../claude-accounts/selection
 import { HOST_SYSTEM_DEFAULT_USAGE_IDS } from '../../../shared/agent-accounts/host-system-default-usage'
 import type { ClaudeStatusLineRateLimits } from '../../../shared/agent-usage/rate-limits/claude-statusline-rate-limits'
 import { getStructuredAgentSessionHost } from '../../native-chat/agent-session-wire/host/structured-agent-session-registry'
-import { releaseIdleChatsOnOtherAccount } from '../../native-chat/agent-session-wire/host/structured-agent-session-account-switch'
+import { releaseIdleChatsAndRecheck } from '../../native-chat/agent-session-wire/brza/brza-continue-after-work-wiring'
 
 export type ProviderAccountServices = {
   rateLimits: RateLimitService
@@ -56,7 +56,7 @@ export function createProviderAccountServices(
   const claudeAccounts = new ClaudeAccountService(store, rateLimits, claudeRuntimeAuth)
   // Chats' agents (a bot's too) keep the account they launched with: idle ones restart on the new one.
   claudeAccounts.onSelectionApplied((committed) => {
-    void releaseIdleChatsOnOtherAccount(getStructuredAgentSessionHost(), 'claude', committed)
+    void releaseIdleChatsAndRecheck(getStructuredAgentSessionHost(), 'claude', committed)
   })
   // Background quota polls must not boot stopped distros; user-driven resets may prepare them.
   rateLimits.setCodexHomePathResolver((target) =>

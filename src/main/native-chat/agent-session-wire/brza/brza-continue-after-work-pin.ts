@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+import { createStructuredAgentSessionOperationId } from '../../../../shared/agent-session/lifecycle/operations/structured-agent-session-mutation'
 import type { AgentSessionRecord } from '../../../../shared/agent-session/lifecycle/agent-session-record'
 import { computeAgentSessionPayloadFingerprint } from '../../../../shared/agent-session/lifecycle/operations/agent-session-mutation-envelope'
 import type { StructuredConversationCommandController } from '../operations/structured-conversation-command-controller'
@@ -29,7 +30,7 @@ export async function brzaSwitchPin(input: {
     accountId,
     envelope: {
       sessionId,
-      clientOperationId: `${Math.trunc(input.at).toString().padStart(13, '0')}-${randomUUID().replaceAll('-', '')}`,
+      clientOperationId: createStructuredAgentSessionOperationId(randomUUID, input.at),
       expectedRuntimeFence: input.fence,
       payloadFingerprint: computeAgentSessionPayloadFingerprint({
         method: 'agentSession.switchAccount',

@@ -7,8 +7,9 @@ export type BrzaContinueAfterWorkStatus = {
   since: number
   /** The wait ran out (30 min) and the continue was dropped; the row offers the switch again. */
   expired?: true
-  /** With `expired`: a pinned chat's account could not take it when the work was done (R8.2). */
-  accountUnavailable?: true
+  /** With `expired`, why it ended other than by the 30 minutes: a pinned chat's account could not take
+   *  it (R8.2), or the wake-up failed for another reason than the usage limit (A1). */
+  reason?: 'accountUnavailable' | 'turnFailed'
 }
 
 /** Campo do BrzA no resumo de status; fica fora do `agent-session-wire.ts` pelo limite de linhas. */
@@ -27,6 +28,6 @@ export function brzaContinueAfterWorkEqual(
     x?.account === y?.account &&
     x?.since === y?.since &&
     x?.expired === y?.expired &&
-    x?.accountUnavailable === y?.accountUnavailable
+    x?.reason === y?.reason
   )
 }

@@ -2,9 +2,23 @@
 import '@testing-library/jest-dom/vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
-import { BrzaContinueInOtherAccount } from './BrzaContinueInOtherAccount'
+import {
+  BrzaContinueInOtherAccount,
+  BrzaUsageLimitContinueInOtherAccount
+} from './BrzaContinueInOtherAccount'
 import { BrzaContinueAfterWorkLine } from './BrzaContinueAfterWorkLine'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+
+const row = vi.hoisted(() => {
+  const state: { view: unknown; stop: unknown } = { view: null, stop: null }
+  return state
+})
+vi.mock('../usage/NativeChatUsageLimitActions', () => ({
+  useNativeChatUsageLimitContinueInOtherAccount: () => row.view
+}))
+vi.mock('../messages/notices/native-chat-orca-stop-context', () => ({
+  useNativeChatOrcaStopView: () => row.stop
+}))
 
 afterEach(cleanup)
 
@@ -98,4 +112,38 @@ it('says the wait ran out, and Dismiss clears it', () => {
   ).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
   expect(cancel).toHaveBeenCalledOnce()
+})
+
+// PLN-026 A4: the host holds the continue, so the scheduled automatic continue of that cut must not
+// send it on the old account meanwhile.
+it('drops the scheduled automatic continue when the host holds the continue', async () => {
+  const continueUsageLimit = vi.fn()
+  const cancelAutomatic = vi.fn()
+  row.stop = { usageLimitTurnItemId: 'cut', usageLimitContinueDisabled: false, continueUsageLimit }
+  row.view = {
+    current: { id: 'current', label: 'current@example.com' },
+    choices: [
+      { id: 'current', label: 'current@example.com', disabled: false },
+      { id: 'other', label: 'other@example.com', disabled: false }
+    ],
+    refresh: vi.fn(),
+    switching: false,
+    switchTo: async () => true,
+    afterWork: { status: null, arm: async () => 'deferred', cancel: vi.fn() }
+  }
+  render(
+    <BrzaUsageLimitContinueInOtherAccount
+      autoContinue={{ kind: 'scheduled', resetsAt: 1, cancel: cancelAutomatic }}
+    />
+  )
+  fireEvent.pointerDown(screen.getByRole('button', { name: 'Continue in another account' }), {
+    button: 0,
+    ctrlKey: false,
+    pointerType: 'mouse'
+  })
+  await act(async () => {
+    fireEvent.click(await screen.findByText('other@example.com'))
+  })
+  expect(cancelAutomatic).toHaveBeenCalledOnce()
+  expect(continueUsageLimit).not.toHaveBeenCalled()
 })

@@ -21142,6 +21142,7 @@
         "cancelWaiting": "取消",
         "expired": "后台任务未在 30 分钟内完成，因此未在 {{account}} 中继续",
         "accountUnavailable": "{{account}} 无法接管此聊天，因此未在其中继续",
+        "turnFailed": "聊天在原账号上因错误停止，因此未在 {{account}} 中继续",
         "dismissExpired": "关闭"
       },
       "rewind": {

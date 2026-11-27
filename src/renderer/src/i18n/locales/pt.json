@@ -22020,6 +22020,7 @@
         "cancelWaiting": "Cancelar",
         "expired": "A tarefa em segundo plano não terminou em 30 minutos, e o chat não continuou em {{account}}",
         "accountUnavailable": "{{account}} não pôde receber o chat, e ele não continuou lá",
+        "turnFailed": "O chat parou com um erro na conta antiga e não continuou em {{account}}",
         "dismissExpired": "Dispensar"
       },
       "signIn": {

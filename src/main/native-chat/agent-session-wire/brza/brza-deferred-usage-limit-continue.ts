@@ -12,6 +12,7 @@ import type { UsageLimitContinueDeps } from '../recovery/structured-agent-sessio
 import type { StructuredAgentSessionStatusSubscriber } from '../observations/structured-agent-session-status-feed-deps'
 import { brzaContinueAfterWorkStatuses as statuses } from './brza-continue-after-work-status'
 import { BrzaContinueAfterWorkTriggers } from './brza-continue-after-work-triggers'
+import { brzaWithoutCut, type BrzaContinueAfterWorkEnding } from './brza-continue-after-work-cut'
 import { sendBrzaContinue, type BrzaContinueSendDeps } from './brza-continue-after-work-send'
 import { BRZA_PIN_SWITCH_RETRY_MS, brzaPinOf, brzaSwitchPin } from './brza-continue-after-work-pin'
 import {
@@ -23,7 +24,6 @@ import {
 
 /** R4.2, R7.2: the wait gives up after 30 minutes. */
 export const BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS = 30 * 60_000
-const BRZA_CUT_GRACE_MS = 2_000
 
 type Pending = {
   turnItemId: string
@@ -32,8 +32,8 @@ type Pending = {
   accountId?: string | null
   armedAt: number
   fallbackAt?: number
-  /** The work was done with no cut yet; its turn's limit row may still be on its way. */
-  cutMissingAt?: number
+  /** The work was done with no cut yet after this failed turn; its limit row may be on its way. */
+  cutMissing?: { turnId: string; at: number }
   /** `pin`: the chat's pin when the person chose; another since means the composer moved it. */
   pinAtArm?: string | null
   /** `pin`: a wake-up that never came, carried across a switch that has to wait. */
@@ -41,7 +41,7 @@ type Pending = {
   /** `pin`: after a refused switch, no new attempt before this. */
   retryAt?: number
 }
-type Verdict = 'wait' | 'cancel' | 'drop' | 'expire' | 'fire' | 'fallback'
+type Verdict = 'wait' | 'cancel' | 'drop' | 'expire' | 'fire' | 'fallback' | 'turnFailed'
 
 export type BrzaContinueAfterWorkDeps = BrzaContinueSendDeps & {
   session: (sessionId: string) => StructuredAgentSessionHostSession | undefined
@@ -70,6 +70,7 @@ export type BrzaContinueAfterWorkDeps = BrzaContinueSendDeps & {
 export class BrzaDeferredUsageLimitContinue {
   private readonly pending = new Map<string, Pending>()
   private disposed = false
+  private readonly paused = new Set<string>()
   private readonly triggers: BrzaContinueAfterWorkTriggers
 
   constructor(private readonly deps: BrzaContinueAfterWorkDeps) {
@@ -127,6 +128,15 @@ export class BrzaDeferredUsageLimitContinue {
     }
   }
 
+  /** Holds the wait while the chat's Stop is in flight; `release` checks again (R9.1). */
+  pause = (sessionId: string): (() => void) => {
+    this.paused.add(sessionId)
+    return () => {
+      this.paused.delete(sessionId)
+      void this.tick()
+    }
+  }
+
   readState = (sessionId: string): BrzaContinueAfterWorkStatus | undefined => {
     const session = this.deps.session(sessionId)
     return session && statuses.get(session)
@@ -165,7 +175,9 @@ export class BrzaDeferredUsageLimitContinue {
         return { verdict, notices: pending.notices, pinned: pending }
       }
       if (verdict !== 'wait') {
-        this.end(sessionId, verdict === 'expire' ? 'expired' : undefined)
+        const ending =
+          verdict === 'expire' ? 'expired' : verdict === 'turnFailed' ? verdict : undefined
+        this.end(sessionId, ending, ending && (await this.deps.readCut(sessionId))?.turnItemId)
       }
       return { verdict, notices }
     })
@@ -197,10 +209,12 @@ export class BrzaDeferredUsageLimitContinue {
       this.triggers.at(sessionId, pending.retryAt)
       return
     }
+    const cut = outcome === 'unavailable' ? await this.deps.readCut(sessionId) : null
     const current = await this.deps.serialize(sessionId, async () => {
       const same = this.pending.get(sessionId) === pending
       if (same) {
-        this.end(sessionId, outcome === 'unavailable' ? 'accountUnavailable' : undefined)
+        const ending = outcome === 'unavailable' ? 'accountUnavailable' : undefined
+        this.end(sessionId, ending, cut?.turnItemId)
       }
       return same
     })
@@ -217,6 +231,9 @@ export class BrzaDeferredUsageLimitContinue {
       return 'drop'
     }
     // Read when used: the reads before it wait, and the clock moves on meanwhile.
+    if (this.paused.has(sessionId)) {
+      return 'wait'
+    }
     const expired = () => this.deps.now() - pending.armedAt >= BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS
     if (pending.target === 'pin') {
       // The composer moved the pin since; a switch that keeps waiting runs out as the work does.
@@ -241,33 +258,20 @@ export class BrzaDeferredUsageLimitContinue {
       }
     }
     if (!session.child || !(await this.owesWork(sessionId))) {
-      return (await this.deps.readCut(sessionId)) ? 'fire' : this.withoutCut(sessionId, pending)
+      if (await this.deps.readCut(sessionId)) {
+        return 'fire'
+      }
+      return brzaWithoutCut({
+        reads: session.journal.reads,
+        wait: pending,
+        now: this.deps.now(),
+        recheckAt: (when) => this.triggers.at(sessionId, when)
+      })
     }
     if (expired()) {
       return 'expire'
     }
     return (await this.wakeUpOverdue(sessionId, pending)) ? 'fallback' : 'wait'
-  }
-
-  /** No cut once the work is done: the wake-up went through on the old account, a newer turn or
-   *  send already continues the chat, or a failed turn's row has landed and its limit row not yet;
-   *  that row's publish checks again. A failure that never brings one ends quietly after a grace. */
-  private async withoutCut(sessionId: string, pending: Pending): Promise<Verdict> {
-    const reads = this.deps.session(sessionId)?.journal.reads
-    const turn = await reads?.newestTurn()
-    if (
-      !reads ||
-      turn?.state !== 'completed' ||
-      turn.outcome !== 'failure' ||
-      (await reads.pendingSubmissions()).length > 0
-    ) {
-      return 'drop'
-    }
-    if (pending.cutMissingAt === undefined) {
-      pending.cutMissingAt = this.deps.now()
-      this.triggers.at(sessionId, pending.cutMissingAt + BRZA_CUT_GRACE_MS)
-    }
-    return this.deps.now() - pending.cutMissingAt >= BRZA_CUT_GRACE_MS ? 'drop' : 'wait'
   }
 
   /** Until the wake-up is overdue, a deadline checks again when its grace runs out. */
@@ -316,16 +320,17 @@ export class BrzaDeferredUsageLimitContinue {
   private retained = (sessionId: string): BrzaRetainedWork => this.deps.retainedWork(sessionId)
   private childWork = (sessionId: string) => this.retained(sessionId).childWork()
 
-  /** Expired keeps the status, so the row says the wait ran out until the person dismisses it. */
-  private end(sessionId: string, ending?: 'expired' | 'accountUnavailable'): void {
+  /** Expired keeps the status, so the row says the wait ran out until the person dismisses it; it
+   *  moves to the newest cut, the row it shows on, so no later cut's row says it. */
+  private end(sessionId: string, ending?: BrzaContinueAfterWorkEnding, cutItemId?: string): void {
     const session = this.deps.session(sessionId)
     const status = session && statuses.get(session)
     this.forget(sessionId)
     if (session && status) {
       if (ending) {
-        const unavailable =
-          ending === 'accountUnavailable' ? { accountUnavailable: true as const } : {}
-        statuses.set(session, { ...status, expired: true, ...unavailable })
+        const reason = ending === 'expired' ? {} : { reason: ending }
+        const turnItemId = cutItemId ?? status.turnItemId
+        statuses.set(session, { ...status, turnItemId, expired: true, ...reason })
       } else {
         statuses.delete(session)
       }
