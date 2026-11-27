@@ -22019,6 +22019,7 @@
         "waiting": "Vai continuar em {{account}} quando a tarefa em segundo plano terminar",
         "cancelWaiting": "Cancelar",
         "expired": "A tarefa em segundo plano não terminou em 30 minutos, e o chat não continuou em {{account}}",
+        "accountUnavailable": "{{account}} não pôde receber o chat, e ele não continuou lá",
         "dismissExpired": "Dispensar"
       },
       "signIn": {

@@ -21097,6 +21097,7 @@
         "waiting": "백그라운드 작업이 끝나면 {{account}}에서 계속합니다",
         "cancelWaiting": "취소",
         "expired": "백그라운드 작업이 30분 안에 끝나지 않아 {{account}}에서 계속하지 않았습니다",
+        "accountUnavailable": "{{account}}에서 채팅을 이어받지 못해 계속하지 않았습니다",
         "dismissExpired": "닫기"
       },
       "signIn": {

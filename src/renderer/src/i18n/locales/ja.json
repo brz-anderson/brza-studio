@@ -20507,6 +20507,7 @@
         "waiting": "バックグラウンドタスクが終わったら {{account}} で続行します",
         "cancelWaiting": "キャンセル",
         "expired": "バックグラウンドタスクが 30 分以内に終わらなかったため、{{account}} では続行しませんでした",
+        "accountUnavailable": "{{account}} でチャットを引き継げなかったため、続行しませんでした",
         "dismissExpired": "閉じる"
       },
       "rewind": {

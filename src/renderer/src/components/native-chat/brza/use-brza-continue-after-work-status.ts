@@ -18,9 +18,13 @@ export function useBrzaContinueAfterWorkStatus(
     () => {
       const status = feed.getSnapshot().get(sessionId)?.brzaContinueAfterWork
       return status
-        ? [status.turnItemId, status.account, status.since, status.expired ? '1' : ''].join(
-            SEPARATOR
-          )
+        ? [
+            status.turnItemId,
+            status.account,
+            status.since,
+            status.expired ? '1' : '',
+            status.accountUnavailable ? '1' : ''
+          ].join(SEPARATOR)
         : ''
     },
     () => ''
@@ -29,7 +33,14 @@ export function useBrzaContinueAfterWorkStatus(
     if (!key) {
       return null
     }
-    const [turnItemId = '', account = '', since = '0', expired = ''] = key.split(SEPARATOR)
-    return { turnItemId, account, since: Number(since), ...(expired ? { expired: true } : {}) }
+    const [turnItemId = '', account = '', since = '0', expired = '', unavailable = ''] =
+      key.split(SEPARATOR)
+    return {
+      turnItemId,
+      account,
+      since: Number(since),
+      ...(expired ? { expired: true } : {}),
+      ...(unavailable ? { accountUnavailable: true } : {})
+    }
   }, [key])
 }

@@ -250,8 +250,8 @@ for (const mode of ['pinned', 'selection'] as const) {
       expect(calls('agentSession.send')[0]![2]).toMatchObject({
         usageLimitContinuationOfTurnItemId: TURN
       })
-      // A pinned chat moves with its own switch; the deferred continue is for one that follows.
-      expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(mode === 'pinned' ? 0 : 1)
+      // Both ask the host first: a pinned chat before its own switch, one that follows after.
+      expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(1)
     })
   }
 }
@@ -268,6 +268,26 @@ it('leaves the continue to the host while background work holds the old account'
     account: 'c@example.com'
   })
   await act(async () => {})
+  expect(calls('agentSession.send')).toHaveLength(0)
+})
+
+// PLN-026 D5: a pinned chat's record cannot move while its agent runs, so the host holds the switch.
+it('leaves a pinned chat on its account and the switch to the host while work holds it', async () => {
+  mocks.afterWorkKind = 'deferred'
+  const switched = vi.fn()
+  switching.after = switched
+  render(<Harness items={limitedChat} isWorking={false} />)
+  await chooseAccount('c@example.com')
+  await waitFor(() => expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(1))
+  expect(calls('agentSession.brzaContinueAfterWork')[0]![2]).toEqual({
+    sessionId: 'chat',
+    turnItemId: TURN,
+    account: 'c@example.com',
+    target: 'pin',
+    accountId: 'c'
+  })
+  await act(async () => {})
+  expect(switched).not.toHaveBeenCalled()
   expect(calls('agentSession.send')).toHaveLength(0)
 })
 

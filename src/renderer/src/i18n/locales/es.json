@@ -20118,6 +20118,7 @@
         "waiting": "Continuará en {{account}} cuando termine la tarea en segundo plano",
         "cancelWaiting": "Cancelar",
         "expired": "La tarea en segundo plano no terminó en 30 minutos, así que el chat no continuó en {{account}}",
+        "accountUnavailable": "{{account}} no pudo recibir el chat, así que no continuó allí",
         "dismissExpired": "Descartar"
       },
       "signIn": {

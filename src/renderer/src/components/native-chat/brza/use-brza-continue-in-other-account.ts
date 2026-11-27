@@ -14,9 +14,11 @@ import {
   type BrzaContinueAfterWorkView
 } from './use-brza-continue-after-work'
 
-/** The row's switch, with the host's deferred continue on a chat that follows the selection. */
+/** The row's switch, with the host's deferred continue. `pinned`: the host holds the chat's own
+ *  switch as well, so the request goes before it (PLN-026, D5). */
 export type BrzaContinueInOtherAccountView = NativeChatAccountSwitchView & {
   afterWork?: BrzaContinueAfterWorkView
+  pinned?: true
 }
 
 async function switchUsageLimitAccount(args: {
@@ -102,7 +104,7 @@ export function useBrzaContinueInOtherAccount(
       return null
     }
     if (pinned) {
-      return chatAccountSwitch
+      return afterWork ? { ...chatAccountSwitch, afterWork, pinned: true } : chatAccountSwitch
     }
     return canSwitchAccount === true
       ? {

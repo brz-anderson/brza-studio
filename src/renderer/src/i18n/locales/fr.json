@@ -20445,6 +20445,7 @@
         "waiting": "Continuera dans {{account}} quand la tâche en arrière-plan sera terminée",
         "cancelWaiting": "Annuler",
         "expired": "La tâche en arrière-plan ne s'est pas terminée en 30 minutes, le chat n'a donc pas continué dans {{account}}",
+        "accountUnavailable": "{{account}} n'a pas pu accueillir le chat, il n'y a donc pas continué",
         "dismissExpired": "Ignorer"
       },
       "signIn": {

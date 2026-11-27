@@ -17,14 +17,24 @@ import type {
 import type { NativeChatUsageLimitAutoContinueState } from '../usage/native-chat-usage-limit-auto-continue-setting'
 import { BrzaContinueAfterWorkLine } from './BrzaContinueAfterWorkLine'
 
+/** False from `beforeSwitch`: the host holds the move, so nothing follows now. */
+type BeforeSwitch = (choice: NativeChatAccountChoice) => Promise<boolean>
+
 async function continueInChosenAccount(
   view: NativeChatAccountSwitchView,
   choice: NativeChatAccountChoice,
-  onContinue: (choice: NativeChatAccountChoice) => void | Promise<void>,
+  callbacks: {
+    beforeSwitch?: BeforeSwitch
+    onContinue: (choice: NativeChatAccountChoice) => void | Promise<void>
+  },
   setPending: (pending: boolean) => void
 ): Promise<void> {
+  const { beforeSwitch, onContinue } = callbacks
   setPending(true)
   try {
+    if (beforeSwitch && !(await beforeSwitch(choice))) {
+      return
+    }
     if (await view.switchTo(choice.id)) {
       await onContinue(choice)
     }
@@ -46,29 +56,46 @@ export function BrzaUsageLimitContinueInOtherAccount({
   if (!view) {
     return null
   }
-  const { afterWork } = view
+  const { afterWork, pinned } = view
   const turnItemId = orcaStopView.usageLimitTurnItemId
   const status = afterWork?.status
   if (afterWork && status && !status.expired) {
     return <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />
   }
+  const dropAutoContinue = (): void => {
+    if (autoContinue?.kind === 'scheduled') {
+      autoContinue.cancel()
+    }
+  }
+  // A pinned chat cannot move while its agent runs: the host holds its switch with the continue.
+  const beforeSwitch: BeforeSwitch | undefined =
+    pinned && afterWork && turnItemId
+      ? async (choice) => {
+          if ((await afterWork.arm(turnItemId, choice.label, choice.id)) === 'now') {
+            return true
+          }
+          dropAutoContinue()
+          return false
+        }
+      : undefined
   const button = (
     <BrzaContinueInOtherAccount
       view={view}
       disabled={orcaStopView.usageLimitContinueDisabled}
+      {...(beforeSwitch ? { beforeSwitch } : {})}
       onContinue={async (choice) => {
         const armed =
-          afterWork && turnItemId ? await afterWork.arm(turnItemId, choice.label) : 'now'
-        if (autoContinue?.kind === 'scheduled') {
-          autoContinue.cancel()
-        }
+          afterWork && turnItemId && !pinned ? await afterWork.arm(turnItemId, choice.label) : 'now'
+        dropAutoContinue()
         if (armed === 'now') {
           orcaStopView.continueUsageLimit()
         }
       }}
     />
   )
-  if (afterWork && status?.expired && status.turnItemId === turnItemId) {
+  // A pinned chat's refused account shows on the row of the wake-up's newer cut.
+  const shown = status?.accountUnavailable || status?.turnItemId === turnItemId
+  if (afterWork && status?.expired && shown) {
     return (
       <>
         <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />
@@ -82,10 +109,12 @@ export function BrzaUsageLimitContinueInOtherAccount({
 export function BrzaContinueInOtherAccount({
   view,
   disabled = false,
+  beforeSwitch,
   onContinue
 }: {
   view: NativeChatAccountSwitchView
   disabled?: boolean
+  beforeSwitch?: BeforeSwitch
   onContinue: (choice: NativeChatAccountChoice) => void | Promise<void>
 }): React.JSX.Element | null {
   const t = useTranslate()
@@ -102,7 +131,7 @@ export function BrzaContinueInOtherAccount({
     if (pending || view.switching) {
       return
     }
-    void continueInChosenAccount(view, choice, onContinue, setPending)
+    void continueInChosenAccount(view, choice, { beforeSwitch, onContinue }, setPending)
   }
   return (
     <DropdownMenu onOpenChange={(open) => open && view.refresh()}>
