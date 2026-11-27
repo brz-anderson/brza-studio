@@ -20441,7 +20441,11 @@
         "usageLimitExplanation": "Demande à l’agent de reprendre là où il s’était arrêté. À utiliser une fois la limite réinitialisée."
       },
       "continueInOtherAccount": {
-        "continue": "Continuer dans un autre compte"
+        "continue": "Continuer dans un autre compte",
+        "waiting": "Continuera dans {{account}} quand la tâche en arrière-plan sera terminée",
+        "cancelWaiting": "Annuler",
+        "expired": "La tâche en arrière-plan ne s'est pas terminée en 30 minutes, le chat n'a donc pas continué dans {{account}}",
+        "dismissExpired": "Ignorer"
       },
       "signIn": {
         "title": "Connectez-vous à {{agent}} pour commencer à discuter"

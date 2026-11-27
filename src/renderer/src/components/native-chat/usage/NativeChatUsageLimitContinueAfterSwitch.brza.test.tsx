@@ -15,7 +15,12 @@ import type { NativeChatAccountSwitchView } from '../use-native-chat-account-swi
 import { useNativeChatInterruptedContinuation } from './NativeChatInterruptedContinue'
 import { NativeChatUsageLimitActionsProvider } from './NativeChatUsageLimitActions'
 
-const mocks = vi.hoisted(() => ({ call: vi.fn(), pinned: true as boolean }))
+const mocks = vi.hoisted(() => ({
+  call: vi.fn(),
+  pinned: true,
+  afterWork: 'supported',
+  afterWorkKind: 'now'
+}))
 vi.mock('@/components/native-chat/telemetry/native-chat-telemetry', () => ({
   emitNativeChatMessageSent: vi.fn()
 }))
@@ -26,7 +31,8 @@ vi.mock('@/runtime/native-chat/requests/structured-agent-session-call', () => ({
   callStructuredAgentSession: mocks.call
 }))
 vi.mock('@/runtime/native-chat/host-capabilities/structured-agent-session-host-capability', () => ({
-  useStructuredAgentSessionHostCapabilityState: () => 'supported'
+  useStructuredAgentSessionHostCapabilityState: (_target: unknown, capability: string) =>
+    capability.includes('brza-continue-after-work') ? mocks.afterWork : 'supported'
 }))
 vi.mock('@/components/native-chat-recovery/offers/native-chat-restart-runtimes', () => ({
   useNativeChatTargetRestartResuming: () => []
@@ -36,6 +42,9 @@ vi.mock('@/components/native-chat-recovery/offers/native-chat-launch-resume-deci
 }))
 vi.mock('@/components/native-chat/pane/ownership/use-structured-agent-session-host-label', () => ({
   useStructuredAgentSessionHostLabel: () => null
+}))
+vi.mock('../brza/use-brza-continue-after-work-status', () => ({
+  useBrzaContinueAfterWorkStatus: () => null
 }))
 vi.mock('../session/status/structured-agent-session-status-hooks', () => ({
   useStructuredAgentSessionAccountSwitch: () =>
@@ -61,10 +70,17 @@ afterEach(() => {
 })
 beforeEach(() => {
   mocks.pinned = true
+  mocks.afterWork = 'supported'
+  mocks.afterWorkKind = 'now'
   mocks.call.mockImplementation(async (_target: unknown, method: string) =>
-    method === 'agentSession.options' ? { canSwitchAccount: true } : new Promise(() => {})
+    method === 'agentSession.options'
+      ? { canSwitchAccount: true }
+      : method === 'agentSession.brzaContinueAfterWork'
+        ? { kind: mocks.afterWorkKind }
+        : new Promise(() => {})
   )
 })
+const calls = (method: string) => mocks.call.mock.calls.filter((call) => call[1] === method)
 
 const TARGET: RuntimeClientTarget = { kind: 'local' }
 const TURN = agentJournalItemKey({ provider: 'orca', clientMessageId: 'limited' })
@@ -230,10 +246,36 @@ for (const mode of ['pinned', 'selection'] as const) {
       switching.after = () =>
         rerender(<Harness items={[...limitedChat, divider]} isWorking={working} />)
       await chooseAccount('c@example.com')
-      await waitFor(() => expect(mocks.call).toHaveBeenCalled())
-      const sends = mocks.call.mock.calls.filter((call) => call[1] === 'agentSession.send')
-      expect(sends).toHaveLength(1)
-      expect(sends[0]![2]).toMatchObject({ usageLimitContinuationOfTurnItemId: TURN })
+      await waitFor(() => expect(calls('agentSession.send')).toHaveLength(1))
+      expect(calls('agentSession.send')[0]![2]).toMatchObject({
+        usageLimitContinuationOfTurnItemId: TURN
+      })
+      // A pinned chat moves with its own switch; the deferred continue is for one that follows.
+      expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(mode === 'pinned' ? 0 : 1)
     })
   }
 }
+
+it('leaves the continue to the host while background work holds the old account', async () => {
+  mocks.pinned = false
+  mocks.afterWorkKind = 'deferred'
+  render(<Harness items={limitedChat} isWorking={false} />)
+  await chooseAccount('c@example.com')
+  await waitFor(() => expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(1))
+  expect(calls('agentSession.brzaContinueAfterWork')[0]![2]).toEqual({
+    sessionId: 'chat',
+    turnItemId: TURN,
+    account: 'c@example.com'
+  })
+  await act(async () => {})
+  expect(calls('agentSession.send')).toHaveLength(0)
+})
+
+it('continues now on a host without the deferred continue', async () => {
+  mocks.pinned = false
+  mocks.afterWork = 'unsupported'
+  render(<Harness items={limitedChat} isWorking={false} />)
+  await chooseAccount('c@example.com')
+  await waitFor(() => expect(calls('agentSession.send')).toHaveLength(1))
+  expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(0)
+})
