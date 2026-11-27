@@ -9,7 +9,10 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useTranslate } from '@/i18n/use-translate'
 import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
-import { useNativeChatUsageLimitContinueInOtherAccount } from '../usage/NativeChatUsageLimitActions'
+import {
+  useNativeChatUsageLimitActions,
+  useNativeChatUsageLimitContinueInOtherAccount
+} from '../usage/NativeChatUsageLimitActions'
 import type {
   NativeChatAccountChoice,
   NativeChatAccountSwitchView
@@ -103,6 +106,21 @@ export function BrzaUsageLimitContinueInOtherAccount({
     )
   }
   return button
+}
+
+/** On a usage-limit row that is no longer the chat's current stop (PLN-026, B2): a wait that ended
+ *  on its cut says so there, since a wake-up that failed without the limit leaves no newer cut. */
+export function BrzaUsageLimitEndedWait({
+  turnItemId
+}: {
+  turnItemId: string | undefined
+}): React.JSX.Element | null {
+  const afterWork = useNativeChatUsageLimitActions()?.continueAfterWork
+  const status = afterWork?.status
+  if (!afterWork || !status?.expired || status.turnItemId !== turnItemId) {
+    return null
+  }
+  return <BrzaContinueAfterWorkLine status={status} onCancel={afterWork.cancel} />
 }
 
 export function BrzaContinueInOtherAccount({

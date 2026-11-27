@@ -14,7 +14,10 @@ import { sayAgentSessionFailureTranslated } from '../messages/notices/agent-sess
 import { useNativeChatOrcaStopView } from '../messages/notices/native-chat-orca-stop-context'
 import { ProviderFrameRow } from '../messages/diagnostics/NativeChatProviderDetails'
 import { NativeChatInterruptedContinueButton } from './NativeChatInterruptedContinue'
-import { BrzaUsageLimitContinueInOtherAccount } from '../brza/BrzaContinueInOtherAccount'
+import {
+  BrzaUsageLimitContinueInOtherAccount,
+  BrzaUsageLimitEndedWait
+} from '../brza/BrzaContinueInOtherAccount'
 import { useNativeChatUsageLimitActions } from './NativeChatUsageLimitActions'
 import {
   openUsageLimitContinueSetting,
@@ -336,7 +339,9 @@ function UsageLimitCard({
         </div>
         <p className="sr-only">{words.summary}</p>
         <div ref={slotRef} className={cn('flex shrink-0 items-center gap-0.5', stack.tools)}>
-          {slotKey === 'none' ? null : (
+          {slotKey === 'none' ? (
+            <BrzaUsageLimitEndedWait turnItemId={block.usageLimitTurnItemId} />
+          ) : (
             <UsageLimitFocusSlot key={slotKey} pendingFocus={pendingFocus}>
               {slotKey === 'tools' ? (
                 <>

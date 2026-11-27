@@ -74,7 +74,8 @@ export async function limitedChatWithBackgroundWork(
       { fence: fence(), turnScope: { kind: 'turn', turnItemId } }
     )
   }
-  /** A turn that ended on the usage limit at `at`, as the CLI writes it; returns its cut's id. */
+  /** A turn that ended on the usage limit at `at`; returns its cut's id. The CLI writes the limit row
+   *  before it closes the turn; here the turn comes first, and a check between the two waits (A1). */
   const limit = async (id: string, at: number): Promise<string> => {
     const turnItemId = await turn(id, at, 'failure')
     await limitRow(id, at)

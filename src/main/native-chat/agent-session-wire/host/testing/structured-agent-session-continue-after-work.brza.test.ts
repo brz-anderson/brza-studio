@@ -2,6 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 import type { AgentChildWorkView } from '../../../../../shared/agent-status/child-work/agent-status-child-work-view'
 import { structuredAgentSessionMessageSendMutation } from '../../../../../shared/agent-session/requests/structured-agent-session-send-mutation'
 import { BRZA_CONTINUE_AFTER_WORK_TIMEOUT_MS } from '../../brza/brza-deferred-usage-limit-continue'
+import { stopsWaiting } from '../../brza/brza-continue-after-work-wiring'
 import { childRecord } from '../../recovery/testing/structured-agent-session-restart-resume.test-fixture'
 import { QUEUED_RIG_CALLER } from './structured-agent-session-queued-message-rig.test-fixture'
 import {
@@ -223,16 +224,6 @@ it.each([
     }
   ],
   [
-    "a question card's cancel",
-    (chat: Awaited<ReturnType<typeof waiting>>) => {
-      const fields = { prompt: { itemId: 'question', expectedRevision: 1 } }
-      return chat.rig.host.cancel(QUEUED_RIG_CALLER, {
-        envelope: chat.rig.envelope(fields, 'agentSession.cancel', hostTestOperationId()),
-        ...fields
-      })
-    }
-  ],
-  [
     'a Stop the host refused',
     async (chat: Awaited<ReturnType<typeof waiting>>) => {
       const envelope = chat.rig.envelope({}, 'agentSession.cancel', hostTestOperationId())
@@ -248,6 +239,17 @@ it.each([
   await chat.deferred().tick()
   expect(chat.state()).toMatchObject({ account: 'Conta B' })
   expect(chat.state()?.expired).toBeUndefined()
+})
+
+// R9.1, B4: a question card's cancel the host takes is still not the chat's Stop.
+it("keeps the wait on a question card's cancel the host took, and drops it on the chat's Stop", async () => {
+  const wait = { pause: vi.fn(() => () => {}), stopped: vi.fn() }
+  const cancel = stopsWaiting({ brzaContinueAfterWork: wait }, async () => ({ ok: true }))
+  const envelope = { sessionId: SESSION }
+  await cancel(QUEUED_RIG_CALLER, { envelope, prompt: { itemId: 'question', expectedRevision: 1 } })
+  expect(wait.stopped).not.toHaveBeenCalled()
+  await cancel(QUEUED_RIG_CALLER, { envelope })
+  expect(wait.stopped).toHaveBeenCalledWith(SESSION)
 })
 
 // R9.2: applying the selection checks the wait again, with no publish of the chat's own.

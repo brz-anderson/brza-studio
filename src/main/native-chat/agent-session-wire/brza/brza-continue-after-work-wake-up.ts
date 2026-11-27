@@ -24,16 +24,24 @@ export function owedWakeUps(
   )
 }
 
-/** When the finished tasks' wake-up is overdue; null while none is owed or other work is open. */
+/** When the finished tasks' wake-up is overdue; null while none is owed. */
+export function brzaWakeUpDueAt(
+  work: Pick<JournalWorkAnswer<'child-work'>, 'newestTurnCompletedAt'> | null,
+  childWork: readonly AgentChildWorkView[] | undefined
+): number | null {
+  const owed = owedWakeUps(work, childWork)
+  return owed.length === 0
+    ? null
+    : Math.max(...owed.map((task) => task.settledAt ?? 0)) +
+        BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS
+}
+
+/** The same, null too while other work is open. */
 export async function brzaWakeUpDue(reads: BrzaRetainedWork): Promise<number | null> {
   const work = await reads.currentWork()
-  const owed = owedWakeUps(work, reads.childWork())
-  if (owed.length === 0 || structuredAgentSessionChildHasOpenWork(reads, work)) {
-    return null
-  }
-  return (
-    Math.max(...owed.map((task) => task.settledAt ?? 0)) + BRZA_CONTINUE_AFTER_WORK_WAKE_UP_GRACE_MS
-  )
+  return structuredAgentSessionChildHasOpenWork(reads, work)
+    ? null
+    : brzaWakeUpDueAt(work, reads.childWork())
 }
 
 const escaped = (text: string): string =>

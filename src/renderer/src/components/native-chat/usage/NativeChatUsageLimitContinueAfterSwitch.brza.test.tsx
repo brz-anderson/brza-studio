@@ -12,16 +12,28 @@ import type { AgentJournalRenderItem } from '../../../../../shared/agent-session
 import type { RuntimeClientTarget } from '../../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 import { NativeChatNoticeRow } from '../messages/notices/NativeChatNoticeRow'
 import type { NativeChatAccountSwitchView } from '../use-native-chat-account-switch'
+import type { BrzaContinueAfterWorkStatus } from '../../../../../shared/agent-session/brza/agent-session-status-continue-after-work'
 import { useNativeChatInterruptedContinuation } from './NativeChatInterruptedContinue'
 import { NativeChatUsageLimitActionsProvider } from './NativeChatUsageLimitActions'
 
-const mocks = vi.hoisted(() => ({
-  call: vi.fn(),
-  pinned: true,
-  afterWork: 'supported',
-  afterWorkKind: 'now',
-  afterWorkFails: false
-}))
+const mocks = vi.hoisted(() => {
+  const state: {
+    call: ReturnType<typeof vi.fn>
+    pinned: boolean
+    afterWork: string
+    afterWorkKind: string
+    afterWorkFails: boolean
+    afterWorkStatus: BrzaContinueAfterWorkStatus | null
+  } = {
+    call: vi.fn(),
+    pinned: true,
+    afterWork: 'supported',
+    afterWorkKind: 'now',
+    afterWorkFails: false,
+    afterWorkStatus: null
+  }
+  return state
+})
 vi.mock('@/components/native-chat/telemetry/native-chat-telemetry', () => ({
   emitNativeChatMessageSent: vi.fn()
 }))
@@ -45,7 +57,7 @@ vi.mock('@/components/native-chat/pane/ownership/use-structured-agent-session-ho
   useStructuredAgentSessionHostLabel: () => null
 }))
 vi.mock('../brza/use-brza-continue-after-work-status', () => ({
-  useBrzaContinueAfterWorkStatus: () => null
+  useBrzaContinueAfterWorkStatus: () => mocks.afterWorkStatus
 }))
 vi.mock('../session/status/structured-agent-session-status-hooks', () => ({
   useStructuredAgentSessionAccountSwitch: () =>
@@ -74,6 +86,7 @@ beforeEach(() => {
   mocks.afterWork = 'supported'
   mocks.afterWorkKind = 'now'
   mocks.afterWorkFails = false
+  mocks.afterWorkStatus = null
   mocks.call.mockImplementation(async (_target: unknown, method: string) =>
     method === 'agentSession.options'
       ? { canSwitchAccount: true }
@@ -304,6 +317,40 @@ it('continues now when the request to hold the continue fails', async () => {
   await chooseAccount('c@example.com')
   await waitFor(() => expect(calls('agentSession.send')).toHaveLength(1))
   expect(calls('agentSession.brzaContinueAfterWork')).toHaveLength(1)
+})
+
+// PLN-026 B2: a wake-up that failed without the limit leaves no current cut, so the row it was
+// armed on, now historical, is the one that says so.
+it('says on the cut the wait was armed on that the wake-up failed', async () => {
+  mocks.pinned = false
+  mocks.afterWorkStatus = {
+    turnItemId: TURN,
+    account: 'c@example.com',
+    since: 1,
+    expired: true,
+    reason: 'turnFailed'
+  }
+  const failedWakeUp: AgentJournalRenderItem = {
+    itemId: agentJournalItemKey({ provider: 'orca', clientMessageId: 'wake-up' }),
+    revision: 2,
+    sequence: 4,
+    observedAt: 8,
+    body: {
+      kind: 'turn',
+      turnId: 'wake-up',
+      state: 'completed',
+      outcome: 'failure',
+      startedAt: 8,
+      completedAt: 9
+    }
+  }
+  render(<Harness items={[...limitedChat, failedWakeUp]} isWorking={false} />)
+  expect(
+    await screen.findByText(
+      "The chat stopped with an error on the old account, so it didn't continue in c@example.com"
+    )
+  ).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Continue in another account' })).toBeNull()
 })
 
 it('continues now on a host without the deferred continue', async () => {

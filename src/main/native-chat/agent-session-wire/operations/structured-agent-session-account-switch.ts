@@ -20,7 +20,7 @@ import {
 } from '../observations/structured-agent-session-read-work'
 import { hostStructuredAgentSessionCurrentWork } from '../observations/structured-agent-session-host-current-work'
 import { conversationCommandBlocked } from './structured-conversation-command-admission'
-import { owedWakeUps } from '../brza/brza-continue-after-work-wake-up'
+import { brzaWakeUpDueAt } from '../brza/brza-continue-after-work-wake-up'
 
 const METHOD = 'agentSession.switchAccount'
 const WAKE_UP_OWED = refuse(
@@ -28,20 +28,30 @@ const WAKE_UP_OWED = refuse(
   { reason: 'backgroundTasksRunning' },
   'Wait for background tasks to finish before using this command.'
 )
+const WITHDRAWN = refuse(
+  'agent_session_operation_invalid',
+  { reason: 'continuationSuperseded' },
+  'The continue that asked for this switch was cancelled.'
+)
+
+/** For a switch the host makes for a deferred continue (PLN-026, D5): checked once the chat's lane
+ *  is reached, so a Cancel queued before it keeps the chat where it is, its agent untouched. */
+export type StructuredAccountSwitchOptions = { stillWanted?: () => boolean }
 
 /** Moves a chat to another account as `/clear` does its context: the same tab and Orca session,
  *  the agent stopped, and a divider; the next start resumes the conversation in that account. */
 export function runStructuredAccountSwitch(
   context: StructuredAgentSessionMutationContext,
   caller: StructuredAgentSessionCaller,
-  params: AgentSessionAccountSwitchParams
+  params: AgentSessionAccountSwitchParams,
+  options: StructuredAccountSwitchOptions = {}
 ): Promise<AgentSessionMutationResult<AgentSessionAccountSwitchResult>> {
   return runAfterRewindStart(
     context,
     caller.callerKey,
     params.envelope,
     { method: METHOD, fields: { accountId: params.accountId } },
-    (selection) => switchUnderSerialize(context, caller, params, selection)
+    (selection) => switchUnderSerialize(context, caller, params, selection, options)
   )
 }
 
@@ -49,7 +59,8 @@ async function switchUnderSerialize(
   context: StructuredAgentSessionMutationContext,
   caller: StructuredAgentSessionCaller,
   params: AgentSessionAccountSwitchParams,
-  selection: ReadyOperationSelection
+  selection: ReadyOperationSelection,
+  options: StructuredAccountSwitchOptions
 ): Promise<AgentSessionMutationResult<AgentSessionAccountSwitchResult>> {
   const { envelope, accountId } = params
   const { sessionId, clientOperationId } = envelope
@@ -107,6 +118,9 @@ async function switchUnderSerialize(
       // Without a committed record the chat never moved; a copied transcript is safe to copy again.
       rerunWhenReplayMissing: () => true,
       run: async (ctx) => {
+        if (options.stillWanted?.() === false) {
+          return { ok: false, refusal: WITHDRAWN }
+        }
         const blocked = await conversationCommandBlocked(
           ctx,
           store.getRecord(sessionId)!,
@@ -116,15 +130,28 @@ async function switchUnderSerialize(
         if (blocked) {
           return { ok: false, refusal: blocked }
         }
-        // A finished task's result reaches the lead only on its wake-up (R8.1).
-        if (
-          context.sessions.get(sessionId)?.child &&
-          owedWakeUps(
-            await readContextStructuredAgentSessionWork(ctx, { kind: 'child-work' }),
-            context.readChildWork(sessionId)
-          ).length > 0
-        ) {
+        // A finished task's result reaches the lead only on its wake-up (R8.1), within the grace the
+        // deferred continue gives it before carrying the result itself (R10.1).
+        const wakeUpDue = context.sessions.get(sessionId)?.child
+          ? brzaWakeUpDueAt(
+              await readContextStructuredAgentSessionWork(ctx, { kind: 'child-work' }),
+              context.readChildWork(sessionId)
+            )
+          : null
+        if (wakeUpDue !== null && context.now() < wakeUpDue) {
           return { ok: false, refusal: WAKE_UP_OWED }
+        }
+        // The account first: one that cannot take the chat leaves its agent running (R6).
+        const prepared = await ctx.adapter.prepareAccountSwitch?.({
+          record: store.getRecord(sessionId)!,
+          accountId
+        })
+        if (!prepared?.ok) {
+          const failure = claudeAccountPinRefusal(prepared?.reason ?? 'unknown-account')
+          return {
+            ok: false,
+            refusal: refuse('agent_session_operation_invalid', failure.details, failure.message)
+          }
         }
         // No process may outlive the switch on the account it is leaving.
         await context.stopAgent(sessionId, { cause: 'evict', resting: true })
@@ -138,14 +165,6 @@ async function switchUnderSerialize(
         )
         if (rechecked) {
           return { ok: false, refusal: rechecked }
-        }
-        const prepared = await ctx.adapter.prepareAccountSwitch?.({ record: stopped, accountId })
-        if (!prepared?.ok) {
-          const failure = claudeAccountPinRefusal(prepared?.reason ?? 'unknown-account')
-          return {
-            ok: false,
-            refusal: refuse('agent_session_operation_invalid', failure.details, failure.message)
-          }
         }
         const value = { accountId, account: prepared.account }
         change = {

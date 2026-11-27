@@ -19,7 +19,8 @@ export function start(
     readCut: (sessionId) => internals().clientDelivery.readUsageLimitCut(sessionId),
     serialize: (sessionId, task) => internals().serialize(sessionId, task),
     send: (params) => host.send(CALLER, params),
-    switchAccount: (params) => host.conversationCommands.switchAccount(CALLER, params),
+    switchAccount: (params, options) =>
+      host.conversationCommands.switchAccount(CALLER, params, options),
     stopAgent: (sessionId) =>
       internals().lifetime.stopAgent(sessionId, { cause: 'evict', resting: true }),
     publish: (sessionId) => internals().clientDelivery.publishStatus(sessionId),
@@ -41,7 +42,7 @@ export function stopsWaiting<
   C,
   R extends { ok: boolean }
 >(
-  host: Pick<StructuredAgentSessionHost, 'brzaContinueAfterWork'>,
+  host: { brzaContinueAfterWork: Pick<BrzaDeferredUsageLimitContinue, 'pause' | 'stopped'> },
   cancel: (caller: C, params: P) => Promise<R>
 ): (caller: C, params: P) => Promise<R> {
   return async (caller, params) => {

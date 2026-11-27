@@ -36,6 +36,8 @@ export type UsageLimitActions = {
   account: ReactNode
   /** BrzA P79: beside Continue, and in place of `account`. */
   continueInOtherAccount?: BrzaContinueInOtherAccountView | null
+  /** BrzA PLN-026: the host's deferred continue, also on rows that are no longer current. */
+  continueAfterWork?: BrzaContinueInOtherAccountView['afterWork']
   handOff?: () => void
   disabled: boolean
   /** Hand off is gathering the chat's context. */
@@ -212,6 +214,7 @@ export function NativeChatUsageLimitActionsProvider({
     () => ({
       account,
       continueInOtherAccount,
+      continueAfterWork: otherAccount?.afterWork,
       disabled,
       preparing: handOffPreparing,
       ...(canHandOff || (loading && isTuiAgent(pane.agent))
@@ -226,6 +229,7 @@ export function NativeChatUsageLimitActionsProvider({
       account,
       canHandOff,
       continueInOtherAccount,
+      otherAccount?.afterWork,
       disabled,
       handOffPreparing,
       loading,
